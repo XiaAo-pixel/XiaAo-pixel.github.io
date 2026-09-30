@@ -1,3 +1,6 @@
+---
+title: 杂记子页
+---
 <!DOCTYPE html>
 <html lang="zh-CN">
 <!--
@@ -53,7 +56,10 @@
     <p class="muted"><span class="ph">【一句话说明这一栏的内容。】</span></p>
 
     <ul class="postlist">
-      <li><a href="note-template.html"><span class="ph">【杂记标题】</span></a><span class="date">2026-09-30</span></li>
+{% assign course_notes = site.pages | where: "kind", "note" | where: "course", "misc-2027" | sort: "date" | reverse %}
+{% for note in course_notes %}
+      <li><a href="{{ note.url }}">{{ note.title }}</a><span class="date">{{ note.date | date: "%Y-%m-%d" }}</span></li>
+{% endfor %}
     </ul>
 
     <footer>最后更新：2026-09-30</footer>

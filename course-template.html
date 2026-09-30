@@ -1,3 +1,6 @@
+---
+title: 【课程名称】
+---
 <!DOCTYPE html>
 <html lang="zh-CN">
 <!--
@@ -54,8 +57,12 @@
     <p class="muted">教师：<span class="ph">【授课教师】</span> · 学期：<span class="ph">【2026 秋】</span> · 教材：<span class="ph">【教材名称】</span></p>
 
     <h2>笔记列表</h2>
+    <!-- 复制本文件后：把下面两处 "os" 改成新课程的代号，并同步更新所有页面侧边栏 -->
     <ul class="postlist">
-      <li><a href="note-template.html"><span class="ph">【笔记标题】</span></a><span class="date">2026-09-30</span></li>
+{% assign course_notes = site.pages | where: "kind", "note" | where: "course", "os" | sort: "date" | reverse %}
+{% for note in course_notes %}
+      <li><a href="{{ note.url }}">{{ note.title }}</a><span class="date">{{ note.date | date: "%Y-%m-%d" }}</span></li>
+{% endfor %}
     </ul>
 
     <p class="muted">提示：想直接分享 PDF（如课件），把文件放进网站目录，链接写成 <code>&lt;a href="文件名.pdf"&gt;【标题】&lt;/a&gt;</code> 即可。</p>

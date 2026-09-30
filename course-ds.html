@@ -1,3 +1,6 @@
+---
+title: 数据结构
+---
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -47,8 +50,10 @@
 
     <h2>笔记列表</h2>
     <ul class="postlist">
-      <li><a href="note-template.html"><span class="ph">【第 2 章：线性表】</span></a><span class="date">2026-09-30</span></li>
-      <li><a href="note-template.html"><span class="ph">【第 1 章：绪论】</span></a><span class="date">2026-09-22</span></li>
+{% assign course_notes = site.pages | where: "kind", "note" | where: "course", "ds" | sort: "date" | reverse %}
+{% for note in course_notes %}
+      <li><a href="{{ note.url }}">{{ note.title }}</a><span class="date">{{ note.date | date: "%Y-%m-%d" }}</span></li>
+{% endfor %}
     </ul>
 
     <footer>最后更新：2026-09-30</footer>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} | 【姓名】</title>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<div class="page">
+
+  <aside class="sidebar">
+    <a class="brand" href="/index.html">
+      <span class="avatar">【姓】</span>
+      <span class="name"><span class="ph">【姓名】</span></span>
+    </a>
+    <nav>
+      <a class="nav-item" href="/index.html">🏠 主页</a>
+      <div class="nav-group">
+        <a class="nav-item" href="/courses.html">📚 课程笔记</a>
+        <div class="subnav">
+          <a {% if page.course == "ds" %}class="active"{% endif %} href="/course-ds.html"><span class="ph">【数据结构】</span></a>
+          <a {% if page.course == "prob" %}class="active"{% endif %} href="/course-prob.html"><span class="ph">【概率论与数理统计】</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <a class="nav-item" href="/misc.html">✏️ 杂记</a>
+        <div class="subnav">
+          <a {% if page.course == "misc-2026" %}class="active"{% endif %} href="/misc-2026.html">2026</a>
+          <a {% if page.course == "misc-2025" %}class="active"{% endif %} href="/misc-2025.html">2025</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <a class="nav-item" href="/hobbies.html">🎨 兴趣爱好</a>
+        <div class="subnav">
+          <a href="/hobby-novel.html">小说</a>
+          <a href="/hobby-anime.html">动漫</a>
+          <a href="/hobby-travel.html">旅行</a>
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <h1>{{ page.title }}</h1>
+    <p class="muted">{{ page.date | date: "%Y-%m-%d" }}</p>
+
+    {{ content }}
+
+    <footer>最后更新：{{ page.date | date: "%Y-%m-%d" }}</footer>
+  </main>
+
+</div>
+</body>
+</html>

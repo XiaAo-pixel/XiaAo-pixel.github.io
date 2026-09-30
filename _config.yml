@@ -1,0 +1,6 @@
+# GitHub Pages (Jekyll) 配置
+# exclude 里的文件只存在于仓库，不会发布成网页
+
+exclude:
+  - README.md
+  - note-template.md

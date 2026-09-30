@@ -1,3 +1,6 @@
+---
+title: 主页
+---
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -73,8 +76,10 @@
 
     <h2>最近更新</h2>
     <ul class="postlist">
-      <li><a href="note-template.html"><span class="ph">【笔记标题】</span></a><span class="date">2026-09-30</span></li>
-      <li><a href="note-template.html"><span class="ph">【杂记标题】</span></a><span class="date">2026-09-28</span></li>
+{% assign latest = site.pages | where: "kind", "note" | sort: "date" | reverse | slice: 0, 5 %}
+{% for note in latest %}
+      <li><a href="{{ note.url }}">{{ note.title }}</a><span class="date">{{ note.date | date: "%Y-%m-%d" }}</span></li>
+{% endfor %}
     </ul>
 
     <footer>最后更新：2026-09-30</footer>

@@ -21,8 +21,11 @@ homepage/
 ├── hobby-novel.html     小说推荐（起点读书链接）
 ├── hobby-anime.html     动漫推荐
 ├── hobby-travel.html    旅行照片墙（分地点）
-├── note-template.html   单篇笔记模板（复制它来写新笔记）
-├── style.css            全站样式（壁纸、透明度、侧边栏都在这里调）
+├── note-template.md    单篇笔记模板（复制它来写新笔记）
+├── notes/              笔记文件夹：新笔记 .md 放这里，push 后自动变成网页
+├── _layouts/note.html  笔记页模板（自动套侧边栏与公式渲染）
+├── _config.yml         Jekyll 配置（排除 README 等不发布的文件）
+├── style.css           全站样式（壁纸、透明度、侧边栏都在这里调）
 ├── assets/
 │   ├── bg-light.svg     内置浅色插画背景（无壁纸时的兜底）
 │   ├── bg-dark.svg      内置深色插画背景（无壁纸时的兜底）
@@ -58,16 +61,20 @@ homepage/
 2. **所有页面**侧边栏 `subnav` 里加一条：`<a href="course-os.html">操作系统</a>`；
 3. 在 `courses.html` 总览页的 `entries` 里照抄一张卡片，改好链接和课程名。
 
-**新增一篇笔记**：
+**新增一篇笔记（纯 Markdown，不碰 HTML）**：
 
-1. 复制 `note-template.html` → 重命名（如 `ds-ch3.html`）→ 填内容（支持 LaTeX：行内 `$...$`，行间 `$$...$$`）；
-2. 打开对应课程页，在“笔记列表”里加一条：
+1. 复制 `note-template.md` → 放进 `notes/` 文件夹 → 重命名为英文文件名（如 `ds-ch3.md`）；
+2. 改文件开头的三行信息：`title`（显示的标题）、`course`（所属栏目代号）、`date`；
+3. 用 Markdown 写正文（支持 LaTeX：行内 `$...$`，行间 `$$...$$`；平板上的 Markdown 编辑器写完直接丢进来即可）；
+4. push 上线——课程页/杂记页的列表和主页“最近更新”**自动**出现这篇笔记，不用手动登记。
 
-   ```html
-   <li><a href="ds-ch3.html">第 3 章：栈和队列</a><span class="date">2026-10-08</span></li>
-   ```
+`course` 取值与页面对应：`ds`=数据结构、`prob`=概率论与数理统计、`misc-2026`/`misc-2025`=杂记年份；新课程按“新增一门课”登记新代号。
 
-3. 顺手更新 `index.html` 的“最近更新”和页脚日期，然后 push。
+**Markdown 写作注意**：
+
+- 配图放进 `assets/`，引用写 `/assets/图片名.png`（以 `/` 开头）；
+- 正文里避免出现连续两个 `{`（`{{` 会被 Jekyll 当模板语法），需要时写 `&#123;&#123;`；
+- 公式中的 `*` 建议写成 `\ast`，避免被当成加粗符号。
 
 **新增一个一级栏目**（比如“转载收藏”）：复制 `misc.html` 改名，再在所有页面的 `<nav>` 里照抄一个 `nav-group`。
 
@@ -91,7 +98,7 @@ python -m http.server 8765
 # 浏览器访问 http://127.0.0.1:8765
 ```
 
-深色模式跟随系统：Windows 在 设置 → 个性化 → 颜色 里切换默认 Windows 模式即可看到两套效果。
+**本地预览的说明**：笔记列表页由 GitHub 云端的 Jekyll 渲染，本地 `python -m http.server` 看到的是“改造前”的原始文件（列表位置会显示花括号代码），属正常现象；想本地完整预览需安装 Ruby + Jekyll（进阶，可选），或直接 push 看线上效果。
 
 ## 更新上线
 
