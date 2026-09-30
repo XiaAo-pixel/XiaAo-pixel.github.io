@@ -101,6 +101,7 @@ body::before {
   height: 46px;
   flex: none;
   border-radius: 50%;
+  object-fit: cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -298,3 +299,6 @@ footer {
   padding: .45rem .85rem;
 }
 .content th { background: var(--accent-weak); }
+
+/* 上传的照片头像（替换姓氏圆标后生效） */
+img.avatar { object-fit: cover; display: block; }
