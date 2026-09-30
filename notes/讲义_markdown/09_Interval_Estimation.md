@@ -3,7 +3,8 @@ layout: note
 kind: note
 title: "第 9 章　区间估计（Interval Estimation）"
 course: statistics
-date: 2026-09-05
+order: 9
+date: 2026-10-01
 ---
 
 # 第 9 章　区间估计（Interval Estimation）

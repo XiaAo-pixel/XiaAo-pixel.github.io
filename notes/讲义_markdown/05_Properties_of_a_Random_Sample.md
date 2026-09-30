@@ -3,7 +3,8 @@ layout: note
 kind: note
 title: "第 5 章　随机样本的性质（Properties of a Random Sample）"
 course: statistics
-date: 2026-09-09
+order: 5
+date: 2026-10-01
 ---
 
 # 第 5 章　随机样本的性质（Properties of a Random Sample）

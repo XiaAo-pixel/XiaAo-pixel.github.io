@@ -3,7 +3,8 @@ layout: note
 kind: note
 title: "第 13 章　后置内容：计算机代数与常用分布表（Back Matter）"
 course: statistics
-date: 2026-09-01
+order: 13
+date: 2026-10-01
 ---
 
 # 第 13 章　后置内容：计算机代数与常用分布表（Back Matter）

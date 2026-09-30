@@ -3,7 +3,8 @@ layout: note
 kind: note
 title: "第 6 章　数据约简原理（Principles of Data Reduction）"
 course: statistics
-date: 2026-09-08
+order: 6
+date: 2026-10-01
 ---
 
 # 第 6 章　数据约简原理（Principles of Data Reduction）

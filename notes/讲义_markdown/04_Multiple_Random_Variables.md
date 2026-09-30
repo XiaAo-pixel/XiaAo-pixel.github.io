@@ -3,7 +3,8 @@ layout: note
 kind: note
 title: "第 4 章　多元随机变量（Multiple Random Variables）"
 course: statistics
-date: 2026-09-10
+order: 4
+date: 2026-10-01
 ---
 
 # 第 4 章　多元随机变量（Multiple Random Variables）

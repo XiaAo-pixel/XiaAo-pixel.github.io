@@ -3,7 +3,8 @@ layout: note
 kind: note
 title: "第 7 章　点估计（Point Estimation）"
 course: statistics
-date: 2026-09-07
+order: 7
+date: 2026-10-01
 ---
 
 # 第 7 章　点估计（Point Estimation）

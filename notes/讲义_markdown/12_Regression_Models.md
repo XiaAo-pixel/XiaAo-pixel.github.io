@@ -3,7 +3,8 @@ layout: note
 kind: note
 title: "第 12 章　回归模型（Regression Models）"
 course: statistics
-date: 2026-09-02
+order: 12
+date: 2026-10-01
 ---
 
 # 第 12 章　回归模型（Regression Models）

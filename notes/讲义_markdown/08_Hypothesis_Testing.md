@@ -3,7 +3,8 @@ layout: note
 kind: note
 title: "第 8 章　假设检验（Hypothesis Testing）"
 course: statistics
-date: 2026-09-06
+order: 8
+date: 2026-10-01
 ---
 
 # 第 8 章　假设检验（Hypothesis Testing）

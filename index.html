@@ -16,7 +16,7 @@ title: 主页
   <aside class="sidebar">
     <a class="brand" href="index.html">
       <img class="avatar" src="assets/avatar.jpg" alt="头像">
-      <span class="name"><span class="ph">XiaAo</span></span>
+      <span class="name">XiaAo</span>
     </a>
     <nav>
       <a class="nav-item active" href="index.html">🏠 主页</a>
@@ -74,13 +74,14 @@ title: 主页
 
     <h2>最近更新</h2>
     <ul class="postlist">
-{% assign latest = site.pages | where: "kind", "note" | sort: "date" | reverse | slice: 0, 5 %}
+{% comment %} 取 order 最大的 5 篇（当前为第 9–13 章），再翻回升序展示 {% endcomment %}
+{% assign latest = site.pages | where: "kind", "note" | sort: "order" | reverse | slice: 0, 5 | reverse %}
 {% for note in latest %}
       <li><a href="{{ note.url }}">{{ note.title }}</a><span class="date">{{ note.date | date: "%Y-%m-%d" }}</span></li>
 {% endfor %}
     </ul>
 
-    <footer>最后更新：2026-09-30</footer>
+    <footer>最后更新：2026-10-01</footer>
   </main>
 
 </div>

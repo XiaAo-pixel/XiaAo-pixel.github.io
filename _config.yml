@@ -4,3 +4,5 @@
 exclude:
   - README.md
   - note-template.md
+  - course-template.html
+  - misc-template.html

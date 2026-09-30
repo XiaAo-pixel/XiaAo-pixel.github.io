@@ -3,7 +3,8 @@ layout: note
 kind: note
 title: "第 3 章　常用分布族（Common Families of Distributions）"
 course: statistics
-date: 2026-09-11
+order: 3
+date: 2026-10-01
 ---
 
 # 第 3 章　常用分布族（Common Families of Distributions）

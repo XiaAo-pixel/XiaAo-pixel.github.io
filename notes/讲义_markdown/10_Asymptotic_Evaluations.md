@@ -3,7 +3,8 @@ layout: note
 kind: note
 title: "第 10 章　渐近评价（Asymptotic Evaluations）"
 course: statistics
-date: 2026-09-04
+order: 10
+date: 2026-10-01
 ---
 
 # 第 10 章　渐近评价（Asymptotic Evaluations）

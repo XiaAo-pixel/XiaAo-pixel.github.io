@@ -3,7 +3,8 @@ layout: note
 kind: note
 title: "第 1 章　概率论（Probability Theory）"
 course: statistics
-date: 2026-09-13
+order: 1
+date: 2026-10-01
 ---
 
 # 第 1 章　概率论（Probability Theory）

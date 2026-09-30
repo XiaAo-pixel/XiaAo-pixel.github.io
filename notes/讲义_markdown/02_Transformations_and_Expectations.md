@@ -3,7 +3,8 @@ layout: note
 kind: note
 title: "第 2 章　变换与期望（Transformations and Expectations）"
 course: statistics
-date: 2026-09-12
+order: 2
+date: 2026-10-01
 ---
 
 # 第 2 章　变换与期望（Transformations and Expectations）
