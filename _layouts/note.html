@@ -21,15 +21,13 @@
     <nav>
       <a class="nav-item" href="/index.html">🏠 主页</a>
       <div class="nav-group">
-        <a class="nav-item" href="/courses.html">📚 课程笔记</a>
+        <a class="nav-item{% unless page.course contains 'misc' %} active{% endunless %}" href="/courses.html">📚 课程笔记</a>
         <div class="subnav">
-          <a href="/course-statistics.html">数理统计</a>
-        </div>
-        <div class="subnav">
+          <a{% if page.course == "statistics" %} class="active"{% endif %} href="/course-statistics.html">数理统计</a>
         </div>
       </div>
       <div class="nav-group">
-        <a class="nav-item" href="/misc.html">✏️ 杂记</a>
+        <a class="nav-item{% if page.course contains 'misc' %} active{% endif %}" href="/misc.html">✏️ 杂记</a>
         <div class="subnav">
         </div>
       </div>
