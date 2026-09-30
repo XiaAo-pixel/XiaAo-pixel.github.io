@@ -7,19 +7,27 @@
 ## 文件结构
 
 ```
-my-homepage/
-├── index.html          主页（自我介绍、快速入口、最近更新）
-├── courses.html        课程笔记总览（每门课一张卡片入口）
+homepage/
+├── index.html           主页（自我介绍、快速入口、最近更新）
+├── courses.html         课程笔记总览（每门课一张卡片入口）
 ├── course-template.html 课程页面模板（新增课程复制它）
-├── course-ds.html      示例课程页：数据结构
-├── course-prob.html    示例课程页：概率论与数理统计
-├── misc.html           杂记（按年份分组）
-├── note-template.html  单篇笔记模板（复制它来写新笔记）
-├── style.css           全站样式（壁纸、透明度、侧边栏都在这里调）
+├── course-ds.html       示例课程页：数据结构
+├── course-prob.html     示例课程页：概率论与数理统计
+├── misc.html            杂记总览（每年一张卡片入口）
+├── misc-template.html   杂记子页模板（新增年份/主题复制它）
+├── misc-2026.html       示例杂记子页：2026
+├── misc-2025.html       示例杂记子页：2025
+├── hobbies.html         兴趣爱好总览
+├── hobby-novel.html     小说推荐（起点读书链接）
+├── hobby-anime.html     动漫推荐
+├── hobby-travel.html    旅行照片墙（分地点）
+├── note-template.html   单篇笔记模板（复制它来写新笔记）
+├── style.css            全站样式（壁纸、透明度、侧边栏都在这里调）
 ├── assets/
-│   ├── bg-light.svg    内置浅色插画背景（无壁纸时的兜底）
-│   ├── bg-dark.svg     内置深色插画背景（无壁纸时的兜底）
-│   └── wallpaper.jpg   （可选）你自己的壁纸，放进来就自动生效
+│   ├── bg-light.svg     内置浅色插画背景（无壁纸时的兜底）
+│   ├── bg-dark.svg      内置深色插画背景（无壁纸时的兜底）
+│   ├── wallpaper.jpg    （可选）你自己的壁纸，放进来就自动生效
+│   └── photos/          旅行照片目录（loc1-*.svg 等是占位图）
 └── README.md
 ```
 
@@ -41,8 +49,8 @@ my-homepage/
 
 侧边栏在每个页面的 `<aside class="sidebar">` 里，两级结构，**每一级都是独立页面**：
 
-- 一级栏目（主页 / 课程笔记 / 杂记）= 一个页面；
-- 子栏目 = 也是独立页面：每门课一个 `course-xxx.html`，侧边栏直接点过去，不用翻长页面。课程页侧边栏里当前课会高亮（`class="active"`）。
+- 一级栏目（主页 / 课程笔记 / 杂记 / 兴趣爱好）= 一个页面；
+- 子栏目 = 也是独立页面：每门课一个 `course-xxx.html`，杂记按年份一个 `misc-xxxx.html`，兴趣爱好下每项一个 `hobby-xxx.html`。侧边栏直接点过去，当前页会高亮（`class="active"`）。
 
 **新增一门课（以“操作系统”为例）**，三步：
 
@@ -63,14 +71,22 @@ my-homepage/
 
 **新增一个一级栏目**（比如“转载收藏”）：复制 `misc.html` 改名，再在所有页面的 `<nav>` 里照抄一个 `nav-group`。
 
-想直接分享 PDF（课件等）：把 PDF 放进网站目录，链接写成 `<a href="课件.pdf">标题</a>`，不用建网页。
+**新增一个杂记子栏目**（新的一年或新主题）：复制 `misc-template.html` 改名 → 填内容 → 侧边栏和 `misc.html` 总览各登记一条，做法与加新课相同。
+
+## 旅行照片墙：怎么换自己的照片
+
+1. 把照片放进 `assets/photos/`，建议按地点命名（如 `loc1-1.jpg`、`loc1-2.jpg`）；
+2. 打开 `hobby-travel.html`，把对应 `<img src="assets/photos/loc1-1.svg">` 的扩展名 `.svg` 改成 `.jpg`（文件名一致的话只改扩展名即可）；
+3. `alt` 里的【照片说明】改成真描述，`<h2>` 里填地点和时间。
+
+想加一个新地点：照抄一个 `<h2>` + 一组 `photo-grid`；想换占位图风格或数量，直接增删 `<img>` 行即可。照片多的话注意每张压缩到 500KB 以内，不然页面加载慢。
 
 ## 本地预览
 
 双击 `index.html` 即可；或：
 
 ```bash
-cd my-homepage
+cd D:\homepage
 python -m http.server 8765
 # 浏览器访问 http://127.0.0.1:8765
 ```

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8fc3e8"/>
+      <stop offset="1" stop-color="#3f7fb0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g)"/>
+  <circle cx="650" cy="110" r="58" fill="#fff" opacity=".3"/>
+  <path d="M0 480 L230 300 L430 480 Z" fill="#fff" opacity=".16"/>
+  <path d="M280 480 L500 250 L800 480 Z" fill="#fff" opacity=".26"/>
+  <text x="400" y="295" font-size="46" text-anchor="middle" fill="#fff" opacity=".92">📷</text>
+  <text x="400" y="355" font-size="27" text-anchor="middle" fill="#fff" opacity=".9" font-family="sans-serif">照片占位 loc1-1</text>
+  <text x="400" y="392" font-size="17" text-anchor="middle" fill="#fff" opacity=".72" font-family="sans-serif">替换为 assets/photos 下的实拍照片</text>
+</svg>

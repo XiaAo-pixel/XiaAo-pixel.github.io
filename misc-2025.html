@@ -1,15 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<!--
-  课程页面模板：新增一门课时复制本文件 → 重命名成英文文件名（如 course-os.html）
-  → 填写课程名和笔记列表 → 两处登记：
-  1. 所有页面侧边栏 subnav 里加：<a href="course-os.html">操作系统</a>
-  2. courses.html 总览页的 entries 里加一张卡片
--->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>【课程名称】 | 【姓名】</title>
+  <title>杂记 · 2025 | 【姓名】</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -27,15 +21,13 @@
         <div class="subnav">
           <a href="course-ds.html"><span class="ph">【数据结构】</span></a>
           <a href="course-prob.html"><span class="ph">【概率论与数理统计】</span></a>
-          <!-- 新课程的链接加在这里；若想让当前页在侧边栏高亮，
-               给对应 <a> 加 class="active" -->
         </div>
       </div>
       <div class="nav-group">
-        <a class="nav-item" href="misc.html">✏️ 杂记</a>
+        <a class="nav-item active" href="misc.html">✏️ 杂记</a>
         <div class="subnav">
           <a href="misc-2026.html">2026</a>
-          <a href="misc-2025.html">2025</a>
+          <a class="active" href="misc-2025.html">2025</a>
         </div>
       </div>
       <div class="nav-group">
@@ -50,15 +42,12 @@
   </aside>
 
   <main class="content">
-    <h1><span class="ph">【课程名称】</span></h1>
-    <p class="muted">教师：<span class="ph">【授课教师】</span> · 学期：<span class="ph">【2026 秋】</span> · 教材：<span class="ph">【教材名称】</span></p>
+    <h1>杂记 · 2025</h1>
+    <p class="muted"><span class="ph">【一句话说明：这一年的随想、教程整理和踩坑记录。】</span></p>
 
-    <h2>笔记列表</h2>
     <ul class="postlist">
-      <li><a href="note-template.html"><span class="ph">【笔记标题】</span></a><span class="date">2026-09-30</span></li>
+      <li><a href="note-template.html"><span class="ph">【杂记标题】</span></a><span class="date">2025-12-01</span></li>
     </ul>
-
-    <p class="muted">提示：想直接分享 PDF（如课件），把文件放进网站目录，链接写成 <code>&lt;a href="文件名.pdf"&gt;【标题】&lt;/a&gt;</code> 即可。</p>
 
     <footer>最后更新：2026-09-30</footer>
   </main>

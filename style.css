@@ -243,6 +243,27 @@ footer {
   text-align: center;
 }
 
+/* 照片墙 */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: .8rem;
+  margin: .9rem 0 1.8rem;
+}
+.photo-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--rule);
+  display: block;
+  transition: transform .15s, box-shadow .15s;
+}
+.photo-grid img:hover {
+  transform: translateY(-2px) scale(1.015);
+  box-shadow: var(--shadow);
+}
+
 /* ---- 窄屏：栏目栏折叠到顶部，横向排布 ---- */
 @media (max-width: 720px) {
   .page { grid-template-columns: 1fr; margin: 1.2rem .8rem; }

@@ -1,15 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<!--
-  课程页面模板：新增一门课时复制本文件 → 重命名成英文文件名（如 course-os.html）
-  → 填写课程名和笔记列表 → 两处登记：
-  1. 所有页面侧边栏 subnav 里加：<a href="course-os.html">操作系统</a>
-  2. courses.html 总览页的 entries 里加一张卡片
--->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>【课程名称】 | 【姓名】</title>
+  <title>旅行 | 【姓名】</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -27,8 +21,6 @@
         <div class="subnav">
           <a href="course-ds.html"><span class="ph">【数据结构】</span></a>
           <a href="course-prob.html"><span class="ph">【概率论与数理统计】</span></a>
-          <!-- 新课程的链接加在这里；若想让当前页在侧边栏高亮，
-               给对应 <a> 加 class="active" -->
         </div>
       </div>
       <div class="nav-group">
@@ -39,26 +31,34 @@
         </div>
       </div>
       <div class="nav-group">
-        <a class="nav-item" href="hobbies.html">🎨 兴趣爱好</a>
+        <a class="nav-item active" href="hobbies.html">🎨 兴趣爱好</a>
         <div class="subnav">
           <a href="hobby-novel.html">小说</a>
           <a href="hobby-anime.html">动漫</a>
-          <a href="hobby-travel.html">旅行</a>
+          <a class="active" href="hobby-travel.html">旅行</a>
         </div>
       </div>
     </nav>
   </aside>
 
   <main class="content">
-    <h1><span class="ph">【课程名称】</span></h1>
-    <p class="muted">教师：<span class="ph">【授课教师】</span> · 学期：<span class="ph">【2026 秋】</span> · 教材：<span class="ph">【教材名称】</span></p>
+    <h1>旅行</h1>
+    <p class="muted"><span class="ph">【一句话说明：按地点整理的照片墙，都是我自己拍的。换照片方法见 README。】</span></p>
 
-    <h2>笔记列表</h2>
-    <ul class="postlist">
-      <li><a href="note-template.html"><span class="ph">【笔记标题】</span></a><span class="date">2026-09-30</span></li>
-    </ul>
+    <!-- 每个地点一个 <h2> + 一组照片；图片放 assets/photos/，<img src> 指向对应文件 -->
+    <h2><span class="ph">【地点一，如：青岛 · 2025 夏】</span></h2>
+    <div class="photo-grid">
+      <img src="assets/photos/loc1-1.svg" alt="【照片说明一】">
+      <img src="assets/photos/loc1-2.svg" alt="【照片说明二】">
+      <img src="assets/photos/loc1-3.svg" alt="【照片说明三】">
+    </div>
 
-    <p class="muted">提示：想直接分享 PDF（如课件），把文件放进网站目录，链接写成 <code>&lt;a href="文件名.pdf"&gt;【标题】&lt;/a&gt;</code> 即可。</p>
+    <h2><span class="ph">【地点二，如：成都 · 2026 寒假】</span></h2>
+    <div class="photo-grid">
+      <img src="assets/photos/loc2-1.svg" alt="【照片说明一】">
+      <img src="assets/photos/loc2-2.svg" alt="【照片说明二】">
+      <img src="assets/photos/loc2-3.svg" alt="【照片说明三】">
+    </div>
 
     <footer>最后更新：2026-09-30</footer>
   </main>
