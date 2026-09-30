@@ -41,21 +41,58 @@
 
   <main class="content">
     <h1>旅行</h1>
-    <p class="muted">按地点整理的照片墙，都是我自己拍的。</p>
+    <p class="muted">按地点整理的照片墙，都是我自己拍的。点开可看大图。</p>
 
-    <!-- 每个地点一个 <h2> + 一组照片；图片放 assets/photos/，<img src> 指向对应文件 -->
+    <!--
+      每个地点一个 <h2> + 一个 .photo-wall。
+      行（.photo-row）怎么分行由你定：同一行的照片按各自原比例自动分配宽度、等高铺满，
+      所以行内整齐、行与行之间大小不同（一行放 2 张就大，放 3 张就小）。
+      img 的 width/height 必须填真实的像素尺寸，脚本靠它算比例。
+    -->
     <h2>南京 · 2026.8</h2>
-    <div class="photo-grid">
-      <img src="assets/photos/nanjing-1.jpg" alt="夜幕下的古秦淮牌坊" loading="lazy" decoding="async">
-      <img src="assets/photos/nanjing-2.jpg" alt="飞檐翘角与檐下的铜铃" loading="lazy" decoding="async">
-      <img src="assets/photos/nanjing-3.jpg" alt="从屋檐间望见的塔" loading="lazy" decoding="async">
-      <img src="assets/photos/nanjing-4.jpg" alt="石阶上摊开肚皮的虎斑猫" loading="lazy" decoding="async">
-      <img src="assets/photos/nanjing-5.jpg" alt="大成殿前的孔子像" loading="lazy" decoding="async">
+    <div class="photo-wall">
+      <div class="photo-row">
+        <figure>
+          <img src="assets/photos/nanjing-1.jpg" width="1706" height="1280" alt="夜幕下的古秦淮牌坊" loading="lazy" decoding="async">
+          <figcaption>夜幕下的古秦淮牌坊</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/photos/nanjing-2.jpg" width="1280" height="1706" alt="飞檐翘角与檐下的铜铃" loading="lazy" decoding="async">
+          <figcaption>飞檐翘角与檐下的铜铃</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/photos/nanjing-3.jpg" width="1280" height="1706" alt="从屋檐间望见的塔" loading="lazy" decoding="async">
+          <figcaption>从屋檐间望见的塔</figcaption>
+        </figure>
+      </div>
+      <div class="photo-row">
+        <figure>
+          <img src="assets/photos/nanjing-4.jpg" width="1280" height="1706" alt="石阶上摊开肚皮的虎斑猫" loading="lazy" decoding="async">
+          <figcaption>石阶上摊开肚皮的虎斑猫</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/photos/nanjing-5.jpg" width="1280" height="1706" alt="大成殿前的孔子像" loading="lazy" decoding="async">
+          <figcaption>大成殿前的孔子像</figcaption>
+        </figure>
+      </div>
     </div>
 
     <footer>最后更新：2026-10-01</footer>
   </main>
 
 </div>
+
+<!-- 放大视图。必须放在 .page 外面：.page 有 backdrop-filter，会让 position:fixed 相对它定位而不是相对窗口 -->
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="照片预览">
+  <button class="lb-btn lb-close" type="button" aria-label="关闭">×</button>
+  <button class="lb-btn lb-prev" type="button" aria-label="上一张">‹</button>
+  <button class="lb-btn lb-next" type="button" aria-label="下一张">›</button>
+  <figure class="lb-body">
+    <img class="lb-img" alt="">
+    <figcaption class="lb-cap"></figcaption>
+  </figure>
+</div>
+
+<script src="assets/photo-wall.js"></script>
 </body>
 </html>

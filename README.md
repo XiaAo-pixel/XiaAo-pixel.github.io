@@ -30,6 +30,7 @@ homepage/
 │   ├── bg-light.svg     内置浅色插画背景（无壁纸时的兜底）
 │   ├── bg-dark.svg      内置深色插画背景（无壁纸时的兜底）
 │   ├── wallpaper.jpg    （可选）你自己的壁纸，放进来就自动生效
+│   ├── photo-wall.js    旅行照片墙：按原比例排版 + 点击放大
 │   └── photos/          旅行照片目录（如 nanjing-1.jpg）
 └── README.md
 ```
@@ -84,20 +85,28 @@ homepage/
 
 ## 旅行照片墙：怎么加新地点
 
-`hobby-travel.html` 里每个地点是一组 `<h2>地点 · 时间</h2>` + 一个 `<div class="photo-grid">`，目前是「南京 · 2026.8」的 5 张。加新地点照抄一组：
+`hobby-travel.html` 里每个地点是 `<h2>地点 · 时间</h2>` + 一个 `.photo-wall`，墙里每一行是一个 `.photo-row`。加新地点照抄一组：
 
 ```html
 <h2>地点 · 年份.月</h2>
-<div class="photo-grid">
-  <img src="assets/photos/地点-1.jpg" alt="照片说明" loading="lazy" decoding="async">
+<div class="photo-wall">
+  <div class="photo-row">          <!-- 一行放几张由你定 -->
+    <figure>
+      <img src="assets/photos/地点-1.jpg" width="1280" height="1706"
+           alt="照片说明" loading="lazy" decoding="async">
+      <figcaption>照片说明</figcaption>
+    </figure>
+  </div>
 </div>
 ```
 
-1. 照片压到**长边 900px 左右、单张 500KB 以内**再放进 `assets/photos/`——网格里每张只显示 200 多像素宽，原图直接传纯属浪费流量；
-2. 按「地点-序号」命名（如 `nanjing-1.jpg`），`<img src>` 跟着改；
-3. `alt` 写真描述（读屏和加载失败时显示的就靠它），`<h2>` 填地点和时间。
+三点要注意：
 
-网格是 `repeat(auto-fill, minmax(200px, 1fr))`，横竖图一律裁成 4:3，所以一处放几张、横竖混排都不会乱。
+1. **`width` / `height` 必须填真实的像素尺寸**——`assets/photo-wall.js` 靠这个比值算排版，填错比例整行就歪了。照片不用预先裁剪或压缩，原图直接放（南京这 5 张加起来才 1MB）。
+2. **一行放几张决定这行多大**：同一行的照片按各自原比例分配宽度、自动等高铺满，行内一个不裁；所以一行放 2 张就大、放 3 张就小。行与行之间大小不同，就是"有大有小"的效果。想调版式就改分行，不用动 CSS。
+3. `alt` 和 `<figcaption>` 写真描述——悬停时以字幕形式浮在照片下沿，点开放大后显示的就是它。载入后 `photo-wall.js` 会给每张加上点击放大、← → 切换、Esc 关闭。
+
+窄屏（≤720px）一行放不下就自动折成两列，不用单独处理。
 
 ## 本地预览
 

@@ -294,26 +294,128 @@ footer {
   text-align: center;
 }
 
-/* 照片墙 */
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: .8rem;
-  margin: .9rem 0 1.8rem;
+/* ---- 照片墙：每行按原比例等高铺满，行与行之间大小不同 ---- */
+.photo-wall {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin: 1rem 0 1.8rem;
+  padding: .35rem 0;
 }
-.photo-grid img {
+.photo-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.photo-row > figure {
+  flex-grow: var(--gn, 1);   /* --gn 由 photo-wall.js 设为该图的宽高比 */
+  flex-shrink: 1;
+  flex-basis: 0;
+  margin: 0;
+  position: relative;
+  transform: rotate(var(--rot, 0deg)) translateY(var(--dy, 0px));
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.photo-row > figure:only-child { flex-grow: 0; flex-basis: 48%; margin: 0 auto; }
+/* 轻微歪斜 + 高低错落，看起来是散布的；悬停时摆正抬起 */
+.photo-row > figure:nth-child(odd)  { --rot: -.9deg; --dy: 3px; }
+.photo-row > figure:nth-child(even) { --rot: .8deg;  --dy: -4px; }
+.photo-row > figure:nth-child(3n)   { --rot: .4deg;  --dy: 5px; }
+.photo-row img {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: 12px;
-  border: 1px solid var(--rule);
+  height: auto;              /* 高度由原比例决定，一行内自然等高 */
   display: block;
-  transition: transform .15s, box-shadow .15s;
+  border-radius: 10px;
+  border: 1px solid var(--rule);
+  background: var(--accent-weak);
+  box-shadow: 0 6px 18px rgba(50, 60, 110, .16);
+  cursor: zoom-in;
 }
-.photo-grid img:hover {
-  transform: translateY(-2px) scale(1.015);
-  box-shadow: var(--shadow);
+.photo-row figure:hover,
+.photo-row figure:focus-visible {
+  transform: rotate(0deg) translateY(-5px) scale(1.015);
 }
+.photo-row figure:hover img,
+.photo-row figure:focus-visible img { box-shadow: var(--shadow); }
+.photo-row figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 1.8rem .7rem .5rem;
+  border-radius: 0 0 10px 10px;
+  background: linear-gradient(to top, rgba(10, 12, 20, .8), rgba(10, 12, 20, 0));
+  color: #fff;
+  font-size: .8rem;
+  line-height: 1.35;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s;
+}
+.photo-row figure:hover figcaption,
+.photo-row figure:focus-visible figcaption { opacity: 1; }
+
+/* ---- 照片放大视图 ---- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.2rem 2.5rem;
+  background: rgba(14, 16, 26, .84);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  animation: lbFade .16s ease-out;
+}
+.lightbox[hidden] { display: none; }
+@keyframes lbFade { from { opacity: 0; } to { opacity: 1; } }
+.lb-body {
+  margin: 0;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .85rem;
+}
+.lb-img {
+  width: auto;
+  height: auto;
+  max-width: min(1200px, 92vw);
+  max-height: 76vh;
+  border-radius: 12px;
+  box-shadow: 0 26px 70px rgba(0, 0, 0, .6);
+}
+.lb-cap {
+  color: #fff;
+  font-size: .95rem;
+  text-align: center;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, .7);
+}
+.lb-btn {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .14);
+  color: #fff;
+  font-size: 1.45rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background .15s, transform .15s;
+}
+.lb-btn:hover { background: rgba(255, 255, 255, .3); }
+.lb-close { top: 1.1rem; right: 1.1rem; }
+.lb-prev { left: 1.1rem; top: 50%; transform: translateY(-50%); }
+.lb-next { right: 1.1rem; top: 50%; transform: translateY(-50%); }
+.lb-prev:hover { transform: translateY(-50%) scale(1.08); }
+.lb-next:hover { transform: translateY(-50%) scale(1.08); }
+body.lb-open { overflow: hidden; }
 
 /* ---- 窄屏：栏目栏折叠到顶部，横向排布 ---- */
 @media (max-width: 720px) {
@@ -360,4 +462,16 @@ img.avatar { object-fit: cover; display: block; }
 }
 @media (max-width: 720px) {
   .page.has-toc { grid-template-columns: 1fr; }
+}
+
+/* ---- 窄屏照片墙：一行放不下两列就折行，照片不再撑满整行 ---- */
+@media (max-width: 720px) {
+  .photo-row { flex-wrap: wrap; row-gap: 1.1rem; }
+  .photo-row > figure { flex-grow: 0; flex-basis: calc(50% - 6px); }
+  .photo-row img { cursor: pointer; }
+  .lb-prev, .lb-next { top: auto; bottom: 1.1rem; transform: none; }
+  .lb-prev:hover, .lb-next:hover { transform: scale(1.08); }
+  .lb-prev { left: calc(50% - 52px); }
+  .lb-next { left: calc(50% + 10px); }
+  .lb-img { max-height: 64vh; }
 }
