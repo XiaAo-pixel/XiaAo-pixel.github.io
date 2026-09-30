@@ -19,8 +19,8 @@
       <div class="nav-group">
         <a class="nav-item active" href="courses.html">📚 课程笔记</a>
         <div class="subnav">
-          <a href="courses.html#c1"><span class="ph">【数据结构】</span></a>
-          <a href="courses.html#c2"><span class="ph">【概率论与数理统计】</span></a>
+          <a href="course-ds.html"><span class="ph">【数据结构】</span></a>
+          <a href="course-prob.html"><span class="ph">【概率论与数理统计】</span></a>
         </div>
       </div>
       <div class="nav-group">
@@ -35,21 +35,19 @@
 
   <main class="content">
     <h1>课程笔记</h1>
-    <p class="muted"><span class="ph">【一句话说明这个板块，例如：主要放各门课的课堂笔记和期末复习资料。】</span></p>
+    <p class="muted"><span class="ph">【一句话说明：点进每门课查看对应笔记，课程多了也能在左侧栏目直达。】</span></p>
 
-    <!-- 每门课一个 <h2 id="cX">，侧边栏“课程笔记”的子栏目就链接到 courses.html#cX -->
-    <h2 id="c1"><span class="ph">【课程名称，如：数据结构】</span></h2>
-    <ul class="postlist">
-      <li><a href="note-template.html"><span class="ph">【第 2 章：线性表】</span></a><span class="date">2026-09-30</span></li>
-      <li><a href="note-template.html"><span class="ph">【第 1 章：绪论】</span></a><span class="date">2026-09-22</span></li>
-    </ul>
-
-    <h2 id="c2"><span class="ph">【课程名称，如：概率论与数理统计】</span></h2>
-    <ul class="postlist">
-      <li><a href="note-template.html"><span class="ph">【期中复习提纲】</span></a><span class="date">2026-09-15</span></li>
-    </ul>
-
-    <p class="muted">提示：想直接分享 PDF 笔记，把文件放进网站目录，这里链接写成 <code>&lt;a href="文件名.pdf"&gt;【标题】&lt;/a&gt;</code> 即可。</p>
+    <!-- 每门课一张卡片；新增课程后在这里加一张，并在侧边栏 subnav 加对应链接 -->
+    <div class="entries">
+      <a class="entry" href="course-ds.html">
+        <div class="t">📘 <span class="ph">【数据结构】</span></div>
+        <div class="d"><span class="ph">【一句话：这门课讲什么 / 已更新到第几章】</span></div>
+      </a>
+      <a class="entry" href="course-prob.html">
+        <div class="t">📐 <span class="ph">【概率论与数理统计】</span></div>
+        <div class="d"><span class="ph">【一句话：这门课讲什么 / 已更新到哪节】</span></div>
+      </a>
+    </div>
 
     <footer>最后更新：2026-09-30</footer>
   </main>
