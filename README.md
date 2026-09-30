@@ -30,7 +30,7 @@ homepage/
 │   ├── bg-light.svg     内置浅色插画背景（无壁纸时的兜底）
 │   ├── bg-dark.svg      内置深色插画背景（无壁纸时的兜底）
 │   ├── wallpaper.jpg    （可选）你自己的壁纸，放进来就自动生效
-│   └── photos/          旅行照片目录（loc1-*.svg 等是占位图）
+│   └── photos/          旅行照片目录（如 nanjing-1.jpg）
 └── README.md
 ```
 
@@ -82,13 +82,22 @@ homepage/
 
 **新增一个杂记子栏目**（新的一年或新主题）：复制 `misc-template.html` 改名 → 填内容 → 侧边栏和 `misc.html` 总览各登记一条，做法与加新课相同。
 
-## 旅行照片墙：怎么换自己的照片
+## 旅行照片墙：怎么加新地点
 
-1. 把照片放进 `assets/photos/`，建议按地点命名（如 `loc1-1.jpg`、`loc1-2.jpg`）；
-2. 打开 `hobby-travel.html`，把对应 `<img src="assets/photos/loc1-1.svg">` 的扩展名 `.svg` 改成 `.jpg`（文件名一致的话只改扩展名即可）；
-3. `alt` 里的【照片说明】改成真描述，`<h2>` 里填地点和时间。
+`hobby-travel.html` 里每个地点是一组 `<h2>地点 · 时间</h2>` + 一个 `<div class="photo-grid">`，目前是「南京 · 2026.8」的 5 张。加新地点照抄一组：
 
-想加一个新地点：照抄一个 `<h2>` + 一组 `photo-grid`；想换占位图风格或数量，直接增删 `<img>` 行即可。照片多的话注意每张压缩到 500KB 以内，不然页面加载慢。
+```html
+<h2>地点 · 年份.月</h2>
+<div class="photo-grid">
+  <img src="assets/photos/地点-1.jpg" alt="照片说明" loading="lazy" decoding="async">
+</div>
+```
+
+1. 照片压到**长边 900px 左右、单张 500KB 以内**再放进 `assets/photos/`——网格里每张只显示 200 多像素宽，原图直接传纯属浪费流量；
+2. 按「地点-序号」命名（如 `nanjing-1.jpg`），`<img src>` 跟着改；
+3. `alt` 写真描述（读屏和加载失败时显示的就靠它），`<h2>` 填地点和时间。
+
+网格是 `repeat(auto-fill, minmax(200px, 1fr))`，横竖图一律裁成 4:3，所以一处放几张、横竖混排都不会乱。
 
 ## 本地预览
 
