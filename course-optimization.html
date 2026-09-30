@@ -1,9 +1,19 @@
+---
+title: 最优化方法
+---
 <!DOCTYPE html>
 <html lang="zh-CN">
+<!--
+  课程页面：新增一门课时复制 course-template.html → 重命名成英文文件名
+  → 填写课程名和笔记列表 → 两处登记：
+          <a href="course-statistics.html">数理统计</a>
+  1. 所有页面侧边栏 subnav 里加：<a href="course-optimization.html">最优化方法</a>
+  2. courses.html 总览页的 entries 里加一张卡片
+-->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>课程笔记 | XiaAo</title>
+  <title>最优化方法 | XiaAo</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,7 +30,7 @@
         <a class="nav-item active" href="courses.html">📚 课程笔记</a>
         <div class="subnav">
           <a href="course-statistics.html">数理统计</a>
-          <a href="course-optimization.html">最优化方法</a>
+          <a class="active" href="course-optimization.html">最优化方法</a>
         </div>
       </div>
       <div class="nav-group">
@@ -40,20 +50,18 @@
   </aside>
 
   <main class="content">
-    <h1>课程笔记</h1>
-    <p class="muted">点进每门课查看对应笔记；课程多了也可以在左侧栏目直达。</p>
+    <h1>最优化方法</h1>
+    <p class="muted">教师：文再文 · 学期：2026 秋 · 教材：<cite>最优化：建模、算法与理论</cite>（文再文、刘浩洋、户将、李勇锋）</p>
 
-    <!-- 每门课一张卡片；新增课程后在这里加一张，并在侧边栏 subnav 加对应链接 -->
-    <div class="entries">
-      <a class="entry" href="course-statistics.html">
-        <div class="t">📘 数理统计</div>
-        <div class="d">点击查看该栏目的笔记</div>
-      </a>
-      <a class="entry" href="course-optimization.html">
-        <div class="t">📘 最优化方法</div>
-        <div class="d">点击查看该栏目的笔记</div>
-      </a>
-    </div>
+    <h2>笔记列表</h2>
+    <ul class="postlist">
+{% assign course_notes = site.pages | where: "kind", "note" | where: "course", "optimization" | sort: "order" %}
+{% for note in course_notes %}
+      <li><a href="{{ note.url }}">{{ note.title }}</a><span class="date">{{ note.date | date: "%Y-%m-%d" }}</span></li>
+{% endfor %}
+    </ul>
+
+    <p class="muted">提示：想直接分享 PDF（如课件），把文件放进网站目录，链接写成 <code>&lt;a href="文件名.pdf"&gt;【标题】&lt;/a&gt;</code> 即可。</p>
 
     <footer>最后更新：2026-10-01</footer>
   </main>
