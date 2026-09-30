@@ -11,7 +11,9 @@
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-<div class="page">
+{% comment %} 正文里至少 2 个 h2 才开右侧目录栏；用 split 计数，避免无标题页出现空栏 {% endcomment %}
+{% assign h2_count = content | split: '<h2' | size %}
+<div class="page{% if h2_count > 2 %} has-toc{% endif %}">
 
   <aside class="sidebar">
     <a class="brand" href="/index.html">
@@ -52,6 +54,76 @@
     <footer>最后更新：{{ page.date | date: "%Y-%m-%d" }}</footer>
   </main>
 
+{% if h2_count > 2 %}
+  <aside class="toc" id="toc" aria-label="本页目录">
+    <div class="toc-title">目录</div>
+    <div id="toc-list"></div>
+  </aside>
+{% endif %}
+
 </div>
+<script>
+/* 用渲染后标题的 id 生成目录；随滚动高亮当前小节 */
+(function () {
+  var content = document.querySelector('.content');
+  var list = document.getElementById('toc-list');
+  var panel = document.getElementById('toc');
+  if (!content || !list || !panel) return;
+
+  var heads = Array.prototype.slice.call(content.querySelectorAll('h2[id], h3[id]'));
+  if (heads.length < 2) { panel.hidden = true; return; }
+
+  var links = heads.map(function (h) {
+    var a = document.createElement('a');
+    a.href = '#' + h.id;
+    a.textContent = (h.textContent || '').replace(/\s+/g, ' ').trim();
+    if (h.tagName === 'H3') a.className = 'lv3';
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      h.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (history.replaceState) history.replaceState(null, '', '#' + h.id);
+    });
+    list.appendChild(a);
+    return a;
+  });
+
+  var current = -1;
+  function setCurrent(i) {
+    if (i === current) return;
+    if (current >= 0) links[current].classList.remove('current');
+    current = i;
+    if (i < 0) return;
+    var a = links[i];
+    a.classList.add('current');
+    /* 当前项滚出目录面板可视区时，把它带回中间 */
+    var top = a.offsetTop, h = panel.clientHeight;
+    if (top < panel.scrollTop + 12 || top + a.offsetHeight > panel.scrollTop + h - 12) {
+      panel.scrollTop = Math.max(0, top - h / 2 + a.offsetHeight / 2);
+    }
+  }
+
+  var ticking = false;
+  function update() {
+    ticking = false;
+    var idx = 0;
+    for (var i = 0; i < heads.length; i++) {
+      if (heads[i].getBoundingClientRect().top > 90) break;
+      idx = i;
+    }
+    /* 已经滚到底时，高亮最后一项（末尾小节太短，否则永远点不亮） */
+    if (window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 4) {
+      idx = heads.length - 1;
+    }
+    setCurrent(idx);
+  }
+  function onScroll() {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  window.addEventListener('load', update);   /* 带 #锚点 打开时，跳转后再校准一次 */
+  update();
+})();
+</script>
 </body>
 </html>
