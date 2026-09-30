@@ -1,12 +1,19 @@
 ---
-title: 数据结构
+title: 数理统计
 ---
 <!DOCTYPE html>
 <html lang="zh-CN">
+<!--
+  课程页面模板：新增一门课时复制本文件 → 重命名成英文文件名（如 course-os.html）
+  → 填写课程名和笔记列表 → 两处登记：
+          <a href="course-statistics.html">数理统计</a>
+  1. 所有页面侧边栏 subnav 里加：<a href="course-os.html">操作系统</a>
+  2. courses.html 总览页的 entries 里加一张卡片
+-->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>【数据结构】 | 【姓名】</title>
+  <title>数理统计 | 【姓名】</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,7 +21,7 @@ title: 数据结构
 
   <aside class="sidebar">
     <a class="brand" href="index.html">
-      <span class="avatar">【姓】</span>
+      <img class="avatar" src="assets/avatar.jpg" alt="头像">
       <span class="name"><span class="ph">【姓名】</span></span>
     </a>
     <nav>
@@ -22,15 +29,13 @@ title: 数据结构
       <div class="nav-group">
         <a class="nav-item" href="courses.html">📚 课程笔记</a>
         <div class="subnav">
-          <a class="active" href="course-ds.html"><span class="ph">【数据结构】</span></a>
-          <a href="course-prob.html"><span class="ph">【概率论与数理统计】</span></a>
+          <!-- 新课程的链接加在这里；若想让当前页在侧边栏高亮，
+               给对应 <a> 加 class="active" -->
         </div>
       </div>
       <div class="nav-group">
         <a class="nav-item" href="misc.html">✏️ 杂记</a>
         <div class="subnav">
-          <a href="misc-2026.html">2026</a>
-          <a href="misc-2025.html">2025</a>
         </div>
       </div>
       <div class="nav-group">
@@ -45,16 +50,19 @@ title: 数据结构
   </aside>
 
   <main class="content">
-    <h1><span class="ph">【数据结构】</span></h1>
+    <h1>数理统计</h1>
     <p class="muted">教师：<span class="ph">【授课教师】</span> · 学期：<span class="ph">【2026 秋】</span> · 教材：<span class="ph">【教材名称】</span></p>
 
     <h2>笔记列表</h2>
+    <!-- 复制本文件后：把下面两处 "os" 改成新课程的代号，并同步更新所有页面侧边栏 -->
     <ul class="postlist">
-{% assign course_notes = site.pages | where: "kind", "note" | where: "course", "ds" | sort: "date" | reverse %}
+{% assign course_notes = site.pages | where: "kind", "note" | where: "course", "statistics" | sort: "date" | reverse %}
 {% for note in course_notes %}
       <li><a href="{{ note.url }}">{{ note.title }}</a><span class="date">{{ note.date | date: "%Y-%m-%d" }}</span></li>
 {% endfor %}
     </ul>
+
+    <p class="muted">提示：想直接分享 PDF（如课件），把文件放进网站目录，链接写成 <code>&lt;a href="文件名.pdf"&gt;【标题】&lt;/a&gt;</code> 即可。</p>
 
     <footer>最后更新：2026-09-30</footer>
   </main>
