@@ -10,22 +10,33 @@
 <body>
 <div class="page">
 
-  <header>
+  <aside class="sidebar">
+    <a class="brand" href="index.html">
+      <span class="avatar">【姓】</span>
+      <span class="name"><span class="ph">【姓名】</span></span>
+    </a>
     <nav>
-      <a href="index.html" class="active">主页</a>
-      <a href="courses.html">课程笔记</a>
-      <a href="misc.html">杂记</a>
-    </nav>
-  </header>
-
-  <main>
-    <div class="profile">
-      <div class="avatar">【姓】</div>
-      <div>
-        <h1><span class="ph">【姓名】</span></h1>
-        <p class="sub"><span class="ph">【学校 · 学院 · 专业 · 年级，如：某某大学 计算机学院 计算机科学与技术 大三】</span></p>
+      <a class="nav-item active" href="index.html">🏠 主页</a>
+      <div class="nav-group">
+        <a class="nav-item" href="courses.html">📚 课程笔记</a>
+        <div class="subnav">
+          <a href="courses.html#c1"><span class="ph">【数据结构】</span></a>
+          <a href="courses.html#c2"><span class="ph">【概率论与数理统计】</span></a>
+        </div>
       </div>
-    </div>
+      <div class="nav-group">
+        <a class="nav-item" href="misc.html">✏️ 杂记</a>
+        <div class="subnav">
+          <a href="misc.html#y2026">2026</a>
+          <a href="misc.html#y2025">2025</a>
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <h1>你好，我是<span class="ph">【姓名】</span> 👋</h1>
+    <p class="muted"><span class="ph">【一句话介绍这个站：这里放我的课程笔记和随手写的杂记。】</span></p>
 
     <p class="contact">
       邮箱：<span class="ph">【yourname (at) example (dot) com】</span> ·
@@ -34,7 +45,7 @@
     </p>
 
     <h2>关于我</h2>
-    <p><span class="ph">【一两句话介绍自己：学什么方向、对什么感兴趣、平时在折腾什么。】</span></p>
+    <p><span class="ph">【两三句话介绍自己：学校/专业/年级、在学什么方向、对什么感兴趣、平时在折腾什么。】</span></p>
 
     <h2>快速入口</h2>
     <div class="entries">
@@ -53,9 +64,9 @@
       <li><a href="note-template.html"><span class="ph">【笔记标题】</span></a><span class="date">2026-09-30</span></li>
       <li><a href="note-template.html"><span class="ph">【杂记标题】</span></a><span class="date">2026-09-28</span></li>
     </ul>
-  </main>
 
-  <footer>最后更新：2026-09-30</footer>
+    <footer>最后更新：2026-09-30</footer>
+  </main>
 
 </div>
 </body>

@@ -1,11 +1,20 @@
-/* 大学生个人主页样式：全屏插画背景 + 磨砂卡片，自动适配深色模式 */
+/* 大学生个人主页样式：全屏背景 + 磨砂卡片 + 左侧栏目栏（支持子栏目）
+   自动适配深色模式 */
 
 :root {
+  /* ====== 可调参数 ====== */
+  /* 卡片不透明度：0 ~ 1，越小越透；壁纸花哨时调大些 */
+  --card-alpha: .78;
+  /* 本地壁纸：把图片放进 assets/ 并命名为 wallpaper.jpg 即自动启用；
+     用其他文件名就改下面这一行；不想要壁纸写 none，会显示默认插画背景 */
+  --wallpaper: url("assets/wallpaper.jpg");
+  /* ==================== */
+
   --text: #262a33;
   --muted: #616877;
   --accent: #4f6df5;
   --accent-weak: rgba(79, 109, 245, .08);
-  --card: rgba(255, 255, 255, .78);
+  --card: rgba(255, 255, 255, var(--card-alpha));
   --card-border: rgba(255, 255, 255, .65);
   --rule: rgba(38, 42, 51, .12);
   --entry-bg: rgba(255, 255, 255, .5);
@@ -15,11 +24,12 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --card-alpha: .74;
     --text: #e7eaf2;
     --muted: #9aa3b8;
     --accent: #8ea2ff;
     --accent-weak: rgba(142, 162, 255, .14);
-    --card: rgba(22, 25, 37, .74);
+    --card: rgba(22, 25, 37, var(--card-alpha));
     --card-border: rgba(255, 255, 255, .09);
     --rule: rgba(231, 234, 242, .14);
     --entry-bg: rgba(255, 255, 255, .045);
@@ -40,64 +50,55 @@ body {
   line-height: 1.75;
 }
 
-/* 全屏插画背景：用 fixed 伪元素，比 background-attachment 在手机上更稳 */
+/* 全屏背景：第一层是本地壁纸（存在才生效），第二层是内置插画兜底 */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: url("assets/bg-light.svg") center / cover no-repeat;
+  background-image: var(--wallpaper), url("assets/bg-light.svg");
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
 }
 @media (prefers-color-scheme: dark) {
-  body::before { background-image: url("assets/bg-dark.svg"); }
+  body::before {
+    background-image: var(--wallpaper), url("assets/bg-dark.svg");
+  }
 }
 
-/* 磨砂玻璃卡片容器 */
+/* 磨砂玻璃卡片：左侧栏目栏 + 右侧内容 */
 .page {
-  max-width: 880px;
+  max-width: 980px;
   margin: 2.6rem auto;
-  padding: 2.6rem 2.6rem 2rem;
+  display: grid;
+  grid-template-columns: 232px 1fr;
   background: var(--card);
   border: 1px solid var(--card-border);
   border-radius: 20px;
   box-shadow: var(--shadow);
   backdrop-filter: blur(16px) saturate(1.15);
   -webkit-backdrop-filter: blur(16px) saturate(1.15);
+  overflow: hidden;
 }
 
-/* 导航（胶囊样式） */
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .35rem;
-  padding-bottom: 1.1rem;
-  margin-bottom: 1.9rem;
-  border-bottom: 1px solid var(--rule);
+/* ---- 左侧栏目栏 ---- */
+.sidebar {
+  padding: 1.9rem 1.2rem 1.6rem;
+  border-right: 1px solid var(--rule);
 }
-nav a {
-  padding: .3rem .9rem;
-  border-radius: 999px;
-  color: var(--muted);
-  text-decoration: none;
-  font-size: .95rem;
-  transition: background .15s, color .15s;
-}
-nav a:hover { color: var(--text); background: var(--accent-weak); }
-nav a.active { color: #fff; background: var(--accent); }
-@media (prefers-color-scheme: dark) {
-  nav a.active { color: #14172a; }
-}
-
-/* 头部个人信息 */
-.profile {
+.brand {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
-  margin-bottom: .6rem;
+  gap: .7rem;
+  color: inherit;
+  text-decoration: none;
+  margin-bottom: 1.6rem;
 }
+.brand:hover { text-decoration: none; }
 .avatar {
-  width: 80px;
-  height: 80px;
+  width: 46px;
+  height: 46px;
   flex: none;
   border-radius: 50%;
   display: flex;
@@ -105,22 +106,62 @@ nav a.active { color: #fff; background: var(--accent); }
   justify-content: center;
   background: linear-gradient(135deg, #4f6df5, #8a5cf6);
   color: #fff;
-  font-size: 1.8rem;
+  font-size: 1.05rem;
   font-weight: 600;
-  box-shadow: 0 6px 18px rgba(79, 109, 245, .35);
+  box-shadow: 0 4px 12px rgba(79, 109, 245, .35);
 }
-h1 { font-size: 1.7rem; font-weight: 700; margin: 0; }
-.sub { margin: .15rem 0 0; color: var(--muted); font-size: .98rem; }
-.contact { margin: .2rem 0 1.6rem; }
+.brand .name { font-weight: 700; font-size: 1.05rem; }
 
-/* 标题：左侧强调条 */
+nav { display: flex; flex-direction: column; gap: .25rem; }
+.nav-group { display: flex; flex-direction: column; }
+.nav-item {
+  padding: .42rem .85rem;
+  border-radius: 10px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .95rem;
+  transition: background .15s, color .15s;
+}
+.nav-item:hover { color: var(--text); background: var(--accent-weak); }
+.nav-item.active { color: #fff; background: var(--accent); }
+@media (prefers-color-scheme: dark) {
+  .nav-item.active { color: #14172a; }
+}
+
+/* 子栏目：竖排小字，带缩进竖线 */
+.subnav {
+  display: flex;
+  flex-direction: column;
+  gap: .1rem;
+  margin: .2rem 0 .4rem 1rem;
+  padding-left: .55rem;
+  border-left: 2px solid var(--rule);
+}
+.subnav a {
+  padding: .26rem .6rem;
+  border-radius: 8px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .88rem;
+}
+.subnav a:hover {
+  color: var(--accent);
+  background: var(--accent-weak);
+  text-decoration: none;
+}
+
+/* ---- 右侧内容区 ---- */
+.content { padding: 2.2rem 2.5rem 1.6rem; min-width: 0; }
+
+h1 { font-size: 1.5rem; font-weight: 700; margin: 0 0 .5rem; }
 h2 {
-  font-size: 1.15rem;
+  font-size: 1.13rem;
   font-weight: 700;
   margin: 2.1rem 0 .7rem;
   padding-left: .6rem;
   border-left: 4px solid var(--accent);
   line-height: 1.4;
+  scroll-margin-top: 1.5rem;
 }
 
 /* 正文 */
@@ -197,8 +238,24 @@ footer {
   text-align: center;
 }
 
-@media (max-width: 620px) {
-  .page { margin: 1.2rem .8rem; padding: 1.6rem 1.2rem 1.4rem; }
-  .avatar { width: 64px; height: 64px; font-size: 1.4rem; }
-  h1 { font-size: 1.45rem; }
+/* ---- 窄屏：栏目栏折叠到顶部，横向排布 ---- */
+@media (max-width: 720px) {
+  .page { grid-template-columns: 1fr; margin: 1.2rem .8rem; }
+  .sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--rule);
+    padding: 1.4rem 1.2rem 1.1rem;
+  }
+  .brand { margin-bottom: 1rem; }
+  nav { flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .nav-group { display: contents; }
+  .subnav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 0 0 .2rem;
+    padding: 0 .2rem;
+    border-left: none;
+    gap: .05rem;
+  }
+  .content { padding: 1.7rem 1.3rem 1.3rem; }
 }

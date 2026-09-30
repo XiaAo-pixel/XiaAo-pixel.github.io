@@ -19,15 +19,31 @@
 <body>
 <div class="page">
 
-  <header>
+  <aside class="sidebar">
+    <a class="brand" href="index.html">
+      <span class="avatar">【姓】</span>
+      <span class="name"><span class="ph">【姓名】</span></span>
+    </a>
     <nav>
-      <a href="index.html">主页</a>
-      <a href="courses.html">课程笔记</a>
-      <a href="misc.html">杂记</a>
+      <a class="nav-item" href="index.html">🏠 主页</a>
+      <div class="nav-group">
+        <a class="nav-item" href="courses.html">📚 课程笔记</a>
+        <div class="subnav">
+          <a href="courses.html#c1"><span class="ph">【数据结构】</span></a>
+          <a href="courses.html#c2"><span class="ph">【概率论与数理统计】</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <a class="nav-item" href="misc.html">✏️ 杂记</a>
+        <div class="subnav">
+          <a href="misc.html#y2026">2026</a>
+          <a href="misc.html#y2025">2025</a>
+        </div>
+      </div>
     </nav>
-  </header>
+  </aside>
 
-  <main>
+  <main class="content">
     <h1><span class="ph">【笔记标题】</span></h1>
     <p class="muted">课程：<span class="ph">【课程名，杂记可写“随想”】</span> · 2026-09-30</p>
 
@@ -43,9 +59,9 @@
       <li><span class="ph">【要点一】</span></li>
       <li><span class="ph">【要点二】</span></li>
     </ul>
-  </main>
 
-  <footer>最后更新：2026-09-30 · <a href="javascript:history.back()">返回</a></footer>
+    <footer>最后更新：2026-09-30 · <a href="javascript:history.back()">返回</a></footer>
+  </main>
 
 </div>
 </body>

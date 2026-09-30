@@ -9,33 +9,50 @@
 <body>
 <div class="page">
 
-  <header>
+  <aside class="sidebar">
+    <a class="brand" href="index.html">
+      <span class="avatar">【姓】</span>
+      <span class="name"><span class="ph">【姓名】</span></span>
+    </a>
     <nav>
-      <a href="index.html">主页</a>
-      <a href="courses.html" class="active">课程笔记</a>
-      <a href="misc.html">杂记</a>
+      <a class="nav-item" href="index.html">🏠 主页</a>
+      <div class="nav-group">
+        <a class="nav-item active" href="courses.html">📚 课程笔记</a>
+        <div class="subnav">
+          <a href="courses.html#c1"><span class="ph">【数据结构】</span></a>
+          <a href="courses.html#c2"><span class="ph">【概率论与数理统计】</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <a class="nav-item" href="misc.html">✏️ 杂记</a>
+        <div class="subnav">
+          <a href="misc.html#y2026">2026</a>
+          <a href="misc.html#y2025">2025</a>
+        </div>
+      </div>
     </nav>
-  </header>
+  </aside>
 
-  <main>
+  <main class="content">
     <h1>课程笔记</h1>
     <p class="muted"><span class="ph">【一句话说明这个板块，例如：主要放各门课的课堂笔记和期末复习资料。】</span></p>
 
-    <h2><span class="ph">【课程名称，如：数据结构】</span></h2>
+    <!-- 每门课一个 <h2 id="cX">，侧边栏“课程笔记”的子栏目就链接到 courses.html#cX -->
+    <h2 id="c1"><span class="ph">【课程名称，如：数据结构】</span></h2>
     <ul class="postlist">
       <li><a href="note-template.html"><span class="ph">【第 2 章：线性表】</span></a><span class="date">2026-09-30</span></li>
       <li><a href="note-template.html"><span class="ph">【第 1 章：绪论】</span></a><span class="date">2026-09-22</span></li>
     </ul>
 
-    <h2><span class="ph">【课程名称，如：概率论与数理统计】</span></h2>
+    <h2 id="c2"><span class="ph">【课程名称，如：概率论与数理统计】</span></h2>
     <ul class="postlist">
       <li><a href="note-template.html"><span class="ph">【期中复习提纲】</span></a><span class="date">2026-09-15</span></li>
     </ul>
 
     <p class="muted">提示：想直接分享 PDF 笔记，把文件放进网站目录，这里链接写成 <code>&lt;a href="文件名.pdf"&gt;【标题】&lt;/a&gt;</code> 即可。</p>
-  </main>
 
-  <footer>最后更新：2026-09-30</footer>
+    <footer>最后更新：2026-09-30</footer>
+  </main>
 
 </div>
 </body>

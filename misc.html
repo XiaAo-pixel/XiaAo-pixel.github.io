@@ -9,31 +9,47 @@
 <body>
 <div class="page">
 
-  <header>
+  <aside class="sidebar">
+    <a class="brand" href="index.html">
+      <span class="avatar">【姓】</span>
+      <span class="name"><span class="ph">【姓名】</span></span>
+    </a>
     <nav>
-      <a href="index.html">主页</a>
-      <a href="courses.html">课程笔记</a>
-      <a href="misc.html" class="active">杂记</a>
+      <a class="nav-item" href="index.html">🏠 主页</a>
+      <div class="nav-group">
+        <a class="nav-item" href="courses.html">📚 课程笔记</a>
+        <div class="subnav">
+          <a href="courses.html#c1"><span class="ph">【数据结构】</span></a>
+          <a href="courses.html#c2"><span class="ph">【概率论与数理统计】</span></a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <a class="nav-item active" href="misc.html">✏️ 杂记</a>
+        <div class="subnav">
+          <a href="misc.html#y2026">2026</a>
+          <a href="misc.html#y2025">2025</a>
+        </div>
+      </div>
     </nav>
-  </header>
+  </aside>
 
-  <main>
+  <main class="content">
     <h1>杂记</h1>
-    <p class="muted"><span class="ph">【一句话说明：随手写的想法、教程整理、踩坑记录。】</span></p>
+    <p class="muted"><span class="ph">【一句话说明：随手写的想法、教程整理、踩坑记录。按年份分组，侧边栏子栏目可跳转到对应年份。】</span></p>
 
-    <h2>2026</h2>
+    <h2 id="y2026">2026</h2>
     <ul class="postlist">
       <li><a href="note-template.html"><span class="ph">【杂记标题，如：用 GitHub Pages 搭个人主页的记录】</span></a><span class="date">2026-09-30</span></li>
       <li><a href="note-template.html"><span class="ph">【杂记标题】</span></a><span class="date">2026-09-20</span></li>
     </ul>
 
-    <h2>2025</h2>
+    <h2 id="y2025">2025</h2>
     <ul class="postlist">
       <li><a href="note-template.html"><span class="ph">【杂记标题】</span></a><span class="date">2025-12-01</span></li>
     </ul>
-  </main>
 
-  <footer>最后更新：2026-09-30</footer>
+    <footer>最后更新：2026-09-30</footer>
+  </main>
 
 </div>
 </body>

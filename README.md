@@ -1,6 +1,6 @@
 # 我的个人主页
 
-大学生个人主页：全屏插画背景 + 磨砂玻璃卡片，自动跟随系统切换深色模式。纯静态 HTML/CSS，无需任何构建工具，改完 push 即上线。
+大学生个人主页：全屏背景 + 磨砂玻璃卡片 + 左侧栏目栏（支持子栏目），自动跟随系统切换深色模式。纯静态 HTML/CSS，无需任何构建工具，改完 push 即上线。
 
 线上地址：https://xiaao-pixel.github.io
 
@@ -9,46 +9,61 @@
 ```
 my-homepage/
 ├── index.html          主页（自我介绍、快速入口、最近更新）
-├── courses.html        课程笔记（按课程分组）
-├── misc.html           杂记（按年份分组的随笔/教程/踩坑记录）
+├── courses.html        课程笔记（按课程分组，每门课一个锚点）
+├── misc.html           杂记（按年份分组）
 ├── note-template.html  单篇笔记模板（复制它来写新笔记）
-├── style.css           全站样式（背景、卡片、深色模式都在这里）
+├── style.css           全站样式（壁纸、透明度、侧边栏都在这里调）
 ├── assets/
-│   ├── bg-light.svg    浅色背景插画
-│   └── bg-dark.svg     深色背景插画
+│   ├── bg-light.svg    内置浅色插画背景（无壁纸时的兜底）
+│   ├── bg-dark.svg     内置深色插画背景（无壁纸时的兜底）
+│   └── wallpaper.jpg   （可选）你自己的壁纸，放进来就自动生效
 └── README.md
 ```
 
+## 三个常用自定义（都在 style.css 顶部）
+
+打开 `style.css` 最上面的“可调参数”区块：
+
+1. **接入本地壁纸**：把你的图片放进 `assets/` 并命名为 `wallpaper.jpg`，**保存刷新即自动生效**，不用改任何代码（没放这张图就显示内置插画）。用其他文件名或子目录，就改 `--wallpaper: url("assets/你的图.jpg");`；不想要壁纸改成 `none`。深浅色模式共用这张壁纸。
+2. **卡片透明度**：改 `--card-alpha`（0 ~ 1，越小越透）。壁纸花哨、文字读不清就调大，比如 `.9`；浅色和深色模式各有独立的 `--card-alpha`，可分别调。
+3. 想恢复纯插画背景：`--wallpaper: none`。
+
 ## 如何修改内容
 
-- 所有**待替换的占位内容都带黄色高亮**（class="ph"），在编辑器里搜索 `【` 即可逐个找到；替换成真实内容后删掉 `class="ph"`，高亮即消失。
-- 头像目前是圆形色块显示你的姓，想换成照片：把照片放进目录（如 `me.jpg`），把 index.html 里的 `<div class="avatar">【姓】</div>` 换成 `<img class="avatar" src="me.jpg" alt="头像">`。
+- 所有**待替换的占位内容都带黄色高亮**（class="ph"），在编辑器里搜索 `【` 逐个替换；替换后删掉 `class="ph"` 高亮即消失。
+- 头像目前是渐变圆形显示你的姓，想换成照片：把照片放进目录（如 `me.jpg`），把每个页面侧边栏里的 `<span class="avatar">【姓】</span>` 换成 `<img class="avatar" src="me.jpg" alt="头像">`。
 - 每页页脚的“最后更新”日期记得手动更新。
 
-## 如何新增一篇笔记（核心流程）
+## 栏目与子栏目
 
-1. **复制** `note-template.html`，重命名成英文文件名（如 `ds-ch2.html`）；
-2. 打开新文件，改标题、课程名、正文（支持 LaTeX 公式：行内 `$...$`，行间 `$$...$$`）；
-3. 到 `courses.html`（或 `misc.html`）对应位置加一条：
+侧边栏结构（每个页面都有同一份，在 `<aside class="sidebar">` 里）：
+
+- 一级栏目 = `nav-item`（主页 / 课程笔记 / 杂记），对应一个页面；
+- 子栏目 = `subnav` 里的链接，指向页面内的锚点。例如“课程笔记”下的【数据结构】链接到 `courses.html#c1`，对应页面里 `<h2 id="c1">`。
+
+**新增一个子栏目（如加一门课）**，两步：
+
+1. 在 `courses.html` 里加一组：
 
    ```html
-   <li><a href="ds-ch2.html">第 2 章：线性表</a><span class="date">2026-09-30</span></li>
+   <h2 id="c3">操作系统</h2>
+   <ul class="postlist">
+     <li><a href="os-ch1.html">第 1 章</a><span class="date">2026-10-08</span></li>
+   </ul>
    ```
 
-4. 顺便更新 `index.html` 的“最近更新”列表和页脚日期；
-5. push 上线（命令见下）。
+2. 把所有页面侧边栏 subnav 里加一条：`<a href="courses.html#c3">操作系统</a>`。
 
-想直接分享 PDF 笔记（如老师发的课件）：把 PDF 放进网站目录，链接写成 `<a href="课件.pdf">标题</a>` 即可，不用建网页。
+**新增一个一级栏目**（比如“转载收藏”）：复制 `misc.html` 改名，再在所有页面的 `<nav>` 里照抄一个 `nav-group` 即可。
 
-## 如何换背景
+## 如何新增一篇笔记
 
-背景是 `assets/` 下的两个 SVG（浅色/深色各一）。想换成自己的图片：
+1. **复制** `note-template.html`，重命名成英文文件名（如 `ds-ch2.html`）；
+2. 填标题、课程名、正文（支持 LaTeX：行内 `$...$`，行间 `$$...$$`）；
+3. 到 `courses.html` 或 `misc.html` 对应课程/年份下加一条 `<li>`，并同步更新 `index.html` 的“最近更新”和页脚日期；
+4. push 上线。
 
-1. 把图片放进 `assets/`（建议 1920×1080，文件别太大，2MB 以内）；
-2. 打开 `style.css`，把 `body::before` 里的 `url("assets/bg-light.svg")` 改成 `url("assets/你的图.jpg")`；
-3. 深色模式的 `body::before`（文件中 `prefers-color-scheme: dark` 段落里）同样改掉，或者直接删掉那一行让深浅色共用一张图。
-
-图片上文字读不清的话，把 `--card` 里的透明度 `.78` 调高到 `.9` 左右。
+想直接分享 PDF（如课件）：把 PDF 放进网站目录，链接写成 `<a href="课件.pdf">标题</a>`，不用建网页。
 
 ## 本地预览
 
