@@ -1,9 +1,12 @@
+---
+title: 概率论与数理统计
+---
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>兴趣爱好 | 【姓名】</title>
+  <title>【概率论与数理统计】 | 【姓名】</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,7 +23,7 @@
         <a class="nav-item" href="courses.html">📚 课程笔记</a>
         <div class="subnav">
           <a href="course-ds.html"><span class="ph">【数据结构】</span></a>
-          <a href="course-prob.html"><span class="ph">【概率论与数理统计】</span></a>
+          <a class="active" href="course-prob.html"><span class="ph">【概率论与数理统计】</span></a>
         </div>
       </div>
       <div class="nav-group">
@@ -31,7 +34,7 @@
         </div>
       </div>
       <div class="nav-group">
-        <a class="nav-item active" href="hobbies.html">🎨 兴趣爱好</a>
+        <a class="nav-item" href="hobbies.html">🎨 兴趣爱好</a>
         <div class="subnav">
           <a href="hobby-novel.html">小说</a>
           <a href="hobby-anime.html">动漫</a>
@@ -42,23 +45,16 @@
   </aside>
 
   <main class="content">
-    <h1>兴趣爱好</h1>
-    <p class="muted"><span class="ph">【一句话说明：学习之外我在看什么、玩什么、去过哪里。】</span></p>
+    <h1><span class="ph">【概率论与数理统计】</span></h1>
+    <p class="muted">教师：<span class="ph">【授课教师】</span> · 学期：<span class="ph">【2026 秋】</span> · 教材：<span class="ph">【教材名称】</span></p>
 
-    <div class="entries">
-      <a class="entry" href="hobby-novel.html">
-        <div class="t">📖 小说</div>
-        <div class="d">我追的网文与真心推荐</div>
-      </a>
-      <a class="entry" href="hobby-anime.html">
-        <div class="t">🎬 动漫</div>
-        <div class="d">番剧、剧场版安利清单</div>
-      </a>
-      <a class="entry" href="hobby-travel.html">
-        <div class="t">🌏 旅行</div>
-        <div class="d">分地点的照片墙，装着我去过的地方</div>
-      </a>
-    </div>
+    <h2>笔记列表</h2>
+    <ul class="postlist">
+{% assign course_notes = site.pages | where: "kind", "note" | where: "course", "prob" | sort: "date" | reverse %}
+{% for note in course_notes %}
+      <li><a href="{{ note.url }}">{{ note.title }}</a><span class="date">{{ note.date | date: "%Y-%m-%d" }}</span></li>
+{% endfor %}
+    </ul>
 
     <footer>最后更新：2026-09-30</footer>
   </main>

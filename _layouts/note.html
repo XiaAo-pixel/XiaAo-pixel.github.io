@@ -23,11 +23,15 @@
       <div class="nav-group">
         <a class="nav-item" href="/courses.html">📚 课程笔记</a>
         <div class="subnav">
+          <a {% if page.course == "ds" %}class="active"{% endif %} href="/course-ds.html"><span class="ph">【数据结构】</span></a>
+          <a {% if page.course == "prob" %}class="active"{% endif %} href="/course-prob.html"><span class="ph">【概率论与数理统计】</span></a>
         </div>
       </div>
       <div class="nav-group">
         <a class="nav-item" href="/misc.html">✏️ 杂记</a>
         <div class="subnav">
+          <a {% if page.course == "misc-2026" %}class="active"{% endif %} href="/misc-2026.html">2026</a>
+          <a {% if page.course == "misc-2025" %}class="active"{% endif %} href="/misc-2025.html">2025</a>
         </div>
       </div>
       <div class="nav-group">
