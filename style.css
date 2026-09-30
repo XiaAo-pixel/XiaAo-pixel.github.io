@@ -285,3 +285,16 @@ footer {
   }
   .content { padding: 1.7rem 1.3rem 1.3rem; }
 }
+
+/* 笔记中的表格（Jekyll 渲染的 Markdown 表格） */
+.content table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  display: block;
+  overflow-x: auto;
+}
+.content th, .content td {
+  border: 1px solid var(--rule);
+  padding: .45rem .85rem;
+}
+.content th { background: var(--accent-weak); }
