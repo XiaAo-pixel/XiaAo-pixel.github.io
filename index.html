@@ -3,14 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="【姓名】的个人主页">
+  <meta name="description" content="【姓名】的个人主页：课程笔记与杂记">
   <title>【姓名】 | 个人主页</title>
   <link rel="stylesheet" href="style.css">
-  <!-- MathJax：页面里写 $...$ 或 $$...$$ 即可渲染 LaTeX 公式；不需要可删除下面两段 script -->
-  <script>
-    MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
-  </script>
-  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 <div class="page">
@@ -18,39 +13,49 @@
   <header>
     <nav>
       <a href="index.html" class="active">主页</a>
-      <a href="section1.html">栏目一</a>
-      <a href="section2.html">栏目二</a>
-      <a href="section3.html">栏目三</a>
-      <a href="cv.pdf">CV</a>
+      <a href="courses.html">课程笔记</a>
+      <a href="misc.html">杂记</a>
     </nav>
   </header>
 
   <main>
-    <h1><span class="ph">【姓名】</span></h1>
-    <p class="affil">
-      <span class="ph">【职称，如：助理教授】</span>，<span class="ph">【单位，如：北京大学数学科学学院】</span><br>
-      邮箱：<span class="ph">【yourname (at) example (dot) com】</span> &nbsp;·&nbsp;
-      <a href="https://scholar.google.com/"><span class="ph">【Google Scholar 链接文字】</span></a> &nbsp;·&nbsp;
-      办公室：<span class="ph">【楼栋与房间号】</span>
+    <div class="profile">
+      <div class="avatar">【姓】</div>
+      <div>
+        <h1><span class="ph">【姓名】</span></h1>
+        <p class="sub"><span class="ph">【学校 · 学院 · 专业 · 年级，如：某某大学 计算机学院 计算机科学与技术 大三】</span></p>
+      </div>
+    </div>
+
+    <p class="contact">
+      邮箱：<span class="ph">【yourname (at) example (dot) com】</span> ·
+      GitHub：<a href="https://github.com/XiaAo-pixel">@XiaAo-pixel</a>
+      <span class="muted">（可换成你常用的联系方式或社交主页）</span>
     </p>
 
     <h2>关于我</h2>
-    <p><span class="ph">【一段简短自我介绍：如“我于 20XX 年在 XX 大学获得博士学位，师从 XX 教授；20XX–20XX 年在 XX 大学从事博士后研究；现为 XX 大学 XX 学院助理教授。”】</span></p>
+    <p><span class="ph">【一两句话介绍自己：学什么方向、对什么感兴趣、平时在折腾什么。】</span></p>
 
-    <h2>研究方向</h2>
-    <ul>
-      <li><span class="ph">【研究方向一】</span></li>
-      <li><span class="ph">【研究方向二】</span></li>
-      <li><span class="ph">【研究方向三】</span></li>
+    <h2>快速入口</h2>
+    <div class="entries">
+      <a class="entry" href="courses.html">
+        <div class="t">📚 课程笔记</div>
+        <div class="d">按课程整理的课堂笔记、复习资料</div>
+      </a>
+      <a class="entry" href="misc.html">
+        <div class="t">✏️ 杂记</div>
+        <div class="d">随想、小教程、踩坑记录</div>
+      </a>
+    </div>
+
+    <h2>最近更新</h2>
+    <ul class="postlist">
+      <li><a href="note-template.html"><span class="ph">【笔记标题】</span></a><span class="date">2026-09-30</span></li>
+      <li><a href="note-template.html"><span class="ph">【杂记标题】</span></a><span class="date">2026-09-28</span></li>
     </ul>
-
-    <h2>招收学生</h2>
-    <p><span class="ph">【可选：写一段招收硕士/博士研究生的说明，不需要可整段删除。】</span></p>
   </main>
 
-  <footer>
-    最后更新：2026-09-30
-  </footer>
+  <footer>最后更新：2026-09-30</footer>
 
 </div>
 </body>

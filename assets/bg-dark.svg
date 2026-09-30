@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <filter id="blur" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="110"/>
+    </filter>
+    <linearGradient id="base" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#141828"/>
+      <stop offset=".55" stop-color="#181530"/>
+      <stop offset="1" stop-color="#1f1430"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#base)"/>
+
+  <!-- 大块柔和色斑（深色） -->
+  <g filter="url(#blur)">
+    <ellipse cx="320" cy="230" rx="400" ry="310" fill="#2f3f7d" opacity=".85"/>
+    <ellipse cx="1520" cy="170" rx="430" ry="330" fill="#4b2f70" opacity=".85"/>
+    <ellipse cx="1700" cy="920" rx="440" ry="340" fill="#4d2f45" opacity=".85"/>
+    <ellipse cx="470" cy="960" rx="410" ry="310" fill="#1f4a4d" opacity=".85"/>
+    <ellipse cx="1010" cy="570" rx="320" ry="250" fill="#33305e" opacity=".7"/>
+  </g>
+
+  <!-- 几何线条装饰 -->
+  <g fill="none" stroke="#aebcff" stroke-width="2.5" opacity=".1">
+    <circle cx="255" cy="810" r="46"/>
+    <circle cx="1745" cy="470" r="62"/>
+    <circle cx="985" cy="120" r="30"/>
+    <path d="M1155 880 l58 100 h-116 z"/>
+    <rect x="1395" y="745" width="74" height="74" rx="16" transform="rotate(18 1432 782)"/>
+    <path d="M110 415 h72 M146 379 v72"/>
+    <path d="M660 155 l44 44 M704 155 l-44 44"/>
+  </g>
+
+  <!-- 点阵装饰 -->
+  <g fill="#aebcff" opacity=".12">
+    <circle cx="540" cy="330" r="5"/>
+    <circle cx="580" cy="360" r="5"/>
+    <circle cx="620" cy="390" r="5"/>
+    <circle cx="540" cy="390" r="5"/>
+    <circle cx="580" cy="420" r="5"/>
+    <circle cx="620" cy="450" r="5"/>
+    <circle cx="1300" cy="430" r="5"/>
+    <circle cx="1340" cy="460" r="5"/>
+    <circle cx="1380" cy="490" r="5"/>
+    <circle cx="1300" cy="490" r="5"/>
+    <circle cx="1340" cy="520" r="5"/>
+  </g>
+</svg>
