@@ -12,17 +12,19 @@
   <script defer src="/assets/outline.js"></script>
 </head>
 <body class="note-page">
+{% assign mine = page.course | first | default: page.course %}
+{% capture zz %}{{ "ZZTYPES path=" | append: page.path | append: " raw=" | append: page.course | jsonify | append: " mine=" | append: mine }}{% endcapture %}
+<pre style="display:none">{{ zz }}</pre>
+{% assign book = "" | split: "" %}
+{% assign cover = nil %}
 {% comment %} 笔记页 = 独立整页阅读版式（仿 Harvard bookdown）：
      左侧栏「书名 + 全书章节（当前章展开各小节）+ 当前小节内大纲」，右侧正文。
      侧栏不列站内其它栏目，避免臃肿——从「← 主页」或书名回总览再进。
 
      注意：这里刻意不用 where 过滤器。`where: "course", page.course` 在 GitHub Pages 的
      Liquid 里会报 "comparison of Array with Array failed"，改成显式循环筛选。 {% endcomment %}
-{% assign book = "" | split: "" %}
-{% assign cover = nil %}
-{{ "ZZTYPES path=" | append: page.path | append: " course=" | append: page.course | jsonify }}
 {% for p in site.pages %}
-  {% if p.course == page.course %}
+  {% if p.course == mine %}
     {% if p.kind == "book" %}{% assign cover = p %}{% endif %}
     {% if p.kind == "note" %}{% assign book = book | push: p %}{% endif %}
   {% endif %}
@@ -79,7 +81,7 @@
       {% if next %}<a class="next" href="{{ next.url }}"><span class="hint">下一节 →</span><span class="t">{{ next.title | split: "·" | last | strip }}</span></a>{% else %}<span class="next" aria-hidden="true"></span>{% endif %}
     </nav>
 
-    <footer>最后更新：{{ page.date | date: "%Y-%m-%d" }} · DEBUG book={{ book.size }} chapters={{ chapters.size }} course_json={{ page.course | jsonify }} order={{ page.order | jsonify }}</footer>
+    <footer>最后更新：{{ page.date | date: "%Y-%m-%d" }} · DEBUG book={{ book.size }} chapters={{ chapters.size }} raw={{ page.course | jsonify }} mine={{ mine }} order={{ page.order | jsonify }}</footer>
   </main>
 
 </div>
