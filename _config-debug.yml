@@ -1,0 +1,12 @@
+exclude:
+  - README.md
+  - note-template.md
+  - course-template.html
+  - misc-template.html
+  - split-notes.ps1
+  - _preview/
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: zzdebug

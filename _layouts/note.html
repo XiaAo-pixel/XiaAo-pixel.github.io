@@ -34,7 +34,7 @@
 {% assign chapters = book | group_by: "order" %}
 {% for ch in chapters %}
         <a class="book-chapter" href="{{ ch.items.first.url }}"><span class="sr">第 {{ ch.name }} 章 </span>{{ ch.items.first.chapter | default: ch.items.first.title }}</a>
-{% if ch.name == page.order %}
+{% if forloop.first %}
 {% for sec in ch.items %}
         <a class="book-section{% if sec.url == page.url %} active{% endif %}" href="{{ sec.url }}"><span class="sr">{{ sec.chapter | default: '' }} </span>{{ sec.title | split: "·" | last | strip }}</a>
 {% endfor %}

@@ -1,0 +1,29 @@
+{% comment %} 临时调试用：打印每个页面的 course / kind / order 及其类型，用来定位
+   "comparison of Array with Array failed"。用完必须删掉这个文件。 {% endcomment %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><title>DEBUG TYPES</title></head>
+<body>
+<pre>
+=== page 自身 ===
+{{ page.path }}
+course=[{{ page.course }}] type=[{{ page.course | jsonify }}] size=[{{ page.course.size }}]
+kind=[{{ page.kind }}] order=[{{ page.order }}]
+=== 用 kind=note 过滤 ===
+{% assign notes = site.pages | where: "kind", "note" %}
+notes size = {{ notes.size }}
+=== 用 course=page.course 过滤 ===
+{% assign mine = notes | where: "course", page.course %}
+mine size = {{ mine.size }}
+=== 逐个检查每页的 course 类型（只列非字符串/异常的） ===
+{% for p in site.pages %}
+{% assign cs = p.course | jsonify %}
+{% if cs contains '[' %}[ARRAY?] path={{ p.path }} course={{ cs }} kind={{ p.kind | jsonify }}{% endif %}
+{% endfor %}
+=== 所有 note 页一览 ===
+{% for p in notes %}
+path={{ p.path }} course={{ p.course | jsonify }} order={{ p.order | jsonify }}
+{% endfor %}
+</pre>
+</body>
+</html>
