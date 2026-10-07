@@ -20,6 +20,9 @@
   --entry-bg: rgba(255, 255, 255, .5);
   --hl: #fff3bf;
   --shadow: 0 12px 40px rgba(50, 60, 110, .16);
+  /* 笔记页（整页阅读版式）的底色与侧栏底色 */
+  --read-bg: #fbfbfd;
+  --side-bg: #f4f5f9;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,6 +38,8 @@
     --entry-bg: rgba(255, 255, 255, .045);
     --hl: rgba(255, 215, 90, .24);
     --shadow: 0 12px 40px rgba(0, 0, 0, .5);
+    --read-bg: #12141c;
+    --side-bg: #171a24;
   }
 }
 
@@ -49,6 +54,8 @@ body {
   font-size: 16px;
   line-height: 1.75;
 }
+/* 章节笔记页：整页阅读版式，正文直接铺在页面上，不再套磨砂卡片 */
+body.note-page { background: var(--read-bg); }
 
 /* 全屏背景：第一层是本地壁纸（存在才生效），第二层是内置插画兜底 */
 body::before {
@@ -61,6 +68,8 @@ body::before {
   background-position: center, center;
   background-repeat: no-repeat, no-repeat;
 }
+/* 笔记页不铺壁纸，纯底色更适合长时间阅读 */
+body.note-page::before { display: none; }
 @media (prefers-color-scheme: dark) {
   body::before {
     background-image: var(--wallpaper), url("assets/bg-dark.svg");
@@ -156,9 +165,9 @@ nav { display: flex; flex-direction: column; gap: .25rem; }
   font-weight: 600;
 }
 
-/* 书目录：GitBook 式，当前书在侧边栏常驻全部章节，超长内部滚动 */
+/* 书目录：bookdown 式，侧栏常驻全书章节；当前章展开它的各个小节 */
 .subnav.book-toc {
-  max-height: 42vh;
+  max-height: 46vh;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: thin;
@@ -171,6 +180,82 @@ nav { display: flex; flex-direction: column; gap: .25rem; }
 }
 .subnav.book-toc::-webkit-scrollbar { width: 6px; }
 .subnav.book-toc::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+
+/* 章名（不可展开的小标题），当前章的小节缩进挂在它下面 */
+.book-chapter {
+  margin-top: .3rem;
+  color: var(--text);
+  font-weight: 700;
+  font-size: .85rem !important;
+}
+.book-chapter:first-child { margin-top: 0; }
+.book-section {
+  display: block;
+  margin-left: .55rem;
+  padding-left: .75rem !important;
+  border-left: 2px solid var(--rule);
+  border-radius: 0 8px 8px 0;
+  color: var(--muted);
+}
+.book-section:hover { border-left-color: var(--rule); }
+.book-section.active {
+  color: var(--accent);
+  background: var(--accent-weak);
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+
+/* 当前小节内的大纲（h3/h4/h5）：挂在 .book-section.active 下面 */
+.book-outline { margin: .1rem 0 .35rem .55rem; }
+.book-outline > summary {
+  list-style: none;
+  cursor: pointer;
+  font-size: .74rem;
+  letter-spacing: .08em;
+  color: var(--muted);
+  padding: .18rem .5rem;
+  border-radius: 8px;
+  user-select: none;
+}
+.book-outline > summary::-webkit-details-marker { display: none; }
+.book-outline > summary::before {
+  content: "▸";
+  display: inline-block;
+  width: .9em;
+  transition: transform .15s;
+}
+.book-outline[open] > summary::before { transform: rotate(90deg); }
+.book-outline > summary:hover { color: var(--accent); background: var(--accent-weak); }
+.book-outline a {
+  display: block;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .78rem;
+  line-height: 1.4;
+  padding: .16rem .5rem .16rem .95rem;
+  border-left: 2px solid var(--rule);
+  border-radius: 0 8px 8px 0;
+}
+.book-outline a:hover { color: var(--accent); background: var(--accent-weak); }
+.book-outline a.current { color: var(--accent); font-weight: 600; border-left-color: var(--accent); }
+.book-outline .ol-kids { margin-left: .5rem; }
+.book-outline .ol-kids a { padding-left: 1.1rem; font-size: .75rem; }
+.book-outline .ol-node:empty { display: none; }
+/* 窄屏默认收起，点「本节大纲」才展开，免得目录占掉整个屏幕 */
+@media (max-width: 900px) {
+  .book-outline:not([open]) .subnav-book-outline { display: none; }
+}
+
+/* 只给读屏软件的说明文字（侧栏里区分「第N章」与「第N.M节」） */
+.sr {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 /* 章节翻页条：页底「上一章 / 下一章」 */
 .pager {
@@ -200,11 +285,100 @@ nav { display: flex; flex-direction: column; gap: .25rem; }
 .pager a.next { text-align: right; }
 @media (max-width: 720px) {
   .pager { flex-direction: column; }
-  .subnav.book-toc { display: none; }   /* 窄屏收起章节目录，书封面页里有完整列表 */
 }
 
 /* ---- 右侧内容区 ---- */
 .content { padding: 2.2rem 2.5rem 1.6rem; min-width: 0; }
+
+/* ============ 章节笔记页：整页阅读版式（仿 Harvard bookdown） ============
+   左边一整条固定侧栏（书名 + 全书章节 + 当前章各小节 + 本节大纲），右边正文居中一栏。
+   侧栏吸顶、目录独立滚动；正文不再套磨砂卡片，更接近一本书的阅读感。 */
+.page-note {
+  max-width: none;
+  margin: 0;
+  min-height: 100vh;
+  grid-template-columns: 300px minmax(0, 1fr);
+  background: var(--read-bg);
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  overflow: visible;
+}
+.page-note .sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;                 /* 只有目录内部滚动，侧栏本身不整体滚动 */
+  padding: 1.6rem 1.1rem 1.2rem;
+  background: var(--side-bg);
+  border-right: 1px solid var(--rule);
+}
+.page-note .brand {
+  margin-bottom: .9rem;
+  padding-bottom: .9rem;
+  border-bottom: 1px solid var(--rule);
+}
+.page-note nav { min-height: 0; }
+/* 书名：一条带底色的「本书」入口 */
+.note-book {
+  display: block;
+  flex: none;
+  padding: .45rem .7rem;
+  margin: .1rem 0 .5rem;
+  border-radius: 10px;
+  background: var(--entry-bg);
+  border: 1px solid var(--rule);
+  color: var(--text);
+  font-weight: 700;
+  font-size: .95rem;
+  text-decoration: none;
+}
+.note-book::before { content: "📖 "; }
+.note-book:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+/* 目录（章 + 当前章的小节 + 本节大纲）在侧栏里独立滚动 */
+.page-note .subnav.book-toc {
+  max-height: none;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 0;
+  padding-left: .5rem;
+  overflow-y: auto;
+}
+.page-note .book-section.active { font-size: .85rem; }
+.page-note .book-outline a { font-size: .8rem; }
+.page-note .book-outline .ol-kids a { font-size: .77rem; }
+/* 页面顶部的返回条 */
+.note-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 1.6rem;
+  padding: 0 0 .8rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: .84rem;
+}
+.note-bar .back { color: var(--muted); }
+.note-bar .back:hover { color: var(--accent); text-decoration: none; }
+/* 正文：居中一栏，行宽控制在适合阅读的范围 */
+.page-note .content {
+  max-width: 880px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 3.2rem 3rem 4rem;
+}
+.page-note .content h1 { font-size: 1.85rem; line-height: 1.35; margin-bottom: 1rem; }
+/* 笔记页的正文标题从 h3 起（h1 = 小节名），h2 用不到，留个兜底 */
+.page-note .content h2 { font-size: 1.22rem; margin-top: 2.6rem; }
+.page-note .content h3 { font-size: 1.1rem; margin: 2.1rem 0 .7rem; }
+.page-note .content h4 { font-size: 1rem; margin: 1.6rem 0 .5rem; }
+.page-note .content h5, .page-note .content h6 { font-size: .95rem; margin: 1.3rem 0 .4rem; color: var(--muted); }
+.page-note .content p, .page-note .content li { line-height: 1.85; }
 
 h1 { font-size: 1.5rem; font-weight: 700; margin: 0 0 .5rem; }
 h2 {
@@ -216,56 +390,8 @@ h2 {
   line-height: 1.4;
   scroll-margin-top: 1.5rem;
 }
-h3 { scroll-margin-top: 1.5rem; }
+h3, h4 { scroll-margin-top: 1.5rem; }
 pre { overflow-x: auto; max-width: 100%; }
-
-/* ---- 右侧常驻目录（笔记页专用，由 _layouts/note.html 加 .has-toc） ---- */
-.page.has-toc {
-  max-width: 1220px;
-  grid-template-columns: 232px minmax(0, 1fr) 216px;
-  /* sticky 需要滚动容器是文档本身，故解除 .page 的裁剪 */
-  overflow: visible;
-}
-.toc {
-  position: sticky;
-  top: 2.6rem;
-  align-self: start;
-  max-height: calc(100vh - 5.2rem);
-  overflow-y: auto;
-  padding: 2.5rem 1rem 1.6rem .3rem;
-  border-left: 1px solid var(--rule);
-  font-size: .84rem;
-  overscroll-behavior: contain;
-}
-.toc[hidden] { display: none; }
-.toc-title {
-  font-size: .74rem;
-  font-weight: 700;
-  color: var(--muted);
-  letter-spacing: .1em;
-  margin: 0 0 .55rem;
-  padding-left: .7rem;
-}
-.toc a {
-  display: block;
-  color: var(--muted);
-  text-decoration: none;
-  padding: .26rem .7rem;
-  border-left: 2px solid transparent;
-  border-radius: 0 8px 8px 0;
-  line-height: 1.45;
-  transition: color .15s, background .15s;
-}
-.toc a:hover { color: var(--text); background: var(--accent-weak); text-decoration: none; }
-.toc a.lv3 { padding-left: 1.5rem; font-size: .8rem; }
-.toc a.current {
-  color: var(--accent);
-  border-left-color: var(--accent);
-  background: var(--accent-weak);
-  font-weight: 600;
-}
-.toc::-webkit-scrollbar { width: 6px; }
-.toc::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
 
 /* 正文 */
 p { margin: .6rem 0; }
@@ -520,13 +646,38 @@ body.lb-open { overflow: hidden; }
 /* 上传的照片头像（替换姓氏圆标后生效） */
 img.avatar { object-fit: cover; display: block; }
 
-/* ---- 右侧目录：窄屏隐藏，把宽度让回正文 ---- */
-@media (max-width: 1100px) {
-  .page.has-toc { max-width: 980px; grid-template-columns: 232px minmax(0, 1fr); }
-  .toc { display: none; }
-}
-@media (max-width: 720px) {
-  .page.has-toc { grid-template-columns: 1fr; }
+/* ---- 笔记页窄屏：侧栏折到正文上方，大纲默认收起 ---- */
+@media (max-width: 900px) {
+  .page-note { grid-template-columns: 1fr; min-height: 0; }
+  .page-note .sidebar {
+    position: static;
+    height: auto;
+    padding: 1.2rem 1.1rem 1rem;
+    border-right: none;
+    border-bottom: 1px solid var(--rule);
+  }
+  .page-note nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .3rem;
+  }
+  .page-note .subnav.book-toc {
+    flex-basis: 100%;
+    width: 100%;
+    max-height: 46vh;
+    margin-top: .3rem;
+    /* 站内其它页面的窄屏规则会把 .subnav 变成横排，这里要改回竖排的章节树 */
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    margin-left: 0;
+    padding-left: .5rem;
+    border-left: 2px solid var(--rule);
+  }
+  .page-note .book-chapter { flex: none; }
+  .page-note .book-section { flex: none; }
+  .page-note .content { padding: 1.8rem 1.2rem 2.4rem; }
 }
 
 /* ---- 窄屏照片墙：一行放不下两列就折行，照片不再撑满整行 ---- */

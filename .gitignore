@@ -1,2 +1,8 @@
 # Jekyll 本地构建产物与临时文件
 _site/
+
+# split-notes.ps1 的运行记录（生成出来的 ch<章号>-<节号>.md 要提交，这个不用）
+notes/*/.sections.json
+
+# 本地预览用的模拟页面与截图
+_preview/

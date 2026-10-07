@@ -72,6 +72,7 @@ title: 主页
     </div>
 
     <h2>最近更新</h2>
+    <!-- 每门课一行，点进去是新标签页里的整页阅读版（左侧栏 = 全书章节 + 当前章各小节） -->
     <ul class="postlist">
 {% comment %} 课程目录式：每门课一行，链接到该课的书封面页（<课程代号>/index.html）。
    course 代号须与封面页所在目录名一致；暂无封面页的栏目回退到 courses.html {% endcomment %}
@@ -79,7 +80,7 @@ title: 主页
 {% assign groups = notes | group_by: "course" | sort: "name" %}
 {% for g in groups %}
   {% assign cover = site.pages | where: "kind", "book" | where: "course", g.name | first %}
-      <li><a href="{{ cover.url | default: "/courses.html" }}">{{ cover.title | default: g.name }}</a><span class="date">{{ g.items | size }} 篇笔记</span></li>
+      <li><a href="{{ cover.url | default: '/courses.html' }}" target="_blank" rel="noopener">{{ cover.title | default: g.name }}</a><span class="date">{{ g.items | size }} 节</span></li>
 {% endfor %}
     </ul>
 

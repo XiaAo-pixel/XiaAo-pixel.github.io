@@ -6,3 +6,5 @@ exclude:
   - note-template.md
   - course-template.html
   - misc-template.html
+  - split-notes.ps1
+  - _preview/

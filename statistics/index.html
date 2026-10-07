@@ -7,12 +7,20 @@ date: 2026-10-07
 ---
 <p class="muted">教师：周晓华 · 学期：2026 秋 · 教材：<cite>Statistical Inference</cite>（Casella &amp; Berger, 2nd ed.）</p>
 
-<p>本书记录《数理统计》课程的完整讲义，以 Casella &amp; Berger《统计推断》为主线：从概率论基础出发，依次讨论变换与期望、常用分布族、多元随机变量、数据约简原理、点估计、假设检验、区间估计与渐近评价，最后落到方差分析、回归模型与常用分布表。每章一页，可按顺序系统阅读，也可从左侧目录直接跳到所需章节；页底有「上一章 / 下一章」按钮便于连贯翻阅。</p>
+<p>本书记录《数理统计》课程的完整讲义，以 Casella &amp; Berger《统计推断》为主线：从概率论基础出发，依次讨论变换与期望、常用分布族、多元随机变量、数据约简原理、点估计、假设检验、区间估计与渐近评价，最后落到方差分析、回归模型与常用分布表。<strong>每小节一页</strong>（如 7.2 寻找估计量的方法单独成页），点进任意一页后左侧栏会列出全书章节与当前章的小节，页底有「上一节 / 下一节」便于连续翻阅。</p>
+
+<p><a href="/courses.html">← 返回课程笔记总览</a></p>
 
 <h2>章节目录</h2>
-<ul class="postlist">
+{% comment %} 章节页由 split-notes.ps1 生成：同一 order 的小节页属于同一章，
+     这里按章分组列出，章标题取第一节的 chapter 字段 {% endcomment %}
 {% assign book = site.pages | where: "kind", "note" | where: "course", page.course | sort: "order" %}
-{% for c in book %}
-  <li><a href="{{ c.url }}">{{ c.title }}</a></li>
+{% assign chapters = book | group_by: "order" %}
+{% for ch in chapters %}
+<h3>第 {{ ch.name }} 章　{{ ch.items.first.chapter | default: ch.items.first.title }}</h3>
+<ul class="postlist">
+{% for sec in ch.items %}
+  <li><a href="{{ sec.url }}">{{ sec.title | split: "·" | last | strip }}</a></li>
 {% endfor %}
 </ul>
+{% endfor %}

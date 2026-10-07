@@ -4,15 +4,18 @@ title: 【课程名称】
 <!DOCTYPE html>
 <html lang="zh-CN">
 <!--
-  书封面页模板（GitBook 式访问：一门课 = 一个目录式 URL）
+  书封面页模板（一门课 = 一个目录式 URL，如 /os/）
 
   新增一门课的完整流程：
-  1. 复制本文件 → 建目录 <课程代号>/index.html（如 optimization/index.html），填写 frontmatter：
+  1. 复制本文件 → 建目录 <课程代号>/index.html（如 os/index.html），填写 frontmatter：
      kind: book、course: <课程代号>（须与章节笔记 frontmatter 里的 course 一致）、title、date
-  2. 章节笔记从 note-template.md 复制，frontmatter 加一行 permalink: /<课程代号>/chap01.html
+  2. 章节笔记：复制 _source 里的原始笔记（一章一个 .md）放进 notes/<课程代号>/，
+     frontmatter 写 layout: note、kind: note、title、course: <课程代号>、order: <章号>、date；
+     然后运行 split-notes.ps1，它会按各章 h2 自动切成"一节一页"并写进 notes/<课程代号>/
+     （生成文件以 ch<章号>-<节号>.md 命名，permalink 形如 /os/ch03-02.html，不用手写）
   3. 两处登记：
      1) 所有页面侧边栏 subnav 里加：<a href="/<课程代号>/">【课程名称】</a>
-        （_layouts/note.html、index.html、courses.html、misc.html、hobbies.html、hobby-*.html）
+        （index.html、courses.html、misc.html、hobbies.html、hobby-*.html）
      2) courses.html 总览页的 entries 里加一张卡片
   已登记课程可参考：statistics/index.html、optimization/index.html
 -->
@@ -62,14 +65,20 @@ title: 【课程名称】
 
     <p><span class="ph">【本书简介一两句：讲什么、按什么顺序读。】</span></p>
 
+    <p><a href="/courses.html">← 返回课程笔记总览</a></p>
+
     <h2>章节目录</h2>
     <!-- 复制本文件后：把下面两处 os 改成新课程的代号 -->
+    {% assign book = site.pages | where: "kind", "note" | where: "course", "os" | sort: "order" %}
+    {% assign chapters = book | group_by: "order" %}
+    {% for ch in chapters %}
+    <h3>第 {{ ch.name }} 章　{{ ch.items.first.chapter | default: ch.items.first.title }}</h3>
     <ul class="postlist">
-{% assign book = site.pages | where: "kind", "note" | where: "course", "os" | sort: "order" %}
-{% for c in book %}
-      <li><a href="{{ c.url }}">{{ c.title }}</a></li>
+{% for sec in ch.items %}
+      <li><a href="{{ sec.url }}">{{ sec.title | split: "·" | last | strip }}</a></li>
 {% endfor %}
     </ul>
+    {% endfor %}
 
     <footer>最后更新：<span class="ph">【日期】</span></footer>
   </main>

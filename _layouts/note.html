@@ -9,153 +9,72 @@
     MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script defer src="/assets/outline.js"></script>
 </head>
-<body>
-{% comment %} 右侧目录栏只给章节正文（kind: note）用：正文里至少 2 个 h2 才开；书封面页（kind: book）不开 {% endcomment %}
-{% assign h2_count = content | split: '<h2' | size %}
-{% assign show_toc = false %}
-{% if page.kind == "note" and h2_count > 2 %}{% assign show_toc = true %}{% endif %}
-<div class="page{% if show_toc %} has-toc{% endif %}">
+<body class="note-page">
+{% comment %} 笔记页 = 独立整页阅读版式（仿 Harvard bookdown）：
+     左侧栏「书名 + 全书章节（当前章展开各小节）+ 当前小节内大纲」，右侧正文。
+     侧栏不列站内其它栏目，避免臃肿——从「← 主页」或书名回总览再进。
+     章节列表由 split-notes.ps1 生成的小节页 frontmatter（order / chapter）自动分组。 {% endcomment %}
+<div class="page page-note">
 
   <aside class="sidebar">
     <a class="brand" href="/index.html">
       <img class="avatar" src="/assets/avatar.jpg" alt="头像">
       <span class="name">XiaAo</span>
     </a>
+    {% assign book = site.pages | where: "kind", "note" | where: "course", page.course | sort: "order" %}
+    {% assign cover = site.pages | where: "kind", "book" | where: "course", page.course | first %}
     <nav>
-      <a class="nav-item" href="/index.html">🏠 主页</a>
-      <div class="nav-group">
-        <a class="nav-item{% unless page.course contains 'misc' %} active{% endunless %}" href="/courses.html">📚 课程笔记</a>
-        <div class="subnav">
-          <a{% if page.course == "statistics" %} class="active"{% endif %} href="/statistics/">数理统计</a>
-          <a{% if page.course == "optimization" %} class="active"{% endif %} href="/optimization/">最优化方法</a>
-        </div>
-{% comment %} 本书章节目录（GitBook 式）：当前所在书列出全部章节，当前章高亮；
-   章节标题截掉括号里的英文副题，让目录更紧凑 {% endcomment %}
-{% if page.course %}
-{% assign book = site.pages | where: "kind", "note" | where: "course", page.course | sort: "order" %}
-{% if book.size > 0 %}
-        <div class="subnav book-toc" aria-label="本书章节">
-{% for c in book %}
-          <a{% if c.url == page.url %} class="active"{% endif %} href="{{ c.url }}">{{ c.title | split: "（" | first }}</a>
+      <a class="nav-item" href="/index.html">← 主页</a>
+      <a class="note-book" href="{{ cover.url | default: '/courses.html' }}">{{ cover.title | default: page.course }}</a>
+      <div class="subnav book-toc" aria-label="本书目录">
+{% comment %} order 由 split-notes.ps1 写成两位数字串（01、02…），字符串排序即阅读顺序；
+     同一 order 的所有小节页属于同一章 {% endcomment %}
+{% assign chapters = book | group_by: "order" %}
+{% for ch in chapters %}
+        <a class="book-chapter" href="{{ ch.items.first.url }}"><span class="sr">第 {{ ch.name }} 章 </span>{{ ch.items.first.chapter | default: ch.items.first.title }}</a>
+{% if ch.name == page.order %}
+{% for sec in ch.items %}
+        <a class="book-section{% if sec.url == page.url %} active{% endif %}" href="{{ sec.url }}"><span class="sr">{{ sec.chapter | default: '' }} </span>{{ sec.title | split: "·" | last | strip }}</a>
 {% endfor %}
-        </div>
 {% endif %}
-{% endif %}
-      </div>
-      <div class="nav-group">
-        <a class="nav-item{% if page.course contains 'misc' %} active{% endif %}" href="/misc.html">✏️ 杂记</a>
-        <div class="subnav">
-        </div>
-      </div>
-      <div class="nav-group">
-        <a class="nav-item" href="/hobbies.html">🎨 兴趣爱好</a>
-        <div class="subnav">
-          <a href="/hobby-novel.html">小说</a>
-          <a href="/hobby-anime.html">动漫</a>
-          <a href="/hobby-travel.html">旅行</a>
-        </div>
+{% endfor %}
       </div>
     </nav>
   </aside>
 
   <main class="content">
-    <h1>{{ page.title }}</h1>
 {% if page.kind == "note" %}
-    <p class="muted">{{ page.date | date: "%Y-%m-%d" }}</p>
+    <div class="note-bar">
+      <a class="back" href="{{ cover.url | default: '/courses.html' }}">← 返回《{{ cover.title | default: page.course }}》</a>
+      <a href="/index.html">主页</a>
+    </div>
 {% endif %}
+    <h1>{{ page.title }}</h1>
+    <p class="muted">{{ page.date | date: "%Y-%m-%d" }}</p>
 
     {{ content }}
 
-{% comment %} 章节页（kind: note）页底：上一章 / 下一章，按 order 自动计算 {% endcomment %}
-{% if page.kind == "note" and page.course %}
+{% comment %} 页底「上一节 / 下一节」：按章节顺序 + 小节顺序取相邻页
+    （order 是两位数字串，url 里也带两位章号节号，字典序即阅读顺序） {% endcomment %}
 {% assign book = site.pages | where: "kind", "note" | where: "course", page.course | sort: "order" %}
+{% assign flat = book | sort: "url" %}
 {% assign prev = nil %}{% assign next = nil %}
-{% for c in book %}
+{% for c in flat %}
   {% if c.url == page.url %}
-    {% unless forloop.first %}{% assign pi = forloop.index0 | minus: 1 %}{% assign prev = book[pi] %}{% endunless %}
-    {% unless forloop.last %}{% assign ni = forloop.index0 | plus: 1 %}{% assign next = book[ni] %}{% endunless %}
+    {% unless forloop.first %}{% assign pi = forloop.index0 | minus: 1 %}{% assign prev = flat[pi] %}{% endunless %}
+    {% unless forloop.last %}{% assign ni = forloop.index0 | plus: 1 %}{% assign next = flat[ni] %}{% endunless %}
   {% endif %}
 {% endfor %}
-    <nav class="pager" aria-label="章节翻页">
-      {% if prev %}<a class="prev" href="{{ prev.url }}"><span class="hint">← 上一章</span><span class="t">{{ prev.title | split: "（" | first }}</span></a>{% else %}<span class="prev" aria-hidden="true"></span>{% endif %}
-      {% if next %}<a class="next" href="{{ next.url }}"><span class="hint">下一章 →</span><span class="t">{{ next.title | split: "（" | first }}</span></a>{% else %}<span class="next" aria-hidden="true"></span>{% endif %}
+    <nav class="pager" aria-label="小节翻页">
+      {% if prev %}<a class="prev" href="{{ prev.url }}"><span class="hint">← 上一节</span><span class="t">{{ prev.title | split: "·" | last | strip }}</span></a>{% else %}<span class="prev" aria-hidden="true"></span>{% endif %}
+      {% if next %}<a class="next" href="{{ next.url }}"><span class="hint">下一节 →</span><span class="t">{{ next.title | split: "·" | last | strip }}</span></a>{% else %}<span class="next" aria-hidden="true"></span>{% endif %}
     </nav>
-{% endif %}
 
     <footer>最后更新：{{ page.date | date: "%Y-%m-%d" }}</footer>
   </main>
 
-{% if show_toc %}
-  <aside class="toc" id="toc" aria-label="本页目录">
-    <div class="toc-title">目录</div>
-    <div id="toc-list"></div>
-  </aside>
-{% endif %}
-
 </div>
-<script>
-/* 用渲染后标题的 id 生成目录；随滚动高亮当前小节 */
-(function () {
-  var content = document.querySelector('.content');
-  var list = document.getElementById('toc-list');
-  var panel = document.getElementById('toc');
-  if (!content || !list || !panel) return;
-
-  var heads = Array.prototype.slice.call(content.querySelectorAll('h2[id], h3[id]'));
-  if (heads.length < 2) { panel.hidden = true; return; }
-
-  var links = heads.map(function (h) {
-    var a = document.createElement('a');
-    a.href = '#' + h.id;
-    a.textContent = (h.textContent || '').replace(/\s+/g, ' ').trim();
-    if (h.tagName === 'H3') a.className = 'lv3';
-    a.addEventListener('click', function (e) {
-      e.preventDefault();
-      h.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      if (history.replaceState) history.replaceState(null, '', '#' + h.id);
-    });
-    list.appendChild(a);
-    return a;
-  });
-
-  var current = -1;
-  function setCurrent(i) {
-    if (i === current) return;
-    if (current >= 0) links[current].classList.remove('current');
-    current = i;
-    if (i < 0) return;
-    var a = links[i];
-    a.classList.add('current');
-    /* 当前项滚出目录面板可视区时，把它带回中间 */
-    var top = a.offsetTop, h = panel.clientHeight;
-    if (top < panel.scrollTop + 12 || top + a.offsetHeight > panel.scrollTop + h - 12) {
-      panel.scrollTop = Math.max(0, top - h / 2 + a.offsetHeight / 2);
-    }
-  }
-
-  var ticking = false;
-  function update() {
-    ticking = false;
-    var idx = 0;
-    for (var i = 0; i < heads.length; i++) {
-      if (heads[i].getBoundingClientRect().top > 90) break;
-      idx = i;
-    }
-    /* 已经滚到底时，高亮最后一项（末尾小节太短，否则永远点不亮） */
-    if (window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 4) {
-      idx = heads.length - 1;
-    }
-    setCurrent(idx);
-  }
-  function onScroll() {
-    if (!ticking) { ticking = true; requestAnimationFrame(update); }
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
-  window.addEventListener('load', update);   /* 带 #锚点 打开时，跳转后再校准一次 */
-  update();
-})();
-</script>
 </body>
 </html>

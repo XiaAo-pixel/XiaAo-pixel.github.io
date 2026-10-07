@@ -1,20 +1,27 @@
 ---
 layout: note
 kind: note
-title: 【笔记标题】
-course: ds
-order: 1
+title: "【章标题，如：第七章　假设检验】"
+course: statistics
+order: 7
 date: 2026-10-08
-permalink: /ds/chap01.html
 ---
 
-<span class="ph">【复制本文件到 notes/ 文件夹（子文件夹随意，URL 由 permalink 决定），重命名为英文文件名（如 ds-ch3.md），改上面 title / course / order / date 四行，然后写正文。】</span>
+<span class="ph">【这是"一章一个"的源文件：整章写在一个 .md 里，标题用 ## 分小节。写完运行
+split-notes.ps1，它会按 ## 自动切成「一节一页」并生成 notes/&lt;课程代号&gt;/ch07-01.md 等文件
+（那些生成文件不用手改，改了也会被覆盖）。
 
-<span class="ph">【permalink 决定线上地址，GitBook 式：/<课程代号>/chap<两位序号>.html，如 /ds/chap03.html；序号与 order 一致。course 取值须与该书封面页（&lt;课程代号&gt;/index.html）的 course 一致：statistics=数理统计，optimization=最优化方法，misc-2026 / misc-2025=杂记年份；新建课程时按 README 登记新取值。】</span>
+frontmatter 只需上面 6 行：
+  layout / kind 固定；title 写章标题（"第七章　假设检验"）；
+  course 与书封面页一致（statistics / optimization / …）；order 写章号（7 或 "07" 都行）；
+  date 写最后更新日期。
 
-<span class="ph">【同一本书内的章节按 order 升序自动生成侧边栏书目录和页底「上一章 / 下一章」，无需手写导航。图片等资源相对路径的基准是 permalink 所在目录（如 /ds/），建议把图片放到仓库根目录 &lt;课程代号&gt;/fig/ 下，正文用 fig/xxx.png 引用。】</span>
+不要手写 permalink —— 生成的每个小节页由脚本按 /<课程代号>/ch<章号>-<节号>.html 命名。】</span>
 
-## 【小节标题】
+## 【小节标题，如：7.1 引言（Introduction）】
+
+<span class="ph">【一个小节 = 一个页面。小节里可以用 ### / #### 再分小标题，它们会出现在左侧栏
+「本节大纲」里，可点击跳转。】</span>
 
 - <span class="ph">【要点一】</span>
 - <span class="ph">【要点二】</span>
@@ -26,3 +33,8 @@ $$
 $$
 
 > <span class="ph">【引用块适合放重要结论、易错点。表格、代码块都用标准 Markdown 写法。】</span>
+
+## 【下一个小节标题，如：7.2 寻找检验的方法】
+
+<span class="ph">【图片放仓库根目录 &lt;课程代号&gt;/fig/ 下，正文用 fig/图片名.png 引用
+（相对路径基准是 permalink 所在目录，即 /&lt;课程代号&gt;/）。】</span>

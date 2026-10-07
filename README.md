@@ -4,6 +4,15 @@
 
 线上地址：https://xiaao-pixel.github.io
 
+## 两种版式
+
+| 版式 | 用在哪些页 | 长相 |
+| --- | --- | --- |
+| **卡片版** | 主页、课程笔记总览、杂记、兴趣爱好 | 壁纸背景 + 居中磨砂玻璃卡片 + 左侧全站栏目栏 |
+| **整页阅读版**（仿 Harvard bookdown） | 所有章节/小节笔记页 | 无壁纸纯底色；左侧一整条固定侧栏（书名 + 全书章节 + 当前章各小节 + 本节大纲），右侧正文居中一栏；页底「上一节 / 下一节」 |
+
+笔记页是独立页面，从总览点进去用 `target="_blank"` 开在新标签页，主页不受打扰。笔记页的访问方式模仿 <https://hankyang.seas.harvard.edu/Semidefinite/>：**一节一页**（如 `/statistics/ch07-02.html` 就是 7.2 节），侧栏始终显示整本书的章节结构。
+
 ## 文件结构
 
 ```
@@ -19,17 +28,22 @@ homepage/
 ├── hobby-travel.html    旅行照片墙（分地点）
 ├── statistics/          数理统计"在线书"：index.html 封面（/statistics/）+ fig/ 章节插图
 ├── optimization/        最优化方法"在线书"：index.html 封面（/optimization/）
-├── note-template.md    单章笔记模板（复制它来写新章节）
-├── notes/              章节 .md 源文件放这里，线上地址由 frontmatter 的 permalink 决定
-├── _layouts/note.html  章节页/书封面页模板（侧边栏书目录 + 上一章/下一章 + 公式渲染）
-├── _config.yml         Jekyll 配置（排除 README 等不发布的文件）
-├── style.css           全站样式（壁纸、透明度、侧边栏都在这里调）
+├── split-notes.ps1      ★ 把"一章一个 .md"按 h2 切成"一节一页"（见下文）
+├── note-template.md     章节源文件模板（复制它来写新的一章）
+├── notes/              笔记源文件 + 脚本生成的小节页
+│   ├── <课程代号>/第N章_xxx.md      你写的源文件（一章一个）
+│   ├── <课程代号>/chNN-MM.md        split-notes.ps1 生成的小节页（别手改）
+│   └── 讲义_markdown/               尚未归入某门课的原始讲义
+├── _layouts/note.html  笔记页模板（卡片版 / 整页阅读版都在这一个文件里）
 ├── assets/
+│   ├── outline.js       笔记页侧栏：本节大纲 + 随滚动高亮
 │   ├── bg-light.svg     内置浅色插画背景（无壁纸时的兜底）
 │   ├── bg-dark.svg      内置深色插画背景（无壁纸时的兜底）
 │   ├── wallpaper.jpg    （可选）你自己的壁纸，放进来就自动生效
 │   ├── photo-wall.js    旅行照片墙：按原比例排版 + 点击放大
 │   └── photos/          旅行照片目录（如 nanjing-1.jpg）
+├── _config.yml         Jekyll 配置（排除 README 等不发布的文件）
+├── style.css           全站样式（壁纸、透明度、侧边栏都在这里调）
 └── README.md
 ```
 
@@ -37,7 +51,7 @@ homepage/
 
 打开 `style.css` 最上面的“可调参数”区块：
 
-1. **接入本地壁纸**：把你的图片放进 `assets/` 并命名为 `wallpaper.jpg`，**保存刷新即自动生效**，不用改任何代码（没放这张图就显示内置插画）。用其他文件名或子目录，就改 `--wallpaper: url("assets/你的图.jpg");`；不想要壁纸改成 `none`。深浅色模式共用这张壁纸。
+1. **接入本地壁纸**：把你的图片放进 `assets/` 并命名为 `wallpaper.jpg`，**保存刷新即自动生效**，不用改任何代码（没放这张图就显示内置插画）。用其他文件名或子目录，就改 `--wallpaper: url("assets/你的图.jpg");`；不想要壁纸改成 `none`。深浅色模式共用这张壁纸（笔记页不铺壁纸，用 `--read-bg` / `--side-bg` 两个纯色变量）。
 2. **卡片透明度**：改 `--card-alpha`（0 ~ 1，越小越透）。壁纸花哨、文字读不清就调大，比如 `.9`；浅色和深色模式各有独立的 `--card-alpha`，可分别调。
 3. 想恢复纯插画背景：`--wallpaper: none`。
 
@@ -52,32 +66,72 @@ homepage/
 侧边栏在每个页面的 `<aside class="sidebar">` 里，两级结构，**每一级都是独立页面**：
 
 - 一级栏目（主页 / 课程笔记 / 杂记 / 兴趣爱好）= 一个页面；
-- 子栏目 = 也是独立页面。每门课是一个"在线书"（仿 GitBook 访问方式）：`<课程代号>/index.html` 是书封面页（如 `/statistics/`），每个章节是独立一页（如 `/statistics/chap01.html`），打开任何一章，左侧都常驻全书章节目录，页底有「上一章 / 下一章」；杂记按年份一个 `misc-xxxx.html`，兴趣爱好下每项一个 `hobby-xxx.html`。侧边栏直接点过去，当前页会高亮（`class="active"`）。
+- 子栏目 = 也是独立页面。每门课是一个"在线书"：`<课程代号>/index.html` 是书封面页（如 `/optimization/`），**每个小节是独立一页**（如 `/optimization/ch06-03.html`），打开任何一页左侧都常驻全书章节 + 当前章各小节，页底有「上一节 / 下一节」；杂记按年份一个 `misc-xxxx.html`，兴趣爱好下每项一个 `hobby-xxx.html`。
 
-**新增一门课（以"操作系统"为例）**，三步：
+### 笔记页的左侧栏（三级）
 
-1. 复制 `course-template.html` → 新建目录 `os/`，存成 `os/index.html`，改 frontmatter（`course: os`、`title: 操作系统`）并填简介；章节笔记的 `permalink` 以后都写在 `/os/chapNN.html` 下；
-2. **所有页面**侧边栏 `subnav` 里加一条：`<a href="/os/">操作系统</a>`；
-3. 在 `courses.html` 总览页的 `entries` 里照抄一张卡片，改好链接和课程名。
+```
+📖 最优化方法            ← 点回书封面页（列出全书章节）
+第 1 章　最优化简介      ← 其它章只列章名，点进该章第一页
+  本章前置知识           ← 当前章的各小节（当前小节高亮）
+  最优化问题概括         ← 你在这一页
+    ▾ 本节大纲
+      最优化问题的一般形式   ← 正文里的 ### / #### 标题，随滚动高亮
+```
 
-**新增一篇章节笔记（纯 Markdown，不碰 HTML）**：
+行为细节：
 
-> 💡 **整文件夹上传**：在"主页助手 → 笔记 → 栏目管理"里 📂 打开某个栏目，用"上传整个文件夹"选一个本地文件夹（里面是分章节的 .md 和它们引用的图片），目录结构会原样保留、图片引用不断链，全部自动归入该栏目。
+- 从主页/总览进笔记页是**新标签页**，方便对照着看；
+- 侧栏只列这本书 + 回主页 / 回书封面的链接，站内其它栏目不塞进笔记页（避免臃肿）；
+- 侧栏目录独立滚动，页面顶部能一直看到「当前小节」高亮；
+- 窄屏（≤900px）侧栏折到正文上方，大纲默认收起，点「本节大纲」展开。
 
-1. 复制 `note-template.md` → 放进 `notes/` 文件夹（子文件夹随意，线上地址由 permalink 决定）→ 重命名为英文文件名（如 `ds-ch3.md`）；
-2. 改文件开头的信息：`title`（显示的标题）、`course`（所属课程代号，与书封面页一致）、`order`（章节序号，决定书目录和翻页顺序）、`date`，以及 **`permalink`**（线上地址，写 `/<课程代号>/chap<两位序号>.html`，如 `/ds/chap03.html`，序号与 `order` 保持一致）；
-3. 用 Markdown 写正文（支持 LaTeX：行内 `$...$`，行间 `$$...$$`；平板上的 Markdown 编辑器写完直接丢进来即可）；
-4. push 上线——侧边栏书目录、页底「上一章 / 下一章」、书封面页列表和主页"最近更新"**自动**更新，不用手动登记。
+## 写笔记：一章一个源文件，脚本切成"一节一页"
+
+**为什么**：长笔记一页放一整章太笨重，而一章一个文件写起来最省事——所以源文件仍然一章一个，用脚本按 `##` 切成小节页。
+
+**写新一章（以"数理统计第 7 章"为例）**：
+
+1. 复制 `note-template.md` → 放进 `notes/statistics/`，命名成你能认出的英文名（如 `ch07_point_estimation.md`）；
+2. 改开头 6 行：`title`（章标题，如 `第七章　点估计`）、`course: statistics`、`order: 7`、`date`；`permalink` **不要写**（由脚本生成）；
+3. 用 `##` 分小节写正文（`## 7.1 引言`、`## 7.2 寻找估计量的方法`…），小节内部用 `###` / `####`；支持 LaTeX：行内 `$...$`，行间 `$$...$$`；
+4. 在仓库根目录跑一次脚本，把这一章切成小节页：
+
+   ```powershell
+   powershell -NoProfile -ExecutionPolicy Bypass -File split-notes.ps1 -Course statistics
+   ```
+
+   只想先看看会切成什么，加 `-Check`；不加 `-Course` 就处理 `notes/` 下所有课程。脚本会打印每章切出哪些页，并在 `notes/<课程代号>/.sections.json` 记下生成清单，下次重跑会**自动删掉不再需要的小节页**（所以生成文件别手改）；
+5. push 上线——侧栏目录、页底「上一节 / 下一节」、书封面页的分章列表和主页"最近更新"**自动**更新，不用手动登记。
+
+**切分规则**：每个 `##` 标题 = 一小节 = 一页；正文自带编号（`## 7.1 xxx`）就沿用编号，没有编号就按出现顺序编号；一节里的 `###` / `####` 会下移一级显示（页面上是 h3 / h4），并自动收进侧栏「本节大纲」。文件名与线上地址：
+
+```
+notes/statistics/ch07_point_estimation.md   ← 源文件（你写）
+        ↓ split-notes.ps1
+notes/statistics/ch07-01.md  →  /statistics/ch07-01.html
+notes/statistics/ch07-02.md  →  /statistics/ch07-02.html
+notes/statistics/ch07-03.md  →  /statistics/ch07-03.html   ...
+```
 
 `course` 取值与书对应：`statistics`=数理统计（`/statistics/`）、`optimization`=最优化方法（`/optimization/`）、`misc-2026`/`misc-2025`=杂记年份；新课程按"新增一门课"登记新代号。
 
+**已有笔记**：`optimization`（6 章 53 节）已经切好；`notes/讲义_markdown/` 里那 13 份原始讲义还没归入某门课，要启用就先建书封面页（见下）再把 `.md` 放进 `notes/statistics/` 跑脚本。
+
+### 新增一门课（以"操作系统"为例）
+
+1. 复制 `course-template.html` → 新建目录 `os/`，存成 `os/index.html`，改 frontmatter（`course: os`、`title: 操作系统`）并填简介；
+2. **所有页面**侧边栏 `subnav` 里加一条：`<a href="/os/">操作系统</a>`（`index.html`、`courses.html`、`misc.html`、`hobbies.html`、`hobby-*.html`）；
+3. 在 `courses.html` 总览页的 `entries` 里照抄一张卡片（记得带 `target="_blank"`），改好链接和课程名；
+4. 把你的章节源文件放进 `notes/os/`，跑 `split-notes.ps1 -Course os`。
+
 **Markdown 写作注意**：
 
-- 章节配图放仓库根目录 `<课程代号>/fig/` 下，正文用 `fig/图片名.png` 引用（相对路径以 permalink 所在目录为基准，改 permalink 文件名时不会断链）；
+- 章节配图放仓库根目录 `<课程代号>/fig/` 下，正文用 `fig/图片名.png` 引用（相对路径以 permalink 所在目录为基准，即 `/<课程代号>/`，所以小节页之间移动也不会断链）；
 - 不属于某本书的图片（杂记等）放 `assets/`，引用写 `/assets/图片名.png`（以 `/` 开头）；
 - 正文里避免出现连续两个 `{`（`{{` 会被 Jekyll 当模板语法），需要时写 `&#123;&#123;`；
 - 公式中的 `*` 建议写成 `\ast`，避免被当成加粗符号；
-- 不要在正文里手写"上一章/下一章/目录"导航行——布局会按 `order` 自动生成，手写的链接指向 `.md` 源文件，线上会 404。
+- 不要在正文里手写"上一节/下一节/目录"导航行——布局会按 `order` 和文件名自动生成，手写的链接指向 `.md` 源文件，线上会 404。
 
 **新增一个一级栏目**（比如“转载收藏”）：复制 `misc.html` 改名，再在所有页面的 `<nav>` 里照抄一个 `nav-group`。
 
@@ -118,11 +172,21 @@ python -m http.server 8765
 # 浏览器访问 http://127.0.0.1:8765
 ```
 
-**本地预览的说明**：笔记列表页由 GitHub 云端的 Jekyll 渲染，本地 `python -m http.server` 看到的是“改造前”的原始文件（列表位置会显示花括号代码），属正常现象；想本地完整预览需安装 Ruby + Jekyll（进阶，可选），或直接 push 看线上效果。
+**本地预览的说明**：页面里的 `{% %}` 列表由 GitHub 云端的 Jekyll 渲染，本地 `python -m http.server` 看到的是"改造前"的原始文件（列表位置会显示花括号代码），属正常现象；想本地完整预览需安装 Ruby + Jekyll（进阶，可选），或直接 push 看线上效果。
+
+想单独看笔记页的版式（不装 Ruby），可以用仓库里的模拟脚本：先 `split-notes.ps1` 生成小节页，再
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File _preview\make-handmade.ps1
+# 然后浏览器打开 http://127.0.0.1:8765/_preview/handmade/ch01-03.html
+```
+
+它会用真实的小节内容和真实的 `style.css` / `outline.js` 拼出笔记页，用来调版式、验证侧栏大纲。`_preview/` 已在 `.gitignore` 与 `_config.yml` 里排除。
 
 ## 更新上线
 
 ```bash
+powershell -NoProfile -ExecutionPolicy Bypass -File split-notes.ps1   # 笔记有改动时先跑这个
 git add .
 git commit -m "更新内容"
 git push
