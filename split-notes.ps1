@@ -118,6 +118,14 @@ foreach ($course in $courses) {
     $body = $doc.Body
     $body = [regex]::Replace($body, '(?m)^#\s+.*\r?\n', '')   # 正文 h1（章标题）由页面 h1 渲染，去掉
 
+    # 给讲义里的语义容器加 markdown="1"：裸 <div class="..."> 在 kramdown 里是**原始 HTML**，
+    # 里面的 Markdown（**加粗**、编号列表、$$公式$$、表格）不会被解析，会原样显示成文本。
+    # 加上 markdown="1" 后 kramdown 才会处理容器内部的 Markdown。
+    # 只有「居中块 / 表格容器」用 markdown="span"：它们内部是 Markdown 表格 + HTML，
+    # 用 span 模式即可，避免 kramdown 把表格语法又包一层 <p>。
+    $body = [regex]::Replace($body, '<div class="(center|tabular)"\s*>', '<div class="$1" markdown="span">')
+    $body = [regex]::Replace($body, '<div class="([a-zA-Z][\w-]*)"\s*>', '<div class="$1" markdown="1">')
+
     # 先用原始的 ## 找出小节边界，再整体降级标题（顺序反了之后就再也找不到 ## 了）
     $lines = $body -split "\r?\n"
     $marks = @()
