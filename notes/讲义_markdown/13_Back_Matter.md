@@ -24,9 +24,9 @@ permalink: /statistics/chap13.html
 
 > **例 12.6.1（无序抽样）**
 >
-> 我们例示用 Mathematica 代码枚举从 $\{2, 4, 9, 12\}$ 有放回抽样的无序结果，如例 1.2.20 所述。枚举结果并计算多项式权重后，对结果与权重排序。注意要生成图 1.2.2 的直方图还需稍多做一些工作：例如有两个不同的结果平均值都是 8，因此要生成类似图 1.2.2 的图，需要把 $\{8, \tfrac{3}{128}\}$ 与 $\{8, \tfrac{3}{64}\}$ 合并成 $\{8, \tfrac{9}{128}\}$。
+> 我们例示用 Mathematica 代码枚举从 $$\{2, 4, 9, 12\}$$ 有放回抽样的无序结果，如例 1.2.20 所述。枚举结果并计算多项式权重后，对结果与权重排序。注意要生成图 1.2.2 的直方图还需稍多做一些工作：例如有两个不同的结果平均值都是 8，因此要生成类似图 1.2.2 的图，需要把 $$\{8, \tfrac{3}{128}\}$$ 与 $$\{8, \tfrac{3}{64}\}$$ 合并成 $$\{8, \tfrac{9}{128}\}$$。
 >
-> 当集合中的数多于七个时，这类枚举会非常耗时：$13^7 = 27132$ 个无序结果。
+> 当集合中的数多于七个时，这类枚举会非常耗时：$$13^7 = 27132$$ 个无序结果。
 >
 > ```mathematica{% raw %}
 > In[1]:= Needs["DiscreteMath`Combinatorica`"]
@@ -49,11 +49,11 @@ permalink: /statistics/chap13.html
 >          {21/2, 3/128}, {45/4, 1/64}, {12, 1/256}}
 > {% endraw %}```
 >
-> （1）“DiscreteMath”包包含对计数排列与组合有用的函数；不同样本的个数是 $\mathrm{NumberOfCompositions}[n, m] = \binom{n + m - 1}{n}$。
+> （1）“DiscreteMath”包包含对计数排列与组合有用的函数；不同样本的个数是 $$\mathrm{NumberOfCompositions}[n, m] = \binom{n + m - 1}{n}$$。
 >
-> （2）令 $x$ 为数集；
+> （2）令 $$x$$ 为数集；
 >
-> （3）枚举样本（$w$）、计算每个样本的平均值（avg）、并计算每个取值的权重（wt）。权重是与该配置对应的多项式系数。
+> （3）枚举样本（$$w$$）、计算每个样本的平均值（avg）、并计算每个取值的权重（wt）。权重是与该配置对应的多项式系数。
 
 ### 第 2 章
 
@@ -61,7 +61,7 @@ permalink: /statistics/chap13.html
 >
 > 习题 2.1a 是标准的一元变量替换。这类计算对计算机代数程序通常是容易的。
 >
-> （1）输入 $f(x)$ 并解出变换后的变量：
+> （1）输入 $$f(x)$$ 并解出变换后的变量：
 >
 > ```mathematica{% raw %}
 > In[1]:= f[x_] := 42*(x^5)*(1 - x)
@@ -103,7 +103,7 @@ permalink: /statistics/chap13.html
 > Out[5]= E^(-(u^2/4))/(4 Sqrt[Pi])
 > ```
 >
-> （2）Beta 变量之积。（“ContinuousDistributions”包包含许多标准分布的 pdf 与 cdf。）Out[10] 是 Beta 变量乘积的联合密度，Out[11] 是 $u$ 的密度。If 语句读作 If(test, true, false)：若测试为真取中间值。多数情形测试为真，边缘密度就是给出的 Beta 密度。
+> （2）Beta 变量之积。（“ContinuousDistributions”包包含许多标准分布的 pdf 与 cdf。）Out[10] 是 Beta 变量乘积的联合密度，Out[11] 是 $$u$$ 的密度。If 语句读作 If(test, true, false)：若测试为真取中间值。多数情形测试为真，边缘密度就是给出的 Beta 密度。
 >
 > ```mathematica
 > In[6]:= Needs["Statistics`ContinuousDistributions`"]
@@ -154,7 +154,7 @@ permalink: /statistics/chap13.html
 > Out[6]= 0.393469
 > ```
 >
-> 我们当然知道 $X^2 + Y^2$ 是自由度为 2 的卡方随机变量；用这一事实可得到闭式答案：
+> 我们当然知道 $$X^2 + Y^2$$ 是自由度为 2 的卡方随机变量；用这一事实可得到闭式答案：
 >
 > ```mathematica
 > In[7]:= Clear[f, t]
@@ -169,17 +169,17 @@ permalink: /statistics/chap13.html
 
 > **例 12.6.5（和的密度）**
 >
-> 例 5.2.10 所做的计算（例示定理 5.2.9）相当繁琐。我们在三种情形例示这类计算：正态、Cauchy 与 Student $t$。
+> 例 5.2.10 所做的计算（例示定理 5.2.9）相当繁琐。我们在三种情形例示这类计算：正态、Cauchy 与 Student $$t$$。
 >
 > 有两点值得注意。
 >
-> （1）要正确解释答案，可能需要一些复分析知识。正态情形的答案是附加条件的，条件是（可能取复值的）变量 $z$ 的实部；Cauchy 例子中重要的是 $I^2 = -1$，于是
+> （1）要正确解释答案，可能需要一些复分析知识。正态情形的答案是附加条件的，条件是（可能取复值的）变量 $$z$$ 的实部；Cauchy 例子中重要的是 $$I^2 = -1$$，于是
 >
 > $$
 > \frac{2}{\pi(-2I + z)(2I + z)} = \frac{2}{\pi(4 + z^2)}.
 > $$
 >
-> （2）给 Student $t$ 变量求和时，经验观察是：若自由度之和为偶数，则存在闭式；否则积分必须数值完成。（这是我们摆弄计算机代数系统时发现的经验观察。）
+> （2）给 Student $$t$$ 变量求和时，经验观察是：若自由度之和为偶数，则存在闭式；否则积分必须数值完成。（这是我们摆弄计算机代数系统时发现的经验观察。）
 >
 > 还要注意：较新版本的计算机代数程序可能在这里避免复数；但它们会在别的计算中出现，所以最好准备好与它们打交道。
 >
@@ -203,7 +203,7 @@ permalink: /statistics/chap13.html
 > Out[6]= 2/(Pi (-2 I + z) (2 I + z))
 > ```
 >
-> （3）自由度为 5 的两个 $t$ 之和的密度：
+> （3）自由度为 5 的两个 $$t$$ 之和的密度：
 >
 > ```mathematica
 > In[7]:= Needs["Statistics`ContinuousDistributions`"]
@@ -217,7 +217,7 @@ permalink: /statistics/chap13.html
 >
 > 习题 5.51 要求 12 个均匀随机变量之和的四阶矩。由于密度的分段性质，推导密度有些痛苦（但也可以用计算机代数完成）。不过用 mgf 可以简化。
 >
-> （1）先算 $X_1$（均匀随机变量）的 mgf，再算 $\sum_{i=1}^{12} X_i$（诸 $X_i$ 独立）的 mgf：
+> （1）先算 $$X_1$$（均匀随机变量）的 mgf，再算 $$\sum_{i=1}^{12} X_i$$（诸 $$X_i$$ 独立）的 mgf：
 >
 > ```mathematica
 > In[1]:= M[t_] = Integrate[Exp[t*x], {x, 0, 1}]
@@ -226,13 +226,13 @@ permalink: /statistics/chap13.html
 > Out[2]= (-1 + E^t)^12 / t^12
 > ```
 >
-> （2）计算 $\sum_{i=1}^{12} X_i - 6$ 的 mgf 的四阶导数。它太大，不便打印：
+> （2）计算 $$\sum_{i=1}^{12} X_i - 6$$ 的 mgf 的四阶导数。它太大，不便打印：
 >
 > ```mathematica
 > In[3]:= g[t_] = D[Exp[-6*t]*Msum[t], {t, 4}];
 > ```
 >
-> （3）$g[0]$ 就是四阶矩；但直接代入 0 会导致除零，因此必须用极限计算：
+> （3）$$g[0]$$ 就是四阶矩；但直接代入 0 会导致除零，因此必须用极限计算：
 >
 > ```mathematica
 > In[4]:= g[0]
@@ -283,7 +283,7 @@ permalink: /statistics/chap13.html
 >
 > 习题 9.30 (b) 中极限分布的计算是精细的，但在 Mathematica 中相当直接。
 >
-> （1）先算自由度为 $n$ 的卡方随机变量的 mgf。（当然这一步其实并非必要。）
+> （1）先算自由度为 $$n$$ 的卡方随机变量的 mgf。（当然这一步其实并非必要。）
 >
 > ```mathematica
 > In[1]:= Needs["Statistics`ContinuousDistributions`"]
@@ -295,7 +295,7 @@ permalink: /statistics/chap13.html
 >         / Gamma[n/2]
 > ```
 >
-> （2）由于检验条件满足，$\chi^2_n$ 的 mgf 是中间项。现在取 $\chi^2_n$ 标准化量 $\frac{\chi_n^2 - n}{\sqrt{2n}}$ 的 mgf 的极限：
+> （2）由于检验条件满足，$$\chi^2_n$$ 的 mgf 是中间项。现在取 $$\chi^2_n$$ 标准化量 $$\frac{\chi_n^2 - n}{\sqrt{2n}}$$ 的 mgf 的极限：
 >
 > ```mathematica
 > In[4]:= M[t_] = (1 - 2*t)^(-n/2);
@@ -309,121 +309,121 @@ permalink: /statistics/chap13.html
 
 ### 离散分布
 
-> **定义 Bernoulli($p$)**
+> **定义 Bernoulli($$p$$)**
 >
-> **pmf：**$P(X = x \mid p) = p^x (1 - p)^{1 - x}$，$x = 0, 1$；$0 \leq p \leq 1$。
+> **pmf：**$$P(X = x \mid p) = p^x (1 - p)^{1 - x}$$，$$x = 0, 1$$；$$0 \leq p \leq 1$$。
 >
-> **均值与方差：**$\mathrm{E} X = p$，$\mathrm{Var} X = p(1 - p)$。
+> **均值与方差：**$$\mathrm{E} X = p$$，$$\mathrm{Var} X = p(1 - p)$$。
 >
-> **mgf：**$M_X(t) = (1 - p) + p e^t$。
+> **mgf：**$$M_X(t) = (1 - p) + p e^t$$。
 
-> **定义 Binomial($n, p$)**
+> **定义 Binomial($$n, p$$)**
 >
-> **pmf：**$P(X = x \mid n, p) = \binom{n}{x} p^x (1 - p)^{n - x}$，$x = 0, 1, 2, \ldots, n$；$0 \leq p \leq 1$。
+> **pmf：**$$P(X = x \mid n, p) = \binom{n}{x} p^x (1 - p)^{n - x}$$，$$x = 0, 1, 2, \ldots, n$$；$$0 \leq p \leq 1$$。
 >
-> **均值与方差：**$\mathrm{E} X = np$，$\mathrm{Var} X = np(1 - p)$。
+> **均值与方差：**$$\mathrm{E} X = np$$，$$\mathrm{Var} X = np(1 - p)$$。
 >
-> **mgf：**$M_X(t) = \bigl[ p e^t + (1 - p) \bigr]^n$。
+> **mgf：**$$M_X(t) = \bigl[ p e^t + (1 - p) \bigr]^n$$。
 >
 > **注记：**与二项定理（定理 3.2.2）相关。多项分布（定义 4.6.2）是二项分布的多元版本。
 
 > **定义 离散均匀（Discrete Uniform）**
 >
-> **pmf：**$P(X = x \mid N) = \dfrac{1}{N}$，$x = 1, 2, \ldots, N$；$N = 1, 2, \ldots$。
+> **pmf：**$$P(X = x \mid N) = \dfrac{1}{N}$$，$$x = 1, 2, \ldots, N$$；$$N = 1, 2, \ldots$$。
 >
-> **均值与方差：**$\mathrm{E} X = \dfrac{N + 1}{2}$，$\mathrm{Var} X = \dfrac{(N + 1)(N - 1)}{12}$。
+> **均值与方差：**$$\mathrm{E} X = \dfrac{N + 1}{2}$$，$$\mathrm{Var} X = \dfrac{(N + 1)(N - 1)}{12}$$。
 >
-> **mgf：**$M_X(t) = \dfrac{1}{N} \sum_{i=1}^{N} e^{it}$。
+> **mgf：**$$M_X(t) = \dfrac{1}{N} \sum_{i=1}^{N} e^{it}$$。
 
-> **定义 Geometric($p$)**
+> **定义 Geometric($$p$$)**
 >
-> **pmf：**$P(X = x \mid p) = p (1 - p)^{x - 1}$，$x = 1, 2, \ldots$；$0 \leq p \leq 1$。
+> **pmf：**$$P(X = x \mid p) = p (1 - p)^{x - 1}$$，$$x = 1, 2, \ldots$$；$$0 \leq p \leq 1$$。
 >
-> **均值与方差：**$\mathrm{E} X = \dfrac{1}{p}$，$\mathrm{Var} X = \dfrac{1 - p}{p^2}$。
+> **均值与方差：**$$\mathrm{E} X = \dfrac{1}{p}$$，$$\mathrm{Var} X = \dfrac{1 - p}{p^2}$$。
 >
-> **mgf：**$M_X(t) = \dfrac{p e^t}{1 - (1 - p) e^t}$，$t < -\log(1 - p)$。
+> **mgf：**$$M_X(t) = \dfrac{p e^t}{1 - (1 - p) e^t}$$，$$t < -\log(1 - p)$$。
 >
-> **注记：**$Y = X - 1$ 服从 negative binomial$(1, p)$。该分布是无记忆的：$P(X > s \mid X > t) = P(X > s - t)$。
+> **注记：**$$Y = X - 1$$ 服从 negative binomial$(1, p)$$。该分布是无记忆的：$$P(X > s \mid X > t) = P(X > s - t)$$。
 
 > **定义 Hypergeometric（超几何）**
 >
-> **pmf：**$P(X = x \mid N, M, K) = \dfrac{\binom{M}{x} \binom{N - M}{K - x}}{\binom{N}{K}}$；$x = 0, 1, 2, \ldots, K$；$M - (N - K) \leq x \leq M$；$N, M, K \geq 0$。
+> **pmf：**$$P(X = x \mid N, M, K) = \dfrac{\binom{M}{x} \binom{N - M}{K - x}}{\binom{N}{K}}$$；$$x = 0, 1, 2, \ldots, K$$；$$M - (N - K) \leq x \leq M$$；$$N, M, K \geq 0$$。
 >
-> **均值与方差：**$\mathrm{E} X = \dfrac{KM}{N}$，$\mathrm{Var} X = \dfrac{KM}{N}\, \dfrac{(N - M)(N - K)}{N(N - 1)}$。
+> **均值与方差：**$$\mathrm{E} X = \dfrac{KM}{N}$$，$$\mathrm{Var} X = \dfrac{KM}{N}\, \dfrac{(N - M)(N - K)}{N(N - 1)}$$。
 >
-> **注记：**若 $K \ll M$ 且 $K \ll N$，则取值范围 $x = 0, 1, 2, \ldots, K$ 是合适的。
+> **注记：**若 $$K \ll M$$ 且 $$K \ll N$$，则取值范围 $$x = 0, 1, 2, \ldots, K$$ 是合适的。
 
-> **定义 Negative binomial($r, p$)**
+> **定义 Negative binomial($$r, p$$)**
 >
-> **pmf：**$P(X = x \mid r, p) = \dbinom{r + x - 1}{x} p^r (1 - p)^x$；$x = 0, 1, \ldots$；$0 \leq p \leq 1$。
+> **pmf：**$$P(X = x \mid r, p) = \dbinom{r + x - 1}{x} p^r (1 - p)^x$$；$$x = 0, 1, \ldots$$；$$0 \leq p \leq 1$$。
 >
-> **均值与方差：**$\mathrm{E} X = \dfrac{r(1 - p)}{p}$，$\mathrm{Var} X = \dfrac{r(1 - p)}{p^2}$。
+> **均值与方差：**$$\mathrm{E} X = \dfrac{r(1 - p)}{p}$$，$$\mathrm{Var} X = \dfrac{r(1 - p)}{p^2}$$。
 >
-> **mgf：**$M_X(t) = \Bigl( \dfrac{p}{1 - (1 - p) e^t} \Bigr)^{\! r}$，$t < -\log(1 - p)$。
+> **mgf：**$$M_X(t) = \Bigl( \dfrac{p}{1 - (1 - p) e^t} \Bigr)^{\! r}$$，$$t < -\log(1 - p)$$。
 >
-> **注记：**pmf 的另一形式为 $P(Y = y \mid r, p) = \dbinom{y - 1}{r - 1} p^r (1 - p)^{y - r}$，$y = r, r + 1, \ldots$；随机变量 $Y = X + r$。负二项分布可以导出为 Poisson 的 gamma 混合（见习题 4.32）。
+> **注记：**pmf 的另一形式为 $$P(Y = y \mid r, p) = \dbinom{y - 1}{r - 1} p^r (1 - p)^{y - r}$$，$$y = r, r + 1, \ldots$$；随机变量 $$Y = X + r$$。负二项分布可以导出为 Poisson 的 gamma 混合（见习题 4.32）。
 
-> **定义 Poisson($\lambda$)**
+> **定义 Poisson($$\lambda$$)**
 >
-> **pmf：**$P(X = x \mid \lambda) = e^{-\lambda} \dfrac{\lambda^x}{x!}$，$x = 0, 1, \ldots$；$0 \leq \lambda < \infty$。
+> **pmf：**$$P(X = x \mid \lambda) = e^{-\lambda} \dfrac{\lambda^x}{x!}$$，$$x = 0, 1, \ldots$$；$$0 \leq \lambda < \infty$$。
 >
-> **均值与方差：**$\mathrm{E} X = \lambda$，$\mathrm{Var} X = \lambda$。
+> **均值与方差：**$$\mathrm{E} X = \lambda$$，$$\mathrm{Var} X = \lambda$$。
 >
-> **mgf：**$M_X(t) = e^{\lambda (e^t - 1)}$。
+> **mgf：**$$M_X(t) = e^{\lambda (e^t - 1)}$$。
 
 ### 连续分布
 
-> **定义 Beta($\alpha, \beta$)**
+> **定义 Beta($$\alpha, \beta$$)**
 >
-> **pdf：**$f(x \mid \alpha, \beta) = \dfrac{1}{\mathrm{Beta}(\alpha, \beta)}\, x^{\alpha - 1} (1 - x)^{\beta - 1}$，$0 \leq x \leq 1$；$\alpha > 0$，$\beta > 0$。
+> **pdf：**$$f(x \mid \alpha, \beta) = \dfrac{1}{\mathrm{Beta}(\alpha, \beta)}\, x^{\alpha - 1} (1 - x)^{\beta - 1}$$，$$0 \leq x \leq 1$$；$$\alpha > 0$$，$$\beta > 0$$。
 >
-> **均值与方差：**$\mathrm{E} X = \dfrac{\alpha}{\alpha + \beta}$，$\mathrm{Var} X = \dfrac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta + 1)}$。
+> **均值与方差：**$$\mathrm{E} X = \dfrac{\alpha}{\alpha + \beta}$$，$$\mathrm{Var} X = \dfrac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta + 1)}$$。
 >
-> **mgf：**$M_X(t) = 1 + \displaystyle\sum_{k=1}^{\infty} \Bigl[ \prod_{r=0}^{k - 1} \dfrac{\alpha + r}{\alpha + \beta + r} \Bigr] \dfrac{t^k}{k!}$。
+> **mgf：**$$M_X(t) = 1 + \displaystyle\sum_{k=1}^{\infty} \Bigl[ \prod_{r=0}^{k - 1} \dfrac{\alpha + r}{\alpha + \beta + r} \Bigr] \dfrac{t^k}{k!}$$。
 >
-> **注记：**beta pdf 中的常数可以用 gamma 函数定义：$\mathrm{Beta}(\alpha, \beta) = \dfrac{\Gamma(\alpha) \Gamma(\beta)}{\Gamma(\alpha + \beta)}$。方程 (3.3.18) 给出矩的一般表达式。
+> **注记：**beta pdf 中的常数可以用 gamma 函数定义：$$\mathrm{Beta}(\alpha, \beta) = \dfrac{\Gamma(\alpha) \Gamma(\beta)}{\Gamma(\alpha + \beta)}$$。方程 (3.3.18) 给出矩的一般表达式。
 
-> **定义 Cauchy($\theta, \sigma$)**
+> **定义 Cauchy($$\theta, \sigma$$)**
 >
-> **pdf：**$f(x \mid \theta, \sigma) = \dfrac{1}{\pi \sigma}\, \dfrac{1}{1 + \bigl( \frac{x - \theta}{\sigma} \bigr)^2}$，$-\infty < x < \infty$；$-\infty < \theta < \infty$，$\sigma > 0$。
+> **pdf：**$$f(x \mid \theta, \sigma) = \dfrac{1}{\pi \sigma}\, \dfrac{1}{1 + \bigl( \frac{x - \theta}{\sigma} \bigr)^2}$$，$$-\infty < x < \infty$$；$$-\infty < \theta < \infty$$，$$\sigma > 0$$。
 >
 > **均值与方差：**不存在。
 >
 > **mgf：**不存在。
 >
-> **注记：**Student $t$ 的特例（自由度 $= 1$）。此外，若 $X$ 与 $Y$ 独立 $n(0, 1)$，则 $X / Y$ 服从 Cauchy 分布。
+> **注记：**Student $$t$$ 的特例（自由度 $$= 1$$）。此外，若 $$X$$ 与 $$Y$$ 独立 $$n(0, 1)$$，则 $$X / Y$$ 服从 Cauchy 分布。
 
 > **定义 Chi squared（卡方）**
 >
-> **pdf：**$f(x \mid p) = \dfrac{1}{\Gamma(p/2) 2^{p/2}}\, x^{(p/2) - 1} e^{-x/2}$，$0 \leq x < \infty$；$p = 1, 2, \ldots$。
+> **pdf：**$$f(x \mid p) = \dfrac{1}{\Gamma(p/2) 2^{p/2}}\, x^{(p/2) - 1} e^{-x/2}$$，$$0 \leq x < \infty$$；$$p = 1, 2, \ldots$$。
 >
-> **均值与方差：**$\mathrm{E} X = p$，$\mathrm{Var} X = 2p$。
+> **均值与方差：**$$\mathrm{E} X = p$$，$$\mathrm{Var} X = 2p$$。
 >
-> **mgf：**$M_X(t) = \Bigl( \dfrac{1}{1 - 2t} \Bigr)^{\! p/2}$，$t < \dfrac{1}{2}$。
+> **mgf：**$$M_X(t) = \Bigl( \dfrac{1}{1 - 2t} \Bigr)^{\! p/2}$$，$$t < \dfrac{1}{2}$$。
 >
 > **注记：**gamma 分布的特例。
 
-> **定义 Double exponential（双指数）$(\mu, \sigma)$**
+> **定义 Double exponential（双指数）$$(\mu, \sigma)$$**
 >
-> **pdf：**$f(x \mid \mu, \sigma) = \dfrac{1}{2\sigma} e^{-|x - \mu|/\sigma}$，$-\infty < x < \infty$；$-\infty < \mu < \infty$，$\sigma > 0$。
+> **pdf：**$$f(x \mid \mu, \sigma) = \dfrac{1}{2\sigma} e^{-\vert x - \mu\vert /\sigma}$$，$$-\infty < x < \infty$$；$$-\infty < \mu < \infty$$，$$\sigma > 0$$。
 >
-> **均值与方差：**$\mathrm{E} X = \mu$，$\mathrm{Var} X = 2\sigma^2$。
+> **均值与方差：**$$\mathrm{E} X = \mu$$，$$\mathrm{Var} X = 2\sigma^2$$。
 >
-> **mgf：**$M_X(t) = \dfrac{e^{\mu t}}{1 - (\sigma t)^2}$，$|t| < \dfrac{1}{\sigma}$。
+> **mgf：**$$M_X(t) = \dfrac{e^{\mu t}}{1 - (\sigma t)^2}$$，$$\vert t\vert  < \dfrac{1}{\sigma}$$。
 >
 > **注记：**也称 Laplace 分布。
 
-> **定义 Exponential($\beta$)**
+> **定义 Exponential($$\beta$$)**
 >
-> **pdf：**$f(x \mid \beta) = \dfrac{1}{\beta} e^{-x/\beta}$，$0 \leq x < \infty$；$\beta > 0$。
+> **pdf：**$$f(x \mid \beta) = \dfrac{1}{\beta} e^{-x/\beta}$$，$$0 \leq x < \infty$$；$$\beta > 0$$。
 >
-> **均值与方差：**$\mathrm{E} X = \beta$，$\mathrm{Var} X = \beta^2$。
+> **均值与方差：**$$\mathrm{E} X = \beta$$，$$\mathrm{Var} X = \beta^2$$。
 >
-> **mgf：**$M_X(t) = \dfrac{1}{1 - \beta t}$，$t < \dfrac{1}{\beta}$。
+> **mgf：**$$M_X(t) = \dfrac{1}{1 - \beta t}$$，$$t < \dfrac{1}{\beta}$$。
 >
-> **注记：**gamma 分布的特例，具有无记忆性。有许多特例：$Y = X^{1/\gamma}$ 是 Weibull，$Y = 2X/\beta$ 是 Rayleigh，$Y = \alpha - \gamma \log(X/\beta)$ 是 Gumbel。
+> **注记：**gamma 分布的特例，具有无记忆性。有许多特例：$$Y = X^{1/\gamma}$$ 是 Weibull，$$Y = 2X/\beta$$ 是 Rayleigh，$$Y = \alpha - \gamma \log(X/\beta)$$ 是 Gumbel。
 
-> **定义 $F$（$F_{\nu_1, \nu_2}$，$\nu_1, \nu_2 = 1, \ldots$）**
+> **定义 $$F$$（$$F_{\nu_1, \nu_2}$$，$$\nu_1, \nu_2 = 1, \ldots$$）**
 >
 > **pdf：**
 >
@@ -432,89 +432,89 @@ permalink: /statistics/chap13.html
 > \qquad 0 \leq x < \infty.
 > $$
 >
-> **均值与方差：**$\mathrm{E} X = \dfrac{\nu_2}{\nu_2 - 2}$（$\nu_2 > 2$）；$\mathrm{Var} X = \dfrac{2 \nu_2^2 (\nu_1 + \nu_2 - 2)}{\nu_1 (\nu_2 - 2)^2 (\nu_2 - 4)}$（$\nu_2 > 4$）。
+> **均值与方差：**$$\mathrm{E} X = \dfrac{\nu_2}{\nu_2 - 2}$$（$$\nu_2 > 2$$）；$$\mathrm{Var} X = \dfrac{2 \nu_2^2 (\nu_1 + \nu_2 - 2)}{\nu_1 (\nu_2 - 2)^2 (\nu_2 - 4)}$$（$$\nu_2 > 4$$）。
 >
-> **矩：**$\mathrm{E} X^n = \Bigl( \dfrac{\nu_2}{\nu_1} \Bigr)^{\! n} \dfrac{\Gamma\bigl( \frac{\nu_1}{2} + n \bigr) \Gamma\bigl( \frac{\nu_2}{2} - n \bigr)}{\Gamma\bigl( \frac{\nu_1}{2} \bigr) \Gamma\bigl( \frac{\nu_2}{2} \bigr)}$，$n < \dfrac{\nu_2}{2}$（mgf 不存在）。
+> **矩：**$$\mathrm{E} X^n = \Bigl( \dfrac{\nu_2}{\nu_1} \Bigr)^{\! n} \dfrac{\Gamma\bigl( \frac{\nu_1}{2} + n \bigr) \Gamma\bigl( \frac{\nu_2}{2} - n \bigr)}{\Gamma\bigl( \frac{\nu_1}{2} \bigr) \Gamma\bigl( \frac{\nu_2}{2} \bigr)}$$，$$n < \dfrac{\nu_2}{2}$$（mgf 不存在）。
 >
-> **注记：**与卡方相关（$F_{\nu_1, \nu_2} = \frac{\chi^2_{\nu_1}/\nu_1}{\chi^2_{\nu_2}/\nu_2}$，其中两个卡方独立），也与 $t$ 相关（$F_{1, \nu} = t_{\nu}^2$）。
+> **注记：**与卡方相关（$$F_{\nu_1, \nu_2} = \frac{\chi^2_{\nu_1}/\nu_1}{\chi^2_{\nu_2}/\nu_2}$$，其中两个卡方独立），也与 $$t$$ 相关（$$F_{1, \nu} = t_{\nu}^2$$）。
 
-> **定义 Gamma($\alpha, \beta$)**
+> **定义 Gamma($$\alpha, \beta$$)**
 >
-> **pdf：**$f(x \mid \alpha, \beta) = \dfrac{1}{\Gamma(\alpha) \beta^{\alpha}}\, x^{\alpha - 1} e^{-x/\beta}$，$0 \leq x < \infty$；$\alpha, \beta > 0$。
+> **pdf：**$$f(x \mid \alpha, \beta) = \dfrac{1}{\Gamma(\alpha) \beta^{\alpha}}\, x^{\alpha - 1} e^{-x/\beta}$$，$$0 \leq x < \infty$$；$$\alpha, \beta > 0$$。
 >
-> **均值与方差：**$\mathrm{E} X = \alpha \beta$，$\mathrm{Var} X = \alpha \beta^2$。
+> **均值与方差：**$$\mathrm{E} X = \alpha \beta$$，$$\mathrm{Var} X = \alpha \beta^2$$。
 >
-> **mgf：**$M_X(t) = \Bigl( \dfrac{1}{1 - \beta t} \Bigr)^{\! \alpha}$，$t < \dfrac{1}{\beta}$。
+> **mgf：**$$M_X(t) = \Bigl( \dfrac{1}{1 - \beta t} \Bigr)^{\! \alpha}$$，$$t < \dfrac{1}{\beta}$$。
 >
-> **注记：**特例有 exponential（$\alpha = 1$）与卡方（$\alpha = p/2$，$\beta = 2$）。若 $\alpha = \frac{3}{2}$，$Y = X/\beta$ 服从 Maxwell 分布；$Y = 1/X$ 服从逆 gamma 分布。也可以与 Poisson 联系（例 3.3.1）。
+> **注记：**特例有 exponential（$$\alpha = 1$$）与卡方（$$\alpha = p/2$$，$$\beta = 2$$）。若 $$\alpha = \frac{3}{2}$$，$$Y = X/\beta$$ 服从 Maxwell 分布；$$Y = 1/X$$ 服从逆 gamma 分布。也可以与 Poisson 联系（例 3.3.1）。
 
-> **定义 Logistic($\mu, \beta$)**
+> **定义 Logistic($$\mu, \beta$$)**
 >
-> **pdf：**$f(x \mid \mu, \beta) = \dfrac{1}{\beta}\, \dfrac{e^{-(x - \mu)/\beta}}{\bigl[ 1 + e^{-(x - \mu)/\beta} \bigr]^2}$，$-\infty < x < \infty$；$-\infty < \mu < \infty$，$\beta > 0$。
+> **pdf：**$$f(x \mid \mu, \beta) = \dfrac{1}{\beta}\, \dfrac{e^{-(x - \mu)/\beta}}{\bigl[ 1 + e^{-(x - \mu)/\beta} \bigr]^2}$$，$$-\infty < x < \infty$$；$$-\infty < \mu < \infty$$，$$\beta > 0$$。
 >
-> **均值与方差：**$\mathrm{E} X = \mu$，$\mathrm{Var} X = \dfrac{\pi^2 \beta^2}{3}$。
+> **均值与方差：**$$\mathrm{E} X = \mu$$，$$\mathrm{Var} X = \dfrac{\pi^2 \beta^2}{3}$$。
 >
-> **mgf：**$M_X(t) = e^{\mu t} \Gamma(1 - \beta t) \Gamma(1 + \beta t)$，$|t| < \dfrac{1}{\beta}$。
+> **mgf：**$$M_X(t) = e^{\mu t} \Gamma(1 - \beta t) \Gamma(1 + \beta t)$$，$$\vert t\vert  < \dfrac{1}{\beta}$$。
 >
-> **注记：**cdf 由 $F(x \mid \mu, \beta) = \dfrac{1}{1 + e^{-(x - \mu)/\beta}}$ 给出。
+> **注记：**cdf 由 $$F(x \mid \mu, \beta) = \dfrac{1}{1 + e^{-(x - \mu)/\beta}}$$ 给出。
 
-> **定义 Lognormal（对数正态）$(\mu, \sigma^2)$**
+> **定义 Lognormal（对数正态）$$(\mu, \sigma^2)$$**
 >
-> **pdf：**$f(x \mid \mu, \sigma^2) = \dfrac{1}{\sqrt{2\pi}\, \sigma}\, \dfrac{e^{-\left[ (\log x - \mu)^2 / (2 \sigma^2) \right]}}{x}$，$0 \leq x < \infty$；$-\infty < \mu < \infty$，$\sigma > 0$。
+> **pdf：**$$f(x \mid \mu, \sigma^2) = \dfrac{1}{\sqrt{2\pi}\, \sigma}\, \dfrac{e^{-\left[ (\log x - \mu)^2 / (2 \sigma^2) \right]}}{x}$$，$$0 \leq x < \infty$$；$$-\infty < \mu < \infty$$，$$\sigma > 0$$。
 >
-> **均值与方差：**$\mathrm{E} X = e^{\mu + (\sigma^2/2)}$，$\mathrm{Var} X = e^{2(\mu + \sigma^2)} - e^{2\mu + \sigma^2}$。
+> **均值与方差：**$$\mathrm{E} X = e^{\mu + (\sigma^2/2)}$$，$$\mathrm{Var} X = e^{2(\mu + \sigma^2)} - e^{2\mu + \sigma^2}$$。
 >
-> **矩：**$\mathrm{E} X^n = e^{n\mu + n^2 \sigma^2/2}$（mgf 不存在）。
+> **矩：**$$\mathrm{E} X^n = e^{n\mu + n^2 \sigma^2/2}$$（mgf 不存在）。
 >
 > **注记：**例 2.3.10 给出了另一个具有相同矩的分布。
 
-> **定义 Normal（正态）$(\mu, \sigma^2)$**
+> **定义 Normal（正态）$$(\mu, \sigma^2)$$**
 >
-> **pdf：**$f(x \mid \mu, \sigma^2) = \dfrac{1}{\sqrt{2\pi}\, \sigma}\, e^{-(x - \mu)^2/(2\sigma^2)}$，$-\infty < x < \infty$；$-\infty < \mu < \infty$，$\sigma > 0$。
+> **pdf：**$$f(x \mid \mu, \sigma^2) = \dfrac{1}{\sqrt{2\pi}\, \sigma}\, e^{-(x - \mu)^2/(2\sigma^2)}$$，$$-\infty < x < \infty$$；$$-\infty < \mu < \infty$$，$$\sigma > 0$$。
 >
-> **均值与方差：**$\mathrm{E} X = \mu$，$\mathrm{Var} X = \sigma^2$。
+> **均值与方差：**$$\mathrm{E} X = \mu$$，$$\mathrm{Var} X = \sigma^2$$。
 >
-> **mgf：**$M_X(t) = e^{\mu t + \sigma^2 t^2/2}$。
+> **mgf：**$$M_X(t) = e^{\mu t + \sigma^2 t^2/2}$$。
 >
 > **注记：**有时称为 Gaussian 分布。
 
-> **定义 Pareto($\alpha, \beta$)**
+> **定义 Pareto($$\alpha, \beta$$)**
 >
-> **pdf：**$f(x \mid \alpha, \beta) = \dfrac{\beta\, \alpha^{\beta}}{x^{\beta + 1}}$，$\alpha < x < \infty$；$\alpha > 0$，$\beta > 0$。
+> **pdf：**$$f(x \mid \alpha, \beta) = \dfrac{\beta\, \alpha^{\beta}}{x^{\beta + 1}}$$，$$\alpha < x < \infty$$；$$\alpha > 0$$，$$\beta > 0$$。
 >
-> **均值与方差：**$\mathrm{E} X = \dfrac{\beta \alpha}{\beta - 1}$（$\beta > 1$）；$\mathrm{Var} X = \dfrac{\beta \alpha^2}{(\beta - 1)^2 (\beta - 2)}$（$\beta > 2$）。
+> **均值与方差：**$$\mathrm{E} X = \dfrac{\beta \alpha}{\beta - 1}$$（$$\beta > 1$$）；$$\mathrm{Var} X = \dfrac{\beta \alpha^2}{(\beta - 1)^2 (\beta - 2)}$$（$$\beta > 2$$）。
 >
 > **mgf：**不存在。
 
-> **定义 $t$（$t_\nu$，$\nu = 1, \ldots$）**
+> **定义 $$t$$（$$t_\nu$$，$$\nu = 1, \ldots$$）**
 >
-> **pdf：**$f(x \mid \nu) = \dfrac{\Gamma\bigl( \frac{\nu + 1}{2} \bigr)}{\Gamma\bigl( \frac{\nu}{2} \bigr)\, \sqrt{\nu \pi}}\, \Bigl( 1 + \dfrac{x^2}{\nu} \Bigr)^{-(\nu + 1)/2}$，$-\infty < x < \infty$。
+> **pdf：**$$f(x \mid \nu) = \dfrac{\Gamma\bigl( \frac{\nu + 1}{2} \bigr)}{\Gamma\bigl( \frac{\nu}{2} \bigr)\, \sqrt{\nu \pi}}\, \Bigl( 1 + \dfrac{x^2}{\nu} \Bigr)^{-(\nu + 1)/2}$$，$$-\infty < x < \infty$$。
 >
-> **均值与方差：**$\mathrm{E} X = 0$（$\nu > 1$）；$\mathrm{Var} X = \dfrac{\nu}{\nu - 2}$（$\nu > 2$）。
+> **均值与方差：**$$\mathrm{E} X = 0$$（$$\nu > 1$$）；$$\mathrm{Var} X = \dfrac{\nu}{\nu - 2}$$（$$\nu > 2$$）。
 >
-> **矩：**$\mathrm{E} X^n = \dfrac{\nu^{n/2}\, \Gamma\bigl( \frac{n + 1}{2} \bigr) \Gamma\bigl( \frac{\nu - n}{2} \bigr)}{\sqrt{\pi}\, \Gamma\bigl( \frac{\nu}{2} \bigr)}$（$n < \nu$ 且 $n$ 为偶数）；$\mathrm{E} X^n = 0$（$n < \nu$ 且 $n$ 为奇数）。（mgf 不存在。）
+> **矩：**$$\mathrm{E} X^n = \dfrac{\nu^{n/2}\, \Gamma\bigl( \frac{n + 1}{2} \bigr) \Gamma\bigl( \frac{\nu - n}{2} \bigr)}{\sqrt{\pi}\, \Gamma\bigl( \frac{\nu}{2} \bigr)}$$（$$n < \nu$$ 且 $$n$$ 为偶数）；$$\mathrm{E} X^n = 0$$（$$n < \nu$$ 且 $$n$$ 为奇数）。（mgf 不存在。）
 >
-> **注记：**与 $F$ 相关（$F_{1, \nu} = t_{\nu}^2$）。
+> **注记：**与 $$F$$ 相关（$$F_{1, \nu} = t_{\nu}^2$$）。
 
-> **定义 Uniform（均匀）$(a, b)$**
+> **定义 Uniform（均匀）$$(a, b)$$**
 >
-> **pdf：**$f(x \mid a, b) = \dfrac{1}{b - a}$，$a \leq x \leq b$。
+> **pdf：**$$f(x \mid a, b) = \dfrac{1}{b - a}$$，$$a \leq x \leq b$$。
 >
-> **均值与方差：**$\mathrm{E} X = \dfrac{a + b}{2}$，$\mathrm{Var} X = \dfrac{(b - a)^2}{12}$。
+> **均值与方差：**$$\mathrm{E} X = \dfrac{a + b}{2}$$，$$\mathrm{Var} X = \dfrac{(b - a)^2}{12}$$。
 >
-> **mgf：**$M_X(t) = \dfrac{e^{bt} - e^{at}}{(b - a) t}$。
+> **mgf：**$$M_X(t) = \dfrac{e^{bt} - e^{at}}{(b - a) t}$$。
 >
-> **注记：**若 $a = 0$、$b = 1$，这是 beta 分布的特例（$\alpha = \beta = 1$）。
+> **注记：**若 $$a = 0$$、$$b = 1$$，这是 beta 分布的特例（$$\alpha = \beta = 1$$）。
 
-> **定义 Weibull($\gamma, \beta$)**
+> **定义 Weibull($$\gamma, \beta$$)**
 >
-> **pdf：**$f(x \mid \gamma, \beta) = \dfrac{\gamma}{\beta}\, x^{\gamma - 1} e^{-x^{\gamma}/\beta}$，$0 \leq x < \infty$；$\gamma > 0$，$\beta > 0$。
+> **pdf：**$$f(x \mid \gamma, \beta) = \dfrac{\gamma}{\beta}\, x^{\gamma - 1} e^{-x^{\gamma}/\beta}$$，$$0 \leq x < \infty$$；$$\gamma > 0$$，$$\beta > 0$$。
 >
-> **均值与方差：**$\mathrm{E} X = \beta^{1/\gamma}\, \Gamma\Bigl( 1 + \dfrac{1}{\gamma} \Bigr)$；$\mathrm{Var} X = \beta^{2/\gamma} \Bigl[ \Gamma\Bigl( 1 + \dfrac{2}{\gamma} \Bigr) - \Gamma^2\Bigl( 1 + \dfrac{1}{\gamma} \Bigr) \Bigr]$。
+> **均值与方差：**$$\mathrm{E} X = \beta^{1/\gamma}\, \Gamma\Bigl( 1 + \dfrac{1}{\gamma} \Bigr)$$；$$\mathrm{Var} X = \beta^{2/\gamma} \Bigl[ \Gamma\Bigl( 1 + \dfrac{2}{\gamma} \Bigr) - \Gamma^2\Bigl( 1 + \dfrac{1}{\gamma} \Bigr) \Bigr]$$。
 >
-> **矩：**$\mathrm{E} X^n = \beta^{n/\gamma}\, \Gamma\Bigl( 1 + \dfrac{n}{\gamma} \Bigr)$。
+> **矩：**$$\mathrm{E} X^n = \beta^{n/\gamma}\, \Gamma\Bigl( 1 + \dfrac{n}{\gamma} \Bigr)$$。
 >
-> **注记：**mgf 仅当 $\gamma \geq 1$ 时存在，其形式不太有用。特例：exponential（$\gamma = 1$）。
+> **注记：**mgf 仅当 $$\gamma \geq 1$$ 时存在，其形式不太有用。特例：exponential（$$\gamma = 1$$）。
 
 ### 常见分布之间的关系
 
@@ -524,10 +524,10 @@ permalink: /statistics/chap13.html
 
 *图 13.1　 常见分布之间的关系。实线表示变换与特例，虚线表示极限。改编自 Leemis (1986)（原书附录示意图）*
 
-图中主要关系包括（沿用原书参数记号，其中 $\lambda$、$l$ 表示尺度/率参数，$m$、$s$ 表示位置/尺度参数）：
+图中主要关系包括（沿用原书参数记号，其中 $$\lambda$$、$$l$$ 表示尺度/率参数，$$m$$、$$s$$ 表示位置/尺度参数）：
 
-- 离散分支：Bernoulli($p$)（$n = 1$）是 Binomial($n, p$) 的特例；Binomial 在 $n \to \infty$、$l = np$ 时极限为 Poisson($l$)；Geometric($p$) 是 Negative binomial($n, p$) 在 $n = 1$ 的特例，而 Negative binomial 的 $l = n(1 - p)$、$n \to \infty$ 时也极限为 Poisson；Binomial 当 $p = \frac{a}{a + b}$、$a + b \to \infty$ 时与 Beta-binomial($n, a, b$) 相关，$p = M/N$、$N \to \infty$ 时通向 Hypergeometric($M, N, K$)；Binomial 对 $\sum X_i$ 求和给出与 Poisson 的联系（$l \to \infty$、$s^2 = np(1 - p)$ 等）。
+- 离散分支：Bernoulli($$p$$)（$$n = 1$$）是 Binomial($$n, p$$) 的特例；Binomial 在 $$n \to \infty$$、$$l = np$$ 时极限为 Poisson($$l$$)；Geometric($$p$$) 是 Negative binomial($$n, p$$) 在 $$n = 1$$ 的特例，而 Negative binomial 的 $$l = n(1 - p)$$、$$n \to \infty$$ 时也极限为 Poisson；Binomial 当 $$p = \frac{a}{a + b}$$、$$a + b \to \infty$$ 时与 Beta-binomial($$n, a, b$$) 相关，$$p = M/N$$、$$N \to \infty$$ 时通向 Hypergeometric($$M, N, K$$)；Binomial 对 $$\sum X_i$$ 求和给出与 Poisson 的联系（$$l \to \infty$$、$$s^2 = np(1 - p)$$ 等）。
 
-- 连续分支：Gamma($r, l$) 在 $r = n/2$、$l = 2$ 时给出 Chi-squared($n$)；$r = 1$ 时给出 Exponential($l$)；$\sum X_i^2$ 给出卡方；$e^{-X/l}$ 由 Exponential 给出；Exponential 经 $\min X_i$、$X_1/g$（$g = 1$）等变换给出 Weibull($g, l$) 与其他分布；$F(n_1, n_2)$ 由 $X_1/n_1$ 与 $X_2/n_2$ 之比给出（$n_2 \to \infty$ 时极限到卡方方向），$n = 1$ 时与 Cauchy 相连（$1/X$ 型变换）；$t(n)$ 与正态及 Cauchy 通过 $n \to \infty$、$n = 1$ 相连；Gamma 经 $\sum X_i$（$r \to \infty$，$m = rl$，$s^2 = rl^2$）极限为 Normal($m, s^2$)；Beta($a, b$) 经 $a = b \to \infty$ 极限为正态，$\frac{X_1}{X_1 + X_2}$（$a = b = 1$）等变换联系均匀分布；Normal 经 $m + sX$、$\log X$、$X - m$、$e^X$ 等变换与 Lognormal、均匀等相连；Double exponential 经 $|X|$、$X_1 - X_2$ 等变换与正态相关。
+- 连续分支：Gamma($$r, l$$) 在 $$r = n/2$$、$$l = 2$$ 时给出 Chi-squared($$n$$)；$$r = 1$$ 时给出 Exponential($$l$$)；$$\sum X_i^2$$ 给出卡方；$$e^{-X/l}$$ 由 Exponential 给出；Exponential 经 $$\min X_i$$、$$X_1/g$$（$$g = 1$$）等变换给出 Weibull($$g, l$$) 与其他分布；$$F(n_1, n_2)$$ 由 $$X_1/n_1$$ 与 $$X_2/n_2$$ 之比给出（$$n_2 \to \infty$$ 时极限到卡方方向），$$n = 1$$ 时与 Cauchy 相连（$$1/X$$ 型变换）；$$t(n)$$ 与正态及 Cauchy 通过 $$n \to \infty$$、$$n = 1$$ 相连；Gamma 经 $$\sum X_i$$（$$r \to \infty$$，$$m = rl$$，$$s^2 = rl^2$$）极限为 Normal($$m, s^2$$)；Beta($$a, b$$) 经 $$a = b \to \infty$$ 极限为正态，$$\frac{X_1}{X_1 + X_2}$$（$$a = b = 1$$）等变换联系均匀分布；Normal 经 $$m + sX$$、$$\log X$$、$$X - m$$、$$e^X$$ 等变换与 Lognormal、均匀等相连；Double exponential 经 $$\vert X\vert $$、$$X_1 - X_2$$ 等变换与正态相关。
 
 ---

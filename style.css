@@ -328,6 +328,24 @@ blockquote {
   font-variant-numeric: tabular-nums;
 }
 
+/* 公式超宽：横向滚动，不撑破卡片（display 与行内公式都处理） */
+.content mjx-container[jax="CHTML"][display="true"] {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 0 4px;
+}
+.content p mjx-container[jax="CHTML"]:not([display="true"]),
+.content li mjx-container[jax="CHTML"]:not([display="true"]) {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  vertical-align: middle;
+}
+.content mjx-container::-webkit-scrollbar { height: 5px; }
+.content mjx-container::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+
 /* 占位符：黄色高亮，替换为真实内容后删除 class="ph" */
 .ph { background: var(--hl); padding: 0 3px; border-radius: 2px; }
 
