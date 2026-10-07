@@ -13,7 +13,7 @@ split-notes.ps1，它会按 ## 自动切成「一节一页」并生成 notes/&lt
 
 frontmatter 只需上面 6 行：
   layout / kind 固定；title 写章标题（"第七章　假设检验"）；
-  course 与书封面页一致（statistics / optimization / …）；order 写章号（7 或 "07" 都行）；
+  course 与书封面页一致（如 statistics）；order 写章号（7 或 "07" 都行）；
   date 写最后更新日期。
 
 不要手写 permalink —— 生成的每个小节页由脚本按 /<课程代号>/ch<章号>-<节号>.html 命名。】</span>

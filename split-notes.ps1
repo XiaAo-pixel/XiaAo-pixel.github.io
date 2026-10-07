@@ -4,13 +4,13 @@
 # 但一章一个源文件写起来最省事；于是用本脚本把源文件切开，生成文件全由脚本管理、可删可重建。
 #
 # 约定：
-#   源文件   notes/<课程>/任意名.md        —— 你唯一需要维护的文件
+#   源文件   notes/<课程>/_source/任意名.md  —— 你唯一需要维护的文件
 #   生成文件 notes/<课程>/ch<章号>-<节号>.md —— 本脚本生成，别手改（每次运行会被覆盖/清理）
-#   清单     notes/<课程>/.sections.json    —— 记录哪些文件是生成的，用于清理重建
+#   清单     notes/<课程>/.sections.json     —— 记录哪些文件是生成的，用于清理重建
 #
 # 用法（在仓库根目录）：
 #   powershell -NoProfile -ExecutionPolicy Bypass -File split-notes.ps1
-#   powershell -NoProfile -ExecutionPolicy Bypass -File split-notes.ps1 -Course optimization
+#   powershell -NoProfile -ExecutionPolicy Bypass -File split-notes.ps1 -Course statistics
 #   powershell -NoProfile -ExecutionPolicy Bypass -File split-notes.ps1 -Check   # 只看怎么切，不写文件
 
 param(

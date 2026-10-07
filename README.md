@@ -27,7 +27,6 @@ homepage/
 ├── hobby-anime.html     动漫推荐
 ├── hobby-travel.html    旅行照片墙（分地点）
 ├── statistics/          数理统计"在线书"：index.html 封面（/statistics/）+ fig/ 章节插图
-├── optimization/        最优化方法"在线书"：index.html 封面（/optimization/）
 ├── split-notes.ps1      ★ 把"一章一个 .md"按 h2 切成"一节一页"（见下文）
 ├── note-template.md     章节源文件模板（复制它来写新的一章）
 ├── notes/              笔记源文件 + 脚本生成的小节页
@@ -66,17 +65,17 @@ homepage/
 侧边栏在每个页面的 `<aside class="sidebar">` 里，两级结构，**每一级都是独立页面**：
 
 - 一级栏目（主页 / 课程笔记 / 杂记 / 兴趣爱好）= 一个页面；
-- 子栏目 = 也是独立页面。每门课是一个"在线书"：`<课程代号>/index.html` 是书封面页（如 `/optimization/`），**每个小节是独立一页**（如 `/optimization/ch06-03.html`），打开任何一页左侧都常驻全书章节 + 当前章各小节，页底有「上一节 / 下一节」；杂记按年份一个 `misc-xxxx.html`，兴趣爱好下每项一个 `hobby-xxx.html`。
+- 子栏目 = 也是独立页面。每门课是一个"在线书"：`<课程代号>/index.html` 是书封面页（如 `/statistics/`），**每个小节是独立一页**（如 `/statistics/ch07-02.html`），打开任何一页左侧都常驻全书章节 + 当前章各小节，页底有「上一节 / 下一节」；杂记按年份一个 `misc-xxxx.html`，兴趣爱好下每项一个 `hobby-xxx.html`。
 
 ### 笔记页的左侧栏（三级）
 
 ```
-📖 最优化方法            ← 点回书封面页（列出全书章节）
-第 1 章　最优化简介      ← 其它章只列章名，点进该章第一页
-  本章前置知识           ← 当前章的各小节（当前小节高亮）
-  最优化问题概括         ← 你在这一页
+📖 数理统计              ← 点回书封面页（列出全书章节）
+第 7 章　点估计          ← 其它章只列章名，点进该章第一页
+  7.1 引言               ← 当前章的各小节（当前小节高亮）
+  7.2 寻找估计量的方法    ← 你在这一页
     ▾ 本节大纲
-      最优化问题的一般形式   ← 正文里的 ### / #### 标题，随滚动高亮
+      7.2.1 矩方法        ← 正文里的 ### / #### 标题，随滚动高亮
 ```
 
 行为细节：
@@ -114,9 +113,9 @@ notes/statistics/ch07-02.md  →  /statistics/ch07-02.html
 notes/statistics/ch07-03.md  →  /statistics/ch07-03.html   ...
 ```
 
-`course` 取值与书对应：`statistics`=数理统计（`/statistics/`）、`optimization`=最优化方法（`/optimization/`）、`misc-2026`/`misc-2025`=杂记年份；新课程按"新增一门课"登记新代号。
+`course` 取值与书对应：`statistics`=数理统计（`/statistics/`）、`misc-2026`/`misc-2025`=杂记年份；新课程按"新增一门课"登记新代号。
 
-**已有笔记**：`optimization`（6 章 53 节）与 `statistics`（13 章 79 节）都已切好并上线。要新增一门课时，源文件同样放进 `notes/<新代号>/_source/`。
+**已有笔记**：目前只有 `statistics`（13 章 79 节），已切好并上线。要新增一门课时，源文件放进 `notes/<新代号>/_source/`，再跑脚本；`optimization`（最优化方法）已按要求删除。
 
 **踩过的坑（改 `_layouts/note.html` 时注意）**：Jekyll 在 GitHub Pages 上的 Liquid 里，
 `where: "course", page.course` 和 `sort: "order"` 会抛
