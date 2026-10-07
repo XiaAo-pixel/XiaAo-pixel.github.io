@@ -112,17 +112,17 @@ EIV 模型中可以指定两种不同类型的关系：一种指定函数线性�
 > 这就是 (12.2.4) 呈现的模型：有随机变量 $$X_i$$ 与 $$Y_i$$，$$\mathrm{E} X_i = \xi_i$$、$$\mathrm{E} Y_i = \eta_i$$，并假设函数关系
 >
 > $$
-> \eta_i = \alpha + \beta \xi_i.
-> $$
+\eta_i = \alpha + \beta \xi_i.
+$$
 >
 > 按
 >
 > $$
-> \begin{aligned}
-> Y_i &= \alpha + \beta \xi_i + \varepsilon_i, \qquad &&\varepsilon_i \sim n(0, \sigma_\varepsilon^2),\\
-> X_i &= \xi_i + \delta_i, \qquad &&\delta_i \sim n(0, \sigma_\delta^2),
-> \end{aligned} \tag{12.2.5}
-> $$
+\begin{aligned}
+Y_i &= \alpha + \beta \xi_i + \varepsilon_i, \qquad &&\varepsilon_i \sim n(0, \sigma_\varepsilon^2),\\
+X_i &= \xi_i + \delta_i, \qquad &&\delta_i \sim n(0, \sigma_\delta^2),
+\end{aligned} \tag{12.2.5}
+$$
 >
 > 观测数对 $$(X_i, Y_i)$$，$$i = 1, \ldots, n$$，其中诸 $$\xi_i$$ 是固定未知参数，诸 $$\varepsilon_i$$ 与 $$\delta_i$$ 独立。主要关心的参数是 $$\alpha$$ 与 $$\beta$$，对这些参数的推断利用 $$((X_1, Y_1), \ldots, (X_n, Y_n))$$ 在给定 $$\xi_1, \ldots, \xi_n$$ 条件下的联合分布。
 
@@ -131,17 +131,17 @@ EIV 模型中可以指定两种不同类型的关系：一种指定函数线性�
 > 该模型可以看作函数关系模型的推广，通过如下分层实现。与函数关系模型一样，有随机变量 $$X_i$$ 与 $$Y_i$$，$$\mathrm{E} X_i = \xi_i$$、$$\mathrm{E} Y_i = \eta_i$$，并假设函数关系 $$\eta_i = \alpha + \beta \xi_i$$。但现在进一步假设参数 $$\xi_1, \ldots, \xi_n$$ 本身是来自一个公共总体的随机样本。于是，在给定 $$\xi_1, \ldots, \xi_n$$ 的条件下，按
 >
 > $$
-> \begin{aligned}
-> Y_i &= \alpha + \beta \xi_i + \varepsilon_i, \qquad &&\varepsilon_i \sim n(0, \sigma_\varepsilon^2),\\
-> X_i &= \xi_i + \delta_i, \qquad &&\delta_i \sim n(0, \sigma_\delta^2),
-> \end{aligned} \tag{12.2.6}
-> $$
+\begin{aligned}
+Y_i &= \alpha + \beta \xi_i + \varepsilon_i, \qquad &&\varepsilon_i \sim n(0, \sigma_\varepsilon^2),\\
+X_i &= \xi_i + \delta_i, \qquad &&\delta_i \sim n(0, \sigma_\delta^2),
+\end{aligned} \tag{12.2.6}
+$$
 >
 > 观测数对 $$(X_i, Y_i)$$，$$i = 1, \ldots, n$$，并且
 >
 > $$
-> \xi_i \sim \text{iid}\ n(\xi,\ \sigma_\xi^2).
-> $$
+\xi_i \sim \text{iid}\ n(\xi,\ \sigma_\xi^2).
+$$
 >
 > 与前面一样，诸 $$\varepsilon_i$$ 与 $$\delta_i$$ 独立，且它们也与诸 $$\xi_i$$ 独立。与函数关系模型一样，主要关心的参数是 $$\alpha$$ 与 $$\beta$$。但这里对这些参数的推断利用 $$((X_1, Y_1), \ldots, (X_n, Y_n))$$ **不**以 $$\xi_1, \ldots, \xi_n$$ 为条件的联合分布（即诸 $$\xi_i$$ 已按 (12.2.6) 的分布被积分掉）。
 
@@ -549,92 +549,60 @@ $$
 即 $$e^{\beta}$$ 是 $$x$$ 增加一个单位时成功几率的乘性改变量。
 
 方程 (12.3.2) 提示了把 Bernoulli 成功概率 $$\pi(x)$$ 建模为预测变量 $$x$$ 函数的其他方式。回顾 $$F(w) = e^w/(1 + e^w)$$ 是 logistic$(0, 1)$$ 分布的 cdf。在 (12.3.2) 中我们假设了 $$\pi(x) = F(\alpha + \beta x)$$。可以通过使用其他连续 cdf 定义 $$\pi(x)$$ 的其他模型。若 $$F(w)$$ 是标准正态 cdf，该模型称为 probit 回归（见习题 12.17）；若使用 Gumbel cdf，连接函数称为 log-log 连接。
-
 ### 12.3.2 估计（Estimation）
-
 在线性回归（使用 $$Y_i = \alpha + \beta x_i + \varepsilon_i$$ 这样的模型）中，最小二乘是计算 $$\alpha$$ 与 $$\beta$$ 估计的一种选择。这里不再如此。在 $$Y_i \sim \mathrm{Bernoulli}(\pi_i)$$ 的模型 (12.3.1) 中，$$Y_i$$ 与 $$\alpha + \beta x_i$$ 之间不再有直接联系（这正是需要连接函数的原因），因此最小二乘不再是选项。
-
 最常用的估计方法是极大似然。在一般模型中 $$Y_i \sim \mathrm{Bernoulli}(\pi_i)$$，$$\pi(x) = F(\alpha + \beta x)$$。令 $$F_i = F(\alpha + \beta x_i)$$，则似然函数为
-
 $$
 L(\alpha, \beta \mid \textbf{y}) = \prod_{i=1}^{n} \pi(x_i)^{y_i} \bigl( 1 - \pi(x_i) \bigr)^{1 - y_i} = \prod_{i=1}^{n} F_i^{y_i} (1 - F_i)^{1 - y_i},
 $$
-
 对数似然为
-
 $$
 \log L(\alpha, \beta \mid \textbf{y}) = \sum_{i=1}^{n} \Biggl[ \log(1 - F_i) + y_i \log\Bigl( \frac{F_i}{1 - F_i} \Bigr) \Biggr].
 $$
-
 通过关于 $$\alpha$$ 与 $$\beta$$ 微分对数似然得到似然方程。设 $$\frac{d F(w)}{dw} = f(w)$$ 为 $$F(w)$$ 对应的 pdf，并记 $$f_i = f(\alpha + \beta x_i)$$。则
-
 $$
 \frac{\partial\, \log(1 - F_i)}{\partial \alpha} = -\frac{f_i}{1 - F_i} = -\frac{F_i f_i}{F_i (1 - F_i)},
 $$
-
 且
-
 $$
 \frac{\partial}{\partial \alpha} \log\Bigl( \frac{F_i}{1 - F_i} \Bigr) = \frac{f_i}{F_i (1 - F_i)}. \tag{12.3.6}
 $$
-
 于是
-
 $$
 \frac{\partial}{\partial \alpha} \log L(\alpha, \beta \mid \textbf{y}) = \sum_{i=1}^{n} (y_i - F_i)\, \frac{f_i}{F_i (1 - F_i)}, \tag{12.3.7}
 $$
-
 类似计算给出
-
 $$
 \frac{\partial}{\partial \beta} \log L(\alpha, \beta \mid \textbf{y}) = \sum_{i=1}^{n} (y_i - F_i)\, \frac{f_i}{F_i (1 - F_i)}\, x_i. \tag{12.3.8}
 $$
-
 对 logistic 回归（$$F(w) = e^w/(1 + e^w)$$），$$f_i / [F_i (1 - F_i)] = 1$$，(12.3.7) 与 (12.3.8) 稍简单。
-
 令 (12.3.7) 与 (12.3.8) 为零并解出 $$\alpha$$ 与 $$\beta$$ 即得 MLE。这些方程关于 $$\alpha$$ 与 $$\beta$$ 是非线性的，必须数值求解（稍后讨论）。对 logistic 与 probit 回归，对数似然严格凹。因此若似然方程有解，解唯一且是 MLE。但对某些极端数据，似然方程无解：似然的最大值出现在参数趋于 $$\pm \infty$$ 的某个极限处；例子见习题 12.16。原因在于 logistic 模型假设 $$0 < \pi(x) < 1$$，而对某些数据集，logistic 似然的最大值出现在 $$\pi(x) = 0$$ 或 1 的极限处。若 logistic 模型为真，得到这类数据的概率收敛到零。
-
-> **例 12.3.1（Challenger 数据）**
->
-> 如今已臭名昭著的一个数据集是航天飞机 O 形圈失效数据，它已被与温度联系起来。表 12.3.1 给出起飞时的温度以及 O 形圈是否失效。
->
-> 表 12.3.1　 飞行时温度（$$^{\circ}$$F）与 O 形圈失效（1 $$=$$ 失效，0 $$=$$ 成功）（原书 Table 12.3.1）
->
-> | 航班号 | 14 | 9 | 23 | 10 | 1 | 5 | 13 | 15 | 4 | 3 | 8 | 17 |
-> |:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-> | 失效 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-> | 温度 | 53 | 57 | 58 | 63 | 66 | 67 | 67 | 68 | 69 | 70 | 70 | 70 |
-> | 航班号 | 2 | 11 | 6 | 7 | 16 | 21 | 19 | 22 | 12 | 20 | 18 |  |
-> | 失效 | 1 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |  |
-> | 温度 | 70 | 70 | 72 | 73 | 75 | 75 | 76 | 76 | 78 | 79 | 81 |  |
->
->
-> 用 $$F(\alpha + \beta x_i) = e^{\alpha + \beta x_i}/(1 + e^{\alpha + \beta x_i})$$ 求解似然方程得 MLE $$\hat{\alpha} = 15.81$$ 与 $$\hat{\beta} = -0.243$$。图 12.3.1 显示了拟合曲线与数据。
->
-> 挑战者号航天飞机在起飞时爆炸，机上七名宇航员遇难。爆炸是 O 形圈失效所致，据信由发射时异常寒冷的天气（$$31^{\circ}$$F）造成。$$31^{\circ}$$ 处 O 形圈失效概率的 MLE 是 $$0.9997$$。（完整的故事见 Dalal et al. 1989。）
->
-> ![ch12_fig_12_3_1](fig/ch12_fig_12_3_1.png)
->
-> *图 12.3.1　 表 12.3.1 的数据与拟合的 logistic 曲线（原书 Figure 12.3.1）*
-
+**例 12.3.1（Challenger 数据）**
+如今已臭名昭著的一个数据集是航天飞机 O 形圈失效数据，它已被与温度联系起来。表 12.3.1 给出起飞时的温度以及 O 形圈是否失效。
+表 12.3.1　 飞行时温度（$$^{\circ}$$F）与 O 形圈失效（1 $$=$$ 失效，0 $$=$$ 成功）（原书 Table 12.3.1）
+| 航班号 | 14 | 9 | 23 | 10 | 1 | 5 | 13 | 15 | 4 | 3 | 8 | 17 |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 失效 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 温度 | 53 | 57 | 58 | 63 | 66 | 67 | 67 | 68 | 69 | 70 | 70 | 70 |
+| 航班号 | 2 | 11 | 6 | 7 | 16 | 21 | 19 | 22 | 12 | 20 | 18 |  |
+| 失效 | 1 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |  |
+| 温度 | 70 | 70 | 72 | 73 | 75 | 75 | 76 | 76 | 78 | 79 | 81 |  |
+用 $$F(\alpha + \beta x_i) = e^{\alpha + \beta x_i}/(1 + e^{\alpha + \beta x_i})$$ 求解似然方程得 MLE $$\hat{\alpha} = 15.81$$ 与 $$\hat{\beta} = -0.243$$。图 12.3.1 显示了拟合曲线与数据。
+挑战者号航天飞机在起飞时爆炸，机上七名宇航员遇难。爆炸是 O 形圈失效所致，据信由发射时异常寒冷的天气（$$31^{\circ}$$F）造成。$$31^{\circ}$$ 处 O 形圈失效概率的 MLE 是 $$0.9997$$。（完整的故事见 Dalal et al. 1989。）
+![ch12_fig_12_3_1](fig/ch12_fig_12_3_1.png)
+*图 12.3.1　 表 12.3.1 的数据与拟合的 logistic 曲线（原书 Figure 12.3.1）*
 迄今我们假设在 $$x_i$$ 的每个取值处只观测一次 Bernoulli 试验的结果。虽然常常如此，但有许多情形在 $$x$$ 的每个取值处有多次 Bernoulli 观测。现在在更一般的情形重访似然解。
-
 设数据集中预测变量 $$x$$ 有 $$J$$ 个不同取值 $$x_1, \ldots, x_J$$。令 $$n_j$$ 表示在 $$x_j$$ 处 Bernoulli 观测的个数，$$Y_j^{*}$$ 表示这 $$n_j$$ 个观测中成功的个数。于是 $$Y_j^{*} \sim \mathrm{binomial}(n_j, \pi(x_j))$$。则似然为
-
 $$
 L(\alpha, \beta \mid \textbf{y}^{*}) = \prod_{j=1}^{J} \pi(x_j)^{y_j^{*}} \bigl( 1 - \pi(x_j) \bigr)^{n_j - y_j^{*}} = \prod_{j=1}^{J} F_j^{y_j^{*}} (1 - F_j)^{n_j - y_j^{*}},
 $$
-
 似然方程为
-
 $$
 0 = \sum_{j=1}^{J} \bigl( y_j^{*} - n_j F_j \bigr)\, \frac{f_j}{F_j (1 - F_j)},
 \qquad
 0 = \sum_{j=1}^{J} \bigl( y_j^{*} - n_j F_j \bigr)\, \frac{f_j}{F_j (1 - F_j)}\, x_j.
 $$
-
 我们已用极大似然估计了 logistic 回归的参数，接下来可以用 MLE 渐近理论得到近似方差。不过要以更一般的方式进行。10.1.3 节中我们见过如何用信息数近似 MLE 的方差；这里用同样的策略，但由于有两个参数，有一个由 $$2 \times 2$$ 矩阵给出的信息矩阵：
-
 $$
 I(\theta_1, \theta_2) =
 \begin{pmatrix}
@@ -642,9 +610,7 @@ I(\theta_1, \theta_2) =
 -\frac{\partial^2}{\partial \theta_1 \partial \theta_2} \log L(\theta_1, \theta_2 \mid \textbf{y}) & -\frac{\partial^2}{\partial \theta_2^2} \log L(\theta_1, \theta_2 \mid \textbf{y})
 \end{pmatrix}. \tag{12.3.9}
 $$
-
 对 logistic 回归，信息矩阵为
-
 $$
 I(\alpha, \beta) =
 \begin{pmatrix}
@@ -652,22 +618,15 @@ I(\alpha, \beta) =
 \sum_{j=1}^{J} x_j n_j F_j (1 - F_j) & \sum_{j=1}^{J} x_j^2 n_j F_j (1 - F_j)
 \end{pmatrix}, \tag{12.3.10}
 $$
-
 MLE $$\hat{\alpha}$$ 与 $$\hat{\beta}$$ 的方差通常用该矩阵近似。注意 $$I(\alpha, \beta)$$ 的元素不依赖 $$Y_1^{*}, \ldots, Y_J^{*}$$；因此本情形中观测信息与信息相同。
-
 在 10.1.3 节我们用近似（第 10 章式 (10.1.7)），即 $$\mathrm{Var}(h(\hat{\theta}) \mid \theta) \approx [h'(\hat{\theta})]^2 / I(\hat{\theta})$$，其中 $$I(\cdot)$$ 是信息数。这里不能对信息矩阵做完全一样的事，而是需要取矩阵的逆，用逆矩阵的元素来近似方差。回顾 $$2 \times 2$$ 矩阵的逆为
-
 $$
 \begin{pmatrix} a & b \\ c & d \end{pmatrix}^{\! -1} = \frac{1}{ad - bc} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}.
 $$
-
 为得到近似方差，用 MLE 估计矩阵 (12.3.10) 中的参数，方差估计 $$[\mathrm{se}(\hat{\alpha})]^2$$ 与 $$[\mathrm{se}(\hat{\beta})]^2$$ 取 $$I(\hat{\alpha}, \hat{\beta})$$ 的逆的对角元素。
-
-> **例 12.3.2（Challenger 数据续）**
->
-> 由 Challenger 数据的估计得到的估计信息矩阵为
->
-> $$
+**例 12.3.2（Challenger 数据续）**
+由 Challenger 数据的估计得到的估计信息矩阵为
+$$
 > I(\hat{\alpha}, \hat{\beta}) =
 > \begin{pmatrix}
 > \sum_{j=1}^{J} \hat{F}_j (1 - \hat{F}_j) & \sum_{j=1}^{J} x_j \hat{F}_j (1 - \hat{F}_j)\\[4pt]
@@ -679,187 +638,129 @@ $$
 > 214.75 & 14728.5
 > \end{pmatrix},
 > $$
->
-> 其中 $$\hat{F}_j = e^{\hat{\alpha} + \hat{\beta} x_j}/(1 + e^{\hat{\alpha} + \hat{\beta} x_j})$$，其逆为
->
-> $$
+其中 $$\hat{F}_j = e^{\hat{\alpha} + \hat{\beta} x_j}/(1 + e^{\hat{\alpha} + \hat{\beta} x_j})$$，其逆为
+$$
 > I(\hat{\alpha}, \hat{\beta})^{-1} =
 > \begin{pmatrix}
 > 59.19 & -0.86\\
 > -0.86 & 0.013
 > \end{pmatrix}.
 > $$
->
-> 似然渐近告诉我们：例如对大样本，$$\hat{\beta} \pm z_{\alpha/2}\, \mathrm{se}(\hat{\beta})$$ 是 $$\beta$$ 的近似 $$100(1 - \alpha)\%$$ 置信区间。对 Challenger 数据有 95% 置信区间
->
-> $$
+似然渐近告诉我们：例如对大样本，$$\hat{\beta} \pm z_{\alpha/2}\, \mathrm{se}(\hat{\beta})$$ 是 $$\beta$$ 的近似 $$100(1 - \alpha)\%$$ 置信区间。对 Challenger 数据有 95% 置信区间
+$$
 > \beta \in -0.243 \pm 1.96 \times \sqrt{0.013}
 > \;\Rightarrow\; -0.466 \leq \beta \leq -0.02,
 > $$
->
-> 支持 $$\beta < 0$$ 的结论。
-
+支持 $$\beta < 0$$ 的结论。
 该模型中最常检验的假设大概是 $$H_0 : \beta = 0$$，因为与简单线性回归一样，该假设陈述预测变量与响应变量之间没有关系。Wald 检验统计量 $$Z = \hat{\beta} / \mathrm{se}(\hat{\beta})$$ 在 $$H_0$$ 为真且样本量大时近似服从标准正态分布，因此若 $$\vert Z\vert  \geq z_{\alpha/2}$$ 可以拒绝 $$H_0$$。或者，可以用对数 LRT 统计量检验 $$H_0$$：
-
 $$
 -2 \log \lambda(\textbf{y}^{*}) = 2 \bigl[ \log L(\hat{\alpha}, \hat{\beta} \mid \textbf{y}^{*}) - \log L(\hat{\alpha}_0, 0 \mid \textbf{y}^{*}) \bigr],
 $$
-
 其中 $$\hat{\alpha}_0$$ 是假设 $$\beta = 0$$ 下 $$\alpha$$ 的 MLE。用标准的二项论证（习题 12.20）可以证明 $$\hat{\alpha}_0 = \sum_{i=1}^{n} y_i / n = \sum_{j=1}^{J} y_j^{*} / \sum_{j=1}^{J} n_j$$。因此在 $$H_0$$ 下 $$-2 \log \lambda$$ 有近似 $$\chi^2_1$$ 分布，若 $$-2 \log \lambda \geq \chi^2_{1, \alpha}$$ 可以在水平 $$\alpha$$ 拒绝 $$H_0$$。
-
 我们只介绍了最简单的 logistic 回归与广义线性模型。更多内容见标准教科书，如 Agresti (1990)。
-
 ## 12.4 稳健回归（Robust Regression）
-
 如同 10.2 节，现在考察当底层模型不正确时我们程序的表现，并考察最小二乘估计的一些稳健替代，从类似均值/中位数比较的比较开始。
-
 回顾观测 $$x_1, x_2, \ldots, x_n$$ 时，可以把均值与中位数定义为下列量的最小值点：
-
 $$
 \text{均值}： \min_{m} \Bigl\{ \sum_{i=1}^{n} (x_i - m)^2 \Bigr\},
 \qquad
 \text{中位数}： \min_{m} \Bigl\{ \sum_{i=1}^{n} \vert x_i - m\vert  \Bigr\}.
 $$
-
 对简单线性回归，观测 $$(y_1, x_1), (y_2, x_2), \ldots, (y_n, x_n)$$，我们知道最小二乘回归估计满足
-
 $$
 \text{最小二乘}： \min_{a, b} \Bigl\{ \sum_{i=1}^{n} \bigl[ y_i - (a + b x_i) \bigr]^2 \Bigr\},
 $$
-
 类似地定义最小绝对偏差（least absolute deviation, LAD）回归估计为
-
 $$
 \text{最小绝对偏差}： \min_{a, b} \Bigl\{ \sum_{i=1}^{n} \bigl\vert  y_i - (a + b x_i) \bigr\vert  \Bigr\}.
 $$
-
 （LAD 估计未必唯一。见习题 12.25。）
-
 于是我们看到最小二乘估计量是样本均值的回归对应物。这应当让我们担心它们的稳健表现（按 10.2 节条目 (1)–(3) 的清单）。
-
-> **例 12.4.1（最小二乘估计的稳健性）**
->
-> 若观测 $$(y_1, x_1), (y_2, x_2), \ldots, (y_n, x_n)$$，其中
->
-> $$
+**例 12.4.1（最小二乘估计的稳健性）**
+若观测 $$(y_1, x_1), (y_2, x_2), \ldots, (y_n, x_n)$$，其中
+$$
 > Y_i = \alpha + \beta x_i + \varepsilon_i,
 > $$
->
-> 诸 $$\varepsilon_i$$ 不相关、$$\mathrm{E}\varepsilon_i = 0$$、$$\mathrm{Var}\varepsilon_i = \sigma^2$$，则最小二乘估计量 $$b$$（方差 $$\sigma^2 / \sum (x_i - \bar{x})^2$$）是 $$\beta$$ 的 BLUE，满足 10.2 节的 (1)。
->
-> 为考察 $$b$$ 在小扰动下的表现，设
->
-> $$
+诸 $$\varepsilon_i$$ 不相关、$$\mathrm{E}\varepsilon_i = 0$$、$$\mathrm{Var}\varepsilon_i = \sigma^2$$，则最小二乘估计量 $$b$$（方差 $$\sigma^2 / \sum (x_i - \bar{x})^2$$）是 $$\beta$$ 的 BLUE，满足 10.2 节的 (1)。
+为考察 $$b$$ 在小扰动下的表现，设
+$$
 > \mathrm{Var}(\varepsilon_i) =
 > \begin{cases}
 > \sigma^2, & \text{概率 } 1 - \delta,\\
 > \tau^2, & \text{概率 } \delta.
 > \end{cases}
 > $$
->
-> 写 $$b = \sum d_i Y_i$$，其中 $$d_i = (x_i - \bar{x}) / \sum (x_i - \bar{x})^2$$，则
->
-> $$
+写 $$b = \sum d_i Y_i$$，其中 $$d_i = (x_i - \bar{x}) / \sum (x_i - \bar{x})^2$$，则
+$$
 > \mathrm{Var}(b) = \sum_{i=1}^{n} d_i^2 \mathrm{Var}(\varepsilon_i) = \frac{(1 - \delta)\sigma^2 + \delta \tau^2}{\sum_{i=1}^{n} (x_i - \bar{x})^2}.
 > $$
->
-> 这表明与样本均值一样，$$b$$ 对小扰动表现相当好。（当然，比如用 Cauchy pdf 污染，仍可把事情搞糟。）最小二乘截距 $$a$$ 的行为类似（习题 12.22）；另见习题 12.23，看偏差污染如何影响结果。
-
+这表明与样本均值一样，$$b$$ 对小扰动表现相当好。（当然，比如用 Cauchy pdf 污染，仍可把事情搞糟。）最小二乘截距 $$a$$ 的行为类似（习题 12.22）；另见习题 12.23，看偏差污染如何影响结果。
 接下来看“灾难性”观测的影响，把最小二乘与其中位数类似的替代——最小绝对偏差回归——作比较。
-
-> **例 12.4.2（灾难性观测）**
->
-> McPherson (1990) 描述了一个实验：测量 24 只长鼻袋鼠（potoroo，一种有袋类）育儿袋中的二氧化碳（CO $$_2$$）与氧气（O $$_2$$）水平。兴趣是 CO $$_2$$ 对 O $$_2$$ 的回归，实验者预期斜率为 $$-1$$。23 只动物的数据（一只缺值）见表 12.4.2。对原始数据，最小二乘直线与 LAD 直线相当接近：
->
-> $$
+**例 12.4.2（灾难性观测）**
+McPherson (1990) 描述了一个实验：测量 24 只长鼻袋鼠（potoroo，一种有袋类）育儿袋中的二氧化碳（CO $$_2$$）与氧气（O $$_2$$）水平。兴趣是 CO $$_2$$ 对 O $$_2$$ 的回归，实验者预期斜率为 $$-1$$。23 只动物的数据（一只缺值）见表 12.4.2。对原始数据，最小二乘直线与 LAD 直线相当接近：
+$$
 > \begin{aligned}
 > \text{最小二乘} &:\quad y = 18.67 - 0.89 x\\
 > \text{最小绝对偏差} &:\quad y = 18.59 - 0.89 x.
 > \end{aligned}
 > $$
->
-> 然而一个异常观测可以让最小二乘翻车。录入数据时，动物 15 的 O $$_2$$ 值 18 被误录为 10（我们真的这样做了）。对这个新的（错误的）数据集有
->
-> $$
+然而一个异常观测可以让最小二乘翻车。录入数据时，动物 15 的 O $$_2$$ 值 18 被误录为 10（我们真的这样做了）。对这个新的（错误的）数据集有
+$$
 > \begin{aligned}
 > \text{最小二乘} &:\quad y = 6.41 - 0.23 x\\
 > \text{最小绝对偏差} &:\quad y = 15.95 - 0.75 x,
 > \end{aligned}
 > $$
->
-> 表明异常观测对 LAD 的影响小得多。回归直线的展示见图 12.4.1。
->
-> 这些计算例示了 LAD 相对最小二乘的抵抗力。既然有均值/中位数类比，可以推测这种行为反映在崩溃值上：最小二乘为 0%，LAD 为 50%。
->
-> 表 12.4.2　 23 只 Potoroo 育儿袋中 CO $$_2$$ 与 O $$_2$$ 的值（McPherson 1990）（原书 Table 12.4.2）
->
-> | 动物 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
-> |:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-> | % O $$_2$$ | 20 | 19.6 | 19.6 | 19.4 | 18.4 | 19 | 19 | 18.3 |
-> | % CO $$_2$$ | 1 | 1.2 | 1.1 | 1.4 | 2.3 | 1.7 | 1.7 | 2.4 |
-> | 动物 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
-> | % O $$_2$$ | 18.2 | 18.6 | 19.2 | 18.2 | 18.7 | 18.5 | 18 | 17.4 |
-> | % CO $$_2$$ | 2.1 | 2.1 | 1.2 | 2.3 | 1.9 | 2.4 | 2.6 | 2.9 |
-> | 动物 | 17 | 18 | 19 | 20 | 21 | 22 | 23 |  |
-> | % O $$_2$$ | 16.5 | 17.2 | 17.3 | 17.8 | 17.3 | 18.4 | 16.9 |  |
-> | % CO $$_2$$ | 4.0 | 3.3 | 3.0 | 3.4 | 2.9 | 1.9 | 3.9 |  |
->
->
-> ![ch12_fig_12_4_1](fig/ch12_fig_12_4_1.png)
->
-> 图 12.4.1　 表 12.4.2 数据的最小二乘、LAD 与 M-估计拟合（原始数据与把 $$(18, 2.6)$$ 误录为 $$(10, 2.6)$$ 的数据）。LAD 与 M-估计直线相当相似，而最小二乘直线对改动的数据作出反应（原书 Figure 12.4.1）
-
+表明异常观测对 LAD 的影响小得多。回归直线的展示见图 12.4.1。
+这些计算例示了 LAD 相对最小二乘的抵抗力。既然有均值/中位数类比，可以推测这种行为反映在崩溃值上：最小二乘为 0%，LAD 为 50%。
+表 12.4.2　 23 只 Potoroo 育儿袋中 CO $$_2$$ 与 O $$_2$$ 的值（McPherson 1990）（原书 Table 12.4.2）
+| 动物 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| % O $$_2$$ | 20 | 19.6 | 19.6 | 19.4 | 18.4 | 19 | 19 | 18.3 |
+| % CO $$_2$$ | 1 | 1.2 | 1.1 | 1.4 | 2.3 | 1.7 | 1.7 | 2.4 |
+| 动物 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
+| % O $$_2$$ | 18.2 | 18.6 | 19.2 | 18.2 | 18.7 | 18.5 | 18 | 17.4 |
+| % CO $$_2$$ | 2.1 | 2.1 | 1.2 | 2.3 | 1.9 | 2.4 | 2.6 | 2.9 |
+| 动物 | 17 | 18 | 19 | 20 | 21 | 22 | 23 |  |
+| % O $$_2$$ | 16.5 | 17.2 | 17.3 | 17.8 | 17.3 | 18.4 | 16.9 |  |
+| % CO $$_2$$ | 4.0 | 3.3 | 3.0 | 3.4 | 2.9 | 1.9 | 3.9 |  |
+![ch12_fig_12_4_1](fig/ch12_fig_12_4_1.png)
+图 12.4.1　 表 12.4.2 数据的最小二乘、LAD 与 M-估计拟合（原始数据与把 $$(18, 2.6)$$ 误录为 $$(10, 2.6)$$ 的数据）。LAD 与 M-估计直线相当相似，而最小二乘直线对改动的数据作出反应（原书 Figure 12.4.1）
 然而均值/中位数的类比还在继续。虽然 LAD 估计量对灾难性观测稳健，但相对最小二乘估计量它在效率上损失惨重（另见习题 12.25）。
-
-> **例 12.4.3（LAD 估计量的渐近正态性）**
->
-> 我们改造导出第 10 章式 (10.2.6) 的论证来推导 LAD 估计量的渐近分布。为简化，只考虑模型
->
-> $$
+**例 12.4.3（LAD 估计量的渐近正态性）**
+我们改造导出第 10 章式 (10.2.6) 的论证来推导 LAD 估计量的渐近分布。为简化，只考虑模型
+$$
 > Y_i = \beta x_i + \varepsilon_i,
 > $$
->
-> 即取 $$\alpha = 0$$（这避免处理二元极限分布）。
->
-> 用 M-估计量的术语，LAD 估计量通过最小化
->
-> $$
+即取 $$\alpha = 0$$（这避免处理二元极限分布）。
+用 M-估计量的术语，LAD 估计量通过最小化
+$$
 > \sum_{i=1}^{n} \rho(y_i - \beta x_i) = \sum_{i=1}^{n} \vert y_i - \beta x_i\vert 
 > = \sum_{i=1}^{n} (y_i - \beta x_i) I(y_i > \beta x_i) - (y_i - \beta x_i) I(y_i < \beta x_i) \tag{12.4.1}
 > $$
->
-> 得到。然后计算 $$\psi = \rho'$$ 并解 $$\sum_i \psi(y_i - \beta x_i) = 0$$ 求 $$\beta$$，其中
->
-> $$
+得到。然后计算 $$\psi = \rho'$$ 并解 $$\sum_i \psi(y_i - \beta x_i) = 0$$ 求 $$\beta$$，其中
+$$
 > \psi(y_i - \beta x_i) = x_i I(y_i > \beta x_i) - x_i I(y_i < \beta x_i).
 > $$
->
-> 设 $$\hat{\beta}_L$$ 为解，把 $$\psi$$ 在 $$\beta$$ 处作 Taylor 展开：
->
-> $$
+设 $$\hat{\beta}_L$$ 为解，把 $$\psi$$ 在 $$\beta$$ 处作 Taylor 展开：
+$$
 > \sum_{i=1}^{n} \psi(y_i - \hat{\beta}_L x_i)
 > = \sum_{i=1}^{n} \psi(y_i - \beta x_i)
 > + (\hat{\beta}_L - \beta)\, \frac{d}{d\hat{\beta}_L} \sum_{i=1}^{n} \psi(y_i - \hat{\beta}_L x_i) \Big\vert _{\hat{\beta}_L = \beta} + \cdots.
 > $$
->
-> 虽然方程左端不等于零，但假设它当 $$n \to \infty$$ 时趋于零（见习题 12.27）。整理得
->
-> $$
+虽然方程左端不等于零，但假设它当 $$n \to \infty$$ 时趋于零（见习题 12.27）。整理得
+$$
 > \sqrt{n}(\hat{\beta}_L - \beta)
 > = \frac{-\frac{1}{\sqrt{n}} \sum_{i=1}^{n} \psi(y_i - \beta x_i)}{\frac{1}{n}\, \frac{d}{d\hat{\beta}_L} \sum_{i=1}^{n} \psi(y_i - \hat{\beta}_L x_i) \big\vert _{\hat{\beta}_L = \beta}}. \tag{12.4.2}
 > $$
->
-> 先看分子。由于 $$\mathrm{E}_{\beta} \psi(Y_i - \hat{\beta}_L x_i) = 0$$ 且 $$\mathrm{Var} \psi(Y_i - \hat{\beta}_L x_i) = x_i^2$$，可得
->
-> $$
+先看分子。由于 $$\mathrm{E}_{\beta} \psi(Y_i - \hat{\beta}_L x_i) = 0$$ 且 $$\mathrm{Var} \psi(Y_i - \hat{\beta}_L x_i) = x_i^2$$，可得
+$$
 > -\frac{1}{\sqrt{n}} \sum_{i=1}^{n} \psi(Y_i - \hat{\beta}_L x_i)
 > = \sqrt{n} \Bigl[ -\frac{1}{n} \sum_{i=1}^{n} \psi(Y_i - \hat{\beta}_L x_i) \Bigr]
 > \to n\Bigl( 0,\ \sigma_x^2 \Bigr), \tag{12.4.3}
 > $$
->
-> 其中 $$\sigma_x^2 = \lim_{n \to \infty} \frac{1}{n} \sum_{i=1}^{n} x_i^2$$。再看分母：$$\psi$$ 有不可微的点，必须小心。因此先应用大数定律再求导，用近似
->
-> $$
+其中 $$\sigma_x^2 = \lim_{n \to \infty} \frac{1}{n} \sum_{i=1}^{n} x_i^2$$。再看分母：$$\psi$$ 有不可微的点，必须小心。因此先应用大数定律再求导，用近似
+$$
 > \begin{aligned}
 > \frac{1}{n} \frac{d}{d\beta_0} \sum_{i=1}^{n} \psi(y_i - \beta_0 x_i)
 > &\approx \frac{1}{n} \sum_{i=1}^{n} \frac{d}{d\beta_0} \mathrm{E}_{\beta}\bigl[ \psi(Y_i - \beta_0 x_i) \bigr]\\
@@ -867,35 +768,24 @@ $$
 > &= \frac{1}{n} \sum_{i=1}^{n} x_i^2 f(\beta_0 x_i - \beta x_i) + x_i^2 f(\beta_0 x_i - \beta x_i).
 > \end{aligned} \tag{12.4.4}
 > $$
->
-> 若在 $$\beta_0 = \beta$$ 处取导数，则有
->
-> $$
+若在 $$\beta_0 = \beta$$ 处取导数，则有
+$$
 > \frac{1}{n} \frac{d}{d\beta_0} \sum_{i=1}^{n} \psi(y_i - \beta_0 x_i) \Big\vert _{\beta_0 = \beta} \approx 2 f(0)\, \frac{1}{n} \sum_{i=1}^{n} x_i^2,
 > $$
->
-> 把它与 (12.4.2) 与 (12.4.3) 合在一起得
->
-> $$
+把它与 (12.4.2) 与 (12.4.3) 合在一起得
+$$
 > \sqrt{n}(\hat{\beta}_L - \beta) \to n\Biggl( 0,\ \frac{1}{4 f(0)^2\, \sigma_x^2} \Biggr). \tag{12.4.5}
 > $$
->
-> 最后，对 $$\alpha = 0$$ 的情形，最小二乘估计量为 $$\hat{\beta} = \sum_{i=1}^{n} x_i y_i / \sum_{i=1}^{n} x_i^2$$，且满足
->
-> $$
+最后，对 $$\alpha = 0$$ 的情形，最小二乘估计量为 $$\hat{\beta} = \sum_{i=1}^{n} x_i y_i / \sum_{i=1}^{n} x_i^2$$，且满足
+$$
 > \sqrt{n}(\hat{\beta} - \beta) \to n\Bigl( 0,\ \frac{1}{\sigma_x^2} \Bigr),
 > $$
->
-> 于是 $$\hat{\beta}_L$$ 关于 $$\hat{\beta}$$ 的渐近相对效率为
->
-> $$
+于是 $$\hat{\beta}_L$$ 关于 $$\hat{\beta}$$ 的渐近相对效率为
+$$
 > \mathrm{ARE}(\hat{\beta}_L, \hat{\beta}) = \frac{1/\sigma_x^2}{1/(4 f(0)^2\, \sigma_x^2)} = 4 f(0)^2,
 > $$
->
-> 其取值与表 10.2.2 中比较中位数与均值时相同。因此对正态误差，LAD 估计量关于最小二乘的 ARE 只有 64%——LAD 估计量相对最小二乘放弃了相当多的效率。
-
+其取值与表 10.2.2 中比较中位数与均值时相同。因此对正态误差，LAD 估计量关于最小二乘的 ARE 只有 64%——LAD 估计量相对最小二乘放弃了相当多的效率。
 于是我们处于 10.2.1 节遇到过的相同境地：若误差真的是正态的，LAD 替代最小二乘似乎在效率上损失太多。折中方案再一次是 M-估计量。可以通过最小化与第 10 章式 (10.2.2) 类似的函数构造一个，即最小化 $$\sum_i \rho_i(\alpha, \beta)$$，其中
-
 $$
 \rho_i(\alpha, \beta) =
 \begin{cases}
@@ -903,110 +793,67 @@ $$
 k \vert y_i - \alpha - \beta x_i\vert  - \frac{1}{2} k^2, & \text{若 } \vert y_i - \alpha - \beta x_i\vert  \geq k,
 \end{cases} \tag{12.4.6}
 $$
-
 $$k$$ 是调节参数。
-
-> **例 12.4.4（回归 M-估计量）**
->
-> 用 $$k = 1.5 \sigma$$ 的函数 (12.4.6)，对表 12.4.2 的数据拟合 $$\alpha$$ 与 $$\beta$$ 的 M-估计量。结果为
->
-> $$
+**例 12.4.4（回归 M-估计量）**
+用 $$k = 1.5 \sigma$$ 的函数 (12.4.6)，对表 12.4.2 的数据拟合 $$\alpha$$ 与 $$\beta$$ 的 M-估计量。结果为
+$$
 > \begin{aligned}
 > \text{原始数据的 M-估计} &:\quad y = 18.5 - 0.89 x\\
 > \text{误录数据的 M-估计} &:\quad y = 14.67 - 0.68 x,
 > \end{aligned}
 > $$
->
-> 其中 $$\sigma$$ 用最小二乘拟合残差的标准差 0.23 估计。
->
-> 可见 M-估计比最小二乘直线更稳健一些，在出现离群点时表现更像 LAD 拟合。
-
+其中 $$\sigma$$ 用最小二乘拟合残差的标准差 0.23 估计。
+可见 M-估计比最小二乘直线更稳健一些，在出现离群点时表现更像 LAD 拟合。
 如同 10.2 节，我们预期 M-估计量的 ARE 优于 LAD。事实确实如此，不过计算变得非常复杂（比 LAD 还复杂），此处不给出细节。Huber (1981, 第 7 章) 详细处理了 M-估计渐近理论；另见 Portnoy (1987)。我们满足于通过小型模拟研究评价 M-估计量，复现一张类似表 10.2.4 的表。
-
-> **例 12.4.5（回归 ARE 的模拟）**
->
-> 对模型 $$Y_i = \alpha + \beta x_i + \varepsilon_i$$（$$i = 1, 2, \ldots, 5$$），取 $$x_i$$ 为 $$(-2, -1, 0, 1, 2)$$、$$\alpha = 0$$、$$\beta = 1$$。我们从正态、logistic 与双指数分布生成 $$\varepsilon_i$$，并计算最小二乘、LAD 与 M-估计量的方差。结果见表 12.4.3。
->
-> **原书注：**原书正文写“从正态、双指数与 Laplace 分布生成 $$\varepsilon_i$$”，但表 12.4.3 的三列依次为正态、logistic、双指数（双指数分布即 Laplace 分布），正文疑为“logistic”之误，按表列示。
->
-> 表 12.4.3　 回归 M-估计量的渐近相对效率，$$k = 1.5$$（基于 10000 次模拟）（原书 Table 12.4.3）
->
-> |  | 正态 | Logistic | 双指数 |
-> |:---|:---:|:---:|:---:|
-> | 相对最小二乘 | 0.98 | 1.03 | 1.07 |
-> | 相对 LAD | 1.39 | 1.27 | 1.14 |
->
->
-> M-估计量的方差在三种分布下都与最小二乘的相似，并且相对 LAD 是一致的改进。M-估计量对 LAD 的优势比 Huber 估计量对中位数的优势（见表 10.2.4）更显著。
-
+**例 12.4.5（回归 ARE 的模拟）**
+对模型 $$Y_i = \alpha + \beta x_i + \varepsilon_i$$（$$i = 1, 2, \ldots, 5$$），取 $$x_i$$ 为 $$(-2, -1, 0, 1, 2)$$、$$\alpha = 0$$、$$\beta = 1$$。我们从正态、logistic 与双指数分布生成 $$\varepsilon_i$$，并计算最小二乘、LAD 与 M-估计量的方差。结果见表 12.4.3。
+**原书注：**原书正文写“从正态、双指数与 Laplace 分布生成 $$\varepsilon_i$$”，但表 12.4.3 的三列依次为正态、logistic、双指数（双指数分布即 Laplace 分布），正文疑为“logistic”之误，按表列示。
+表 12.4.3　 回归 M-估计量的渐近相对效率，$$k = 1.5$$（基于 10000 次模拟）（原书 Table 12.4.3）
+|  | 正态 | Logistic | 双指数 |
+|:---|:---:|:---:|:---:|
+| 相对最小二乘 | 0.98 | 1.03 | 1.07 |
+| 相对 LAD | 1.39 | 1.27 | 1.14 |
+M-估计量的方差在三种分布下都与最小二乘的相似，并且相对 LAD 是一致的改进。M-估计量对 LAD 的优势比 Huber 估计量对中位数的优势（见表 10.2.4）更显著。
 ## 12.5 习题（Exercises）
-
 **12.1** 验证 (12.2.7) 中的表达式。（提示：用勾股定理。）
-
 **12.2** 证明
-
 $$
 f(b) = \frac{1}{1 + b^2} \Bigl[ S_{yy} - 2b S_{xy} + b^2 S_{xx} \Bigr]
 $$
-
 的极值由
-
 $$
 b = \frac{-(S_{xx} - S_{yy}) \pm \sqrt{(S_{xx} - S_{yy})^2 + 4 S_{xy}^2}}{2 S_{xy}}
 $$
-
 给出。证明“$$+$$”解给出 $$f(b)$$ 的最小值。
-
 **12.3** 在最大化似然 (12.2.13) 时，我们首先对 $$\alpha$$、$$\beta$$、$$\sigma_\delta^2$$ 的每组值，关于 $$\xi_1, \ldots, \xi_n$$ 最小化函数
-
 $$
 f(\xi_1, \ldots, \xi_n) = \sum_{i=1}^{n} \Bigl[ (x_i - \xi_i)^2 + \lambda \bigl( y_i - (\alpha + \beta \xi_i) \bigr)^2 \Bigr].
 $$
-
 (a) 证明该函数在
-
 $$
 \xi_i^{*} = \frac{x_i + \lambda \beta (y_i - \alpha)}{1 + \lambda \beta^2}
 $$
-
 处最小化；
-
 (b) 证明函数
-
 $$
 D_{\lambda}\bigl( (x, y),\ (\xi, \alpha + \beta \xi) \bigr) = (x - \xi)^2 + \lambda \bigl( y - (\alpha + \beta \xi) \bigr)^2
 $$
-
 定义了点 $$(x, y)$$ 与 $$(\xi, \alpha + \beta \xi)$$ 之间的一个度量。度量（metric）是一种距离测度，即度量两点 $$A$$ 与 $$B$$ 之间距离的函数 $$D$$。度量满足以下四条性质：
-
 （i）$$D(A, A) = 0$$；
-
 （ii）若 $$A \neq B$$ 则 $$D(A, B) > 0$$；
-
 （iii）$$D(A, B) = D(B, A)$$（对称）；
-
 （iv）$$D(A, B) \leq D(A, C) + D(C, B)$$（三角不等式）。
-
 **12.4** 考虑 EIV 模型中斜率的 MLE
-
 $$
 \hat{\beta}(\lambda) = \frac{-(S_{xx} - \lambda S_{yy}) + \sqrt{(S_{xx} - \lambda S_{yy})^2 + 4 \lambda S_{xy}^2}}{2 \lambda S_{xy}},
 $$
-
 其中假设 $$\lambda = \sigma_\delta^2 / \sigma_\varepsilon^2$$ 已知。
-
 (a) 证明 $$\lim_{\lambda \to 0} \hat{\beta}(\lambda) = S_{xy}/S_{xx}$$，即 $$y$$ 对 $$x$$ 的普通回归的斜率；
-
 (b) 证明 $$\lim_{\lambda \to \infty} \hat{\beta}(\lambda) = S_{yy}/S_{xy}$$，即 $$x$$ 对 $$y$$ 的普通回归斜率的倒数；
-
 (c) 证明 $$\hat{\beta}(\lambda)$$ 事实上关于 $$\lambda$$ 单调，且当 $$S_{xy} > 0$$ 时递增、$$S_{xy} < 0$$ 时递减；
-
 (d) 证明正交最小二乘直线（$$\lambda = 1$$）总位于 $$y$$ 对 $$x$$ 与 $$x$$ 对 $$y$$ 的普通回归所给出的直线之间；
-
 (e) 下表的数据是为考察若干动物物种的脑重与体重之间的关系而收集的。假设 EIV 模型，计算斜率的 MLE。再计算 $$y$$ 对 $$x$$ 与 $$x$$ 对 $$y$$ 的回归的最小二乘斜率，并说明这些量如何界定 MLE。
-
 动物体重与脑重数据
-
 | 物种 | 体重（kg）$$x$$ | 脑重（g）$$y$$ |
 |:---|:---:|:---:|
 | 北极狐 | 3.385 | 44.50 |
@@ -1017,15 +864,10 @@ $$
 | 地松鼠 | 0.101 | 4.00 |
 | 树蹄兔 | 2.000 | 12.30 |
 | 棕蝠 | 0.023 | 0.30 |
-
 **12.5** 在 EIV 函数关系模型中，设 $$\lambda = \sigma_\delta^2/\sigma_\varepsilon^2$$ 已知，证明 $$\sigma_\delta^2$$ 的 MLE 由 (12.2.18) 给出。
-
 **12.6** 证明在线性结构关系模型 (12.2.6) 中，若把 $$\xi_i$$ 积分掉，$$(X_i, Y_i)$$ 的边缘分布由 (12.2.19) 给出。
-
 **12.7** 考虑一个线性结构关系模型，其中假设 $$\xi_i$$ 有非正常分布：$$\xi_i \sim \mathrm{uniform}(-\infty, \infty)$$。
-
 (a) 证明对每个 $$i$$，
-
 $$
 \int_{-\infty}^{\infty} \frac{1}{(2\pi)\, \sigma_\delta \sigma_\varepsilon}
 \exp\Biggl( -\frac{(x_i - \xi_i)^2}{2\sigma_\delta^2} \Biggr)
@@ -1033,175 +875,103 @@ $$
 = \frac{1}{\sqrt{2\pi\, \bigl( \beta^2 \sigma_\delta^2 + \sigma_\varepsilon^2 \bigr)}}
 \exp\Biggl( -\frac{1}{2}\, \frac{(y_i - (\alpha + \beta x_i))^2}{\beta^2 \sigma_\delta^2 + \sigma_\varepsilon^2} \Biggr).
 $$
-
 （对指数中的式子配方使积分变得容易。）
-
 (b) (a) 中积分的结果看起来像一个 pdf；若把它当作给定 $$X$$ 时 $$Y$$ 的 pdf，则我们似乎得到了 $$X$$ 与 $$Y$$ 之间的线性关系。因此有人说这个“极限情形”的结构关系导向简单线性回归与普通最小二乘。解释为什么对上述函数的这种解释是错误的。
-
 **12.8** 按以下方式验证结构关系模型中的不可识别性问题。
-
 (a) 给出两组不同的参数，它们给 $$(X_i, Y_i)$$ 带来相同的边缘分布；
-
 (b) 证明至少存在两个不同的参数向量给出 (12.2.20) 中方程组的相同解。
-
 **12.9** 在结构关系模型中，方程组 (12.2.20) 的解蕴含对 $$\hat{\beta}$$ 的限制，与函数关系情形（习题 12.4）所见相同。
-
 (a) 证明在 (12.2.20) 中，$$\sigma_\delta^2$$ 的 MLE 非负仅当 $$S_{xx} \geq (1/\hat{\beta}) S_{xy}$$；$$\sigma_\varepsilon^2$$ 的 MLE 非负仅当 $$S_{yy} \geq \hat{\beta} S_{xy}$$；
-
 (b) 证明 (a) 中的限制连同 (12.2.20) 的其余方程蕴含
-
 $$
 \frac{\vert S_{xy}\vert }{S_{xx}} \leq \vert \hat{\beta}\vert  \leq \frac{S_{yy}}{\vert S_{xy}\vert }.
 $$
-
 **12.10** (a) 在假设 $$\sigma_\delta^2 = \lambda \sigma_\varepsilon^2$$ 下解方程组 (12.2.20)，导出结构关系模型中 $$(\alpha, \beta, \sigma_\varepsilon^2, \sigma_\delta^2, \sigma_\xi^2)$$ 的 MLE；
-
 (b) 对习题 12.4 的数据，假设结构关系模型成立且 $$\sigma_\delta^2 = \lambda \sigma_\varepsilon^2$$，计算 $$(\alpha, \beta, \sigma_\varepsilon^2, \sigma_\delta^2, \sigma_\xi^2)$$ 的 MLE；
-
 (c) 验证函数关系模型与结构关系模型中方差估计之间的关系。特别地证明
-
 $$
 \widehat{\mathrm{Var}}_X(\text{结构}) = 2\, \widehat{\mathrm{Var}}_X(\text{函数}),
 $$
-
 即验证
-
 $$
 \Bigl( S_{xx} - \frac{S_{xy}}{\hat{\beta}} \Bigr)
 = \frac{\lambda}{1 + \lambda \hat{\beta}^2} \sum_{i=1}^{n} \bigl( y_i - (\hat{\alpha} + \hat{\beta} x_i) \bigr)^2;
 $$
-
 (d) 验证 (12.2.21) 给出的 MLE 方差估计中隐含的如下等式：证明
-
 $$
 S_{xx} - \frac{S_{xy}}{\hat{\beta}} = \lambda \bigl( S_{yy} - \hat{\beta} S_{xy} \bigr).
 $$
-
 **12.11** (a) 证明对随机变量 $$X, Y$$ 与常数 $$a, b, c, d$$，
-
 $$
 \mathrm{Cov}(aY + bX,\ cY + dX) = ac\, \mathrm{Var} Y + (bc + ad) \mathrm{Cov}(X, Y) + bd\, \mathrm{Var} X;
 $$
-
 (b) 用 (a) 的结果验证：在 $$\sigma_\delta^2 = \lambda \sigma_\varepsilon^2$$ 的结构关系模型中
-
 $$
 \mathrm{Cov}(\beta \lambda Y_i + X_i,\ Y_i - \beta X_i) = 0,
 $$
-
 即 Creasy–Williams 置信集合赖以建立的恒等式；
-
 (c) 用 (b) 的结果证明：对 $$\beta$$ 的任何值，
-
 $$
 \frac{\sqrt{n - 2}\, r_{\lambda}(\beta)}{\sqrt{1 - r_{\lambda}^2(\beta)}} \sim t_{n-2},
 $$
-
 其中 $$r_{\lambda}(\beta)$$ 由 (12.2.23) 给出。并证明 (12.2.24) 定义的置信集合具有常值覆盖概率 $$1 - \alpha$$。
-
 **12.12** 验证关于 $$\hat{\beta}$$（假设 $$\sigma_\delta^2 = \lambda \sigma_\varepsilon^2$$ 时 $$\beta$$ 的 MLE）、(12.2.23) 的 $$r_{\lambda}(\beta)$$ 与 (12.2.24) 的 Creasy–Williams 置信集合 $$C_{\lambda}(\hat{\beta})$$ 的如下事实：
-
 (a) $$\hat{\beta}$$ 与 $$-1/(\lambda \hat{\beta})$$ 是定义似然函数 (12.2.14) 一阶导数零点的二次方程的两个根；
-
 (b) 对每个 $$\beta$$ 有 $$r_{\lambda}(\beta) = -r_{\lambda}(-1/(\lambda \beta))$$；
-
 (c) 若 $$\beta \in C_{\lambda}(\hat{\beta})$$，则 $$-1/(\lambda \beta) \in C_{\lambda}(\hat{\beta})$$。
-
 **12.13** Creasy–Williams 置信集合 (12.2.24) 与区间 $$C_G(\hat{\beta})$$ (12.2.22) 之间有一个有趣的联系。
-
 (a) 证明
-
 $$
 C_G(\hat{\beta}) = \Biggl\{ \beta : \frac{(\beta - \hat{\beta})^2}{\hat{\sigma}_\beta^2 / (n - 2)} \leq F_{1, n-2, \alpha} \Biggr\},
 $$
-
 其中 $$\hat{\beta}$$ 是 $$\beta$$ 的 MLE，$$\hat{\sigma}_\beta^2$$ 是前文定义的 $$\sigma_\beta^2$$ 的相合估计量；
-
 (b) 证明 Creasy–Williams 集合可以写成
-
 $$
 \Biggl\{ \beta : \frac{(\beta - \hat{\beta})^2}{\hat{\sigma}_\beta^2 / (n - 2)}\, \frac{(1 + \lambda \beta \hat{\beta})^2}{(1 + \lambda \beta^2)^2} \leq F_{1, n-2, \alpha} \Biggr\}.
 $$
-
 因此 $$C_G(\hat{\beta})$$ 可以通过把方括号中的项替换为 1（其概率极限）导出。（推导这一表示时，“$$\hat{\beta}$$ 与 $$-1/(\lambda \hat{\beta})$$ 是 $$r_{\lambda}(\beta)$$ 分子的根”这一事实大有帮助。特别地，容易建立
-
 $$
 \frac{r_{\lambda}^2(\beta)}{1 - r_{\lambda}^2(\beta)} = \frac{\lambda^2 S_{xy}^2 (\beta - \hat{\beta})^2 \bigl( \beta + (1/\lambda)\hat{\beta} \bigr)^2}{(1 + \lambda \beta^2)^2 \bigl( S_{xx} S_{yy} - S_{xy}^2 \bigr)}.
 $$
-
 ）
-
 **12.14** 对三种情形绘制 (12.3.2) 的 logistic 回归函数 $$\pi(x)$$ 的图形：$$\alpha = \beta = 1$$、$$\alpha = \beta = 2$$、$$\alpha = \beta = 3$$。
-
 **12.15** 对 (12.3.2) 的 logistic 回归函数验证下列关系：
-
 (a) $$\pi(-\alpha/\beta) = 1/2$$；
-
 (b) 对任何 $$c$$，$$\pi\bigl( (-\alpha/\beta) + c \bigr) = 1 - \pi\bigl( (-\alpha/\beta) - c \bigr)$$；
-
 (c) 验证关于 $$d\pi(x)/dx$$ 的 (12.3.3)；
-
 (d) 验证关于几率比的 (12.3.4)；
-
 (e) 验证关于几率乘性改变的 (12.3.5)；
-
 (f) 验证关于 Bernoulli GLM 似然方程的 (12.3.6) 与 (12.3.8)；
-
 (g) 验证在 logistic 回归中 (12.3.7) 与 (12.3.8) 里 $$f_i / [F_i(1 - F_i)] = 1$$。
-
 **12.16** 考虑如下 logistic 回归数据。只观测到两个取值 $$x = 0$$ 与 1。$$x = 0$$ 处十次试验有十次成功；$$x = 1$$ 处十次试验有五次成功。通过验证以下各条，证明这些数据的 logistic 回归 MLE $$\hat{\alpha}$$ 与 $$\hat{\beta}$$ 不存在：
-
 (a) 不受 (12.3.2) 限制的 $$\pi(0)$$ 与 $$\pi(1)$$ 的 MLE 为 $$\hat{\pi}(0) = 1$$ 与 $$\hat{\pi}(1) = 0.5$$；
-
 (b) (a) 中估计给出的似然函数整体最大值不可能在任何有限的 logistic 回归参数 $$\alpha$$ 与 $$\beta$$ 值处达到，但可以在 $$\beta \to -\infty$$ 且 $$\alpha = -\beta$$ 的极限处达到。
-
 **12.17** 在 probit 回归中，连接函数是标准正态 cdf $$\Phi(x) = P(Z \leq x)$$，$$Z \sim n(0, 1)$$。于是该模型中我们观测 $$(Y_1, x_1), (Y_2, x_2), \ldots, (Y_n, x_n)$$，其中 $$Y_i \sim \mathrm{Bernoulli}(\pi_i)$$，$$\pi_i = \Phi(\alpha + \beta x_i)$$。
-
 (a) 写出似然函数并说明如何求解 $$\alpha$$ 与 $$\beta$$ 的 MLE；
-
 (b) 把 probit 模型拟合到表 12.3.1 的数据。评论它与 logistic 拟合的差异。
-
 **12.18** Brown and Rothery (1993, 第 4 章) 讨论了线性 logistic 模型向二次模型的推广：
-
 $$
 \log\Bigl( \frac{\pi_i}{1 - \pi_i} \Bigr) = \alpha + \beta x_i + \gamma x_i^2.
 $$
-
 (a) 写出似然函数并说明如何求解 $$\alpha$$、$$\beta$$、$$\gamma$$ 的 MLE；
-
 (b) 用对数 LRT 说明如何检验假设 $$H_0 : \gamma = 0$$，即模型其实是线性 logistic 的；
-
 (c) 把二次 logistic 模型拟合到表 12.5.4 中不同年龄雀鹰存活的数据；
-
 (d) 判断哪个模型（线性还是二次）更适合雀鹰数据，即检验 $$H_0 : \gamma = 0$$。
-
 *表 12.5.4　 雀鹰按年龄分层的存活（原书 Table 12.5.4）*
-
 | 年龄 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 |:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | 鸟数 | 77 | 149 | 182 | 118 | 78 | 46 | 27 | 10 | 4 |
 | 存活数 | 35 | 89 | 130 | 79 | 52 | 28 | 14 | 3 | 1 |
-
 **12.19** 对 logistic 回归模型：
-
 (a) 证明 $$(\sum_{j=1}^{J} Y_j^{*},\ \sum_{j=1}^{J} Y_j^{*} x_j)$$ 是 $$(\alpha, \beta)$$ 的充分统计量；
-
 (b) 验证 (12.3.10) 中 logistic 回归信息矩阵的公式。
-
 **12.20** 考虑 logistic 回归模型并假设 $$\beta = 0$$。
-
 (a) 若 $$0 < \sum_{i=1}^{n} y_i < n$$，证明 $$\pi(x)$$（此时不依赖 $$x$$）的 MLE 是 $$\hat{\pi} = \sum_{i=1}^{n} y_i / n$$；
-
 (b) 若 $$0 < \sum_{i=1}^{n} y_i < n$$，证明 $$\alpha$$ 的 MLE 是 $$\hat{\alpha}_0 = \log\Bigl( \bigl( \sum_{i=1}^{n} y_i \bigr) / \bigl( n - \sum_{i=1}^{n} y_i \bigr) \Bigr)$$；
-
 (c) 证明若 $$\sum_{i=1}^{n} y_i = 0$$ 或 $$n$$，则 $$\hat{\alpha}_0$$ 不存在，但检验 $$H_0 : \beta = 0$$ 的 LRT 统计量仍有良好定义。
-
 **12.21** 设 $$Y \sim \mathrm{binomial}(n, \pi)$$，$$\hat{\pi} = Y/n$$ 是 $$\pi$$ 的 MLE。令 $$W = \log\bigl( \hat{\pi}/(1 - \hat{\pi}) \bigr)$$ 表示样本 logit，即 $$\log(\pi/(1 - \pi))$$ 的 MLE。用 delta 方法证明 $$1/(n \hat{\pi}(1 - \hat{\pi}))$$ 是 $$\mathrm{Var} W$$ 的合理估计。
-
 **12.22** 例 12.4.1 中我们考察了小扰动对最小二乘斜率估计的影响。做类似的计算，评估最小二乘截距估计（对小扰动）的稳健性。
-
 **12.23** 例 12.4.1 中，与习题 10.2.1 相反，我们为 $$\varepsilon_i$$ 引入污染分布时没有引入偏差。证明若引入了，其实也无关紧要。即若设
-
 $$
 (\mathrm{E}\varepsilon_i, \mathrm{Var}\varepsilon_i) =
 \begin{cases}
@@ -1209,63 +979,34 @@ $$
 (\mu, \tau^2), & \text{概率 } \delta,
 \end{cases}
 $$
-
 则：
-
 (a) 最小二乘估计量 $$b$$ 仍是 $$\beta$$ 的无偏估计量；
-
 (b) 最小二乘估计量 $$a$$ 的期望为 $$\alpha + \delta \mu$$，因此模型不妨设为 $$Y_i = \alpha + \delta \mu + \beta x_i + \varepsilon_i$$。
-
 **12.24** 对模型 $$Y_i = \beta x_i + \varepsilon_i$$，证明 LAD 估计量由 $$t_{(k^{*}+1)}$$ 给出，其中 $$t_i = y_i / x_i$$，$$t_{(1)} \leq t_{(2)} \leq \cdots \leq t_{(n)}$$，且若 $$x_{(i)}$$ 是与 $$t_{(i)}$$ 配对的 $$x$$ 值，则 $$k^{*}$$ 满足 $$\sum_{i=1}^{k^{*}} \vert x_{(i)}\vert  \leq \sum_{i=k^{*}+1}^{n} \vert x_{(i)}\vert $$ 与 $$\sum_{i=1}^{k^{*}+1} \vert x_{(i)}\vert  > \sum_{i=k^{*}+2}^{n} \vert x_{(i)}\vert $$。
-
 **12.25** LAD 回归直线的一个问题是它不总是唯一确定的。
-
 (a) 证明对有三个观测 $$(x_1, y_1)$$、$$(x_1, y_2)$$、$$(x_3, y_3)$$ 的数据集（注意前两个 $$x$$ 相同），任何穿过 $$(x_3, y_3)$$ 且位于 $$(x_1, y_1)$$ 与 $$(x_1, y_2)$$ 之间的直线都是最小绝对偏差直线；
-
 (b) 对三个人测量心率（$$x$$，次/分）与耗氧量（$$y$$，ml/kg）。$$(x, y)$$ 数对为 $$(127, 14.4)$$、$$(127, 11.9)$$、$$(136, 17.9)$$。计算最小二乘直线的斜率与截距以及最小绝对偏差直线的范围。
-
 关于 LAD 直线的价值似乎存在一些分歧。它当然比最小二乘更稳健，但计算可能很困难（不过 Portnoy and Koenker 1997 给出了高效算法）。Ellis (1998) 似乎质疑其稳健性，而 Portnoy and Misera (1998) 在讨论中质疑 Ellis。
-
 习题 12.26–12.28 考察例 12.4.3 的一些细节。
-
 **12.26** (a) 在例 12.4.3 全程我们假设 $$\frac{1}{n} \sum_{i=1}^{n} x_i^2 \to \sigma_x^2 < \infty$$。证明该条件被以下情形满足：（i）$$x_i = 1$$（普通中位数的情形）；（ii）$$\vert x_i\vert  \leq 1$$（$$x_i$$ 有界的情形）；
-
 (b) 证明在 (a) 中关于 $$x_i$$ 的条件下，$$\frac{1}{n} \sum_{i=1}^{n} \psi(y_i - \hat{\beta}_L x_i) \to 0$$（依概率）。
-
 **12.27** (a) 验证 $$-\frac{1}{\sqrt{n}} \sum_{i=1}^{n} \psi(Y_i - \hat{\beta}_L x_i) \to n(0, \sigma_x^2)$$；
-
 (b) 验证 $$\frac{1}{n} \sum_{i=1}^{n} \frac{d}{d\beta_0} \mathrm{E}_{\beta}\bigl[ \psi(Y_i - \beta_0 x_i) \bigr] \big\vert _{\beta_0 = \beta} = 2 f(0)\, \frac{1}{n} \sum_{i=1}^{n} x_i^2$$，并结合 (a) 得出 $$\sqrt{n}(\hat{\beta}_L - \beta) \to n\bigl( 0,\ \frac{1}{4 f(0)^2 \sigma_x^2} \bigr)$$。
-
 **12.28** 证明最小二乘估计量为 $$\hat{\beta} = \sum_{i=1}^{n} x_i y_i / \sum_{i=1}^{n} x_i^2$$，且 $$\sqrt{n}(\hat{\beta} - \beta) \to n\bigl( 0,\ 1/\sigma_x^2 \bigr)$$。
-
 **12.29** 用例 12.4.3 中的 Taylor 级数论证，推导 iid 抽样下中位数的渐近分布。
-
 **12.30** 对表 12.4.2 的数据，用参数 bootstrap 评估 LAD 与 M-估计拟合的标准误。具体地：
-
 (a) 拟合直线 $$y = \alpha + \beta x$$ 得到估计 $$\tilde{\alpha}$$ 与 $$\tilde{\beta}$$；
-
 (b) 计算残差均方误差 $$\hat{\sigma}^2 = \frac{1}{n - 2} \sum_{i=1}^{n} [y_i - (\tilde{\alpha} + \tilde{\beta} x_i)]^2$$；
-
 (c) 从 $$n(0, \hat{\sigma}^2)$$ 生成新残差并重新估计 $$\alpha$$ 与 $$\beta$$；
-
 (d) 把 (c) 做 $$B$$ 次，计算 $$\tilde{\alpha}$$ 与 $$\tilde{\beta}$$ 的标准差；
-
 (e) 对误差改用双指数分布与 Laplace 分布重复 (a)–(d)。把你的答案与正态情形比较。
-
 **12.31** 对表 12.4.2 的数据，也可以用非参数 bootstrap 评估 LAD 与 M-估计拟合的标准误。这时你要：
-
 (a) 拟合直线 $$y = \alpha + \beta x$$ 得到估计 $$\tilde{\alpha}$$ 与 $$\tilde{\beta}$$；
-
 (b) 通过对拟合残差重抽样生成新残差，并重新估计 $$\alpha$$ 与 $$\beta$$；
-
 (c) 把 (b) 做 $$B$$ 次，计算 $$\tilde{\alpha}$$ 与 $$\tilde{\beta}$$ 的标准差。
-
 ## 12.6 杂记（Miscellanea）
-
 ### 12.6.1 “函数”与“结构”的含义（The Meaning of Functional and Structural）
-
 “函数”（functional）与“结构”（structural）这两个名字本身就是 EIV 模型中混淆的首要来源。Kendall and Stuart (1979, 第 29 章) 详细讨论了这些概念，区分了数学（非随机）变量之间的关系与随机变量之间的关系。看清这种关系的一种方式是把模型写成分层结构，其中结构关系模型是通过对函数模型的参数施加分布而得到的：
-
 $$
 \begin{array}{ccc}
 \text{函数关系模型} &
@@ -1277,19 +1018,12 @@ $$
  & \xi_i \sim n(\xi,\ \sigma_\xi^2) &
 \end{array}
 $$
-
 这两个词的差别可以通过如下区分来理解（这一区分并非被普遍接受）。例如在微积分中，我们常见方程 $$y = f(x)$$，一个描述**函数关系**的方程，即假设存在于变量之间的关系。于是按“函数关系是假设存在于两个变量之间的关系”这一想法，方程 $$\eta_i = \alpha + \beta \xi_i$$（其中 $$\eta_i = \mathrm{E}(Y_i \mid \xi_i)$$）在函数关系模型或结构关系模型中都是一个函数（被假设的）关系。
-
 另一方面，结构关系是由问题被假设的结构所产生的关系。于是在结构关系模型中，关系 $$\eta = \mathrm{E} Y_i = \alpha + \beta \xi = \alpha + \beta \mathrm{E} X_i$$ 可以从模型的结构推得；因此它是结构关系。
-
 为把这些想法弄得更清楚，考虑简单线性回归中我们假设 $$x$$ 无误差的情形。方程 $$\mathrm{E}(Y_i \mid x_i) = \alpha + \beta x_i$$ 是函数关系：一个被假设存在于 $$\mathrm{E}(Y_i \mid x_i)$$ 与 $$x_i$$ 之间的关系。但我们也可以在数对 $$(X_i, Y_i)$$ 服从二元正态分布、并以诸 $$x_i$$ 为条件进行操作的假设下做简单线性回归。此时关系 $$\mathrm{E}(Y_i \mid x_i) = \alpha + \beta x_i$$ 从被假设模型的结构得出，因此是结构关系。
-
 注意按这些含义，术语上的区分成了品味问题。在任何模型中我们都可以从函数关系推出结构关系，反之亦然。重要的区分是：讨厌参数 $$\xi_i$$ 是否在做推断**之前**被积分掉。
-
 ### 12.6.2 EIV 模型中普通最小二乘的相合性（Consistency of Ordinary Least Squares in EIV Models）
-
 一般而言，用普通最小二乘估计量估计 EIV 回归中的斜率不是好主意，因为该估计量不相合。设我们假设线性结构关系 (12.2.6)。有
-
 $$
 \begin{aligned}
 \hat{\beta} &= \frac{\sum_{i=1}^{n} (X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^{n} (X_i - \bar{X})^2}
@@ -1298,43 +1032,28 @@ $$
 &= \frac{\beta \sigma_\xi^2}{\sigma_\delta^2 + \sigma_\xi^2} \qquad （\text{由} (12.2.19)）,
 \end{aligned}
 $$
-
 这表明 $$\hat{\beta}$$ 不可能相合。在函数关系情形可以得到同类结果。
-
 $$\hat{\beta}$$ 在 EIV 模型中的行为见 Cochran (1968)。Carroll, Gallo, and Gleser (1985) 与 Gleser, Carroll, and Gallo (1987) 研究了普通最小二乘估计量的哪些函数是相合的条件。
-
 ### 12.6.3 EIV 模型中的工具变量（Instrumental Variables in EIV Models）
-
 工具变量（instrumental variables）的概念至少可以追溯到 Wald (1940)，他借助工具变量构造了斜率的相合估计量。为看清什么是工具变量，把 EIV 模型写成
-
 $$
 Y_i = \alpha + \beta \xi_i + \varepsilon_i,
 \qquad
 X_i = \xi_i + \delta_i,
 $$
-
 并做代数得
-
 $$
 Y_i = \alpha + \beta X_i + \bigl[ \varepsilon_i - \beta \delta_i \bigr].
 $$
-
 工具变量 $$Z_i$$ 是一个能很好地预测 $$X_i$$ 但与 $$\nu_i = \varepsilon_i - \beta \delta_i$$ 不相关的随机变量。若能找到这样的变量，就可以用它改进预测；特别地，可以用它构造 $$\beta$$ 的相合估计量。
-
 Wald (1940) 证明：在相当一般的条件下，估计量
-
 $$
 \hat{\beta}_W = \frac{\bar{Y}^{(1)} - \bar{Y}^{(2)}}{\bar{X}^{(1)} - \bar{X}^{(2)}}
 $$
-
 在可识别模型中是 $$\beta$$ 的相合估计量，其中下标指数据的两个分组。一个只取两个值以定义分组的变量 $$Z_i$$ 就是一个工具变量。Wald 估计量的讨论见 Moran (1971)。
-
 尽管工具变量可以有很大帮助，与它们的使用相关也可能有问题。例如 Feldstein (1974) 给出了使用工具变量反而有害的例子。Moran (1971) 讨论了验证简单估计量（如 $$\hat{\beta}_W$$）相合性所需条件的困难。Fuller (1987) 对工具变量作了深入讨论。Berkson (1950) 提出的模型利用了与工具变量类似的相关结构。
-
 ### 12.6.4 Logistic 似然方程（Logistic Likelihood Equations）
-
 logistic 回归模型中，似然方程关于参数非线性，必须数值求解。求解这些方程最常用的方法是 Newton–Raphson 方法。该方法从 MLE 值的一个初始猜测 $$(\hat{\alpha}^{(1)}, \hat{\beta}^{(1)})$$ 开始；然后用二次函数——对数似然在点 $$(\hat{\alpha}^{(1)}, \hat{\beta}^{(1)})$$ 处的二阶 Taylor 展开——近似对数似然，取这个二次函数的最大值作为 MLE 的下一个猜测 $$(\hat{\alpha}^{(2)}, \hat{\beta}^{(2)})$$；再做另一个二次近似，这次以 $$(\hat{\alpha}^{(2)}, \hat{\beta}^{(2)})$$ 为中心，其最大值是下一次猜测。Taylor 级数近似涉及对数似然的一、二阶导数，它们在当前猜测 $$(\hat{\alpha}^{(t)}, \hat{\beta}^{(t)})$$ 处取值；这些正是 (12.3.10) 信息矩阵中出现的二阶导数。因此这种解似然方程的方法的一个副产品是 $$\hat{\alpha}$$ 与 $$\hat{\beta}$$ 的方差与协方差的估计。对 logistic 回归模型，猜测 $$(\hat{\alpha}^{(t)}, \hat{\beta}^{(t)})$$ 向 MLE $$(\hat{\alpha}, \hat{\beta})$$ 的收敛通常很快，往往只需几步迭代就能得到满意的近似。
-
 Newton–Raphson 方法也称为迭代重加权最小二乘（iteratively reweighted least squares）。在每个阶段，$$(\hat{\alpha}, \hat{\beta})$$ 的下一猜测可以表示为一个最小二乘问题的解；但这是一个在平方和函数中给不同项赋予不同权重的最小二乘问题。这里的权重是 $$n_j F_j^{(t)}(1 - F_j^{(t)})$$，其中 $$F_j^{(t)} = F(\hat{\alpha}^{(t)} + \hat{\beta}^{(t)} x_j)$$，$$F$$ 是 logistic cdf。这是第 $$j$$ 个样本 logit 方差近似的倒数（习题 12.21）。由于每次使用 MLE 的当前猜测，权重在每个阶段重新计算——这就是“迭代重加权”这个名字的由来。因此 Newton–Raphson 方法近似地相当于：把样本 logits 当作数据、用加权最小二乘估计参数。
 
 ### 12.6.5 再谈稳健回归（More on Robust Regression）

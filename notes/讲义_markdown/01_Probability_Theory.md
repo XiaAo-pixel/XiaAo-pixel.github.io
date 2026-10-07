@@ -79,20 +79,20 @@ $$
 > 考虑从一副标准扑克牌中随机抽取一张并记录其花色的试验：梅花（C）、方块（D）、红心（H）、黑桃（S）。样本空间为
 >
 > $$
-> S = \{C, D, H, S\},
-> $$
+S = \{C, D, H, S\},
+$$
 >
 > 一些可能的事件为
 >
 > $$
-> A = \{C, D\} \quad\text{与}\quad B = \{D, H, S\}.
-> $$
+A = \{C, D\} \quad\text{与}\quad B = \{D, H, S\}.
+$$
 >
 > 由这些事件可以构成
 >
 > $$
-> A \cup B = \{C, D, H, S\}, \qquad A \cap B = \{D\}, \qquad A^c = \{H, S\}.
-> $$
+A \cup B = \{C, D, H, S\}, \qquad A \cap B = \{D\}, \qquad A^c = \{H, S\}.
+$$
 >
 > 进一步注意 $$A \cup B = S$$（即整个样本空间这一事件），且 $$(A \cup B)^c = \varnothing$$，其中 $$\varnothing$$ 表示空集（不含任何元素的集合）。
 
@@ -105,49 +105,49 @@ $$
 > - a. ***交换律***（Commutativity）：
 >
 >   $$
->   A \cup B = B \cup A, \qquad A \cap B = B \cap A;
->   $$
+  A \cup B = B \cup A, \qquad A \cap B = B \cap A;
+  $$
 >
 > - b. ***结合律***（Associativity）：
 >
 >   $$
->   A \cup (B \cup C) = (A \cup B) \cup C, \qquad A \cap (B \cap C) = (A \cap B) \cap C;
->   $$
+  A \cup (B \cup C) = (A \cup B) \cup C, \qquad A \cap (B \cap C) = (A \cap B) \cap C;
+  $$
 >
 > - c. ***分配律***（Distributive Laws）：
 >
 >   $$
->   A \cap (B \cup C) = (A \cap B) \cup (A \cap C), \qquad A \cup (B \cap C) = (A \cup B) \cap (A \cup C);
->   $$
+  A \cap (B \cup C) = (A \cap B) \cup (A \cap C), \qquad A \cup (B \cap C) = (A \cup B) \cap (A \cup C);
+  $$
 >
 > - d. ***德摩根律***（DeMorgan's Laws）：
 >
 >   $$
->   (A \cup B)^c = A^c \cap B^c, \qquad (A \cap B)^c = A^c \cup B^c.
->   $$
+  (A \cup B)^c = A^c \cap B^c, \qquad (A \cap B)^c = A^c \cup B^c.
+  $$
 >
 >
 > **证明**　本定理的大部分证明留作习题 1.3；习题 1.9 与 1.10 还将把这一定理推广。为说明证明方法，这里证明分配律
 >
 > $$
-> A \cap (B \cup C) = (A \cap B) \cup (A \cap C).
-> $$
+A \cap (B \cup C) = (A \cap B) \cup (A \cap C).
+$$
 >
 > （读者也许熟悉用维恩图（Venn diagram）来“证明”集合论定理。我们要提醒：维恩图虽有助于把情形可视化，但不构成形式证明。）要证明两个集合相等，必须证明彼此互相包含。形式地，
 >
 > $$
-> A \cap (B \cup C) = \{x \in S : x \in A \ \text{且}\ x \in (B \cup C)\};
-> $$
+A \cap (B \cup C) = \{x \in S : x \in A \ \text{且}\ x \in (B \cup C)\};
+$$
 >
 > $$
-> (A \cap B) \cup (A \cap C) = \{x \in S : x \in (A \cap B)\ \text{或}\ x \in (A \cap C)\}.
-> $$
+(A \cap B) \cup (A \cap C) = \{x \in S : x \in (A \cap B)\ \text{或}\ x \in (A \cap C)\}.
+$$
 >
 > 先证 $$A \cap (B \cup C) \subset (A \cap B) \cup (A \cap C)$$。设 $$x \in A \cap (B \cup C)$$。由交的定义必有 $$x \in B \cup C$$，即 $$x \in B$$ 或 $$x \in C$$。又因 $$x \in A$$，故 $$x \in A \cap B$$ 或 $$x \in A \cap C$$，从而
 >
 > $$
-> x \in (A \cap B) \cup (A \cap C),
-> $$
+x \in (A \cap B) \cup (A \cap C),
+$$
 >
 > 包含关系得证。再设 $$x \in (A \cap B) \cup (A \cap C)$$，则 $$x \in A \cap B$$ 或 $$x \in A \cap C$$。若 $$x \in A \cap B$$，则 $$x$$ 同时属于 $$A$$ 与 $$B$$；由 $$x \in B$$ 得 $$x \in B \cup C$$，故 $$x \in A \cap (B \cup C)$$。若 $$x \in A \cap C$$，论证类似，同样得到 $$x \in A \cap (B \cup C)$$。于是 $$(A \cap B) \cup (A \cap C) \subset A \cap (B \cup C)$$，另一方向的包含关系成立，分配律得证。 ∎
 
@@ -232,18 +232,18 @@ $$
 > 若 $$S$$ 有限或可数，则上述技术性困难实际上不会出现，因为对给定的样本空间 $$S$$ 我们可以定义
 >
 > $$
-> \mathcal{B} = \{S \ \text{的全部子集，包括}\ S \ \text{本身}\}.
-> $$
+\mathcal{B} = \{S \ \text{的全部子集，包括}\ S \ \text{本身}\}.
+$$
 >
 > 若 $$S$$ 有 $$n$$ 个元素，则 $$\mathcal{B}$$ 中有 $$2^n$$ 个集合（见习题 1.14）。例如 $$S = \{1, 2, 3\}$$，则 $$\mathcal{B}$$ 是由下列 $$2^3 = 8$$ 个集合组成的族：
 >
 > $$
-> \begin{array}{ccc}
-> \{1\} & \{1,2\} & \{1,2,3\} \\
-> \{2\} & \{1,3\} & \varnothing \\
-> \{3\} & \{2,3\} &
-> \end{array}
-> $$
+\begin{array}{ccc}
+\{1\} & \{1,2\} & \{1,2,3\} \\
+\{2\} & \{1,3\} & \varnothing \\
+\{3\} & \{2,3\} &
+\end{array}
+$$
 
 一般地，若 $$S$$ 不可数，则描述 $$\mathcal{B}$$ 并非易事。不过，$$\mathcal{B}$$ 被选为包含所有我们感兴趣的集合。
 
@@ -252,8 +252,8 @@ $$
 > 设 $$S = (-\infty, \infty)$$ 即实数轴，则选取 $$\mathcal{B}$$ 使其包含所有如下形式的集合
 >
 > $$
-> [a, b],\quad (a, b],\quad (a, b),\quad [a, b)
-> $$
+[a, b],\quad (a, b],\quad (a, b),\quad [a, b)
+$$
 >
 > 其中 $$a, b$$ 为任意实数。并且由 $$\mathcal{B}$$ 的性质可知，$$\mathcal{B}$$ 还包含由上述各类集合经过（可能是可数无限的）并与交所能构成的一切集合。
 
@@ -276,14 +276,14 @@ $$
 > 考虑抛一枚均匀硬币这一简单试验，$$S = \{H, T\}$$。所谓“均匀”硬币，是指一枚平衡良好的硬币，落地时正面朝上与反面朝上的可能性相同，因此合理的概率函数是对正面与反面赋以相同概率，即
 >
 > $$
-> P(\{H\}) = P(\{T\}). \tag{1.2.2}
-> $$
+P(\{H\}) = P(\{T\}). \tag{1.2.2}
+$$
 >
 > 注意 (1.2.2) 并非由概率公理推出，而是在公理之外施加的：我们运用了对概率的对称性解释（或仅凭直觉），要求正面与反面等可能。由于 $$S = \{H\} \cup \{T\}$$，由公理 2 有 $$P(\{H\} \cup \{T\}) = 1$$；又 $$\{H\}$$ 与 $$\{T\}$$ 不相交，故 $$P(\{H\} \cup \{T\}) = P(\{H\}) + P(\{T\})$$，于是
 >
 > $$
-> P(\{H\}) + P(\{T\}) = 1. \tag{1.2.3}
-> $$
+P(\{H\}) + P(\{T\}) = 1. \tag{1.2.3}
+$$
 >
 > 联立 (1.2.2) 与 (1.2.3) 解得 $$P(\{H\}) = P(\{T\}) = \tfrac{1}{2}$$。
 >
@@ -296,22 +296,22 @@ $$
 > 设 $$S = \{s_1, \ldots, s_n\}$$ 为有限集，$$\mathcal{B}$$ 是 $$S$$ 的子集构成的任一 sigma 代数。设 $$p_1, \ldots, p_n$$ 是和为 1 的非负数。对任意 $$A \in \mathcal{B}$$，定义
 >
 > $$
-> P(A) = \sum_{\{i : s_i \in A\}} p_i
-> $$
+P(A) = \sum_{\{i : s_i \in A\}} p_i
+$$
 >
 > （对空集求和定义为 0）。则 $$P$$ 是 $$\mathcal{B}$$ 上的概率函数。当 $$S = \{s_1, s_2, \ldots\}$$ 为可数集时结论仍然成立。
 >
 > **证明**　我们给出 $$S$$ 有限时的证明。对任意 $$A \in \mathcal{B}$$，$$P(A) = \sum_{\{i : s_i \in A\}} p_i \geq 0$$，因为每个 $$p_i \geq 0$$，故公理 1 成立。又
 >
 > $$
-> P(S) = \sum_{\{i : s_i \in S\}} p_i = \sum_{i=1}^{n} p_i = 1,
-> $$
+P(S) = \sum_{\{i : s_i \in S\}} p_i = \sum_{i=1}^{n} p_i = 1,
+$$
 >
 > 故公理 2 成立。设 $$A_1, \ldots, A_k$$ 为两两不相交的事件（$$\mathcal{B}$$ 只含有限多个集合，故只需考虑有限的不相交并），则
 >
 > $$
-> P\Bigl( \bigcup_{i=1}^{k} A_i \Bigr) = \sum_{\{j : s_j \in \cup_{i=1}^{k} A_i\}} p_j = \sum_{i=1}^{k} \sum_{\{j : s_j \in A_i\}} p_j = \sum_{i=1}^{k} P(A_i).
-> $$
+P\Bigl( \bigcup_{i=1}^{k} A_i \Bigr) = \sum_{\{j : s_j \in \cup_{i=1}^{k} A_i\}} p_j = \sum_{i=1}^{k} \sum_{\{j : s_j \in A_i\}} p_j = \sum_{i=1}^{k} P(A_i).
+$$
 >
 > 第一个与第三个等式由 $$P(A)$$ 的定义保证；$$A_i$$ 的两两不相交性保证第二个等式成立，因为同一个 $$p_j$$ 在等式两侧恰好各出现一次。因此公理 3 成立，柯尔莫哥洛夫公理全部满足。 ∎
 
@@ -324,20 +324,20 @@ $$
 > 参见图 1.2.1，镖盘半径为 $$r$$，相邻圆环间距为 $$r/5$$。若假设飞镖必然命中镖盘（习题 1.7 考虑放弃这一假设的变式），则
 >
 > $$
-> P(\text{得}\ i\ \text{分}) = \frac{\text{区域}\ i\ \text{的面积}}{\text{镖盘总面积}}.
-> $$
+P(\text{得}\ i\ \text{分}) = \frac{\text{区域}\ i\ \text{的面积}}{\text{镖盘总面积}}.
+$$
 >
 > 例如
 >
 > $$
-> P(\text{得 1 分}) = \frac{\pi r^2 - \pi (4r/5)^2}{\pi r^2} = 1 - \Bigl( \frac{4}{5} \Bigr)^{2}.
-> $$
+P(\text{得 1 分}) = \frac{\pi r^2 - \pi (4r/5)^2}{\pi r^2} = 1 - \Bigl( \frac{4}{5} \Bigr)^{2}.
+$$
 >
 > 容易导出一般公式：
 >
 > $$
-> P(\text{得}\ i\ \text{分}) = \frac{(6-i)^2 - (5-i)^2}{5^2}, \qquad i = 1, \ldots, 5,
-> $$
+P(\text{得}\ i\ \text{分}) = \frac{(6-i)^2 - (5-i)^2}{5^2}, \qquad i = 1, \ldots, 5,
+$$
 >
 > 它与 $$\pi$$ 和 $$r$$ 都无关。各不相交区域的面积之和等于镖盘总面积，故赋给五个结果的概率之和为 1，由定理 1.2.6 知这是一个概率函数（习题 1.8）。
 
@@ -354,8 +354,8 @@ $$
 > 若 $$A \in \mathcal{B}$$ 且 $$B \in \mathcal{B}$$ 不相交，则
 >
 > $$
-> P(A \cup B) = P(A) + P(B).
-> $$
+P(A \cup B) = P(A) + P(B).
+$$
 
 虽然这一公理也未必完全不证自明，但它肯定比可数可加性公理简单（并且是后者的推论——见习题 1.12）。
 
@@ -381,20 +381,20 @@ $$
 > **证明**　先证 (c) 最方便。集合 $$A$$ 与 $$A^c$$ 构成样本空间的一个分割，即 $$S = A \cup A^c$$。于是由第二公理
 >
 > $$
-> P(A \cup A^c) = P(S) = 1, \tag{1.2.4}
-> $$
+P(A \cup A^c) = P(S) = 1, \tag{1.2.4}
+$$
 >
 > 又 $$A$$ 与 $$A^c$$ 不相交，由第三公理
 >
 > $$
-> P(A \cup A^c) = P(A) + P(A^c). \tag{1.2.5}
-> $$
+P(A \cup A^c) = P(A) + P(A^c). \tag{1.2.5}
+$$
 >
 > 联立 (1.2.4) 与 (1.2.5) 即得 (c)。由 $$P(A^c) \geq 0$$ 及 (c) 立得 (b)。证 (a) 时对 $$S = S \cup \varnothing$$ 作类似论证（回顾 $$S$$ 与 $$\varnothing$$ 总在 $$\mathcal{B}$$ 中）。$$S$$ 与 $$\varnothing$$ 不相交，故
 >
 > $$
-> 1 = P(S) = P(S \cup \varnothing) = P(S) + P(\varnothing),
-> $$
+1 = P(S) = P(S \cup \varnothing) = P(S) + P(\varnothing),
+$$
 >
 > 从而 $$P(\varnothing) = 0$$。 ∎
 
@@ -414,36 +414,36 @@ $$
 > **证明**　为证 (a)，注意对任意集合 $$A$$、$$B$$ 有
 >
 > $$
-> B = \{B \cap A\} \cup \{B \cap A^c\},
-> $$
+B = \{B \cap A\} \cup \{B \cap A^c\},
+$$
 >
 > 故
 >
 > $$
-> P(B) = P(\{B \cap A\} \cup \{B \cap A^c\}) = P(B \cap A) + P(B \cap A^c), \tag{1.2.6}
-> $$
+P(B) = P(\{B \cap A\} \cup \{B \cap A^c\}) = P(B \cap A) + P(B \cap A^c), \tag{1.2.6}
+$$
 >
 > 最后一个等式由 $$B \cap A$$ 与 $$B \cap A^c$$ 不相交得到。移项即得 (a)。
 >
 > 为证 (b)，使用恒等式
 >
 > $$
-> A \cup B = A \cup \{B \cap A^c\}. \tag{1.2.7}
-> $$
+A \cup B = A \cup \{B \cap A^c\}. \tag{1.2.7}
+$$
 >
 > 画维恩图可以看出 (1.2.7) 为何成立，形式证明也不难（见习题 1.2）。利用 (1.2.7) 及 $$A$$ 与 $$B \cap A^c$$ 不相交（因为 $$A$$ 与 $$A^c$$ 不相交），得
 >
 > $$
-> P(A \cup B) = P(A) + P(B \cap A^c) = P(A) + P(B) - P(A \cap B), \tag{1.2.8}
-> $$
+P(A \cup B) = P(A) + P(B \cap A^c) = P(A) + P(B) - P(A \cap B), \tag{1.2.8}
+$$
 >
 > 最后一步用了 (a)。
 >
 > 若 $$A \subset B$$，则 $$A \cap B = A$$，于是用 (a) 得
 >
 > $$
-> 0 \leq P(B \cap A^c) = P(B) - P(A),
-> $$
+0 \leq P(B \cap A^c) = P(B) - P(A),
+$$
 >
 > (c) 得证。 ∎
 
@@ -460,8 +460,8 @@ $$
 > 当交概率难以（甚至不可能）计算、但希望了解其大致规模时，邦费罗尼不等式特别有用。设 $$A$$、$$B$$ 是两个事件，各自概率为 $$0.95$$，则两者同时发生的概率有下界
 >
 > $$
-> P(A \cap B) \geq P(A) + P(B) - 1 = 0.95 + 0.95 - 1 = 0.90.
-> $$
+P(A \cap B) \geq P(A) + P(B) - 1 = 0.95 + 0.95 - 1 = 0.90.
+$$
 >
 > 注意：除非各单个事件的概率足够大，邦费罗尼下界会是一个无用（但正确！）的负数。
 
@@ -479,54 +479,54 @@ $$
 > **证明**　因 $$C_1, C_2, \ldots$$ 构成分割，故对一切 $$i \neq j$$ 有 $$C_i \cap C_j = \varnothing$$，且 $$S = \bigcup_{i=1}^{\infty} C_i$$。于是
 >
 > $$
-> A = A \cap S = A \cap \Bigl( \bigcup_{i=1}^{\infty} C_i \Bigr) = \bigcup_{i=1}^{\infty} (A \cap C_i),
-> $$
+A = A \cap S = A \cap \Bigl( \bigcup_{i=1}^{\infty} C_i \Bigr) = \bigcup_{i=1}^{\infty} (A \cap C_i),
+$$
 >
 > 最后一个等式由分配律（定理 1.1.4）得到。因此
 >
 > $$
-> P(A) = P\Bigl( \bigcup_{i=1}^{\infty} (A \cap C_i) \Bigr).
-> $$
+P(A) = P\Bigl( \bigcup_{i=1}^{\infty} (A \cap C_i) \Bigr).
+$$
 >
 > 由于诸 $$C_i$$ 不相交，诸 $$A \cap C_i$$ 也不相交，由概率函数的性质得
 >
 > $$
-> P\Bigl( \bigcup_{i=1}^{\infty} (A \cap C_i) \Bigr) = \sum_{i=1}^{\infty} P(A \cap C_i),
-> $$
+P\Bigl( \bigcup_{i=1}^{\infty} (A \cap C_i) \Bigr) = \sum_{i=1}^{\infty} P(A \cap C_i),
+$$
 >
 > (a) 得证。
 >
 > 为证 (b)，先构造一列两两不相交的集合 $$A_1^{*}, A_2^{*}, \ldots$$，满足 $$\bigcup_{i=1}^{\infty} A_i^{*} = \bigcup_{i=1}^{\infty} A_i$$。定义
 >
 > $$
-> A_1^{*} = A_1, \qquad A_i^{*} = A_i \setminus \bigcup_{j=1}^{i-1} A_j, \qquad i = 2, 3, \ldots,
-> $$
+A_1^{*} = A_1, \qquad A_i^{*} = A_i \setminus \bigcup_{j=1}^{i-1} A_j, \qquad i = 2, 3, \ldots,
+$$
 >
 > 其中记号 $$A \setminus B$$ 表示 $$A$$ 中不与 $$B$$ 相交的部分，用更熟悉的符号写即 $$A \setminus B = A \cap B^c$$。易见 $$\bigcup_{i=1}^{\infty} A_i^{*} = \bigcup_{i=1}^{\infty} A_i$$，故
 >
 > $$
-> P\Bigl( \bigcup_{i=1}^{\infty} A_i \Bigr) = P\Bigl( \bigcup_{i=1}^{\infty} A_i^{*} \Bigr) = \sum_{i=1}^{\infty} P(A_i^{*}),
-> $$
+P\Bigl( \bigcup_{i=1}^{\infty} A_i \Bigr) = P\Bigl( \bigcup_{i=1}^{\infty} A_i^{*} \Bigr) = \sum_{i=1}^{\infty} P(A_i^{*}),
+$$
 >
 > 最后一个等式由 $$A_i^{*}$$ 两两不相交得到。为验证不相交性，写
 >
 > $$
-> A_i^{*} \cap A_k^{*} = \Bigl( A_i \setminus \bigcup_{j=1}^{i-1} A_j \Bigr) \cap \Bigl( A_k \setminus \bigcup_{j=1}^{k-1} A_j \Bigr) \qquad \text{（$$A_i^{*}$$ 的定义）}
-> $$
+A_i^{*} \cap A_k^{*} = \Bigl( A_i \setminus \bigcup_{j=1}^{i-1} A_j \Bigr) \cap \Bigl( A_k \setminus \bigcup_{j=1}^{k-1} A_j \Bigr) \qquad \text{（$$A_i^{*}$$ 的定义）}
+$$
 >
 > $$
-> = \Bigl( A_i \cap \bigcup_{j=1}^{i-1} A_j \Bigr)^{c} \cap \Bigl( A_k \cap \bigcup_{j=1}^{k-1} A_j \Bigr)^{c} \qquad \text{（记号 } \setminus \text{ 的定义）}
-> $$
+= \Bigl( A_i \cap \bigcup_{j=1}^{i-1} A_j \Bigr)^{c} \cap \Bigl( A_k \cap \bigcup_{j=1}^{k-1} A_j \Bigr)^{c} \qquad \text{（记号 } \setminus \text{ 的定义）}
+$$
 >
 > $$
-> = A_i \cap \Bigl( \bigcup_{j=1}^{i-1} A_j \Bigr)^{c} \cap A_k \cap \Bigl( \bigcup_{j=1}^{k-1} A_j \Bigr)^{c}. \qquad \text{（德摩根律）}
-> $$
+= A_i \cap \Bigl( \bigcup_{j=1}^{i-1} A_j \Bigr)^{c} \cap A_k \cap \Bigl( \bigcup_{j=1}^{k-1} A_j \Bigr)^{c}. \qquad \text{（德摩根律）}
+$$
 >
 > 若 $$i > k$$，则上式第一个补集所含的 $$\bigcup_{j=1}^{i-1} A_j$$ 包含 $$A_k$$，从而与 $$A_k$$ 的交为空；若 $$k > i$$，论证类似。又由构造知 $$A_i^{*} \subset A_i$$，故 $$P(A_i^{*}) \leq P(A_i)$$，从而
 >
 > $$
-> \sum_{i=1}^{\infty} P(A_i^{*}) \leq \sum_{i=1}^{\infty} P(A_i),
-> $$
+\sum_{i=1}^{\infty} P(A_i^{*}) \leq \sum_{i=1}^{\infty} P(A_i),
+$$
 >
 > (b) 得证。 ∎
 
@@ -571,8 +571,8 @@ $$
 > **证明**　只需对 $$k = 2$$ 证明（一般情形见习题 1.15，可用归纳法）。证明只是细心的枚举：第一个任务有 $$n_1$$ 种完成方式，对其中每一种方式，第二个任务都有 $$n_2$$ 种选择。因此整项工作可以完成的方式数为
 >
 > $$
-> \underbrace{(1 \times n_2) + (1 \times n_2) + \cdots + (1 \times n_2)}_{n_1 \ \text{项}} = n_1 \times n_2,
-> $$
+\underbrace{(1 \times n_2) + (1 \times n_2) + \cdots + (1 \times n_2)}_{n_1 \ \text{项}} = n_1 \times n_2,
+$$
 >
 > 定理对 $$k = 2$$ 得证。 ∎
 
@@ -595,8 +595,8 @@ $$
 > 对正整数 $$n$$，$$n!$$（读作 $$n$$ 的阶乘）是不超过 $$n$$ 的全部正整数的乘积，即
 >
 > $$
-> n! = n \times (n-1) \times (n-2) \times \cdots \times 3 \times 2 \times 1.
-> $$
+n! = n \times (n-1) \times (n-2) \times \cdots \times 3 \times 2 \times 1.
+$$
 >
 > 另外定义 $$0! = 1$$。
 
@@ -650,8 +650,8 @@ $$
 > 对非负整数 $$n$$ 与 $$r$$，$$n \geq r$$，定义符号 $$\dbinom{n}{r}$$（读作“$$n$$ 选 $$r$$”，$$n$$ choose $$r$$）为
 >
 > $$
-> \binom{n}{r} = \frac{n!}{r!\,(n-r)!}.
-> $$
+\binom{n}{r} = \frac{n!}{r!\,(n-r)!}.
+$$
 
 彩票例子中（无序、无放回）可能的彩票数即 $$\dbinom{44}{6}$$。这些数也称为***二项式系数***（binomial coefficients），缘由将在第 3 章揭晓。
 
@@ -672,38 +672,38 @@ $$
 > 现在通过数事件中的结果来计算几个概率。拿到四张 A 的概率是多少？含四张 A 的手牌有多少种？既然已指定四张是 A，第五张牌有 48 种取法，故
 >
 > $$
-> P(\text{四张 A}) = \frac{48}{2{,}598{,}960},
-> $$
+P(\text{四张 A}) = \frac{48}{2{,}598{,}960},
+$$
 >
 > 不到五万分之一。稍复杂一点的计数（利用定理 1.2.14）可算出“四条”（four of a kind）的概率：指定是哪个点数凑成四张有 13 种方式；指定这四张牌后，第五张有 48 种取法。故四条手牌总数为 $$13 \times 48$$，从而
 >
 > $$
-> P(\text{四条}) = \frac{13 \times 48}{2{,}598{,}960} = \frac{624}{2{,}598{,}960}.
-> $$
+P(\text{四条}) = \frac{13 \times 48}{2{,}598{,}960} = \frac{624}{2{,}598{,}960}.
+$$
 >
 > 要计算“恰好一对”（不是两对、不是三条等）的概率，需把几种计数技术组合起来。恰好含一对的手牌数为
 >
 > $$
-> \binom{13}{1}\binom{4}{2}\binom{12}{3}4^3 = 1{,}098{,}240. \tag{1.2.11}
-> $$
+\binom{13}{1}\binom{4}{2}\binom{12}{3}4^3 = 1{,}098{,}240. \tag{1.2.11}
+$$
 >
 > 表达式 (1.2.11) 来自定理 1.2.14，因为
 >
 > $$
-> \binom{13}{1} = \text{指定对子点数的方式数，} \qquad
-> \binom{4}{2} = \text{从该点数的四张中指定两张的方式数，}
-> $$
+\binom{13}{1} = \text{指定对子点数的方式数，} \qquad
+\binom{4}{2} = \text{从该点数的四张中指定两张的方式数，}
+$$
 >
 > $$
-> \binom{12}{3} = \text{指定其余三个点数的方式数，} \qquad
-> 4^3 = \text{从这三个点数中各指定一张的方式数}.
-> $$
+\binom{12}{3} = \text{指定其余三个点数的方式数，} \qquad
+4^3 = \text{从这三个点数中各指定一张的方式数}.
+$$
 >
 > 于是
 >
 > $$
-> P(\text{恰好一对}) = \frac{1{,}098{,}240}{2{,}598{,}960}.
-> $$
+P(\text{恰好一对}) = \frac{1{,}098{,}240}{2{,}598{,}960}.
+$$
 
 在例 1.2.18 那样的无放回抽样中，若要计算的事件与顺序无关，则用有序或无序样本空间皆可。无序样本空间中的每个结果对应有序样本空间中的 $$r!$$ 个结果，故在有序样本空间中计数时，分子分母都会多出一个 $$r!$$ 因子并相互消去，得到与在无序样本空间中计数相同的概率。
 
@@ -732,8 +732,8 @@ $$
 > 作为可分辨/不可分辨方法的一个说明，设我们要从
 >
 > $$
-> 2,\ 4,\ 9,\ 12
-> $$
+2,\ 4,\ 9,\ 12
+$$
 >
 > 中有放回地抽取四个数，枚举所有可能的平均值。例如可能的抽取为 $$\{2,4,4,9\}$$（平均 4.75）与 $$\{4,4,9,9\}$$（平均 6.5）。若只关心抽样数值的平均值，则顺序不重要，故不同样本总数按“无序、有放回”方式计数。不同样本总数为 $$\binom{n+n-1}{n}$$。但为计算样本平均值的概率分布，必须数出某个特定平均值能以多少种方式出现。
 >
@@ -767,16 +767,16 @@ $$
 > 从一副洗匀的牌顶发四张牌，拿到四张 A 的概率是多少？用上节方法计算：不同的四张牌组共有
 >
 > $$
-> \binom{52}{4} = 270{,}725
-> $$
+\binom{52}{4} = 270{,}725
+$$
 >
 > 组，其中只有一组是四张 A，且每组等可能，故拿到四张 A 的概率为 $$1/270{,}725$$。
 >
 > 也可以用“更新”的论证来计算：第一张牌是 A 的概率为 $$4/52$$；已知第一张是 A，第二张是 A 的概率为 $$3/51$$（剩下 3 张 A 和 51 张牌）。继续这一论证，得所求概率
 >
 > $$
-> \frac{4}{52} \times \frac{3}{51} \times \frac{2}{50} \times \frac{1}{49} = \frac{1}{270{,}725}.
-> $$
+\frac{4}{52} \times \frac{3}{51} \times \frac{2}{50} \times \frac{1}{49} = \frac{1}{270{,}725}.
+$$
 
 第二种解法在每抽一张牌后都更新了样本空间——我们计算的是条件概率。
 
@@ -785,8 +785,8 @@ $$
 > 若 $$A$$ 与 $$B$$ 是 $$S$$ 中的事件且 $$P(B) > 0$$，则***给定 $$B$$ 时 $$A$$ 的条件概率***（conditional probability of $$A$$ given $$B$$），记作 $$P(A \mid B)$$，定义为
 >
 > $$
-> P(A \mid B) = \frac{P(A \cap B)}{P(B)}. \tag{1.3.1}
-> $$
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}. \tag{1.3.1}
+$$
 
 注意条件概率计算中发生的事情：$$B$$ 成了新的样本空间，$$P(B \mid B) = 1$$。直观上，原样本空间 $$S$$ 被更新为 $$B$$，此后一切发生都以与 $$B$$ 的关系来度量。特别地，看互斥集的条件概率会发生什么：设 $$A$$ 与 $$B$$ 互斥，则 $$P(A \cap B) = 0$$，于是 $$P(A \mid B) = P(B \mid A) = 0$$。
 
@@ -795,26 +795,26 @@ $$
 > 拿全四张 A 的概率虽然很小，但让我们看看在已拿到一些 A 的条件下，条件概率如何变化。仍从洗匀的牌中发四张，现计算
 >
 > $$
-> P(\text{4 张牌中有 4 张 A} \mid i\ \text{张牌中有}\ i\ \text{张 A}), \qquad i = 1, 2, 3.
-> $$
+P(\text{4 张牌中有 4 张 A} \mid i\ \text{张牌中有}\ i\ \text{张 A}), \qquad i = 1, 2, 3.
+$$
 >
 > 事件 $$\{\text{4 张牌中有 4 张 A}\}$$ 是事件 $$\{\text{i 张牌中有 i 张 A}\}$$ 的子集。故由条件概率定义 (1.3.1)，
 >
 > $$
-> P(\text{4 张 A} \mid i\ \text{张 A}) = \frac{P(\{\text{4 张 A}\} \cap \{i\ \text{张 A}\})}{P(i\ \text{张 A})} = \frac{P(\text{4 张 A})}{P(i\ \text{张 A})}.
-> $$
+P(\text{4 张 A} \mid i\ \text{张 A}) = \frac{P(\{\text{4 张 A}\} \cap \{i\ \text{张 A}\})}{P(i\ \text{张 A})} = \frac{P(\text{4 张 A})}{P(i\ \text{张 A})}.
+$$
 >
 > 分子已经算过；分母可用类似论证计算：$$i$$ 张牌的不同组数为 $$\binom{52}{i}$$，且
 >
 > $$
-> P(i\ \text{张牌中有}\ i\ \text{张 A}) = \binom{4}{i} \Big/ \binom{52}{i}.
-> $$
+P(i\ \text{张牌中有}\ i\ \text{张 A}) = \binom{4}{i} \Big/ \binom{52}{i}.
+$$
 >
 > 于是条件概率为
 >
 > $$
-> P(\text{4 张 A} \mid i\ \text{张 A}) = \frac{\binom{52}{i}}{\binom{52}{4}\binom{4}{i}} = \frac{(4-i)!\,48!}{(52-i)!} = \frac{1}{\binom{52-i}{4-i}}.
-> $$
+P(\text{4 张 A} \mid i\ \text{张 A}) = \frac{\binom{52}{i}}{\binom{52}{4}\binom{4}{i}} = \frac{(4-i)!\,48!}{(52-i)!} = \frac{1}{\binom{52-i}{4-i}}.
+$$
 >
 > 当 $$i = 1, 2, 3$$ 时，条件概率分别为 $$0.00005$$、$$0.00082$$ 与 $$0.02041$$。
 
@@ -835,8 +835,8 @@ $$
 > 应当清楚狱长的推理是正确的。让我们看看为什么。设 $$A$$、$$B$$、$$C$$ 分别表示囚徒 A、B、C 被赦免的事件，则 $$P(A) = P(B) = P(C) = 1/3$$。设 $$W$$ 表示“狱长说 B 将死”的事件。利用 (1.3.1)，A 可把其被赦免概率更新为
 >
 > $$
-> P(A \mid W) = \frac{P(A \cap W)}{P(W)}.
-> $$
+P(A \mid W) = \frac{P(A \cap W)}{P(W)}.
+$$
 >
 > 情况可总结为下表：
 >
@@ -851,24 +851,24 @@ $$
 > 利用此表可计算
 >
 > $$
-> \begin{aligned}
-> P(W) &= P(\text{狱长说 B 死}) \\
-> &= P(\text{狱长说 B 死且 A 被赦免}) + P(\text{狱长说 B 死且 C 被赦免}) + P(\text{狱长说 B 死且 B 被赦免})\\
-> &= \frac{1}{6} + \frac{1}{3} + 0 = \frac{1}{2}.
-> \end{aligned}
-> $$
+\begin{aligned}
+P(W) &= P(\text{狱长说 B 死}) \\
+&= P(\text{狱长说 B 死且 A 被赦免}) + P(\text{狱长说 B 死且 C 被赦免}) + P(\text{狱长说 B 死且 B 被赦免})\\
+&= \frac{1}{6} + \frac{1}{3} + 0 = \frac{1}{2}.
+\end{aligned}
+$$
 >
 > 于是按狱长的推理，
 >
 > $$
-> P(A \mid W) = \frac{P(A \cap W)}{P(W)} = \frac{P(\text{狱长说 B 死且 A 被赦免})}{P(\text{狱长说 B 死})} = \frac{1/6}{1/2} = \frac{1}{3}. \tag{1.3.2}
-> $$
+P(A \mid W) = \frac{P(A \cap W)}{P(W)} = \frac{P(\text{狱长说 B 死且 A 被赦免})}{P(\text{狱长说 B 死})} = \frac{1/6}{1/2} = \frac{1}{3}. \tag{1.3.2}
+$$
 >
 > 然而 A 错误地把事件 $$W$$ 等同于事件 $$B^c$$ 来计算：
 >
 > $$
-> P(A \mid B^c) = \frac{P(A \cap B^c)}{P(B^c)} = \frac{1/3}{2/3} = \frac{1}{2}.
-> $$
+P(A \mid B^c) = \frac{P(A \cap B^c)}{P(B^c)} = \frac{1/3}{2/3} = \frac{1}{2}.
+$$
 >
 > 可见条件概率可能相当“滑溜”，需要仔细解读。该问题的其他变式见习题 1.37。
 
@@ -899,38 +899,38 @@ $$
 > 设 $$A_1, A_2, \ldots$$ 是样本空间的一个分割，$$B$$ 是任意集合。则对每个 $$i = 1, 2, \ldots$$，
 >
 > $$
-> P(A_i \mid B) = \frac{P(B \mid A_i)\, P(A_i)}{\displaystyle\sum_{j=1}^{\infty} P(B \mid A_j)\, P(A_j)}.
-> $$
+P(A_i \mid B) = \frac{P(B \mid A_i)\, P(A_i)}{\displaystyle\sum_{j=1}^{\infty} P(B \mid A_j)\, P(A_j)}.
+$$
 
 > **例 1.3.6（编码）**
 >
 > 发送编码信息时传输偶尔出错。具体地，摩尔斯电码（Morse code）使用“点”与“划”，已知二者出现比例为 $$3:4$$，即对任一符号
 >
 > $$
-> P(\text{发点}) = \frac{3}{7}, \qquad P(\text{发划}) = \frac{4}{7}.
-> $$
+P(\text{发点}) = \frac{3}{7}, \qquad P(\text{发划}) = \frac{4}{7}.
+$$
 >
 > 设传输线上有干扰，以概率 $$1/8$$ 点被误收为划，反之亦然。若收到一个点，能否确信发出的就是点？用贝叶斯法则可写
 >
 > $$
-> P(\text{发点} \mid \text{收点}) = P(\text{收点} \mid \text{发点})\, \frac{P(\text{发点})}{P(\text{收点})}.
-> $$
+P(\text{发点} \mid \text{收点}) = P(\text{收点} \mid \text{发点})\, \frac{P(\text{发点})}{P(\text{收点})}.
+$$
 >
 > 由已知信息，$$P(\text{发点}) = 3/7$$ 且 $$P(\text{收点} \mid \text{发点}) = 7/8$$。进一步，
 >
 > $$
-> \begin{aligned}
-> P(\text{收点}) &= P(\text{收点} \cap \text{发点}) + P(\text{收点} \cap \text{发划})\\
-> &= P(\text{收点} \mid \text{发点})\, P(\text{发点}) + P(\text{收点} \mid \text{发划})\, P(\text{发划})\\
-> &= \frac{7}{8} \times \frac{3}{7} + \frac{1}{8} \times \frac{4}{7} = \frac{25}{56}.
-> \end{aligned}
-> $$
+\begin{aligned}
+P(\text{收点}) &= P(\text{收点} \cap \text{发点}) + P(\text{收点} \cap \text{发划})\\
+&= P(\text{收点} \mid \text{发点})\, P(\text{发点}) + P(\text{收点} \mid \text{发划})\, P(\text{发划})\\
+&= \frac{7}{8} \times \frac{3}{7} + \frac{1}{8} \times \frac{4}{7} = \frac{25}{56}.
+\end{aligned}
+$$
 >
 > 综合这些结果，正确收到点的概率为
 >
 > $$
-> P(\text{发点} \mid \text{收点}) = \frac{(7/8) \times (3/7)}{25/56} = \frac{21}{25}.
-> $$
+P(\text{发点} \mid \text{收点}) = \frac{(7/8) \times (3/7)}{25/56} = \frac{21}{25}.
+$$
 
 有时某个事件 $$B$$ 的发生对另一事件 $$A$$ 的概率没有影响，用符号表示即
 
@@ -957,8 +957,8 @@ $$
 > 若
 >
 > $$
-> P(A \cap B) = P(A) P(B), \tag{1.3.8}
-> $$
+P(A \cap B) = P(A) P(B), \tag{1.3.8}
+$$
 >
 > 则称事件 $$A$$ 与 $$B$$ ***统计独立***（statistically independent）。
 
@@ -971,14 +971,14 @@ $$
 > 本章开头介绍的那位赌徒德·梅雷骑士特别关心这样的事件：掷骰子四次，至少出现一次 6。我们有
 >
 > $$
-> P(\text{四次中至少一个 6}) = 1 - P(\text{四次中无 6}) = 1 - \prod_{i=1}^{4} P(\text{第}\ i\ \text{次无 6})\text{，}
-> $$
+P(\text{四次中至少一个 6}) = 1 - P(\text{四次中无 6}) = 1 - \prod_{i=1}^{4} P(\text{第}\ i\ \text{次无 6})\text{，}
+$$
 >
 > 最后一个等式由各次投掷的独立性得到。任一次投掷不出 6 的概率为 $$5/6$$，故
 >
 > $$
-> P(\text{四次中至少一个 6}) = 1 - \Bigl( \frac{5}{6} \Bigr)^{4} = 0.518.
-> $$
+P(\text{四次中至少一个 6}) = 1 - \Bigl( \frac{5}{6} \Bigr)^{4} = 0.518.
+$$
 
 $$A$$ 与 $$B$$ 独立也蕴含其补事件独立。事实上有如下定理。
 
@@ -996,13 +996,13 @@ $$A$$ 与 $$B$$ 独立也蕴含其补事件独立。事实上有如下定理。
 > **证明**　只证 (a)，其余留作习题 1.40。证 (a) 须证 $$P(A \cap B^c) = P(A) P(B^c)$$。由定理 1.2.9(a)，
 >
 > $$
-> \begin{aligned}
-> P(A \cap B^c) &= P(A) - P(A \cap B)\\
-> &= P(A) - P(A) P(B) \qquad \text{（$$A$$ 与 $$B$$ 独立）}\\
-> &= P(A)(1 - P(B))\\
-> &= P(A) P(B^c).
-> \end{aligned}
-> $$
+\begin{aligned}
+P(A \cap B^c) &= P(A) - P(A \cap B)\\
+&= P(A) - P(A) P(B) \qquad \text{（$$A$$ 与 $$B$$ 独立）}\\
+&= P(A)(1 - P(B))\\
+&= P(A) P(B^c).
+\end{aligned}
+$$
 >
 > ∎
 
@@ -1013,36 +1013,36 @@ $$A$$ 与 $$B$$ 独立也蕴含其补事件独立。事实上有如下定理。
 > 设试验为掷两枚骰子，样本空间
 >
 > $$
-> S = \{(1,1), (1,2), \ldots, (1,6), (2,1), \ldots, (2,6), \ldots, (6,1), \ldots, (6,6)\},
-> $$
+S = \{(1,1), (1,2), \ldots, (1,6), (2,1), \ldots, (2,6), \ldots, (6,1), \ldots, (6,6)\},
+$$
 >
 > 即由数字 1 到 6 形成的 36 个有序对。定义事件：
 >
 > $$
-> \begin{aligned}
-> A &= \{\text{出现对子}\} = \{(1,1), (2,2), (3,3), (4,4), (5,5), (6,6)\},\\
-> B &= \{\text{点数和介于 7 与 10 之间}\},\\
-> C &= \{\text{点数和为 2、7 或 8}\}.
-> \end{aligned}
-> $$
+\begin{aligned}
+A &= \{\text{出现对子}\} = \{(1,1), (2,2), (3,3), (4,4), (5,5), (6,6)\},\\
+B &= \{\text{点数和介于 7 与 10 之间}\},\\
+C &= \{\text{点数和为 2、7 或 8}\}.
+\end{aligned}
+$$
 >
 > 在 36 个可能结果中计数可得
 >
 > $$
-> P(A) = \frac{1}{6}, \qquad P(B) = \frac{1}{2}, \qquad P(C) = \frac{1}{3}.
-> $$
+P(A) = \frac{1}{6}, \qquad P(B) = \frac{1}{2}, \qquad P(C) = \frac{1}{3}.
+$$
 >
 > 进一步，
 >
 > $$
-> P(A \cap B \cap C) = P(\text{和为 8 且由对 4 组成}) = \frac{1}{36} = \frac{1}{6} \times \frac{1}{2} \times \frac{1}{3} = P(A) P(B) P(C).
-> $$
+P(A \cap B \cap C) = P(\text{和为 8 且由对 4 组成}) = \frac{1}{36} = \frac{1}{6} \times \frac{1}{2} \times \frac{1}{3} = P(A) P(B) P(C).
+$$
 >
 > 然而
 >
 > $$
-> P(B \cap C) = P(\text{和等于 7 或 8}) = \frac{11}{36} \neq P(B) P(C).
-> $$
+P(B \cap C) = P(\text{和等于 7 或 8}) = \frac{11}{36} \neq P(B) P(C).
+$$
 >
 > 类似地可证 $$P(A \cap B) \neq P(A) P(B)$$。因此，条件 $$P(A \cap B \cap C) = P(A) P(B) P(C)$$ 不足以保证两两独立。
 
@@ -1053,32 +1053,32 @@ $$A$$ 与 $$B$$ 独立也蕴含其补事件独立。事实上有如下定理。
 > 设样本空间 $$S$$ 由字母 $$a$$、$$b$$、$$c$$ 的 $$3!$$ 个排列以及三个三重字母串组成，即
 >
 > $$
-> S = \begin{Bmatrix} aaa & bbb & ccc \\ abc & bca & cba \\ acb & bac & cab \end{Bmatrix},
-> $$
+S = \begin{Bmatrix} aaa & bbb & ccc \\ abc & bca & cba \\ acb & bac & cab \end{Bmatrix},
+$$
 >
 > 且 $$S$$ 的每个元素概率为 $$1/9$$。定义
 >
 > $$
-> A_i = \{\text{三重串的第}\ i\ \text{个位置是}\ a\}.
-> $$
+A_i = \{\text{三重串的第}\ i\ \text{个位置是}\ a\}.
+$$
 >
 > 容易数出
 >
 > $$
-> P(A_i) = \frac{1}{3}, \qquad i = 1, 2, 3,
-> $$
+P(A_i) = \frac{1}{3}, \qquad i = 1, 2, 3,
+$$
 >
 > 且
 >
 > $$
-> P(A_1 \cap A_2) = P(A_1 \cap A_3) = P(A_2 \cap A_3) = \frac{1}{9},
-> $$
+P(A_1 \cap A_2) = P(A_1 \cap A_3) = P(A_2 \cap A_3) = \frac{1}{9},
+$$
 >
 > 故诸 $$A_i$$ 两两独立。但是
 >
 > $$
-> P(A_1 \cap A_2 \cap A_3) = \frac{1}{9} \neq P(A_1) P(A_2) P(A_3),
-> $$
+P(A_1 \cap A_2 \cap A_3) = \frac{1}{9} \neq P(A_1) P(A_2) P(A_3),
+$$
 >
 > 故诸 $$A_i$$ 不满足（乘积形式的联合）概率要求。
 
@@ -1089,36 +1089,36 @@ $$A$$ 与 $$B$$ 独立也蕴含其补事件独立。事实上有如下定理。
 > 称事件集 $$A_1, \ldots, A_n$$ ***相互独立***（mutually independent），如果对任意子集 $$A_{i_1}, \ldots, A_{i_k}$$ 都有
 >
 > $$
-> P\Bigl( \bigcap_{j=1}^{k} A_{i_j} \Bigr) = \prod_{j=1}^{k} P\bigl( A_{i_j} \bigr).
-> $$
+P\Bigl( \bigcap_{j=1}^{k} A_{i_j} \Bigr) = \prod_{j=1}^{k} P\bigl( A_{i_j} \bigr).
+$$
 
 > **例 1.3.13（三次抛硬币——I）**
 >
 > 考虑抛一枚硬币三次的试验。样本点必须记录每次抛掷的结果，例如 HHT 表示先两次正面再一次反面。该试验的样本空间有八个点：
 >
 > $$
-> \{HHH,\ HHT,\ HTH,\ THH,\ TTH,\ THT,\ HTT,\ TTT\}.
-> $$
+\{HHH,\ HHT,\ HTH,\ THH,\ TTH,\ THT,\ HTT,\ TTT\}.
+$$
 >
 > 设 $$H_i$$（$$i = 1, 2, 3$$）表示第 $$i$$ 次抛掷为正面的事件。例如
 >
 > $$
-> H_1 = \{HHH, HHT, HTH, HTT\}. \tag{1.3.9}
-> $$
+H_1 = \{HHH, HHT, HTH, HTT\}. \tag{1.3.9}
+$$
 >
 > 若给每个样本点赋概率 $$1/8$$，则由 (1.3.9) 这类枚举可见 $$P(H_1) = P(H_2) = P(H_3) = 1/2$$，即硬币均匀，每次抛掷正反面等可能。
 >
 > 在此概率模型下，事件 $$H_1$$、$$H_2$$、$$H_3$$ 还是相互独立的。为验证这一点，注意
 >
 > $$
-> P(H_1 \cap H_2 \cap H_3) = P(\{HHH\}) = \frac{1}{8} = \frac{1}{2} \cdot \frac{1}{2} \cdot \frac{1}{2} = P(H_1) P(H_2) P(H_3).
-> $$
+P(H_1 \cap H_2 \cap H_3) = P(\{HHH\}) = \frac{1}{8} = \frac{1}{2} \cdot \frac{1}{2} \cdot \frac{1}{2} = P(H_1) P(H_2) P(H_3).
+$$
 >
 > 按定义 1.3.12 还须验证每一对，例如
 >
 > $$
-> P(H_1 \cap H_2) = P(\{HHH, HHT\}) = \frac{2}{8} = \frac{1}{2} \cdot \frac{1}{2} = P(H_1) P(H_2).
-> $$
+P(H_1 \cap H_2) = P(\{HHH, HHT\}) = \frac{2}{8} = \frac{1}{2} \cdot \frac{1}{2} = P(H_1) P(H_2).
+$$
 >
 > 另外两对同样成立。故 $$H_1$$、$$H_2$$、$$H_3$$ 相互独立：任一次抛出正面不影响其余抛掷。
 >
@@ -1174,12 +1174,12 @@ $$
 > $$X$$ 的值域为 $$\mathcal{X} = \{0, 1, 2, 3\}$$。设 $$S$$ 的八个点各具概率 $$1/8$$，在上表直接计数即得 $$\mathcal{X}$$ 上的诱导概率函数
 >
 > $$
-> \begin{array}{c|cccc}
-> x & 0 & 1 & 2 & 3 \\
-> \hline
-> P_X(X = x) & \tfrac{1}{8} & \tfrac{3}{8} & \tfrac{3}{8} & \tfrac{1}{8}
-> \end{array}
-> $$
+\begin{array}{c|cccc}
+x & 0 & 1 & 2 & 3 \\
+\hline
+P_X(X = x) & \tfrac{1}{8} & \tfrac{3}{8} & \tfrac{3}{8} & \tfrac{1}{8}
+\end{array}
+$$
 >
 > 例如 $$P_X(X = 1) = P(\{HTT, THT, TTH\}) = 3/8$$。
 
@@ -1188,14 +1188,14 @@ $$
 > 即使无法像例 1.4.3 那样完整列表，也可能确定 $$P_X$$。设 $$S$$ 是由 50 个 0/1 组成的全部 $$2^{50}$$ 个串，$$X = 1$$ 的个数，$$\mathcal{X} = \{0, 1, 2, \ldots, 50\}$$（即本节开头提到的情形）。设每个 $$2^{50}$$ 元串等可能，则 $$X = 27$$ 的概率可在原样本空间中数出含 27 个 1 的串的个数来得到。由于每个串等可能，
 >
 > $$
-> P_X(X = 27) = \frac{\#\ \text{含 27 个 1 的串}}{\#\ \text{串的总数}} = \binom{50}{27} \Big/ 2^{50}.
-> $$
+P_X(X = 27) = \frac{\#\ \text{含 27 个 1 的串}}{\#\ \text{串的总数}} = \binom{50}{27} \Big/ 2^{50}.
+$$
 >
 > 一般地，对任意 $$i \in \mathcal{X}$$，
 >
 > $$
-> P_X(X = i) = \binom{50}{i} \Big/ 2^{50}.
-> $$
+P_X(X = i) = \binom{50}{i} \Big/ 2^{50}.
+$$
 
 前面的例子中 $$S$$ 与 $$\mathcal{X}$$ 都有限，$$P_X$$ 的定义直截了当。$$\mathcal{X}$$ 可数时亦然。若 $$\mathcal{X}$$ 不可数，则类似 (1.4.1) 地定义诱导概率函数 $$P_X$$：对任意集合 $$A \subset \mathcal{X}$$，
 
@@ -1214,28 +1214,28 @@ $$
 > 随机变量 $$X$$ 的***累积分布函数***（cumulative distribution function，简称 ***cdf***），记作 $$F_X(x)$$，定义为
 >
 > $$
-> F_X(x) = P_X(X \leq x), \qquad \text{对一切 } x.
-> $$
+F_X(x) = P_X(X \leq x), \qquad \text{对一切 } x.
+$$
 
 > **例 1.5.2（抛三枚硬币）**
 >
 > 考虑抛三枚均匀硬币的试验，$$X =$$  观察到的正面数。$$X$$ 的 cdf 为
 >
 > $$
-> F_X(x) = \begin{cases}
-> 0 & \text{若 } -\infty < x < 0,\\[2pt]
-> \tfrac{1}{8} & \text{若 } 0 \leq x < 1,\\[2pt]
-> \tfrac{1}{2} & \text{若 } 1 \leq x < 2,\\[2pt]
-> \tfrac{7}{8} & \text{若 } 2 \leq x < 3,\\[2pt]
-> 1 & \text{若 } 3 \leq x < \infty.
-> \end{cases} \tag{1.5.1}
-> $$
+F_X(x) = \begin{cases}
+0 & \text{若 } -\infty < x < 0,\\[2pt]
+\tfrac{1}{8} & \text{若 } 0 \leq x < 1,\\[2pt]
+\tfrac{1}{2} & \text{若 } 1 \leq x < 2,\\[2pt]
+\tfrac{7}{8} & \text{若 } 2 \leq x < 3,\\[2pt]
+1 & \text{若 } 3 \leq x < \infty.
+\end{cases} \tag{1.5.1}
+$$
 >
 > 阶梯函数 $$F_X(x)$$ 绘于图 1.5.1。由图 1.5.1 可以注意到几点：$$F_X$$ 对一切 $$x$$ 的值都有定义，而不仅是 $$\mathcal{X} = \{0,1,2,3\}$$ 中的值。例如
 >
 > $$
-> F_X(2.5) = P(X \leq 2.5) = P(X = 0, 1\ \text{或}\ 2) = \frac{7}{8}.
-> $$
+F_X(2.5) = P(X \leq 2.5) = P(X = 0, 1\ \text{或}\ 2) = \frac{7}{8}.
+$$
 >
 > 注意 $$F_X$$ 在每个 $$x_i \in \mathcal{X}$$ 处有跳跃，且在 $$x_i$$ 处跳跃的高度等于 $$P(X = x_i)$$。又因 $$X$$ 不可能为负，故对 $$x < 0$$ 有 $$F_X(x) = 0$$；由于 $$X$$ 必然小于这样的值，对 $$x \geq 3$$ 有 $$F_X(x) = 1$$。
 
@@ -1265,48 +1265,48 @@ $$
 > 做如下试验：反复抛一枚硬币直到出现正面。设 $$p$$ 为任一次抛掷出现正面的概率，定义 $$X =$$  得到正面所需的抛掷次数。则对任意 $$x = 1, 2, \ldots$$，
 >
 > $$
-> P(X = x) = (1-p)^{x-1} p, \tag{1.5.2}
-> $$
+P(X = x) = (1-p)^{x-1} p, \tag{1.5.2}
+$$
 >
 > 因为要使该事件发生，必须先得 $$x-1$$ 次反面再得一次正面，而各次试验相互独立。
 >
 > 由 (1.5.2)，对任意正整数 $$x$$ 可计算
 >
 > $$
-> P(X \leq x) = \sum_{i=1}^{x} P(X = i) = \sum_{i=1}^{x} (1-p)^{i-1} p. \tag{1.5.3}
-> $$
+P(X \leq x) = \sum_{i=1}^{x} P(X = i) = \sum_{i=1}^{x} (1-p)^{i-1} p. \tag{1.5.3}
+$$
 >
 > 几何级数的部分和公式为
 >
 > $$
-> \sum_{k=1}^{n} t^{k-1} = \frac{1 - t^n}{1 - t}, \qquad t \neq 1, \tag{1.5.4}
-> $$
+\sum_{k=1}^{n} t^{k-1} = \frac{1 - t^n}{1 - t}, \qquad t \neq 1, \tag{1.5.4}
+$$
 >
 > 该事实可用归纳法建立（见习题 1.50）。将 (1.5.4) 应用于我们的概率，得 $$X$$ 的 cdf
 >
 > $$
-> F_X(x) = P(X \leq x) = \frac{1 - (1-p)^x}{1 - (1-p)}\, p = 1 - (1-p)^x, \qquad x = 1, 2, \ldots
-> $$
+F_X(x) = P(X \leq x) = \frac{1 - (1-p)^x}{1 - (1-p)}\, p = 1 - (1-p)^x, \qquad x = 1, 2, \ldots
+$$
 >
 > 与例 1.5.2 一样，$$F_X(x)$$ 在相邻非负整数之间是平的。
 >
 > 容易证明：若 $$0 < p < 1$$，则 $$F_X(x)$$ 满足定理 1.5.3 的条件。首先，
 >
 > $$
-> \lim_{x \to -\infty} F_X(x) = 0
-> $$
+\lim_{x \to -\infty} F_X(x) = 0
+$$
 >
 > 因为对所有 $$x < 0$$ 有 $$F_X(x) = 0$$；而
 >
 > $$
-> \lim_{x \to \infty} F_X(x) = \lim_{x \to \infty} \bigl[ 1 - (1-p)^x \bigr] = 1,
-> $$
+\lim_{x \to \infty} F_X(x) = \lim_{x \to \infty} \bigl[ 1 - (1-p)^x \bigr] = 1,
+$$
 >
 > 其中取极限时 $$x$$ 只经整数值趋于无穷。验证性质 (b)，只需注意 $$x$$ 增大时 (1.5.3) 中的和包含更多正项。最后验证 (c)：对任意 $$x$$，只要 $$\varepsilon > 0$$ 充分小就有 $$F_X(x + \varepsilon) = F_X(x)$$，因此
 >
 > $$
-> \lim_{\varepsilon \downarrow 0} F_X(x + \varepsilon) = F_X(x),
-> $$
+\lim_{\varepsilon \downarrow 0} F_X(x + \varepsilon) = F_X(x),
+$$
 >
 > 即 $$F_X(x)$$ 右连续。$$F_X(x)$$ 是称为***几何分布***（geometric distribution，因该级数得名）的分布的 cdf，绘于图 1.5.2。
 
@@ -1315,26 +1315,26 @@ $$
 > 一个连续 cdf 的例子是函数
 >
 > $$
-> F_X(x) = \frac{1}{1 + e^{-x}}, \tag{1.5.5}
-> $$
+F_X(x) = \frac{1}{1 + e^{-x}}, \tag{1.5.5}
+$$
 >
 > 它满足定理 1.5.3 的条件。例如
 >
 > $$
-> \lim_{x \to -\infty} F_X(x) = 0 \quad \text{（因为 } \lim_{x \to -\infty} e^{-x} = \infty\text{）},
-> $$
+\lim_{x \to -\infty} F_X(x) = 0 \quad \text{（因为 } \lim_{x \to -\infty} e^{-x} = \infty\text{）},
+$$
 >
 > 且
 >
 > $$
-> \lim_{x \to \infty} F_X(x) = 1 \quad \text{（因为 } \lim_{x \to \infty} e^{-x} = 0\text{）}.
-> $$
+\lim_{x \to \infty} F_X(x) = 1 \quad \text{（因为 } \lim_{x \to \infty} e^{-x} = 0\text{）}.
+$$
 >
 > 求导得
 >
 > $$
-> \frac{d}{dx} F_X(x) = \frac{e^{-x}}{(1 + e^{-x})^2} > 0,
-> $$
+\frac{d}{dx} F_X(x) = \frac{e^{-x}}{(1 + e^{-x})^2} > 0,
+$$
 >
 > 说明 $$F_X(x)$$ 递增。$$F_X$$ 不仅右连续，而且连续。这是***逻辑斯蒂分布***（logistic distribution）的特例。
 
@@ -1347,11 +1347,11 @@ $$
 > 若 $$F_X$$ 不是 $$x$$ 的连续函数，它可能是连续片断与跳跃的混合。例如把 (1.5.5) 的 $$F_X(x)$$ 修改为：对某个 $$\varepsilon$$，$$1 > \varepsilon > 0$$，
 >
 > $$
-> F_Y(y) = \begin{cases}
-> \dfrac{1 - \varepsilon}{1 + e^{-y}} & \text{若 } y < 0,\\[8pt]
-> \dfrac{\varepsilon + (1 - \varepsilon)}{1 + e^{-y}} & \text{若 } y \geq 0,
-> \end{cases} \tag{1.5.6}
-> $$
+F_Y(y) = \begin{cases}
+\dfrac{1 - \varepsilon}{1 + e^{-y}} & \text{若 } y < 0,\\[8pt]
+\dfrac{\varepsilon + (1 - \varepsilon)}{1 + e^{-y}} & \text{若 } y \geq 0,
+\end{cases} \tag{1.5.6}
+$$
 >
 > 则 $$F_Y(y)$$ 是某个随机变量 $$Y$$ 的 cdf（见习题 1.47）。函数 $$F_Y$$ 在 $$y = 0$$ 处有高度为 $$\varepsilon$$ 的跳跃，其余处连续。这一模型适用于如下场景：我们观测某个仪表的读数，该读数理论上可取 $$-\infty$$ 到 $$\infty$$ 之间的任何值，但这个仪表偶尔会卡在 0 处。此时可用 $$F_Y$$ 建模观测，其中 $$\varepsilon$$ 是仪表卡住的概率。
 
@@ -1374,8 +1374,8 @@ cdf 连续与否，对应随机变量是否连续。事实上这种联系非常�
 > 考虑例 1.4.3 中抛一枚均匀硬币三次的试验，定义随机变量
 >
 > $$
-> X = \text{观察到的正面数，} \qquad Y = \text{观察到的反面数}.
-> $$
+X = \text{观察到的正面数，} \qquad Y = \text{观察到的反面数}.
+$$
 >
 > $$X$$ 的分布在例 1.4.3 中给出，容易验证 $$Y$$ 的分布完全相同，即对每个 $$k = 0, 1, 2, 3$$ 都有 $$P(X = k) = P(Y = k)$$，故 $$X$$ 与 $$Y$$ 同分布。但对任何样本点都没有 $$X(s) = Y(s)$$。
 
@@ -1391,8 +1391,8 @@ cdf 连续与否，对应随机变量是否连续。事实上这种联系非常�
 > **证明**　证等价即须证两个命题互相蕴含。先证 (a) $$\Rightarrow$$ (b)：因 $$X$$ 与 $$Y$$ 同分布，对任意 $$A \in \mathcal{B}_1$$ 有 $$P(X \in A) = P(Y \in A)$$。特别地，对每个 $$x$$，集合 $$(-\infty, x]$$ 属于 $$\mathcal{B}_1$$，于是
 >
 > $$
-> F_X(x) = P\bigl( X \in (-\infty, x] \bigr) = P\bigl( Y \in (-\infty, x] \bigr) = F_Y(x).
-> $$
+F_X(x) = P\bigl( X \in (-\infty, x] \bigr) = P\bigl( Y \in (-\infty, x] \bigr) = F_Y(x).
+$$
 >
 > 逆命题 (b) $$\Rightarrow$$ (a) 的证明困难得多。上面的论证表明：若 $$X$$ 与 $$Y$$ 在所有集合上的概率一致，则它们在区间上一致；现在必须证相反方向——若两者在所有区间上一致，则在所有集合上一致。这需要大量运用 sigma 代数，此处不展开。只需说明：事实上只需证明两个概率函数在所有区间上一致（Chung 1974, Section 2.2）。 ∎
 
@@ -1405,31 +1405,31 @@ cdf 连续与否，对应随机变量是否连续。事实上这种联系非常�
 > 离散随机变量 $$X$$ 的***概率质量函数***（probability mass function，简称 pmf）定义为
 >
 > $$
-> f_X(x) = P(X = x) \qquad \text{对一切 } x.
-> $$
+f_X(x) = P(X = x) \qquad \text{对一切 } x.
+$$
 
 > **例 1.6.2（几何概率）**
 >
 > 对例 1.5.4 的几何分布，pmf 为
 >
 > $$
-> f_X(x) = P(X = x) = \begin{cases}
-> (1-p)^{x-1} p & \text{若 } x = 1, 2, \ldots,\\
-> 0 & \text{其他}.
-> \end{cases}
-> $$
+f_X(x) = P(X = x) = \begin{cases}
+(1-p)^{x-1} p & \text{若 } x = 1, 2, \ldots,\\
+0 & \text{其他}.
+\end{cases}
+$$
 >
 > 回顾 $$P(X = x)$$（等价地 $$f_X(x)$$）是 cdf 在 $$x$$ 处跳跃的大小。现在可以利用 pmf 计算概率了：既然能度量单点的概率，只需对相应事件中的所有点求和。故对正整数 $$a$$、$$b$$，$$a \leq b$$，有
 >
 > $$
-> P(a \leq X \leq b) = \sum_{k=a}^{b} f_X(k) = \sum_{k=a}^{b} (1-p)^{k-1} p.
-> $$
+P(a \leq X \leq b) = \sum_{k=a}^{b} f_X(k) = \sum_{k=a}^{b} (1-p)^{k-1} p.
+$$
 >
 > 作为其特例，
 >
 > $$
-> P(X \leq b) = \sum_{k=1}^{b} f_X(k) = F_X(b). \tag{1.6.1}
-> $$
+P(X \leq b) = \sum_{k=1}^{b} f_X(k) = F_X(b). \tag{1.6.1}
+$$
 
 一个被广泛接受、本书也将采用的约定是：cdf 用大写字母，相应的 pmf 或 pdf 用对应的小写字母。
 
@@ -1466,8 +1466,8 @@ $$
 > 连续随机变量 $$X$$ 的***概率密度函数***（probability density function，简称 pdf）$$f_X(x)$$ 是满足
 >
 > $$
-> F_X(x) = \int_{-\infty}^{x} f_X(t)\, dt \qquad \text{对一切 } x \tag{1.6.3}
-> $$
+F_X(x) = \int_{-\infty}^{x} f_X(t)\, dt \qquad \text{对一切 } x \tag{1.6.3}
+$$
 >
 > 的函数。
 
@@ -1490,24 +1490,24 @@ $$
 > 对例 1.5.5 的逻辑斯蒂分布，
 >
 > $$
-> F_X(x) = \frac{1}{1 + e^{-x}},
-> $$
+F_X(x) = \frac{1}{1 + e^{-x}},
+$$
 >
 > 因而
 >
 > $$
-> f_X(x) = \frac{d}{dx} F_X(x) = \frac{e^{-x}}{(1 + e^{-x})^2}.
-> $$
+f_X(x) = \frac{d}{dx} F_X(x) = \frac{e^{-x}}{(1 + e^{-x})^2}.
+$$
 >
 > 曲线 $$f_X(x)$$ 下的面积给出区间概率（见图 1.6.1）：
 >
 > $$
-> \begin{aligned}
-> P(a < X < b) &= F_X(b) - F_X(a)\\
-> &= \int_{-\infty}^{b} f_X(x)\, dx - \int_{-\infty}^{a} f_X(x)\, dx\\
-> &= \int_{a}^{b} f_X(x)\, dx.
-> \end{aligned}
-> $$
+\begin{aligned}
+P(a < X < b) &= F_X(b) - F_X(a)\\
+&= \int_{-\infty}^{b} f_X(x)\, dx - \int_{-\infty}^{a} f_X(x)\, dx\\
+&= \int_{a}^{b} f_X(x)\, dx.
+\end{aligned}
+$$
 
 pdf（或 pmf）其实只有两条要求，它们都是定义的直接推论。
 
@@ -1523,8 +1523,8 @@ pdf（或 pmf）其实只有两条要求，它们都是定义的直接推论。
 > **证明**　若 $$f_X(x)$$ 是 pdf（或 pmf），则两条性质由定义直接得到。特别地，对 pdf，利用 (1.6.3) 与定理 1.5.3 有
 >
 > $$
-> 1 = \lim_{x \to \infty} F_X(x) = \int_{-\infty}^{\infty} f_X(t)\, dt.
-> $$
+1 = \lim_{x \to \infty} F_X(x) = \int_{-\infty}^{\infty} f_X(t)\, dt.
+$$
 >
 > 逆命题同样容易证明：有了 $$f_X(x)$$ 即可定义 $$F_X(x)$$，再援引定理 1.5.3。 ∎
 
@@ -1549,17 +1549,11 @@ $$
 **1.4** 对事件 $$A$$ 与 $$B$$，用 $$P(A)$$、$$P(B)$$、$$P(A \cap B)$$ 表示下列事件的概率：(a) $$A$$ 或 $$B$$（或两者）发生；(b) $$A$$ 或 $$B$$ 恰发生其一；(c) $$A$$、$$B$$ 至少一个发生；(d) $$A$$、$$B$$ 至多一个发生。
 
 **1.5** 人类双胞胎中约三分之一是同卵（一卵）双胞胎，三分之二是异卵（两卵）双胞胎。同卵双胞胎性别必相同，且男女等可能；异卵双胞胎中约四分之一为两女、四分之一为两男、二分之一为一男一女。最后，美国全部出生中约每 90 例有 1 例双胞胎。定义事件：$$A = \{$$一次美国出生得到双胞胎女$\}$$，$$B = \{$$一次美国出生得到同卵双胞胎$$\}$$，$$C = \{$$一次美国出生得到双胞胎$$\}$$。(a) 用文字陈述事件 $$A \cap B \cap C$$；(b) 求 $$P(A \cap B \cap C)$$。
-
 **1.6** 两枚硬币，一枚正面概率为 $$u$$，另一枚为 $$w$$，独立同时抛掷。定义 $$p_0 = P(\text{0 个正面})$$，$$p_1 = P(\text{1 个正面})$$，$$p_2 = P(\text{2 个正面})$$。能否选取 $$u$$、$$w$$ 使 $$p_0 = p_1 = p_2$$？证明你的答案。
-
 **1.7** 参见例 1.2.7 的飞镖游戏。现不假设命中镖盘的概率为 1，而是假设命中概率与镖盘面积成正比，镖盘挂在必然被击中（概率 1）的墙上，墙面积为 $$A$$。(a) 利用“命中某区域的概率与面积成正比”，构造 $$P(\text{得}\ i\ \text{分})$$（$$i = 0, \ldots, 5$$）的概率函数（未中镖盘则得 0 分）；(b) 证明条件概率分布 $$P(\text{得}\ i\ \text{分} \mid \text{中板})$$ 恰为例 1.2.7 的概率分布。
-
 **1.8** 再参看例 1.2.7 的飞镖游戏。(a) 导出得 $$i$$ 分概率的一般公式；(b) 证明 $$P(\text{得}\ i\ \text{分})$$ 是 $$i$$ 的递减函数，即分数越高，得的概率越小；(c) 按柯尔莫哥洛夫公理证明 $$P(\text{得}\ i\ \text{分})$$ 是概率函数。
-
 **1.9** 证明德摩根律的一般形式。设 $$\{A_\alpha : \alpha \in \Gamma\}$$ 是（可能不可数的）集合族，证明：(a) $$\bigl( \bigcup_\alpha A_\alpha \bigr)^c = \bigcap_\alpha A_\alpha^c$$；　　 (b) $$\bigl( \bigcap_\alpha A_\alpha \bigr)^c = \bigcup_\alpha A_\alpha^c$$。
-
 **1.10** 叙述并证明适用于有限集合族 $$A_1, \ldots, A_n$$ 的德摩根律。
-
 **1.11** 设 $$S$$ 为样本空间。(a) 证明集合族 $$\mathcal{B} = \{\varnothing, S\}$$ 是 sigma 代数；(b) 设 $$\mathcal{B} = \{S$$ 的全部子集，含 $$S$$ 本身$\}$$，证明 $$\mathcal{B}$$ 是 sigma 代数；(c) 证明两个 sigma 代数的交是 sigma 代数。
 
 **1.12** 1.2.1 节曾指出，遵循德菲内蒂学派的统计学家不接受可数可加性公理，而坚持有限可加性公理。(a) 证明可数可加性公理蕴含有限可加性公理；(b) 虽然有限可加性公理本身不蕴含可数可加性公理，但若补充以下公理：设 $$A_1 \supset A_2 \supset \cdots \supset A_n \supset \cdots$$ 是极限为空集的无穷嵌套集合列，记 $$A_n \downarrow \varnothing$$。考虑
@@ -1593,131 +1587,79 @@ $$
 **1.23** 两人各抛一枚均匀硬币 $$n$$ 次，求两人正面次数相同的概率。（答案：$$\binom{2n}{n} / 4^n$$。）
 
 **1.24** 甲、乙两人轮流独立抛一枚硬币，先抛出正面者胜。设甲先抛。(a) 若硬币均匀，甲获胜的概率是多少？(b) 设 $$P(\text{正面}) = p$$（不必为 $$1/2$$），甲获胜的概率是多少？(c) 证明对一切 $$p \in (0,1)$$ 有 $$P(\text{甲胜}) > \tfrac{1}{2}$$。（提示：用事件 $$E_1, E_2, \ldots$$ 表示，其中 $$E_i = \{$$正面首次出现在第 $$i$$ 次抛掷$\}$$。）（答案：(a) $$2/3$$；(b) $$p / [1 - (1-p)^2]$$。）
-
 **1.25** 史密斯家有两个孩子，其中至少有一个是男孩。两个孩子都是男孩的概率是多少？（该问题的完整讨论见 Gardner (1961)。）
-
 **1.26** 掷一枚均匀骰子直到出现 6。求必须掷超过五次的概率。
-
 **1.27** 对 $$n \geq 2$$ 验证下列恒等式：(a) $$\sum_{k=0}^{n} (-1)^k \binom{n}{k} = 0$$；(b) $$\sum_{k=1}^{n} k \binom{n}{k} = n 2^{n-1}$$；(c) $$\sum_{k=1}^{n} (-1)^{k+1} k \binom{n}{k} = 0$$。
-
 **1.28** 近似大阶乘可用斯特林公式（Stirling's Formula）：
-
 $$
 n! \approx \sqrt{2\pi}\, n^{n + (1/2)} e^{-n},
 $$
-
 其完整推导较难。改为证明较容易的事实：$$\lim_{n \to \infty} n! / \bigl[ n^{n + (1/2)} e^{-n} \bigr]$$ 是常数。（提示：Feller (1968) 利用对数函数的单调性建立$\int_{k-1}^{k} \log x\, dx < \log k < \int_{k}^{k+1} \log x\, dx$，$$k = 1, \ldots, n$$，进而 $$\int_{0}^{n} \log x\, dx < \log n! < \int_{1}^{n+1} \log x\, dx$$；再将 $$\log n!$$ 与两积分的平均比较。另一推导见习题 5.35。）
-
 **1.29** (a) 对例 1.2.20 的情形，枚举构成无序样本 $$\{4,4,12,12\}$$ 与 $$\{2,9,9,12\}$$ 的有序样本；(b) 设有六个数 $$\{1, 2, 7, 8, 14, 20\}$$，有放回抽取时抽到无序样本 $$\{2, 7, 7, 8, 14, 14\}$$ 的概率是多少？(c) 验证：从 $$m$$ 个不同的数（分别重复 $$k_1, k_2, \ldots, k_m$$ 次）抽出的容量为 $$k$$ 的无序样本，含有 $$\dfrac{k!}{k_1! k_2! \cdots k_m!}$$ 个有序分量，其中 $$k_1 + k_2 + \cdots + k_m = k$$；(d) 用上一小问的结果建立恒等式
-
 $$
 \sum_{\{k_1, k_2, \ldots, k_m :\, k_1 + k_2 + \cdots + k_m = k\}} \frac{k!}{k_1! k_2! \cdots k_m!} = \binom{k + m - 1}{k}.
 $$
-
 **1.30** 对六个数 $$\{1, 2, 7, 8, 14, 20\}$$，绘出有放回抽样得到的所有可能样本平均值的分布直方图。
-
 **1.31** 对例 1.2.20 的情形，原数组 $$\{2, 4, 9, 12\}$$ 的平均值 $$\tfrac{29}{4}$$ 具有最高概率。(a) 证明：一般地，从集合 $$\{x_1, x_2, \ldots, x_n\}$$ 有放回抽样，平均值为 $$(x_1 + x_2 + \cdots + x_n)/n$$ 的结果最可能出现，其概率为 $$n! / n^n$$；(b) 用斯特林公式（习题 1.28）证明 $$n! / n^n \approx \sqrt{2 n \pi} / e^n$$（Hall 1992, Appendix I）；(c) 证明某个特定 $$x_i$$ 缺席于一个结果的概率为 $$(1 - \tfrac{1}{n})^n \to e^{-1}$$（当 $$n \to \infty$$）。
-
 **1.32** 某雇主将从 $$N$$ 名候选人（未来潜力可评为 1 到 $$N$$ 分）中雇一名新员工，规则如下：i. 候选人按随机顺序依次面见，当场决定是否录用；ii. 已拒绝 $$m-1$$ 名候选人（$$m > 1$$）后，只有当第 $$m$$ 名候选人优于此前 $$m-1$$ 名时才可录用他。设第 $$i$$ 次试用时录用了一名候选人，求录用的是最佳候选人的概率。
-
 **1.33** 设 5% 的男性和 0.25% 的女性色盲。随机选取一人，此人是色盲。此人为男性的概率是多少？（设男女各半。）
-
 **1.34** 某种鼠类生了两窝幼崽：第一窝 2 只棕毛、1 只灰毛；第二窝 3 只棕毛、2 只灰毛。随机选一窝，再从所选窝中随机选一只幼崽。(a) 选中的动物是棕毛的概率是多少？(b) 已知选中的是棕毛幼崽，抽样来自第一窝的概率是多少？
-
 **1.35** 证明：若 $$P(\cdot)$$ 是合法概率函数，$$B$$ 是满足 $$P(B) > 0$$ 的集合，则 $$P(\cdot \mid B)$$ 也满足柯尔莫哥洛夫公理。
-
 **1.36** 若命中目标的概率为 $$\tfrac{1}{5}$$，独立射击十次：目标至少被命中两次的概率是多少？在“至少命中一次”的条件下，“至少命中两次”的条件概率是多少？
-
 **1.37** 本题考察例 1.3.4 的若干变式。(a) 例 1.3.4 中狱长的计算假设了：若 A 被赦免，则狱长以等概率告诉 A 是 B 死或 C 死。这未必成立：狱长可以给这两个事件分别赋概率 $$\gamma$$ 与 $$1 - \gamma$$：
-
 | 被赦免的囚徒 | 狱长对 A 说 |  |
 |:---:|:---:|:---:|
 | A | B 死 | 概率 $$\gamma$$ |
 | A | C 死 | 概率 $$1 - \gamma$$ |
 | B | C 死 |  |
 | C | B 死 |  |
-
 计算 $$P(A \mid W)$$ 关于 $$\gamma$$ 的函数。$$\gamma$$ 取何值时 $$P(A \mid W)$$ 小于、等于或大于 $$\tfrac{1}{3}$$？(b) 仍设 $$\gamma = \tfrac{1}{2}$$。狱长告知 A 将是 B 死后，A 想了想，意识到自己原来的计算错了。随后 A 想出一个好主意：他请求狱长允许他与 C 交换命运。狱长以为没有传递任何信息，同意了。证明 A 现在的推理是正确的，其存活概率跃升至 $$\tfrac{2}{3}$$！
-
 一个类似但稍复杂的问题是“蒙提霍尔问题”（Monty Hall problem），由 Selvin (1975) 讨论。该问题经vos Savant (1990) 在某周日杂志上给出正确答案（但解释可疑）后声名大噪，随后的辩论甚至登上了《纽约时报》周日版头版（Tierney 1991）。Morgan 等 (1991) 给出完整而颇有意思的处理（另见 vos Savant 1991 的回应）。Chun (1999) 以非常透彻的分析基本穷尽了该问题。
-
 **1.38** 证明下列各命题（设任何取条件事件概率为正）：(a) 若 $$P(B) = 1$$，则对任意 $$A$$ 有 $$P(A \mid B) = P(A)$$；(b) 若 $$A \subset B$$，则 $$P(B \mid A) = 1$$ 且 $$P(A \mid B) = P(A)/P(B)$$；(c) 若 $$A$$ 与 $$B$$ 互斥，则 $$P(A \mid A \cup B) = \dfrac{P(A)}{P(A) + P(B)}$$；(d) $$P(A \cap B \cap C) = P(A \mid B \cap C)\, P(B \mid C)\, P(C)$$。
-
 **1.39** 一对事件 $$A$$、$$B$$ 不可能既互斥又独立。证明若 $$P(A) > 0$$ 且 $$P(B) > 0$$，则(a) 若 $$A$$ 与 $$B$$ 互斥，则它们不可能独立；(b) 若 $$A$$ 与 $$B$$ 独立，则它们不可能互斥。
-
 **1.40** 通过证明 (b)、(c) 完成定理 1.3.9 的证明。
-
 **1.41** 如例 1.3.6，考虑按比例 $$3:4$$ 发送的电报信号“点”与“划”，其中错乱的传输使点以概率 $$\tfrac{1}{4}$$ 变为划、划以概率 $$\tfrac{1}{3}$$ 变为点。(a) 若收到一个划，发出的确是划的概率是多少？(b) 设各信号相互独立，若收到信息“点点”，四种可能发出的信息各自的概率分布是什么？
-
 **1.42** 杂记 1.8.1 的容斥恒等式得名于其“容斥”证法（Feller 1968, Section IV.1）。这里给出细节。$$P\bigl( \bigcup_{i=1}^{n} A_i \bigr)$$ 是至少含于某个 $$A_i$$ 的全部样本点概率之和。容斥方法是数这些点的配方。(a) 设 $$E_k$$ 表示恰含于 $$A_1, \ldots, A_n$$ 中恰好 $$k$$ 个事件的全部样本点之集，证明 $$P\bigl( \bigcup_{i=1}^{n} A_i \bigr) = \sum_{i=1}^{n} P(E_i)$$；(b) 设 $$x \in E_1$$，证明 $$P(x \in E_1) = \sum_{i=1}^{n} P(x \in A_i)$$；(c) 设 $$x \in E_k$$，不失一般性设 $$x \in A_1, A_2, \ldots, A_k$$ 且 $$x \notin A_{k+1}, A_{k+2}, \ldots, A_n$$，证明 $$P(x \in E_k)$$ 在和 $$P_1$$ 中出现 $$k$$ 次，在 $$P_2$$ 中出现 $$\binom{k}{2}$$ 次，在 $$P_3$$ 中出现 $$\binom{k}{3}$$ 次，依此类推；(d) 证明 $$\binom{k}{1} - \binom{k}{2} + \binom{k}{3} - \cdots \pm \binom{k}{k} = 1$$（见习题 1.27）；(e) 证明 (a)–(c) 蕴含 $$\sum_{i=1}^{n} P(E_i) = P_1 - P_2 + \cdots \pm P_n$$，即容斥恒等式。
-
 **1.43** 关于杂记 1.8.1 的容斥恒等式：(a) 从容斥恒等式导出布尔不等式与邦费罗尼不等式；(b) 证明 $$P_i$$ 满足：$$i \geq j$$ 时 $$P_i \geq P_j$$，且杂记 1.8.1 中的界序列随项数增加而改进；(c) 通常界中的项数增加时界更有用。但 Schwager (1984) 提醒：有些情形改进不大，特别是诸 $$A_i$$ 高度相关时。考察极端情形 $$A_i = A$$（一切 $$i$$）下界序列的行为。（参见 Worsley (1982) 与 Worsley (1985) 和 Schwager (1985) 之间的通信。）
-
 **1.44** 标准化考试为概率论提供了有趣的应用。设考试由 20 道四选一的选择题组成。若学生对每题瞎猜，则应试可建模为 20 个独立事件的序列。求在瞎猜的条件下至少答对 10 题的概率。
-
 **1.45** 证明由 (1.4.1) 定义的诱导概率函数满足柯尔莫哥洛夫公理，因而是合法概率函数。
-
 **1.46** 七个球随机放入七个格。设 $$X_i =$$  恰含 $$i$$ 个球的格数。求 $$X_3$$ 的概率分布（即对每个可能的 $$x$$ 求 $$P(X_3 = x)$$）。
-
 **1.47** 证明下列各函数都是 cdf：(a) $$\tfrac{1}{2} + \tfrac{1}{\pi} \tan^{-1}(x)$$，$$x \in (-\infty, \infty)$$；(b) $$(1 + e^{-x})^{-1}$$，$$x \in (-\infty, \infty)$$；(c) $$e^{-e^{-x}}$$，$$x \in (-\infty, \infty)$$；(d) $$1 - e^{-x}$$，$$x \in (0, \infty)$$；(e) (1.5.6) 定义的函数。
-
 **1.48** 证明定理 1.5.3 的必要性部分。
-
 **1.49** 称 cdf $$F_X$$ ***随机地大于***（stochastically greater than）cdf $$F_Y$$，若对所有 $$t$$ 有 $$F_X(t) \leq F_Y(t)$$ 且对某些 $$t$$ 有 $$F_X(t) < F_Y(t)$$。证明若 $$X \sim F_X$$、$$Y \sim F_Y$$，则
-
 $$
 P(X > t) \geq P(Y > t) \quad \text{对每个 } t\text{，}
 $$
-
 且
-
 $$
 P(X > t) > P(Y > t) \quad \text{对某些 } t\text{，}
 $$
-
 即 $$X$$ 倾向于比 $$Y$$ 大。
-
 **1.50** 验证公式 (1.5.4)，即几何级数部分和公式。
-
 **1.51** 某家电店收到一批 30 台微波炉，其中 5 台（经理不知情）有缺陷。经理随机无放回地抽出 4 台检测是否缺陷。设 $$X =$$  查出的缺陷炉数。计算 $$X$$ 的 pmf 与 cdf，并绘出 cdf 图像。
-
 **1.52** 设 $$X$$ 为连续随机变量，pdf 为 $$f(x)$$、cdf 为 $$F(x)$$。对固定数 $$x_0$$，定义
-
 $$
 g(x) = \begin{cases}
 f(x) / [1 - F(x_0)] & x \geq x_0,\\
 0 & x < x_0.
 \end{cases}
 $$
-
 证明 $$g(x)$$ 是 pdf。（设 $$F(x_0) < 1$$。）
-
 **1.53** 某条河每年都发洪水。设低水位线定为 1，高水位线 $$Y$$ 的分布函数为
-
 $$
 F_Y(y) = P(Y \leq y) = 1 - \frac{1}{y^2}, \qquad 1 \leq y < \infty.
 $$
-
 (a) 验证 $$F_Y(y)$$ 是 cdf；(b) 求 $$Y$$ 的 pdf $$f_Y(y)$$；(c) 若把低水位线重设为 0，并改用原先测量单位的 $$\tfrac{1}{10}$$，则高水位线变为 $$Z = 10(Y - 1)$$。求 $$F_Z(z)$$。
-
 **1.54** 对下列各函数，确定使 $$f(x)$$ 成为 pdf 的 $$c$$ 值：(a) $$f(x) = c \sin x$$，$$0 < x < \pi/2$$；　　 (b) $$f(x) = c e^{-\vert x\vert }$$，$$-\infty < x < \infty$$。
-
 **1.55** 某电子设备寿命记为 $$T$$。若设备在时刻 $$t = 3$$ 前失效，则其价值为 $$V = 5$$；否则 $$V = 2T$$。设 $$T$$ 的 pdf 为
-
 $$
 f_T(t) = \frac{1}{1.5} e^{-t/(1.5)}, \qquad t > 0,
 $$
-
 求 $$V$$ 的 cdf。
-
 ## 1.8 杂记（Miscellanea）
-
 ### 1.8.1 邦费罗尼及更精细的界（Bonferroni and Beyond）
-
 (1.2.10) 的邦费罗尼界，或布尔不等式（定理 1.2.11），给出了交概率或并概率的简单界。利用下面的展开，这些界可以越来越精确。
-
 对集合 $$A_1, A_2, \ldots, A_n$$，构造一列嵌套的交。令
-
 $$
 \begin{aligned}
 P_1 &= \sum_{i=1}^{n} P(A_i),\\
@@ -1727,15 +1669,11 @@ P_3 &= \sum_{1 \leq i < j < k \leq n} P(A_i \cap A_j \cap A_k),\\
 P_n &= P(A_1 \cap A_2 \cap \cdots \cap A_n).
 \end{aligned}
 $$
-
 则***容斥恒等式***（inclusion-exclusion identity）断言
-
 $$
 P(A_1 \cup A_2 \cup \cdots \cup A_n) = P_1 - P_2 + P_3 - P_4 + \cdots \pm P_n.
 $$
-
 此外诸 $$P_i$$ 有序：$$i \leq j$$ 时 $$P_i \geq P_j$$，且有上下界序列
-
 $$
 \begin{aligned}
 P_1 &\geq P\Bigl( \bigcup_{i=1}^{n} A_i \Bigr) \geq P_1 - P_2,\\

@@ -35,22 +35,22 @@ permalink: /statistics/chap04.html
 > 考虑掷两枚均匀骰子的试验。该试验的样本空间有 36 个等可能点，已在例 1.3.10 中介绍。例如样本点 $$(3, 3)$$ 表示两枚骰子都显示 3；样本点 $$(4, 1)$$ 表示第一枚显示 4、第二枚显示 1；等等。现在给这 36 个点各联系两个数 $$X$$ 与 $$Y$$，令
 >
 > $$
-> X = \text{两枚骰子点数之和}， \qquad Y = \vert \text{两枚骰子点数之差}\vert .
-> $$
+X = \text{两枚骰子点数之和}， \qquad Y = \vert \text{两枚骰子点数之差}\vert .
+$$
 >
 > 对样本点 $$(3,3)$$：$$X = 3 + 3 = 6$$，$$Y = \vert 3 - 3\vert  = 0$$；对 $$(4,1)$$：$$X = 5$$，$$Y = 3$$。这也正是样本点 $$(1, 4)$$ 的 $$X$$、$$Y$$ 值。对 36 个样本点逐个计算 $$X$$ 与 $$Y$$ 的值，我们就定义了二元随机向量 $$(X, Y)$$。
 >
 > 定义了随机向量 $$(X, Y)$$ 后，即可讨论由 $$(X, Y)$$ 表出的事件的概率。由 $$X$$ 与 $$Y$$ 表出的事件的概率，由样本空间 $$S$$ 中相应事件的概率给出。$$P(X = 5\ \text{且}\ Y = 3)$$ 是多少？可以验证：使 $$X = 5$$ 且 $$Y = 3$$ 的样本点只有 $$(4, 1)$$ 与 $$(1, 4)$$。故事件“$$X = 5$$ 且 $$Y = 3$$”发生当且仅当事件 $$\{(4,1), (1,4)\}$$ 发生。由于 $$S$$ 的 36 个样本点等可能，
 >
 > $$
-> P\bigl( \{(4,1), (1,4)\} \bigr) = \frac{2}{36} = \frac{1}{18},
-> $$
+P\bigl( \{(4,1), (1,4)\} \bigr) = \frac{2}{36} = \frac{1}{18},
+$$
 >
 > 故
 >
 > $$
-> P(X = 5\ \text{且}\ Y = 3) = \frac{1}{18}.
-> $$
+P(X = 5\ \text{且}\ Y = 3) = \frac{1}{18}.
+$$
 >
 > 此后我们写 $$P(X = 5, Y = 3)$$ 表示 $$P(X = 5\ \text{且}\ Y = 3)$$，逗号读作“且”。类似地，$$P(X = 6, Y = 0) = \tfrac{1}{36}$$，因为产生这组值的样本点只有 $$(3, 3)$$。更复杂的事件技巧相同：例如 $$P(X = 7, Y \leq 4) = \tfrac{4}{36} = \tfrac{1}{9}$$，因为使 $$X = 7$$ 且 $$Y \leq 4$$ 的四个样本点是 $$(4,3)$$、$$(3,4)$$、$$(5,2)$$ 与 $$(2,5)$$。
 
@@ -98,8 +98,8 @@ $$
 > 对表 4.1.1 给出联合 pmf 的 $$(X, Y)$$，$$XY$$ 的平均值是多少？取 $$g(x, y) = xy$$，把表 4.1.1 中 21 个 $$(x, y)$$ 点的 $$xy\, f(x, y)$$ 算出并求和，即得 $$\mathrm{E} XY = \mathrm{E} g(X, Y)$$：
 >
 > $$
-> \mathrm{E} XY = (2)(0)\frac{1}{36} + (4)(0)\frac{1}{36} + \cdots + (8)(4)\frac{1}{18} + (7)(5)\frac{1}{18} = \frac{11}{18}.
-> $$
+\mathrm{E} XY = (2)(0)\frac{1}{36} + (4)(0)\frac{1}{36} + \cdots + (8)(4)\frac{1}{18} + (7)(5)\frac{1}{18} = \frac{11}{18}.
+$$
 
 把随机变量 $$X$$ 换成随机向量 $$(X, Y)$$ 后，期望算子仍具有定理 2.2.5 所列的性质。例如若 $$g_1(x, y)$$ 与 $$g_2(x, y)$$ 是两个函数，$$a$$、$$b$$、$$c$$ 是常数，则
 
@@ -122,8 +122,8 @@ $$
 > 定义
 >
 > $$
-> f(0, 0) = f(0, 1) = \frac{1}{6}, \qquad f(1, 0) = f(1, 1) = \frac{1}{3}, \qquad f(x, y) = 0\ \text{（对其他任何}\ (x,y)\text{）}.
-> $$
+f(0, 0) = f(0, 1) = \frac{1}{6}, \qquad f(1, 0) = f(1, 1) = \frac{1}{3}, \qquad f(x, y) = 0\ \text{（对其他任何}\ (x,y)\text{）}.
+$$
 >
 > 则 $$f(x, y)$$ 非负且求和为 1，故是某个二元随机向量 $$(X, Y)$$ 的联合 pmf。可用 $$f(x, y)$$ 计算诸如 $$P(X = Y) = f(0,0) + f(1,1) = \tfrac{1}{2}$$ 的概率。这一切都无需提及样本空间 $$S$$。事实上，有许多样本空间及其上的函数都给出这一联合 pmf。例如：设 $$S$$ 是掷两枚均匀骰子的 36 点样本空间，令“第一枚至多显示 2”时 $$X = 0$$、“第一枚显示多于 2”时 $$X = 1$$；“第二枚显示奇数”时 $$Y = 0$$、“第二枚显示偶数”时 $$Y = 1$$。习题 4.3 将证明这一定义导致上述 $$(X, Y)$$ 的概率分布。
 
@@ -134,21 +134,21 @@ $$
 > 设 $$(X, Y)$$ 是具有联合 pmf $$f_{X,Y}(x, y)$$ 的离散二元随机向量。则 $$X$$ 与 $$Y$$ 的边缘 pmf $$f_X(x) = P(X = x)$$ 与 $$f_Y(y) = P(Y = y)$$ 由
 >
 > $$
-> f_X(x) = \sum_{y \in \Re} f_{X,Y}(x, y) \qquad\text{与}\qquad f_Y(y) = \sum_{x \in \Re} f_{X,Y}(x, y)
-> $$
+f_X(x) = \sum_{y \in \Re} f_{X,Y}(x, y) \qquad\text{与}\qquad f_Y(y) = \sum_{x \in \Re} f_{X,Y}(x, y)
+$$
 >
 > 给出。
 >
 > **证明**　证 $$f_X(x)$$ 的结果，$$f_Y(y)$$ 类似。对任意 $$x \in \Re$$，令 $$A_x = \{(x, y) : -\infty < y < \infty\}$$，即平面上第一坐标等于 $$x$$ 的直线。则对任意 $$x \in \Re$$，
 >
 > $$
-> \begin{aligned}
-> f_X(x) &= P(X = x)\\
-> &= P(X = x,\ -\infty < Y < \infty) \qquad （P(-\infty < Y < \infty) = 1）\\
-> &= P\bigl( (X, Y) \in A_x \bigr) \qquad （A_x\ \text{的定义}）\\
-> &= \sum_{(x,y) \in A_x} f_{X,Y}(x, y) = \sum_{y \in \Re} f_{X,Y}(x, y).
-> \end{aligned}
-> $$
+\begin{aligned}
+f_X(x) &= P(X = x)\\
+&= P(X = x,\ -\infty < Y < \infty) \qquad （P(-\infty < Y < \infty) = 1）\\
+&= P\bigl( (X, Y) \in A_x \bigr) \qquad （A_x\ \text{的定义}）\\
+&= \sum_{(x,y) \in A_x} f_{X,Y}(x, y) = \sum_{y \in \Re} f_{X,Y}(x, y).
+\end{aligned}
+$$
 >
 > ∎
 
@@ -157,17 +157,17 @@ $$
 > 利用定理 4.1.6，可从表 4.1.1 的联合分布算出 $$X$$ 与 $$Y$$ 的边缘分布。计算 $$Y$$ 的边缘 pmf 时，对 $$Y$$ 的每个可能值在 $$X$$ 的可能值上求和：
 >
 > $$
-> \begin{aligned}
-> f_Y(0) &= f_{X,Y}(2, 0) + f_{X,Y}(4, 0) + f_{X,Y}(6, 0) + f_{X,Y}(8, 0) + f_{X,Y}(10, 0) + f_{X,Y}(12, 0)\\
-> &= \frac{1}{6}.
-> \end{aligned}
-> $$
+\begin{aligned}
+f_Y(0) &= f_{X,Y}(2, 0) + f_{X,Y}(4, 0) + f_{X,Y}(6, 0) + f_{X,Y}(8, 0) + f_{X,Y}(10, 0) + f_{X,Y}(12, 0)\\
+&= \frac{1}{6}.
+\end{aligned}
+$$
 >
 > 类似地，
 >
 > $$
-> f_Y(1) = \frac{5}{18}, \qquad f_Y(2) = \frac{2}{9}, \qquad f_Y(3) = \frac{1}{6}, \qquad f_Y(4) = \frac{1}{9}, \qquad f_Y(5) = \frac{1}{18}.
-> $$
+f_Y(1) = \frac{5}{18}, \qquad f_Y(2) = \frac{2}{9}, \qquad f_Y(3) = \frac{1}{6}, \qquad f_Y(4) = \frac{1}{9}, \qquad f_Y(5) = \frac{1}{18}.
+$$
 >
 > 注意 $$f_Y(0) + f_Y(1) + \cdots + f_Y(5) = 1$$，理应如此，因为这正是 $$Y$$ 的全部六个可能取值。
 
@@ -178,14 +178,14 @@ $$X$$ 或 $$Y$$ 的边缘 pmf 与第 1 章定义的 pmf 相同。边缘 pmf 可�
 > 用例 4.1.7 算得的 $$Y$$ 的边缘 pmf 可以计算
 >
 > $$
-> P(Y < 3) = f_Y(0) + f_Y(1) + f_Y(2) = \frac{1}{6} + \frac{5}{18} + \frac{2}{9} = \frac{2}{3}.
-> $$
+P(Y < 3) = f_Y(0) + f_Y(1) + f_Y(2) = \frac{1}{6} + \frac{5}{18} + \frac{2}{9} = \frac{2}{3}.
+$$
 >
 > 又有
 >
 > $$
-> \mathrm{E} Y^3 = 0^3 f_Y(0) + \cdots + 5^3 f_Y(5) = 20\,\frac{11}{18} \qquad （即\ \tfrac{371}{18}）.
-> $$
+\mathrm{E} Y^3 = 0^3 f_Y(0) + \cdots + 5^3 f_Y(5) = 20\,\frac{11}{18} \qquad （即\ \tfrac{371}{18}）.
+$$
 
 $$X$$ 与 $$Y$$ 的边缘分布（由边缘 pmf $$f_X(x)$$ 与 $$f_Y(y)$$ 描述）并不能完全刻画 $$X$$ 与 $$Y$$ 的联合分布。事实上，有许多不同的联合分布具有相同的边缘分布。因此，企图仅凭边缘 pmf $$f_X(x)$$ 与 $$f_Y(y)$$ 的知识确定联合 pmf $$f_{X,Y}(x, y)$$ 是无望的。下例说明这一点。
 
@@ -194,8 +194,8 @@ $$X$$ 与 $$Y$$ 的边缘分布（由边缘 pmf $$f_X(x)$$ 与 $$f_Y(y)$$ 描述
 > 定义联合 pmf：
 >
 > $$
-> f(0, 0) = \frac{1}{12}, \qquad f(1, 0) = \frac{5}{12}, \qquad f(0, 1) = f(1, 1) = \frac{3}{12}, \qquad f(x, y) = 0\ \text{（对其余一切值）}.
-> $$
+f(0, 0) = \frac{1}{12}, \qquad f(1, 0) = \frac{5}{12}, \qquad f(0, 1) = f(1, 1) = \frac{3}{12}, \qquad f(x, y) = 0\ \text{（对其余一切值）}.
+$$
 >
 > $$Y$$ 的边缘 pmf 为 $$f_Y(0) = f(0,0) + f(1,0) = \tfrac{1}{2}$$，$$f_Y(1) = f(0,1) + f(1,1) = \tfrac{1}{2}$$；$$X$$ 的边缘 pmf 为 $$f_X(0) = \tfrac{1}{3}$$，$$f_X(1) = \tfrac{2}{3}$$。现在验证：例 4.1.5 中那个显然不同的联合 pmf，其 $$X$$ 与 $$Y$$ 的边缘 pmf 恰与刚才算出的完全相同。因此，只知道边缘 pmf 无法确定联合 pmf。联合 pmf 含有 $$(X, Y)$$ 分布的额外信息，这些信息在边缘分布中找不到。
 
@@ -206,8 +206,8 @@ $$X$$ 与 $$Y$$ 的边缘分布（由边缘 pmf $$f_X(x)$$ 与 $$f_Y(y)$$ 描述
 > 从 $$\Re^2$$ 到 $$\Re$$ 的函数 $$f(x, y)$$ 称为连续二元随机向量 $$(X, Y)$$ 的***联合概率密度函数***（joint probability density function，联合 pdf），如果对每个 $$A \subset \Re^2$$，
 >
 > $$
-> P\bigl( (X, Y) \in A \bigr) = \int_A \int f(x, y)\, dx\, dy.
-> $$
+P\bigl( (X, Y) \in A \bigr) = \int_A \int f(x, y)\, dx\, dy.
+$$
 
 联合 pdf 的用法与一元 pdf 完全一样，只是现在的积分是平面上集合上的二重积分。记号 $$\iint_A$$ 的意思是：积分限的设置使函数在所有 $$(x, y) \in A$$ 上积分。连续随机向量函数的期望与离散情形定义相同，只是积分代替求和、pdf 代替 pmf：若 $$g(x, y)$$ 是实值函数，则 $$g(X, Y)$$ 的期望定义为
 
@@ -231,65 +231,65 @@ $$
 > 定义联合 pdf
 >
 > $$
-> f(x, y) = \begin{cases} 6 x y^2 & 0 < x < 1\ \text{且}\ 0 < y < 1,\\ 0 & \text{其他}. \end{cases}
-> $$
+f(x, y) = \begin{cases} 6 x y^2 & 0 < x < 1\ \text{且}\ 0 < y < 1,\\ 0 & \text{其他}. \end{cases}
+$$
 >
 > （此后约定：定义中未明确提及的 $$(x, y)$$ 值处 $$f(x, y) = 0$$。）首先验证 $$f(x, y)$$ 确是联合 pdf。在定义的范围内 $$f(x, y) \geq 0$$ 相当明显。计算 $$f(x, y)$$ 在整个平面上的积分时，注意 $$f(x, y)$$ 在单位方形之外为 0，故平面上的积分等于方形上的积分：
 >
 > $$
-> \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y)\, dx\, dy = \int_0^1 \int_0^1 6 x y^2\, dx\, dy = \int_0^1 \Bigl[ 3 x^2 y^2 \Bigr]_0^1 dy = \int_0^1 3 y^2\, dy = \Bigl[ y^3 \Bigr]_0^1 = 1.
-> $$
+\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y)\, dx\, dy = \int_0^1 \int_0^1 6 x y^2\, dx\, dy = \int_0^1 \Bigl[ 3 x^2 y^2 \Bigr]_0^1 dy = \int_0^1 3 y^2\, dy = \Bigl[ y^3 \Bigr]_0^1 = 1.
+$$
 >
 > 现在考虑计算 $$P(X + Y \geq 1)$$ 这样的概率。令 $$A = \{(x, y) : x + y \geq 1\}$$，把概率写成 $$P((X, Y) \in A)$$。由定义 4.1.10，须在集合 $$A$$ 上积分联合 pdf；但联合 pdf 在单位方形之外为 0，故在 $$A$$ 上积分等价于只在 $$A \cap$$ 单位方形上积分。集合 $$A$$ 是平面东北部的半平面，其在单位方形内的部分是由直线 $$x = 1$$、$$y = 1$$ 与 $$x + y = 1$$ 围成的三角形区域。可写
 >
 > $$
-> \begin{aligned}
-> A &= \{(x, y) : x + y \geq 1,\ 0 < x < 1,\ 0 < y < 1\}\\
-> &= \{(x, y) : x \geq 1 - y,\ 0 < x < 1,\ 0 < y < 1\}\\
-> &= \{(x, y) : 1 - y \leq x < 1,\ 0 < y < 1\}.
-> \end{aligned}
-> $$
+\begin{aligned}
+A &= \{(x, y) : x + y \geq 1,\ 0 < x < 1,\ 0 < y < 1\}\\
+&= \{(x, y) : x \geq 1 - y,\ 0 < x < 1,\ 0 < y < 1\}\\
+&= \{(x, y) : 1 - y \leq x < 1,\ 0 < y < 1\}.
+\end{aligned}
+$$
 >
 > 这就给出所需的积分限：
 >
 > $$
-> P(X + Y \geq 1) = \iint_A f(x, y)\, dx\, dy = \int_0^1 \int_{1-y}^{1} 6 x y^2\, dx\, dy = \frac{9}{10}.
-> $$
+P(X + Y \geq 1) = \iint_A f(x, y)\, dx\, dy = \int_0^1 \int_{1-y}^{1} 6 x y^2\, dx\, dy = \frac{9}{10}.
+$$
 >
 > 利用 (4.1.2) 可计算 $$X$$ 或 $$Y$$ 的边缘 pdf。例如计算 $$f_X(x)$$：当 $$x \geq 1$$ 或 $$x \leq 0$$ 时 $$f(x, y)$$ 对一切 $$y$$ 为 0，故
 >
 > $$
-> f_X(x) = \int_{-\infty}^{\infty} f(x, y)\, dy = 0, \qquad x \geq 1\ \text{或}\ x \leq 0.
-> $$
+f_X(x) = \int_{-\infty}^{\infty} f(x, y)\, dy = 0, \qquad x \geq 1\ \text{或}\ x \leq 0.
+$$
 >
 > 当 $$0 < x < 1$$ 时，$$f(x, y)$$ 仅在 $$0 < y < 1$$ 时非零，故
 >
 > $$
-> f_X(x) = \int_{-\infty}^{\infty} f(x, y)\, dy = \int_0^1 6 x y^2\, dy = \Bigl. 2 x y^3 \Bigr\vert _0^1 = 2x.
-> $$
+f_X(x) = \int_{-\infty}^{\infty} f(x, y)\, dy = \int_0^1 6 x y^2\, dy = \Bigl. 2 x y^3 \Bigr\vert _0^1 = 2x.
+$$
 >
 > 这个 $$X$$ 的边缘 pdf 现在可用于计算只涉及 $$X$$ 的概率，例如
 >
 > $$
-> P\Bigl( \frac{1}{2} < X < \frac{3}{4} \Bigr) = \int_{1/2}^{3/4} 2x\, dx = \frac{5}{16}.
-> $$
+P\Bigl( \frac{1}{2} < X < \frac{3}{4} \Bigr) = \int_{1/2}^{3/4} 2x\, dx = \frac{5}{16}.
+$$
 
 > **例 4.1.12（计算联合概率——II）**
 >
 > 作为联合 pdf 的另一例，设 $$f(x, y) = e^{-y}$$，$$0 < x < y < \infty$$。虽然 $$e^{-y}$$ 不依赖 $$x$$，但 $$f(x, y)$$ 确实是 $$x$$ 的函数，因为其非零集合依赖于 $$x$$。用示性函数写更明显：
 >
 > $$
-> f(x, y) = e^{-y}\, I_{\{(u, v) : 0 < u < v < \infty\}}(x, y).
-> $$
+f(x, y) = e^{-y}\, I_{\{(u, v) : 0 < u < v < \infty\}}(x, y).
+$$
 >
 > 要计算 $$P(X + Y \geq 1)$$，可以在集合 $$A = \{(x, y) : x + y \geq 1\}$$ 与 $$f(x, y)$$ 非零集合的交上积分。画出这些集合：该交是一个无界区域（图 4.1.1 中较浅的阴影），三条边为直线 $$x = y$$、$$x + y = 1$$ 与 $$x = 0$$。在此区域上积分须至少把区域拆成两块才能写出合适的积分限。
 >
 > 在集合 $$B = \{(x, y) : x + y < 1\}$$ 与 $$f(x, y)$$ 非零集合的交——由直线 $$x = y$$、$$x + y = 1$$ 与 $$x = 0$$ 围成的三角形区域（图 4.1.1 中较深的阴影）——上积分更容易。于是
 >
 > $$
-> P(X + Y \geq 1) = 1 - P(X + Y < 1) = 1 - \int_0^{1/2} \int_{x}^{1-x} e^{-y}\, dy\, dx
-> = 1 - \int_0^{1/2} \bigl( e^{-x} - e^{-(1 - x)} \bigr)\, dx = 2 e^{-1/2} - e^{-1}.
-> $$
+P(X + Y \geq 1) = 1 - P(X + Y < 1) = 1 - \int_0^{1/2} \int_{x}^{1-x} e^{-y}\, dy\, dx
+= 1 - \int_0^{1/2} \bigl( e^{-x} - e^{-(1 - x)} \bigr)\, dx = 2 e^{-1/2} - e^{-1}.
+$$
 >
 > 这说明：对这类问题，把所涉集合画出来以确定合适的积分限，几乎总是有帮助的。
 
@@ -328,14 +328,14 @@ $$
 > 设 $$(X, Y)$$ 是具有联合 pmf $$f(x, y)$$ 与边缘 pmf $$f_X(x)$$、$$f_Y(y)$$ 的离散二元随机向量。对任何使 $$P(X = x) = f_X(x) > 0$$ 的 $$x$$，***给定 $$X = x$$ 时 $$Y$$ 的条件 pmf***（conditional pmf）是记作 $$f(y \mid x)$$ 的 $$y$$ 的函数，定义为
 >
 > $$
-> f(y \mid x) = P(Y = y \mid X = x) = \frac{f(x, y)}{f_X(x)}.
-> $$
+f(y \mid x) = P(Y = y \mid X = x) = \frac{f(x, y)}{f_X(x)}.
+$$
 >
 > 对任何使 $$P(Y = y) = f_Y(y) > 0$$ 的 $$y$$，***给定 $$Y = y$$ 时 $$X$$ 的条件 pmf*** 是记作 $$f(x \mid y)$$ 的 $$x$$ 的函数，定义为
 >
 > $$
-> f(x \mid y) = P(X = x \mid Y = y) = \frac{f(x, y)}{f_Y(y)}.
-> $$
+f(x \mid y) = P(X = x \mid Y = y) = \frac{f(x, y)}{f_Y(y)}.
+$$
 
 既然我们称 $$f(y \mid x)$$ 为 pmf，就应验证这个 $$y$$ 的函数确实定义了一个随机变量的 pmf。首先，由 $$f(x, y) \geq 0$$ 与 $$f_X(x) > 0$$ 知对每个 $$y$$ 有 $$f(y \mid x) \geq 0$$。其次，
 
@@ -350,52 +350,52 @@ $$
 > 定义 $$(X, Y)$$ 的联合 pmf：
 >
 > $$
-> f(0, 10) = f(0, 20) = \frac{2}{18}, \qquad f(1, 10) = f(1, 30) = \frac{3}{18},
-> $$
+f(0, 10) = f(0, 20) = \frac{2}{18}, \qquad f(1, 10) = f(1, 30) = \frac{3}{18},
+$$
 >
 > $$
-> f(1, 20) = \frac{4}{18}, \qquad f(2, 30) = \frac{4}{18}.
-> $$
+f(1, 20) = \frac{4}{18}, \qquad f(2, 30) = \frac{4}{18}.
+$$
 >
 > 用定义 4.2.1 可对 $$X$$ 的每个可能值 $$x = 0, 1, 2$$ 计算 $$Y$$ 的条件 pmf。首先 $$X$$ 的边缘 pmf 为
 >
 > $$
-> f_X(0) = f(0, 10) + f(0, 20) = \frac{4}{18}, \qquad
-> f_X(1) = f(1, 10) + f(1, 20) + f(1, 30) = \frac{10}{18}, \qquad
-> f_X(2) = f(2, 30) = \frac{4}{18}.
-> $$
+f_X(0) = f(0, 10) + f(0, 20) = \frac{4}{18}, \qquad
+f_X(1) = f(1, 10) + f(1, 20) + f(1, 30) = \frac{10}{18}, \qquad
+f_X(2) = f(2, 30) = \frac{4}{18}.
+$$
 >
 > 对 $$x = 0$$：$$f(0, y)$$ 仅在 $$y = 10$$ 与 $$y = 20$$ 时为正，故 $$f(y \mid 0)$$ 仅在这两点为正：
 >
 > $$
-> f(10 \mid 0) = \frac{f(0, 10)}{f_X(0)} = \frac{2/18}{4/18} = \frac{1}{2}, \qquad
-> f(20 \mid 0) = \frac{f(0, 20)}{f_X(0)} = \frac{1}{2}.
-> $$
+f(10 \mid 0) = \frac{f(0, 10)}{f_X(0)} = \frac{2/18}{4/18} = \frac{1}{2}, \qquad
+f(20 \mid 0) = \frac{f(0, 20)}{f_X(0)} = \frac{1}{2}.
+$$
 >
 > 即已知 $$X = 0$$ 时，$$Y$$ 的条件分布是在两点 $$y = 10$$ 与 $$y = 20$$ 上各赋概率 $$\tfrac{1}{2}$$ 的离散分布。
 >
 > 对 $$x = 1$$：$$f(y \mid 1)$$ 在 $$y = 10, 20, 30$$ 处为正：
 >
 > $$
-> f(10 \mid 1) = f(30 \mid 1) = \frac{3/18}{10/18} = \frac{3}{10}, \qquad
-> f(20 \mid 1) = \frac{4/18}{10/18} = \frac{4}{10};
-> $$
+f(10 \mid 1) = f(30 \mid 1) = \frac{3/18}{10/18} = \frac{3}{10}, \qquad
+f(20 \mid 1) = \frac{4/18}{10/18} = \frac{4}{10};
+$$
 >
 > 对 $$x = 2$$：
 >
 > $$
-> f(30 \mid 2) = \frac{4/18}{4/18} = 1.
-> $$
+f(30 \mid 2) = \frac{4/18}{4/18} = 1.
+$$
 >
 > 后一结果反映了联合 pmf 中显而易见的事实：若已知 $$X = 2$$，则必知 $$Y = 30$$。
 >
 > 其他条件概率可用这些条件 pmf 计算，例如
 >
 > $$
-> P(Y > 10 \mid X = 1) = f(20 \mid 1) + f(30 \mid 1) = \frac{7}{10},
-> \qquad\text{或}\qquad
-> P(Y > 10 \mid X = 0) = f(20 \mid 0) = \frac{1}{2}.
-> $$
+P(Y > 10 \mid X = 1) = f(20 \mid 1) + f(30 \mid 1) = \frac{7}{10},
+\qquad\text{或}\qquad
+P(Y > 10 \mid X = 0) = f(20 \mid 0) = \frac{1}{2}.
+$$
 
 若 $$X$$ 与 $$Y$$ 是连续随机变量，则对每个 $$x$$ 有 $$P(X = x) = 0$$。要计算 $$P(Y > 200 \mid X = 73)$$ 这类条件概率，不能用定义 1.3.2，因为分母 $$P(X = 73)$$ 为零。然而实际上我们确实观测到 $$X$$ 的值：若在测量精度内看到 $$X = 73$$，这一知识可能给我们关于 $$Y$$ 的信息（如本节开头身高体重的例子所示）。事实证明，当 $$X$$ 与 $$Y$$ 都连续时，定义“给定 $$X = x$$ 时 $$Y$$ 的条件概率分布”的恰当方式与离散情形类似，只是把 pmf 换成 pdf（见杂记 4.9.3）。
 
@@ -404,14 +404,14 @@ $$
 > 设 $$(X, Y)$$ 是具有联合 pdf $$f(x, y)$$ 与边缘 pdf $$f_X(x)$$、$$f_Y(y)$$ 的连续二元随机向量。对任何使 $$f_X(x) > 0$$ 的 $$x$$，***给定 $$X = x$$ 时 $$Y$$ 的条件 pdf*** 是记作 $$f(y \mid x)$$ 的 $$y$$ 的函数，定义为
 >
 > $$
-> f(y \mid x) = \frac{f(x, y)}{f_X(x)}.
-> $$
+f(y \mid x) = \frac{f(x, y)}{f_X(x)}.
+$$
 >
 > 对任何使 $$f_Y(y) > 0$$ 的 $$y$$，***给定 $$Y = y$$ 时 $$X$$ 的条件 pdf*** 是记作 $$f(x \mid y)$$ 的 $$x$$ 的函数，定义为
 >
 > $$
-> f(x \mid y) = \frac{f(x, y)}{f_Y(y)}.
-> $$
+f(x \mid y) = \frac{f(x, y)}{f_Y(y)}.
+$$
 
 验证 $$f(x \mid y)$$ 与 $$f(y \mid x)$$ 确为 pdf，可以用与之前验证定义 4.2.1 定义了真 pmf 相同的步骤，只是把求和换成积分。
 
@@ -429,36 +429,36 @@ $$
 > 如例 4.1.12，设连续随机向量 $$(X, Y)$$ 具有联合 pdf $$f(x, y) = e^{-y}$$（$$0 < x < y < \infty$$）。要计算给定 $$X = x$$ 时 $$Y$$ 的条件 pdf。$$X$$ 的边缘 pdf 计算如下：若 $$x \leq 0$$，$$f(x, y)$$ 对一切 $$y$$ 为 0，故 $$f_X(x) = 0$$；若 $$x > 0$$，$$f(x, y) > 0$$ 仅当 $$y > x$$。于是
 >
 > $$
-> f_X(x) = \int_{-\infty}^{\infty} f(x, y)\, dy = \int_x^{\infty} e^{-y}\, dy = e^{-x}.
-> $$
+f_X(x) = \int_{-\infty}^{\infty} f(x, y)\, dy = \int_x^{\infty} e^{-y}\, dy = e^{-x}.
+$$
 >
 > 即边缘上 $$X$$ 服从指数分布。用定义 4.2.3，对任意 $$x > 0$$（即 $$f_X(x) > 0$$ 的那些值）可计算给定 $$X = x$$ 时 $$Y$$ 的条件分布：
 >
 > $$
-> f(y \mid x) = \frac{f(x, y)}{f_X(x)} = \frac{e^{-y}}{e^{-x}} = e^{-(y - x)}, \qquad \text{若}\ y > x;
-> $$
+f(y \mid x) = \frac{f(x, y)}{f_X(x)} = \frac{e^{-y}}{e^{-x}} = e^{-(y - x)}, \qquad \text{若}\ y > x;
+$$
 >
 > $$
-> f(y \mid x) = \frac{f(x, y)}{f_X(x)} = \frac{0}{e^{-x}} = 0, \qquad \text{若}\ y \leq x.
-> $$
+f(y \mid x) = \frac{f(x, y)}{f_X(x)} = \frac{0}{e^{-x}} = 0, \qquad \text{若}\ y \leq x.
+$$
 >
 > 于是给定 $$X = x$$ 时，$$Y$$ 服从一个指数分布，其中 $$x$$ 是 $$Y$$ 分布的位置参数，$$\beta = 1$$ 是尺度参数。$$Y$$ 的条件分布随 $$x$$ 的每个值而不同。由此
 >
 > $$
-> \mathrm{E}(Y \mid X = x) = \int_x^{\infty} y\, e^{-(y - x)}\, dy = 1 + x.
-> $$
+\mathrm{E}(Y \mid X = x) = \int_x^{\infty} y\, e^{-(y - x)}\, dy = 1 + x.
+$$
 >
 > 由 $$f(y \mid x)$$ 所描述的概率分布的方差称为“给定 $$X = x$$ 时 $$Y$$ 的条件方差”，记作 $$\mathrm{Var}(Y \mid x)$$。按方差的通常定义，
 >
 > $$
-> \mathrm{Var}(Y \mid x) = \mathrm{E}(Y^2 \mid x) - \bigl( \mathrm{E}(Y \mid x) \bigr)^2.
-> $$
+\mathrm{Var}(Y \mid x) = \mathrm{E}(Y^2 \mid x) - \bigl( \mathrm{E}(Y \mid x) \bigr)^2.
+$$
 >
 > 应用于本例：
 >
 > $$
-> \mathrm{Var}(Y \mid x) = \int_x^{\infty} y^2 e^{-(y - x)}\, dy - \Bigl( \int_x^{\infty} y\, e^{-(y - x)}\, dy \Bigr)^{2} = 1.
-> $$
+\mathrm{Var}(Y \mid x) = \int_x^{\infty} y^2 e^{-(y - x)}\, dy - \Bigl( \int_x^{\infty} y\, e^{-(y - x)}\, dy \Bigr)^{2} = 1.
+$$
 >
 > 此例中给定 $$X = x$$ 时 $$Y$$ 的条件方差对一切 $$x$$ 相同；在其他情形则可能随 $$x$$ 不同。可以把这一条件方差与 $$Y$$ 的无条件方差比较：$$Y$$ 的边缘分布是 $$\mathrm{gamma}(2, 1)$$，其 $$\mathrm{Var} Y = 2$$。已知 $$X = x$$ 后，$$Y$$ 的变异大大降低。
 
@@ -477,8 +477,8 @@ $$
 > 设 $$(X, Y)$$ 是具有联合 pdf 或 pmf $$f(x, y)$$ 与边缘 pdf 或 pmf $$f_X(x)$$、$$f_Y(y)$$ 的二元随机向量。若对每个 $$x \in \Re$$ 与 $$y \in \Re$$ 都有
 >
 > $$
-> f(x, y) = f_X(x)\, f_Y(y), \tag{4.2.1}
-> $$
+f(x, y) = f_X(x)\, f_Y(y), \tag{4.2.1}
+$$
 >
 > 则称 $$X$$ 与 $$Y$$ 为***独立随机变量***（independent random variables）。
 
@@ -497,22 +497,22 @@ $$
 > 考虑离散二元随机向量 $$(X, Y)$$，其联合 pmf 为
 >
 > $$
-> f(10, 1) = f(20, 1) = f(20, 2) = \frac{1}{10}, \qquad
-> f(10, 2) = f(10, 3) = \frac{1}{5}, \qquad
-> f(20, 3) = \frac{3}{10}.
-> $$
+f(10, 1) = f(20, 1) = f(20, 2) = \frac{1}{10}, \qquad
+f(10, 2) = f(10, 3) = \frac{1}{5}, \qquad
+f(20, 3) = \frac{3}{10}.
+$$
 >
 > 容易算出边缘 pmf：
 >
 > $$
-> f_X(10) = f_X(20) = \frac{1}{2}, \qquad f_Y(1) = \frac{1}{5}, \quad f_Y(2) = \frac{3}{10}, \quad f_Y(3) = \frac{1}{2}.
-> $$
+f_X(10) = f_X(20) = \frac{1}{2}, \qquad f_Y(1) = \frac{1}{5}, \quad f_Y(2) = \frac{3}{10}, \quad f_Y(3) = \frac{1}{2}.
+$$
 >
 > $$X$$ 与 $$Y$$ 不独立，因为 (4.2.1) 并非对一切 $$x$$ 与 $$y$$ 成立。例如
 >
 > $$
-> f(10, 3) = \frac{1}{5} \neq \frac{1}{2} \cdot \frac{1}{2} = f_X(10)\, f_Y(3).
-> $$
+f(10, 3) = \frac{1}{5} \neq \frac{1}{2} \cdot \frac{1}{2} = f_X(10)\, f_Y(3).
+$$
 >
 > 若要 $$X$$ 与 $$Y$$ 独立，关系 (4.2.1) 必须对每一组 $$x$$、$$y$$ 成立。注意 $$f(10, 1) = \tfrac{1}{10} = \tfrac{1}{2} \cdot \tfrac{1}{5} = f_X(10) f_Y(1)$$：(4.2.1) 对某些 $$x$$、$$y$$ 成立并不能保证独立，必须检查所有取值。
 
@@ -523,33 +523,33 @@ $$
 > 设 $$(X, Y)$$ 是具有联合 pdf 或 pmf $$f(x, y)$$ 的二元随机向量。则 $$X$$ 与 $$Y$$ 独立当且仅当存在函数 $$g(x)$$ 与 $$h(y)$$ 使得对每个 $$x \in \Re$$ 与 $$y \in \Re$$ 都有
 >
 > $$
-> f(x, y) = g(x)\, h(y).
-> $$
+f(x, y) = g(x)\, h(y).
+$$
 >
 > **证明**　“仅当”部分：取 $$g(x) = f_X(x)$$、$$h(y) = f_Y(y)$$ 并用 (4.2.1)。连续情形的“若”部分：设 $$f(x, y) = g(x) h(y)$$，定义
 >
 > $$
-> \int_{-\infty}^{\infty} g(x)\, dx = c \qquad\text{与}\qquad \int_{-\infty}^{\infty} h(y)\, dy = d,
-> $$
+\int_{-\infty}^{\infty} g(x)\, dx = c \qquad\text{与}\qquad \int_{-\infty}^{\infty} h(y)\, dy = d,
+$$
 >
 > 其中常数 $$c$$、$$d$$ 满足
 >
 > $$
-> cd = \Bigl( \int_{-\infty}^{\infty} g(x)\, dx \Bigr) \Bigl( \int_{-\infty}^{\infty} h(y)\, dy \Bigr) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x) h(y)\, dx\, dy = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y)\, dx\, dy = 1, \tag{4.2.2}
-> $$
+cd = \Bigl( \int_{-\infty}^{\infty} g(x)\, dx \Bigr) \Bigl( \int_{-\infty}^{\infty} h(y)\, dy \Bigr) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x) h(y)\, dx\, dy = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y)\, dx\, dy = 1, \tag{4.2.2}
+$$
 >
 > 最后一步因为 $$f(x, y)$$ 是联合 pdf。进一步，边缘 pdf 为
 >
 > $$
-> f_X(x) = \int_{-\infty}^{\infty} g(x) h(y)\, dy = g(x)\, d, \qquad
-> f_Y(y) = \int_{-\infty}^{\infty} g(x) h(y)\, dx = h(y)\, c. \tag{4.2.3}
-> $$
+f_X(x) = \int_{-\infty}^{\infty} g(x) h(y)\, dy = g(x)\, d, \qquad
+f_Y(y) = \int_{-\infty}^{\infty} g(x) h(y)\, dx = h(y)\, c. \tag{4.2.3}
+$$
 >
 > 于是用 (4.2.2) 与 (4.2.3) 得
 >
 > $$
-> f(x, y) = g(x) h(y) = g(x) h(y)\, cd = f_X(x)\, f_Y(y),
-> $$
+f(x, y) = g(x) h(y) = g(x) h(y)\, cd = f_X(x)\, f_Y(y),
+$$
 >
 > 即 $$X$$ 与 $$Y$$ 独立。把积分换成求和即证得离散情形的引理。 ∎
 
@@ -558,9 +558,9 @@ $$
 > $$f(x, y) = \tfrac{1}{384}\, x\, y^2\, e^{-y - (x/2)}$$（$$x > 0$$，$$y > 0$$）是一个联合 pdf。若定义
 >
 > $$
-> g(x) = \begin{cases} x^2 e^{-x/2} & x > 0,\\ 0 & x \leq 0, \end{cases} \qquad
-> h(y) = \begin{cases} y^4 e^{-y} / 384 & y > 0,\\ 0 & y \leq 0, \end{cases}
-> $$
+g(x) = \begin{cases} x^2 e^{-x/2} & x > 0,\\ 0 & x \leq 0, \end{cases} \qquad
+h(y) = \begin{cases} y^4 e^{-y} / 384 & y > 0,\\ 0 & y \leq 0, \end{cases}
+$$
 >
 > 则对一切 $$x \in \Re$$ 与 $$y \in \Re$$ 都有 $$f(x, y) = g(x) h(y)$$。由引理 4.2.7 得 $$X$$ 与 $$Y$$ 独立——我们无需计算边缘 pdf。
 
@@ -571,26 +571,26 @@ $$
 > 作为用独立性定义联合概率模型的例子，考虑如下情形：从堪萨斯城某小学随机选一名学生，记录 $$X =$$  该学生在世的父母数。设 $$X$$ 的边缘分布为
 >
 > $$
-> f_X(0) = 0.01, \qquad f_X(1) = 0.09, \qquad f_X(2) = 0.90.
-> $$
+f_X(0) = 0.01, \qquad f_X(1) = 0.09, \qquad f_X(2) = 0.90.
+$$
 >
 > 从太阳城随机选一位退休者，记录 $$Y =$$  该退休者在世的父母数。设 $$Y$$ 的边缘分布为
 >
 > $$
-> f_Y(0) = 0.70, \qquad f_Y(1) = 0.25, \qquad f_Y(2) = 0.05.
-> $$
+f_Y(0) = 0.70, \qquad f_Y(1) = 0.25, \qquad f_Y(2) = 0.05.
+$$
 >
 > 假定这两个随机变量独立是合理的：知道学生的在世父母数，不提供关于退休者在世父母数的任何信息。反映这种独立性的 $$X$$ 与 $$Y$$ 的唯一联合分布就是 (4.2.1) 定义的分布。例如
 >
 > $$
-> f(0, 0) = f_X(0) f_Y(0) = 0.0070, \qquad f(0, 1) = f_X(0) f_Y(1) = 0.0025.
-> $$
+f(0, 0) = f_X(0) f_Y(0) = 0.0070, \qquad f(0, 1) = f_X(0) f_Y(1) = 0.0025.
+$$
 >
 > 这一联合分布可用于计算诸如
 >
 > $$
-> P(X = Y) = f(0, 0) + f(1, 1) + f(2, 2) = (0.01)(0.70) + (0.09)(0.25) + (0.90)(0.05) = 0.0745
-> $$
+P(X = Y) = f(0, 0) + f(1, 1) + f(2, 2) = (0.01)(0.70) + (0.09)(0.25) + (0.90)(0.05) = 0.0745
+$$
 >
 > 的量。
 
@@ -605,27 +605,27 @@ $$
 > - b. 设 $$g(x)$$ 只是 $$x$$ 的函数，$$h(y)$$ 只是 $$y$$ 的函数，则
 >
 >   $$
->   \mathrm{E}\bigl( g(X)\, h(Y) \bigr) = \bigl( \mathrm{E} g(X) \bigr)\, \bigl( \mathrm{E} h(Y) \bigr).
->   $$
+  \mathrm{E}\bigl( g(X)\, h(Y) \bigr) = \bigl( \mathrm{E} g(X) \bigr)\, \bigl( \mathrm{E} h(Y) \bigr).
+  $$
 >
 >
 > **证明**　对连续随机变量，(b) 的证明在于注意
 >
 > $$
-> \begin{aligned}
-> \mathrm{E}\bigl( g(X) h(Y) \bigr) &= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x) h(y)\, f(x, y)\, dx\, dy\\
-> &= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x) h(y)\, f_X(x) f_Y(y)\, dx\, dy \qquad （\text{由}\ (4.2.1)）\\
-> &= \int_{-\infty}^{\infty} h(y) f_Y(y) \Bigl( \int_{-\infty}^{\infty} g(x) f_X(x)\, dx \Bigr)\, dy\\
-> &= \Bigl( \int_{-\infty}^{\infty} g(x) f_X(x)\, dx \Bigr) \Bigl( \int_{-\infty}^{\infty} h(y) f_Y(y)\, dy \Bigr)\\
-> &= \bigl( \mathrm{E} g(X) \bigr)\, \bigl( \mathrm{E} h(Y) \bigr).
-> \end{aligned}
-> $$
+\begin{aligned}
+\mathrm{E}\bigl( g(X) h(Y) \bigr) &= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x) h(y)\, f(x, y)\, dx\, dy\\
+&= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x) h(y)\, f_X(x) f_Y(y)\, dx\, dy \qquad （\text{由}\ (4.2.1)）\\
+&= \int_{-\infty}^{\infty} h(y) f_Y(y) \Bigl( \int_{-\infty}^{\infty} g(x) f_X(x)\, dx \Bigr)\, dy\\
+&= \Bigl( \int_{-\infty}^{\infty} g(x) f_X(x)\, dx \Bigr) \Bigl( \int_{-\infty}^{\infty} h(y) f_Y(y)\, dy \Bigr)\\
+&= \bigl( \mathrm{E} g(X) \bigr)\, \bigl( \mathrm{E} h(Y) \bigr).
+\end{aligned}
+$$
 >
 > 离散随机变量的结果把积分换成求和即可。(a) 可以按与上类似的一系列步骤证明，或用如下论证：取 $$g(x)$$ 为集合 $$A$$ 的示性函数，$$h(y)$$ 为集合 $$B$$ 的示性函数；注意 $$g(x) h(y)$$ 是集合 $$C = \{(x, y) : x \in A,\ y \in B\} \subset \Re^2$$ 的示性函数；又对示性函数 $$g(x)$$ 有 $$\mathrm{E} g(X) = P(X \in A)$$。于是用刚才证明的期望等式：
 >
 > $$
-> P(X \in A, Y \in B) = P\bigl( (X, Y) \in C \bigr) = \mathrm{E}\bigl( g(X) h(Y) \bigr) = \bigl( \mathrm{E} g(X) \bigr) \bigl( \mathrm{E} h(Y) \bigr) = P(X \in A)\, P(Y \in B).
-> $$
+P(X \in A, Y \in B) = P\bigl( (X, Y) \in C \bigr) = \mathrm{E}\bigl( g(X) h(Y) \bigr) = \bigl( \mathrm{E} g(X) \bigr) \bigl( \mathrm{E} h(Y) \bigr) = P(X \in A)\, P(Y \in B).
+$$
 >
 > ∎
 
@@ -634,14 +634,14 @@ $$
 > 设 $$X$$ 与 $$Y$$ 是独立的 $$\mathrm{exponential}(1)$$ 随机变量。由定理 4.2.10，
 >
 > $$
-> P(X \geq 4,\ Y < 3) = P(X \geq 4)\, P(Y < 3) = e^{-4} \bigl( 1 - e^{-3} \bigr).
-> $$
+P(X \geq 4,\ Y < 3) = P(X \geq 4)\, P(Y < 3) = e^{-4} \bigl( 1 - e^{-3} \bigr).
+$$
 >
 > 取 $$g(x) = x^2$$ 与 $$h(y) = y$$，可见
 >
 > $$
-> \mathrm{E}\bigl( X^2 Y \bigr) = \bigl( \mathrm{E} X^2 \bigr) \bigl( \mathrm{E} Y \bigr) = \bigl( \mathrm{Var} X + (\mathrm{E} X)^2 \bigr)\, \mathrm{E} Y = \bigl( 1 + 1^2 \bigr) \cdot 1 = 2.
-> $$
+\mathrm{E}\bigl( X^2 Y \bigr) = \bigl( \mathrm{E} X^2 \bigr) \bigl( \mathrm{E} Y \bigr) = \bigl( \mathrm{Var} X + (\mathrm{E} X)^2 \bigr)\, \mathrm{E} Y = \bigl( 1 + 1^2 \bigr) \cdot 1 = 2.
+$$
 
 关于独立随机变量之和的下列结果，是定理 4.2.10 的简单推论。
 
@@ -650,14 +650,14 @@ $$
 > 设 $$X$$ 与 $$Y$$ 独立，矩母函数分别为 $$M_X(t)$$ 与 $$M_Y(t)$$。则随机变量 $$Z = X + Y$$ 的矩母函数为
 >
 > $$
-> M_Z(t) = M_X(t)\, M_Y(t).
-> $$
+M_Z(t) = M_X(t)\, M_Y(t).
+$$
 >
 > **证明**　用 mgf 的定义与定理 4.2.10：
 >
 > $$
-> M_Z(t) = \mathrm{E} e^{tZ} = \mathrm{E} e^{t(X + Y)} = \mathrm{E}\bigl( e^{tX}\, e^{tY} \bigr) = \bigl( \mathrm{E} e^{tX} \bigr) \bigl( \mathrm{E} e^{tY} \bigr) = M_X(t)\, M_Y(t).
-> $$
+M_Z(t) = \mathrm{E} e^{tZ} = \mathrm{E} e^{t(X + Y)} = \mathrm{E}\bigl( e^{tX}\, e^{tY} \bigr) = \bigl( \mathrm{E} e^{tX} \bigr) \bigl( \mathrm{E} e^{tY} \bigr) = M_X(t)\, M_Y(t).
+$$
 >
 > ∎
 
@@ -666,14 +666,14 @@ $$
 > 有时可用定理 4.2.12 由 $$X$$ 与 $$Y$$ 的分布轻松导出 $$Z$$ 的分布。例如设 $$X \sim n(\mu, \sigma^2)$$ 与 $$Y \sim n(\gamma, \tau^2)$$ 独立。由习题 2.33，$$X$$ 与 $$Y$$ 的 mgf 为
 >
 > $$
-> M_X(t) = \exp(\mu t + \sigma^2 t^2/2) \qquad\text{与}\qquad M_Y(t) = \exp(\gamma t + \tau^2 t^2/2).
-> $$
+M_X(t) = \exp(\mu t + \sigma^2 t^2/2) \qquad\text{与}\qquad M_Y(t) = \exp(\gamma t + \tau^2 t^2/2).
+$$
 >
 > 于是由定理 4.2.12，$$Z = X + Y$$ 的 mgf 为
 >
 > $$
-> M_Z(t) = M_X(t)\, M_Y(t) = \exp\bigl( (\mu + \gamma)\, t + (\sigma^2 + \tau^2)\, t^2 / 2 \bigr).
-> $$
+M_Z(t) = M_X(t)\, M_Y(t) = \exp\bigl( (\mu + \gamma)\, t + (\sigma^2 + \tau^2)\, t^2 / 2 \bigr).
+$$
 >
 > 这是均值为 $$\mu + \gamma$$、方差为 $$\sigma^2 + \tau^2$$ 的正态随机变量的 mgf。这一结果足够重要，值得单独立为定理。
 
@@ -709,32 +709,32 @@ $$
 > 设 $$X$$ 与 $$Y$$ 分别是参数为 $$\theta$$ 与 $$\lambda$$ 的独立泊松随机变量，则 $$(X, Y)$$ 的联合 pmf 为
 >
 > $$
-> f_{X,Y}(x, y) = \frac{\theta^{x} e^{-\theta}}{x!} \cdot \frac{\lambda^{y} e^{-\lambda}}{y!}, \qquad x = 0, 1, 2, \ldots, \quad y = 0, 1, 2, \ldots
-> $$
+f_{X,Y}(x, y) = \frac{\theta^{x} e^{-\theta}}{x!} \cdot \frac{\lambda^{y} e^{-\lambda}}{y!}, \qquad x = 0, 1, 2, \ldots, \quad y = 0, 1, 2, \ldots
+$$
 >
 > 集合 $$\mathcal{A} = \{(x, y) : x = 0, 1, 2, \ldots\ \text{且}\ y = 0, 1, 2, \ldots\}$$。现定义 $$U = X + Y$$ 与 $$V = Y$$，即 $$g_1(x, y) = x + y$$、$$g_2(x, y) = y$$。描述可能值集合 $$\mathcal{B}$$：$$v$$ 的可能值是非负整数（$$v = y$$，取值集合相同）；对给定的 $$v$$，$$u = x + y = x + v$$ 必须是 $$\geq v$$ 的整数（因 $$x$$ 是非负整数）。故全部可能值集合为
 >
 > $$
-> \mathcal{B} = \{(u, v) : v = 0, 1, 2, \ldots\ \text{且}\ u = v, v+1, v+2, \ldots\}.
-> $$
+\mathcal{B} = \{(u, v) : v = 0, 1, 2, \ldots\ \text{且}\ u = v, v+1, v+2, \ldots\}.
+$$
 >
 > 对任意 $$(u, v) \in \mathcal{B}$$，满足 $$x + y = u$$ 与 $$y = v$$ 的 $$(x, y)$$ 只有 $$x = u - v$$ 与 $$y = v$$，故本例中 $$A_{uv}$$ 总只含单点 $$(u - v, v)$$。由 (4.3.1) 得 $$(U, V)$$ 的联合 pmf：
 >
 > $$
-> f_{U,V}(u, v) = f_{X,Y}(u - v, v) = \frac{\theta^{u - v} e^{-\theta}}{(u - v)!} \cdot \frac{\lambda^{v} e^{-\lambda}}{v!}, \qquad \begin{cases} v = 0, 1, 2, \ldots, \\ u = v, v+1, v+2, \ldots. \end{cases}
-> $$
+f_{U,V}(u, v) = f_{X,Y}(u - v, v) = \frac{\theta^{u - v} e^{-\theta}}{(u - v)!} \cdot \frac{\lambda^{v} e^{-\lambda}}{v!}, \qquad \begin{cases} v = 0, 1, 2, \ldots, \\ u = v, v+1, v+2, \ldots. \end{cases}
+$$
 >
 > 本例中有趣的是计算 $$U$$ 的边缘 pmf。对固定的非负整数 $$u$$，$$f_{U,V}(u, v) > 0$$ 仅当 $$v = 0, 1, \ldots, u$$；这就是求 $$U$$ 边缘 pmf 时对 $$v$$ 求和的范围：
 >
 > $$
-> f_U(u) = \sum_{v=0}^{u} \frac{\theta^{u-v} e^{-\theta}}{(u - v)!} \cdot \frac{\lambda^{v} e^{-\lambda}}{v!} = e^{-(\theta + \lambda)} \sum_{v=0}^{u} \frac{\theta^{u - v}\, \lambda^{v}}{(u - v)!\, v!}, \qquad u = 0, 1, 2, \ldots
-> $$
+f_U(u) = \sum_{v=0}^{u} \frac{\theta^{u-v} e^{-\theta}}{(u - v)!} \cdot \frac{\lambda^{v} e^{-\lambda}}{v!} = e^{-(\theta + \lambda)} \sum_{v=0}^{u} \frac{\theta^{u - v}\, \lambda^{v}}{(u - v)!\, v!}, \qquad u = 0, 1, 2, \ldots
+$$
 >
 > 注意到若对每项乘以并除以 $$u!$$，就可用二项式定理化简：
 >
 > $$
-> f_U(u) = \frac{e^{-(\theta + \lambda)}}{u!} \sum_{v=0}^{u} \binom{u}{v} \lambda^{v} \theta^{u - v} = \frac{e^{-(\theta + \lambda)}\, (\theta + \lambda)^{u}}{u!}, \qquad u = 0, 1, 2, \ldots
-> $$
+f_U(u) = \frac{e^{-(\theta + \lambda)}}{u!} \sum_{v=0}^{u} \binom{u}{v} \lambda^{v} \theta^{u - v} = \frac{e^{-(\theta + \lambda)}\, (\theta + \lambda)^{u}}{u!}, \qquad u = 0, 1, 2, \ldots
+$$
 >
 > 这正是参数为 $$\theta + \lambda$$ 的泊松随机变量的 pmf。这一结果足够重要，值得立为定理。
 
@@ -763,40 +763,40 @@ $$
 > 设 $$X \sim \mathrm{beta}(\alpha, \beta)$$ 与 $$Y \sim \mathrm{beta}(\alpha + \beta, \gamma)$$ 独立，$$(X, Y)$$ 的联合 pdf 为
 >
 > $$
-> f_{X,Y}(x, y) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\, \Gamma(\beta)}\, x^{\alpha - 1} (1 - x)^{\beta - 1} \cdot \frac{\Gamma(\alpha + \beta + \gamma)}{\Gamma(\alpha + \beta)\, \Gamma(\gamma)}\, y^{\alpha + \beta - 1} (1 - y)^{\gamma - 1},
-> $$
+f_{X,Y}(x, y) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\, \Gamma(\beta)}\, x^{\alpha - 1} (1 - x)^{\beta - 1} \cdot \frac{\Gamma(\alpha + \beta + \gamma)}{\Gamma(\alpha + \beta)\, \Gamma(\gamma)}\, y^{\alpha + \beta - 1} (1 - y)^{\gamma - 1},
+$$
 >
 > $$0 < x < 1$$，$$0 < y < 1$$。考虑变换 $$U = XY$$ 与 $$V = X$$。$$V$$ 的可能值范围是 $$0 < v < 1$$（因 $$V = X$$）。对固定的 $$V = v$$，由于 $$X = V = v$$ 而 $$Y \in (0,1)$$，$$U$$ 必须介于 0 与 $$v$$ 之间。故该变换把集合 $$\mathcal{A}$$ 映到集合 $$\mathcal{B} = \{(u, v) : 0 < u < v < 1\}$$ 上。对任意 $$(u, v) \in \mathcal{B}$$，方程 $$u = xy$$ 与 $$v = x$$ 可唯一解出 $$x = h_1(u, v) = v$$ 与 $$y = h_2(u, v) = u/v$$。注意：若视为定义在整个 $$\Re^2$$ 上的变换，它不是一一的——任何点 $$(0, y)$$ 都被映到 $$(0, 0)$$；但作为只定义在 $$\mathcal{A}$$ 上的函数，它是到 $$\mathcal{B}$$ 上的一一变换。雅可比为
 >
 > $$
-> J = \begin{vmatrix} \dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v} \\[8pt] \dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v} \end{vmatrix} = \begin{vmatrix} 0 & 1 \\[4pt] \dfrac{1}{v} & -\dfrac{u}{v^2} \end{vmatrix} = -\frac{1}{v}.
-> $$
+J = \begin{vmatrix} \dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v} \\[8pt] \dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v} \end{vmatrix} = \begin{vmatrix} 0 & 1 \\[4pt] \dfrac{1}{v} & -\dfrac{u}{v^2} \end{vmatrix} = -\frac{1}{v}.
+$$
 >
 > 于是由 (4.3.2) 得联合 pdf
 >
 > $$
-> f_{U,V}(u, v) = \frac{\Gamma(\alpha + \beta + \gamma)}{\Gamma(\alpha)\, \Gamma(\beta)\, \Gamma(\gamma)}\, v^{\alpha - 1}\, (1 - v)^{\beta - 1} \Bigl( \frac{u}{v} \Bigr)^{\alpha + \beta - 1} \Bigl( 1 - \frac{u}{v} \Bigr)^{\gamma - 1} \frac{1}{v},
-> \qquad 0 < u < v < 1. \tag{4.3.3}
-> $$
+f_{U,V}(u, v) = \frac{\Gamma(\alpha + \beta + \gamma)}{\Gamma(\alpha)\, \Gamma(\beta)\, \Gamma(\gamma)}\, v^{\alpha - 1}\, (1 - v)^{\beta - 1} \Bigl( \frac{u}{v} \Bigr)^{\alpha + \beta - 1} \Bigl( 1 - \frac{u}{v} \Bigr)^{\gamma - 1} \frac{1}{v},
+\qquad 0 < u < v < 1. \tag{4.3.3}
+$$
 >
 > $$V = X$$ 的边缘分布当然是 $$\mathrm{beta}(\alpha, \beta)$$；而 $$U$$ 的分布也是贝塔分布：
 >
 > $$
-> \begin{aligned}
-> f_U(u) &= \int_u^1 f_{U,V}(u, v)\, dv\\
-> &= \frac{\Gamma(\alpha + \beta + \gamma)}{\Gamma(\alpha)\, \Gamma(\beta)\, \Gamma(\gamma)}\, u^{\alpha - 1} \int_u^1 \Bigl( \frac{u}{v} - u \Bigr)^{\beta - 1} \Bigl( 1 - \frac{u}{v} \Bigr)^{\gamma - 1} \frac{u\, dv}{v^2},
-> \end{aligned}
-> $$
+\begin{aligned}
+f_U(u) &= \int_u^1 f_{U,V}(u, v)\, dv\\
+&= \frac{\Gamma(\alpha + \beta + \gamma)}{\Gamma(\alpha)\, \Gamma(\beta)\, \Gamma(\gamma)}\, u^{\alpha - 1} \int_u^1 \Bigl( \frac{u}{v} - u \Bigr)^{\beta - 1} \Bigl( 1 - \frac{u}{v} \Bigr)^{\gamma - 1} \frac{u\, dv}{v^2},
+\end{aligned}
+$$
 >
 > 这里用了 (4.3.3) 但重新整理了各项。现做一元变量代换 $$y = \dfrac{(u/v) - u}{1 - u}$$，则 $$dy = -\dfrac{u}{v^2 (1 - u)}\, dv$$，得
 >
 > $$
-> \begin{aligned}
-> f_U(u) &= \frac{\Gamma(\alpha + \beta + \gamma)}{\Gamma(\alpha)\, \Gamma(\beta)\, \Gamma(\gamma)}\, u^{\alpha - 1}\, (1 - u)^{\beta + \gamma - 1} \int_0^1 y^{\beta - 1} (1 - y)^{\gamma - 1}\, dy\\
-> &= \frac{\Gamma(\alpha + \beta + \gamma)}{\Gamma(\alpha)\, \Gamma(\beta)\, \Gamma(\gamma)}\, u^{\alpha - 1}\, (1 - u)^{\beta + \gamma - 1}\, \frac{\Gamma(\beta)\, \Gamma(\gamma)}{\Gamma(\beta + \gamma)}\\
-> &= \frac{\Gamma(\alpha + \beta + \gamma)}{\Gamma(\alpha)\, \Gamma(\beta + \gamma)}\, u^{\alpha - 1}\, (1 - u)^{\beta + \gamma - 1}, \qquad 0 < u < 1.
-> \end{aligned}
-> $$
+\begin{aligned}
+f_U(u) &= \frac{\Gamma(\alpha + \beta + \gamma)}{\Gamma(\alpha)\, \Gamma(\beta)\, \Gamma(\gamma)}\, u^{\alpha - 1}\, (1 - u)^{\beta + \gamma - 1} \int_0^1 y^{\beta - 1} (1 - y)^{\gamma - 1}\, dy\\
+&= \frac{\Gamma(\alpha + \beta + \gamma)}{\Gamma(\alpha)\, \Gamma(\beta)\, \Gamma(\gamma)}\, u^{\alpha - 1}\, (1 - u)^{\beta + \gamma - 1}\, \frac{\Gamma(\beta)\, \Gamma(\gamma)}{\Gamma(\beta + \gamma)}\\
+&= \frac{\Gamma(\alpha + \beta + \gamma)}{\Gamma(\alpha)\, \Gamma(\beta + \gamma)}\, u^{\alpha - 1}\, (1 - u)^{\beta + \gamma - 1}, \qquad 0 < u < 1.
+\end{aligned}
+$$
 >
 > 得到第二个等式时，我们把被积函数识别为贝塔 pdf 的核并使用了 (3.3.17)。故 $$U$$ 的边缘分布是 $$\mathrm{beta}(\alpha, \beta + \gamma)$$。
 
@@ -805,32 +805,32 @@ $$
 > 设 $$X$$ 与 $$Y$$ 独立、均为标准正态。考虑变换 $$U = X + Y$$ 与 $$V = X - Y$$，即 $$U = g_1(X, Y)$$（$$g_1(x, y) = x + y$$）、$$V = g_2(X, Y)$$（$$g_2(x, y) = x - y$$）。$$X$$ 与 $$Y$$ 的联合 pdf 当然是 $$f_{X,Y}(x, y) = (2\pi)^{-1} \exp(-x^2/2)\, \exp(-y^2/2)$$，$$-\infty < x < \infty$$，$$-\infty < y < \infty$$，故 $$\mathcal{A} = \Re^2$$。为确定 $$f_{U,V}(u, v)$$ 为正的集合 $$\mathcal{B}$$，必须确定当 $$(x, y)$$ 取遍 $$\mathcal{A} = \Re^2$$ 时
 >
 > $$
-> u = x + y \qquad\text{与}\qquad v = x - y \tag{4.3.4}
-> $$
+u = x + y \qquad\text{与}\qquad v = x - y \tag{4.3.4}
+$$
 >
 > 能取到的一切值。但可以令 $$u$$ 为任意数、$$v$$ 为任意数，并唯一地解方程组 (4.3.4)：
 >
 > $$
-> x = h_1(u, v) = \frac{u + v}{2}, \qquad y = h_2(u, v) = \frac{u - v}{2}. \tag{4.3.5}
-> $$
+x = h_1(u, v) = \frac{u + v}{2}, \qquad y = h_2(u, v) = \frac{u - v}{2}. \tag{4.3.5}
+$$
 >
 > 这说明两件事：对任意 $$(u, v) \in \Re^2$$ 都存在 $$(x, y) \in \mathcal{A}$$（由 (4.3.5) 定义）使 $$u = x + y$$、$$v = x - y$$，故 $$\mathcal{B}$$（全部可能 $$(u, v)$$ 值之集）是 $$\Re^2$$；又由于解 (4.3.5) 唯一，所考虑的变换是一一的——只有 (4.3.5) 给出的 $$(x, y)$$ 才产生 $$u = x + y$$、$$v = x - y$$。由 (4.3.5) 易算偏导数：
 >
 > $$
-> J = \begin{vmatrix} \dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v} \\[6pt] \dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v} \end{vmatrix} = \begin{vmatrix} \dfrac{1}{2} & \dfrac{1}{2} \\[6pt] \dfrac{1}{2} & -\dfrac{1}{2} \end{vmatrix} = -\frac{1}{2}.
-> $$
+J = \begin{vmatrix} \dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v} \\[6pt] \dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v} \end{vmatrix} = \begin{vmatrix} \dfrac{1}{2} & \dfrac{1}{2} \\[6pt] \dfrac{1}{2} & -\dfrac{1}{2} \end{vmatrix} = -\frac{1}{2}.
+$$
 >
 > 把 (4.3.5) 的 $$x$$、$$y$$ 代入 $$f_{X,Y}(x, y)$$ 并用 $$\vert J\vert  = \tfrac{1}{2}$$，由 (4.3.2) 得 $$(U, V)$$ 的联合 pdf：
 >
 > $$
-> f_{U,V}(u, v) = f_{X,Y}\bigl( h_1(u, v), h_2(u, v) \bigr)\, \vert J\vert  = \frac{1}{2\pi}\, e^{-((u+v)/2)^2/2}\, e^{-((u - v)/2)^2/2}\, \frac{1}{2},
-> $$
+f_{U,V}(u, v) = f_{X,Y}\bigl( h_1(u, v), h_2(u, v) \bigr)\, \vert J\vert  = \frac{1}{2\pi}\, e^{-((u+v)/2)^2/2}\, e^{-((u - v)/2)^2/2}\, \frac{1}{2},
+$$
 >
 > $$-\infty < u < \infty$$，$$-\infty < v < \infty$$。展开指数中的平方后，含 $$uv$$ 的项相互消去；经简化与整理得
 >
 > $$
-> f_{U,V}(u, v) = \Bigl( \frac{1}{\sqrt{2\pi}\, \sqrt{2}}\, e^{-u^2/4} \Bigr) \Bigl( \frac{1}{\sqrt{2\pi}\, \sqrt{2}}\, e^{-v^2/4} \Bigr).
-> $$
+f_{U,V}(u, v) = \Bigl( \frac{1}{\sqrt{2\pi}\, \sqrt{2}}\, e^{-u^2/4} \Bigr) \Bigl( \frac{1}{\sqrt{2\pi}\, \sqrt{2}}\, e^{-v^2/4} \Bigr).
+$$
 >
 > 联合 pdf 分解成了 $$u$$ 的函数与 $$v$$ 的函数之积。由引理 4.2.7，$$U$$ 与 $$V$$ 独立。由定理 4.2.14，$$U = X + Y$$ 的边缘分布是 $$n(0, 2)$$；类似地可用定理 4.2.12 求得 $$V$$ 的边缘分布也是 $$n(0, 2)$$。“独立正态随机变量的和与差是独立的正态随机变量”这一重要事实，只要 $$\mathrm{Var} X = \mathrm{Var} Y$$，无论 $$X$$ 与 $$Y$$ 的均值如何都成立（见习题 4.27）。定理 4.2.12 与 4.2.14 给出 $$U$$ 与 $$V$$ 的边缘分布；但要确定 $$U$$ 与 $$V$$ 独立，则必须进行这里更深入的分析。
 
@@ -843,24 +843,24 @@ $$
 > **证明**　设 $$U$$ 与 $$V$$ 是连续随机变量来证明。对任意 $$u \in \Re$$ 与 $$v \in \Re$$，定义
 >
 > $$
-> A_u = \{x : g(x) \leq u\} \qquad\text{与}\qquad B_v = \{y : h(y) \leq v\}.
-> $$
+A_u = \{x : g(x) \leq u\} \qquad\text{与}\qquad B_v = \{y : h(y) \leq v\}.
+$$
 >
 > 则 $$(U, V)$$ 的联合 cdf 为
 >
 > $$
-> \begin{aligned}
-> F_{U,V}(u, v) &= P(U \leq u, V \leq v) \qquad （\text{cdf 的定义}）\\
-> &= P\bigl( X \in A_u,\ Y \in B_v \bigr) \qquad （U\ \text{与}\ V\ \text{的定义}）\\
-> &= P\bigl( X \in A_u \bigr)\, P\bigl( Y \in B_v \bigr). \qquad （\text{定理 4.2.10}）
-> \end{aligned}
-> $$
+\begin{aligned}
+F_{U,V}(u, v) &= P(U \leq u, V \leq v) \qquad （\text{cdf 的定义}）\\
+&= P\bigl( X \in A_u,\ Y \in B_v \bigr) \qquad （U\ \text{与}\ V\ \text{的定义}）\\
+&= P\bigl( X \in A_u \bigr)\, P\bigl( Y \in B_v \bigr). \qquad （\text{定理 4.2.10}）
+\end{aligned}
+$$
 >
 > $$(U, V)$$ 的联合 pdf 为
 >
 > $$
-> f_{U,V}(u, v) = \frac{\partial^2}{\partial u\, \partial v}\, F_{U,V}(u, v) = \Bigl( \frac{d}{du}\, P(X \in A_u) \Bigr) \Bigl( \frac{d}{dv}\, P(Y \in B_v) \Bigr),
-> $$
+f_{U,V}(u, v) = \frac{\partial^2}{\partial u\, \partial v}\, F_{U,V}(u, v) = \Bigl( \frac{d}{du}\, P(X \in A_u) \Bigr) \Bigl( \frac{d}{dv}\, P(Y \in B_v) \Bigr),
+$$
 >
 > 如记号所示，第一个因子只是 $$u$$ 的函数，第二个因子只是 $$v$$ 的函数。故由引理 4.2.7，$$U$$ 与 $$V$$ 独立。 ∎
 
@@ -877,41 +877,41 @@ $$
 > 设 $$X$$ 与 $$Y$$ 是独立的 $$n(0, 1)$$ 随机变量。考虑变换 $$U = X/Y$$ 与 $$V = \vert Y\vert $$。（若 $$Y = 0$$，可把 $$U$$、$$V$$ 定义为任何值，如 $$(1, 1)$$，因为 $$P(Y = 0) = 0$$。）该变换不是一一的：点 $$(x, y)$$ 与 $$(-x, -y)$$ 被映到同一个 $$(u, v)$$。但若把考虑范围限制在 $$y$$ 为正或 $$y$$ 为负，变换就是一一的。按上述记号，令
 >
 > $$
-> A_1 = \{(x, y) : y > 0\}, \qquad A_2 = \{(x, y) : y < 0\}, \qquad A_0 = \{(x, y) : y = 0\}.
-> $$
+A_1 = \{(x, y) : y > 0\}, \qquad A_2 = \{(x, y) : y < 0\}, \qquad A_0 = \{(x, y) : y = 0\}.
+$$
 >
 > $$A_0$$、$$A_1$$、$$A_2$$ 构成 $$\mathcal{A} = \Re^2$$ 的分割，且 $$P((X, Y) \in A_0) = P(Y = 0) = 0$$。对 $$A_1$$ 或 $$A_2$$：若 $$(x, y) \in A_i$$，则 $$v = \vert y\vert  > 0$$；对固定的 $$v = \vert y\vert $$，$$u = x/y$$ 可为任意实数（因 $$x$$ 任意）。故 $$\mathcal{B} = \{(u, v) : v > 0\}$$ 同时是 $$A_1$$ 与 $$A_2$$ 在变换下的像。此外，从 $$\mathcal{B}$$ 到 $$A_1$$ 与 $$\mathcal{B}$$ 到 $$A_2$$ 的逆变换为
 >
 > $$
-> x = h_{11}(u, v) = uv, \quad y = h_{21}(u, v) = v; \qquad
-> x = h_{12}(u, v) = -uv, \quad y = h_{22}(u, v) = -v.
-> $$
+x = h_{11}(u, v) = uv, \quad y = h_{21}(u, v) = v; \qquad
+x = h_{12}(u, v) = -uv, \quad y = h_{22}(u, v) = -v.
+$$
 >
 > 第一个逆给出正的 $$y$$ 值，第二个给出负的 $$y$$ 值。两个逆的雅可比为 $$J_1 = J_2 = v$$。用
 >
 > $$
-> f_{X,Y}(x, y) = \frac{1}{2\pi}\, e^{-x^2/2}\, e^{-y^2/2},
-> $$
+f_{X,Y}(x, y) = \frac{1}{2\pi}\, e^{-x^2/2}\, e^{-y^2/2},
+$$
 >
 > 由 (4.3.6) 得
 >
 > $$
-> \begin{aligned}
-> f_{U,V}(u, v) &= \frac{1}{2\pi}\, e^{-(uv)^2/2}\, e^{-v^2/2}\, \vert v\vert  + \frac{1}{2\pi}\, e^{-(-uv)^2/2}\, e^{-(-v)^2/2}\, \vert v\vert \\
-> &= \frac{v}{\pi}\, e^{-(u^2 + 1) v^2/2}, \qquad -\infty < u < \infty,\ 0 < v < \infty.
-> \end{aligned}
-> $$
+\begin{aligned}
+f_{U,V}(u, v) &= \frac{1}{2\pi}\, e^{-(uv)^2/2}\, e^{-v^2/2}\, \vert v\vert  + \frac{1}{2\pi}\, e^{-(-uv)^2/2}\, e^{-(-v)^2/2}\, \vert v\vert \\
+&= \frac{v}{\pi}\, e^{-(u^2 + 1) v^2/2}, \qquad -\infty < u < \infty,\ 0 < v < \infty.
+\end{aligned}
+$$
 >
 > 由此可算 $$U$$ 的边缘 pdf：
 >
 > $$
-> \begin{aligned}
-> f_U(u) &= \int_0^{\infty} \frac{v}{\pi}\, e^{-(u^2 + 1) v^2/2}\, dv\\
-> &= \frac{1}{2\pi} \int_0^{\infty} e^{-(u^2 + 1) z/2}\, dz \qquad （\text{变量代换}\ z = v^2）\\
-> &= \frac{1}{2\pi}\, \frac{1}{(u^2 + 1)} \qquad （\text{被积函数是}\ \mathrm{exponential}\ \bigl(\beta = \tfrac{2}{u^2+1}\bigr)\ \text{pdf 的核}）\\
-> &= \frac{1}{\pi (u^2 + 1)}, \qquad -\infty < u < \infty.
-> \end{aligned}
-> $$
+\begin{aligned}
+f_U(u) &= \int_0^{\infty} \frac{v}{\pi}\, e^{-(u^2 + 1) v^2/2}\, dv\\
+&= \frac{1}{2\pi} \int_0^{\infty} e^{-(u^2 + 1) z/2}\, dz \qquad （\text{变量代换}\ z = v^2）\\
+&= \frac{1}{2\pi}\, \frac{1}{(u^2 + 1)} \qquad （\text{被积函数是}\ \mathrm{exponential}\ \bigl(\beta = \tfrac{2}{u^2+1}\bigr)\ \text{pdf 的核}）\\
+&= \frac{1}{\pi (u^2 + 1)}, \qquad -\infty < u < \infty.
+\end{aligned}
+$$
 >
 > 可见两个独立标准正态随机变量之比是一个柯西随机变量。（正态与柯西随机变量之间的更多关系见习题 4.28。）
 
@@ -926,8 +926,8 @@ $$
 > “大量”产卵数是一个随机变量，常取为 $$\mathrm{Poisson}(\lambda)$$。再假设每只卵的存活相互独立，则我们拥有伯努利试验。因此，若令 $$X =$$  存活数，$$Y =$$  产卵数，则有
 >
 > $$
-> X \mid Y \sim \mathrm{binomial}(Y, p), \qquad Y \sim \mathrm{Poisson}(\lambda),
-> $$
+X \mid Y \sim \mathrm{binomial}(Y, p), \qquad Y \sim \mathrm{Poisson}(\lambda),
+$$
 >
 > 这是一个分层模型。（回顾记号 $$X \mid Y \sim \mathrm{binomial}(Y, p)$$ 表示：给定 $$Y = y$$ 时 $$X$$ 的条件分布是 $$\mathrm{binomial}(y, p)$$。）
 
@@ -938,31 +938,31 @@ $$
 > 所关心的随机变量 $$X =$$  存活数，其分布为
 >
 > $$
-> \begin{aligned}
-> P(X = x) &= \sum_{y=0}^{\infty} P(X = x, Y = y)\\
-> &= \sum_{y=0}^{\infty} P(X = x \mid Y = y)\, P(Y = y) \qquad （\text{条件概率的定义}）\\
-> &= \sum_{y=x}^{\infty} \binom{y}{x}\, p^{x} (1 - p)^{y - x}\, \frac{e^{-\lambda} \lambda^{y}}{y!} \qquad （\text{条件概率在}\ y < x\ \text{时为零}），
-> \end{aligned}
-> $$
+\begin{aligned}
+P(X = x) &= \sum_{y=0}^{\infty} P(X = x, Y = y)\\
+&= \sum_{y=0}^{\infty} P(X = x \mid Y = y)\, P(Y = y) \qquad （\text{条件概率的定义}）\\
+&= \sum_{y=x}^{\infty} \binom{y}{x}\, p^{x} (1 - p)^{y - x}\, \frac{e^{-\lambda} \lambda^{y}}{y!} \qquad （\text{条件概率在}\ y < x\ \text{时为零}），
+\end{aligned}
+$$
 >
 > 因为 $$X \mid Y = y$$ 是 $$\mathrm{binomial}(y, p)$$ 而 $$Y$$ 是 $$\mathrm{Poisson}(\lambda)$$。现在化简最后一个表达式：尽可能约去公因子并乘以 $$\lambda^x / \lambda^x$$，得
 >
 > $$
-> \begin{aligned}
-> P(X = x) &= \frac{(\lambda p)^{x} e^{-\lambda}}{x!} \sum_{y=x}^{\infty} \frac{\bigl( (1 - p)\lambda \bigr)^{y - x}}{(y - x)!}\\
-> &= \frac{(\lambda p)^{x} e^{-\lambda}}{x!} \sum_{t=0}^{\infty} \frac{\bigl( (1 - p)\lambda \bigr)^{t}}{t!} \qquad （t = y - x）\\
-> &= \frac{(\lambda p)^{x} e^{-\lambda}}{x!}\, e^{(1 - p)\lambda} \qquad （\text{该和是泊松分布的核}）\\
-> &= \frac{(\lambda p)^{x} e^{-\lambda p}}{x!},
-> \end{aligned}
-> $$
+\begin{aligned}
+P(X = x) &= \frac{(\lambda p)^{x} e^{-\lambda}}{x!} \sum_{y=x}^{\infty} \frac{\bigl( (1 - p)\lambda \bigr)^{y - x}}{(y - x)!}\\
+&= \frac{(\lambda p)^{x} e^{-\lambda}}{x!} \sum_{t=0}^{\infty} \frac{\bigl( (1 - p)\lambda \bigr)^{t}}{t!} \qquad （t = y - x）\\
+&= \frac{(\lambda p)^{x} e^{-\lambda}}{x!}\, e^{(1 - p)\lambda} \qquad （\text{该和是泊松分布的核}）\\
+&= \frac{(\lambda p)^{x} e^{-\lambda p}}{x!},
+\end{aligned}
+$$
 >
 > 故 $$X \sim \mathrm{Poisson}(\lambda p)$$。于是对 $$X$$ 的任何边缘推断都相对于 $$\mathrm{Poisson}(\lambda p)$$ 分布进行，$$Y$$ 完全不起作用。在层级中引入 $$Y$$ 主要是为了帮助理解模型；附带的好处是 $$X$$ 分布的参数是两个都相对易于理解的参数之积。
 >
 > 原始问题的答案现在很容易算出：
 >
 > $$
-> \mathrm{E} X = \lambda p,
-> $$
+\mathrm{E} X = \lambda p,
+$$
 >
 > 即平均而言有 $$\lambda p$$ 只卵存活。若只关心这个均值而无需分布，可以利用条件期望的性质。
 
@@ -973,22 +973,22 @@ $$
 > 若 $$X$$ 与 $$Y$$ 是任意两个随机变量，则
 >
 > $$
-> \mathrm{E} X = \mathrm{E}\bigl( \mathrm{E}(X \mid Y) \bigr), \tag{4.4.1}
-> $$
+\mathrm{E} X = \mathrm{E}\bigl( \mathrm{E}(X \mid Y) \bigr), \tag{4.4.1}
+$$
 >
 > 前提是各期望存在。
 >
 > **证明**　设 $$f(x, y)$$ 表示 $$X$$ 与 $$Y$$ 的联合 pdf。由定义，
 >
 > $$
-> \mathrm{E} X = \iint x\, f(x, y)\, dx\, dy = \int \Bigl( \int x\, f(x \mid y)\, dx \Bigr) f_Y(y)\, dy, \tag{4.4.2}
-> $$
+\mathrm{E} X = \iint x\, f(x, y)\, dx\, dy = \int \Bigl( \int x\, f(x \mid y)\, dx \Bigr) f_Y(y)\, dy, \tag{4.4.2}
+$$
 >
 > 其中 $$f(x \mid y)$$ 与 $$f_Y(y)$$ 分别是给定 $$Y = y$$ 时 $$X$$ 的条件 pdf 与 $$Y$$ 的边缘 pdf。注意到 (4.4.2) 中的内积分正是条件期望 $$\mathrm{E}(X \mid y)$$，故
 >
 > $$
-> \mathrm{E} X = \int \mathrm{E}(X \mid y)\, f_Y(y)\, dy = \mathrm{E}\bigl( \mathrm{E}(X \mid Y) \bigr),
-> $$
+\mathrm{E} X = \int \mathrm{E}(X \mid y)\, f_Y(y)\, dy = \mathrm{E}\bigl( \mathrm{E}(X \mid Y) \bigr),
+$$
 >
 > 即为所求。把积分换成求和即可证明离散情形。 ∎
 
@@ -1015,16 +1015,16 @@ $$
 > 考虑例 4.4.1 的推广：不止一只母虫，而是有大量母虫并随机选择一只。我们仍想知道存活数的平均值，但不再清楚每只母虫的产卵数都服从同一个泊松分布。下面的三段层级可能更合适。设 $$X =$$  一窝中存活数，则
 >
 > $$
-> X \mid Y \sim \mathrm{binomial}(Y, p), \qquad Y \mid \Lambda \sim \mathrm{Poisson}(\Lambda), \qquad \Lambda \sim \mathrm{exponential}(\beta),
-> $$
+X \mid Y \sim \mathrm{binomial}(Y, p), \qquad Y \mid \Lambda \sim \mathrm{Poisson}(\Lambda), \qquad \Lambda \sim \mathrm{exponential}(\beta),
+$$
 >
 > 其中层级的最后一段考虑了不同母虫之间的变异。
 >
 > $$X$$ 的均值容易算出：
 >
 > $$
-> \mathrm{E} X = \mathrm{E}\bigl( \mathrm{E}(X \mid Y) \bigr) = \mathrm{E}(p Y) \qquad （\text{同前}） = \mathrm{E}\bigl( \mathrm{E}(p Y \mid \Lambda) \bigr) = \mathrm{E}(p \Lambda) = p \beta \qquad （\text{指数期望}），
-> $$
+\mathrm{E} X = \mathrm{E}\bigl( \mathrm{E}(X \mid Y) \bigr) = \mathrm{E}(p Y) \qquad （\text{同前}） = \mathrm{E}\bigl( \mathrm{E}(p Y \mid \Lambda) \bigr) = \mathrm{E}(p \Lambda) = p \beta \qquad （\text{指数期望}），
+$$
 >
 > 计算完成。
 
@@ -1085,14 +1085,14 @@ $$
 > 二项分布的一种推广是允许成功概率按某个分布变化。这一情形的标准模型是
 >
 > $$
-> X \mid P \sim \mathrm{binomial}(n, P), \qquad P \sim \mathrm{beta}(\alpha, \beta).
-> $$
+X \mid P \sim \mathrm{binomial}(n, P), \qquad P \sim \mathrm{beta}(\alpha, \beta).
+$$
 >
 > 通过迭代期望计算 $$X$$ 的均值：
 >
 > $$
-> \mathrm{E} X = \mathrm{E}\bigl[ \mathrm{E}(X \mid P) \bigr] = \mathrm{E}[nP] = n\, \frac{\alpha}{\alpha + \beta}.
-> $$
+\mathrm{E} X = \mathrm{E}\bigl[ \mathrm{E}(X \mid P) \bigr] = \mathrm{E}[nP] = n\, \frac{\alpha}{\alpha + \beta}.
+$$
 
 计算 $$X$$ 的方差稍微复杂一点。可以利用一个关于条件方差的公式，其精神与定理 4.4.3 的期望恒等式相似。
 
@@ -1101,56 +1101,56 @@ $$
 > 对任意两个随机变量 $$X$$ 与 $$Y$$，
 >
 > $$
-> \mathrm{Var} X = \mathrm{E}\bigl( \mathrm{Var}(X \mid Y) \bigr) + \mathrm{Var}\bigl( \mathrm{E}(X \mid Y) \bigr), \tag{4.4.4}
-> $$
+\mathrm{Var} X = \mathrm{E}\bigl( \mathrm{Var}(X \mid Y) \bigr) + \mathrm{Var}\bigl( \mathrm{E}(X \mid Y) \bigr), \tag{4.4.4}
+$$
 >
 > 前提是各期望存在。
 >
 > **证明**　由定义，
 >
 > $$
-> \mathrm{Var} X = \mathrm{E}\bigl[ X - \mathrm{E} X \bigr]^2 = \mathrm{E}\bigl[ X - \mathrm{E}(X \mid Y) + \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr]^2,
-> $$
+\mathrm{Var} X = \mathrm{E}\bigl[ X - \mathrm{E} X \bigr]^2 = \mathrm{E}\bigl[ X - \mathrm{E}(X \mid Y) + \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr]^2,
+$$
 >
 > 最后一步加减了 $$\mathrm{E}(X \mid Y)$$。展开平方：
 >
 > $$
-> \mathrm{Var} X = \mathrm{E}\bigl[ X - \mathrm{E}(X \mid Y) \bigr]^2 + \mathrm{E}\bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr]^2 + 2\, \mathrm{E}\bigl( \bigl[ X - \mathrm{E}(X \mid Y) \bigr] \bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr] \bigr). \tag{4.4.5}
-> $$
+\mathrm{Var} X = \mathrm{E}\bigl[ X - \mathrm{E}(X \mid Y) \bigr]^2 + \mathrm{E}\bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr]^2 + 2\, \mathrm{E}\bigl( \bigl[ X - \mathrm{E}(X \mid Y) \bigr] \bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr] \bigr). \tag{4.4.5}
+$$
 >
 > 最后一项等于 0，通过迭代期望容易看出：
 >
 > $$
-> \mathrm{E}\bigl( \bigl[ X - \mathrm{E}(X \mid Y) \bigr] \bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr] \bigr) = \mathrm{E}\Bigl( \mathrm{E}\Bigl\{ \bigl[ X - \mathrm{E}(X \mid Y) \bigr] \bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr] \,\Big\vert \, Y \Bigr\} \Bigr). \tag{4.4.6}
-> $$
+\mathrm{E}\bigl( \bigl[ X - \mathrm{E}(X \mid Y) \bigr] \bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr] \bigr) = \mathrm{E}\Bigl( \mathrm{E}\Bigl\{ \bigl[ X - \mathrm{E}(X \mid Y) \bigr] \bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr] \,\Big\vert \, Y \Bigr\} \Bigr). \tag{4.4.6}
+$$
 >
 > 在条件分布 $$X \mid Y$$ 中，随机变量是 $$X$$；因此在表达式
 >
 > $$
-> \mathrm{E}\Bigl\{ \bigl[ X - \mathrm{E}(X \mid Y) \bigr] \bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr] \,\Big\vert \, Y \Bigr\}
-> $$
+\mathrm{E}\Bigl\{ \bigl[ X - \mathrm{E}(X \mid Y) \bigr] \bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr] \,\Big\vert \, Y \Bigr\}
+$$
 >
 > 中，$$\mathrm{E}(X \mid Y)$$ 与 $$\mathrm{E} X$$ 都是常数。于是
 >
 > $$
-> \begin{aligned}
-> \mathrm{E}\Bigl\{ \bigl[ X - \mathrm{E}(X \mid Y) \bigr] \bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr] \,\Big\vert \, Y \Bigr\} &= \bigl( \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr) \Bigl( \mathrm{E}\bigl\{ X - \mathrm{E}(X \mid Y) \mid Y \bigr\} \Bigr)\\
-> &= \bigl( \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr) \bigl( \mathrm{E}(X \mid Y) - \mathrm{E}(X \mid Y) \bigr)\\
-> &= \bigl( \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr) \cdot 0 = 0.
-> \end{aligned}
-> $$
+\begin{aligned}
+\mathrm{E}\Bigl\{ \bigl[ X - \mathrm{E}(X \mid Y) \bigr] \bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr] \,\Big\vert \, Y \Bigr\} &= \bigl( \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr) \Bigl( \mathrm{E}\bigl\{ X - \mathrm{E}(X \mid Y) \mid Y \bigr\} \Bigr)\\
+&= \bigl( \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr) \bigl( \mathrm{E}(X \mid Y) - \mathrm{E}(X \mid Y) \bigr)\\
+&= \bigl( \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr) \cdot 0 = 0.
+\end{aligned}
+$$
 >
 > 故由 (4.4.6)，$$\mathrm{E}\bigl( (X - \mathrm{E}(X \mid Y)) (\mathrm{E}(X \mid Y) - \mathrm{E} X) \bigr) = \mathrm{E}(0) = 0$$。回到 (4.4.5)：
 >
 > $$
-> \mathrm{E}\bigl[ X - \mathrm{E}(X \mid Y) \bigr]^2 = \mathrm{E}\Bigl( \mathrm{E}\bigl[ X - \mathrm{E}(X \mid Y) \bigr]^2 \,\Big\vert \, Y \Bigr) = \mathrm{E}\bigl( \mathrm{Var}(X \mid Y) \bigr),
-> $$
+\mathrm{E}\bigl[ X - \mathrm{E}(X \mid Y) \bigr]^2 = \mathrm{E}\Bigl( \mathrm{E}\bigl[ X - \mathrm{E}(X \mid Y) \bigr]^2 \,\Big\vert \, Y \Bigr) = \mathrm{E}\bigl( \mathrm{Var}(X \mid Y) \bigr),
+$$
 >
 > 且
 >
 > $$
-> \mathrm{E}\bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr]^2 = \mathrm{Var}\bigl( \mathrm{E}(X \mid Y) \bigr),
-> $$
+\mathrm{E}\bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr]^2 = \mathrm{Var}\bigl( \mathrm{E}(X \mid Y) \bigr),
+$$
 >
 > (4.4.4) 得证。 ∎
 
@@ -1159,32 +1159,32 @@ $$
 > 计算 $$X$$ 的方差：由 (4.4.4)，
 >
 > $$
-> \mathrm{Var} X = \mathrm{Var}\bigl( \mathrm{E}(X \mid P) \bigr) + \mathrm{E}\bigl( \mathrm{Var}(X \mid P) \bigr).
-> $$
+\mathrm{Var} X = \mathrm{Var}\bigl( \mathrm{E}(X \mid P) \bigr) + \mathrm{E}\bigl( \mathrm{Var}(X \mid P) \bigr).
+$$
 >
 > 现在 $$\mathrm{E}(X \mid P) = nP$$；由于 $$P \sim \mathrm{beta}(\alpha, \beta)$$，
 >
 > $$
-> \mathrm{Var}\bigl( \mathrm{E}(X \mid P) \bigr) = \mathrm{Var}(nP) = n^2\, \frac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta + 1)}.
-> $$
+\mathrm{Var}\bigl( \mathrm{E}(X \mid P) \bigr) = \mathrm{Var}(nP) = n^2\, \frac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta + 1)}.
+$$
 >
 > 又 $$X \mid P$$ 是 $$\mathrm{binomial}(n, P)$$，故 $$\mathrm{Var}(X \mid P) = n P (1 - P)$$。于是
 >
 > $$
-> \mathrm{E}\bigl[ \mathrm{Var}(X \mid P) \bigr] = n\, \mathrm{E}\bigl[ P(1 - P) \bigr] = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\, \Gamma(\beta)} \int_0^1 p\, (1 - p)\, p^{\alpha - 1} (1 - p)^{\beta - 1}\, dp.
-> $$
+\mathrm{E}\bigl[ \mathrm{Var}(X \mid P) \bigr] = n\, \mathrm{E}\bigl[ P(1 - P) \bigr] = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\, \Gamma(\beta)} \int_0^1 p\, (1 - p)\, p^{\alpha - 1} (1 - p)^{\beta - 1}\, dp.
+$$
 >
 > 注意被积函数是另一个贝塔 pdf（参数 $$\alpha + 1$$ 与 $$\beta + 1$$）的核，故
 >
 > $$
-> \mathrm{E}\bigl( \mathrm{Var}(X \mid P) \bigr) = n\, \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\, \Gamma(\beta)}\, \frac{\Gamma(\alpha + 1)\, \Gamma(\beta + 1)}{\Gamma(\alpha + \beta + 2)} = n\, \frac{\alpha \beta}{(\alpha + \beta)(\alpha + \beta + 1)}.
-> $$
+\mathrm{E}\bigl( \mathrm{Var}(X \mid P) \bigr) = n\, \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\, \Gamma(\beta)}\, \frac{\Gamma(\alpha + 1)\, \Gamma(\beta + 1)}{\Gamma(\alpha + \beta + 2)} = n\, \frac{\alpha \beta}{(\alpha + \beta)(\alpha + \beta + 1)}.
+$$
 >
 > 把两块相加并化简，得
 >
 > $$
-> \mathrm{Var} X = n\, \frac{\alpha \beta\, (\alpha + \beta + n)}{(\alpha + \beta)^2\, (\alpha + \beta + 1)}.
-> $$
+\mathrm{Var} X = n\, \frac{\alpha \beta\, (\alpha + \beta + n)}{(\alpha + \beta)^2\, (\alpha + \beta + 1)}.
+$$
 
 ## 4.5 协方差与相关（Covariance and Correlation）
 
@@ -1199,16 +1199,16 @@ $$
 > $$X$$ 与 $$Y$$ 的协方差（covariance）定义为数
 >
 > $$
-> \mathrm{Cov}(X, Y) = \mathrm{E}\bigl( (X - \mu_X)(Y - \mu_Y) \bigr).
-> $$
+\mathrm{Cov}(X, Y) = \mathrm{E}\bigl( (X - \mu_X)(Y - \mu_Y) \bigr).
+$$
 
 > **定义 4.5.2（相关）**
 >
 > $$X$$ 与 $$Y$$ 的相关（correlation）定义为数
 >
 > $$
-> \rho_{XY} = \frac{\mathrm{Cov}(X, Y)}{\sigma_X\, \sigma_Y}.
-> $$
+\rho_{XY} = \frac{\mathrm{Cov}(X, Y)}{\sigma_X\, \sigma_Y}.
+$$
 >
 > $$\rho_{XY}$$ 也称为相关系数（correlation coefficient）。
 
@@ -1223,86 +1223,63 @@ $$
 > 对任意随机变量 $$X$$ 与 $$Y$$，
 >
 > $$
-> \mathrm{Cov}(X, Y) = \mathrm{E} XY - \mu_X \mu_Y.
-> $$
+\mathrm{Cov}(X, Y) = \mathrm{E} XY - \mu_X \mu_Y.
+$$
 >
 > **证明**
 >
 > $$
-> \begin{aligned}
-> \mathrm{Cov}(X, Y) &= \mathrm{E}\bigl( (X - \mu_X)(Y - \mu_Y) \bigr)\\
-> &= \mathrm{E}\bigl( XY - \mu_X Y - \mu_Y X + \mu_X \mu_Y \bigr) \qquad （\text{展开乘积}）\\
-> &= \mathrm{E} XY - \mu_X \mathrm{E} Y - \mu_Y \mathrm{E} X + \mu_X \mu_Y \qquad （\mu_X\ \text{与}\ \mu_Y\ \text{是常数}）\\
-> &= \mathrm{E} XY - \mu_X \mu_Y - \mu_Y \mu_X + \mu_X \mu_Y\\
-> &= \mathrm{E} XY - \mu_X \mu_Y.
-> \end{aligned}
-> $$
+\begin{aligned}
+\mathrm{Cov}(X, Y) &= \mathrm{E}\bigl( (X - \mu_X)(Y - \mu_Y) \bigr)\\
+&= \mathrm{E}\bigl( XY - \mu_X Y - \mu_Y X + \mu_X \mu_Y \bigr) \qquad （\text{展开乘积}）\\
+&= \mathrm{E} XY - \mu_X \mathrm{E} Y - \mu_Y \mathrm{E} X + \mu_X \mu_Y \qquad （\mu_X\ \text{与}\ \mu_Y\ \text{是常数}）\\
+&= \mathrm{E} XY - \mu_X \mu_Y - \mu_Y \mu_X + \mu_X \mu_Y\\
+&= \mathrm{E} XY - \mu_X \mu_Y.
+\end{aligned}
+$$
 >
 > ∎
 
 > **例 4.5.4（相关——I）**
 >
 > 设 $$(X, Y)$$ 的联合 pdf 为 $$f(x, y) = 1$$，$$0 < x < 1$$，$$x < y < x + 1$$。$$X$$ 的边缘分布是 uniform$(0,1)$$，故 $$\mu_X = \tfrac{1}{2}$$，$$\sigma_X^2 = \tfrac{1}{12}$$。$$Y$$ 的边缘 pdf 为 $$f_Y(y) = y$$（$$0 < y < 1$$）、$$f_Y(y) = 2 - y$$（$$1 \leq y < 2$$），且 $$\mu_Y = 1$$、$$\sigma_Y^2 = \tfrac{1}{6}$$。还有
->
-> $$
+$$
 > \mathrm{E} XY = \int_0^1 \int_x^{x+1} x\, y\, dy\, dx = \int_0^1 \Bigl[ \frac{1}{2} x\, y^2 \Bigr\vert _x^{x+1} dx = \int_0^1 \Bigl( \frac{x^2}{2} + \frac{x}{2} \Bigr)\, dx = \frac{7}{12}.
 > $$
->
-> 用定理 4.5.3：$$\mathrm{Cov}(X, Y) = \tfrac{7}{12} - \tfrac{1}{2} \cdot 1 = \tfrac{1}{12}$$。相关为
->
-> $$
+用定理 4.5.3：$$\mathrm{Cov}(X, Y) = \tfrac{7}{12} - \tfrac{1}{2} \cdot 1 = \tfrac{1}{12}$$。相关为
+$$
 > \rho_{XY} = \frac{\mathrm{Cov}(X, Y)}{\sigma_X\, \sigma_Y} = \frac{1/12}{\tfrac{1}{12}\,\tfrac{1}{6}^{1/2}}\ \text{即}\ \frac{1/12}{\sqrt{\tfrac{1}{12} \cdot \tfrac{1}{6}}} = \frac{1}{\sqrt{2}}.
 > $$
-
 下面三个定理描述协方差与相关的一些基本性质。
-
-> **定理 4.5.5（独立蕴含不相关）**
->
-> 若 $$X$$ 与 $$Y$$ 独立，则 $$\mathrm{Cov}(X, Y) = 0$$ 且 $$\rho_{XY} = 0$$。
->
-> **证明**　由独立性及定理 4.2.10，$$\mathrm{E} XY = (\mathrm{E} X)(\mathrm{E} Y)$$。于是
->
-> $$
+**定理 4.5.5（独立蕴含不相关）**
+若 $$X$$ 与 $$Y$$ 独立，则 $$\mathrm{Cov}(X, Y) = 0$$ 且 $$\rho_{XY} = 0$$。
+**证明**　由独立性及定理 4.2.10，$$\mathrm{E} XY = (\mathrm{E} X)(\mathrm{E} Y)$$。于是
+$$
 > \mathrm{Cov}(X, Y) = \mathrm{E} XY - (\mathrm{E} X)(\mathrm{E} Y) = (\mathrm{E} X)(\mathrm{E} Y) - (\mathrm{E} X)(\mathrm{E} Y) = 0,
 > $$
->
-> 且
->
-> $$
+且
+$$
 > \rho_{XY} = \frac{\mathrm{Cov}(X, Y)}{\sigma_X \sigma_Y} = \frac{0}{\sigma_X \sigma_Y} = 0.
 > $$
->
-> ∎
-
+∎
 因此在某种意义上，$$\mathrm{Cov}(X, Y) = \rho_{XY} = 0$$ 表示 $$X$$ 与 $$Y$$ 之间没有关系。但务必注意：定理 4.5.5 的逆并不成立——$$\mathrm{Cov}(X, Y) = 0$$ 不意味着 $$X$$ 与 $$Y$$ 独立。例如，设 $$X \sim f(x - \theta)$$ 关于零点对称、$$\mathrm{E} X = \theta$$，而 $$Y$$ 是示性函数 $$Y = I(\vert X - \theta\vert  < 2)$$：显然 $$X$$ 与 $$Y$$ 不独立。然而，
-
 $$
 \mathrm{E}(XY) = \int_{-\infty}^{\infty} x\, I(\vert x - \theta\vert  < 2)\, f(x - \theta)\, dx = \int_{-2}^{2} (t + \theta)\, f(t)\, dt = \theta \int_{-2}^{2} f(t)\, dt = \mathrm{E} X\, \mathrm{E} Y,
 $$
-
 其中用了对称性 $$\int_{-2}^{2} t\, f(t)\, dt = 0$$。所以很容易找到不相关却相依的随机变量。
-
 协方差与相关只度量定理 4.5.7 将进一步描述的那一类***线性***关系；例 4.5.9 还讨论了两个关系很强、但因关系非线性而协方差与相关为零的随机变量。
-
 协方差在理解随机变量之和的变异中也扮演重要角色，如下面的定理所示（它是定理 2.3.4 的推广；进一步的推广见习题 4.44）。
-
-> **定理 4.5.6（和的方差）**
->
-> 若 $$X$$ 与 $$Y$$ 是任意两个随机变量，$$a$$ 与 $$b$$ 是任意两个常数，则
->
-> $$
+**定理 4.5.6（和的方差）**
+若 $$X$$ 与 $$Y$$ 是任意两个随机变量，$$a$$ 与 $$b$$ 是任意两个常数，则
+$$
 > \mathrm{Var}(aX + bY) = a^2 \mathrm{Var} X + b^2 \mathrm{Var} Y + 2ab\, \mathrm{Cov}(X, Y).
 > $$
->
-> 若 $$X$$ 与 $$Y$$ 独立，则
->
-> $$
+若 $$X$$ 与 $$Y$$ 独立，则
+$$
 > \mathrm{Var}(aX + bY) = a^2 \mathrm{Var} X + b^2 \mathrm{Var} Y.
 > $$
->
-> **证明**　$$aX + bY$$ 的均值为 $$\mathrm{E}(aX + bY) = a \mathrm{E} X + b \mathrm{E} Y = a \mu_X + b \mu_Y$$。于是
->
-> $$
+**证明**　$$aX + bY$$ 的均值为 $$\mathrm{E}(aX + bY) = a \mathrm{E} X + b \mathrm{E} Y = a \mu_X + b \mu_Y$$。于是
+$$
 > \begin{aligned}
 > \mathrm{Var}(aX + bY) &= \mathrm{E}\Bigl( \bigl( aX + bY \bigr) - \bigl( a \mu_X + b \mu_Y \bigr) \Bigr)^2\\
 > &= \mathrm{E}\Bigl( \bigl( a(X - \mu_X) + b(Y - \mu_Y) \bigr)^2 \Bigr)\\
@@ -1311,83 +1288,52 @@ $$
 > &= a^2 \mathrm{Var} X + b^2 \mathrm{Var} Y + 2ab\, \mathrm{Cov}(X, Y).
 > \end{aligned}
 > $$
->
-> 若 $$X$$ 与 $$Y$$ 独立，则由定理 4.5.5 知 $$\mathrm{Cov}(X, Y) = 0$$，第二个等式立即由第一个得到。 ∎
-
+若 $$X$$ 与 $$Y$$ 独立，则由定理 4.5.5 知 $$\mathrm{Cov}(X, Y) = 0$$，第二个等式立即由第一个得到。 ∎
 由定理 4.5.6 可见：若 $$X$$ 与 $$Y$$ 正相关（$$\mathrm{Cov}(X, Y) > 0$$），则 $$X + Y$$ 的变异大于 $$X$$ 与 $$Y$$ 变异之和；若负相关，则 $$X + Y$$ 的变异小于两者之和。对负相关的随机变量，一个的大值倾向与另一个的小值同时出现，相加时两个极端相互抵消：和 $$X + Y$$ 倾向于较少出现极端值，故方差更小。取 $$a = 1$$、$$b = -1$$ 还可得两个随机变量之差的方差表达式，论证类似。
-
 协方差与相关所度量的线性关系的本质，由下面的定理作出部分解释。
-
-> **定理 4.5.7（相关的界与完全线性关系）**
->
-> 对任意随机变量 $$X$$ 与 $$Y$$：
->
-> - a. $$-1 \leq \rho_{XY} \leq 1$$；
->
-> - b. $$\vert \rho_{XY}\vert  = 1$$ 当且仅当存在数 $$a \neq 0$$ 与 $$b$$ 使 $$P(Y = aX + b) = 1$$。若 $$\rho_{XY} = 1$$ 则 $$a > 0$$，若 $$\rho_{XY} = -1$$ 则 $$a < 0$$。
->
->
-> **证明**　考虑函数
->
-> $$
+**定理 4.5.7（相关的界与完全线性关系）**
+对任意随机变量 $$X$$ 与 $$Y$$：
+- a. $$-1 \leq \rho_{XY} \leq 1$$；
+- b. $$\vert \rho_{XY}\vert  = 1$$ 当且仅当存在数 $$a \neq 0$$ 与 $$b$$ 使 $$P(Y = aX + b) = 1$$。若 $$\rho_{XY} = 1$$ 则 $$a > 0$$，若 $$\rho_{XY} = -1$$ 则 $$a < 0$$。
+**证明**　考虑函数
+$$
 > h(t) = \mathrm{E}\bigl( (X - \mu_X)\, t + (Y - \mu_Y) \bigr)^2.
 > $$
->
-> 展开：
->
-> $$
+展开：
+$$
 > h(t) = t^2\, \mathrm{E}(X - \mu_X)^2 + 2 t\, \mathrm{E}\bigl( (X - \mu_X)(Y - \mu_Y) \bigr) + \mathrm{E}(Y - \mu_Y)^2 = t^2 \sigma_X^2 + 2 t\, \mathrm{Cov}(X, Y) + \sigma_Y^2.
 > $$
->
-> 这个 $$t$$ 的二次函数对一切 $$t$$ 非负（因为它是非负随机变量的期望），故至多有一个实根，判别式必非正：
->
-> $$
+这个 $$t$$ 的二次函数对一切 $$t$$ 非负（因为它是非负随机变量的期望），故至多有一个实根，判别式必非正：
+$$
 > \bigl( 2\, \mathrm{Cov}(X, Y) \bigr)^2 - 4 \sigma_X^2 \sigma_Y^2 \leq 0.
 > $$
->
-> 等价于
->
-> $$
+等价于
+$$
 > -\sigma_X \sigma_Y \leq \mathrm{Cov}(X, Y) \leq \sigma_X \sigma_Y.
 > $$
->
-> 除以 $$\sigma_X \sigma_Y$$ 得
->
-> $$
+除以 $$\sigma_X \sigma_Y$$ 得
+$$
 > -1 \leq \frac{\mathrm{Cov}(X, Y)}{\sigma_X \sigma_Y} = \rho_{XY} \leq 1.
 > $$
->
-> 另外，$$\vert \rho_{XY}\vert  = 1$$ 当且仅当判别式为 0，即 $$h(t)$$ 有单根。而由 $$\bigl( (X - \mu_X) t + (Y - \mu_Y) \bigr)^2 \geq 0$$，$$h(t) = 0$$ 当且仅当
->
-> $$
+另外，$$\vert \rho_{XY}\vert  = 1$$ 当且仅当判别式为 0，即 $$h(t)$$ 有单根。而由 $$\bigl( (X - \mu_X) t + (Y - \mu_Y) \bigr)^2 \geq 0$$，$$h(t) = 0$$ 当且仅当
+$$
 > P\Bigl( \bigl[ (X - \mu_X)\, t + (Y - \mu_Y) \bigr]^2 = 0 \Bigr) = 1,
 > $$
->
-> 等价于
->
-> $$
+等价于
+$$
 > P\bigl( (X - \mu_X)\, t + (Y - \mu_Y) = 0 \bigr) = 1,
 > $$
->
-> 即 $$P(Y = aX + b) = 1$$，其中 $$a = -t$$、$$b = \mu_X t + \mu_Y$$，$$t$$ 为 $$h(t)$$ 的根。用求根公式，该根为 $$t = -\mathrm{Cov}(X, Y)/\sigma_X^2$$。故 $$a = -t$$ 与 $$\rho_{XY}$$ 同号，最后的断言得证。 ∎
-
+即 $$P(Y = aX + b) = 1$$，其中 $$a = -t$$、$$b = \mu_X t + \mu_Y$$，$$t$$ 为 $$h(t)$$ 的根。用求根公式，该根为 $$t = -\mathrm{Cov}(X, Y)/\sigma_X^2$$。故 $$a = -t$$ 与 $$\rho_{XY}$$ 同号，最后的断言得证。 ∎
 在 4.7 节我们将证明柯西—施瓦茨不等式（Cauchy–Schwarz Inequality）。该定理的直接推论是 $$\rho_{XY}$$ 介于 $$-1$$ 与 $$1$$ 之间；有了这个不等式，上面的证明可以缩短。
-
 若存在一条直线 $$y = a x + b$$（$$a \neq 0$$），使 $$(X, Y)$$ 的取值有很高概率靠近这条直线，则 $$X$$ 与 $$Y$$ 的相关接近 1 或 $$-1$$；若不存在这样的直线，相关接近零。这就是相关所度量的线性关系的直观概念。下面两个例子进一步说明这一想法。
-
-> **例 4.5.8（相关——II）**
->
-> 本例与例 4.5.4 相似，但以不同的方式展开，以演示其他建模与计算技巧。设 $$X \sim \mathrm{uniform}(0, 1)$$，$$Z \sim \mathrm{uniform}\bigl( 0, \tfrac{1}{10} \bigr)$$，$$X$$ 与 $$Z$$ 独立。令 $$Y = X + Z$$，考虑随机向量 $$(X, Y)$$。$$(X, Y)$$ 的联合分布可以用 4.3 节的技巧从 $$(X, Z)$$ 的联合分布导出，联合 pdf 为
->
-> $$
+**例 4.5.8（相关——II）**
+本例与例 4.5.4 相似，但以不同的方式展开，以演示其他建模与计算技巧。设 $$X \sim \mathrm{uniform}(0, 1)$$，$$Z \sim \mathrm{uniform}\bigl( 0, \tfrac{1}{10} \bigr)$$，$$X$$ 与 $$Z$$ 独立。令 $$Y = X + Z$$，考虑随机向量 $$(X, Y)$$。$$(X, Y)$$ 的联合分布可以用 4.3 节的技巧从 $$(X, Z)$$ 的联合分布导出，联合 pdf 为
+$$
 > f(x, y) = 10, \qquad 0 < x < 1, \quad x < y < x + \frac{1}{10}.
 > $$
->
-> 不正式使用 4.3 节的技巧，也可以这样论证：给定 $$X = x$$，$$Y = x + Z$$；由独立性，给定 $$X = x$$ 时 $$Z$$ 的条件分布仍是 uniform$\bigl( 0, \tfrac{1}{10} \bigr)$$。于是 $$x$$ 在给定 $$X = x$$ 时 $$Y$$ 的条件分布中充当位置参数，该条件分布就是 uniform$\bigl( x,\ x + \tfrac{1}{10} \bigr)$$。把这个条件 pdf 乘以 $$X$$ 的边缘 pdf（uniform $$(0,1)$$）即得上面的联合 pdf。
->
-> $$Y = X + Z$$ 这一表示使协方差与相关的计算容易。$$\mathrm{E} X = \tfrac{1}{2}$$，$$\mathrm{E} Y = \mathrm{E}(X + Z) = \mathrm{E} X + \mathrm{E} Z = \tfrac{1}{2} + \tfrac{1}{20} = \tfrac{11}{20}$$。于是
->
-> $$
+不正式使用 4.3 节的技巧，也可以这样论证：给定 $$X = x$$，$$Y = x + Z$$；由独立性，给定 $$X = x$$ 时 $$Z$$ 的条件分布仍是 uniform$\bigl( 0, \tfrac{1}{10} \bigr)$$。于是 $$x$$ 在给定 $$X = x$$ 时 $$Y$$ 的条件分布中充当位置参数，该条件分布就是 uniform$\bigl( x,\ x + \tfrac{1}{10} \bigr)$$。把这个条件 pdf 乘以 $$X$$ 的边缘 pdf（uniform $$(0,1)$$）即得上面的联合 pdf。
+$$Y = X + Z$$ 这一表示使协方差与相关的计算容易。$$\mathrm{E} X = \tfrac{1}{2}$$，$$\mathrm{E} Y = \mathrm{E}(X + Z) = \mathrm{E} X + \mathrm{E} Z = \tfrac{1}{2} + \tfrac{1}{20} = \tfrac{11}{20}$$。于是
+$$
 > \begin{aligned}
 > \mathrm{Cov}(X, Y) &= \mathrm{E} XY - (\mathrm{E} X)(\mathrm{E} Y)\\
 > &= \mathrm{E} X(X + Z) - (\mathrm{E} X)\bigl( \mathrm{E}(X + Z) \bigr)\\
@@ -1396,38 +1342,30 @@ $$
 > &= \sigma_X^2 = \frac{1}{12}.
 > \end{aligned}
 > $$
->
-> 由定理 4.5.6，$$Y$$ 的方差为 $$\sigma_Y^2 = \mathrm{Var}(X + Z) = \mathrm{Var} X + \mathrm{Var} Z = \tfrac{1}{12} + \tfrac{1}{1200}$$。故
->
-> $$
+由定理 4.5.6，$$Y$$ 的方差为 $$\sigma_Y^2 = \mathrm{Var}(X + Z) = \mathrm{Var} X + \mathrm{Var} Z = \tfrac{1}{12} + \tfrac{1}{1200}$$。故
+$$
 > \rho_{XY} = \frac{\tfrac{1}{12}}{\sqrt{\tfrac{1}{12}\left( \tfrac{1}{12} + \tfrac{1}{1200} \right)}} = \sqrt{\frac{100}{101}}.
 > $$
->
-> 这比例 4.5.4 得到的 $$\rho_{XY} = 1/\sqrt{2}$$ 大得多。例 4.5.4 与本例中 $$f(x, y)$$ 为正的集合绘于图 4.5.1（回忆：该集合称为分布的支撑）。每种情形下 $$(X, Y)$$ 都是该集合中的随机点；两种情形都存在线性递增关系，但图 4.5.1(b) 中的关系强得多。另一种看法：本例中给定 $$X = x$$ 时 $$Y$$ 的条件分布是 uniform$\bigl( x, x + \tfrac{1}{10} \bigr)$$，而例 4.5.4 中是 uniform$$(x, x + 1)$$。“$$X = x$”的知识在本模型中比在例 4.5.4 的模型中提供了关于 $$Y$$ 值多得多的信息，故本例的相关更接近 1。
-
+这比例 4.5.4 得到的 $$\rho_{XY} = 1/\sqrt{2}$$ 大得多。例 4.5.4 与本例中 $$f(x, y)$$ 为正的集合绘于图 4.5.1（回忆：该集合称为分布的支撑）。每种情形下 $$(X, Y)$$ 都是该集合中的随机点；两种情形都存在线性递增关系，但图 4.5.1(b) 中的关系强得多。另一种看法：本例中给定 $$X = x$$ 时 $$Y$$ 的条件分布是 uniform$\bigl( x, x + \tfrac{1}{10} \bigr)$$，而例 4.5.4 中是 uniform$$(x, x + 1)$$。“$$X = x$”的知识在本模型中比在例 4.5.4 的模型中提供了关于 $$Y$$ 值多得多的信息，故本例的相关更接近 1。
 ![ch04_fig_4_5_1](fig/ch04_fig_4_5_1.png)
-
 图 4.5.1　 (a) 例 4.5.4 中 $$f(x, y) > 0$$ 的区域；(b) 例 4.5.8 中 $$f(x, y) > 0$$ 的区域（原书 Figure 4.5.1）
-
 下一个例子说明：$$X$$ 与 $$Y$$ 之间可能存在强关系，但若关系不是线性的，相关可能很小。
-
-> **例 4.5.9（相关——III）**
->
-> 本例设 $$X \sim \mathrm{uniform}(-1, 1)$$，$$Z \sim \mathrm{uniform}\bigl( 0, \tfrac{1}{10} \bigr)$$，$$X$$ 与 $$Z$$ 独立。令 $$Y = X^2 + Z$$，考虑随机向量 $$(X, Y)$$。如例 4.5.8，给定 $$X = x$$ 时 $$Y = x^2 + Z$$，给定 $$X = x$$ 时 $$Y$$ 的条件分布为 uniform$\bigl( x^2, x^2 + \tfrac{1}{10} \bigr)$$。$$X$$ 与 $$Y$$ 的联合 pdf（该条件 pdf 与 $$X$$ 边缘 pdf 之积）为
+**例 4.5.9（相关——III）**
+本例设 $$X \sim \mathrm{uniform}(-1, 1)$$，$$Z \sim \mathrm{uniform}\bigl( 0, \tfrac{1}{10} \bigr)$$，$$X$$ 与 $$Z$$ 独立。令 $$Y = X^2 + Z$$，考虑随机向量 $$(X, Y)$$。如例 4.5.8，给定 $$X = x$$ 时 $$Y = x^2 + Z$$，给定 $$X = x$$ 时 $$Y$$ 的条件分布为 uniform$\bigl( x^2, x^2 + \tfrac{1}{10} \bigr)$$。$$X$$ 与 $$Y$$ 的联合 pdf（该条件 pdf 与 $$X$$ 边缘 pdf 之积）为
 >
 > $$
-> f(x, y) = 5, \qquad -1 < x < 1, \quad x^2 < y < x^2 + \frac{1}{10}.
-> $$
+f(x, y) = 5, \qquad -1 < x < 1, \quad x^2 < y < x^2 + \frac{1}{10}.
+$$
 >
 > $$f(x, y) > 0$$ 的集合见图 4.5.2。由给定 $$X = x$$ 时 $$Y$$ 的条件分布可知 $$X$$ 与 $$Y$$ 有强关系；但关系不是线性的：$$(X, Y)$$ 的可能值聚在一条抛物线附近而非直线附近。相关不能度量这种非线性关系。事实上 $$\rho_{XY} = 0$$：由于 $$X \sim \mathrm{uniform}(-1,1)$$，$$\mathrm{E} X = \mathrm{E} X^3 = 0$$；又因 $$X$$ 与 $$Z$$ 独立，$$\mathrm{E} XZ = (\mathrm{E} X)(\mathrm{E} Z)$$。于是
 >
 > $$
-> \begin{aligned}
-> \mathrm{Cov}(X, Y) &= \mathrm{E}\bigl( X(X^2 + Z) \bigr) - (\mathrm{E} X)\bigl( \mathrm{E}(X^2 + Z) \bigr)\\
-> &= \mathrm{E} X^3 + \mathrm{E} XZ - 0 \cdot \mathrm{E}(X^2 + Z)\\
-> &= 0 + (\mathrm{E} X)(\mathrm{E} Z) = 0 \cdot (\mathrm{E} Z) = 0,
-> \end{aligned}
-> $$
+\begin{aligned}
+\mathrm{Cov}(X, Y) &= \mathrm{E}\bigl( X(X^2 + Z) \bigr) - (\mathrm{E} X)\bigl( \mathrm{E}(X^2 + Z) \bigr)\\
+&= \mathrm{E} X^3 + \mathrm{E} XZ - 0 \cdot \mathrm{E}(X^2 + Z)\\
+&= 0 + (\mathrm{E} X)(\mathrm{E} Z) = 0 \cdot (\mathrm{E} Z) = 0,
+\end{aligned}
+$$
 >
 > 且 $$\rho_{XY} = \mathrm{Cov}(X, Y) / (\sigma_X \sigma_Y) = 0$$。
 
@@ -1442,8 +1380,8 @@ $$
 > 设 $$-\infty < \mu_X < \infty$$，$$-\infty < \mu_Y < \infty$$，$$0 < \sigma_X$$，$$0 < \sigma_Y$$，$$-1 < \rho < 1$$ 为五个实数。均值为 $$\mu_X$$ 与 $$\mu_Y$$、方差为 $$\sigma_X^2$$ 与 $$\sigma_Y^2$$、相关为 $$\rho$$ 的***二元正态 pdf***（bivariate normal pdf）是对 $$-\infty < x < \infty$$ 与 $$-\infty < y < \infty$$ 定义的二元 pdf：
 >
 > $$
-> f(x, y) = \frac{1}{2 \pi \sigma_X \sigma_Y \sqrt{1 - \rho^2}} \exp\Biggl\{ -\frac{1}{2(1 - \rho^2)} \Biggl[ \Bigl( \frac{x - \mu_X}{\sigma_X} \Bigr)^{2} - 2 \rho \Bigl( \frac{x - \mu_X}{\sigma_X} \Bigr) \Bigl( \frac{y - \mu_Y}{\sigma_Y} \Bigr) + \Bigl( \frac{y - \mu_Y}{\sigma_Y} \Bigr)^{2} \Biggr] \Biggr\}.
-> $$
+f(x, y) = \frac{1}{2 \pi \sigma_X \sigma_Y \sqrt{1 - \rho^2}} \exp\Biggl\{ -\frac{1}{2(1 - \rho^2)} \Biggl[ \Bigl( \frac{x - \mu_X}{\sigma_X} \Bigr)^{2} - 2 \rho \Bigl( \frac{x - \mu_X}{\sigma_X} \Bigr) \Bigl( \frac{y - \mu_Y}{\sigma_Y} \Bigr) + \Bigl( \frac{y - \mu_Y}{\sigma_Y} \Bigr)^{2} \Biggr] \Biggr\}.
+$$
 
 二元正态 pdf 的公式虽然看似吓人，这一二元分布却是最常用的分布之一。（事实上，该公式的推导完全可以不吓人，见习题 4.46。）
 
@@ -1561,69 +1499,69 @@ $$
 > 设 $$n = 4$$ 且
 >
 > $$
-> f(x_1, x_2, x_3, x_4) = \begin{cases} \dfrac{3}{4}\, \bigl( x_1^2 + x_2^2 + x_3^2 + x_4^2 \bigr) & 0 < x_i < 1,\ i = 1, 2, 3, 4,\\[4pt] 0 & \text{其他}. \end{cases}
-> $$
+f(x_1, x_2, x_3, x_4) = \begin{cases} \dfrac{3}{4}\, \bigl( x_1^2 + x_2^2 + x_3^2 + x_4^2 \bigr) & 0 < x_i < 1,\ i = 1, 2, 3, 4,\\[4pt] 0 & \text{其他}. \end{cases}
+$$
 >
 > 这个非负函数是随机向量 $$(X_1, X_2, X_3, X_4)$$ 的联合 pdf，且可验证
 >
 > $$
-> \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x_1, x_2, x_3, x_4)\, dx_1\, dx_2\, dx_3\, dx_4 = \int_0^1 \int_0^1 \int_0^1 \int_0^1 \frac{3}{4} \bigl( x_1^2 + x_2^2 + x_3^2 + x_4^2 \bigr)\, dx_1\, dx_2\, dx_3\, dx_4 = 1.
-> $$
+\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x_1, x_2, x_3, x_4)\, dx_1\, dx_2\, dx_3\, dx_4 = \int_0^1 \int_0^1 \int_0^1 \int_0^1 \frac{3}{4} \bigl( x_1^2 + x_2^2 + x_3^2 + x_4^2 \bigr)\, dx_1\, dx_2\, dx_3\, dx_4 = 1.
+$$
 >
 > 该联合 pdf 可用于计算诸如
 >
 > $$
-> P\Bigl( X_1 < \frac{1}{2},\ X_2 < \frac{3}{4},\ X_4 > \frac{1}{2} \Bigr) = \int_{1/2}^{1} \int_{0}^{3/4} \int_{0}^{1} \int_{0}^{1/2} \frac{3}{4}\, \bigl( x_1^2 + x_2^2 + x_3^2 + x_4^2 \bigr)\, dx_1\, dx_2\, dx_3\, dx_4
-> $$
+P\Bigl( X_1 < \frac{1}{2},\ X_2 < \frac{3}{4},\ X_4 > \frac{1}{2} \Bigr) = \int_{1/2}^{1} \int_{0}^{3/4} \int_{0}^{1} \int_{0}^{1/2} \frac{3}{4}\, \bigl( x_1^2 + x_2^2 + x_3^2 + x_4^2 \bigr)\, dx_1\, dx_2\, dx_3\, dx_4
+$$
 >
 > 的概率。注意积分限如何把积分限制在事件所涉且 $$f(x_1, x_2, x_3, x_4) > 0$$ 的 $$(x_1, x_2, x_3, x_4)$$ 值上。四项 $$\tfrac{3}{4} x_1^2$$、$$\tfrac{3}{4} x_2^2$$ 等可以分别积分再求和。例如
 >
 > $$
-> \int_{1/2}^{1} \int_{0}^{3/4} \int_{0}^{1} \int_{0}^{1/2} \frac{3}{4}\, x_1^2\, dx_1\, dx_2\, dx_3\, dx_4 = \frac{3}{256}.
-> $$
+\int_{1/2}^{1} \int_{0}^{3/4} \int_{0}^{1} \int_{0}^{1/2} \frac{3}{4}\, x_1^2\, dx_1\, dx_2\, dx_3\, dx_4 = \frac{3}{256}.
+$$
 >
 > 其余三个积分分别为 $$\tfrac{7}{1024}$$、$$\tfrac{3}{64}$$ 与 $$\tfrac{21}{256}$$。于是
 >
 > $$
-> P\Bigl( X_1 < \frac{1}{2},\ X_2 < \frac{3}{4},\ X_4 > \frac{1}{2} \Bigr) = \frac{3}{2} \cdot \frac{1}{2^3}\ \Bigl(\text{即}\ \frac{3}{256} + \frac{7}{1024} + \frac{3}{64} + \frac{21}{256}\Bigr) = \frac{151}{1024}.
-> $$
+P\Bigl( X_1 < \frac{1}{2},\ X_2 < \frac{3}{4},\ X_4 > \frac{1}{2} \Bigr) = \frac{3}{2} \cdot \frac{1}{2^3}\ \Bigl(\text{即}\ \frac{3}{256} + \frac{7}{1024} + \frac{3}{64} + \frac{21}{256}\Bigr) = \frac{151}{1024}.
+$$
 >
 > 用 (4.6.4)，对 $$x_3$$ 与 $$x_4$$ 积分可得 $$(X_1, X_2)$$ 的边缘 pdf：
 >
 > $$
-> f(x_1, x_2) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x_1, x_2, x_3, x_4)\, dx_3\, dx_4 = \int_0^1 \int_0^1 \frac{3}{4} \bigl( x_1^2 + x_2^2 + x_3^2 + x_4^2 \bigr)\, dx_3\, dx_4 = \frac{3}{4}\, \bigl( x_1^2 + x_2^2 \bigr) + \frac{1}{2},
-> $$
+f(x_1, x_2) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x_1, x_2, x_3, x_4)\, dx_3\, dx_4 = \int_0^1 \int_0^1 \frac{3}{4} \bigl( x_1^2 + x_2^2 + x_3^2 + x_4^2 \bigr)\, dx_3\, dx_4 = \frac{3}{4}\, \bigl( x_1^2 + x_2^2 \bigr) + \frac{1}{2},
+$$
 >
 > 其中 $$0 < x_1 < 1$$、$$0 < x_2 < 1$$。任何只涉及 $$X_1$$ 与 $$X_2$$ 的概率或期望都可用这一边缘 pdf 计算。例如
 >
 > $$
-> \begin{aligned}
-> \mathrm{E} X_1 X_2 &= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} x_1 x_2\, f(x_1, x_2)\, dx_1\, dx_2 = \int_0^1 \int_0^1 x_1 x_2 \Bigl[ \frac{3}{4} (x_1 + x_2)^2\ \text{即}\ \frac{3}{4}(x_1^2 + x_2^2) + \frac{1}{2} \Bigr]\, dx_1\, dx_2\\
-> &= \int_0^1 \int_0^1 \Bigl( \frac{3}{4} x_1^3 x_2 + \frac{3}{4} x_1 x_2^3 + \frac{1}{2} x_1 x_2 \Bigr)\, dx_1\, dx_2 = \int_0^1 \Bigl( \frac{3}{16} x_2 + \frac{3}{8} x_2^3 + \frac{1}{4} x_2 \Bigr)\, dx_2 = \frac{3}{32} + \frac{3}{32} + \frac{1}{8} = \frac{5}{16}.
-> \end{aligned}
-> $$
+\begin{aligned}
+\mathrm{E} X_1 X_2 &= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} x_1 x_2\, f(x_1, x_2)\, dx_1\, dx_2 = \int_0^1 \int_0^1 x_1 x_2 \Bigl[ \frac{3}{4} (x_1 + x_2)^2\ \text{即}\ \frac{3}{4}(x_1^2 + x_2^2) + \frac{1}{2} \Bigr]\, dx_1\, dx_2\\
+&= \int_0^1 \int_0^1 \Bigl( \frac{3}{4} x_1^3 x_2 + \frac{3}{4} x_1 x_2^3 + \frac{1}{2} x_1 x_2 \Bigr)\, dx_1\, dx_2 = \int_0^1 \Bigl( \frac{3}{16} x_2 + \frac{3}{8} x_2^3 + \frac{1}{4} x_2 \Bigr)\, dx_2 = \frac{3}{32} + \frac{3}{32} + \frac{1}{8} = \frac{5}{16}.
+\end{aligned}
+$$
 >
 > 对任何使 $$0 < x_1 < 1$$、$$0 < x_2 < 1$$ 的 $$(x_1, x_2)$$，$$f(x_1, x_2) > 0$$，故可用 (4.6.6) 求给定 $$X_1 = x_1$$、$$X_2 = x_2$$ 时 $$(X_3, X_4)$$ 的条件 pdf。对这类 $$(x_1, x_2)$$，若 $$0 < x_3 < 1$$ 且 $$0 < x_4 < 1$$ 则 $$f(x_1, x_2, x_3, x_4) > 0$$；对这些 $$(x_3, x_4)$$ 值，条件 pdf 为
 >
 > $$
-> f(x_3, x_4 \mid x_1, x_2) = \frac{f(x_1, x_2, x_3, x_4)}{f(x_1, x_2)} = \frac{\frac{3}{4}\, (x_1^2 + x_2^2 + x_3^2 + x_4^2)}{\frac{3}{4}\, (x_1^2 + x_2^2) + \frac{1}{2}} = \frac{x_1^2 + x_2^2 + x_3^2 + x_4^2}{x_1^2 + x_2^2 + \frac{2}{3}}.
-> $$
+f(x_3, x_4 \mid x_1, x_2) = \frac{f(x_1, x_2, x_3, x_4)}{f(x_1, x_2)} = \frac{\frac{3}{4}\, (x_1^2 + x_2^2 + x_3^2 + x_4^2)}{\frac{3}{4}\, (x_1^2 + x_2^2) + \frac{1}{2}} = \frac{x_1^2 + x_2^2 + x_3^2 + x_4^2}{x_1^2 + x_2^2 + \frac{2}{3}}.
+$$
 >
 > 例如给定 $$X_1 = \tfrac{1}{3}$$、$$X_2 = \tfrac{2}{3}$$ 时 $$(X_3, X_4)$$ 的条件 pdf 为
 >
 > $$
-> f\Bigl( x_3, x_4 \,\Big\vert \, X_1 = \frac{1}{3},\ X_2 = \frac{2}{3} \Bigr) = \frac{\bigl( \frac{1}{3} \bigr)^2 + \bigl( \frac{2}{3} \bigr)^2 + x_3^2 + x_4^2}{\bigl( \frac{1}{3} \bigr)^2 + \bigl( \frac{2}{3} \bigr)^2 + \frac{2}{3}} = \frac{5}{11} + \frac{9}{11}\, x_3^2 + \frac{9}{11}\, x_4^2.
-> $$
+f\Bigl( x_3, x_4 \,\Big\vert \, X_1 = \frac{1}{3},\ X_2 = \frac{2}{3} \Bigr) = \frac{\bigl( \frac{1}{3} \bigr)^2 + \bigl( \frac{2}{3} \bigr)^2 + x_3^2 + x_4^2}{\bigl( \frac{1}{3} \bigr)^2 + \bigl( \frac{2}{3} \bigr)^2 + \frac{2}{3}} = \frac{5}{11} + \frac{9}{11}\, x_3^2 + \frac{9}{11}\, x_4^2.
+$$
 >
 > 这可用于计算
 >
 > $$
-> \begin{aligned}
-> P\Bigl( X_3 > \frac{3}{4},\ X_4 < \frac{1}{2} \,\Big\vert \, X_1 = \frac{1}{3},\ X_2 = \frac{2}{3} \Bigr) &= \int_0^{1/2} \int_{3/4}^{1} \Bigl( \frac{5}{11} + \frac{9}{11}\, x_3^2 + \frac{9}{11}\, x_4^2 \Bigr)\, dx_3\, dx_4\\
-> &= \int_0^{1/2} \Bigl( \frac{5}{44} + \frac{111}{704} + \frac{9}{44}\, x_4^2 \Bigr)\, dx_4\\
-> &= \frac{5}{88} + \frac{111}{1408} + \frac{3}{352} = \frac{203}{1408}.
-> \end{aligned}
-> $$
+\begin{aligned}
+P\Bigl( X_3 > \frac{3}{4},\ X_4 < \frac{1}{2} \,\Big\vert \, X_1 = \frac{1}{3},\ X_2 = \frac{2}{3} \Bigr) &= \int_0^{1/2} \int_{3/4}^{1} \Bigl( \frac{5}{11} + \frac{9}{11}\, x_3^2 + \frac{9}{11}\, x_4^2 \Bigr)\, dx_3\, dx_4\\
+&= \int_0^{1/2} \Bigl( \frac{5}{44} + \frac{111}{704} + \frac{9}{44}\, x_4^2 \Bigr)\, dx_4\\
+&= \frac{5}{88} + \frac{111}{1408} + \frac{3}{352} = \frac{203}{1408}.
+\end{aligned}
+$$
 
 在给出离散多元随机向量的条件与边缘分布的计算例子之前，先引入一族重要的离散多元分布：该族把二项族推广到每次试验有 $$n$$ 个（而非两个）不同可能结果的情形。
 
@@ -1632,8 +1570,8 @@ $$
 > 设 $$n$$ 与 $$m$$ 是正整数，$$p_1, \ldots, p_n$$ 是满足 $$0 \leq p_i \leq 1$$（$$i = 1, \ldots, n$$）与 $$\sum_{i=1}^{n} p_i = 1$$ 的数。若随机向量 $$(X_1, \ldots, X_n)$$ 的联合 pmf 为
 >
 > $$
-> f(x_1, \ldots, x_n) = \frac{m!}{x_1! \cdots x_n!}\, p_1^{x_1} \cdots p_n^{x_n} = \frac{m!}{\prod_{i=1}^{n} x_i!} \prod_{i=1}^{n} p_i^{x_i},
-> $$
+f(x_1, \ldots, x_n) = \frac{m!}{x_1! \cdots x_n!}\, p_1^{x_1} \cdots p_n^{x_n} = \frac{m!}{\prod_{i=1}^{n} x_i!} \prod_{i=1}^{n} p_i^{x_i},
+$$
 >
 > （在使每个 $$x_i$$ 为非负整数且 $$\sum_{i=1}^{n} x_i = m$$ 的 $$(x_1, \ldots, x_n)$$ 集合上），则称 $$(X_1, \ldots, X_n)$$ 服从 $$m$$ 次试验、格子概率 $$p_1, \ldots, p_n$$ 的***多项分布***（multinomial distribution）。
 
@@ -1644,8 +1582,8 @@ $$
 > 考虑掷一颗六面骰子十次。设骰子不均匀，观测到 1 的概率为 $$\bigl( \tfrac{1}{2} \bigr)^1$$，观测到 2 的概率为 $$\bigl( \tfrac{1}{2} \bigr)^2$$，一般地观测到 $$i$$ 的概率为 $$\bigl( \tfrac{1}{2} \bigr)^i$$。考虑随机向量 $$(X_1, \ldots, X_6)$$，其中 $$X_i$$ 计十次投掷中 $$i$$ 出现的次数。则 $$(X_1, \ldots, X_6)$$ 服从 $$m = 10$$ 次试验、$$n = 6$$ 个可能结果、格子概率 $$p_1 = \tfrac{1}{2}$$，$$p_2 = \bigl(\tfrac{1}{2}\bigr)^2, \ldots, p_6 = \bigl(\tfrac{1}{2}\bigr)^6$$ 的多项分布。用定义 4.6.2 的公式可算出“掷出四个 6、三个 5、两个 4、一个 3”的概率为
 >
 > $$
-> f(0, 0, 1, 2, 3, 4) = \frac{10!}{0!\, 0!\, 1!\, 2!\, 3!\, 4!} \Bigl( \frac{1}{2} \Bigr)^{0} \Bigl( \frac{1}{2} \Bigr)^{0} \Bigl( \frac{1}{2} \Bigr)^{1} \Bigl( \frac{1}{2} \Bigr)^{2} \Bigl( \frac{1}{2} \Bigr)^{3} \Bigl( \frac{1}{2} \Bigr)^{4} = 0.0059.
-> $$
+f(0, 0, 1, 2, 3, 4) = \frac{10!}{0!\, 0!\, 1!\, 2!\, 3!\, 4!} \Bigl( \frac{1}{2} \Bigr)^{0} \Bigl( \frac{1}{2} \Bigr)^{0} \Bigl( \frac{1}{2} \Bigr)^{1} \Bigl( \frac{1}{2} \Bigr)^{2} \Bigl( \frac{1}{2} \Bigr)^{3} \Bigl( \frac{1}{2} \Bigr)^{4} = 0.0059.
+$$
 
 因子 $$m! / (x_1! \cdots x_n!)$$ 称为多项式系数：它是把 $$m$$ 个对象分成 $$n$$ 组（第一组 $$x_1$$ 个，第二组 $$x_2$$ 个，……第 $$n$$ 组 $$x_n$$ 个）的方式数。二项式定理（定理 3.2.2）的推广是多项式定理。
 
@@ -1654,8 +1592,8 @@ $$
 > 设 $$m$$ 与 $$n$$ 是正整数，$$\mathcal{A}$$ 是使每个 $$x_i$$ 为非负整数且 $$\sum_{i=1}^{n} x_i = m$$ 的向量 $$\textbf{x} = (x_1, \ldots, x_n)$$ 之集。则对任意实数 $$p_1, \ldots, p_n$$，
 >
 > $$
-> (p_1 + \cdots + p_n)^{m} = \sum_{\textbf{x} \in \mathcal{A}} \frac{m!}{x_1!\, \cdots\, x_n!}\, p_1^{x_1} \cdots p_n^{x_n}.
-> $$
+(p_1 + \cdots + p_n)^{m} = \sum_{\textbf{x} \in \mathcal{A}} \frac{m!}{x_1!\, \cdots\, x_n!}\, p_1^{x_1} \cdots p_n^{x_n}.
+$$
 
 定理 4.6.4 表明多项 pmf 求和为 1：集合 $$\mathcal{A}$$ 正是定义 4.6.2 中具正概率的点集，pmf 在这些点上的和由定理 4.6.4 为 $$(p_1 + \cdots + p_n)^m = 1^m = 1$$。
 
@@ -1696,8 +1634,8 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是具有联合 pdf 或 pmf $$f(x_1, \ldots, x_n)$$ 的随机向量，$$f_{X_i}(x_i)$$ 表示 $$X_i$$ 的边缘 pdf 或 pmf。若对每个 $$(x_1, \ldots, x_n)$$ 都有
 >
 > $$
-> f(x_1, \ldots, x_n) = f_{X_1}(x_1) \cdots f_{X_n}(x_n) = \prod_{i=1}^{n} f_{X_i}(x_i),
-> $$
+f(x_1, \ldots, x_n) = f_{X_1}(x_1) \cdots f_{X_n}(x_n) = \prod_{i=1}^{n} f_{X_i}(x_i),
+$$
 >
 > 则称 $$X_1, \ldots, X_n$$ 为***相互独立的随机向量***（mutually independent random vectors）。若诸 $$X_i$$ 都是一维的，则称 $$X_1, \ldots, X_n$$ 为相互独立的随机变量。
 
@@ -1710,30 +1648,30 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 相互独立，$$g_1, \ldots, g_n$$ 是使 $$g_i(x_i)$$ 只是 $$x_i$$ 的函数（$$i = 1, \ldots, n$$）的实值函数。则
 >
 > $$
-> \mathrm{E}\bigl( g_1(X_1) \cdots g_n(X_n) \bigr) = \bigl( \mathrm{E} g_1(X_1) \bigr) \cdots \bigl( \mathrm{E} g_n(X_n) \bigr).
-> $$
+\mathrm{E}\bigl( g_1(X_1) \cdots g_n(X_n) \bigr) = \bigl( \mathrm{E} g_1(X_1) \bigr) \cdots \bigl( \mathrm{E} g_n(X_n) \bigr).
+$$
 
 > **定理 4.6.7（定理 4.2.12 的推广）**
 >
 > 设 $$X_1, \ldots, X_n$$ 相互独立，mgf 分别为 $$M_{X_1}(t), \ldots, M_{X_n}(t)$$。令 $$Z = X_1 + \cdots + X_n$$，则 $$Z$$ 的 mgf 为
 >
 > $$
-> M_Z(t) = M_{X_1}(t) \cdots M_{X_n}(t).
-> $$
+M_Z(t) = M_{X_1}(t) \cdots M_{X_n}(t).
+$$
 >
 > 特别地，若 $$X_1, \ldots, X_n$$ 都具有以 $$M_X(t)$$ 为 mgf 的同一分布，则
 >
 > $$
-> M_Z(t) = \bigl( M_X(t) \bigr)^{n}.
-> $$
+M_Z(t) = \bigl( M_X(t) \bigr)^{n}.
+$$
 
 > **例 4.6.8（伽马变量之和的 mgf）**
 >
 > 设 $$X_1, \ldots, X_n$$ 相互独立，$$X_i$$ 的分布为 $$\mathrm{gamma}(\alpha_i, \beta)$$。由例 2.3.8，$$\mathrm{gamma}(\alpha, \beta)$$ 分布的 mgf 为 $$M(t) = (1 - \beta t)^{-\alpha}$$。于是若 $$Z = X_1 + \cdots + X_n$$，则 $$Z$$ 的 mgf 为
 >
 > $$
-> M_Z(t) = M_{X_1}(t) \cdots M_{X_n}(t) = (1 - \beta t)^{-\alpha_1} \cdots (1 - \beta t)^{-\alpha_n} = (1 - \beta t)^{-(\alpha_1 + \cdots + \alpha_n)}.
-> $$
+M_Z(t) = M_{X_1}(t) \cdots M_{X_n}(t) = (1 - \beta t)^{-\alpha_1} \cdots (1 - \beta t)^{-\alpha_n} = (1 - \beta t)^{-(\alpha_1 + \cdots + \alpha_n)}.
+$$
 >
 > 这是 $$\mathrm{gamma}(\alpha_1 + \cdots + \alpha_n, \beta)$$ 分布的 mgf。故有共同尺度参数 $$\beta$$ 的独立伽马随机变量之和也服从伽马分布。
 
@@ -1744,18 +1682,18 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 相互独立，mgf 分别为 $$M_{X_1}(t), \ldots, M_{X_n}(t)$$；$$a_1, \ldots, a_n$$ 与 $$b_1, \ldots, b_n$$ 是固定常数。令 $$Z = (a_1 X_1 + b_1) + \cdots + (a_n X_n + b_n)$$，则 $$Z$$ 的 mgf 为
 >
 > $$
-> M_Z(t) = \bigl( e^{t (\sum b_i)} \bigr)\, M_{X_1}(a_1 t) \cdots M_{X_n}(a_n t).
-> $$
+M_Z(t) = \bigl( e^{t (\sum b_i)} \bigr)\, M_{X_1}(a_1 t) \cdots M_{X_n}(a_n t).
+$$
 >
 > **证明**　由定义，$$Z$$ 的 mgf 为
 >
 > $$
-> \begin{aligned}
-> M_Z(t) &= \mathrm{E} e^{t Z} = \mathrm{E}\, e^{t \sum (a_i X_i + b_i)}\\
-> &= \bigl( e^{t (\sum b_i)} \bigr)\, \mathrm{E}\bigl( e^{t a_1 X_1} \cdots e^{t a_n X_n} \bigr) \qquad （\text{指数运算性质与期望的性质}）\\
-> &= \bigl( e^{t (\sum b_i)} \bigr)\, M_{X_1}(a_1 t) \cdots M_{X_n}(a_n t). \qquad （\text{定理 4.6.6}）
-> \end{aligned}
-> $$
+\begin{aligned}
+M_Z(t) &= \mathrm{E} e^{t Z} = \mathrm{E}\, e^{t \sum (a_i X_i + b_i)}\\
+&= \bigl( e^{t (\sum b_i)} \bigr)\, \mathrm{E}\bigl( e^{t a_1 X_1} \cdots e^{t a_n X_n} \bigr) \qquad （\text{指数运算性质与期望的性质}）\\
+&= \bigl( e^{t (\sum b_i)} \bigr)\, M_{X_1}(a_1 t) \cdots M_{X_n}(a_n t). \qquad （\text{定理 4.6.6}）
+\end{aligned}
+$$
 >
 > ∎
 
@@ -1766,14 +1704,14 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 相互独立且 $$X_i \sim n(\mu_i, \sigma_i^2)$$；$$a_1, \ldots, a_n$$ 与 $$b_1, \ldots, b_n$$ 是固定常数。则
 >
 > $$
-> Z = \sum_{i=1}^{n} (a_i X_i + b_i) \sim n\Bigl( \sum_{i=1}^{n} (a_i \mu_i + b_i),\ \sum_{i=1}^{n} a_i^2 \sigma_i^2 \Bigr).
-> $$
+Z = \sum_{i=1}^{n} (a_i X_i + b_i) \sim n\Bigl( \sum_{i=1}^{n} (a_i \mu_i + b_i),\ \sum_{i=1}^{n} a_i^2 \sigma_i^2 \Bigr).
+$$
 >
 > **证明**　回顾 $$n(\mu, \sigma^2)$$ 随机变量的 mgf 为 $$M(t) = e^{\mu t + \sigma^2 t^2/2}$$。代入推论 4.6.9 的表达式：
 >
 > $$
-> M_Z(t) = \bigl( e^{t (\sum b_i)} \bigr)\, e^{\mu_1 a_1 t + \sigma_1^2 a_1^2 t^2/2} \cdots e^{\mu_n a_n t + \sigma_n^2 a_n^2 t^2/2} = e^{\left( \sum (a_i \mu_i + b_i) \right) t + \left( \sum a_i^2 \sigma_i^2 \right) t^2/2},
-> $$
+M_Z(t) = \bigl( e^{t (\sum b_i)} \bigr)\, e^{\mu_1 a_1 t + \sigma_1^2 a_1^2 t^2/2} \cdots e^{\mu_n a_n t + \sigma_n^2 a_n^2 t^2/2} = e^{\left( \sum (a_i \mu_i + b_i) \right) t + \left( \sum a_i^2 \sigma_i^2 \right) t^2/2},
+$$
 >
 > 即所示正态分布的 mgf。 ∎
 
@@ -1782,8 +1720,8 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是随机向量。则 $$X_1, \ldots, X_n$$ 相互独立当且仅当存在函数 $$g_i(x_i)$$（$$i = 1, \ldots, n$$）使 $$(X_1, \ldots, X_n)$$ 的联合 pdf 或 pmf 可写为
 >
 > $$
-> f(x_1, \ldots, x_n) = g_1(x_1) \cdots g_n(x_n).
-> $$
+f(x_1, \ldots, x_n) = g_1(x_1) \cdots g_n(x_n).
+$$
 
 > **定理 4.6.12（定理 4.3.5 的推广）**
 >
@@ -1819,32 +1757,32 @@ $$
 > 设 $$(X_1, X_2, X_3, X_4)$$ 的联合 pdf 为
 >
 > $$
-> f_{\textbf{X}}(x_1, x_2, x_3, x_4) = 24\, e^{-x_1 - x_2 - x_3 - x_4}, \qquad 0 < x_1 < x_2 < x_3 < x_4 < \infty.
-> $$
+f_{\textbf{X}}(x_1, x_2, x_3, x_4) = 24\, e^{-x_1 - x_2 - x_3 - x_4}, \qquad 0 < x_1 < x_2 < x_3 < x_4 < \infty.
+$$
 >
 > 考虑变换
 >
 > $$
-> U_1 = X_1, \qquad U_2 = X_2 - X_1, \qquad U_3 = X_3 - X_2, \qquad U_4 = X_4 - X_3.
-> $$
+U_1 = X_1, \qquad U_2 = X_2 - X_1, \qquad U_3 = X_3 - X_2, \qquad U_4 = X_4 - X_3.
+$$
 >
 > 该变换把 $$\mathcal{A}$$ 映到集合 $$\mathcal{B} = \{\textbf{u} : 0 < u_i < \infty,\ i = 1, 2, 3, 4\}$$ 上。变换是一一的，故 $$k = 1$$，逆变换为
 >
 > $$
-> X_1 = U_1, \qquad X_2 = U_1 + U_2, \qquad X_3 = U_1 + U_2 + U_3, \qquad X_4 = U_1 + U_2 + U_3 + U_4.
-> $$
+X_1 = U_1, \qquad X_2 = U_1 + U_2, \qquad X_3 = U_1 + U_2 + U_3, \qquad X_4 = U_1 + U_2 + U_3 + U_4.
+$$
 >
 > 逆变换的雅可比为
 >
 > $$
-> J = \begin{vmatrix} 1 & 0 & 0 & 0 \\ 1 & 1 & 0 & 0 \\ 1 & 1 & 1 & 0 \\ 1 & 1 & 1 & 1 \end{vmatrix} = 1.
-> $$
+J = \begin{vmatrix} 1 & 0 & 0 & 0 \\ 1 & 1 & 0 & 0 \\ 1 & 1 & 1 & 0 \\ 1 & 1 & 1 & 1 \end{vmatrix} = 1.
+$$
 >
 > 由于矩阵是三角形的，行列式等于对角元之积。故由 (4.6.7) 得
 >
 > $$
-> f_{\textbf{U}}(u_1, \ldots, u_4) = 24\, e^{-u_1 - (u_1 + u_2) - (u_1 + u_2 + u_3) - (u_1 + u_2 + u_3 + u_4)} = 24\, e^{-4 u_1 - 3 u_2 - 2 u_3 - u_4} \quad \text{（在}\ \mathcal{B}\ \text{上）}.
-> $$
+f_{\textbf{U}}(u_1, \ldots, u_4) = 24\, e^{-u_1 - (u_1 + u_2) - (u_1 + u_2 + u_3) - (u_1 + u_2 + u_3 + u_4)} = 24\, e^{-4 u_1 - 3 u_2 - 2 u_3 - u_4} \quad \text{（在}\ \mathcal{B}\ \text{上）}.
+$$
 >
 > 由此可算 $$U_1, U_2, U_3, U_4$$ 的边缘 pdf。结果是 $$f_U(u_i) = (5 - i)\, e^{-(5 - i)\, u_i}$$（$$u_i > 0$$），即 $$U_i \sim \mathrm{exponential}\bigl( 1/(5 - i) \bigr)$$。由定理 4.6.11 可见 $$U_1, U_2, U_3, U_4$$ 是相互独立的随机变量。
 
@@ -1863,34 +1801,34 @@ $$
 > 设 $$a$$ 与 $$b$$ 是任意正数，$$p$$ 与 $$q$$ 是满足
 >
 > $$
-> \frac{1}{p} + \frac{1}{q} = 1 \tag{4.7.1}
-> $$
+\frac{1}{p} + \frac{1}{q} = 1 \tag{4.7.1}
+$$
 >
 > 的任意正数（必大于 1）。则
 >
 > $$
-> \frac{1}{p}\, a^{p} + \frac{1}{q}\, b^{q} \geq ab, \tag{4.7.2}
-> $$
+\frac{1}{p}\, a^{p} + \frac{1}{q}\, b^{q} \geq ab, \tag{4.7.2}
+$$
 >
 > 等号成立当且仅当 $$a^{p} = b^{q}$$。
 >
 > **证明**　固定 $$b$$，考虑函数
 >
 > $$
-> g(a) = \frac{1}{p}\, a^{p} + \frac{1}{q}\, b^{q} - ab.
-> $$
+g(a) = \frac{1}{p}\, a^{p} + \frac{1}{q}\, b^{q} - ab.
+$$
 >
 > 为最小化 $$g(a)$$，求导并令其为零：
 >
 > $$
-> \frac{d}{da} g(a) = 0 \Rightarrow a^{p - 1} - b = 0 \Rightarrow b = a^{p - 1}.
-> $$
+\frac{d}{da} g(a) = 0 \Rightarrow a^{p - 1} - b = 0 \Rightarrow b = a^{p - 1}.
+$$
 >
 > 检查二阶导数可知这确是极小值点。函数在极小值处的值为
 >
 > $$
-> \frac{1}{p}\, a^{p} + \frac{1}{q}\, \bigl( a^{p - 1} \bigr)^{q} - a\, a^{p - 1} = \frac{1}{p}\, a^{p} + \frac{1}{p}\, a^{p} - a^{p} = 0
-> $$
+\frac{1}{p}\, a^{p} + \frac{1}{q}\, \bigl( a^{p - 1} \bigr)^{q} - a\, a^{p - 1} = \frac{1}{p}\, a^{p} + \frac{1}{p}\, a^{p} - a^{p} = 0
+$$
 >
 > （由 (4.7.1) 知 $$(p - 1)\, q = p$$；再由 (4.7.1) 知 $$1/q = 1 - 1/p$$）。故极小值为 0，(4.7.2) 得证。由于极小值唯一（为什么？），等号只在 $$a^{p - 1} = b$$ 时成立，由 (4.7.1) 这等价于 $$a^{p} = b^{q}$$。 ∎
 
@@ -1901,20 +1839,20 @@ $$
 > 设 $$X$$ 与 $$Y$$ 是任意两个随机变量，$$p$$ 与 $$q$$ 满足 (4.7.1)。则
 >
 > $$
-> \vert \mathrm{E} XY\vert  \leq \mathrm{E}\vert XY\vert  \leq \bigl( \mathrm{E}\vert X\vert ^{p} \bigr)^{1/p}\, \bigl( \mathrm{E}\vert Y\vert ^{q} \bigr)^{1/q}. \tag{4.7.3}
-> $$
+\vert \mathrm{E} XY\vert  \leq \mathrm{E}\vert XY\vert  \leq \bigl( \mathrm{E}\vert X\vert ^{p} \bigr)^{1/p}\, \bigl( \mathrm{E}\vert Y\vert ^{q} \bigr)^{1/q}. \tag{4.7.3}
+$$
 >
 > **证明**　第一个不等式由 $$-\vert XY\vert  \leq XY \leq \vert XY\vert $$ 与定理 2.2.5 得到。为证第二个不等式，定义
 >
 > $$
-> a = \frac{\vert X\vert }{\bigl( \mathrm{E}\vert X\vert ^{p} \bigr)^{1/p}} \qquad\text{与}\qquad b = \frac{\vert Y\vert }{\bigl( \mathrm{E}\vert Y\vert ^{q} \bigr)^{1/q}}.
-> $$
+a = \frac{\vert X\vert }{\bigl( \mathrm{E}\vert X\vert ^{p} \bigr)^{1/p}} \qquad\text{与}\qquad b = \frac{\vert Y\vert }{\bigl( \mathrm{E}\vert Y\vert ^{q} \bigr)^{1/q}}.
+$$
 >
 > 应用引理 4.7.1，得
 >
 > $$
-> \frac{1}{p}\, \frac{\vert X\vert ^{p}}{\mathrm{E}\vert X\vert ^{p}} + \frac{1}{q}\, \frac{\vert Y\vert ^{q}}{\mathrm{E}\vert Y\vert ^{q}} \geq \frac{\vert XY\vert }{\bigl( \mathrm{E}\vert X\vert ^{p} \bigr)^{1/p}\, \bigl( \mathrm{E}\vert Y\vert ^{q} \bigr)^{1/q}}.
-> $$
+\frac{1}{p}\, \frac{\vert X\vert ^{p}}{\mathrm{E}\vert X\vert ^{p}} + \frac{1}{q}\, \frac{\vert Y\vert ^{q}}{\mathrm{E}\vert Y\vert ^{q}} \geq \frac{\vert XY\vert }{\bigl( \mathrm{E}\vert X\vert ^{p} \bigr)^{1/p}\, \bigl( \mathrm{E}\vert Y\vert ^{q} \bigr)^{1/q}}.
+$$
 >
 > 两边取期望：左端期望为 1，整理即得 (4.7.3)。 ∎
 
@@ -1925,22 +1863,22 @@ $$
 > 对任意两个随机变量 $$X$$ 与 $$Y$$，
 >
 > $$
-> \vert \mathrm{E} XY\vert  \leq \mathrm{E}\vert XY\vert  \leq \bigl( \mathrm{E}\vert X\vert ^2 \bigr)^{1/2}\, \bigl( \mathrm{E}\vert Y\vert ^2 \bigr)^{1/2}. \tag{4.7.4}
-> $$
+\vert \mathrm{E} XY\vert  \leq \mathrm{E}\vert XY\vert  \leq \bigl( \mathrm{E}\vert X\vert ^2 \bigr)^{1/2}\, \bigl( \mathrm{E}\vert Y\vert ^2 \bigr)^{1/2}. \tag{4.7.4}
+$$
 
 > **例 4.7.4（协方差不等式）**
 >
 > 若 $$X$$ 与 $$Y$$ 的均值分别为 $$\mu_X$$、$$\mu_Y$$，方差分别为 $$\sigma_X^2$$、$$\sigma_Y^2$$，可对柯西—施瓦茨不等式取
 >
 > $$
-> \mathrm{E}\bigl\vert  (X - \mu_X)(Y - \mu_Y) \bigr\vert  \leq \Bigl( \mathrm{E} (X - \mu_X)^2 \Bigr)^{1/2} \Bigl( \mathrm{E} (Y - \mu_Y)^2 \Bigr)^{1/2}.
-> $$
+\mathrm{E}\bigl\vert  (X - \mu_X)(Y - \mu_Y) \bigr\vert  \leq \Bigl( \mathrm{E} (X - \mu_X)^2 \Bigr)^{1/2} \Bigl( \mathrm{E} (Y - \mu_Y)^2 \Bigr)^{1/2}.
+$$
 >
 > 两边平方并用统计记号：
 >
 > $$
-> \bigl( \mathrm{Cov}(X, Y) \bigr)^2 \leq \sigma_X^2\, \sigma_Y^2.
-> $$
+\bigl( \mathrm{Cov}(X, Y) \bigr)^2 \leq \sigma_X^2\, \sigma_Y^2.
+$$
 >
 > 回忆相关系数 $$\rho$$ 的定义，我们证明了 $$0 \leq \rho^2 \leq 1$$。此外引理 4.7.1 的取等条件仍然有效：此处等号仅在 $$X - \mu_X = c\, (Y - \mu_Y)$$（$$c$$ 为某常数）时取得。也就是说，当且仅当 $$X$$ 与 $$Y$$ 线性相关时相关为 $$\pm 1$$。把这一证明的轻松与定理 4.5.7（在尚无柯西—施瓦茨不等式时）所用证明的繁复比较一下吧。
 
@@ -1971,20 +1909,20 @@ $$
 > 设 $$X$$ 与 $$Y$$ 是任意两个随机变量，则对 $$1 \leq p < \infty$$，
 >
 > $$
-> \Bigl[ \mathrm{E}\vert X + Y\vert ^{p} \Bigr]^{1/p} \leq \Bigl[ \mathrm{E}\vert X\vert ^{p} \Bigr]^{1/p} + \Bigl[ \mathrm{E}\vert Y\vert ^{p} \Bigr]^{1/p}. \tag{4.7.7}
-> $$
+\Bigl[ \mathrm{E}\vert X + Y\vert ^{p} \Bigr]^{1/p} \leq \Bigl[ \mathrm{E}\vert X\vert ^{p} \Bigr]^{1/p} + \Bigl[ \mathrm{E}\vert Y\vert ^{p} \Bigr]^{1/p}. \tag{4.7.7}
+$$
 >
 > **证明**　写
 >
 > $$
-> \mathrm{E}\vert X + Y\vert ^{p} = \mathrm{E}\Bigl( \vert X + Y\vert \, \vert X + Y\vert ^{p - 1} \Bigr) \leq \mathrm{E}\Bigl( \vert X\vert \, \vert X + Y\vert ^{p - 1} \Bigr) + \mathrm{E}\Bigl( \vert Y\vert \, \vert X + Y\vert ^{p - 1} \Bigr), \tag{4.7.8}
-> $$
+\mathrm{E}\vert X + Y\vert ^{p} = \mathrm{E}\Bigl( \vert X + Y\vert \, \vert X + Y\vert ^{p - 1} \Bigr) \leq \mathrm{E}\Bigl( \vert X\vert \, \vert X + Y\vert ^{p - 1} \Bigr) + \mathrm{E}\Bigl( \vert Y\vert \, \vert X + Y\vert ^{p - 1} \Bigr), \tag{4.7.8}
+$$
 >
 > 这里用了 $$\vert X + Y\vert  \leq \vert X\vert  + \vert Y\vert $$（三角不等式；见习题 4.64）。对 (4.7.8) 右端各期望应用赫尔德不等式：
 >
 > $$
-> \mathrm{E}\bigl( \vert X + Y\vert ^{p} \bigr) \leq \Bigl( \mathrm{E}\bigl( \vert X\vert ^{p} \bigr) \Bigr)^{1/p} \Bigl( \mathrm{E}\, \vert X + Y\vert ^{q(p - 1)} \Bigr)^{1/q} + \Bigl[ \mathrm{E}\bigl( \vert Y\vert ^{p} \bigr) \Bigr]^{1/p} \Bigl( \mathrm{E}\, \vert X + Y\vert ^{q(p - 1)} \Bigr)^{1/q},
-> $$
+\mathrm{E}\bigl( \vert X + Y\vert ^{p} \bigr) \leq \Bigl( \mathrm{E}\bigl( \vert X\vert ^{p} \bigr) \Bigr)^{1/p} \Bigl( \mathrm{E}\, \vert X + Y\vert ^{q(p - 1)} \Bigr)^{1/q} + \Bigl[ \mathrm{E}\bigl( \vert Y\vert ^{p} \bigr) \Bigr]^{1/p} \Bigl( \mathrm{E}\, \vert X + Y\vert ^{q(p - 1)} \Bigr)^{1/q},
+$$
 >
 > 其中 $$q$$ 满足 $$1/p + 1/q = 1$$。两边除以 $$\Bigl( \mathrm{E}\, \vert X + Y\vert ^{q(p-1)} \Bigr)^{1/q}$$，注意 $$q(p - 1) = p$$ 且 $$1 - 1/q = 1/p$$，即得 (4.7.7)。 ∎
 
@@ -2013,8 +1951,8 @@ $$
 > 若对一切 $$x$$、$$y$$ 与一切 $$0 < \lambda < 1$$ 都有
 >
 > $$
-> g\bigl( \lambda x + (1 - \lambda) y \bigr) \leq \lambda\, g(x) + (1 - \lambda)\, g(y),
-> $$
+g\bigl( \lambda x + (1 - \lambda) y \bigr) \leq \lambda\, g(x) + (1 - \lambda)\, g(y),
+$$
 >
 > 则称函数 $$g(x)$$ 是***凸的***（convex）。若 $$-g(x)$$ 是凸的，则称 $$g(x)$$ 是***凹的***（concave）。
 
@@ -2025,16 +1963,16 @@ $$
 > 对任意随机变量 $$X$$，若 $$g(x)$$ 是凸函数，则
 >
 > $$
-> \mathrm{E} g(X) \geq g(\mathrm{E} X).
-> $$
+\mathrm{E} g(X) \geq g(\mathrm{E} X).
+$$
 >
 > 等号成立当且仅当：对每条在 $$x = \mathrm{E} X$$ 处与 $$g(x)$$ 相切的直线 $$a + bx$$，有 $$P\bigl( g(X) = a + bX \bigr) = 1$$。
 >
 > **证明**　为建立不等式，设 $$l(x)$$ 是 $$g(x)$$ 在点 $$g(\mathrm{E} X)$$ 处的切线（回忆 $$\mathrm{E} X$$ 是常数），写 $$l(x) = a + bx$$（某 $$a$$ 与 $$b$$）。情形如图 4.7.2 所示。由 $$g$$ 的凸性，$$g(x) \geq a + bx$$。由于期望保持不等号，
 >
 > $$
-> \mathrm{E} g(X) \geq \mathrm{E}(a + bX) = a + b \mathrm{E} X = l(\mathrm{E} X) = g(\mathrm{E} X),
-> $$
+\mathrm{E} g(X) \geq \mathrm{E}(a + bX) = a + b \mathrm{E} X = l(\mathrm{E} X) = g(\mathrm{E} X),
+$$
 >
 > （分别用了期望的线性与定理 2.2.5、$$l(x)$$ 的定义、$$l$$ 在 $$\mathrm{E} X$$ 处相切。）即为所求。
 >
@@ -2053,34 +1991,34 @@ $$
 > 詹森不等式可用于证明三种均值之间的不等式。设 $$a_1, \ldots, a_n$$ 是正数，定义
 >
 > $$
-> a_A = \frac{1}{n}\, (a_1 + a_2 + \cdots + a_n) \qquad \text{（算术均值）}，
-> $$
+a_A = \frac{1}{n}\, (a_1 + a_2 + \cdots + a_n) \qquad \text{（算术均值）}，
+$$
 >
 > $$
-> a_G = \bigl[ a_1\, a_2 \cdots a_n \bigr]^{1/n} \qquad \text{（几何均值）}，
-> $$
+a_G = \bigl[ a_1\, a_2 \cdots a_n \bigr]^{1/n} \qquad \text{（几何均值）}，
+$$
 >
 > $$
-> a_H = \Bigl( \frac{1}{n}\, \Bigl[ \frac{1}{a_1} + \frac{1}{a_2} + \cdots + \frac{1}{a_n} \Bigr] \Bigr)^{-1} \qquad \text{（调和均值）}.
-> $$
+a_H = \Bigl( \frac{1}{n}\, \Bigl[ \frac{1}{a_1} + \frac{1}{a_2} + \cdots + \frac{1}{a_n} \Bigr] \Bigr)^{-1} \qquad \text{（调和均值）}.
+$$
 >
 > 联系这些均值的不等式是
 >
 > $$
-> a_H \leq a_G \leq a_A.
-> $$
+a_H \leq a_G \leq a_A.
+$$
 >
 > 为应用詹森不等式，设 $$X$$ 是值域为 $$a_1, \ldots, a_n$$、满足 $$P(X = a_i) = 1/n$$（$$i = 1, \ldots, n$$）的随机变量。由于 $$\log x$$ 是凹函数，詹森不等式给出 $$\mathrm{E}(\log X) \leq \log(\mathrm{E} X)$$，故
 >
 > $$
-> \log a_G = \frac{1}{n} \sum_{i=1}^{n} \log a_i = \mathrm{E}(\log X) \leq \log(\mathrm{E} X) = \log\Bigl( \frac{1}{n} \sum_{i=1}^{n} a_i \Bigr) = \log a_A,
-> $$
+\log a_G = \frac{1}{n} \sum_{i=1}^{n} \log a_i = \mathrm{E}(\log X) \leq \log(\mathrm{E} X) = \log\Bigl( \frac{1}{n} \sum_{i=1}^{n} a_i \Bigr) = \log a_A,
+$$
 >
 > 即 $$a_G \leq a_A$$。再次利用 $$\log x$$ 凹：
 >
 > $$
-> \log\Bigl( \frac{1}{a_H} \Bigr) = \log\Bigl( \frac{1}{n} \sum_{i=1}^{n} \frac{1}{a_i} \Bigr) = \log\Bigl( \mathrm{E}\Bigl[ \frac{1}{X} \Bigr] \Bigr) \geq \mathrm{E}\Bigl[ \log \frac{1}{X} \Bigr] = -\mathrm{E}(\log X).
-> $$
+\log\Bigl( \frac{1}{a_H} \Bigr) = \log\Bigl( \frac{1}{n} \sum_{i=1}^{n} \frac{1}{a_i} \Bigr) = \log\Bigl( \mathrm{E}\Bigl[ \frac{1}{X} \Bigr] \Bigr) \geq \mathrm{E}\Bigl[ \log \frac{1}{X} \Bigr] = -\mathrm{E}(\log X).
+$$
 >
 > 由于 $$\mathrm{E}(\log X) = \log a_G$$，得 $$\log(1/a_H) \geq \log(1/a_G)$$，即 $$a_G \geq a_H$$。
 
@@ -2109,14 +2047,14 @@ $$
 > - a. 若 $$g(x)$$ 非降而 $$h(x)$$ 非增，则
 >
 >   $$
->   \mathrm{E}\bigl( g(X)\, h(X) \bigr) \leq \bigl( \mathrm{E} g(X) \bigr)\, \bigl( \mathrm{E} h(X) \bigr).
->   $$
+  \mathrm{E}\bigl( g(X)\, h(X) \bigr) \leq \bigl( \mathrm{E} g(X) \bigr)\, \bigl( \mathrm{E} h(X) \bigr).
+  $$
 >
 > - b. 若 $$g(x)$$ 与 $$h(x)$$ 同为非降或同为非增，则
 >
 >   $$
->   \mathrm{E}\bigl( g(X)\, h(X) \bigr) \geq \bigl( \mathrm{E} g(X) \bigr)\, \bigl( \mathrm{E} h(X) \bigr).
->   $$
+  \mathrm{E}\bigl( g(X)\, h(X) \bigr) \geq \bigl( \mathrm{E} g(X) \bigr)\, \bigl( \mathrm{E} h(X) \bigr).
+  $$
 
 该不等式背后的直觉很简单：情形 (a) 中 $$g$$ 与 $$h$$ 负相关，情形 (b) 中正相关；不等式只是反映了这一事实。协方差不等式的用处在于：它使我们无需高阶矩就能界住一个期望。
 

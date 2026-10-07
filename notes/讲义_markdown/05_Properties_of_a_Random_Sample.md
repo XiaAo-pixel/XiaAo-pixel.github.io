@@ -45,19 +45,19 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是来自 $$\mathrm{exponential}(\beta)$$ 总体的随机样本。具体地，$$X_1, \ldots, X_n$$ 可以对应投入测试并使用到失效为止的 $$n$$ 块相同电路板的失效时间（以年计）。样本的联合 pdf 为
 >
 > $$
-> f(x_1, \ldots, x_n \mid \beta) = \prod_{i=1}^{n} f(x_i \mid \beta) = \prod_{i=1}^{n} \frac{1}{\beta}\, e^{-x_i/\beta} = \frac{1}{\beta^n}\, e^{-(x_1 + \cdots + x_n)/\beta}.
-> $$
+f(x_1, \ldots, x_n \mid \beta) = \prod_{i=1}^{n} f(x_i \mid \beta) = \prod_{i=1}^{n} \frac{1}{\beta}\, e^{-x_i/\beta} = \frac{1}{\beta^n}\, e^{-(x_1 + \cdots + x_n)/\beta}.
+$$
 >
 > 该 pdf 可用于回答关于样本的问题。例如，所有电路板寿命都超过两年的概率是多少？可以计算
 >
 > $$
-> \begin{aligned}
-> P(X_1 > 2, \ldots, X_n > 2) &= \int_2^{\infty} \cdots \int_2^{\infty}\, \prod_{i=1}^{n} \frac{1}{\beta}\, e^{-x_i/\beta}\, dx_1 \cdots dx_n\\
-> &= e^{-2/\beta} \int_2^{\infty} \cdots \int_2^{\infty} \prod_{i=2}^{n} \frac{1}{\beta}\, e^{-x_i/\beta}\, dx_2 \cdots dx_n \qquad （\text{积分掉}\ x_1）\\
-> &\;\;\vdots \qquad （\text{依次积分掉其余}\ x_i）\\
-> &= \bigl( e^{-2/\beta} \bigr)^{n} = e^{-2n/\beta}.
-> \end{aligned}
-> $$
+\begin{aligned}
+P(X_1 > 2, \ldots, X_n > 2) &= \int_2^{\infty} \cdots \int_2^{\infty}\, \prod_{i=1}^{n} \frac{1}{\beta}\, e^{-x_i/\beta}\, dx_1 \cdots dx_n\\
+&= e^{-2/\beta} \int_2^{\infty} \cdots \int_2^{\infty} \prod_{i=2}^{n} \frac{1}{\beta}\, e^{-x_i/\beta}\, dx_2 \cdots dx_n \qquad （\text{积分掉}\ x_1）\\
+&\;\;\vdots \qquad （\text{依次积分掉其余}\ x_i）\\
+&= \bigl( e^{-2/\beta} \bigr)^{n} = e^{-2n/\beta}.
+\end{aligned}
+$$
 >
 > 若 $$\beta$$（电路板的平均寿命）相对 $$n$$ 较大，则该概率接近 1。
 
@@ -107,14 +107,14 @@ $$
 > 作为利用独立性做近似计算的例子，设有限总体为 $$\{1, \ldots, 1000\}$$，$$N = 1000$$，无放回抽取容量 $$n = 10$$ 的样本。全部十个样本值都大于 200 的概率是多少？若 $$X_1, \ldots, X_{10}$$ 相互独立，则有
 >
 > $$
-> P(X_1 > 200, \ldots, X_{10} > 200) = P(X_1 > 200) \cdots P(X_{10} > 200) = \Bigl( \frac{800}{1000} \Bigr)^{10} = 0.107374. \tag{5.1.4}
-> $$
+P(X_1 > 200, \ldots, X_{10} > 200) = P(X_1 > 200) \cdots P(X_{10} > 200) = \Bigl( \frac{800}{1000} \Bigr)^{10} = 0.107374. \tag{5.1.4}
+$$
 >
 > 要精确计算该概率，设 $$Y$$ 为样本中大于 200 的项数计数，则 $$Y$$ 服从超几何分布（$$N = 1000$$，$$M = 800$$，$$K = 10$$），故
 >
 > $$
-> P(X_1 > 200, \ldots, X_{10} > 200) = P(Y = 10) = \frac{\dbinom{800}{10} \dbinom{200}{0}}{\dbinom{1000}{10}} = 0.106164.
-> $$
+P(X_1 > 200, \ldots, X_{10} > 200) = P(Y = 10) = \frac{\dbinom{800}{10} \dbinom{200}{0}}{\dbinom{1000}{10}} = 0.106164.
+$$
 >
 > 可见 (5.1.4) 是对真值的合理近似。
 
@@ -135,16 +135,16 @@ $$
 > ***样本均值***（sample mean）是随机样本取值的算术平均，通常记作
 >
 > $$
-> \bar{X} = \frac{X_1 + \cdots + X_n}{n} = \frac{1}{n} \sum_{i=1}^{n} X_i.
-> $$
+\bar{X} = \frac{X_1 + \cdots + X_n}{n} = \frac{1}{n} \sum_{i=1}^{n} X_i.
+$$
 
 > **定义 5.2.3（样本方差）**
 >
 > ***样本方差***（sample variance）是如下定义的统计量：
 >
 > $$
-> S^2 = \frac{1}{n - 1} \sum_{i=1}^{n} \bigl( X_i - \bar{X} \bigr)^2.
-> $$
+S^2 = \frac{1}{n - 1} \sum_{i=1}^{n} \bigl( X_i - \bar{X} \bigr)^2.
+$$
 >
 > ***样本标准差***（sample standard deviation）是统计量 $$S = \sqrt{S^2}$$。
 
@@ -164,12 +164,12 @@ $$
 > **证明**　证 (a)：加减 $$\bar{x}$$ 得
 >
 > $$
-> \sum_{i=1}^{n} (x_i - a)^2 = \sum_{i=1}^{n} \bigl( x_i - \bar{x} + \bar{x} - a \bigr)^2 = \sum_{i=1}^{n} (x_i - \bar{x})^2 + 2 \sum_{i=1}^{n} (x_i - \bar{x})(\bar{x} - a) + \sum_{i=1}^{n} (\bar{x} - a)^2
-> $$
+\sum_{i=1}^{n} (x_i - a)^2 = \sum_{i=1}^{n} \bigl( x_i - \bar{x} + \bar{x} - a \bigr)^2 = \sum_{i=1}^{n} (x_i - \bar{x})^2 + 2 \sum_{i=1}^{n} (x_i - \bar{x})(\bar{x} - a) + \sum_{i=1}^{n} (\bar{x} - a)^2
+$$
 >
 > $$
-> = \sum_{i=1}^{n} (x_i - \bar{x})^2 + \sum_{i=1}^{n} (\bar{x} - a)^2 \qquad （\text{交叉项为零}）.
-> $$
+= \sum_{i=1}^{n} (x_i - \bar{x})^2 + \sum_{i=1}^{n} (\bar{x} - a)^2 \qquad （\text{交叉项为零}）.
+$$
 >
 > 显然右端在 $$a = \bar{x}$$ 处最小。（注意与例 2.2.6 及习题 4.13 的相似性。）证 (b)：在上式中取 $$a = 0$$。 ∎
 
@@ -182,44 +182,44 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是来自某总体的随机样本，$$g(x)$$ 是使 $$\mathrm{E} g(X_1)$$ 与 $$\mathrm{Var} g(X_1)$$ 存在的函数。则
 >
 > $$
-> \mathrm{E}\Bigl[ \sum_{i=1}^{n} g(X_i) \Bigr] = n\, \bigl( \mathrm{E} g(X_1) \bigr) \tag{5.2.1}
-> $$
+\mathrm{E}\Bigl[ \sum_{i=1}^{n} g(X_i) \Bigr] = n\, \bigl( \mathrm{E} g(X_1) \bigr) \tag{5.2.1}
+$$
 >
 > 且
 >
 > $$
-> \mathrm{Var}\Bigl[ \sum_{i=1}^{n} g(X_i) \Bigr] = n\, \bigl( \mathrm{Var} g(X_1) \bigr). \tag{5.2.2}
-> $$
+\mathrm{Var}\Bigl[ \sum_{i=1}^{n} g(X_i) \Bigr] = n\, \bigl( \mathrm{Var} g(X_1) \bigr). \tag{5.2.2}
+$$
 >
 > **证明**　证 (5.2.1)：注意
 >
 > $$
-> \mathrm{E}\Bigl[ \sum_{i=1}^{n} g(X_i) \Bigr] = \sum_{i=1}^{n} \mathrm{E} g(X_i) = n\, \bigl( \mathrm{E} g(X_1) \bigr).
-> $$
+\mathrm{E}\Bigl[ \sum_{i=1}^{n} g(X_i) \Bigr] = \sum_{i=1}^{n} \mathrm{E} g(X_i) = n\, \bigl( \mathrm{E} g(X_1) \bigr).
+$$
 >
 > 由于诸 $$X_i$$ 同分布，$$\mathrm{E} g(X_i)$$ 对一切 $$i$$ 相同，第二个等式成立。注意 (5.2.1) 并不需要 $$X_1, \ldots, X_n$$ 的独立性：它对任意 $$n$$ 个同分布随机变量都成立。
 >
 > 证 (5.2.2)：注意
 >
 > $$
-> \mathrm{Var}\Bigl[ \sum_{i=1}^{n} g(X_i) \Bigr] = \mathrm{E}\Bigl[ \sum_{i=1}^{n} g(X_i) \Bigr]^2 - \Bigl( \mathrm{E}\Bigl[ \sum_{i=1}^{n} g(X_i) \Bigr] \Bigr)^2 \qquad （\text{方差的定义}）
-> $$
+\mathrm{Var}\Bigl[ \sum_{i=1}^{n} g(X_i) \Bigr] = \mathrm{E}\Bigl[ \sum_{i=1}^{n} g(X_i) \Bigr]^2 - \Bigl( \mathrm{E}\Bigl[ \sum_{i=1}^{n} g(X_i) \Bigr] \Bigr)^2 \qquad （\text{方差的定义}）
+$$
 >
 > $$
-> = \mathrm{E}\Bigl[ \sum_{i=1}^{n} \bigl( g(X_i) - \mathrm{E} g(X_i) \bigr) \Bigr]^2 \qquad （\text{期望性质与项的重组}）.
-> $$
+= \mathrm{E}\Bigl[ \sum_{i=1}^{n} \bigl( g(X_i) - \mathrm{E} g(X_i) \bigr) \Bigr]^2 \qquad （\text{期望性质与项的重组}）.
+$$
 >
 > 最后这个表达式含 $$n^2$$ 项。先有 $$n$$ 项 $$\bigl( g(X_i) - \mathrm{E} g(X_i) \bigr)^2$$（$$i = 1, \ldots, n$$），对每一项
 >
 > $$
-> \mathrm{E}\bigl( g(X_i) - \mathrm{E} g(X_i) \bigr)^2 = \mathrm{Var} g(X_i) \qquad （\text{方差的定义}） = \mathrm{Var} g(X_1) \qquad （\text{同分布}）.
-> $$
+\mathrm{E}\bigl( g(X_i) - \mathrm{E} g(X_i) \bigr)^2 = \mathrm{Var} g(X_i) \qquad （\text{方差的定义}） = \mathrm{Var} g(X_1) \qquad （\text{同分布}）.
+$$
 >
 > 其余 $$n(n - 1)$$ 项都形如 $$\bigl( g(X_i) - \mathrm{E} g(X_i) \bigr) \bigl( g(X_j) - \mathrm{E} g(X_j) \bigr)$$（$$i \neq j$$），对每一项
 >
 > $$
-> \mathrm{E}\bigl[ \bigl( g(X_i) - \mathrm{E} g(X_i) \bigr) \bigl( g(X_j) - \mathrm{E} g(X_j) \bigr) \bigr] = \mathrm{Cov}\bigl( g(X_i),\, g(X_j) \bigr) \qquad （\text{协方差的定义}） = 0 \qquad （\text{独立性，定理 4.5.5}）.
-> $$
+\mathrm{E}\bigl[ \bigl( g(X_i) - \mathrm{E} g(X_i) \bigr) \bigl( g(X_j) - \mathrm{E} g(X_j) \bigr) \bigr] = \mathrm{Cov}\bigl( g(X_i),\, g(X_j) \bigr) \qquad （\text{协方差的定义}） = 0 \qquad （\text{独立性，定理 4.5.5}）.
+$$
 >
 > 于是得到 (5.2.2)。 ∎
 
@@ -237,23 +237,23 @@ $$
 > **证明**　证 (a)：取 $$g(X_i) = X_i / n$$，则 $$\mathrm{E} g(X_i) = \mu / n$$。由引理 5.2.5，
 >
 > $$
-> \mathrm{E} \bar{X} = \mathrm{E}\Bigl[ \sum_{i=1}^{n} \frac{1}{n}\, X_i \Bigr] = n\, \mathrm{E}\Bigl[ \frac{1}{n}\, X_1 \Bigr] = \frac{1}{n}\, n\, \mathrm{E} X_1 = \mu.
-> $$
+\mathrm{E} \bar{X} = \mathrm{E}\Bigl[ \sum_{i=1}^{n} \frac{1}{n}\, X_i \Bigr] = n\, \mathrm{E}\Bigl[ \frac{1}{n}\, X_1 \Bigr] = \frac{1}{n}\, n\, \mathrm{E} X_1 = \mu.
+$$
 >
 > (b) 类似：
 >
 > $$
-> \mathrm{Var} \bar{X} = \mathrm{Var}\Bigl[ \frac{1}{n} \sum_{i=1}^{n} X_i \Bigr] = \frac{1}{n^2}\, \mathrm{Var}\Bigl[ \sum_{i=1}^{n} X_i \Bigr] = \frac{1}{n^2}\, n\, \mathrm{Var} X_1 = \frac{\sigma^2}{n}.
-> $$
+\mathrm{Var} \bar{X} = \mathrm{Var}\Bigl[ \frac{1}{n} \sum_{i=1}^{n} X_i \Bigr] = \frac{1}{n^2}\, \mathrm{Var}\Bigl[ \sum_{i=1}^{n} X_i \Bigr] = \frac{1}{n^2}\, n\, \mathrm{Var} X_1 = \frac{\sigma^2}{n}.
+$$
 >
 > 对样本方差，用定理 5.2.4：
 >
 > $$
-> \begin{aligned}
-> \mathrm{E} S^2 &= \mathrm{E}\Bigl[ \frac{1}{n - 1} \Bigl( \sum_{i=1}^{n} X_i^2 - n \bar{X}^2 \Bigr) \Bigr] = \frac{1}{n - 1}\, \Bigl( n\, \mathrm{E} X_1^2 - n\, \mathrm{E} \bar{X}^2 \Bigr)\\
-> &= \frac{1}{n - 1}\, \Bigl[ n (\sigma^2 + \mu^2) - n\, \Bigl( \frac{\sigma^2}{n} + \mu^2 \Bigr) \Bigr] = \sigma^2,
-> \end{aligned}
-> $$
+\begin{aligned}
+\mathrm{E} S^2 &= \mathrm{E}\Bigl[ \frac{1}{n - 1} \Bigl( \sum_{i=1}^{n} X_i^2 - n \bar{X}^2 \Bigr) \Bigr] = \frac{1}{n - 1}\, \Bigl( n\, \mathrm{E} X_1^2 - n\, \mathrm{E} \bar{X}^2 \Bigr)\\
+&= \frac{1}{n - 1}\, \Bigl[ n (\sigma^2 + \mu^2) - n\, \Bigl( \frac{\sigma^2}{n} + \mu^2 \Bigr) \Bigr] = \sigma^2,
+\end{aligned}
+$$
 >
 > (c) 得证，定理证毕。 ∎
 
@@ -274,8 +274,8 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是来自具有 mgf $$M_X(t)$$ 的总体的随机样本，则样本均值的 mgf 为
 >
 > $$
-> M_{\bar{X}}(t) = \bigl[ M_X(t/n) \bigr]^{n}.
-> $$
+M_{\bar{X}}(t) = \bigl[ M_X(t/n) \bigr]^{n}.
+$$
 
 当然，定理 5.2.7 只有在 $$M_{\bar{X}}(t)$$ 的表达式是熟悉 mgf 时才有用；适用情形有限，但下面的例子说明：一旦适用，该方法能极为简捷地导出 $$\bar{X}$$ 的抽样分布。
 
@@ -284,16 +284,16 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\mu, \sigma^2)$$ 总体的随机样本。样本均值的 mgf 为
 >
 > $$
-> M_{\bar{X}}(t) = \Bigl[ \exp\Bigl( \mu\, \frac{t}{n} + \frac{\sigma^2 (t/n)^2}{2} \Bigr) \Bigr]^{n} = \exp\Bigl[ n\, \Bigl( \mu\, \frac{t}{n} + \frac{\sigma^2 (t/n)^2}{2} \Bigr) \Bigr] = \exp\Bigl( \mu t + \frac{(\sigma^2/n)\, t^2}{2} \Bigr).
-> $$
+M_{\bar{X}}(t) = \Bigl[ \exp\Bigl( \mu\, \frac{t}{n} + \frac{\sigma^2 (t/n)^2}{2} \Bigr) \Bigr]^{n} = \exp\Bigl[ n\, \Bigl( \mu\, \frac{t}{n} + \frac{\sigma^2 (t/n)^2}{2} \Bigr) \Bigr] = \exp\Bigl( \mu t + \frac{(\sigma^2/n)\, t^2}{2} \Bigr).
+$$
 >
 > 故 $$\bar{X}$$ 服从 $$n(\mu, \sigma^2/n)$$ 分布。
 >
 > 另一个简单例子是 $$\mathrm{gamma}(\alpha, \beta)$$ 随机样本（见例 4.6.8）。样本均值的 mgf 为
 >
 > $$
-> M_{\bar{X}}(t) = \Biggl[ \Biggl( \frac{1}{1 - \beta\, (t/n)} \Biggr)^{\alpha} \Biggr]^{n} = \Biggl( \frac{1}{1 - (\beta/n)\, t} \Biggr)^{n\alpha},
-> $$
+M_{\bar{X}}(t) = \Biggl[ \Biggl( \frac{1}{1 - \beta\, (t/n)} \Biggr)^{\alpha} \Biggr]^{n} = \Biggl( \frac{1}{1 - (\beta/n)\, t} \Biggr)^{n\alpha},
+$$
 >
 > 我们认出这是 $$\mathrm{gamma}(n\alpha, \beta/n)$$ 的 mgf，即 $$\bar{X}$$ 的分布。
 
@@ -304,14 +304,14 @@ $$
 > 若 $$X$$ 与 $$Y$$ 是具有 pdf $$f_X(x)$$ 与 $$f_Y(y)$$ 的独立连续随机变量，则 $$Z = X + Y$$ 的 pdf 为
 >
 > $$
-> f_Z(z) = \int_{-\infty}^{\infty} f_X(w)\, f_Y(z - w)\, dw. \tag{5.2.3}
-> $$
+f_Z(z) = \int_{-\infty}^{\infty} f_X(w)\, f_Y(z - w)\, dw. \tag{5.2.3}
+$$
 >
 > **证明**　令 $$W = X$$，从 $$(X, Y)$$ 到 $$(Z, W)$$ 的变换的雅可比为 1。用 (4.3.2) 得 $$(Z, W)$$ 的联合 pdf：
 >
 > $$
-> f_{Z,W}(z, w) = f_{X,Y}(w,\, z - w) = f_X(w)\, f_Y(z - w).
-> $$
+f_{Z,W}(z, w) = f_{X,Y}(w,\, z - w) = f_X(w)\, f_Y(z - w).
+$$
 >
 > 对 $$w$$ 积分即得 (5.2.3) 所示的 $$Z$$ 的边缘 pdf。 ∎
 
@@ -324,21 +324,21 @@ $$
 > 设 $$U$$ 与 $$V$$ 独立，$$U \sim \mathrm{Cauchy}(0, \sigma)$$，$$V \sim \mathrm{Cauchy}(0, \tau)$$，即
 >
 > $$
-> f_U(u) = \frac{1}{\pi \sigma}\, \frac{1}{1 + (u/\sigma)^2} \quad (-\infty < u < \infty), \qquad
-> f_V(v) = \frac{1}{\pi \tau}\, \frac{1}{1 + (v/\tau)^2} \quad (-\infty < v < \infty).
-> $$
+f_U(u) = \frac{1}{\pi \sigma}\, \frac{1}{1 + (u/\sigma)^2} \quad (-\infty < u < \infty), \qquad
+f_V(v) = \frac{1}{\pi \tau}\, \frac{1}{1 + (v/\tau)^2} \quad (-\infty < v < \infty).
+$$
 >
 > 基于公式 (5.2.3)，$$Z = U + V$$ 的 pdf 为
 >
 > $$
-> f_Z(z) = \int_{-\infty}^{\infty} \frac{1}{\pi \sigma}\, \frac{1}{1 + (w/\sigma)^2}\, \frac{1}{\pi \tau}\, \frac{1}{1 + ((z - w)/\tau)^2}\, dw, \qquad -\infty < z < \infty. \tag{5.2.4}
-> $$
+f_Z(z) = \int_{-\infty}^{\infty} \frac{1}{\pi \sigma}\, \frac{1}{1 + (w/\sigma)^2}\, \frac{1}{\pi \tau}\, \frac{1}{1 + ((z - w)/\tau)^2}\, dw, \qquad -\infty < z < \infty. \tag{5.2.4}
+$$
 >
 > 这个积分颇为复杂，但可以用部分分式分解与细心求原函数解决（见习题 5.7）。结果是
 >
 > $$
-> f_Z(z) = \frac{1}{\pi (\sigma + \tau)}\, \frac{1}{1 + \bigl( z/(\sigma + \tau) \bigr)^2}, \qquad -\infty < z < \infty. \tag{5.2.5}
-> $$
+f_Z(z) = \frac{1}{\pi (\sigma + \tau)}\, \frac{1}{1 + \bigl( z/(\sigma + \tau) \bigr)^2}, \qquad -\infty < z < \infty. \tag{5.2.5}
+$$
 >
 > 故两个独立柯西随机变量之和仍是柯西变量，尺度参数相加。于是若 $$Z_1, \ldots, Z_n$$ 是 iid $$\mathrm{Cauchy}(0, 1)$$，则 $$\sum Z_i \sim \mathrm{Cauchy}(0, n)$$，且 $$\bar{Z} \sim \mathrm{Cauchy}(0, 1)$$！样本均值与单个观测同分布。（该计算的计算机代数版本见计算机代数附录的例 12.6.5。）
 
@@ -361,20 +361,20 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是来自 pdf 或 pmf $$f(x \mid \theta)$$ 的随机样本，其中
 >
 > $$
-> f(x \mid \theta) = h(x)\, c(\theta)\, \exp\Bigl( \sum_{i=1}^{k} w_i(\theta)\, t_i(x) \Bigr)
-> $$
+f(x \mid \theta) = h(x)\, c(\theta)\, \exp\Bigl( \sum_{i=1}^{k} w_i(\theta)\, t_i(x) \Bigr)
+$$
 >
 > 是指数族的成员。定义统计量
 >
 > $$
-> T_i(X_1, \ldots, X_n) = \sum_{j=1}^{n} t_i(X_j), \qquad i = 1, \ldots, k.
-> $$
+T_i(X_1, \ldots, X_n) = \sum_{j=1}^{n} t_i(X_j), \qquad i = 1, \ldots, k.
+$$
 >
 > 若集合 $$\{(w_1(\theta), w_2(\theta), \ldots, w_k(\theta)),\ \theta \in \Theta\}$$ 包含 $$\Re^k$$ 的一个开子集，则 $$(T_1, \ldots, T_k)$$ 的分布是形如
 >
 > $$
-> f_T(u_1, \ldots, u_k \mid \theta) = H(u_1, \ldots, u_k)\, \bigl[ c(\theta) \bigr]^{n}\, \exp\Bigl( \sum_{i=1}^{k} w_i(\theta)\, u_i \Bigr) \tag{5.2.6}
-> $$
+f_T(u_1, \ldots, u_k \mid \theta) = H(u_1, \ldots, u_k)\, \bigl[ c(\theta) \bigr]^{n}\, \exp\Bigl( \sum_{i=1}^{k} w_i(\theta)\, u_i \Bigr) \tag{5.2.6}
+$$
 >
 > 的指数族。
 
@@ -408,37 +408,37 @@ $$
 > 证 (a)：应用定理 4.6.12，证明 $$\bar{X}$$ 与 $$S^2$$ 是独立随机向量的函数。注意 $$S^2$$ 可以写成 $$n - 1$$ 个偏差的函数：
 >
 > $$
-> S^2 = \frac{1}{n - 1} \sum_{i=1}^{n} \bigl( X_i - \bar{X} \bigr)^2 = \frac{1}{n - 1} \Bigl[ \bigl( X_1 - \bar{X} \bigr)^2 + \sum_{i=2}^{n} \bigl( X_i - \bar{X} \bigr)^2 \Bigr]
-> $$
+S^2 = \frac{1}{n - 1} \sum_{i=1}^{n} \bigl( X_i - \bar{X} \bigr)^2 = \frac{1}{n - 1} \Bigl[ \bigl( X_1 - \bar{X} \bigr)^2 + \sum_{i=2}^{n} \bigl( X_i - \bar{X} \bigr)^2 \Bigr]
+$$
 >
 > $$
-> = \frac{1}{n - 1} \Biggl[ -\sum_{i=2}^{n} \bigl( X_i - \bar{X} \bigr) + \sum_{i=2}^{n} \bigl( X_i - \bar{X} \bigr)^2 \Biggr] \qquad \text{（因为}\ \sum_{i=1}^{n} (X_i - \bar{X}) = 0 \text{）}.
-> $$
+= \frac{1}{n - 1} \Biggl[ -\sum_{i=2}^{n} \bigl( X_i - \bar{X} \bigr) + \sum_{i=2}^{n} \bigl( X_i - \bar{X} \bigr)^2 \Biggr] \qquad \text{（因为}\ \sum_{i=1}^{n} (X_i - \bar{X}) = 0 \text{）}.
+$$
 >
 > 故 $$S^2$$ 可以写成只依赖 $$(X_2 - \bar{X}, \ldots, X_n - \bar{X})$$ 的函数。现在证明这些随机变量与 $$\bar{X}$$ 独立。样本 $$X_1, \ldots, X_n$$ 的联合 pdf 为
 >
 > $$
-> f(x_1, \ldots, x_n) = \frac{1}{(2\pi)^{n/2}}\, e^{-(1/2) \sum_{i=1}^{n} x_i^2}, \qquad -\infty < x_i < \infty.
-> $$
+f(x_1, \ldots, x_n) = \frac{1}{(2\pi)^{n/2}}\, e^{-(1/2) \sum_{i=1}^{n} x_i^2}, \qquad -\infty < x_i < \infty.
+$$
 >
 > 做变换
 >
 > $$
-> y_1 = \bar{x}, \qquad y_2 = x_2 - \bar{x}, \qquad \ldots, \qquad y_n = x_n - \bar{x}.
-> $$
+y_1 = \bar{x}, \qquad y_2 = x_2 - \bar{x}, \qquad \ldots, \qquad y_n = x_n - \bar{x}.
+$$
 >
 > 这是雅可比等于 $$1/n$$ 的线性变换。于是
 >
 > $$
-> f(y_1, \ldots, y_n) = \frac{1}{(2\pi)^{n/2}}\, e^{-(1/2) (y_1 - \sum_{i=2}^{n} y_i)^2}\, e^{-(1/2) \sum_{i=2}^{n} (y_i + y_1)^2}, \qquad -\infty < y_i < \infty.
-> $$
+f(y_1, \ldots, y_n) = \frac{1}{(2\pi)^{n/2}}\, e^{-(1/2) (y_1 - \sum_{i=2}^{n} y_i)^2}\, e^{-(1/2) \sum_{i=2}^{n} (y_i + y_1)^2}, \qquad -\infty < y_i < \infty.
+$$
 >
 > 展开指数中的平方和，含 $$y_1$$ 与诸 $$y_i$$ 的交叉项恰好相消（$$-y_1 \sum y_i + y_1 \sum y_i = 0$$），得
 >
 > $$
-> f(y_1, \ldots, y_n) = \frac{n^{1/2}}{(2\pi)^{1/2}}\, e^{-n y_1^2/2}\; \cdot\; \frac{1}{(2\pi)^{(n-1)/2}}\, e^{-(1/2)\left[ \sum_{i=2}^{n} y_i^2 + \bigl( \sum_{i=2}^{n} y_i \bigr)^2 \right]},
-> \qquad -\infty < y_i < \infty.
-> $$
+f(y_1, \ldots, y_n) = \frac{n^{1/2}}{(2\pi)^{1/2}}\, e^{-n y_1^2/2}\; \cdot\; \frac{1}{(2\pi)^{(n-1)/2}}\, e^{-(1/2)\left[ \sum_{i=2}^{n} y_i^2 + \bigl( \sum_{i=2}^{n} y_i \bigr)^2 \right]},
+\qquad -\infty < y_i < \infty.
+$$
 >
 > 即联合 pdf 分解为 $$y_1$$ 的函数与 $$(y_2, \ldots, y_n)$$ 的函数之积。由于 $$Y_1, \ldots, Y_n$$ 的联合 pdf 可因子化，由定理 4.6.11 知 $$Y_1$$ 与 $$Y_2, \ldots, Y_n$$ 独立，从而由定理 4.6.12 知 $$\bar{X}$$ 与 $$S^2$$ 独立。 ∎
 
@@ -466,28 +466,28 @@ $$
 > 我们用归纳法建立 $$S^2$$ 的分布，记号 $$\bar{X}_k$$ 与 $$S_k^2$$ 表示基于前 $$k$$ 个观测的样本均值与方差。（观测的实际排序并不重要——将其排序只是为了便于证明。）容易建立（见习题 5.15）
 >
 > $$
-> (n - 1)\, S_n^2 = (n - 2)\, S_{n-1}^2 + \Bigl( \frac{n - 1}{n} \Bigr)\, \bigl( X_n - \bar{X}_{n-1} \bigr)^2. \tag{5.3.1}
-> $$
+(n - 1)\, S_n^2 = (n - 2)\, S_{n-1}^2 + \Bigl( \frac{n - 1}{n} \Bigr)\, \bigl( X_n - \bar{X}_{n-1} \bigr)^2. \tag{5.3.1}
+$$
 >
 > 考虑 $$n = 2$$：定义 $$0 \times S_1^2 = 0$$，由 (5.3.1) 有
 >
 > $$
-> S_2^2 = \frac{1}{2}\, \bigl( X_2 - X_1 \bigr)^2.
-> $$
+S_2^2 = \frac{1}{2}\, \bigl( X_2 - X_1 \bigr)^2.
+$$
 >
 > 由于 $$(X_2 - X_1)/\sqrt{2}$$ 的分布是 $$n(0, 1)$$，引理 5.3.2(a) 表明 $$S_2^2 \sim \chi_1^2$$。继续归纳：设对 $$n = k$$ 有 $$(k - 1) S_k^2 \sim \chi_{k-1}^2$$。对 $$n = k + 1$$，由 (5.3.1)
 >
 > $$
-> k\, S_{k+1}^2 = (k - 1)\, S_k^2 + \frac{k}{k + 1}\, \bigl( X_{k+1} - \bar{X}_k \bigr)^2. \tag{5.3.2}
-> $$
+k\, S_{k+1}^2 = (k - 1)\, S_k^2 + \frac{k}{k + 1}\, \bigl( X_{k+1} - \bar{X}_k \bigr)^2. \tag{5.3.2}
+$$
 >
 > 按归纳假设，$$(k - 1) S_k^2 \sim \chi_{k-1}^2$$。若能证明 $$\bigl( \frac{k}{k + 1} \bigr) (X_{k+1} - \bar{X}_k)^2 \sim \chi_1^2$$ 且与 $$S_k^2$$ 独立，则由引理 5.3.2(b) 得 $$k S_{k+1}^2 \sim \chi_k^2$$，定理即证。
 >
 > $$(X_{k+1} - \bar{X}_k)^2$$ 与 $$S_k^2$$ 的独立性再次由定理 4.6.12 得到：向量 $$(X_{k+1}, \bar{X}_k)$$ 与 $$S_k^2$$ 独立，故该向量的任何函数与 $$S_k^2$$ 独立。进一步，$$X_{k+1} - \bar{X}_k$$ 是均值 0、方差
 >
 > $$
-> \mathrm{Var}\bigl( X_{k+1} - \bar{X}_k \bigr) = \frac{k + 1}{k}
-> $$
+\mathrm{Var}\bigl( X_{k+1} - \bar{X}_k \bigr) = \frac{k + 1}{k}
+$$
 >
 > 的正态随机变量，故 $$\bigl( \frac{k}{k+1} \bigr) (X_{k+1} - \bar{X}_k)^2 \sim \chi_1^2$$，定理证毕。
 
@@ -498,9 +498,9 @@ $$\bar{X}$$ 与 $$S^2$$ 的独立性可以用不同于定理 5.3.1 证明的方�
 > 设 $$X_j \sim n(\mu_j, \sigma_j^2)$$（$$j = 1, \ldots, n$$）独立。对常数 $$a_{ij}$$、$$b_{rj}$$（$$j = 1, \ldots, n$$；$$i = 1, \ldots, k$$；$$r = 1, \ldots, m$$），其中 $$k + m \leq n$$，定义
 >
 > $$
-> U_i = \sum_{j=1}^{n} a_{ij}\, X_j, \quad i = 1, \ldots, k; \qquad
-> V_r = \sum_{j=1}^{n} b_{rj}\, X_j, \quad r = 1, \ldots, m.
-> $$
+U_i = \sum_{j=1}^{n} a_{ij}\, X_j, \quad i = 1, \ldots, k; \qquad
+V_r = \sum_{j=1}^{n} b_{rj}\, X_j, \quad r = 1, \ldots, m.
+$$
 >
 > - a. $$U_i$$ 与 $$V_r$$ 独立当且仅当 $$\mathrm{Cov}(U_i, V_r) = 0$$；而且 $$\mathrm{Cov}(U_i, V_r) = \sum_{j=1}^{n} a_{ij}\, b_{rj}\, \sigma_j^2$$。
 >
@@ -514,41 +514,41 @@ $$\bar{X}$$ 与 $$S^2$$ 的独立性可以用不同于定理 5.3.1 证明的方�
 > 证 (a)：从 $$X_1$$ 与 $$X_2$$ 的联合 pdf 出发：
 >
 > $$
-> f_{X_1, X_2}(x_1, x_2) = \frac{1}{2\pi}\, e^{-(1/2)(x_1^2 + x_2^2)}, \qquad -\infty < x_1, x_2 < \infty.
-> $$
+f_{X_1, X_2}(x_1, x_2) = \frac{1}{2\pi}\, e^{-(1/2)(x_1^2 + x_2^2)}, \qquad -\infty < x_1, x_2 < \infty.
+$$
 >
 > 做变换（$$n = 2$$ 时可省去双下标）
 >
 > $$
-> u = a_1 x_1 + a_2 x_2, \qquad v = b_1 x_1 + b_2 x_2,
-> $$
+u = a_1 x_1 + a_2 x_2, \qquad v = b_1 x_1 + b_2 x_2,
+$$
 >
 > 故
 >
 > $$
-> x_1 = \frac{b_2 u - a_2 v}{a_1 b_2 - b_1 a_2}, \qquad x_2 = \frac{a_1 v - b_1 u}{a_1 b_2 - b_1 a_2},
-> $$
+x_1 = \frac{b_2 u - a_2 v}{a_1 b_2 - b_1 a_2}, \qquad x_2 = \frac{a_1 v - b_1 u}{a_1 b_2 - b_1 a_2},
+$$
 >
 > 雅可比为
 >
 > $$
-> J = \begin{vmatrix} \dfrac{\partial x_1}{\partial u} & \dfrac{\partial x_1}{\partial v} \\[6pt] \dfrac{\partial x_2}{\partial u} & \dfrac{\partial x_2}{\partial v} \end{vmatrix} = \frac{1}{a_1 b_2 - b_1 a_2}.
-> $$
+J = \begin{vmatrix} \dfrac{\partial x_1}{\partial u} & \dfrac{\partial x_1}{\partial v} \\[6pt] \dfrac{\partial x_2}{\partial u} & \dfrac{\partial x_2}{\partial v} \end{vmatrix} = \frac{1}{a_1 b_2 - b_1 a_2}.
+$$
 >
 > 于是 $$U$$ 与 $$V$$ 的 pdf 为
 >
 > $$
-> \begin{aligned}
-> f_{U,V}(u, v) &= f_{X_1, X_2}\Bigl( \frac{b_2 u - a_2 v}{a_1 b_2 - b_1 a_2},\ \frac{a_1 v - b_1 u}{a_1 b_2 - b_1 a_2} \Bigr)\, \vert J\vert \\
-> &= \frac{1}{2\pi}\, \exp\Biggl[ \frac{-1}{2 (a_1 b_2 - b_1 a_2)^2}\, \Bigl( (b_2 u - a_2 v)^2 + (a_1 v - b_1 u)^2 \Bigr) \Biggr]\, \vert J\vert ,
-> \end{aligned}
-> $$
+\begin{aligned}
+f_{U,V}(u, v) &= f_{X_1, X_2}\Bigl( \frac{b_2 u - a_2 v}{a_1 b_2 - b_1 a_2},\ \frac{a_1 v - b_1 u}{a_1 b_2 - b_1 a_2} \Bigr)\, \vert J\vert \\
+&= \frac{1}{2\pi}\, \exp\Biggl[ \frac{-1}{2 (a_1 b_2 - b_1 a_2)^2}\, \Bigl( (b_2 u - a_2 v)^2 + (a_1 v - b_1 u)^2 \Bigr) \Biggr]\, \vert J\vert ,
+\end{aligned}
+$$
 >
 > $$-\infty < u, v < \infty$$。展开指数中的平方，可写
 >
 > $$
-> (b_2 u - a_2 v)^2 + (a_1 v - b_1 u)^2 = (b_1^2 + b_2^2)\, u^2 + (a_1^2 + a_2^2)\, v^2 - 2 (a_1 b_1 + a_2 b_2)\, uv.
-> $$
+(b_2 u - a_2 v)^2 + (a_1 v - b_1 u)^2 = (b_1^2 + b_2^2)\, u^2 + (a_1^2 + a_2^2)\, v^2 - 2 (a_1 b_1 + a_2 b_2)\, uv.
+$$
 >
 > 对常数的假设（$$\mathrm{Cov}(U, V) = a_1 b_1 + a_2 b_2 = 0$$）使交叉项恒为零。故 pdf 可因子化，由引理 4.2.7，$$U$$ 与 $$V$$ 独立，(a) 得证。
 >
@@ -604,8 +604,8 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\mu, \sigma^2)$$ 分布的随机样本。量 $$(\bar{X} - \mu) / (S/\sqrt{n})$$ 服从自由度为 $$n - 1$$ 的 Student 氏 $$t$$ 分布。等价地，若随机变量 $$T$$ 具有 pdf
 >
 > $$
-> f_T(t) = \frac{\Gamma\bigl( \frac{p+1}{2} \bigr)}{\Gamma\bigl( \frac{p}{2} \bigr)}\, \frac{1}{(p \pi)^{1/2}}\, \frac{1}{(1 + t^2/p)^{(p+1)/2}}, \qquad -\infty < t < \infty, \tag{5.3.6}
-> $$
+f_T(t) = \frac{\Gamma\bigl( \frac{p+1}{2} \bigr)}{\Gamma\bigl( \frac{p}{2} \bigr)}\, \frac{1}{(p \pi)^{1/2}}\, \frac{1}{(1 + t^2/p)^{(p+1)/2}}, \qquad -\infty < t < \infty, \tag{5.3.6}
+$$
 >
 > 则称 $$T$$ 服从自由度为 $$p$$ 的 Student 氏 $$t$$ 分布，记作 $$T \sim t_p$$。
 
@@ -654,8 +654,8 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\mu_X, \sigma_X^2)$$ 总体的随机样本，$$Y_1, \ldots, Y_m$$ 是来自独立总体 $$n(\mu_Y, \sigma_Y^2)$$ 的随机样本。若要比较两个总体的变异性，一个关心的量是比 $$\sigma_X^2 / \sigma_Y^2$$。关于该比的信息包含在样本方差比 $$S_X^2 / S_Y^2$$ 中。$$F$$ 分布通过给出
 >
 > $$
-> \frac{S_X^2 / S_Y^2}{\sigma_X^2 / \sigma_Y^2} = \frac{S_X^2 / \sigma_X^2}{S_Y^2 / \sigma_Y^2} \tag{5.3.8}
-> $$
+\frac{S_X^2 / S_Y^2}{\sigma_X^2 / \sigma_Y^2} = \frac{S_X^2 / \sigma_X^2}{S_Y^2 / \sigma_Y^2} \tag{5.3.8}
+$$
 >
 > 的分布，使我们能够比较这些量。
 >
@@ -666,8 +666,8 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\mu_X, \sigma_X^2)$$ 总体的随机样本，$$Y_1, \ldots, Y_m$$ 是来自独立总体 $$n(\mu_Y, \sigma_Y^2)$$ 的随机样本。随机变量 $$F = (S_X^2 / \sigma_X^2) / (S_Y^2 / \sigma_Y^2)$$ 服从自由度为 $$n - 1$$ 与 $$m - 1$$ 的 Snedecor 氏 $$F$$ 分布。等价地，若随机变量 $$F$$ 具有 pdf
 >
 > $$
-> f_F(x) = \frac{\Gamma\bigl( \frac{p + q}{2} \bigr)}{\Gamma\bigl( \frac{p}{2} \bigr)\, \Gamma\bigl( \frac{q}{2} \bigr)}\, \Bigl( \frac{p}{q} \Bigr)^{p/2}\, \frac{x^{(p/2) - 1}}{\bigl[ 1 + (p/q)\, x \bigr]^{(p+q)/2}}, \qquad 0 < x < \infty, \tag{5.3.9}
-> $$
+f_F(x) = \frac{\Gamma\bigl( \frac{p + q}{2} \bigr)}{\Gamma\bigl( \frac{p}{2} \bigr)\, \Gamma\bigl( \frac{q}{2} \bigr)}\, \Bigl( \frac{p}{q} \Bigr)^{p/2}\, \frac{x^{(p/2) - 1}}{\bigl[ 1 + (p/q)\, x \bigr]^{(p+q)/2}}, \qquad 0 < x < \infty, \tag{5.3.9}
+$$
 >
 > 则称 $$F$$ 服从自由度为 $$p$$ 与 $$q$$ 的 $$F$$ 分布。
 
@@ -680,20 +680,20 @@ $$F$$ 分布可以在比此处更一般的情形导出：即使父总体不是�
 > 看看如何用 $$F$$ 分布对总体方差的真实比作推断：量 $$(S_X^2/\sigma_X^2) / (S_Y^2/\sigma_Y^2)$$ 服从 $$F_{n-1, m-1}$$ 分布。（一般用记号 $$F_{p,q}$$ 表示自由度为 $$p$$ 与 $$q$$ 的 $$F$$ 随机变量。）可以计算
 >
 > $$
-> \mathrm{E} F_{n-1, m-1} = \mathrm{E}\Biggl[ \frac{\chi_{n-1}^2 / (n - 1)}{\chi_{m-1}^2 / (m - 1)} \Biggr] = \mathrm{E}\Biggl[ \frac{\chi_{n-1}^2}{n - 1} \Biggr]\, \mathrm{E}\Biggl[ \frac{m - 1}{\chi_{m-1}^2} \Biggr] = \frac{\frac{n-1}{n-1}}{\frac{m-1-2}{m-1}} = \frac{m - 1}{m - 3},
-> $$
+\mathrm{E} F_{n-1, m-1} = \mathrm{E}\Biggl[ \frac{\chi_{n-1}^2 / (n - 1)}{\chi_{m-1}^2 / (m - 1)} \Biggr] = \mathrm{E}\Biggl[ \frac{\chi_{n-1}^2}{n - 1} \Biggr]\, \mathrm{E}\Biggl[ \frac{m - 1}{\chi_{m-1}^2} \Biggr] = \frac{\frac{n-1}{n-1}}{\frac{m-1-2}{m-1}} = \frac{m - 1}{m - 3},
+$$
 >
 > （用独立性；最后的分母由卡方计算：若 $$W \sim \chi_\nu^2$$ 则 $$\mathrm{E} \frac{1}{W} = \frac{1}{\nu - 2}$$，故 $$\mathrm{E} \frac{m-1}{\chi_{m-1}^2} = \frac{m-1}{m-3}$$。）注意该表达式仅在 $$m > 3$$ 时有限为正。我们有
 >
 > $$
-> \mathrm{E}\Bigl( \frac{S_X^2 / \sigma_X^2}{S_Y^2 / \sigma_Y^2} \Bigr) = \mathrm{E} F_{n-1, m-1} = \frac{m - 1}{m - 3},
-> $$
+\mathrm{E}\Bigl( \frac{S_X^2 / \sigma_X^2}{S_Y^2 / \sigma_Y^2} \Bigr) = \mathrm{E} F_{n-1, m-1} = \frac{m - 1}{m - 3},
+$$
 >
 > 去掉期望后，对适当大的 $$m$$，
 >
 > $$
-> \frac{S_X^2 / S_Y^2}{\sigma_X^2 / \sigma_Y^2} \approx \frac{m - 1}{m - 3} \approx 1,
-> $$
+\frac{S_X^2 / S_Y^2}{\sigma_X^2 / \sigma_Y^2} \approx \frac{m - 1}{m - 3} \approx 1,
+$$
 >
 > 正如我们所期望的。
 
@@ -764,35 +764,35 @@ $$p < 0.5$$ 与 $$p > 0.5$$ 分开定义，是为了使样本百分位数具有�
 > 设 $$X_1, \ldots, X_n$$ 是来自离散分布的随机样本，pmf 为 $$f_X(x_i) = p_i$$，其中 $$x_1 < x_2 < \cdots$$ 是 $$X$$ 的可能值（升序）。定义
 >
 > $$
-> \begin{aligned}
-> P_0 &= 0,\\
-> P_1 &= p_1,\\
-> P_2 &= p_1 + p_2,\\
-> &\;\,\vdots\\
-> P_i &= p_1 + p_2 + \cdots + p_i,\\
-> &\;\,\vdots
-> \end{aligned}
-> $$
+\begin{aligned}
+P_0 &= 0,\\
+P_1 &= p_1,\\
+P_2 &= p_1 + p_2,\\
+&\;\,\vdots\\
+P_i &= p_1 + p_2 + \cdots + p_i,\\
+&\;\,\vdots
+\end{aligned}
+$$
 >
 > 令 $$X_{(1)}, \ldots, X_{(n)}$$ 表示样本的次序统计量。则
 >
 > $$
-> P\Bigl( X_{(j)} \leq x_i \Bigr) = \sum_{k=j}^{n} \binom{n}{k}\, P_i^{\,k}\, (1 - P_i)^{n - k} \tag{5.4.2}
-> $$
+P\Bigl( X_{(j)} \leq x_i \Bigr) = \sum_{k=j}^{n} \binom{n}{k}\, P_i^{\,k}\, (1 - P_i)^{n - k} \tag{5.4.2}
+$$
 >
 > 且
 >
 > $$
-> P\Bigl( X_{(j)} = x_i \Bigr) = \sum_{k=j}^{n} \binom{n}{k}\, \Bigl[ P_i^{\,k}\, (1 - P_i)^{n - k} - P_{i-1}^{\,k}\, (1 - P_{i-1})^{n - k} \Bigr]. \tag{5.4.3}
-> $$
+P\Bigl( X_{(j)} = x_i \Bigr) = \sum_{k=j}^{n} \binom{n}{k}\, \Bigl[ P_i^{\,k}\, (1 - P_i)^{n - k} - P_{i-1}^{\,k}\, (1 - P_{i-1})^{n - k} \Bigr]. \tag{5.4.3}
+$$
 >
 > **证明**　固定 $$i$$，设 $$Y$$ 为计 $$X_1, \ldots, X_n$$ 中小于等于 $$x_i$$ 的个数的随机变量。对每个 $$X_1, \ldots, X_n$$，称事件 $$\{X_j \leq x_i\}$$ 为“成功”、$$\{X_j > x_i\}$$ 为“失败”，则 $$Y$$ 是 $$n$$ 次试验中成功的次数。由于 $$X_1, \ldots, X_n$$ 同分布，每次试验成功的概率都是同一值 $$P_i = P(X_j \leq x_i)$$；又因 $$X_j$$ 与其他 $$X_i$$ 独立，第 $$j$$ 次试验的成功与否独立于其他试验的结果。故 $$Y \sim \mathrm{binomial}(n, P_i)$$。
 >
 > 事件 $$\{X_{(j)} \leq x_i\}$$ 等价于事件 $$\{Y \geq j\}$$，即至少 $$j$$ 个样本值小于等于 $$x_i$$。等式 (5.4.2) 表示这一二项概率 $$P\bigl( X_{(j)} \leq x_i \bigr) = P(Y \geq j)$$。等式 (5.4.3) 只是表示差
 >
 > $$
-> P\Bigl( X_{(j)} = x_i \Bigr) = P\Bigl( X_{(j)} \leq x_i \Bigr) - P\Bigl( X_{(j)} \leq x_{i-1} \Bigr).
-> $$
+P\Bigl( X_{(j)} = x_i \Bigr) = P\Bigl( X_{(j)} \leq x_i \Bigr) - P\Bigl( X_{(j)} \leq x_{i-1} \Bigr).
+$$
 >
 > 情形 $$i = 1$$ 是例外：$$P\bigl( X_{(j)} = x_1 \bigr) = P\bigl( X_{(j)} \leq x_1 \bigr)$$；$$P_0 = 0$$ 的定义在 (5.4.3) 中照顾到了这一例外。 ∎
 
@@ -803,35 +803,35 @@ $$p < 0.5$$ 与 $$p > 0.5$$ 分开定义，是为了使样本百分位数具有�
 > 设 $$X_{(1)}, \ldots, X_{(n)}$$ 是来自具有 cdf $$F_X(x)$$ 与 pdf $$f_X(x)$$ 的连续总体的随机样本 $$X_1, \ldots, X_n$$ 的次序统计量。则 $$X_{(j)}$$ 的 pdf 为
 >
 > $$
-> f_{X_{(j)}}(x) = \frac{n!}{(j - 1)!\, (n - j)!}\, f_X(x)\, \bigl[ F_X(x) \bigr]^{j - 1}\, \bigl[ 1 - F_X(x) \bigr]^{n - j}. \tag{5.4.4}
-> $$
+f_{X_{(j)}}(x) = \frac{n!}{(j - 1)!\, (n - j)!}\, f_X(x)\, \bigl[ F_X(x) \bigr]^{j - 1}\, \bigl[ 1 - F_X(x) \bigr]^{n - j}. \tag{5.4.4}
+$$
 >
 > **证明**　先求 $$X_{(j)}$$ 的 cdf 再求导得 pdf。如定理 5.4.3，设 $$Y$$ 为计 $$X_1, \ldots, X_n$$ 中小于等于 $$x$$ 的个数的随机变量；定义“成功”为事件 $$\{X_j \leq x\}$$，则 $$Y \sim \mathrm{binomial}\bigl( n,\ F_X(x) \bigr)$$（注意定理 5.4.3 中可写 $$P_i = F_X(x_i)$$；又虽然 $$X_1, \ldots, X_n$$ 是连续随机变量，计数变量 $$Y$$ 是离散的）。于是
 >
 > $$
-> F_{X_{(j)}}(x) = P(Y \geq j) = \sum_{k=j}^{n} \binom{n}{k}\, \bigl[ F_X(x) \bigr]^{k}\, \bigl[ 1 - F_X(x) \bigr]^{n - k},
-> $$
+F_{X_{(j)}}(x) = P(Y \geq j) = \sum_{k=j}^{n} \binom{n}{k}\, \bigl[ F_X(x) \bigr]^{k}\, \bigl[ 1 - F_X(x) \bigr]^{n - k},
+$$
 >
 > $$X_{(j)}$$ 的 pdf 为
 >
 > $$
-> \begin{aligned}
-> f_{X_{(j)}}(x) &= \frac{d}{dx}\, F_{X_{(j)}}(x)\\
-> &= \sum_{k=j}^{n} \binom{n}{k}\, \Bigl( k\, [F_X(x)]^{k - 1}\, [1 - F_X(x)]^{n - k}\, f_X(x) - (n - k)\, [F_X(x)]^{k}\, [1 - F_X(x)]^{n - k - 1}\, f_X(x) \Bigr) \qquad （\text{链式法则}）\\
-> &= \binom{n}{j}\, j\, f_X(x)\, [F_X(x)]^{j - 1}\, [1 - F_X(x)]^{n - j}\\
-> &\quad + \sum_{k=j+1}^{n} \binom{n}{k}\, k\, [F_X(x)]^{k - 1}\, [1 - F_X(x)]^{n - k}\, f_X(x)\\
-> &\quad - \sum_{k=j}^{n-1} \binom{n}{k}\, (n - k)\, [F_X(x)]^{k}\, [1 - F_X(x)]^{n - k - 1}\, f_X(x) \qquad （k = n\ \text{项为零}）\\
-> &= \frac{n!}{(j - 1)!\, (n - j)!}\, f_X(x)\, [F_X(x)]^{j - 1}\, [1 - F_X(x)]^{n - j}\\
-> &\quad + \sum_{k=j}^{n-1} \binom{n}{k + 1}\, (k + 1)\, [F_X(x)]^{k}\, [1 - F_X(x)]^{n - k - 1}\, f_X(x) \qquad （\text{改变哑变量}）\\
-> &\quad - \sum_{k=j}^{n-1} \binom{n}{k}\, (n - k)\, [F_X(x)]^{k}\, [1 - F_X(x)]^{n - k - 1}\, f_X(x).
-> \end{aligned}
-> $$
+\begin{aligned}
+f_{X_{(j)}}(x) &= \frac{d}{dx}\, F_{X_{(j)}}(x)\\
+&= \sum_{k=j}^{n} \binom{n}{k}\, \Bigl( k\, [F_X(x)]^{k - 1}\, [1 - F_X(x)]^{n - k}\, f_X(x) - (n - k)\, [F_X(x)]^{k}\, [1 - F_X(x)]^{n - k - 1}\, f_X(x) \Bigr) \qquad （\text{链式法则}）\\
+&= \binom{n}{j}\, j\, f_X(x)\, [F_X(x)]^{j - 1}\, [1 - F_X(x)]^{n - j}\\
+&\quad + \sum_{k=j+1}^{n} \binom{n}{k}\, k\, [F_X(x)]^{k - 1}\, [1 - F_X(x)]^{n - k}\, f_X(x)\\
+&\quad - \sum_{k=j}^{n-1} \binom{n}{k}\, (n - k)\, [F_X(x)]^{k}\, [1 - F_X(x)]^{n - k - 1}\, f_X(x) \qquad （k = n\ \text{项为零}）\\
+&= \frac{n!}{(j - 1)!\, (n - j)!}\, f_X(x)\, [F_X(x)]^{j - 1}\, [1 - F_X(x)]^{n - j}\\
+&\quad + \sum_{k=j}^{n-1} \binom{n}{k + 1}\, (k + 1)\, [F_X(x)]^{k}\, [1 - F_X(x)]^{n - k - 1}\, f_X(x) \qquad （\text{改变哑变量}）\\
+&\quad - \sum_{k=j}^{n-1} \binom{n}{k}\, (n - k)\, [F_X(x)]^{k}\, [1 - F_X(x)]^{n - k - 1}\, f_X(x).
+\end{aligned}
+$$
 >
 > 注意
 >
 > $$
-> \binom{n}{k + 1}\, (k + 1) = \frac{n!}{k!\, (n - k - 1)!} = \binom{n}{k}\, (n - k), \tag{5.4.5}
-> $$
+\binom{n}{k + 1}\, (k + 1) = \frac{n!}{k!\, (n - k - 1)!} = \binom{n}{k}\, (n - k), \tag{5.4.5}
+$$
 >
 > 可见 (5.4.5) 之前的最后两个和相互抵消。故 $$f_{X_{(j)}}(x)$$ 由 (5.4.4) 中的表达式给出。 ∎
 
@@ -840,78 +840,66 @@ $$p < 0.5$$ 与 $$p > 0.5$$ 分开定义，是为了使样本百分位数具有�
 > 设 $$X_1, \ldots, X_n$$ 是 iid uniform$(0, 1)$$，则 $$f_X(x) = 1$（$$x \in (0,1)$$），$$F_X(x) = x$$（$$x \in (0,1)$$）。用 (5.4.4)，第 $$j$$ 个次序统计量的 pdf 为
 >
 > $$
-> f_{X_{(j)}}(x) = \frac{n!}{(j - 1)!\, (n - j)!}\, x^{j - 1}\, (1 - x)^{n - j} \quad (x \in (0,1)) = \frac{\Gamma(n + 1)}{\Gamma(j)\, \Gamma(n - j + 1)}\, x^{j - 1}\, (1 - x)^{(n - j + 1) - 1}.
-> $$
+f_{X_{(j)}}(x) = \frac{n!}{(j - 1)!\, (n - j)!}\, x^{j - 1}\, (1 - x)^{n - j} \quad (x \in (0,1)) = \frac{\Gamma(n + 1)}{\Gamma(j)\, \Gamma(n - j + 1)}\, x^{j - 1}\, (1 - x)^{(n - j + 1) - 1}.
+$$
 >
 > 故来自 uniform$(0,1)$$ 样本的第 $$j$$ 个次序统计量服从 $$\mathrm{beta}(j, n - j + 1)$$ 分布。由此可推出
->
-> $$
+$$
 > \mathrm{E} X_{(j)} = \frac{j}{n + 1} \qquad\text{与}\qquad \mathrm{Var} X_{(j)} = \frac{j\, (n - j + 1)}{(n + 1)^2\, (n + 2)}.
 > $$
-
 两个或更多次序统计量的联合分布可用于导出本节开头提到的某些统计量的分布。任意两个次序统计量的联合 pdf 由下述定理给出，其证明留作习题 5.26。
-
-> **定理 5.4.6（两个次序统计量的联合 pdf）**
->
-> 设 $$X_{(1)}, \ldots, X_{(n)}$$ 是来自具有 cdf $$F_X(x)$$ 与 pdf $$f_X(x)$$ 的连续总体的随机样本 $$X_1, \ldots, X_n$$ 的次序统计量。则 $$X_{(i)}$$ 与 $$X_{(j)}$$（$$1 \leq i < j \leq n$$）的联合 pdf 为
->
-> $$
+**定理 5.4.6（两个次序统计量的联合 pdf）**
+设 $$X_{(1)}, \ldots, X_{(n)}$$ 是来自具有 cdf $$F_X(x)$$ 与 pdf $$f_X(x)$$ 的连续总体的随机样本 $$X_1, \ldots, X_n$$ 的次序统计量。则 $$X_{(i)}$$ 与 $$X_{(j)}$$（$$1 \leq i < j \leq n$$）的联合 pdf 为
+$$
 > \begin{aligned}
 > f_{X_{(i)}, X_{(j)}}(u, v) = \frac{n!}{(i - 1)!\, (j - 1 - i)!\, (n - j)!}\,&\, f_X(u)\, f_X(v)\, \bigl[ F_X(u) \bigr]^{i - 1}\\
 > &\times \bigl[ F_X(v) - F_X(u) \bigr]^{j - 1 - i}\, \bigl[ 1 - F_X(v) \bigr]^{n - j}
 > \end{aligned}
 > $$
->
-> 其中 $$-\infty < u < v < \infty$$。
-
+其中 $$-\infty < u < v < \infty$$。
 三个或更多次序统计量的联合 pdf 可以用类似（但更复杂）的论证导出。另一个也许最有用的 pdf 是全体次序统计量的联合 pdf $$f_{X_{(1)}, \ldots, X_{(n)}}(x_1, \ldots, x_n)$$：
-
 $$
 f_{X_{(1)}, \ldots, X_{(n)}}(x_1, \ldots, x_n) = \begin{cases}
 n!\, f_X(x_1) \cdots f_X(x_n) & -\infty < x_1 < \cdots < x_n < \infty,\\
 0 & \text{其他}.
 \end{cases}
 $$
-
 公式中的 $$n!$$ 自然出现：对任何一组值 $$x_1, \ldots, x_n$$，把这些值分配给 $$X_1, \ldots, X_n$$ 的 $$n!$$ 种等可能方式都给出相同的次序统计量值。这一联合 pdf 与第 4 章的技术可用于导出次序统计量的边缘分布、条件分布以及其他函数的分布（见习题 5.27 与 5.28）。
-
 现在用联合 pdf (5.4.6) 导出本节开头提到的若干函数的分布。
-
-> **例 5.4.7（中距与极差的分布）**
->
-> 设 $$X_1, \ldots, X_n$$ 是 iid uniform$(0, a)$$，$$X_{(1)}, \ldots, X_{(n)}$$ 为次序统计量。极差此前定义为 $$R = X_{(n)} - X_{(1)}$$。***中距***（midrange，像样本中位数或样本均值那样的位置度量）定义为 $$V = (X_{(1)} + X_{(n)}) / 2$$。我们将从 $$X_{(1)}$$ 与 $$X_{(n)}$$ 的联合 pdf 导出 $$R$$ 与 $$V$$ 的联合 pdf。
+**例 5.4.7（中距与极差的分布）**
+设 $$X_1, \ldots, X_n$$ 是 iid uniform$(0, a)$$，$$X_{(1)}, \ldots, X_{(n)}$$ 为次序统计量。极差此前定义为 $$R = X_{(n)} - X_{(1)}$$。***中距***（midrange，像样本中位数或样本均值那样的位置度量）定义为 $$V = (X_{(1)} + X_{(n)}) / 2$$。我们将从 $$X_{(1)}$$ 与 $$X_{(n)}$$ 的联合 pdf 导出 $$R$$ 与 $$V$$ 的联合 pdf。
 >
 > 由 (5.4.6)：
 >
 > $$
-> f_{X_{(1)}, X_{(n)}}(x_1, x_n) = \frac{n (n - 1)}{a^2}\, \Bigl( \frac{x_n - x_1}{a} \Bigr)^{n - 2} = \frac{n (n - 1)\, (x_n - x_1)^{n - 2}}{a^n}, \qquad 0 < x_1 < x_n < a.
-> $$
+f_{X_{(1)}, X_{(n)}}(x_1, x_n) = \frac{n (n - 1)}{a^2}\, \Bigl( \frac{x_n - x_1}{a} \Bigr)^{n - 2} = \frac{n (n - 1)\, (x_n - x_1)^{n - 2}}{a^n}, \qquad 0 < x_1 < x_n < a.
+$$
 >
 > 解出 $$X_{(1)}$$ 与 $$X_{(n)}$$ 得 $$X_{(1)} = V - R/2$$，$$X_{(n)} = V + R/2$$；该变换的雅可比为 $$-1$$。从 $$(X_{(1)}, X_{(n)})$$ 到 $$(R, V)$$ 的变换把 $$\{(x_1, x_n) : 0 < x_1 < x_n < a\}$$ 映到集合 $$\{(r, v) : 0 < r < a,\ r/2 < v < a - r/2\}$$ 上：显然 $$0 < r < a$$；对固定的 $$r$$，$$v$$ 从 $$r/2$$（对应 $$x_1 = 0$$，$$x_n = r$$）变到 $$a - r/2$$（对应 $$x_1 = a - r$$，$$x_n = a$$）。故 $$(R, V)$$ 的联合 pdf 为
 >
 > $$
-> f_{R,V}(r, v) = \frac{n (n - 1)\, r^{n - 2}}{a^n}, \qquad 0 < r < a, \quad r/2 < v < a - r/2.
-> $$
+f_{R,V}(r, v) = \frac{n (n - 1)\, r^{n - 2}}{a^n}, \qquad 0 < r < a, \quad r/2 < v < a - r/2.
+$$
 >
 > $$R$$ 的边缘 pdf 为
 >
 > $$
-> f_R(r) = \int_{r/2}^{a - r/2} \frac{n (n - 1)\, r^{n - 2}}{a^n}\, dv = \frac{n (n - 1)\, r^{n - 2}\, (a - r)}{a^n}, \qquad 0 < r < a. \tag{5.4.7}
-> $$
+f_R(r) = \int_{r/2}^{a - r/2} \frac{n (n - 1)\, r^{n - 2}}{a^n}\, dv = \frac{n (n - 1)\, r^{n - 2}\, (a - r)}{a^n}, \qquad 0 < r < a. \tag{5.4.7}
+$$
 >
 > 若 $$a = 1$$，则 $$r$$ 服从 $$\mathrm{beta}(n - 1, 2)$$ 分布；对任意 $$a$$，由 (5.4.7) 容易推出 $$R/a$$ 服从贝塔分布。注意常数 $$a$$ 是尺度参数。
 >
 > $$f_{R,V}(r, v) > 0$$ 的集合见图 5.4.1：$$r$$ 的积分范围取决于 $$v > a/2$$ 还是 $$v \leq a/2$$。于是 $$V$$ 的边缘 pdf 为
 >
 > $$
-> f_V(v) = \int_0^{2v} \frac{n (n - 1)\, r^{n - 2}}{a^n}\, dr = \frac{n\, (2v)^{n - 1}}{a^n}, \qquad 0 < v \leq a/2,
-> $$
+f_V(v) = \int_0^{2v} \frac{n (n - 1)\, r^{n - 2}}{a^n}\, dr = \frac{n\, (2v)^{n - 1}}{a^n}, \qquad 0 < v \leq a/2,
+$$
 >
 > 及
 >
 > $$
-> f_V(v) = \int_0^{2(a - v)} \frac{n (n - 1)\, r^{n - 2}}{a^n}\, dr = \frac{n\, \bigl[ 2(a - v) \bigr]^{n - 1}}{a^n}, \qquad a/2 < v \leq a.
-> $$
+f_V(v) = \int_0^{2(a - v)} \frac{n (n - 1)\, r^{n - 2}}{a^n}\, dr = \frac{n\, \bigl[ 2(a - v) \bigr]^{n - 1}}{a^n}, \qquad a/2 < v \leq a.
+$$
 >
 > 该 pdf 关于 $$a/2$$ 对称并在 $$a/2$$ 处有峰值。
 
@@ -934,8 +922,8 @@ $$
 > 若对每个 $$\varepsilon > 0$$ 都有
 >
 > $$
-> \lim_{n \to \infty} P\bigl( \vert X_n - X\vert  \geq \varepsilon \bigr) = 0, \qquad\text{或等价地}\qquad \lim_{n \to \infty} P\bigl( \vert X_n - X\vert  < \varepsilon \bigr) = 1,
-> $$
+\lim_{n \to \infty} P\bigl( \vert X_n - X\vert  \geq \varepsilon \bigr) = 0, \qquad\text{或等价地}\qquad \lim_{n \to \infty} P\bigl( \vert X_n - X\vert  < \varepsilon \bigr) = 1,
+$$
 >
 > 则称随机变量序列 $$X_1, X_2, \ldots$$ ***依概率收敛***（converge in probability）到随机变量 $$X$$。
 
@@ -948,16 +936,16 @@ $$
 > 设 $$X_1, X_2, \ldots$$ 是 iid 随机变量，$$\mathrm{E} X_i = \mu$$，$$\mathrm{Var} X_i = \sigma^2 < \infty$$。定义 $$\bar{X}_n = (1/n) \sum_{i=1}^{n} X_i$$。则对每个 $$\varepsilon > 0$$，
 >
 > $$
-> \lim_{n \to \infty} P\bigl( \vert \bar{X}_n - \mu\vert  < \varepsilon \bigr) = 1,
-> $$
+\lim_{n \to \infty} P\bigl( \vert \bar{X}_n - \mu\vert  < \varepsilon \bigr) = 1,
+$$
 >
 > 即 $$\bar{X}_n$$ 依概率收敛到 $$\mu$$。
 >
 > **证明**　证明相当简单，是切比雪夫不等式的直接应用。对每个 $$\varepsilon > 0$$，
 >
 > $$
-> P\bigl( \vert \bar{X}_n - \mu\vert  \geq \varepsilon \bigr) = P\bigl( (\bar{X}_n - \mu)^2 \geq \varepsilon^2 \bigr) \leq \frac{\mathrm{E} (\bar{X}_n - \mu)^2}{\varepsilon^2} = \frac{\mathrm{Var} \bar{X}}{\varepsilon^2} = \frac{\sigma^2}{n \varepsilon^2}.
-> $$
+P\bigl( \vert \bar{X}_n - \mu\vert  \geq \varepsilon \bigr) = P\bigl( (\bar{X}_n - \mu)^2 \geq \varepsilon^2 \bigr) \leq \frac{\mathrm{E} (\bar{X}_n - \mu)^2}{\varepsilon^2} = \frac{\mathrm{Var} \bar{X}}{\varepsilon^2} = \frac{\sigma^2}{n \varepsilon^2}.
+$$
 >
 > 故 $$P\bigl( \vert \bar{X}_n - \mu\vert  < \varepsilon \bigr) = 1 - P\bigl( \vert \bar{X}_n - \mu\vert  \geq \varepsilon \bigr) \geq 1 - \sigma^2 / (n \varepsilon^2) \to 1$$（当 $$n \to \infty$$）。 ∎
 
@@ -970,14 +958,14 @@ WLLN 所总结的性质——同一“种类的”样本量构成的序列当 $$
 > 设有 iid 随机变量序列 $$X_1, X_2, \ldots$$，$$\mathrm{E} X_i = \mu$$，$$\mathrm{Var} X_i = \sigma^2 < \infty$$。若定义
 >
 > $$
-> S_n^2 = \frac{1}{n - 1} \sum_{i=1}^{n} \bigl( X_i - \bar{X}_n \bigr)^2,
-> $$
+S_n^2 = \frac{1}{n - 1} \sum_{i=1}^{n} \bigl( X_i - \bar{X}_n \bigr)^2,
+$$
 >
 > 能对 $$S_n^2$$ 证明一条弱大数定律吗？用切比雪夫不等式：
 >
 > $$
-> P\bigl( \vert S_n^2 - \sigma^2\vert  \geq \varepsilon \bigr) \leq \frac{\mathrm{E} (S_n^2 - \sigma^2)^2}{\varepsilon^2} = \frac{\mathrm{Var} S_n^2}{\varepsilon^2},
-> $$
+P\bigl( \vert S_n^2 - \sigma^2\vert  \geq \varepsilon \bigr) \leq \frac{\mathrm{E} (S_n^2 - \sigma^2)^2}{\varepsilon^2} = \frac{\mathrm{Var} S_n^2}{\varepsilon^2},
+$$
 >
 > 故 $$S_n^2$$ 依概率收敛到 $$\sigma^2$$ 的充分条件是 $$\mathrm{Var} S_n^2 \to 0$$（当 $$n \to \infty$$）。
 
@@ -1000,8 +988,8 @@ WLLN 所总结的性质——同一“种类的”样本量构成的序列当 $$
 > 若对每个 $$\varepsilon > 0$$ 都有
 >
 > $$
-> P\Bigl( \lim_{n \to \infty} \vert X_n - X\vert  < \varepsilon \Bigr) = 1,
-> $$
+P\Bigl( \lim_{n \to \infty} \vert X_n - X\vert  < \varepsilon \Bigr) = 1,
+$$
 >
 > 则称随机变量序列 $$X_1, X_2, \ldots$$ ***几乎必然收敛***（converge almost surely）到随机变量 $$X$$。
 
@@ -1016,11 +1004,11 @@ WLLN 所总结的性质——同一“种类的”样本量构成的序列当 $$
 > 本例描述一个依概率收敛但不几乎必然收敛的序列。同样设样本空间 $$S$$ 为闭区间 $$[0, 1]$$，赋均匀概率分布。定义序列 $$X_1, X_2, \ldots$$ 如下：
 >
 > $$
-> \begin{aligned}
-> X_1(s) &= s + I_{[0,1]}(s), & X_2(s) &= s + I_{[0,\, 1/2]}(s), & X_4(s) &= s + I_{[0,\, 1/3]}(s),\\
-> X_3(s) &= s + I_{[1/2,\, 1]}(s), & X_5(s) &= s + I_{[1/3,\, 2/3]}(s), & X_6(s) &= s + I_{[2/3,\, 1]}(s),
-> \end{aligned}
-> $$
+\begin{aligned}
+X_1(s) &= s + I_{[0,1]}(s), & X_2(s) &= s + I_{[0,\, 1/2]}(s), & X_4(s) &= s + I_{[0,\, 1/3]}(s),\\
+X_3(s) &= s + I_{[1/2,\, 1]}(s), & X_5(s) &= s + I_{[1/3,\, 2/3]}(s), & X_6(s) &= s + I_{[2/3,\, 1]}(s),
+\end{aligned}
+$$
 >
 > 等等。令 $$X(s) = s$$。容易看出 $$X_n$$ 依概率收敛到 $$X$$：当 $$n \to \infty$$ 时，$$P\bigl( \vert X_n - X\vert  \geq \varepsilon \bigr)$$ 等于一个长度趋于 0 的 $$s$$ 区间的概率。但 $$X_n$$ 不几乎必然收敛到 $$X$$：确实，不存在任何 $$s \in S$$ 使 $$X_n(s) \to s = X(s)$$——对每个 $$s$$，$$X_n(s)$$ 的值在 $$s$$ 与 $$s + 1$$ 之间无穷次交替。例如若 $$s = \tfrac{3}{8}$$：$$X_1(s) = 1\tfrac{3}{8}$$，$$X_2(s) = 1\tfrac{3}{8}$$，$$X_3(s) = \tfrac{3}{8}$$，$$X_4(s) = \tfrac{3}{8}$$，$$X_5(s) = 1\tfrac{3}{8}$$，$$X_6(s) = \tfrac{3}{8}$$……该序列没有点态收敛。
 
@@ -1033,8 +1021,8 @@ WLLN 所总结的性质——同一“种类的”样本量构成的序列当 $$
 > 设 $$X_1, X_2, \ldots$$ 是 iid 随机变量，$$\mathrm{E} X_i = \mu$$，$$\mathrm{Var} X_i = \sigma^2 < \infty$$，定义 $$\bar{X}_n = (1/n) \sum_{i=1}^{n} X_i$$。则对每个 $$\varepsilon > 0$$，
 >
 > $$
-> P\Bigl( \lim_{n \to \infty} \vert \bar{X}_n - \mu\vert  < \varepsilon \Bigr) = 1,
-> $$
+P\Bigl( \lim_{n \to \infty} \vert \bar{X}_n - \mu\vert  < \varepsilon \Bigr) = 1,
+$$
 >
 > 即 $$\bar{X}_n$$ 几乎必然收敛到 $$\mu$$。
 
@@ -1049,535 +1037,336 @@ WLLN 所总结的性质——同一“种类的”样本量构成的序列当 $$
 > 若
 >
 > $$
-> \lim_{n \to \infty} F_{X_n}(x) = F_X(x)
-> $$
+\lim_{n \to \infty} F_{X_n}(x) = F_X(x)
+$$
 >
 > 在 $$F_X(x)$$ 的所有连续点 $$x$$ 处成立，则称随机变量序列 $$X_1, X_2, \ldots$$ ***依分布收敛***（converge in distribution）到随机变量 $$X$$。
 
 > **例 5.5.11（均匀变量的最大值）**
 >
 > 设 $$X_1, X_2, \ldots$$ 是 iid uniform$(0, 1)$$，$$X_{(n)} = \max_{1 \leq i \leq n} X_i$$。考察 $$X_{(n)}$$ 是否（向何处）依分布收敛。
->
-> 当 $$n \to \infty$$ 时，我们预期 $$X_{(n)}$$ 接近 1；由于 $$X_{(n)}$$ 必小于 1，对任意 $$\varepsilon > 0$$：
->
-> $$
+当 $$n \to \infty$$ 时，我们预期 $$X_{(n)}$$ 接近 1；由于 $$X_{(n)}$$ 必小于 1，对任意 $$\varepsilon > 0$$：
+$$
 > P\bigl( \vert X_{(n)} - 1\vert  \geq \varepsilon \bigr) = P\bigl( X_{(n)} \geq 1 + \varepsilon \bigr) + P\bigl( X_{(n)} \leq 1 - \varepsilon \bigr) = 0 + P\bigl( X_{(n)} \leq 1 - \varepsilon \bigr).
 > $$
->
-> 再用 iid 样本的事实：
->
-> $$
+再用 iid 样本的事实：
+$$
 > P\bigl( X_{(n)} \leq 1 - \varepsilon \bigr) = P\bigl( X_i \leq 1 - \varepsilon,\ i = 1, \ldots, n \bigr) = (1 - \varepsilon)^{n},
 > $$
->
-> 它趋于 0。所以我们证明了 $$X_{(n)}$$ 依概率收敛到 1。然而若取 $$\varepsilon = t/n$$，则
->
-> $$
+它趋于 0。所以我们证明了 $$X_{(n)}$$ 依概率收敛到 1。然而若取 $$\varepsilon = t/n$$，则
+$$
 > P\bigl( X_{(n)} \leq 1 - t/n \bigr) = (1 - t/n)^{n} \to e^{-t},
 > $$
->
-> 整理得
->
-> $$
+整理得
+$$
 > P\bigl( n (1 - X_{(n)}) \leq t \bigr) \to 1 - e^{-t},
 > $$
->
-> 即随机变量 $$n (1 - X_{(n)})$$ 依分布收敛到一个 $$\mathrm{exponential}(1)$$ 随机变量。
-
+即随机变量 $$n (1 - X_{(n)})$$ 依分布收敛到一个 $$\mathrm{exponential}(1)$$ 随机变量。
 注意：虽然我们谈论随机变量序列依分布收敛，真正收敛的是 cdf 而非随机变量本身。在这一根本意义上，依分布收敛与依概率收敛或几乎必然收敛相当不同；但它由其他类型的收敛所蕴含。
-
-> **定理 5.5.12（依概率收敛蕴含依分布收敛）**
->
-> 若随机变量序列 $$X_1, X_2, \ldots$$ 依概率收敛到随机变量 $$X$$，则该序列也依分布收敛到 $$X$$。
-
+**定理 5.5.12（依概率收敛蕴含依分布收敛）**
+若随机变量序列 $$X_1, X_2, \ldots$$ 依概率收敛到随机变量 $$X$$，则该序列也依分布收敛到 $$X$$。
 证明见习题 5.40。另注意由 5.5.2 节，依分布收敛也被几乎必然收敛蕴含。
-
 在一个特殊情形，定理 5.5.12 有一个有用的逆。例证见例 10.1.13，证明见习题 5.41。
-
-> **定理 5.5.13（向常数依分布收敛等价于依概率收敛）**
->
-> 随机变量序列 $$X_1, X_2, \ldots$$ 依概率收敛到常数 $$\mu$$ 当且仅当该序列也依分布收敛到 $$\mu$$。即命题
->
-> $$
+**定理 5.5.13（向常数依分布收敛等价于依概率收敛）**
+随机变量序列 $$X_1, X_2, \ldots$$ 依概率收敛到常数 $$\mu$$ 当且仅当该序列也依分布收敛到 $$\mu$$。即命题
+$$
 > P\bigl( \vert X_n - \mu\vert  > \varepsilon \bigr) \to 0 \quad \text{（对每个}\ \varepsilon > 0\text{）}
 > $$
->
-> 等价于
->
-> $$
+等价于
+$$
 > P\bigl( X_n \leq x \bigr) \to \begin{cases} 0 & \text{若}\ x < \mu,\\ 1 & \text{若}\ x > \mu. \end{cases}
 > $$
-
 样本均值是大样本行为相当重要的统计量之一。特别地，我们要研究其极限分布；这总结在统计学中最令人惊叹的定理之一——中心极限定理（Central Limit Theorem，CLT）之中。
-
-> **定理 5.5.14（中心极限定理，Central Limit Theorem）**
->
-> 设 $$X_1, X_2, \ldots$$ 是 iid 随机变量序列，其 mgf 在 0 的某邻域内存在（即对某个 $$h > 0$$，$$\mathrm{E} e^{t X_i}$$ 对 $$\vert t\vert  < h$$ 存在）。设 $$\mathrm{E} X_i = \mu$$，$$\mathrm{Var} X_i = \sigma^2 > 0$$（由于 mgf 存在，$$\mu$$ 与 $$\sigma^2$$ 都有限）。定义 $$\bar{X}_n = (1/n) \sum_{i=1}^{n} X_i$$，$$G_n(x)$$ 表示 $$\sqrt{n} (\bar{X}_n - \mu) / \sigma$$ 的 cdf。则对任意 $$x$$，$$-\infty < x < \infty$$，
->
-> $$
+**定理 5.5.14（中心极限定理，Central Limit Theorem）**
+设 $$X_1, X_2, \ldots$$ 是 iid 随机变量序列，其 mgf 在 0 的某邻域内存在（即对某个 $$h > 0$$，$$\mathrm{E} e^{t X_i}$$ 对 $$\vert t\vert  < h$$ 存在）。设 $$\mathrm{E} X_i = \mu$$，$$\mathrm{Var} X_i = \sigma^2 > 0$$（由于 mgf 存在，$$\mu$$ 与 $$\sigma^2$$ 都有限）。定义 $$\bar{X}_n = (1/n) \sum_{i=1}^{n} X_i$$，$$G_n(x)$$ 表示 $$\sqrt{n} (\bar{X}_n - \mu) / \sigma$$ 的 cdf。则对任意 $$x$$，$$-\infty < x < \infty$$，
+$$
 > \lim_{n \to \infty} G_n(x) = \int_{-\infty}^{x} \frac{1}{\sqrt{2\pi}}\, e^{-y^2/2}\, dy,
 > $$
->
-> 即 $$\sqrt{n} (\bar{X}_n - \mu)/\sigma$$ 有极限标准正态分布。
-
+即 $$\sqrt{n} (\bar{X}_n - \mu)/\sigma$$ 有极限标准正态分布。
 在证明该定理（证明多少有些虎头蛇尾）之前，先看其含义：从几乎不设前提（除独立性与有限方差外）出发，我们最终得到正态性！要点在于：正态性来自“小的”（方差有限的）、独立的扰动的求和。方差有限这一假设对收敛到正态本质上是必要的：虽可稍稍放宽，但不能取消（回忆例 5.2.10 处理的柯西分布——没有向正态的收敛）。
-
 在惊叹 CLT 之奇妙的同时，反思其局限也有益：虽然它给出有用的通用近似，我们没有自动知晓近似好坏的一般途径。事实上近似的好坏是原分布的函数，必须逐例检查。此外，随着廉价而充足的计算能力的普及，中心极限定理这类近似的重要性有所下降。尽管有这些局限，它仍是一个绝妙的结果。
-
-> **定理 定理 5.5.14 的证明**
->
-> 我们将证明：对 $$\vert t\vert  < h$$，$$\sqrt{n} (\bar{X}_n - \mu)/\sigma$$ 的 mgf 收敛到 $$e^{t^2/2}$$，即 $$n(0,1)$$ 随机变量的 mgf。
->
-> 定义 $$Y_i = (X_i - \mu)/\sigma$$，设 $$M_Y(t)$$ 为诸 $$Y_i$$ 的公共 mgf（它在 $$\vert t\vert  < \sigma h$$ 存在，由定理 2.3.15 给出）。由于
->
-> $$
+**定理 定理 5.5.14 的证明**
+我们将证明：对 $$\vert t\vert  < h$$，$$\sqrt{n} (\bar{X}_n - \mu)/\sigma$$ 的 mgf 收敛到 $$e^{t^2/2}$$，即 $$n(0,1)$$ 随机变量的 mgf。
+定义 $$Y_i = (X_i - \mu)/\sigma$$，设 $$M_Y(t)$$ 为诸 $$Y_i$$ 的公共 mgf（它在 $$\vert t\vert  < \sigma h$$ 存在，由定理 2.3.15 给出）。由于
+$$
 > \frac{\sqrt{n} (\bar{X}_n - \mu)}{\sigma} = \frac{1}{\sqrt{n}} \sum_{i=1}^{n} Y_i, \tag{5.5.1}
 > $$
->
-> 由 mgf 的性质（见定理 2.3.15 与 4.6.7）：
->
-> $$
+由 mgf 的性质（见定理 2.3.15 与 4.6.7）：
+$$
 > M_{\sqrt{n}(\bar{X}_n - \mu)/\sigma}(t) = M_{\sum_{i=1}^n Y_i / \sqrt{n}}(t) = M_{\sum_{i=1}^n Y_i}\Bigl( \frac{t}{\sqrt{n}} \Bigr) = \Bigl[ M_Y\Bigl( \frac{t}{\sqrt{n}} \Bigr) \Bigr]^{n}. \tag{5.5.2}
 > $$
->
-> 现在把 $$M_Y(t / \sqrt{n})$$ 在 0 附近做泰勒展开（幂级数展开；见定义 5.5.20）：
->
-> $$
+现在把 $$M_Y(t / \sqrt{n})$$ 在 0 附近做泰勒展开（幂级数展开；见定义 5.5.20）：
+$$
 > M_Y\Bigl( \frac{t}{\sqrt{n}} \Bigr) = \sum_{k=0}^{\infty} M_Y^{(k)}(0)\, \frac{(t / \sqrt{n})^{k}}{k!}, \tag{5.5.3}
 > $$
->
-> 其中 $$M_Y^{(k)}(0) = \frac{d^k}{dt^k} M_Y(t) \big\vert _{t=0}$$。由于 mgf 在 $$\vert t\vert  < h$$ 存在，幂级数展开在 $$\vert t\vert  < \sqrt{n}\, \sigma h$$ 时有效。
->
-> 用事实 $$M_Y^{(0)}(0) = 1$$、$$M_Y^{(1)}(0) = 0$$、$$M_Y^{(2)}(0) = 1$$（按构造，$$Y$$ 的均值与方差为 0 与 1），得
->
-> $$
+其中 $$M_Y^{(k)}(0) = \frac{d^k}{dt^k} M_Y(t) \big\vert _{t=0}$$。由于 mgf 在 $$\vert t\vert  < h$$ 存在，幂级数展开在 $$\vert t\vert  < \sqrt{n}\, \sigma h$$ 时有效。
+用事实 $$M_Y^{(0)}(0) = 1$$、$$M_Y^{(1)}(0) = 0$$、$$M_Y^{(2)}(0) = 1$$（按构造，$$Y$$ 的均值与方差为 0 与 1），得
+$$
 > M_Y\Bigl( \frac{t}{\sqrt{n}} \Bigr) = 1 + \frac{(t / \sqrt{n})^2}{2!} + R_Y\Bigl( \frac{t}{\sqrt{n}} \Bigr), \tag{5.5.4}
 > $$
->
-> 其中 $$R_Y$$ 是泰勒展开的余项：
->
-> $$
+其中 $$R_Y$$ 是泰勒展开的余项：
+$$
 > R_Y\Bigl( \frac{t}{\sqrt{n}} \Bigr) = \sum_{k=3}^{\infty} M_Y^{(k)}(0)\, \frac{(t / \sqrt{n})^{k}}{k!}.
 > $$
->
-> 应用泰勒定理（定理 5.5.21）可知：对固定的 $$t \neq 0$$，
->
-> $$
+应用泰勒定理（定理 5.5.21）可知：对固定的 $$t \neq 0$$，
+$$
 > \lim_{n \to \infty} \frac{R_Y\bigl( t / \sqrt{n} \bigr)}{(t / \sqrt{n})^2} = 0.
 > $$
->
-> 由于 $$t$$ 固定，还有
->
-> $$
+由于 $$t$$ 固定，还有
+$$
 > \lim_{n \to \infty} \frac{R_Y\bigl( t / \sqrt{n} \bigr)}{(1/\sqrt{n})^2} = \lim_{n \to \infty} n\, R_Y\Bigl( \frac{t}{\sqrt{n}} \Bigr) = 0, \tag{5.5.5}
 > $$
->
-> 且 (5.5.5) 在 $$t = 0$$ 时也成立（$$R_Y(0/\sqrt{n}) = 0$$）。于是对任意固定的 $$t$$：
->
-> $$
+且 (5.5.5) 在 $$t = 0$$ 时也成立（$$R_Y(0/\sqrt{n}) = 0$$）。于是对任意固定的 $$t$$：
+$$
 > \lim_{n \to \infty} \Bigl[ M_Y\Bigl( \frac{t}{\sqrt{n}} \Bigr) \Bigr]^{n} = \lim_{n \to \infty} \Bigl[ 1 + \frac{(t/\sqrt{n})^2}{2!} + R_Y\Bigl( \frac{t}{\sqrt{n}} \Bigr) \Bigr]^{n} = \lim_{n \to \infty} \Bigl[ 1 + \frac{1}{n}\, \Bigl( \frac{t^2}{2} + n\, R_Y\Bigl( \frac{t}{\sqrt{n}} \Bigr) \Bigr) \Bigr]^{n} = e^{t^2/2}, \tag{5.5.6}
 > $$
->
-> 最后一步应用引理 2.3.14，取 $$a_n = \bigl( t^2/2 \bigr) + n\, R_Y\bigl( t/\sqrt{n} \bigr)$$（注意 (5.5.5) 蕴含 $$a_n \to t^2/2$$，当 $$n \to \infty$$）。由于 $$e^{t^2/2}$$ 是 $$n(0, 1)$$ 分布的 mgf，定理得证。
-
+最后一步应用引理 2.3.14，取 $$a_n = \bigl( t^2/2 \bigr) + n\, R_Y\bigl( t/\sqrt{n} \bigr)$$（注意 (5.5.5) 蕴含 $$a_n \to t^2/2$$，当 $$n \to \infty$$）。由于 $$e^{t^2/2}$$ 是 $$n(0, 1)$$ 分布的 mgf，定理得证。
 中心极限定理成立的普遍性远超定理 5.5.14 的陈述（杂记 5.8.1）。特别地，关于 mgf 的全部假设都不必要——特征函数（杂记 2.6.2）可以取而代之。下面不加证明地陈述该定理的一个版本，它已一般到几乎能满足一切统计用途。注意对父分布唯一的假设是方差有限。
-
-> **定理 5.5.15（中心极限定理的更强形式）**
->
-> 设 $$X_1, X_2, \ldots$$ 是 iid 随机变量序列，$$\mathrm{E} X_i = \mu$$，$$0 < \mathrm{Var} X_i = \sigma^2 < \infty$$。定义 $$\bar{X}_n = (1/n) \sum_{i=1}^{n} X_i$$，$$G_n(x)$$ 表示 $$\sqrt{n} (\bar{X}_n - \mu) / \sigma$$ 的 cdf。则对任意 $$x$$，$$-\infty < x < \infty$$，
->
-> $$
+**定理 5.5.15（中心极限定理的更强形式）**
+设 $$X_1, X_2, \ldots$$ 是 iid 随机变量序列，$$\mathrm{E} X_i = \mu$$，$$0 < \mathrm{Var} X_i = \sigma^2 < \infty$$。定义 $$\bar{X}_n = (1/n) \sum_{i=1}^{n} X_i$$，$$G_n(x)$$ 表示 $$\sqrt{n} (\bar{X}_n - \mu) / \sigma$$ 的 cdf。则对任意 $$x$$，$$-\infty < x < \infty$$，
+$$
 > \lim_{n \to \infty} G_n(x) = \int_{-\infty}^{x} \frac{1}{\sqrt{2\pi}}\, e^{-y^2/2}\, dy,
 > $$
->
-> 即 $$\sqrt{n} (\bar{X}_n - \mu)/\sigma$$ 有极限标准正态分布。
-
+即 $$\sqrt{n} (\bar{X}_n - \mu)/\sigma$$ 有极限标准正态分布。
 该证明与定理 5.5.14 几乎相同，只是用特征函数代替 mgf。由于任何分布的特征函数总存在，定理假设中不必再提及它。但证明更精细，因为必须处理复变量函数；细节见 Billingsley (1995, Section 27)。
-
 中心极限定理为我们提供了一个通用近似（但记住关于近似好坏的警告）。实践中它总可以用于初步的粗略计算。
-
-> **例 5.5.16（负二项分布的正态近似）**
->
-> 设 $$X_1, \ldots, X_n$$ 是来自 $$\mathrm{negative\ binomial}(r, p)$$ 分布的随机样本。回忆
->
-> $$
+**例 5.5.16（负二项分布的正态近似）**
+设 $$X_1, \ldots, X_n$$ 是来自 $$\mathrm{negative\ binomial}(r, p)$$ 分布的随机样本。回忆
+$$
 > \mathrm{E} X = \frac{r(1 - p)}{p}, \qquad \mathrm{Var} X = \frac{r(1 - p)}{p^2},
 > $$
->
-> 中心极限定理告诉我们
->
-> $$
+中心极限定理告诉我们
+$$
 > \frac{\sqrt{n}\, \bigl( \bar{X} - r(1 - p)/p \bigr)}{\sqrt{r(1 - p)/p^2}}
 > $$
->
-> 近似为 $$n(0, 1)$$。近似概率计算比精确计算容易得多。例如 $$r = 10$$、$$p = \tfrac{1}{2}$$、$$n = 30$$ 时，精确计算是
->
-> $$
+近似为 $$n(0, 1)$$。近似概率计算比精确计算容易得多。例如 $$r = 10$$、$$p = \tfrac{1}{2}$$、$$n = 30$$ 时，精确计算是
+$$
 > \begin{aligned}
 > P(\bar{X} \leq 11) &= P\Bigl( \sum_{i=1}^{30} X_i \leq 330 \Bigr) = \sum_{x=0}^{330} \binom{300 + x - 1}{x}\, \Bigl( \frac{1}{2} \Bigr)^{300}\, \Bigl( \frac{1}{2} \Bigr)^{x}\\
 > &= 0.8916,
 > \end{aligned}
 > $$
->
-> （$$\sum X_i$$ 是 $$\mathrm{negative\ binomial}(nr, p)$$），这是非常困难的计算。（注意即使借助计算机这一计算也很困难——阶乘的量级造成巨大麻烦；不信就试试！）CLT 给出近似
->
-> $$
+（$$\sum X_i$$ 是 $$\mathrm{negative\ binomial}(nr, p)$$），这是非常困难的计算。（注意即使借助计算机这一计算也很困难——阶乘的量级造成巨大麻烦；不信就试试！）CLT 给出近似
+$$
 > P(\bar{X} \leq 11) = P\Biggl( \frac{\sqrt{30}\, (\bar{X} - 10)}{\sqrt{20}} \leq \frac{\sqrt{30}\, (11 - 10)}{\sqrt{20}} \Biggr) \approx P(Z \leq 1.2247) = 0.8888.
 > $$
->
-> 进一步的改进见习题 5.37。
-
+进一步的改进见习题 5.37。
 一个可与中心极限定理配合使用的近似工具是斯卢茨基定理（Slutsky's Theorem）。
-
-> **定理 5.5.17（斯卢茨基定理，Slutsky's Theorem）**
->
-> 若 $$X_n \xrightarrow{d} X$$（依分布），$$Y_n \xrightarrow{P} a$$（$$a$$ 为常数，依概率），则
->
-> - a. $$Y_n\, X_n \xrightarrow{d} a X$$；
->
-> - b. $$X_n + Y_n \xrightarrow{d} X + a$$。
-
+**定理 5.5.17（斯卢茨基定理，Slutsky's Theorem）**
+若 $$X_n \xrightarrow{d} X$$（依分布），$$Y_n \xrightarrow{P} a$$（$$a$$ 为常数，依概率），则
+- a. $$Y_n\, X_n \xrightarrow{d} a X$$；
+- b. $$X_n + Y_n \xrightarrow{d} X + a$$。
 斯卢茨基定理的证明从略，因为它依赖一种我们尚未讨论的依分布收敛刻画。典型应用见下例。
-
-> **例 5.5.18（方差被估计时的正态近似）**
->
-> 设
->
-> $$
+**例 5.5.18（方差被估计时的正态近似）**
+设
+$$
 > \frac{\sqrt{n}\, (\bar{X}_n - \mu)}{\sigma} \xrightarrow{d} n(0, 1),
 > $$
->
-> 但 $$\sigma$$ 的值未知。例 5.5.3 中已见：若 $$\lim_{n \to \infty} \mathrm{Var} S_n^2 = 0$$，则 $$S_n^2 \xrightarrow{P} \sigma^2$$。由习题 5.32，$$\sigma / S_n \xrightarrow{P} 1$$。故由斯卢茨基定理
->
-> $$
+但 $$\sigma$$ 的值未知。例 5.5.3 中已见：若 $$\lim_{n \to \infty} \mathrm{Var} S_n^2 = 0$$，则 $$S_n^2 \xrightarrow{P} \sigma^2$$。由习题 5.32，$$\sigma / S_n \xrightarrow{P} 1$$。故由斯卢茨基定理
+$$
 > \frac{\sqrt{n}\, (\bar{X}_n - \mu)}{S_n} = \frac{\sigma}{S_n}\, \frac{\sqrt{n}\, (\bar{X}_n - \mu)}{\sigma} \xrightarrow{d} n(0, 1).
 > $$
-
 ### 5.5.4 Delta 方法（The Delta Method）
-
 上一节给出了标准化随机变量具有极限正态分布的条件。但很多时候我们并不特别关心随机变量本身的分布，而是关心随机变量的某个函数的分布。
-
-> **例 5.5.19（估计发生比）**
->
-> 设我们观测到独立的 $$\mathrm{Bernoulli}(p)$$ 随机变量 $$X_1, X_2, \ldots, X_n$$。关心的典型参数是成功概率 $$p$$，但另一个常用参数是发生比（odds）$$\dfrac{p}{1 - p}$$。例如若数据代表某医学治疗的结果且 $$p = 2/3$$，则一个人痊愈的发生比是 $$2:1$$。而且若另有成功概率为 $$r$$ 的治疗，生物统计学家常估计发生比比（odds ratio）$$\dfrac{p}{1-p} \Big/ \dfrac{r}{1-r}$$，给出一种治疗对另一种的相对发生比。
->
-> 通常用观测到的成功比例 $$\hat{p} = \sum_i X_i / n$$ 估计成功概率 $$p$$，我们可能考虑用 $$\dfrac{\hat{p}}{1 - \hat{p}}$$ 作为 $$\dfrac{p}{1 - p}$$ 的估计。但这个估计量的性质如何？如何估计 $$\dfrac{\hat{p}}{1 - \hat{p}}$$ 的方差？又如何近似其抽样分布？
->
-> 直觉靠不住，精确计算希望渺茫，只好依赖近似。Delta 方法将使我们对这些问题得到合理的近似答案。
-
+**例 5.5.19（估计发生比）**
+设我们观测到独立的 $$\mathrm{Bernoulli}(p)$$ 随机变量 $$X_1, X_2, \ldots, X_n$$。关心的典型参数是成功概率 $$p$$，但另一个常用参数是发生比（odds）$$\dfrac{p}{1 - p}$$。例如若数据代表某医学治疗的结果且 $$p = 2/3$$，则一个人痊愈的发生比是 $$2:1$$。而且若另有成功概率为 $$r$$ 的治疗，生物统计学家常估计发生比比（odds ratio）$$\dfrac{p}{1-p} \Big/ \dfrac{r}{1-r}$$，给出一种治疗对另一种的相对发生比。
+通常用观测到的成功比例 $$\hat{p} = \sum_i X_i / n$$ 估计成功概率 $$p$$，我们可能考虑用 $$\dfrac{\hat{p}}{1 - \hat{p}}$$ 作为 $$\dfrac{p}{1 - p}$$ 的估计。但这个估计量的性质如何？如何估计 $$\dfrac{\hat{p}}{1 - \hat{p}}$$ 的方差？又如何近似其抽样分布？
+直觉靠不住，精确计算希望渺茫，只好依赖近似。Delta 方法将使我们对这些问题得到合理的近似答案。
 一条路子是使用泰勒级数近似，它使我们能近似随机变量函数的均值与方差；我们还将看到这些相当直截的近似足以获得一条 CLT。先简短复习泰勒级数。
-
-> **定义 5.5.20（泰勒多项式）**
->
-> 若函数 $$g(x)$$ 具有 $$r$$ 阶导数，即 $$g^{(r)}(x) = \dfrac{d^r}{dx^r} g(x)$$ 存在，则对任意常数 $$a$$，关于 $$a$$ 的 $$r$$ 阶泰勒多项式为
->
-> $$
+**定义 5.5.20（泰勒多项式）**
+若函数 $$g(x)$$ 具有 $$r$$ 阶导数，即 $$g^{(r)}(x) = \dfrac{d^r}{dx^r} g(x)$$ 存在，则对任意常数 $$a$$，关于 $$a$$ 的 $$r$$ 阶泰勒多项式为
+$$
 > T_r(x) = \sum_{i=0}^{r} \frac{g^{(i)}(a)}{i!}\, (x - a)^i.
 > $$
-
 泰勒的主要定理（此处不证）是：近似的余项 $$g(x) - T_r(x)$$ 总比最高阶显式项更快地趋于零。
-
-> **定理 5.5.21（泰勒定理）**
->
-> 若 $$g^{(r)}(a) = \dfrac{d^r}{dx^r} g(x) \big\vert _{x = a}$$ 存在，则
->
-> $$
+**定理 5.5.21（泰勒定理）**
+若 $$g^{(r)}(a) = \dfrac{d^r}{dx^r} g(x) \big\vert _{x = a}$$ 存在，则
+$$
 > \lim_{x \to a} \frac{g(x) - T_r(x)}{(x - a)^r} = 0.
 > $$
-
 一般我们不关心余项的显式形式：既然关心近似，干脆忽略余项。不过余项确有许多显式形式，一个有用的形式是
-
 $$
 g(x) - T_r(x) = \int_a^{x} \frac{g^{(r + 1)}(t)}{r!}\, (x - t)^{r}\, dt.
 $$
-
 对泰勒定理的统计应用，我们最关心一阶泰勒级数，即只用一阶导数的近似（上列公式取 $$r = 1$$）。此外我们还会用到多元泰勒级数；由于以上细节是一元的，下面部分内容只能凭信接受。
-
 设 $$T_1, \ldots, T_k$$ 是均值为 $$\theta_1, \ldots, \theta_k$$ 的随机变量，定义 $$\textbf{T} = (T_1, \ldots, T_k)$$ 与 $$\boldsymbol{\theta} = (\theta_1, \ldots, \theta_k)$$。设有可微函数 $$g(\textbf{T})$$（某个参数的估计量）想要方差的近似估计。定义
-
 $$
 g_i'(\boldsymbol{\theta}) = \left. \frac{\partial}{\partial t_i}\, g(\textbf{t}) \right\vert _{t_1 = \theta_1, \ldots, t_k = \theta_k}.
 $$
-
 $$g$$ 在 $$\boldsymbol{\theta}$$ 处的一阶泰勒展开为
-
 $$
 g(\textbf{t}) = g(\boldsymbol{\theta}) + \sum_{i=1}^{k} g_i'(\boldsymbol{\theta})\, (t_i - \theta_i) + \text{余项}.
 $$
-
 对统计近似而言，忘掉余项，写
-
 $$
 g(\textbf{t}) \approx g(\boldsymbol{\theta}) + \sum_{i=1}^{k} g_i'(\boldsymbol{\theta})\, (t_i - \theta_i). \tag{5.5.7}
 $$
-
 对 (5.5.7) 两边取期望：
-
 $$
 \mathrm{E}_{\boldsymbol{\theta}}\, g(\textbf{T}) \approx g(\boldsymbol{\theta}) + \sum_{i=1}^{k} g_i'(\boldsymbol{\theta})\, \mathrm{E}_{\boldsymbol{\theta}} (T_i - \theta_i) = g(\boldsymbol{\theta})
 \qquad （T_i\ \text{有均值}\ \theta_i）. \tag{5.5.8}
 $$
-
 现在可以近似 $$g(\textbf{T})$$ 的方差：
-
 $$
 \mathrm{Var}_{\boldsymbol{\theta}}\, g(\textbf{T}) \approx \mathrm{E}_{\boldsymbol{\theta}}\bigl[ g(\textbf{T}) - g(\boldsymbol{\theta}) \bigr]^2 \qquad （\text{用}\ (5.5.8)）
 $$
-
 $$
 \approx \mathrm{E}_{\boldsymbol{\theta}}\Biggl[ \sum_{i=1}^{k} g_i'(\boldsymbol{\theta})\, (T_i - \theta_i) \Biggr]^2 \qquad （\text{用}\ (5.5.7)） \tag{5.5.9}
 $$
-
 $$
 = \sum_{i=1}^{k} \bigl[ g_i'(\boldsymbol{\theta}) \bigr]^2\, \mathrm{Var}_{\boldsymbol{\theta}}\, T_i + 2 \sum_{i > j} g_i'(\boldsymbol{\theta})\, g_j'(\boldsymbol{\theta})\, \mathrm{Cov}_{\boldsymbol{\theta}}(T_i, T_j),
 $$
-
 最后的等式来自展开平方并使用方差与协方差的定义（类似习题 4.44）。近似式 (5.5.9) 非常有用：它只用简单的方差与协方差，就给出一般函数的方差公式。这里给出两个例子。
-
-> **例 5.5.22（例 5.5.19 的继续）**
->
-> 回忆我们关心 $$\dfrac{\hat{p}}{1 - \hat{p}}$$ 作为 $$\dfrac{p}{1 - p}$$ 的估计的性质，其中 $$p$$ 是二项成功概率。按上述记号，取 $$g(p) = \dfrac{p}{1 - p}$$，则 $$g'(p) = \dfrac{1}{(1 - p)^2}$$，且
->
-> $$
+**例 5.5.22（例 5.5.19 的继续）**
+回忆我们关心 $$\dfrac{\hat{p}}{1 - \hat{p}}$$ 作为 $$\dfrac{p}{1 - p}$$ 的估计的性质，其中 $$p$$ 是二项成功概率。按上述记号，取 $$g(p) = \dfrac{p}{1 - p}$$，则 $$g'(p) = \dfrac{1}{(1 - p)^2}$$，且
+$$
 > \mathrm{Var}\Biggl( \frac{\hat{p}}{1 - \hat{p}} \Biggr) \approx \bigl[ g'(p) \bigr]^2\, \mathrm{Var}(\hat{p}) = \frac{1}{(1 - p)^4}\, \frac{p\, (1 - p)}{n} = \frac{p}{n\, (1 - p)^3},
 > $$
->
-> 给出了估计量方差的近似。
-
-> **例 5.5.23（近似均值与方差）**
->
-> 设 $$X$$ 是满足 $$\mathrm{E}_{\mu} X = \mu \neq 0$$ 的随机变量。若要估计函数 $$g(\mu)$$，一阶近似会给出
->
-> $$
+给出了估计量方差的近似。
+**例 5.5.23（近似均值与方差）**
+设 $$X$$ 是满足 $$\mathrm{E}_{\mu} X = \mu \neq 0$$ 的随机变量。若要估计函数 $$g(\mu)$$，一阶近似会给出
+$$
 > g(X) = g(\mu) + g'(\mu)\, (X - \mu).
 > $$
->
-> 若用 $$g(X)$$ 作为 $$g(\mu)$$ 的估计，可以（近似地）说
->
-> $$
+若用 $$g(X)$$ 作为 $$g(\mu)$$ 的估计，可以（近似地）说
+$$
 > \mathrm{E}_{\mu}\, g(X) \approx g(\mu), \qquad \mathrm{Var}_{\mu}\, g(X) \approx \bigl[ g'(\mu) \bigr]^2\, \mathrm{Var}_{\mu}\, X.
 > $$
->
-> 一个具体的例子：取 $$g(\mu) = 1/\mu$$。我们用 $$1/\bar{X}$$ 估计 $$1/\mu$$，可以说
->
-> $$
+一个具体的例子：取 $$g(\mu) = 1/\mu$$。我们用 $$1/\bar{X}$$ 估计 $$1/\mu$$，可以说
+$$
 > \mathrm{E}_{\mu}\Bigl( \frac{1}{\bar{X}} \Bigr) \approx \frac{1}{\mu}, \qquad \mathrm{Var}_{\mu}\Bigl( \frac{1}{\bar{X}} \Bigr) \approx \frac{1}{\mu^4}\, \mathrm{Var}_{\mu}\, \bar{X}.
 > $$
-
 用这些关于均值与方差的泰勒级数近似，我们得到中心极限定理的如下有用推广，即 Delta 方法。
-
-> **定理 5.5.24（Delta 方法）**
->
-> 设 $$Y_n$$ 是满足 $$\sqrt{n}\, (Y_n - \theta) \xrightarrow{d} n(0, \sigma^2)$$ 的随机变量序列。对给定的函数 $$g$$ 与特定的 $$\theta$$ 值，设 $$g'(\theta)$$ 存在且不为零。则
->
-> $$
+**定理 5.5.24（Delta 方法）**
+设 $$Y_n$$ 是满足 $$\sqrt{n}\, (Y_n - \theta) \xrightarrow{d} n(0, \sigma^2)$$ 的随机变量序列。对给定的函数 $$g$$ 与特定的 $$\theta$$ 值，设 $$g'(\theta)$$ 存在且不为零。则
+$$
 > \sqrt{n}\, \bigl[ g(Y_n) - g(\theta) \bigr] \xrightarrow{d} n\bigl( 0,\ \sigma^2\, [g'(\theta)]^2 \bigr). \tag{5.5.10}
 > $$
->
-> **证明**　$$g(Y_n)$$ 在 $$Y_n = \theta$$ 处的泰勒展开为
->
-> $$
+**证明**　$$g(Y_n)$$ 在 $$Y_n = \theta$$ 处的泰勒展开为
+$$
 > g(Y_n) = g(\theta) + g'(\theta)\, (Y_n - \theta) + \text{余项}, \tag{5.5.11}
 > $$
->
-> 其中当 $$Y_n \to \theta$$ 时余项 $$\to 0$$。由于 $$Y_n \xrightarrow{P} \theta$$，余项依概率 $$\to 0$$。对
->
-> $$
+其中当 $$Y_n \to \theta$$ 时余项 $$\to 0$$。由于 $$Y_n \xrightarrow{P} \theta$$，余项依概率 $$\to 0$$。对
+$$
 > \sqrt{n}\, \bigl[ g(Y_n) - g(\theta) \bigr] = g'(\theta)\, \sqrt{n}\, (Y_n - \theta)
 > $$
->
-> 应用斯卢茨基定理（定理 5.5.17），结论即得。细节见习题 5.43。 ∎
-
-> **例 5.5.25（例 5.5.23 的继续）**
->
-> 现在设我们手头是随机样本的均值 $$\bar{X}$$。对 $$\mu \neq 0$$，有
->
-> $$
+应用斯卢茨基定理（定理 5.5.17），结论即得。细节见习题 5.43。 ∎
+**例 5.5.25（例 5.5.23 的继续）**
+现在设我们手头是随机样本的均值 $$\bar{X}$$。对 $$\mu \neq 0$$，有
+$$
 > \sqrt{n}\, \Bigl( \frac{1}{\bar{X}} - \frac{1}{\mu} \Bigr) \xrightarrow{d} n\Bigl( 0,\ \frac{1}{\mu^4}\, \mathrm{Var}_{\mu} X_1 \Bigr).
 > $$
->
-> 若不知道 $$X_1$$ 的方差，使用上述近似就需要一个估计，比如 $$S^2$$。此外还有 $$1/\mu$$ 项如何处理的问题——我们同样不知道 $$\mu$$。可以对一切进行估计，得到近似方差
->
-> $$
+若不知道 $$X_1$$ 的方差，使用上述近似就需要一个估计，比如 $$S^2$$。此外还有 $$1/\mu$$ 项如何处理的问题——我们同样不知道 $$\mu$$。可以对一切进行估计，得到近似方差
+$$
 > \widehat{\mathrm{Var}}\Bigl( \frac{1}{\bar{X}} \Bigr) \approx \frac{1}{\bar{X}^4}\, S^2.
 > $$
->
-> 进一步，由于 $$\bar{X}$$ 与 $$S^2$$ 都是相合估计，再次应用斯卢茨基定理可断言：对 $$\mu \neq 0$$，
->
-> $$
+进一步，由于 $$\bar{X}$$ 与 $$S^2$$ 都是相合估计，再次应用斯卢茨基定理可断言：对 $$\mu \neq 0$$，
+$$
 > \frac{\sqrt{n}\, \bigl( \tfrac{1}{\bar{X}} - \tfrac{1}{\mu} \bigr)}{\bigl( \tfrac{1}{\bar{X}^2} \bigr)\, S} \xrightarrow{d} n(0, 1).
 > $$
->
-> 注意后一量的写法：除以估计出的标准差，使极限分布为标准正态。当需要估计极限分布中的参数时，这是唯一说得通的写法。我们还注意到，当有待估参数时存在另一种途径，此时实际上可以避免在方差中使用 $$\mu$$ 的估计（见 10.3.2 节的得分检验）。
-
+注意后一量的写法：除以估计出的标准差，使极限分布为标准正态。当需要估计极限分布中的参数时，这是唯一说得通的写法。我们还注意到，当有待估参数时存在另一种途径，此时实际上可以避免在方差中使用 $$\mu$$ 的估计（见 10.3.2 节的得分检验）。
 要完成对 Delta 方法的处理，需要讨论两个推广。第一个涉及 $$g'(\mu) = 0$$ 的可能性。例如若我们关心的是估计二项方差的方差，就可能发生这种情况（见习题 5.44）。
-
 若 $$g'(\theta) = 0$$，在泰勒展开中再多取一项：
-
 $$
 g(Y_n) = g(\theta) + g'(\theta)\, (Y_n - \theta) + \frac{g''(\theta)}{2}\, (Y_n - \theta)^2 + \text{余项}.
 $$
-
 做一些整理（置 $$g' = 0$$）：
-
 $$
 g(Y_n) - g(\theta) = \frac{g''(\theta)}{2}\, (Y_n - \theta)^2 + \text{余项}. \tag{5.5.12}
 $$
-
 现在回忆 $$n(0, 1)$$ 的平方是 $$\chi_1^2$$（例 2.1.9），这意味着
-
 $$
 \frac{n\, (Y_n - \theta)^2}{\sigma^2} \xrightarrow{d} \chi_1^2.
 $$
-
 因此，与定理 5.5.24 类似的论证可以建立下面的定理。
-
-> **定理 5.5.26（二阶 Delta 方法）**
->
-> 设 $$Y_n$$ 是满足 $$\sqrt{n}\, (Y_n - \theta) \xrightarrow{d} n(0, \sigma^2)$$ 的随机变量序列。对给定的函数 $$g$$ 与特定的 $$\theta$$ 值，设 $$g'(\theta) = 0$$ 且 $$g''(\theta)$$ 存在不为零。则
->
-> $$
+**定理 5.5.26（二阶 Delta 方法）**
+设 $$Y_n$$ 是满足 $$\sqrt{n}\, (Y_n - \theta) \xrightarrow{d} n(0, \sigma^2)$$ 的随机变量序列。对给定的函数 $$g$$ 与特定的 $$\theta$$ 值，设 $$g'(\theta) = 0$$ 且 $$g''(\theta)$$ 存在不为零。则
+$$
 > n\, \bigl[ g(Y_n) - g(\theta) \bigr] \xrightarrow{d} \frac{\sigma^2\, g''(\theta)}{2}\, \chi_1^2. \tag{5.5.13}
 > $$
-
 当被估函数由多个参数构成、估计量使用多个随机变量时，近似技术非常有用。一个常见的例子是生长研究：体重/身高之比是关心的变量。（回忆第 3 章：两个正态随机变量之比服从柯西分布。比的问题对实验者重要，在理论上却很棘手。）
-
 这就引出 Delta 方法的第二个推广——多元情形。既然已有多元泰勒定理，这一推广毫无意外。
-
-> **例 5.5.27（比估计量的矩）**
->
-> 设 $$X$$ 与 $$Y$$ 是均值分别为 $$\mu_X \neq 0$$、$$\mu_Y \neq 0$$ 的随机变量。要估计的参数函数是 $$g(\mu_X, \mu_Y) = \mu_X / \mu_Y$$。容易计算
->
-> $$
+**例 5.5.27（比估计量的矩）**
+设 $$X$$ 与 $$Y$$ 是均值分别为 $$\mu_X \neq 0$$、$$\mu_Y \neq 0$$ 的随机变量。要估计的参数函数是 $$g(\mu_X, \mu_Y) = \mu_X / \mu_Y$$。容易计算
+$$
 > \frac{\partial}{\partial \mu_X}\, g(\mu_X, \mu_Y) = \frac{1}{\mu_Y} \qquad\text{与}\qquad \frac{\partial}{\partial \mu_Y}\, g(\mu_X, \mu_Y) = \frac{-\mu_X}{\mu_Y^2}.
 > $$
->
-> 一阶泰勒近似 (5.5.8) 与 (5.5.9) 给出
->
-> $$
+一阶泰勒近似 (5.5.8) 与 (5.5.9) 给出
+$$
 > \mathrm{E}\Bigl( \frac{\bar{X}}{\bar{Y}} \Bigr) \approx \frac{\mu_X}{\mu_Y},
 > $$
->
-> 及
->
-> $$
+及
+$$
 > \begin{aligned}
 > \mathrm{Var}\Bigl( \frac{\bar{X}}{\bar{Y}} \Bigr) &\approx \frac{1}{\mu_Y^2}\, \mathrm{Var} \bar{X} + \frac{\mu_X^2}{\mu_Y^4}\, \mathrm{Var} \bar{Y} - \frac{2 \mu_X}{\mu_Y^3}\, \mathrm{Cov}(\bar{X}, \bar{Y})\\
 > &= \Bigl( \frac{\mu_X}{\mu_Y} \Bigr)^2 \Biggl( \frac{\mathrm{Var} \bar{X}}{\mu_X^2} + \frac{\mathrm{Var} \bar{Y}}{\mu_Y^2} - 2\, \frac{\mathrm{Cov}(\bar{X}, \bar{Y})}{\mu_X \mu_Y} \Biggr).
 > \end{aligned}
 > $$
->
-> 于是我们有了比估计量均值与方差的近似，且这些近似只用 $$\bar{X}$$ 与 $$\bar{Y}$$ 的均值、方差与协方差。精确计算几乎无望，闭式表达式无法得到。
-
+于是我们有了比估计量均值与方差的近似，且这些近似只用 $$\bar{X}$$ 与 $$\bar{Y}$$ 的均值、方差与协方差。精确计算几乎无望，闭式表达式无法得到。
 接下来给出覆盖像比估计量这样的估计量的 CLT。注意尽管最终的 CLT 是一元的，我们必须处理多个随机变量。设向量值随机变量 $$\textbf{X} = (X_1, \ldots, X_p)$$ 有均值 $$\boldsymbol{\mu} = (\mu_1, \ldots, \mu_p)$$ 与协方差 $$\mathrm{Cov}(X_i, X_j) = \sigma_{ij}$$；观测独立随机样本 $$\textbf{X}_1, \ldots, \textbf{X}_n$$ 并计算均值 $$\bar{X}_i = \frac{1}{n} \sum_{k=1}^{n} X_{ik}$$（$$i = 1, \ldots, p$$）。对函数 $$g(\textbf{x}) = g(x_1, \ldots, x_p)$$，可用 (5.5.7) 之后的展开写
-
 $$
 g(\bar{x}_1, \ldots, \bar{x}_p) = g(\mu_1, \ldots, \mu_p) + \sum_{k=1}^{p} g_k'(\textbf{x})\, (\bar{x}_k - \mu_k),
 $$
-
 于是有下面的定理。
-
-> **定理 5.5.28（多元 Delta 方法）**
->
-> 设 $$\textbf{X}_1, \ldots, \textbf{X}_n$$ 是满足 $$\mathrm{E}(X_{ij}) = \mu_i$$、$$\mathrm{Cov}(X_{ik}, X_{jk}) = \sigma_{ij}$$ 的随机样本。对具有连续一阶偏导数的给定函数 $$g$$ 与特定的 $$\boldsymbol{\mu} = (\mu_1, \mu_2, \ldots, \mu_p)$$ 值，若 $$\tau^2 = \sum\sum \sigma_{ij}\, \dfrac{\partial g(\boldsymbol{\mu})}{\partial \mu_i}\, \dfrac{\partial g(\boldsymbol{\mu})}{\partial \mu_j} > 0$$，则
->
-> $$
+**定理 5.5.28（多元 Delta 方法）**
+设 $$\textbf{X}_1, \ldots, \textbf{X}_n$$ 是满足 $$\mathrm{E}(X_{ij}) = \mu_i$$、$$\mathrm{Cov}(X_{ik}, X_{jk}) = \sigma_{ij}$$ 的随机样本。对具有连续一阶偏导数的给定函数 $$g$$ 与特定的 $$\boldsymbol{\mu} = (\mu_1, \mu_2, \ldots, \mu_p)$$ 值，若 $$\tau^2 = \sum\sum \sigma_{ij}\, \dfrac{\partial g(\boldsymbol{\mu})}{\partial \mu_i}\, \dfrac{\partial g(\boldsymbol{\mu})}{\partial \mu_j} > 0$$，则
+$$
 > \sqrt{n}\, \bigl[ g(\bar{X}_1, \ldots, \bar{X}_p) - g(\mu_1, \ldots, \mu_p) \bigr] \xrightarrow{d} n(0, \tau^2).
 > $$
-
 该证明需要处理多元随机变量的收敛，我们不在这些多元细节上展开，而将定理 5.5.28 凭信接受。有兴趣的读者可在 Lehmann and Casella (1998, Section 1.8) 找到更多细节。
-
 ## 5.6 生成随机样本（Generating a Random Sample）
-
 到目前为止，我们关心的都是描述随机变量行为的方法——变换、分布、矩的计算、极限定理。实践中，这些随机变量被用来描述真实现象并为其建模，而这些随机变量的观测就是我们收集的数据。
-
 于是典型情形是：我们观测来自分布 $$f(x \mid \theta)$$ 的随机变量 $$X_1, \ldots, X_n$$，主要关心用 $$f(x \mid \theta)$$ 的性质描述随机变量的行为。本节实际上要把这一策略反过来：这里关心的是从给定分布 $$f(x \mid \theta)$$ ***生成***随机样本 $$X_1, \ldots, X_n$$。
-
-> **例 5.6.1（指数寿命）**
->
-> 设某电子元件用 $$\mathrm{exponential}(\lambda)$$ 寿命建模。制造商想知道：在 $$c$$ 个元件中，至少 $$t$$ 个能工作 $$h$$ 小时的概率是多少？一步步来：
->
-> $$
+**例 5.6.1（指数寿命）**
+设某电子元件用 $$\mathrm{exponential}(\lambda)$$ 寿命建模。制造商想知道：在 $$c$$ 个元件中，至少 $$t$$ 个能工作 $$h$$ 小时的概率是多少？一步步来：
+$$
 > p_1 = P(\text{元件工作至少}\ h\ \text{小时}) = P(X \geq h \mid \lambda) \tag{5.6.1}
 > $$
->
-> 并假设各元件独立，可以把 $$c$$ 个元件的结果建模为伯努利试验，故
->
-> $$
+并假设各元件独立，可以把 $$c$$ 个元件的结果建模为伯努利试验，故
+$$
 > p_2 = P(\text{至少}\ t\ \text{个元件工作}\ h\ \text{小时}) = \sum_{k=t}^{c} \binom{c}{k}\, p_1^{k}\, (1 - p_1)^{c - k}. \tag{5.6.2}
 > $$
->
-> 虽然 (5.6.2) 的计算直截了当，但可能计算负担很重，尤其当 $$t$$ 与 $$c$$ 都很大时。此外指数模型的好处是 $$p_1$$ 可以写成闭式：
->
-> $$
+虽然 (5.6.2) 的计算直截了当，但可能计算负担很重，尤其当 $$t$$ 与 $$c$$ 都很大时。此外指数模型的好处是 $$p_1$$ 可以写成闭式：
+$$
 > p_1 = \int_h^{\infty} \frac{1}{\lambda}\, e^{-x/\lambda}\, dx = e^{-h/\lambda}. \tag{5.6.3}
 > $$
->
-> 然而若每个元件改用（比如）伽马分布建模，则 $$p_1$$ 可能无法写成闭式，$$p_2$$ 的计算会更加复杂。
-
+然而若每个元件改用（比如）伽马分布建模，则 $$p_1$$ 可能无法写成闭式，$$p_2$$ 的计算会更加复杂。
 对 (5.6.2) 这类表达式的模拟（simulation）方法是：生成具有所需分布的随机变量，然后用大数定律（定理 5.5.2）验证模拟的有效性。即若 $$Y_i$$（$$i = 1, \ldots, n$$）是 iid，则该定理的一个推论是（假设前提成立）
-
 $$
 \frac{1}{n} \sum_{i=1}^{n} h(Y_i) \longrightarrow \mathrm{E} h(Y) \tag{5.6.4}
 $$
-
 （依概率，当 $$n \to \infty$$）。（表达式 (5.5.4) 也几乎处处成立，这是定理 5.5.9 强大数定律的推论。）
-
-> **例 5.6.2（例 5.6.1 的继续）**
->
-> 概率 $$p_2$$ 可以用如下步骤计算。对 $$j = 1, \ldots, n$$：
->
-> - a. 生成 $$X_1, \ldots, X_c$$，iid $$\sim \mathrm{exponential}(\lambda)$$；
->
-> - b. 若至少 $$t$$ 个 $$X_i$$ 满足 $$X_i \geq h$$，置 $$Y_j = 1$$；否则置 $$Y_j = 0$$。
->
->
-> 则由于 $$Y_j \sim \mathrm{Bernoulli}(p_2)$$ 且 $$\mathrm{E} Y_j = p_2$$，
->
-> $$
+**例 5.6.2（例 5.6.1 的继续）**
+概率 $$p_2$$ 可以用如下步骤计算。对 $$j = 1, \ldots, n$$：
+- a. 生成 $$X_1, \ldots, X_c$$，iid $$\sim \mathrm{exponential}(\lambda)$$；
+- b. 若至少 $$t$$ 个 $$X_i$$ 满足 $$X_i \geq h$$，置 $$Y_j = 1$$；否则置 $$Y_j = 0$$。
+则由于 $$Y_j \sim \mathrm{Bernoulli}(p_2)$$ 且 $$\mathrm{E} Y_j = p_2$$，
+$$
 > \frac{1}{n} \sum_{j=1}^{n} Y_j \to p_2 \qquad \text{（当}\ n \to \infty\text{）}.
 > $$
-
 例 5.6.1 与 5.6.2 突出了本节的两大关注点：第一，必须考察如何生成所需的随机变量；第二，随后用某种大数定律验证模拟近似。
-
 既然总得从某处开始，我们从假设能够生成 iid 均匀随机变量 $$U_1, \ldots, U_m$$ 出发。（生成均匀随机数这一问题已被计算机科学家卓有成效地研究：存在许多生成伪随机数的算法，能通过几乎所有均匀性检验；而且多数优秀的统计软件包都有合理的均匀随机数发生器。生成伪随机数的更多内容见 Devroye 1985 或 Ripley 1987。）
-
 既然从均匀随机变量出发，我们的问题其实不是生成所需随机变量的问题，而是把均匀随机变量***变换***到所需分布的问题。本质上存在两类一般方法，我们（不带信息量地）称之为直接方法与间接方法。
-
 ### 5.6.1 直接方法（Direct Methods）
-
 生成随机变量的直接方法是指：存在闭式函数 $$g(u)$$，使得当 $$U \sim \mathrm{uniform}(0, 1)$$ 时，变换后的变量 $$Y = g(U)$$ 具有所需分布。可以回忆，对连续随机变量这在定理 2.1.10（概率积分变换）中已经实现——任何分布都被变换到均匀。因此逆变换解决了我们的问题。
-
-> **例 5.6.3（概率积分变换）**
->
-> 若 $$Y$$ 是具有 cdf $$F_Y$$ 的连续随机变量，则定理 2.1.10 蕴含随机变量 $$F_Y^{-1}(U)$$（$$U \sim \mathrm{uniform}(0, 1)$$）具有分布 $$F_Y$$。若 $$Y \sim \mathrm{exponential}(\lambda)$$，则
->
-> $$
+**例 5.6.3（概率积分变换）**
+若 $$Y$$ 是具有 cdf $$F_Y$$ 的连续随机变量，则定理 2.1.10 蕴含随机变量 $$F_Y^{-1}(U)$$（$$U \sim \mathrm{uniform}(0, 1)$$）具有分布 $$F_Y$$。若 $$Y \sim \mathrm{exponential}(\lambda)$$，则
+$$
 > F_Y^{-1}(U) = -\lambda \log(1 - U)
 > $$
->
-> 是 $$\mathrm{exponential}(\lambda)$$ 随机变量（见习题 5.49）。
->
-> 于是若生成 $$U_1, \ldots, U_n$$ 为 iid 均匀随机变量，则 $$Y_i = -\lambda \log(1 - U_i)$$（$$i = 1, \ldots, n$$）是 iid $$\mathrm{exponential}(\lambda)$$ 随机变量。例如对 $$n = 10{,}000$$，生成 $$u_1, u_2, \ldots, u_{10{,}000}$$ 并计算
->
-> $$
+是 $$\mathrm{exponential}(\lambda)$$ 随机变量（见习题 5.49）。
+于是若生成 $$U_1, \ldots, U_n$$ 为 iid 均匀随机变量，则 $$Y_i = -\lambda \log(1 - U_i)$$（$$i = 1, \ldots, n$$）是 iid $$\mathrm{exponential}(\lambda)$$ 随机变量。例如对 $$n = 10{,}000$$，生成 $$u_1, u_2, \ldots, u_{10{,}000}$$ 并计算
+$$
 > \frac{1}{n} \sum_{i=1}^{n} u_i = 0.5019 \qquad\text{与}\qquad \frac{1}{n - 1} \sum_{i=1}^{n} (u_i - \bar{u})^2 = 0.0842.
 > $$
->
-> 由来自 WLLN（定理 5.5.2）的 (5.6.4)，我们知道 $$\bar{U} \to \mathrm{E} U = \tfrac{1}{2}$$；由例 5.5.3，$$S^2 \to \mathrm{Var} U = \tfrac{1}{12} = 0.0833$$，故我们的估计相当接近真参数。变换后的变量 $$Y_i$$ 服从 $$\mathrm{exponential}(2)$$ 分布，我们发现
->
-> $$
+由来自 WLLN（定理 5.5.2）的 (5.6.4)，我们知道 $$\bar{U} \to \mathrm{E} U = \tfrac{1}{2}$$；由例 5.5.3，$$S^2 \to \mathrm{Var} U = \tfrac{1}{12} = 0.0833$$，故我们的估计相当接近真参数。变换后的变量 $$Y_i$$ 服从 $$\mathrm{exponential}(2)$$ 分布，我们发现
+$$
 > \frac{1}{n} \sum_{i=1}^{n} y_i = 2.0004 \qquad\text{与}\qquad \frac{1}{n - 1} \sum_{i=1}^{n} (y_i - \bar{y})^2 = 4.0908,
 > $$
->
-> 与 $$\mathrm{E} Y = 2$$、$$\mathrm{Var} Y = 4$$ 非常吻合。图 5.6.1 展示了样本直方图与总体 pdf 的吻合。
-
+与 $$\mathrm{E} Y = 2$$、$$\mathrm{Var} Y = 4$$ 非常吻合。图 5.6.1 展示了样本直方图与总体 pdf 的吻合。
 ![ch05_fig_5_6_1](fig/ch05_fig_5_6_1.png)
-
 图 5.6.1　 10,000 个来自 $$\lambda = 2$$ 指数 pdf 的观测的直方图，连同 pdf（原书 Figure 5.6.1）
-
 指数分布与其他分布的关系允许快速生成许多随机变量。例如若诸 $$U_i$$ 是 iid uniform $$(0, 1)$$ 随机变量，则
-
 $$
 \begin{aligned}
 Y &= -2 \sum_{j=1}^{\nu} \log(U_j) \sim \chi^2_{\nu},\\
@@ -1585,58 +1374,40 @@ Y &= -\beta \sum_{j=1}^{a} \log(U_j) \sim \mathrm{gamma}(a, \beta),\\
 Y &= \frac{\sum_{j=1}^{a} \log(U_j)}{\sum_{j=1}^{a + b} \log(U_j)} \sim \mathrm{beta}(a, b).
 \end{aligned} \tag{5.6.5}
 $$
-
 还有许多其他变体（见习题 5.47–5.49），但它们都由“指数—均匀”变换驱动。
-
 遗憾的是这一变换有局限。例如我们不能用它生成奇数自由度的 $$\chi^2$$ 随机变量，因而得不到 $$\chi_1^2$$，进而得不到 normal $$(0, 1)$$——一个极其有用的变量。下一小节将回到这个问题。
-
 回忆例 5.6.3（从而 (5.6.5) 中的变换）的基础是概率积分变换，一般可写为
-
 $$
 F_Y^{-1}(u) = y \iff u = \int_{-\infty}^{y} f_y(t)\, dt. \tag{5.6.6}
 $$
-
 把该公式用于指数分布特别方便，因为积分方程有简单解（另见习题 5.59）。但许多情形 (5.6.6) 没有闭式解。于是每次生成随机变量都要求解一个积分方程，实践中可能长得令人望而却步；若用 (5.6.6) 生成 $$\chi_1^2$$ 就会如此。
-
 当 (5.6.6) 无闭式解时，应探索其他选项：其他类型的生成方法与间接方法。作为前者的例子，考虑下例。
-
-> **例 5.6.4（Box–Muller，1958）**
->
-> 生成两个独立的 uniform$(0,1)$$ 随机变量 $$U_1$$ 与 $$U_2$$，并置
+**例 5.6.4（Box–Muller，1958）**
+生成两个独立的 uniform$(0,1)$$ 随机变量 $$U_1$$ 与 $$U_2$$，并置
 >
 > $$
-> R = \sqrt{-2 \log U_1}, \qquad \theta = 2 \pi U_2.
-> $$
+R = \sqrt{-2 \log U_1}, \qquad \theta = 2 \pi U_2.
+$$
 >
 > 则
 >
 > $$
-> X = R \cos \theta \qquad\text{与}\qquad Y = R \sin \theta
-> $$
+X = R \cos \theta \qquad\text{与}\qquad Y = R \sin \theta
+$$
 >
 > 是独立的 normal$(0, 1)$$ 随机变量。因此，尽管我们没有生成单个 $$n(0,1)$$ 随机变量的快速变换，却有生成两个变量的这样的方法。（见习题 5.50。）
-
 遗憾的是，像例 5.6.4 这样的解并不多见；而且它们利用了特定分布的具体结构，作为一般策略适用性较差。事实证明，生成其他连续分布（除已考虑者外）多半最好通过间接方法完成。在探索这些之前，本小节最后看看 (5.6.6) 相当有用的场合——离散随机变量的情形。
-
 若 $$Y$$ 是取值 $$y_1 < y_2 < \cdots < y_k$$ 的离散随机变量，则与 (5.6.6) 类似可写
-
 $$
 P\bigl( F_Y(y_i) \leq U < F_Y(y_{i+1}) \bigr) = F_Y(y_{i+1}) - F_Y(y_i) = P(Y = y_{i+1}). \tag{5.6.7}
 $$
-
 实施 (5.6.7) 来生成离散随机变量相当直接，可总结如下。要生成 $$Y_i \sim F_Y(y)$$：
-
 - a. 生成 $$U \sim \mathrm{uniform}(0, 1)$$；
-
 - b. 若 $$F_y(y_i) \leq U < F_y(y_{i+1})$$，置 $$Y = y_{i+1}$$。
-
 我们定义 $$y_0 = -\infty$$ 且 $$F_Y(y_0) = 0$$。
-
-> **例 5.6.5（二项随机变量的生成）**
->
-> 例如要生成 $$Y \sim \mathrm{binomial}\bigl( 4, \tfrac{5}{8} \bigr)$$：生成 $$U \sim \mathrm{uniform}(0, 1)$$ 并置
->
-> $$
+**例 5.6.5（二项随机变量的生成）**
+例如要生成 $$Y \sim \mathrm{binomial}\bigl( 4, \tfrac{5}{8} \bigr)$$：生成 $$U \sim \mathrm{uniform}(0, 1)$$ 并置
+$$
 > Y = \begin{cases}
 > 0 & \text{若}\ 0 \leq U < 0.020,\\
 > 1 & \text{若}\ 0.020 \leq U < 0.152,\\
@@ -1645,137 +1416,82 @@ $$
 > 4 & \text{若}\ 0.847 \leq U \leq 1.
 > \end{cases} \tag{5.6.8}
 > $$
-
 算法 (5.6.8) 在离散随机变量的值域无限（如泊松或负二项）时也有效。虽然理论上这可能要求大量求值，实践并非如此，因为有简单聪明的加速办法：例如与其按 $$1, 2, \ldots$$ 的顺序检查每个 $$y_i$$，不如从靠近均值的 $$y_i$$ 开始检查要快得多（见 Ripley 1987, Section 3.3 与习题 5.55）。
-
 我们将看到模拟方法学的许多用途。作为开端，考虑下面对泊松分布的探索——它是 10.1.4 节将见的参数自助法（parametric bootstrap）的一个版本。
-
-> **例 5.6.6（泊松方差的分布）**
->
-> 若 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{Poisson}(\lambda)$$，则由定理 5.2.7 或 5.2.11，$$\sum X_i$$ 服从 $$\mathrm{Poisson}(n\lambda)$$，因而描述样本均值 $$\bar{X}$$ 的分布相当容易。然而描述样本方差 $$S^2 = \frac{1}{n-1} \sum (X_i - \bar{X})^2$$ 的分布却非易事。
->
-> 不过 $$S^2$$ 的分布很容易模拟。例如取 $$n = 5$$，从 $$\mathrm{Poisson}(\lambda)$$ 分布生成 1,000 个容量为 5 的样本；图 5.6.2 展示了这些样本的直方图。而且模拟样本还可用于计算关于 $$S^2$$ 的概率：若 $$S_i^2$$ 是从第 $$i$$ 个模拟样本算出的值，则当 $$M \to \infty$$ 时
->
-> $$
+**例 5.6.6（泊松方差的分布）**
+若 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{Poisson}(\lambda)$$，则由定理 5.2.7 或 5.2.11，$$\sum X_i$$ 服从 $$\mathrm{Poisson}(n\lambda)$$，因而描述样本均值 $$\bar{X}$$ 的分布相当容易。然而描述样本方差 $$S^2 = \frac{1}{n-1} \sum (X_i - \bar{X})^2$$ 的分布却非易事。
+不过 $$S^2$$ 的分布很容易模拟。例如取 $$n = 5$$，从 $$\mathrm{Poisson}(\lambda)$$ 分布生成 1,000 个容量为 5 的样本；图 5.6.2 展示了这些样本的直方图。而且模拟样本还可用于计算关于 $$S^2$$ 的概率：若 $$S_i^2$$ 是从第 $$i$$ 个模拟样本算出的值，则当 $$M \to \infty$$ 时
+$$
 > \frac{1}{M} \sum_{i=1}^{M} I\bigl( S_i^2 \geq a \bigr) \to P_{\lambda}\bigl( S^2 \geq a \bigr).
 > $$
->
-> 为演示这类方法学的用途，考虑 1984 年 8 月下旬取自哈德逊河的鲥鱼幼体计数样本：
->
-> $$
+为演示这类方法学的用途，考虑 1984 年 8 月下旬取自哈德逊河的鲥鱼幼体计数样本：
+$$
 > 19,\ 32,\ 29,\ 13,\ 8,\ 12,\ 16,\ 20,\ 14,\ 17,\ 22,\ 18,\ 23. \tag{5.6.9}
 > $$
->
-> 若假设幼体在河中随机均匀分布，则定尺寸渔网收集的数目应服从泊松分布。这一论证来自泊松公设的空间版本（见第 2 章杂记）。为检验这一假设是否站得住，可以检查观测数据的均值与方差是否与泊松假设一致。
->
-> 对 (5.6.9) 的数据，$$\bar{x} = 18.69$$，$$s^2 = 44.90$$。泊松假设下我们预期这两个值相同；当然由于抽样变异性它们不会恰好相同，可以用模拟了解预期的情况。图 5.6.2 中我们从 $$\lambda = 18.69$$ 的泊松分布模拟了 5,000 个 $$n = 13$$ 的样本，并构造了 $$S^2$$ 的相对频率直方图。注意观测值 $$S^2 = 44.90$$ 落在分布的尾部：由于 5,000 个 $$S^2$$ 值中有 27 个大于 44.90，可以估计
->
-> $$
+若假设幼体在河中随机均匀分布，则定尺寸渔网收集的数目应服从泊松分布。这一论证来自泊松公设的空间版本（见第 2 章杂记）。为检验这一假设是否站得住，可以检查观测数据的均值与方差是否与泊松假设一致。
+对 (5.6.9) 的数据，$$\bar{x} = 18.69$$，$$s^2 = 44.90$$。泊松假设下我们预期这两个值相同；当然由于抽样变异性它们不会恰好相同，可以用模拟了解预期的情况。图 5.6.2 中我们从 $$\lambda = 18.69$$ 的泊松分布模拟了 5,000 个 $$n = 13$$ 的样本，并构造了 $$S^2$$ 的相对频率直方图。注意观测值 $$S^2 = 44.90$$ 落在分布的尾部：由于 5,000 个 $$S^2$$ 值中有 27 个大于 44.90，可以估计
+$$
 > P\bigl( S^2 > 44.90 \mid \lambda = 18.69 \bigr) = \frac{1}{5000} \sum_{i=1}^{5000} I\bigl( S_i^2 > 44.90 \bigr) = \frac{27}{5000} = 0.0054,
 > $$
->
-> 这使我们质疑泊松假设；见习题 5.54。（这一发现催生了极其拙劣的双语双关语：“哈德逊河有点不对劲——泊松失灵了。”）
-
+这使我们质疑泊松假设；见习题 5.54。（这一发现催生了极其拙劣的双语双关语：“哈德逊河有点不对劲——泊松失灵了。”）
 ![ch05_fig_5_6_2](fig/ch05_fig_5_6_2.png)
-
 图 5.6.2　 来自 $$\lambda = 18.69$$ 泊松分布的 5,000 个容量 13 样本的样本方差 $$S^2$$ 的直方图；5,000 个值的均值与标准差分别为 18.86 与 7.68（原书 Figure 5.6.2）
-
 ### 5.6.2 间接方法（Indirect Methods）
-
 当找不到容易的直接变换来生成所需随机变量时，一种极其有力的间接方法——接受/拒绝算法（Accept/Reject Algorithm）——常能提供解决方案。
-
 接受/拒绝算法背后的想法，也许最好通过一个简单例子解释。
-
-> **例 5.6.7（贝塔随机变量的生成——I）**
->
-> 假设目标是生成 $$Y \sim \mathrm{beta}(a, b)$$。若 $$a$$ 与 $$b$$ 都是整数，可用直接变换法 (5.6.5)；但若 $$a$$、$$b$$ 不是整数，该方法失效。为具体起见，设 $$a = 2.7$$、$$b = 6.3$$。图 5.6.3 中我们把贝塔密度 $$f_Y(y)$$ 放进一个边长为 1 与 $$c \geq \max_y f_Y(y)$$ 的方框。现考虑如下计算 $$P(Y \leq y)$$ 的方法：若 $$(U, V)$$ 是独立的 uniform $$(0,1)$$ 随机变量，则阴影区域的概率为
->
-> $$
+**例 5.6.7（贝塔随机变量的生成——I）**
+假设目标是生成 $$Y \sim \mathrm{beta}(a, b)$$。若 $$a$$ 与 $$b$$ 都是整数，可用直接变换法 (5.6.5)；但若 $$a$$、$$b$$ 不是整数，该方法失效。为具体起见，设 $$a = 2.7$$、$$b = 6.3$$。图 5.6.3 中我们把贝塔密度 $$f_Y(y)$$ 放进一个边长为 1 与 $$c \geq \max_y f_Y(y)$$ 的方框。现考虑如下计算 $$P(Y \leq y)$$ 的方法：若 $$(U, V)$$ 是独立的 uniform $$(0,1)$$ 随机变量，则阴影区域的概率为
+$$
 > P\Biggl( V \leq y,\ U \leq \frac{1}{c}\, f_Y(V) \Biggr) = \int_0^y \int_0^{f_Y(v)/c} du\, dv = \frac{1}{c} \int_0^{y} f_Y(v)\, dv = \frac{1}{c}\, P(Y \leq y). \tag{5.6.10}
 > $$
->
-> 于是可以从均匀概率计算贝塔概率，这提示我们可以从均匀随机变量生成贝塔随机变量。
->
-> 由 (5.6.10)，取 $$y = 1$$ 得 $$\tfrac{1}{c} = P\bigl( U < \tfrac{1}{c} f_Y(V) \bigr)$$，故
->
-> $$
+于是可以从均匀概率计算贝塔概率，这提示我们可以从均匀随机变量生成贝塔随机变量。
+由 (5.6.10)，取 $$y = 1$$ 得 $$\tfrac{1}{c} = P\bigl( U < \tfrac{1}{c} f_Y(V) \bigr)$$，故
+$$
 > P(Y \leq y) = \frac{P\bigl( V \leq y,\ U \leq \frac{1}{c} f_Y(V) \bigr)}{P\bigl( U \leq \frac{1}{c} f_Y(V) \bigr)} = P\Biggl( V \leq y \,\Bigg\vert \, U \leq \frac{1}{c}\, f_Y(V) \Biggr), \tag{5.6.11}
 > $$
->
-> 这提示了下面的算法：
->
-> 要生成 $$Y \sim \mathrm{beta}(a, b)$$：
->
-> - a. 生成独立的 $$(U, V) \sim \mathrm{uniform}(0, 1)$$；
->
-> - b. 若 $$U < \frac{1}{c}\, f_Y(V)$$，置 $$Y = V$$；否则回到步骤 a。
->
->
-> 只要 $$c \geq \max_y f_Y(y)$$，该算法就生成 $$\mathrm{beta}(a, b)$$ 随机变量；事实上可以推广到任何支撑有界的密度（习题 5.59 与 5.60）。
-
+这提示了下面的算法：
+要生成 $$Y \sim \mathrm{beta}(a, b)$$：
+- a. 生成独立的 $$(U, V) \sim \mathrm{uniform}(0, 1)$$；
+- b. 若 $$U < \frac{1}{c}\, f_Y(V)$$，置 $$Y = V$$；否则回到步骤 a。
+只要 $$c \geq \max_y f_Y(y)$$，该算法就生成 $$\mathrm{beta}(a, b)$$ 随机变量；事实上可以推广到任何支撑有界的密度（习题 5.59 与 5.60）。
 ![ch05_fig_5_6_3](fig/ch05_fig_5_6_3.png)
-
 图 5.6.3　 $$a = 2.7$$、$$b = 6.3$$ 的贝塔分布，$$c = \max_y f_Y(y) = 2.669$$；均匀随机变量 $$V$$ 给出横坐标，用 $$U$$ 检验是否在密度之下（原书 Figure 5.6.3）
-
 显然 $$c$$ 的最优选择是 $$c = \max_y f_Y(y)$$。原因在于：该算法是开放式的——我们不知道得到一个 $$Y$$ 变量需要多少对 $$(U, V)$$。定义
-
 $$
 N = \text{得到一个}\ Y\ \text{所需的}\ (U, V)\ \text{对数} \tag{5.6.12}
 $$
-
 并回忆 $$\tfrac{1}{c} = P\bigl( U \leq \tfrac{1}{c} f_Y(V) \bigr)$$，则
-
 $$
 P(N = 1) = \frac{1}{c}, \qquad P(N = 2) = \frac{1}{c}\, \Bigl( 1 - \frac{1}{c} \Bigr), \qquad \ldots
 $$
-
 故 $$N$$ 是几何随机变量。于是生成一个 $$Y$$ 平均需要 $$\mathrm{E}(N) = c$$ 对 $$(U, V)$$；在此意义上，最小化 $$c$$ 即优化算法。
-
 考察图 5.6.3 可见，算法在 $$U > \tfrac{1}{c} f_Y(V)$$ 的区域是浪费的，因为我们用均匀随机变量（$$V$$）去获得贝塔随机变量（$$Y$$）。为改进，可以从更接近贝塔的东西出发。
-
 算法的检验步骤（步骤 b）可视为检验随机变量 $$V$$ 是否“看起来像”可能来自密度 $$f_Y$$。设 $$V \sim f_V$$，并计算
-
 $$
 M = \sup_y \frac{f_Y(y)}{f_V(y)} < \infty.
 $$
-
 步骤 (b) 的推广是把 $$U \sim \mathrm{uniform}(0, 1)$$ 与 $$\frac{1}{M}\, \frac{f_Y(V)}{f_V(V)}$$ 比较：该比值越大，$$V$$ 就越“看起来像”来自密度 $$f_Y$$，$$U < \frac{1}{M}\, \frac{f_Y(V)}{f_V(V)}$$ 的可能性越大。这是一般接受/拒绝算法的基础。
-
 ### 5.6.3 接受/拒绝算法（The Accept/Reject Algorithm）
-
-> **定理 5.6.8（接受/拒绝算法）**
->
-> 设 $$Y \sim f_Y(y)$$，$$V \sim f_V(v)$$，$$f_Y$$ 与 $$f_V$$ 有公共支撑，且
->
-> $$
+**定理 5.6.8（接受/拒绝算法）**
+设 $$Y \sim f_Y(y)$$，$$V \sim f_V(v)$$，$$f_Y$$ 与 $$f_V$$ 有公共支撑，且
+$$
 > M = \sup_y \frac{f_Y(y)}{f_V(y)} < \infty.
 > $$
->
-> 要生成随机变量 $$Y \sim f_Y$$：
->
-> - a. 生成独立的 $$U \sim \mathrm{uniform}(0, 1)$$，$$V \sim f_V$$；
->
-> - b. 若 $$U < \frac{1}{M}\, \frac{f_Y(V)}{f_V(V)}$$，置 $$Y = V$$；否则回到步骤 1。
->
->
-> **证明**　生成的随机变量 $$Y$$ 的 cdf 为
->
-> $$
+要生成随机变量 $$Y \sim f_Y$$：
+- a. 生成独立的 $$U \sim \mathrm{uniform}(0, 1)$$，$$V \sim f_V$$；
+- b. 若 $$U < \frac{1}{M}\, \frac{f_Y(V)}{f_V(V)}$$，置 $$Y = V$$；否则回到步骤 1。
+**证明**　生成的随机变量 $$Y$$ 的 cdf 为
+$$
 > P(Y \leq y) = P(V \leq y \mid \text{停止}) = P\Biggl( V \leq y \,\Bigg\vert \, U < \frac{1}{M}\, \frac{f_Y(V)}{f_V(V)} \Biggr) = \frac{P\bigl( V \leq y,\ U < \frac{1}{M}\, \frac{f_Y(V)}{f_V(V)} \bigr)}{P\bigl( U < \frac{1}{M}\, \frac{f_Y(V)}{f_V(V)} \bigr)}
 > $$
->
-> $$
+$$
 > = \frac{\displaystyle\int_{-\infty}^{y} \int_0^{\frac{1}{M}\, \frac{f_Y(v)}{f_V(v)}}\, du\, f_V(v)\, dv}{\displaystyle\int_{-\infty}^{\infty} \int_0^{\frac{1}{M}\, \frac{f_Y(v)}{f_V(v)}}\, du\, f_V(v)\, dv} = \int_{-\infty}^{y} f_Y(v)\, dv,
 > $$
->
-> 这正是所需的 cdf。 ∎
-
+这正是所需的 cdf。 ∎
 另注意
-
 $$
 M = \sup_y\, \frac{f_Y(y)}{f_V(y)} = \Bigl[ P\Bigl( U < \frac{1}{M}\, \frac{f_Y(V)}{f_V(V)} \Bigr) \Bigr]^{-1} = \frac{1}{P(\text{停止})},
 $$
-
 故生成一个 $$Y$$ 所需的试验次数是 geometric$(1/M)$$ 随机变量，$$M$$ 是期望试验次数。
 
 > **例 5.6.9（贝塔随机变量的生成——II）**
@@ -1806,14 +1522,14 @@ $$M < \infty$$ 这一要求的重要性必须强调。它可以解释为要求 $
 > - 1. 生成 $$U_i \sim \mathrm{uniform}(0, 1)$$，$$V_i \sim f_V$$，并计算
 >
 >   $$
->   \rho_i = \min\Biggl\{ \frac{f_Y(V_i)}{f_V(V_i)}\, \cdot\, \frac{f_V(Z_{i-1})}{f_Y(Z_{i-1})},\ 1 \Biggr\}.
->   $$
+  \rho_i = \min\Biggl\{ \frac{f_Y(V_i)}{f_V(V_i)}\, \cdot\, \frac{f_V(Z_{i-1})}{f_Y(Z_{i-1})},\ 1 \Biggr\}.
+  $$
 >
 > - 2. 置
 >
 >   $$
->   Z_i = \begin{cases} V_i & \text{若}\ U_i \leq \rho_i,\\ Z_{i-1} & \text{若}\ U_i > \rho_i. \end{cases}
->   $$
+  Z_i = \begin{cases} V_i & \text{若}\ U_i \leq \rho_i,\\ Z_{i-1} & \text{若}\ U_i > \rho_i. \end{cases}
+  $$
 >
 >
 > 则当 $$i \to \infty$$ 时，$$Z_i$$ 依分布收敛到 $$Y$$。
@@ -1947,37 +1663,25 @@ $$
 **5.22** 设 $$X$$ 与 $$Y$$ 是 iid $$n(0, 1)$$ 随机变量，定义 $$Z = \min(X, Y)$$。证明 $$Z^2 \sim \chi_1^2$$。
 
 **5.23** 设 $$U_i$$（$$i = 1, 2, \ldots$$）是独立的 uniform$(0, 1)$$ 随机变量，$$X$$ 的分布为
-
 $$
 P(X = x) = \frac{c}{x!}, \qquad x = 1, 2, 3, \ldots
 $$
-
 其中 $$c = 1/(e - 1)$$。求
-
 $$
 Z = \min\{U_1, \ldots, U_X\}
 $$
-
 的分布。（提示：注意 $$Z \mid X = x$$ 的分布是容量 $$x$$ 样本的第一（最小）次序统计量的分布。）
-
 **5.24** 设 $$X_1, \ldots, X_n$$ 是来自 pdf 为
-
 $$
 f_X(x) = \begin{cases} 1/\theta & \text{若}\ 0 < x < \theta,\\ 0 & \text{其他} \end{cases}
 $$
-
 的总体的随机样本。设 $$X_{(1)} < \cdots < X_{(n)}$$ 为次序统计量。证明 $$X_{(1)}/X_{(n)}$$ 与 $$X_{(n)}$$ 独立。
-
 **5.25** 作为上题的推广，设 $$X_1, \ldots, X_n$$ 是 iid，pdf 为
-
 $$
 f_X(x) = \begin{cases} \dfrac{a}{\theta^a}\, x^{a - 1} & \text{若}\ 0 < x < \theta,\\[4pt] 0 & \text{其他}. \end{cases}
 $$
-
 设 $$X_{(1)} < \cdots < X_{(n)}$$ 为次序统计量。证明 $$X_{(1)}/X_{(2)},\ X_{(2)}/X_{(3)},\ \ldots,\ X_{(n-1)}/X_{(n)}$$ 与 $$X_{(n)}$$ 相互独立，并求各自的分布。
-
 **5.26** 完成定理 5.4.6 的证明。(a) 设 $$U$$ 为计 $$X_1, \ldots, X_n$$ 中小于等于 $$u$$ 的个数的随机变量，$$V$$ 为计大于 $$u$$ 且小于等于 $$v$$ 的个数的随机变量。证明 $$(U, V, n - U - V)$$ 是 $$n$$ 次试验、格子概率 $$\bigl( F_X(u),\ F_X(v) - F_X(u),\ 1 - F_X(v) \bigr)$$ 的多项随机向量。(b) 证明 $$X_{(i)}$$ 与 $$X_{(j)}$$ 的联合 cdf 可表示为
-
 $$
 \begin{aligned}
 F_{X_{(i)}, X_{(j)}}(u, v) &= P\bigl( U \geq i,\ U + V \geq j \bigr)\\
@@ -1985,119 +1689,72 @@ F_{X_{(i)}, X_{(j)}}(u, v) &= P\bigl( U \geq i,\ U + V \geq j \bigr)\\
 &= \sum_{k=i}^{j-1} \sum_{m=j-k}^{n-k} \frac{n!}{k!\, m!\, (n - k - m)!}\, [F_X(u)]^{k}\, [F_X(v) - F_X(u)]^{m}\, [1 - F_X(v)]^{n - k - m} + P(U \geq j).
 \end{aligned}
 $$
-
 (c) 按 (4.1.3) 计算混合偏导数求联合 pdf。（$$P(U \geq j)$$ 的混合偏导为 0，因为该项只依赖 $$u$$ 不依赖 $$v$$；对其余项，利用 (5.4.5) 一类的关系有大量相消。）
-
 **5.27** 设 $$X_1, \ldots, X_n$$ 是 iid，pdf 为 $$f_X(x)$$、cdf 为 $$F_X(x)$$，$$X_{(1)} < \cdots < X_{(n)}$$ 为次序统计量。(a) 用 $$f_X$$ 与 $$F_X$$ 表示 $$X_{(i)}$$ 在给定 $$X_{(j)}$$ 时的条件 pdf 的表达式；(b) 求 $$V \mid R = r$$ 的 pdf，其中 $$V$$ 与 $$R$$ 在例 5.4.7 中定义。
-
 **5.28** 设 $$X_1, \ldots, X_n$$ 是 iid，pdf 为 $$f_X(x)$$、cdf 为 $$F_X(x)$$，$$X_{(i_1)} < \cdots < X_{(i_l)}$$ 与 $$X_{(j_1)} < \cdots < X_{(j_m)}$$ 是任意两组不相交的次序统计量。用 $$f_X(x)$$ 与 $$F_X(x)$$ 给出下列各量的表达式：(a) $$X_{(i_1)}, \ldots, X_{(i_l)}$$ 的边缘 cdf 与 pdf；(b) $$X_{(i_1)}, \ldots, X_{(i_l)}$$ 在给定 $$X_{(j_1)}, \ldots, X_{(j_m)}$$ 时的条件 cdf 与 pdf。
-
 **5.29** 某小册子制造商把它们按每箱 100 本包装。已知小册子平均重 1 盎司，标准差 0.05 盎司。制造商要计算
-
 $$
 P(\text{100 本小册子重超过 100.4 盎司})，
 $$
-
 该数值有助于发现装箱是否过满。解释如何计算该概率的（近似？）值，并说明所用的相关定理或假设。
-
 **5.30** 若 $$\bar{X}_1$$ 与 $$\bar{X}_2$$ 是来自方差为 $$\sigma^2$$ 的总体的两个容量为 $$n$$ 的独立样本的均值，求 $$n$$ 使 $$P\bigl( \vert \bar{X}_1 - \bar{X}_2\vert  < \sigma/5 \bigr) \approx 0.99$$。论证你的计算。
-
 **5.31** 设 $$\bar{X}$$ 是来自均值 $$\mu$$、方差 $$\sigma^2 = 9$$ 的总体的 100 个观测的均值。求使 $$\bar{X} - \mu$$ 以至少 0.90 的概率落入其中的界限。分别用切比雪夫不等式与中心极限定理，并评论各自的结果。
-
 **5.32** 设 $$X_1, X_2, \ldots$$ 是依概率收敛到常数 $$a$$ 的随机变量序列，且 $$P(X_i > 0) = 1$$（对一切 $$i$$）。(a) 验证由 $$Y_i = \sqrt{X_i}$$ 与 $$Y_i' = a / X_i$$ 定义的序列依概率收敛；(b) 用 (a) 的结果证明例 5.5.18 所用的事实：$$\sigma / S_n$$ 依概率收敛到 1。
-
 **5.33** 设 $$X_n$$ 是依分布收敛到随机变量 $$X$$ 的随机变量序列，$$Y_n$$ 是满足“对任意有限数 $$c$$，$$\lim_{n \to \infty} P(Y_n > c) = 1$$”的随机变量序列。证明对任意有限数 $$c$$，
-
 $$
 \lim_{n \to \infty} P(X_n + Y_n > c) = 1.
 $$
-
 （这是 10.3.2 节检验的功效性质讨论中所用的一类结果。）
-
 **5.34** 设 $$X_1, \ldots, X_n$$ 是来自均值 $$\mu$$、方差 $$\sigma^2$$ 的总体的随机样本。证明
-
 $$
 \mathrm{E}\Biggl( \frac{\sqrt{n}\, (\bar{X}_n - \mu)}{\sigma} \Biggr) = 0 \qquad\text{与}\qquad \mathrm{Var}\Biggl( \frac{\sqrt{n}\, (\bar{X}_n - \mu)}{\sigma} \Biggr) = 1.
 $$
-
 即中心极限定理中 $$\bar{X}_n$$ 的标准化给出与极限 $$n(0,1)$$ 分布具有相同均值与方差的随机变量。
-
 **5.35** 斯特林公式（习题 1.28 导出）给出了阶乘的近似，用 CLT 可以轻松导出它。(a) 论证：若 $$X_i \sim \mathrm{exponential}(1)$$（$$i = 1, 2, \ldots$$）独立，则对每个 $$x$$，
-
 $$
 P\Biggl( \frac{\bar{X}_n - 1}{1/\sqrt{n}} \leq x \Biggr) \to P(Z \leq x),
 $$
-
 其中 $$Z$$ 是标准正态随机变量。(b) 证明：对 (a) 中的近似两边求导，提示
-
 $$
 \frac{\sqrt{n}}{\Gamma(n)}\, \bigl( x \sqrt{n} + n \bigr)^{n - 1}\, e^{-(x \sqrt{n} + n)} \approx \frac{1}{\sqrt{2\pi}}\, e^{-x^2/2},
 $$
-
 且取 $$x = 0$$ 即得斯特林公式。
-
 **5.36** 已知 $$N = n$$ 时 $$Y$$ 的条件分布为 $$\chi_n^2$$，$$N$$ 的无条件分布为 $$\mathrm{Poisson}(\theta)$$。(a) 计算 $$\mathrm{E} Y$$ 与 $$\mathrm{Var} Y$$（无条件矩）；(b) 证明当 $$\theta \to \infty$$ 时 $$(Y - \mathrm{E} Y)/\sqrt{\mathrm{Var} Y} \xrightarrow{d} n(0, 1)$$。
-
 **5.37** 例 5.5.16 给出了负二项分布的正态近似。正如例 3.3.2 对二项分布的正态近似，该近似可以用“连续性校正”改进。设 $$X_i$$ 如例 5.5.16 所定义，令 $$V_n = \sum_{i=1}^{n} X_i$$。对 $$n = 10$$、$$p = 0.7$$、$$r = 2$$，用下列三种方法分别计算 $$P(V_n = v)$$（$$v = 0, 1, \ldots, 10$$）：(a) 精确计算；(b) 例 5.5.16 所给的正态近似；(c) 带连续性校正的正态近似。
-
 **5.38** 习题 3.45 中所建立不等式的下列推广，可用于建立 SLLN（见杂记 5.8.4）。设 $$X_1, \ldots, X_n$$ 是 iid，mgf 为 $$M_X(t)$$（$$-h < t < h$$），$$S_n = \sum_{i=1}^{n} X_i$$，$$\bar{X}_n = S_n / n$$。(a) 证明：对 $$0 < t < h$$，$$P(S_n > a) \leq e^{-at}\, [M_X(t)]^{n}$$；对 $$-h < t < 0$$，$$P(S_n \leq a) \leq e^{-at}\, [M_X(t)]^{n}$$。(b) 用 $$M_X(0) = 1$$ 与 $$M_X'(0) = \mathrm{E} X$$ 证明：若 $$\mathrm{E} X < 0$$，则存在 $$0 < c < 1$$ 使 $$P(S_n > a) \leq c^{n}$$。对 $$P(S_n \leq a)$$ 建立类似界。(c) 定义 $$Y_i = X_i - \mu - \varepsilon$$ 并用上述论证（取 $$a = 0$$）建立 $$P(\bar{X}_n - \mu > \varepsilon) \leq c^{n}$$。(d) 再定义 $$Y_i = -X_i + \mu - \varepsilon$$，建立与 (c) 类似的不等式，把两者结合得
-
 $$
 P\bigl( \vert \bar{X}_n - \mu\vert  > \varepsilon \bigr) \leq 2 c^{n} \qquad \text{（某}\ 0 < c < 1\text{）}.
 $$
-
 **5.39** 本习题及接下来两题考察收敛的若干数学细节。(a) 证明定理 5.5.4。（提示：由于 $$h$$ 连续，给定 $$\varepsilon > 0$$ 可找到 $$\delta$$ 使 $$\vert x_n - x\vert  < \delta$$ 时 $$\vert h(x_n) - h(x)\vert  < \varepsilon$$。把这一事实翻译成概率陈述。）(b) 在例 5.5.8 中，找出几乎必然收敛（即点态收敛）的 $$Y_i$$ 子序列。
-
 **5.40** 对 $$X_n$$ 与 $$X$$ 为连续随机变量的情形证明定理 5.5.12。(a) 给定 $$t$$ 与 $$\varepsilon$$，证明 $$P(X \leq t - \varepsilon) \leq P(X_n \leq t) + P(\vert X_n - X\vert  \geq \varepsilon)$$；这给出 $$P(X_n \leq t)$$ 的下界；(b) 用类似策略得 $$P(X_n \leq t)$$ 的上界；(c) 通过夹逼，推出 $$P(X_n \leq t) \to P(X \leq t)$$。
-
 **5.41** 证明定理 5.5.13，即证明
-
 $$
 P\bigl( \vert X_n - \mu\vert  > \varepsilon \bigr) \to 0\ \text{（对每个}\ \varepsilon\text{）} \iff P(X_n \leq x) \to \begin{cases} 0 & \text{若}\ x < \mu,\\ 1 & \text{若}\ x \geq \mu. \end{cases}
 $$
-
 (a) 置 $$\varepsilon = \vert x - \mu\vert $$：若 $$x > \mu$$ 则 $$P(X_n \leq x) \geq P(\vert X_n - \mu\vert  \leq \varepsilon)$$；若 $$x < \mu$$ 则 $$P(X_n \leq x) \leq P(\vert X_n - \mu\vert  \geq \varepsilon)$$。推出 $$\Rightarrow$$ 方向。(b) 用 $$\{x : \vert x - \mu\vert  > \varepsilon\} = \{x : x - \mu < -\varepsilon\} \cup \{x : x - \mu > \varepsilon\}$$ 推出 $$\Leftarrow$$ 方向。（上述结果的详细处理见 Billingsley 1995, Section 25。）
-
 **5.42** 类似例 5.5.11，设 $$X_1, X_2, \ldots$$ 是 iid $$f$$，$$X_{(n)} = \max_{1 \leq i \leq n} X_i$$。(a) 若 $$f$$ 是 $$\mathrm{beta}(1, \beta)$$，求使 $$n^{\nu}\, (1 - X_{(n)})$$ 依分布收敛的 $$\nu$$ 值；(b) 若 $$f$$ 是 $$\mathrm{exponential}(1)$$，求使 $$X_{(n)} - a_n$$ 依分布收敛的序列 $$a_n$$。
-
 **5.43** 补足定理 5.5.24 证明的细节。(a) 证明若 $$\sqrt{n}\, (Y_n - \mu) \xrightarrow{d} n(0, \sigma^2)$$，则 $$Y_n \xrightarrow{P} \mu$$；(b) 给出斯卢茨基定理（定理 5.5.17）应用的细节。
-
 **5.44** 设 $$X_i$$（$$i = 1, 2, \ldots$$）是独立的 $$\mathrm{Bernoulli}(p)$$ 随机变量，$$Y_n = \frac{1}{n} \sum_{i=1}^{n} X_i$$。(a) 证明 $$\sqrt{n}\, (Y_n - p) \xrightarrow{d} n\bigl[ 0,\ p(1 - p) \bigr]$$；(b) 证明对 $$p \neq \tfrac{1}{2}$$，方差估计 $$Y_n(1 - Y_n)$$ 满足 $$\sqrt{n}\, \bigl[ Y_n(1 - Y_n) - p(1 - p) \bigr] \xrightarrow{d} n\bigl[ 0,\ (1 - 2p)^2\, p(1 - p) \bigr]$$；(c) 证明对 $$p = \tfrac{1}{2}$$，$$n\, \Bigl[ Y_n(1 - Y_n) - \tfrac{1}{4} \Bigr] \xrightarrow{d} -\tfrac{1}{4}\, \chi_1^2$$。（若这看起来奇怪，注意 $$Y_n(1 - Y_n) \leq \tfrac{1}{4}$$，故左端恒为负。等价形式是 $$4n\, \bigl[ \tfrac{1}{4} - Y_n(1 - Y_n) \bigr] \xrightarrow{d} \chi_1^2$$。）
-
 **5.45** 对例 5.6.1 的情形，计算至少 75% 的元件工作 150 小时的概率，当：(a) $$c = 300$$，$$X \sim \mathrm{gamma}(a, b)$$，$$a = 4$$，$$b = 5$$；(b) $$c = 100$$，$$X \sim \mathrm{gamma}(a, b)$$，$$a = 20$$，$$b = 5$$；(c) $$c = 100$$，$$X \sim \mathrm{gamma}(a, b)$$，$$a = 20.7$$，$$b = 5$$。提示：(a) 与 (b) 中伽马积分可以闭式求值，尽管 (b) 或许不值得费这个劲；(c) 的积分没有闭式表达式，须通过数值积分或模拟求值。
-
 **5.46** 参照习题 5.45，把你的答案与二项分布正态近似所得结果比较（见例 3.3.2）。
-
 **5.47** 验证 (5.6.5) 中各随机变量的分布。
-
 **5.48** 用类似 (5.6.5) 的策略，说明如何生成 $$F_{m,n}$$ 随机变量（$$m$$ 与 $$n$$ 都是偶整数）。
-
 **5.49** 设 $$U \sim \mathrm{uniform}(0, 1)$$。(a) 证明 $$-\log U$$ 与 $$-\log(1 - U)$$ 都是指数随机变量；(b) 证明 $$X = \log \dfrac{u}{1 - u}$$ 是 $$\mathrm{logistic}(0, 1)$$ 随机变量；(c) 说明如何生成 $$\mathrm{logistic}(\mu, \beta)$$ 随机变量。
-
 **5.50** 生成正态伪随机变量的 Box–Muller 方法（例 5.6.4）基于变换
-
 $$
 X_1 = \cos(2\pi U_1)\, \sqrt{-2 \log U_2}, \qquad X_2 = \sin(2\pi U_1)\, \sqrt{-2 \log U_2},
 $$
-
 其中 $$U_1$$ 与 $$U_2$$ 是 iid uniform$(0,1)$$。证明 $$X_1$$ 与 $$X_2$$ 是独立的 $$n(0, 1)$$ 随机变量。
 
 **5.51** 由均匀随机变量生成伪随机标准正态变量的早期方法之一（并非较好的方法）是取 $$X = \sum_{i=1}^{12} U_i - 6$$，其中诸 $$U_i$$ 是 iid uniform$(0, 1)$$。(a) 论证 $$X$$ 近似为 $$n(0, 1)$$；(b) 你能想到近似在哪些明显的地方失效吗？(c) 通过比较前四阶矩考察近似的好坏。（四阶矩是 $$29/10$$，计算冗长——mgf 与计算机代数会有帮助；见例 12.6.6。）
-
 **5.52** 对下列每个分布写出生成所示随机变量的算法。(a) $$Y \sim \mathrm{binomial}\bigl( 8, \tfrac{2}{3} \bigr)$$；(b) $$Y \sim \mathrm{hypergeometric}(N = 10, M = 8, K = 4)$$；(c) $$Y \sim \mathrm{negative\ binomial}\bigl( 5, \tfrac{1}{3} \bigr)$$。
-
 **5.53** 对上一题的每个分布：(a) 生成 1,000 个所示分布的随机变量；(b) 把生成随机变量的均值、方差与直方图同理论值比较。
-
 **5.54** 参照例 5.6.6：另一批鲥鱼幼体计数样本的数据为
-
 $$
 158,\ 143,\ 106,\ 57,\ 97,\ 80,\ 109,\ 109,\ 350,\ 224,\ 109,\ 214,\ 84.
 $$
-
 (a) 用例 5.6.6 的技术构造 $$S^2$$ 的模拟分布，看泊松计数的假设是否站得住；(b) 泊松假设失效（方差增大）的一个可能解释是“幼体在河中均匀分布”这一假设失效。若幼体趋于聚块，负二项 $$\mathrm{negative\ binomial}(r, p)$$ 分布（均值 $$\mu = r\, \frac{1 - p}{p}$$，方差 $$\mu + \frac{\mu^2}{r}$$）是合理的替代模型。取 $$\mu = \bar{x}$$，什么 $$r$$ 值使模拟分布与数据一致？
-
 **5.55** 设用 (5.6.7) 的方法生成随机变量 $$Y$$，其中 $$y_i = i$$（$$i = 0, 1, 2, \ldots$$）。证明期望比较次数为 $$\mathrm{E}(Y + 1)$$。（提示：习题 2.14。）
-
 **5.56** 设 $$Y$$ 服从柯西分布 $$f_Y(y) = \dfrac{1}{\pi}\, \dfrac{1}{1 + y^2}$$，$$-\infty < y < \infty$$。(a) 证明 $$F_Y(y) = \dfrac{1}{\pi} \tan^{-1}(y) + \dfrac{1}{2}$$；(b) 说明如何从 uniform$(0, 1)$$ 随机变量出发模拟 $$\mathrm{Cauchy}(a, b)$$ 随机变量。（相关结果见习题 2.12。）
 
 **5.57** Park 等 (1996) 描述了一种基于如下方案生成相关二元变量的方法。设 $$X_1, X_2, X_3$$ 是均值分别为 $$\lambda_1, \lambda_2, \lambda_3$$ 的独立泊松随机变量，构造随机变量
@@ -2119,93 +1776,57 @@ $$
 $$
 
 **5.58** 设 $$U_1, U_2, \ldots, U_n$$ 是 iid uniform$(0, 1)$$ 随机变量，$$S_n = \sum_{i=1}^{n} U_i$$。定义随机变量
-
 $$
 N = \min\{k : S_k > 1\}.
 $$
-
 (a) 证明 $$P(S_k \leq t) = t^k / k!$$；(b) 证明 $$P(N = n) = P(S_{n-1} < 1) - P(S_n < 1)$$，且出乎意料地 $$\mathrm{E}(N) = e$$（自然对数的底）；(c) 用 (b) 的结果通过模拟计算 $$e$$ 的值；(d) $$n$$ 要多大，才能使你有 95% 的把握得到 $$e$$ 的前四位数字？（Russell (1991) 把该问题归于 Gnedenko (1978)，描述了这样一个模拟实验。）
-
 **5.59** 证明例 5.6.7 的算法生成 $$\mathrm{beta}(a, b)$$ 随机变量。
-
 **5.60** 把例 5.6.7 的算法推广到 $$[0, 1]$$ 上任何连续 pdf，即对 $$[a, b]$$ 上任意有界 pdf $$f(x)$$，定义 $$c = \max_{a \leq x \leq b} f(x)$$。设 $$X$$ 与 $$Y$$ 独立，$$X \sim \mathrm{uniform}(a, b)$$，$$Y \sim \mathrm{uniform}(0, c)$$。设 $$d$$ 是大于 $$b$$ 的数，定义新随机变量
-
 $$
 W = \begin{cases} X & \text{若}\ Y < f(X),\\ d & \text{若}\ Y \geq f(X). \end{cases}
 $$
-
 (a) 证明 $$a \leq w \leq b$$ 时 $$P(W \leq w) = \int_a^{w} f(t)\, dt\, \big/ \bigl[ c\, (b - a) \bigr]$$；(b) 用 (a) 解释如何生成以 $$f(x)$$ 为 pdf 的随机变量。（提示：用几何论证；画图有帮助。）
-
 **5.61** (a) 设要生成 $$Y \sim \mathrm{beta}(a, b)$$，$$a$$、$$b$$ 非整数。证明使用 $$V \sim \mathrm{beta}(\lfloor a \rfloor, \lfloor b \rfloor)$$ 会使 $$M = \sup_y f_Y(y)/f_V(y)$$ 有限。(b) 设要生成 $$Y \sim \mathrm{gamma}(a, b)$$，$$a$$ 非整数。证明使用 $$V \sim \mathrm{gamma}(\lfloor a \rfloor, b)$$ 会使 $$M = \sup_y f_Y(y)/f_V(y)$$ 有限。(c) 证明在 (a)、(b) 中，若 $$V$$ 的参数取 $$\lfloor a \rfloor + 1$$，则 $$M$$ 为无穷。(d) 在 (a)、(b) 中求 $$V$$ 参数的最优值（使 $$\mathrm{E}(N)$$ 最小，见 (5.6.12)）。（回忆 $$\lfloor a \rfloor$$ = 不超过 $$a$$ 的最大整数。）
-
 **5.62** 求 $$M$$ 的值，使接受/拒绝算法能用 $$U \sim \mathrm{uniform}(0,1)$$ 生成 $$Y \sim n(0, 1)$$，取：(a) $$V \sim \mathrm{Cauchy}$$；(b) $$V \sim \mathrm{Double\ Exponential}$$；(c) 比较这两个算法。你推荐哪一个？
-
 **5.63** 用接受/拒绝算法生成 $$Y \sim n(0, 1)$$，也可以生成 $$U \sim \mathrm{uniform}$$、$$V \sim \mathrm{exponential}(\lambda)$$ 并给 $$V$$ 附上随机符号（$$\pm$$ 各半）。$$\lambda$$ 取何值使该算法最优？
-
 **5.64** 与接受-拒绝类似的技术是重要性抽样（importance sampling），对计算分布的特征相当有用。设 $$X \sim f$$，但 pdf $$f$$ 难以模拟。从 $$g$$ 生成 iid 的 $$Y_1, Y_2, \ldots, Y_m$$，对任意函数 $$h$$ 计算 $$\frac{1}{m} \sum_{i=1}^{m} \frac{f(Y_i)}{g(Y_i)}\, h(Y_i)$$。设 $$f$$ 与 $$g$$ 支撑相同，$$\mathrm{Var} h(X) < \infty$$。(a) 证明 $$\mathrm{E}\Bigl[ \frac{1}{m} \sum_{i=1}^{m} \frac{f(Y_i)}{g(Y_i)}\, h(Y_i) \Bigr] = \mathrm{E} h(X)$$；(b) 证明 $$\frac{1}{m} \sum_{i=1}^{m} \frac{f(Y_i)}{g(Y_i)}\, h(Y_i) \xrightarrow{P} \mathrm{E} h(X)$$；(c) 虽然 (a) 的估计量期望正确，实践中更受青睐的是估计量
-
 $$
 \frac{\displaystyle\sum_{i=1}^{m} \frac{f(Y_i)}{g(Y_i)}\, h(Y_i)}{\displaystyle\sum_{j=1}^{m} \frac{f(Y_j)}{g(Y_j)}}.
 $$
-
 证明该估计量依概率收敛到 $$\mathrm{E} h(X)$$；而且证明若 $$h$$ 为常数，该估计量优于 (a) 中的估计量。（Casella and Robert 1996 进一步探讨了该估计量的性质。）
-
 **5.65** 习题 5.64 的重要性抽样算法的一个变体实际上可以从 $$f$$ 产生近似样本。同样设 $$X \sim f$$，从 $$g$$ 生成 iid 的 $$Y_1, Y_2, \ldots, Y_m$$。计算 $$q_i = \bigl[ f(Y_i)/g(Y_i) \bigr] \big/ \Bigl[ \sum_{j=1}^{m} f(Y_j)/g(Y_j) \Bigr]$$。然后从 $$Y_1, \ldots, Y_m$$ 上以 $$P(X^{*} = Y_k) = q_k$$ 的离散分布生成随机变量 $$X^{*}$$。证明 $$X_1^{*}, X_2^{*}, \ldots, X_r^{*}$$ 近似是来自 $$f$$ 的随机样本。提示：证明 $$P(X^{*} \leq x) = \sum_{i=1}^{m} q_i\, I(Y_i \leq x)$$；令 $$m \to \infty$$ 并在分子分母中使用 WLLN。该算法由 Rubin (1988) 称为抽样/重要性重抽样（Sampling/Importance Resampling，SIR）算法，Smith and Gelfand (1992) 称之为加权自助法。
-
 **5.66** 若 $$X_1, \ldots, X_n$$ 是 iid $$n(\mu, \sigma^2)$$，样本均值 $$\bar{X}$$ 的分布是 $$n(\mu, \sigma^2/n)$$。若我们关心使用更稳健的位置估计量（如中位数 (5.4.1)），推导其分布就困难得多。(a) 证明：$$m$$ 是诸 $$X_i$$ 的中位数当且仅当 $$(m - \mu)/\sigma$$ 是 $$(X_i - \mu)/\sigma$$ 的中位数。因此只需考虑来自 $$n(0, 1)$$ 样本的中位数分布。(b) 对来自 $$n(0, 1)$$ 的容量 $$n = 15$$ 样本，模拟中位数 $$m$$ 的分布；(c) 把 (b) 中的分布与中位数的渐近分布 $$\sqrt{n}\, (m - \mu) \sim n\bigl[ 0,\ 1/4 f^2(0) \bigr]$$（$$f$$ 为 pdf）比较。$$n = 15$$ 足够大到渐近有效吗？
-
 **5.67** 许多情形下 Metropolis 算法是首选，因为 (i) 没有满足接受/拒绝上确界条件的明显候选密度，或 (ii) 上确界条件难以验证，或 (iii) 惰性使我们以计算能力替代脑力。对下列每种情形，说明如何实施 Metropolis 算法从指定分布生成容量 100 的样本：(a) $$X \sim \frac{1}{\sigma} f\bigl( (x - \mu)/\sigma \bigr)$$，$$f$$ = 自由度 $$\nu$$ 的 Student 氏 $$t$$，$$\nu$$、$$\mu$$、$$\sigma$$ 已知；(b) $$X \sim \mathrm{lognormal}(\mu, \sigma^2)$$，$$\mu$$、$$\sigma^2$$ 已知；(c) $$X \sim \mathrm{Weibull}(\alpha, \beta)$$，$$\alpha$$、$$\beta$$ 已知。
-
 **5.68** 若用 Metropolis 算法而非接受/拒绝算法，我们免于验证上确界条件；当然代价是放弃“得到恰好所要分布的随机变量”这一性质，只能接受近似。(a) 说明如何用 Metropolis 算法从 $$n(0,1)$$ 随机变量出发，生成近似服从自由度 $$\nu$$ 的 Student 氏 $$t$$ 分布的随机变量；(b) 说明如何用接受/拒绝算法从柯西随机变量出发，生成服从自由度 $$\nu$$ 的 Student 氏 $$t$$ 分布的随机变量；(c) 说明如何用变换直接生成服从自由度 $$\nu$$ 的 Student 氏 $$t$$ 分布的随机变量；(d) 对 $$\nu = 2, 10, 25$$，通过生成容量 100 的样本比较这些方法。你更喜欢哪种方法？为什么？［Mengersen and Tweedie (1995) 证明：若上确界条件满足，即 $$\sup f/g \leq M < \infty$$（$$f$$ 为目标密度，$$g$$ 为候选密度），Metropolis 算法的收敛快得多。］
-
 **5.69** 证明 pdf $$f_Y(y)$$ 是 Metropolis 算法的稳定点：即若 $$Z_i \sim f_Y(y)$$，则 $$Z_{i+1} \sim f_Y(y)$$。
-
 ## 5.8 杂记（Miscellanea）
-
 ### 5.8.1 中心极限定理的更多内容（More on the Central Limit Theorem）
-
 对 iid 随机变量序列，向正态性收敛的充分必要条件已知，最著名的结果归于 Lindeberg 与 Feller。下面这个特例归功于 Lévy。设 $$X_1, X_2, \ldots$$ 是 iid 序列，$$\mathrm{E} X_i = \mu < \infty$$，$$V_n = \sum_{i=1}^{n} X_i$$。序列 $$V_n$$（在适当标准化下）将收敛到 $$n(0, 1)$$ 随机变量，当且仅当
-
 $$
 \lim_{t \to \infty}\ \frac{t^2\, P\bigl( \vert X_1 - \mu\vert  > t \bigr)}{\mathrm{E}\Bigl[ (X_1 - \mu)^2\, I_{[-t, t]}(X_1 - \mu) \Bigr]} = 0.
 $$
-
 注意该条件是方差条件：它并不完全要求方差有限，但要求方差“几乎”有限。这是向正态收敛的要点——正态性来自小扰动的累加。
-
 其他类型的中心极限定理比比皆是，特别是旨在放宽独立性假设的那些。独立性假设无法取消，但可以放宽（见 Billingsley 1995, Section 27 或 Resnick 1999, Chapter 8）。
-
 ### 5.8.2 $$S^2$$ 的偏差（The Bias of $$S^2$$）
-
 本章的大多数计算都假设观测独立，一些期望的计算正依赖于此。H. A. David (1985) 指出：若观测相依，则 $$S^2$$ 可能是 $$\sigma^2$$ 的有偏估计，即未必有 $$\mathrm{E} S^2 = \sigma^2$$。但可能偏差的范围容易算出。若 $$X_1, \ldots, X_n$$ 是均值 $$\mu$$、方差 $$\sigma^2$$ 的随机变量（不必独立），则
-
 $$
 (n - 1)\, \mathrm{E} S^2 = \mathrm{E}\Biggl[ \sum_{i=1}^{n} \bigl( X_i - \mu \bigr)^2 - n\, \bigl( \bar{X} - \mu \bigr)^2 \Biggr] = n \sigma^2 - n\, \mathrm{Var} \bar{X}.
 $$
-
 $$\mathrm{Var} \bar{X}$$ 随依赖的多少与类型而变：从 0（若所有变量恒定）到 $$\sigma^2$$（若所有变量都是 $$X_1$$ 的拷贝）。代入上式得相依情形下 $$\mathrm{E} S^2$$ 的范围
-
 $$
 0 \leq \mathrm{E} S^2 \leq \frac{n}{n - 1}\, \sigma^2.
 $$
-
 ### 5.8.3 切比雪夫不等式再访（Chebychev's Inequality Revisited）
-
 3.6 节考察过切比雪夫不等式（另见杂记 3.8.2），例 3.6.2 给出了特别有用的形式。那一形式仍需知道随机变量的均值与方差；某些情形下我们也许关心用估计的均值与方差得到的界。
-
 若 $$X_1, \ldots, X_n$$ 是来自均值 $$\mu$$、方差 $$\sigma^2$$ 的总体的随机样本，切比雪夫不等式说
-
 $$
 P\bigl( \vert \bar{X} - \mu\vert  \geq k\sigma \bigr) \leq \frac{1}{k^2}.
 $$
-
 Saw 等 (1984) 证明：若用 $$\bar{X}$$ 代替 $$\mu$$、$$S^2$$ 代替 $$\sigma^2$$，则得
-
 $$
 P\bigl( \vert \bar{X} - \mu\vert  \geq k S \bigr) \leq \frac{1}{n + 1}\, g\Biggl( \frac{n (n + 1)\, k^2}{n - 1 + (n + 1) k^2} \Biggr),
 $$
-
 其中
-
 $$
 g(t) = \begin{cases}
 \nu & \text{若}\ \nu\ \text{为偶数},\\
@@ -2213,33 +1834,22 @@ g(t) = \begin{cases}
 \nu & \text{若}\ \nu\ \text{为奇数且}\ t > a,
 \end{cases}
 $$
-
 且
-
 $$
 \nu = \text{小于}\ \frac{n + 1}{t}\ \text{的最大整数}, \qquad a = \frac{(n + 1)\, (n + 1 - \nu)}{1 + \nu\, (n + 1 - \nu)}.
 $$
-
 ### 5.8.4 强大数定律的更多内容（More on the Strong Law）
-
 如前所述，强大数定律（定理 5.5.9）可以在较弱的条件下证明：只要求随机变量有有限均值（例如见 Resnick 1999, Chapter 7 或 Billingsley 1995, Section 22）。然而在 mgf 存在的假设下，Koopmans (1993) 给出了只用微积分的证明。
-
 SLLN 断言的收敛类型正是我们最熟悉的：随机变量序列 $$\bar{X}_n$$ 到其公共均值 $$\mu$$ 的点态收敛。如例 5.5.8 所见，这比弱定律的依概率收敛更强。
-
 SLLN 的结论是
-
 $$
 P\Bigl( \lim_{n \to \infty} \vert \bar{X}_n - \mu\vert  < \varepsilon \Bigr) = 1,
 $$
-
 即以概率 1，序列 $$\{\bar{X}_n\}$$ 的极限是 $$\mu$$。等价地，序列发散的集合概率为 0。序列要发散，必须存在 $$\delta > 0$$ 使得对每个 $$n$$ 都有 $$k > n$$ 满足 $$\vert \bar{X}_k - \mu\vert  > \delta$$。满足这一条件的全体 $$\bar{X}_k$$ 构成发散序列，表示为集合
-
 $$
 A_{\delta} = \bigcap_{n=1}^{\infty} \bigcup_{k=n}^{\infty} \Bigl\{ \vert \bar{X}_k - \mu\vert  > \delta \Bigr\}.
 $$
-
 去掉交项可得 $$P(A_{\delta})$$ 的上界，于是序列 $$\{\bar{X}_n\}$$ 发散处的概率被上界控制为
-
 $$
 \begin{aligned}
 P(A_{\delta}) &\leq P\Bigl( \bigcup_{k=n}^{\infty} \bigl\{ \vert \bar{X}_k - \mu\vert  > \delta \bigr\} \Bigr)\\
@@ -2247,29 +1857,19 @@ P(A_{\delta}) &\leq P\Bigl( \bigcup_{k=n}^{\infty} \bigl\{ \vert \bar{X}_k - \mu
 &\leq \sum_{k=n}^{\infty} 2\, c^{k}, \qquad 0 < c < 1,
 \end{aligned}
 $$
-
 其中最后的不等式可用习题 5.38(d) 建立。注意到这是几何级数求和，由 (1.5.4) 得
-
 $$
 P(A_{\delta}) \leq 2 \sum_{k=n}^{\infty} c^{k} = 2\, \frac{c^{n}}{1 - c} \to 0 \qquad \text{（当}\ n \to \infty\text{）},
 $$
-
 故序列 $$\{\bar{X}_n\}$$ 发散处的概率为零，SLLN 得证。
-
 ### 5.8.5 马尔可夫链蒙特卡罗（Markov Chain Monte Carlo）
-
 统称为马尔可夫链蒙特卡罗（MCMC）的方法用于生成随机变量，并在完成复杂计算——最著名的是涉及积分与最大化的计算——方面极有用处。Metropolis 算法（见 5.6 节）就是 MCMC 方法的一个例子。
-
 顾名思义，这些方法基于马尔可夫链——一种我们尚未探讨的概率结构（入门见 Chung 1974 或 Ross 1988）。随机变量序列 $$X_1, X_2, \ldots$$ 是马尔可夫链，如果
-
 $$
 P\bigl( X_{k+1} \in A \mid X_1, \ldots, X_k \bigr) = P\bigl( X_{k+1} \in A \mid X_k \bigr);
 $$
-
 即当前随机变量的分布至多依赖于紧邻的过去随机变量。注意这是独立性的推广。
-
 遍历定理（Ergodic Theorem）是大数定律的推广：若马尔可夫链 $$X_1, X_2, \ldots$$ 满足某些正则性条件（统计问题中经常满足），则只要期望存在，
-
 $$
 \frac{1}{n} \sum_{i=1}^{n} h(X_i) \to \mathrm{E} h(X) \qquad \text{（当}\ n \to \infty\text{）}.
 $$

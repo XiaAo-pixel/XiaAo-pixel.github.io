@@ -71,14 +71,14 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是 iid $$n(\theta, \sigma^2)$$。按上述记号，$$\theta_1 = \theta$$、$$\theta_2 = \sigma^2$$。我们有 $$m_1 = \bar{X}$$，$$m_2 = \frac{1}{n} \sum X_i^2$$，$$\mu_1' = \theta$$，$$\mu_2' = \theta^2 + \sigma^2$$，故须解
 >
 > $$
-> \bar{X} = \theta, \qquad \frac{1}{n} \sum_{i} X_i^2 = \theta^2 + \sigma^2.
-> $$
+\bar{X} = \theta, \qquad \frac{1}{n} \sum_{i} X_i^2 = \theta^2 + \sigma^2.
+$$
 >
 > 解出 $$\theta$$ 与 $$\sigma^2$$ 得矩估计量
 >
 > $$
-> \tilde{\theta} = \bar{X} \qquad\text{与}\qquad \tilde{\sigma}^2 = \frac{1}{n} \sum_{i} X_i^2 - \bar{X}^2 = \frac{1}{n} \sum \bigl( X_i - \bar{X} \bigr)^2.
-> $$
+\tilde{\theta} = \bar{X} \qquad\text{与}\qquad \tilde{\sigma}^2 = \frac{1}{n} \sum_{i} X_i^2 - \bar{X}^2 = \frac{1}{n} \sum \bigl( X_i - \bar{X} \bigr)^2.
+$$
 
 在这个简单例子中，矩方法与直觉一致，多少也印证了两者。但当没有明显的估计量浮现时，该方法更有助益。
 
@@ -87,22 +87,22 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{binomial}(k, p)$$，即
 >
 > $$
-> P(X_i = x \mid k, p) = \binom{k}{x}\, p^{x} (1 - p)^{k - x}, \qquad x = 0, 1, \ldots, k.
-> $$
+P(X_i = x \mid k, p) = \binom{k}{x}\, p^{x} (1 - p)^{k - x}, \qquad x = 0, 1, \ldots, k.
+$$
 >
 > 这里设 $$k$$ 与 $$p$$ 都未知，并希望得到两个参数的点估计量。（二项模型的这一略为特别的用法曾被用于估计存在大量未报案情形的犯罪率：对这样的犯罪，真实报案率 $$p$$ 与总发生数 $$k$$ 都未知。）
 >
 > 令前两个样本矩等于总体矩，得方程组
 >
 > $$
-> \bar{X} = k p, \qquad \frac{1}{n} \sum_{i} X_i^2 = k p (1 - p) + k^2 p^2,
-> $$
+\bar{X} = k p, \qquad \frac{1}{n} \sum_{i} X_i^2 = k p (1 - p) + k^2 p^2,
+$$
 >
 > 解出 $$k$$ 与 $$p$$。稍作代数运算，得矩估计量
 >
 > $$
-> \tilde{k} = \frac{\bar{X}^2}{\bar{X} - (1/n) \sum (X_i - \bar{X})^2} \qquad\text{与}\qquad \tilde{p} = \frac{\bar{X}}{\tilde{k}}.
-> $$
+\tilde{k} = \frac{\bar{X}^2}{\bar{X} - (1/n) \sum (X_i - \bar{X})^2} \qquad\text{与}\qquad \tilde{p} = \frac{\bar{X}}{\tilde{k}}.
+$$
 >
 > 诚然这不是总体参数的最好估计：$$k$$ 与 $$p$$ 可能得到负的估计，而它们必须是正数。（这正是估计量取值范围与其所估参数范围不一致的情形。）不过平心而论，注意负估计只会在样本均值小于样本方差（即数据变异很大）时出现。矩方法在此至少给出了 $$k$$ 与 $$p$$ 的一组点估计量候选：直觉或许能给出 $$p$$ 的估计量候选，但要拿出 $$k$$ 的估计量却困难得多。
 
@@ -115,55 +115,55 @@ $$
 > 这几乎就是 Satterthwaite 的问题：他想近似一个 $$t$$ 统计量的分母，而 $$\sum a_i Y_i$$ 正是其统计量分母的平方。于是对给定的 $$a_1, \ldots, a_k$$，他想找到 $$\nu$$ 值使
 >
 > $$
-> \sum_{i=1}^{k} a_i\, Y_i \sim \frac{\chi_{\nu}^2}{\nu} \qquad \text{（近似）}.
-> $$
+\sum_{i=1}^{k} a_i\, Y_i \sim \frac{\chi_{\nu}^2}{\nu} \qquad \text{（近似）}.
+$$
 >
 > 由于 $$\mathrm{E}\bigl( \chi_\nu^2 / \nu \bigr) = 1$$，匹配一阶矩需要
 >
 > $$
-> \mathrm{E}\Biggl[ \sum_{i=1}^{k} a_i Y_i \Biggr] = \sum_{i=1}^{k} a_i\, \mathrm{E} Y_i = \sum_{i=1}^{k} a_i\, r_i = 1,
-> $$
+\mathrm{E}\Biggl[ \sum_{i=1}^{k} a_i Y_i \Biggr] = \sum_{i=1}^{k} a_i\, \mathrm{E} Y_i = \sum_{i=1}^{k} a_i\, r_i = 1,
+$$
 >
 > 这给出对诸 $$a_i$$ 的约束，但没有告诉我们如何估计 $$\nu$$。为此须匹配二阶矩：
 >
 > $$
-> \mathrm{E}\Biggl[ \sum_{i=1}^{k} a_i Y_i \Biggr]^2 = \mathrm{E}\Biggl[ \frac{\chi_{\nu}^2}{\nu} \Biggr]^2 = \frac{2}{\nu} + 1.
-> $$
+\mathrm{E}\Biggl[ \sum_{i=1}^{k} a_i Y_i \Biggr]^2 = \mathrm{E}\Biggl[ \frac{\chi_{\nu}^2}{\nu} \Biggr]^2 = \frac{2}{\nu} + 1.
+$$
 >
 > 应用矩方法，舍去第一个期望并解出 $$\nu$$，得
 >
 > $$
-> \hat{\nu} = \frac{2}{\Bigl( \sum_{i=1}^{k} a_i Y_i \Bigr)^2 - 1}.
-> $$
+\hat{\nu} = \frac{2}{\Bigl( \sum_{i=1}^{k} a_i Y_i \Bigr)^2 - 1}.
+$$
 >
 > 这样，矩方法的直截应用给出了 $$\nu$$ 的一个估计量，但它可能为负。我们可以想见 Satterthwaite 对这种可能性大为惊愕——因为这并非他提出的估计量。他加倍努力，按如下方式改造矩方法。写
 >
 > $$
-> \mathrm{E}\Biggl[ \sum_{i=1}^{k} a_i Y_i \Biggr]^2 = \mathrm{Var}\Biggl[ \sum_{i=1}^{k} a_i Y_i \Biggr] + \Bigl( \mathrm{E}\Bigl[ \sum_{i=1}^{k} a_i Y_i \Bigr] \Bigr)^{2}
-> = \Bigl( \mathrm{E}\Bigl[ \sum_{i=1}^{k} a_i Y_i \Bigr] \Bigr)^{2}\, \Biggl[ \frac{\mathrm{Var}\bigl( \sum_{i=1}^{k} a_i Y_i \bigr)}{\bigl( \mathrm{E}\sum_{i=1}^{k} a_i Y_i \bigr)^2} + 1 \Biggr]
-> $$
+\mathrm{E}\Biggl[ \sum_{i=1}^{k} a_i Y_i \Biggr]^2 = \mathrm{Var}\Biggl[ \sum_{i=1}^{k} a_i Y_i \Biggr] + \Bigl( \mathrm{E}\Bigl[ \sum_{i=1}^{k} a_i Y_i \Bigr] \Bigr)^{2}
+= \Bigl( \mathrm{E}\Bigl[ \sum_{i=1}^{k} a_i Y_i \Bigr] \Bigr)^{2}\, \Biggl[ \frac{\mathrm{Var}\bigl( \sum_{i=1}^{k} a_i Y_i \bigr)}{\bigl( \mathrm{E}\sum_{i=1}^{k} a_i Y_i \bigr)^2} + 1 \Biggr]
+$$
 >
 > $$
-> = \frac{\mathrm{Var}\bigl( \sum_{i=1}^{k} a_i Y_i \bigr)}{\bigl( \mathrm{E} \sum_{i=1}^{k} a_i Y_i \bigr)^2} + 1 \qquad （\mathrm{E} \sum a_i Y_i = 1）.
-> $$
+= \frac{\mathrm{Var}\bigl( \sum_{i=1}^{k} a_i Y_i \bigr)}{\bigl( \mathrm{E} \sum_{i=1}^{k} a_i Y_i \bigr)^2} + 1 \qquad （\mathrm{E} \sum a_i Y_i = 1）.
+$$
 >
 > 现在匹配二阶矩得
 >
 > $$
-> \nu = \frac{2\, \bigl( \mathrm{E} \sum_{i=1}^{k} a_i Y_i \bigr)^2}{\mathrm{Var}\bigl( \sum_{i=1}^{k} a_i Y_i \bigr)}.
-> $$
+\nu = \frac{2\, \bigl( \mathrm{E} \sum_{i=1}^{k} a_i Y_i \bigr)^2}{\mathrm{Var}\bigl( \sum_{i=1}^{k} a_i Y_i \bigr)}.
+$$
 >
 > 最后利用 $$Y_1, \ldots, Y_k$$ 是独立卡方随机变量的事实写出
 >
 > $$
-> \mathrm{Var}\Biggl[ \sum_{i=1}^{k} a_i Y_i \Biggr] = \sum_{i} a_i^2\, \mathrm{Var} Y_i = 2 \sum_i \frac{a_i^2\, (\mathrm{E} Y_i)^2}{r_i} \qquad （\mathrm{Var} Y_i = 2 (\mathrm{E} Y_i)^2 / r_i）.
-> $$
+\mathrm{Var}\Biggl[ \sum_{i=1}^{k} a_i Y_i \Biggr] = \sum_{i} a_i^2\, \mathrm{Var} Y_i = 2 \sum_i \frac{a_i^2\, (\mathrm{E} Y_i)^2}{r_i} \qquad （\mathrm{Var} Y_i = 2 (\mathrm{E} Y_i)^2 / r_i）.
+$$
 >
 > 代入该方差表达式并去掉期望，得 Satterthwaite 估计量
 >
 > $$
-> \hat{\nu} = \frac{\bigl( \sum_{i} a_i Y_i \bigr)^2}{\sum_{i} \dfrac{a_i^2}{r_i}\, Y_i^2}.
-> $$
+\hat{\nu} = \frac{\bigl( \sum_{i} a_i Y_i \bigr)^2}{\sum_{i} \dfrac{a_i^2}{r_i}\, Y_i^2}.
+$$
 >
 > 这一近似相当好，至今仍被广泛使用。注意 Satterthwaite 成功地得到了恒正的估计量，从而避免了直截矩方法估计量的明显问题。
 
@@ -202,20 +202,20 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是 iid $$n(\theta, 1)$$，$$L(\theta \mid \textbf{x})$$ 为似然函数。则
 >
 > $$
-> L(\theta \mid \textbf{x}) = \prod_{i=1}^{n} \frac{1}{(2\pi)^{1/2}}\, e^{-(1/2)(x_i - \theta)^2} = \frac{1}{(2\pi)^{n/2}}\, e^{(-1/2) \sum_{i=1}^{n} (x_i - \theta)^2}.
-> $$
+L(\theta \mid \textbf{x}) = \prod_{i=1}^{n} \frac{1}{(2\pi)^{1/2}}\, e^{-(1/2)(x_i - \theta)^2} = \frac{1}{(2\pi)^{n/2}}\, e^{(-1/2) \sum_{i=1}^{n} (x_i - \theta)^2}.
+$$
 >
 > 方程 $$(d/d\theta)\, L(\theta \mid \textbf{x}) = 0$$ 化为
 >
 > $$
-> \sum_{i=1}^{n} (x_i - \theta) = 0,
-> $$
+\sum_{i=1}^{n} (x_i - \theta) = 0,
+$$
 >
 > 其解为 $$\hat{\theta} = \bar{x}$$，故 $$\bar{x}$$ 是 MLE 的候选。为验证 $$\bar{x}$$ 确实是似然函数的全局最大，可用如下论证：首先 $$\hat{\theta} = \bar{x}$$ 是 $$\sum (x_i - \theta) = 0$$ 的唯一解，故 $$\bar{x}$$ 是一阶导数的唯一零点；其次验证
 >
 > $$
-> \left. \frac{d^2}{d\theta^2}\, L(\theta \mid \textbf{x}) \right\vert _{\theta = \bar{x}} < 0.
-> $$
+\left. \frac{d^2}{d\theta^2}\, L(\theta \mid \textbf{x}) \right\vert _{\theta = \bar{x}} < 0.
+$$
 >
 > 于是 $$\bar{x}$$ 是内部唯一的极值点且是极大值。最后验证 $$\bar{x}$$ 是全局最大还须检查边界 $$\pm \infty$$：取极限容易确立似然在 $$\pm \infty$$ 处为零。故 $$\hat{\theta} = \bar{x}$$ 是全局最大，$$\bar{X}$$ 是 MLE。（其实可以更聪明些而免去检查 $$\pm \infty$$：既然已确立 $$\bar{x}$$ 是内部唯一极值点且是极大值，$$\pm \infty$$ 处就不可能再有最大——否则内部必有极小，与唯一性矛盾。）
 
@@ -226,14 +226,14 @@ $$
 > 回顾（定理 5.2.4）对任意数 $$a$$，
 >
 > $$
-> \sum_{i=1}^{n} (x_i - a)^2 \geq \sum_{i=1}^{n} (x_i - \bar{x})^2,
-> $$
+\sum_{i=1}^{n} (x_i - a)^2 \geq \sum_{i=1}^{n} (x_i - \bar{x})^2,
+$$
 >
 > 等号成立当且仅当 $$a = \bar{x}$$。这意味着对任意 $$\theta$$，
 >
 > $$
-> e^{-(1/2) \sum (x_i - \theta)^2} \leq e^{-(1/2) \sum (x_i - \bar{x})^2},
-> $$
+e^{-(1/2) \sum (x_i - \theta)^2} \leq e^{-(1/2) \sum (x_i - \bar{x})^2},
+$$
 >
 > 等号成立当且仅当 $$\theta = \bar{x}$$。故 $$\bar{X}$$ 是 MLE。
 
@@ -244,20 +244,20 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{Bernoulli}(p)$$。似然函数为
 >
 > $$
-> L(p \mid \textbf{x}) = \prod_{i=1}^{n} p^{x_i} (1 - p)^{1 - x_i} = p^{y} (1 - p)^{n - y},
-> $$
+L(p \mid \textbf{x}) = \prod_{i=1}^{n} p^{x_i} (1 - p)^{1 - x_i} = p^{y} (1 - p)^{n - y},
+$$
 >
 > 其中 $$y = \sum x_i$$。该函数求导并不太难，但对数似然
 >
 > $$
-> \log L(p \mid \textbf{x}) = y \log p + (n - y) \log(1 - p)
-> $$
+\log L(p \mid \textbf{x}) = y \log p + (n - y) \log(1 - p)
+$$
 >
 > 求导容易得多。若 $$0 < y < n$$，对 $$\log L(p \mid \textbf{x})$$ 求导并令其为零，解得 $$\hat{p} = y/n$$；验证 $$y/n$$ 是全局最大也很直截。若 $$y = 0$$ 或 $$y = n$$，则
 >
 > $$
-> \log L(p \mid \textbf{x}) = \begin{cases} n \log(1 - p) & \text{若}\ y = 0,\\ n \log p & \text{若}\ y = n. \end{cases}
-> $$
+\log L(p \mid \textbf{x}) = \begin{cases} n \log(1 - p) & \text{若}\ y = 0,\\ n \log p & \text{若}\ y = n. \end{cases}
+$$
 >
 > 两种情形下 $$\log L(p \mid \textbf{x})$$ 都是 $$p$$ 的单调函数，同样直截地验证每种情形都有 $$\hat{p} = y/n$$。故我们证明了 $$\sum X_i / n$$ 是 $$p$$ 的 MLE。
 
@@ -272,8 +272,8 @@ $$
 > 若 $$\bar{x}$$ 为负，容易检查（见习题 7.4）$$L(\theta \mid \textbf{x})$$ 在 $$\theta \geq 0$$ 上关于 $$\theta$$ 递减，在 $$\hat{\theta} = 0$$ 处取最大。故此时 $$\theta$$ 的 MLE 为
 >
 > $$
-> \hat{\theta} = \bar{X}\ \text{（若}\ \bar{X} \geq 0\text{）} \qquad\text{且}\qquad \hat{\theta} = 0\ \text{（若}\ \bar{X} < 0\text{）}.
-> $$
+\hat{\theta} = \bar{X}\ \text{（若}\ \bar{X} \geq 0\text{）} \qquad\text{且}\qquad \hat{\theta} = 0\ \text{（若}\ \bar{X} < 0\text{）}.
+$$
 
 若 $$L(\theta \mid \textbf{x})$$ 无法解析最大化，也许可以用计算机数值地最大化 $$L(\theta \mid \textbf{x})$$。事实上这正是 MLE 最重要的特征之一：只要模型（似然）能够写出，就有希望数值地最大化它、从而找到参数的 MLE。此时仍然总存在“找到的是局部还是全局最大”的问题。因此在使用数值最大化之前，尽可能多地分析似然函数、找出其局部极大的个数与性质，总是重要的。
 
@@ -282,28 +282,28 @@ $$
 > 设 $$X_1, \ldots, Xn$$ 是来自 $$\mathrm{binomial}(k, p)$$ 总体的随机样本，$$p$$ 已知而 $$k$$ 未知。例如，抛一枚已知均匀的硬币并观测到 $$x_i$$ 次正面，但不知道硬币被抛了多少次。似然函数为
 >
 > $$
-> L(k \mid \textbf{x}, p) = \prod_{i=1}^{n} \binom{k}{x_i}\, p^{x_i} (1 - p)^{k - x_i}.
-> $$
+L(k \mid \textbf{x}, p) = \prod_{i=1}^{n} \binom{k}{x_i}\, p^{x_i} (1 - p)^{k - x_i}.
+$$
 >
 > 由于阶乘的存在以及 $$k$$ 必须是整数，用求导最大化 $$L(k \mid \textbf{x}, p)$$ 很困难，我们换一种思路。
 >
 > 当然 $$k < \max_i x_i$$ 时 $$L(k \mid \textbf{x}, p) = 0$$。故 MLE 是满足 $$L(k \mid \textbf{x}, p)/L(k - 1 \mid \textbf{x}, p) \geq 1$$ 且 $$L(k + 1 \mid \textbf{x}, p)/L(k \mid \textbf{x}, p) < 1$$ 的整数 $$k \geq \max_i x_i$$。我们将证明这样的 $$k$$ 唯一。似然比为
 >
 > $$
-> \frac{L(k \mid \textbf{x}, p)}{L(k - 1 \mid \textbf{x}, p)} = \frac{(k (1 - p))^{n}}{\prod_{i=1}^{n} (k - x_i)}.
-> $$
+\frac{L(k \mid \textbf{x}, p)}{L(k - 1 \mid \textbf{x}, p)} = \frac{(k (1 - p))^{n}}{\prod_{i=1}^{n} (k - x_i)}.
+$$
 >
 > 故最大值条件为
 >
 > $$
-> \bigl( k (1 - p) \bigr)^{n} \geq \prod_{i=1}^{n} (k - x_i) \qquad\text{且}\qquad \bigl( (k + 1)(1 - p) \bigr)^{n} < \prod_{i=1}^{n} (k + 1 - x_i).
-> $$
+\bigl( k (1 - p) \bigr)^{n} \geq \prod_{i=1}^{n} (k - x_i) \qquad\text{且}\qquad \bigl( (k + 1)(1 - p) \bigr)^{n} < \prod_{i=1}^{n} (k + 1 - x_i).
+$$
 >
 > 除以 $$k^n$$ 并令 $$z = 1/k$$，要在 $$0 \leq z \leq 1/\max_i x_i$$ 上解
 >
 > $$
-> (1 - p)^{n} = \prod_{i=1}^{n} (1 - x_i\, z).
-> $$
+(1 - p)^{n} = \prod_{i=1}^{n} (1 - x_i\, z).
+$$
 >
 > 右端在此范围内显然是 $$z$$ 的严格递减函数，在 $$z = 0$$ 处值为 1、在 $$z = 1/\max_i x_i$$ 处值为 0。故存在唯一解 $$z$$（记作 $$\hat{z}$$）。量 $$1/\hat{z}$$ 可能不是整数；满足不等式、且为 MLE 的整数 $$\hat{k}$$ 是不超过 $$1/\hat{z}$$ 的最大整数（见习题 7.5）。于是这一分析表明似然函数有唯一最大，且可以通过数值求解一个 $$n$$ 次多项式方程找到它。$$k$$ 的这一 MLE 描述由 Feldman and Fox (1968) 发现；关于估计 $$k$$ 的更多内容见例 7.2.13。
 
@@ -342,15 +342,15 @@ $$
 > **证明**　设 $$\hat{\eta}$$ 表示最大化 $$L^{*}(\eta \mid \textbf{x})$$ 的值。须证 $$L^{*}(\hat{\eta} \mid \textbf{x}) = L^{*}\bigl[ \tau(\hat{\theta}) \mid \textbf{x} \bigr]$$。如上所述，$$L$$ 与 $$L^{*}$$ 的最大值重合，故
 >
 > $$
-> L^{*}(\hat{\eta} \mid \textbf{x}) = \sup_{\eta}\, \sup_{\{\theta : \tau(\theta) = \eta\}}\, L(\theta \mid \textbf{x}) = \sup_{\theta} L(\theta \mid \textbf{x}) = L(\hat{\theta} \mid \textbf{x}),
-> $$
+L^{*}(\hat{\eta} \mid \textbf{x}) = \sup_{\eta}\, \sup_{\{\theta : \tau(\theta) = \eta\}}\, L(\theta \mid \textbf{x}) = \sup_{\theta} L(\theta \mid \textbf{x}) = L(\hat{\theta} \mid \textbf{x}),
+$$
 >
 > （$$L^{*}$$ 的定义；第二个等式由“迭代最大化等于对 $$\theta$$ 的无条件最大化、且在 $$\hat{\theta}$$ 处取得”。）进一步，
 >
 > $$
-> L(\hat{\theta} \mid \textbf{x}) = \sup_{\{\theta : \tau(\theta) = \tau(\hat{\theta})\}}\, L(\theta \mid \textbf{x}) = L^{*}\bigl[ \tau(\hat{\theta}) \mid \textbf{x} \bigr]
-> \qquad （\hat{\theta}\ \text{是 MLE}；\ L^{*}\ \text{的定义}）.
-> $$
+L(\hat{\theta} \mid \textbf{x}) = \sup_{\{\theta : \tau(\theta) = \tau(\hat{\theta})\}}\, L(\theta \mid \textbf{x}) = L^{*}\bigl[ \tau(\hat{\theta}) \mid \textbf{x} \bigr]
+\qquad （\hat{\theta}\ \text{是 MLE}；\ L^{*}\ \text{的定义}）.
+$$
 >
 > 故这串等式表明 $$L^{*}(\hat{\eta} \mid \textbf{x}) = L^{*}\bigl( \tau(\hat{\theta}) \mid \textbf{x} \bigr)$$，且 $$\tau(\hat{\theta})$$ 是 $$\tau(\theta)$$ 的 MLE。 ∎
 
@@ -367,30 +367,30 @@ MLE 的不变性在多元情形成立：定理 7.2.10 的证明中没有任何�
 > 设 $$X_1, \ldots, X_n$$ 是 iid $$n(\theta, \sigma^2)$$，$$\theta$$ 与 $$\sigma^2$$ 都未知。则
 >
 > $$
-> L(\theta, \sigma^2 \mid \textbf{x}) = \frac{1}{(2 \pi \sigma^2)^{n/2}}\, e^{-(1/2) \sum_{i=1}^{n} (x_i - \theta)^2 / \sigma^2},
-> $$
+L(\theta, \sigma^2 \mid \textbf{x}) = \frac{1}{(2 \pi \sigma^2)^{n/2}}\, e^{-(1/2) \sum_{i=1}^{n} (x_i - \theta)^2 / \sigma^2},
+$$
 >
 > 且
 >
 > $$
-> \log L(\theta, \sigma^2 \mid \textbf{x}) = -\frac{n}{2} \log 2\pi - \frac{n}{2} \log \sigma^2 - \frac{1}{2\sigma^2} \sum_{i=1}^{n} (x_i - \theta)^2.
-> $$
+\log L(\theta, \sigma^2 \mid \textbf{x}) = -\frac{n}{2} \log 2\pi - \frac{n}{2} \log \sigma^2 - \frac{1}{2\sigma^2} \sum_{i=1}^{n} (x_i - \theta)^2.
+$$
 >
 > 对 $$\theta$$ 与 $$\sigma^2$$ 的偏导数为
 >
 > $$
-> \frac{\partial}{\partial \theta}\, \log L(\theta, \sigma^2 \mid \textbf{x}) = \frac{1}{\sigma^2} \sum_{i=1}^{n} (x_i - \theta),
-> $$
+\frac{\partial}{\partial \theta}\, \log L(\theta, \sigma^2 \mid \textbf{x}) = \frac{1}{\sigma^2} \sum_{i=1}^{n} (x_i - \theta),
+$$
 >
 > $$
-> \frac{\partial}{\partial \sigma^2}\, \log L(\theta, \sigma^2 \mid \textbf{x}) = -\frac{n}{2 \sigma^2} + \frac{1}{2 \sigma^4} \sum_{i=1}^{n} (x_i - \theta)^2.
-> $$
+\frac{\partial}{\partial \sigma^2}\, \log L(\theta, \sigma^2 \mid \textbf{x}) = -\frac{n}{2 \sigma^2} + \frac{1}{2 \sigma^4} \sum_{i=1}^{n} (x_i - \theta)^2.
+$$
 >
 > 令这些偏导为零并求解，得 $$\hat{\theta} = \bar{x}$$，$$\hat{\sigma}^2 = \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2$$。为验证这一解确实是全局最大，先回忆：若 $$\theta \neq \bar{x}$$，则 $$\sum (x_i - \theta)^2 > \sum (x_i - \bar{x})^2$$。故对任何 $$\sigma^2$$ 值，
 >
 > $$
-> \frac{1}{(2 \pi \sigma^2)^{n/2}}\, e^{-(1/2) \sum_{i=1}^{n} (x_i - \bar{x})^2 / \sigma^2} \geq \frac{1}{(2 \pi \sigma^2)^{n/2}}\, e^{-(1/2) \sum_{i=1}^{n} (x_i - \theta)^2 / \sigma^2}. \tag{7.2.6}
-> $$
+\frac{1}{(2 \pi \sigma^2)^{n/2}}\, e^{-(1/2) \sum_{i=1}^{n} (x_i - \bar{x})^2 / \sigma^2} \geq \frac{1}{(2 \pi \sigma^2)^{n/2}}\, e^{-(1/2) \sum_{i=1}^{n} (x_i - \theta)^2 / \sigma^2}. \tag{7.2.6}
+$$
 >
 > 因此验证已找到最大似然估计量约化为一维问题：验证 $$(\sigma^2)^{-n/2} \exp\bigl( -\tfrac{1}{2} \sum (x_i - \bar{x})^2 / \sigma^2 \bigr)$$ 在 $$\sigma^2 = \frac{1}{n} \sum (x_i - \bar{x})^2$$ 处取得全局最大。用一元微积分直截可做；事实上估计量 $$\bigl( \bar{X},\ \frac{1}{n} \sum (X_i - \bar{X})^2 \bigr)$$ 就是 MLE。
 >
@@ -405,52 +405,52 @@ MLE 的不变性在多元情形成立：定理 7.2.10 的证明中没有任何�
 > - a. 一阶偏导为零：
 >
 >   $$
->   \left. \frac{\partial}{\partial \theta_1} H(\theta_1, \theta_2) \right\vert _{\theta_1 = \hat{\theta}_1, \theta_2 = \hat{\theta}_2} = 0 \qquad\text{与}\qquad \left. \frac{\partial}{\partial \theta_2} H(\theta_1, \theta_2) \right\vert _{\theta_1 = \hat{\theta}_1, \theta_2 = \hat{\theta}_2} = 0.
->   $$
+  \left. \frac{\partial}{\partial \theta_1} H(\theta_1, \theta_2) \right\vert _{\theta_1 = \hat{\theta}_1, \theta_2 = \hat{\theta}_2} = 0 \qquad\text{与}\qquad \left. \frac{\partial}{\partial \theta_2} H(\theta_1, \theta_2) \right\vert _{\theta_1 = \hat{\theta}_1, \theta_2 = \hat{\theta}_2} = 0.
+  $$
 >
 > - b. 至少一个二阶偏导为负：
 >
 >   $$
->   \left. \frac{\partial^2}{\partial \theta_1^2} H(\theta_1, \theta_2) \right\vert _{\theta_1 = \hat{\theta}_1, \theta_2 = \hat{\theta}_2} < 0 \qquad\text{或}\qquad \left. \frac{\partial^2}{\partial \theta_2^2} H(\theta_1, \theta_2) \right\vert _{\theta_1 = \hat{\theta}_1, \theta_2 = \hat{\theta}_2} < 0.
->   $$
+  \left. \frac{\partial^2}{\partial \theta_1^2} H(\theta_1, \theta_2) \right\vert _{\theta_1 = \hat{\theta}_1, \theta_2 = \hat{\theta}_2} < 0 \qquad\text{或}\qquad \left. \frac{\partial^2}{\partial \theta_2^2} H(\theta_1, \theta_2) \right\vert _{\theta_1 = \hat{\theta}_1, \theta_2 = \hat{\theta}_2} < 0.
+  $$
 >
 > - c. 二阶偏导的雅可比（行列式）为正：
 >
 >   $$
->   \left\vert  \begin{array}{cc}
->   \dfrac{\partial^2 H(\theta_1, \theta_2)}{\partial \theta_1^2} & \dfrac{\partial^2 H(\theta_1, \theta_2)}{\partial \theta_1\, \partial \theta_2} \\[10pt]
->   \dfrac{\partial^2 H(\theta_1, \theta_2)}{\partial \theta_1\, \partial \theta_2} & \dfrac{\partial^2 H(\theta_1, \theta_2)}{\partial \theta_2^2}
->   \end{array} \right\vert _{\theta_1 = \hat{\theta}_1, \theta_2 = \hat{\theta}_2}
->   = \Biggl[ \frac{\partial^2 H(\theta_1, \theta_2)}{\partial \theta_1^2}\, \frac{\partial^2 H(\theta_1, \theta_2)}{\partial \theta_2^2} - \Biggl( \frac{\partial^2 H(\theta_1, \theta_2)}{\partial \theta_1 \partial \theta_2} \Biggr)^2 \Biggr]\Biggr\vert _{\theta_1 = \hat{\theta}_1, \theta_2 = \hat{\theta}_2} > 0.
->   $$
+  \left\vert  \begin{array}{cc}
+  \dfrac{\partial^2 H(\theta_1, \theta_2)}{\partial \theta_1^2} & \dfrac{\partial^2 H(\theta_1, \theta_2)}{\partial \theta_1\, \partial \theta_2} \\[10pt]
+  \dfrac{\partial^2 H(\theta_1, \theta_2)}{\partial \theta_1\, \partial \theta_2} & \dfrac{\partial^2 H(\theta_1, \theta_2)}{\partial \theta_2^2}
+  \end{array} \right\vert _{\theta_1 = \hat{\theta}_1, \theta_2 = \hat{\theta}_2}
+  = \Biggl[ \frac{\partial^2 H(\theta_1, \theta_2)}{\partial \theta_1^2}\, \frac{\partial^2 H(\theta_1, \theta_2)}{\partial \theta_2^2} - \Biggl( \frac{\partial^2 H(\theta_1, \theta_2)}{\partial \theta_1 \partial \theta_2} \Biggr)^2 \Biggr]\Biggr\vert _{\theta_1 = \hat{\theta}_1, \theta_2 = \hat{\theta}_2} > 0.
+  $$
 >
 >
 > 对正态对数似然，二阶偏导数为
 >
 > $$
-> \frac{\partial^2}{\partial \theta^2}\, \log L(\theta, \sigma^2 \mid \textbf{x}) = \frac{-n}{\sigma^2},
-> $$
+\frac{\partial^2}{\partial \theta^2}\, \log L(\theta, \sigma^2 \mid \textbf{x}) = \frac{-n}{\sigma^2},
+$$
 >
 > $$
-> \frac{\partial^2}{\partial (\sigma^2)^2}\, \log L(\theta, \sigma^2 \mid \textbf{x}) = \frac{n}{2 \sigma^4} - \frac{1}{\sigma^6} \sum_{i=1}^{n} (x_i - \theta)^2,
-> $$
+\frac{\partial^2}{\partial (\sigma^2)^2}\, \log L(\theta, \sigma^2 \mid \textbf{x}) = \frac{n}{2 \sigma^4} - \frac{1}{\sigma^6} \sum_{i=1}^{n} (x_i - \theta)^2,
+$$
 >
 > $$
-> \frac{\partial^2}{\partial \theta\, \partial \sigma^2}\, \log L(\theta, \sigma^2 \mid \textbf{x}) = -\frac{1}{\sigma^4} \sum_{i=1}^{n} (x_i - \theta).
-> $$
+\frac{\partial^2}{\partial \theta\, \partial \sigma^2}\, \log L(\theta, \sigma^2 \mid \textbf{x}) = -\frac{1}{\sigma^4} \sum_{i=1}^{n} (x_i - \theta).
+$$
 >
 > 性质 (a) 与 (b) 容易验证成立，雅可比为
 >
 > $$
-> \left\vert  \begin{array}{cc}
-> -\dfrac{n}{\sigma^2} & -\dfrac{1}{\sigma^4} \sum_{i=1}^{n} (x_i - \theta) \\[10pt]
-> -\dfrac{1}{\sigma^4} \sum_{i=1}^{n} (x_i - \theta) & \dfrac{n}{2 \sigma^4} - \dfrac{1}{\sigma^6} \sum_{i=1}^{n} (x_i - \theta)^2
-> \end{array} \right\vert _{\theta = \bar{x},\, \sigma^2 = \hat{\sigma}^2}
-> $$
+\left\vert  \begin{array}{cc}
+-\dfrac{n}{\sigma^2} & -\dfrac{1}{\sigma^4} \sum_{i=1}^{n} (x_i - \theta) \\[10pt]
+-\dfrac{1}{\sigma^4} \sum_{i=1}^{n} (x_i - \theta) & \dfrac{n}{2 \sigma^4} - \dfrac{1}{\sigma^6} \sum_{i=1}^{n} (x_i - \theta)^2
+\end{array} \right\vert _{\theta = \bar{x},\, \sigma^2 = \hat{\sigma}^2}
+$$
 >
 > $$
-> = \frac{1}{\hat{\sigma}^6} \Biggl[ \frac{-n^2}{2} + \frac{n^2}{\hat{\sigma}^2}\, \hat{\sigma}^2 - \frac{1}{\hat{\sigma}^2} \Biggl( \sum_{i=1}^{n} (x_i - \bar{x}) \Biggr)^2 \Biggr] = \frac{1}{\hat{\sigma}^6}\, \frac{n^2}{2} > 0.
-> $$
+= \frac{1}{\hat{\sigma}^6} \Biggl[ \frac{-n^2}{2} + \frac{n^2}{\hat{\sigma}^2}\, \hat{\sigma}^2 - \frac{1}{\hat{\sigma}^2} \Biggl( \sum_{i=1}^{n} (x_i - \bar{x}) \Biggr)^2 \Biggr] = \frac{1}{\hat{\sigma}^6}\, \frac{n^2}{2} > 0.
+$$
 >
 > 故微积分条件满足，我们确实找到了最大。（当然，要真正形式化，我们验证的是 $$(\bar{x}, \hat{\sigma}^2)$$ 是内部最大；还须检查它唯一且无穷远处没有最大。）即便在这个简单问题中，计算量已相当可观，且只会更糟（想想三个参数要做什么）。因此教训是：虽然总须验证确实找到了最大，但应寻找除二阶导数条件之外的办法。
 
@@ -491,29 +491,29 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{Bernoulli}(p)$$，则 $$Y = \sum X_i$$ 服从 $$\mathrm{binomial}(n, p)$$。设 $$p$$ 的先验分布是 $$\mathrm{beta}(\alpha, \beta)$$。$$Y$$ 与 $$p$$ 的联合分布为
 >
 > $$
-> \begin{aligned}
-> f(y, p) &= \binom{n}{y}\, p^{y} (1 - p)^{n - y}\, \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\, \Gamma(\beta)}\, p^{\alpha - 1} (1 - p)^{\beta - 1} \qquad （\text{条件}\times\text{边缘}，\ f(y \mid p) \times \pi(p)）\\
-> &= \binom{n}{y}\, \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\, \Gamma(\beta)}\, p^{y + \alpha - 1} (1 - p)^{n - y + \beta - 1}.
-> \end{aligned}
-> $$
+\begin{aligned}
+f(y, p) &= \binom{n}{y}\, p^{y} (1 - p)^{n - y}\, \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\, \Gamma(\beta)}\, p^{\alpha - 1} (1 - p)^{\beta - 1} \qquad （\text{条件}\times\text{边缘}，\ f(y \mid p) \times \pi(p)）\\
+&= \binom{n}{y}\, \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\, \Gamma(\beta)}\, p^{y + \alpha - 1} (1 - p)^{n - y + \beta - 1}.
+\end{aligned}
+$$
 >
 > $$Y$$ 的边缘 pdf 为
 >
 > $$
-> f(y) = \int_0^1 f(y, p)\, dp = \binom{n}{y}\, \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\, \Gamma(\beta)}\, \frac{\Gamma(y + \alpha)\, \Gamma(n - y + \beta)}{\Gamma(n + \alpha + \beta)}, \tag{7.2.9}
-> $$
+f(y) = \int_0^1 f(y, p)\, dp = \binom{n}{y}\, \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\, \Gamma(\beta)}\, \frac{\Gamma(y + \alpha)\, \Gamma(n - y + \beta)}{\Gamma(n + \alpha + \beta)}, \tag{7.2.9}
+$$
 >
 > 该分布称为贝塔—二项分布（见习题 4.34 与例 4.4.6）。后验分布（给定 $$y$$ 时 $$p$$ 的分布）为
 >
 > $$
-> f(p \mid y) = \frac{f(y, p)}{f(y)} = \frac{\Gamma(n + \alpha + \beta)}{\Gamma(y + \alpha)\, \Gamma(n - y + \beta)}\, p^{y + \alpha - 1} (1 - p)^{n - y + \beta - 1},
-> $$
+f(p \mid y) = \frac{f(y, p)}{f(y)} = \frac{\Gamma(n + \alpha + \beta)}{\Gamma(y + \alpha)\, \Gamma(n - y + \beta)}\, p^{y + \alpha - 1} (1 - p)^{n - y + \beta - 1},
+$$
 >
 > 即 $$\mathrm{beta}(y + \alpha,\ n - y + \beta)$$。（记住变量是 $$p$$，$$y$$ 视为固定。）$$p$$ 的自然估计是后验分布的均值，于是 $$p$$ 的贝叶斯估计量为
 >
 > $$
-> \hat{p}_B = \frac{y + \alpha}{\alpha + \beta + n}.
-> $$
+\hat{p}_B = \frac{y + \alpha}{\alpha + \beta + n}.
+$$
 
 考虑 $$p$$ 的贝叶斯估计如何形成：先验分布的均值是 $$\alpha/(\alpha + \beta)$$，那是未看数据时我们对 $$p$$ 的最好估计。忽略先验信息时，我们多半会用 $$p = y/n$$ 作为估计。$$p$$ 的贝叶斯估计综合了所有这些信息。写成
 
@@ -538,12 +538,12 @@ $$
 > 设 $$X \sim n(\theta, \sigma^2)$$，并设 $$\theta$$ 的先验分布是 $$n(\mu, \tau^2)$$（此处设 $$\sigma^2$$、$$\mu$$、$$\tau^2$$ 都已知）。$$\theta$$ 的后验分布也是正态的，均值与方差为
 >
 > $$
-> \mathrm{E}(\theta \mid x) = \frac{\tau^2}{\tau^2 + \sigma^2}\, x + \frac{\sigma^2}{\sigma^2 + \tau^2}\, \mu, \tag{7.2.10}
-> $$
+\mathrm{E}(\theta \mid x) = \frac{\tau^2}{\tau^2 + \sigma^2}\, x + \frac{\sigma^2}{\sigma^2 + \tau^2}\, \mu, \tag{7.2.10}
+$$
 >
 > $$
-> \mathrm{Var}(\theta \mid x) = \frac{\sigma^2\, \tau^2}{\sigma^2 + \tau^2}.
-> $$
+\mathrm{Var}(\theta \mid x) = \frac{\sigma^2\, \tau^2}{\sigma^2 + \tau^2}.
+$$
 >
 > （细节见习题 7.22。）注意正态族是自身的共轭族。再次使用后验均值，$$\theta$$ 的贝叶斯估计量为 $$\mathrm{E}(\theta \mid X)$$。
 >
@@ -562,22 +562,22 @@ $$
 > 联合 pmf 因此为
 >
 > $$
-> f\bigl( (x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n) \mid \beta, \tau_1, \tau_2, \ldots, \tau_n \bigr) = \prod_{i=1}^{n} \frac{e^{-\beta \tau_i}\, (\beta \tau_i)^{y_i}}{y_i!}\, \frac{e^{-\tau_i}\, (\tau_i)^{x_i}}{x_i!}. \tag{7.2.11}
-> $$
+f\bigl( (x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n) \mid \beta, \tau_1, \tau_2, \ldots, \tau_n \bigr) = \prod_{i=1}^{n} \frac{e^{-\beta \tau_i}\, (\beta \tau_i)^{y_i}}{y_i!}\, \frac{e^{-\tau_i}\, (\tau_i)^{x_i}}{x_i!}. \tag{7.2.11}
+$$
 >
 > 似然估计量可通过直截求导找到（见习题 7.27）：
 >
 > $$
-> \hat{\beta} = \frac{\sum_{i=1}^{n} y_i}{\sum_{i=1}^{n} x_i} \qquad\text{与}\qquad \hat{\tau}_j = \frac{x_j + y_j}{\hat{\beta} + 1}, \qquad j = 1, 2, \ldots, n. \tag{7.2.12}
-> $$
+\hat{\beta} = \frac{\sum_{i=1}^{n} y_i}{\sum_{i=1}^{n} x_i} \qquad\text{与}\qquad \hat{\tau}_j = \frac{x_j + y_j}{\hat{\beta} + 1}, \qquad j = 1, 2, \ldots, n. \tag{7.2.12}
+$$
 >
 > 基于 pmf (7.2.11) 的似然是完全数据似然，$$\bigl( (x_1, y_1), \ldots, (x_n, y_n) \bigr)$$ 称为完全数据。缺失数据（常见情形）会使估计更困难：例如设 $$x_1$$ 的值缺失。我们可以把 $$y_1$$ 也丢弃、以样本量 $$n - 1$$ 继续，但这忽略了 $$y_1$$ 中的信息；利用该信息会改进估计。
 >
 > 从 pmf (7.2.11) 出发，$$x_1$$ 缺失时样本的 pmf 自然定义为
 >
 > $$
-> \sum_{x_1=0}^{\infty} f\bigl( (x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n) \mid \beta, \tau_1, \tau_2, \ldots, \tau_n \bigr). \tag{7.2.13}
-> $$
+\sum_{x_1=0}^{\infty} f\bigl( (x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n) \mid \beta, \tau_1, \tau_2, \ldots, \tau_n \bigr). \tag{7.2.13}
+$$
 >
 > 基于 (7.2.13) 的似然是不完全数据似然：这正是我们需要最大化的似然。
 
@@ -594,14 +594,14 @@ $$
 > 不完全数据似然由 (7.2.11) 对 $$x_1$$ 求和得到：
 >
 > $$
-> L\bigl( \beta, \tau_1, \tau_2, \ldots, \tau_n \mid y_1, (x_2, y_2), \ldots, (x_n, y_n) \bigr) = \Biggl[ \prod_{i=1}^{n} \frac{e^{-\beta \tau_i}\, (\beta \tau_i)^{y_i}}{y_i!} \Biggr]\, \Biggl[ \prod_{i=2}^{n} \frac{e^{-\tau_i}\, (\tau_i)^{x_i}}{x_i!} \Biggr], \tag{7.2.15}
-> $$
+L\bigl( \beta, \tau_1, \tau_2, \ldots, \tau_n \mid y_1, (x_2, y_2), \ldots, (x_n, y_n) \bigr) = \Biggl[ \prod_{i=1}^{n} \frac{e^{-\beta \tau_i}\, (\beta \tau_i)^{y_i}}{y_i!} \Biggr]\, \Biggl[ \prod_{i=2}^{n} \frac{e^{-\tau_i}\, (\tau_i)^{x_i}}{x_i!} \Biggr], \tag{7.2.15}
+$$
 >
 > $$\bigl( y_1, (x_2, y_2), \ldots, (x_n, y_n) \bigr)$$ 是不完全数据。这就是需要最大化的似然。求导导出 MLE 方程
 >
 > $$
-> \hat{\beta} = \frac{\sum_{i=1}^{n} y_i}{\sum_{i=1}^{n} \hat{\tau}_i}, \qquad y_1 = \hat{\tau}_1\, \hat{\beta}, \qquad x_j + y_j = \hat{\tau}_j\, (\hat{\beta} + 1), \quad j = 2, 3, \ldots, n, \tag{7.2.16}
-> $$
+\hat{\beta} = \frac{\sum_{i=1}^{n} y_i}{\sum_{i=1}^{n} \hat{\tau}_i}, \qquad y_1 = \hat{\tau}_1\, \hat{\beta}, \qquad x_j + y_j = \hat{\tau}_j\, (\hat{\beta} + 1), \quad j = 2, 3, \ldots, n, \tag{7.2.16}
+$$
 >
 > 现在用 EM 算法求解。
 
@@ -636,27 +636,27 @@ $$
 > 记 $$(\textbf{x}, \textbf{y}) = \bigl( (x_1, y_1), \ldots, (x_n, y_n) \bigr)$$ 为完全数据，$$\bigl( \textbf{x}^{(-1)}, \textbf{y} \bigr) = \bigl( y_1, (x_2, y_2), \ldots, (x_n, y_n) \bigr)$$ 为不完全数据。期望的完全数据对数似然为
 >
 > $$
-> \begin{aligned}
-> &\mathrm{E}\Bigl[ \log L\bigl( \beta, \tau_1, \tau_2, \ldots, \tau_n \mid (\textbf{x}, \textbf{y}) \bigr) \,\Big\vert \, \tau^{(r)}, (\textbf{x}^{(-1)}, \textbf{y}) \Bigr]\\
-> &= \sum_{x_1=0}^{\infty} \log\Biggl[ \prod_{i=1}^{n} \frac{e^{-\beta \tau_i}\, (\beta \tau_i)^{y_i}}{y_i!}\, \frac{e^{-\tau_i}\, (\tau_i)^{x_i}}{x_i!} \cdot \frac{e^{-\tau_1}\, (\tau_1^{(r)})^{x_1}}{x_1!} \Biggr]\\
-> &= \sum_{i=1}^{n} \bigl[ -\beta \tau_i + y_i\, (\log \beta + \log \tau_i) - \log y_i! \bigr] + \sum_{i=2}^{n} \bigl[ -\tau_i + x_i \log \tau_i - \log x_i! \bigr]\\
-> &\quad + \sum_{x_1=0}^{\infty} \bigl[ -\tau_1 + x_1 \log \tau_1 - \log x_1! \bigr]\, \frac{e^{-\tau_1^{(r)}}\, (\tau_1^{(r)})^{x_1}}{x_1!}\\
-> &= \Biggl( \sum_{i=1}^{n} \bigl[ -\beta \tau_i + y_i\, (\log \beta + \log \tau_i) \bigr] + \sum_{i=2}^{n} \bigl[ \tau_i\, x_i \log \tau_i \bigr] + \sum_{x_1=0}^{\infty} \bigl[ \tau_1\, x_1 \log \tau_1 \bigr]\, \frac{e^{-\tau_1^{(r)}}\, (\tau_1^{(r)})^{x_1}}{x_1!} \Biggr)\\
-> &\quad - \Biggl( \sum_{i=1}^{n} \log y_i! + \sum_{i=2}^{n} \log x_i! + \sum_{x_1=0}^{\infty} \log x_1!\, \frac{e^{-\tau_1^{(r)}}\, (\tau_1^{(r)})^{x_1}}{x_1!} \Biggr),
-> \end{aligned} \tag{7.2.21}
-> $$
+\begin{aligned}
+&\mathrm{E}\Bigl[ \log L\bigl( \beta, \tau_1, \tau_2, \ldots, \tau_n \mid (\textbf{x}, \textbf{y}) \bigr) \,\Big\vert \, \tau^{(r)}, (\textbf{x}^{(-1)}, \textbf{y}) \Bigr]\\
+&= \sum_{x_1=0}^{\infty} \log\Biggl[ \prod_{i=1}^{n} \frac{e^{-\beta \tau_i}\, (\beta \tau_i)^{y_i}}{y_i!}\, \frac{e^{-\tau_i}\, (\tau_i)^{x_i}}{x_i!} \cdot \frac{e^{-\tau_1}\, (\tau_1^{(r)})^{x_1}}{x_1!} \Biggr]\\
+&= \sum_{i=1}^{n} \bigl[ -\beta \tau_i + y_i\, (\log \beta + \log \tau_i) - \log y_i! \bigr] + \sum_{i=2}^{n} \bigl[ -\tau_i + x_i \log \tau_i - \log x_i! \bigr]\\
+&\quad + \sum_{x_1=0}^{\infty} \bigl[ -\tau_1 + x_1 \log \tau_1 - \log x_1! \bigr]\, \frac{e^{-\tau_1^{(r)}}\, (\tau_1^{(r)})^{x_1}}{x_1!}\\
+&= \Biggl( \sum_{i=1}^{n} \bigl[ -\beta \tau_i + y_i\, (\log \beta + \log \tau_i) \bigr] + \sum_{i=2}^{n} \bigl[ \tau_i\, x_i \log \tau_i \bigr] + \sum_{x_1=0}^{\infty} \bigl[ \tau_1\, x_1 \log \tau_1 \bigr]\, \frac{e^{-\tau_1^{(r)}}\, (\tau_1^{(r)})^{x_1}}{x_1!} \Biggr)\\
+&\quad - \Biggl( \sum_{i=1}^{n} \log y_i! + \sum_{i=2}^{n} \log x_i! + \sum_{x_1=0}^{\infty} \log x_1!\, \frac{e^{-\tau_1^{(r)}}\, (\tau_1^{(r)})^{x_1}}{x_1!} \Biggr),
+\end{aligned} \tag{7.2.21}
+$$
 >
 > 最后一步把含 $$\beta$$ 与 $$\tau_i$$ 的项与不含这些参数的项归组。既然计算这一期望对数似然是为了对 $$\beta$$ 与 $$\tau_i$$ 最大化它，可以忽略第二组括号中的项；只须最大化第一组括号中的项，其中最后的和可写为
 >
 > $$
-> -\tau_1 + \log \tau_1 \sum_{x_1=0}^{\infty} x_1\, \frac{e^{-\tau_1^{(r)}}\, (\tau_1^{(r)})^{x_1}}{x_1!} = -\tau_1 + \tau_1^{(r)} \log \tau_1. \tag{7.2.22}
-> $$
+-\tau_1 + \log \tau_1 \sum_{x_1=0}^{\infty} x_1\, \frac{e^{-\tau_1^{(r)}}\, (\tau_1^{(r)})^{x_1}}{x_1!} = -\tau_1 + \tau_1^{(r)} \log \tau_1. \tag{7.2.22}
+$$
 >
 > 把它代回 (7.2.21) 可见：期望的完全数据似然与原完全数据似然相同，只是 $$x_1$$ 被替换为 $$\tau_1^{(r)}$$。于是在第 $$r$$ 步，MLE 只是 (7.2.12) 的小小变体：
 >
 > $$
-> \hat{\beta}^{(r + 1)} = \frac{\sum_{i=1}^{n} y_i}{\tau_1^{(r)} + \sum_{i=2}^{n} x_i}, \qquad \hat{\tau}_1^{(r + 1)} = \frac{\tau_1^{(r)} + y_1}{\hat{\beta}^{(r + 1)} + 1}, \qquad \hat{\tau}_j^{(r + 1)} = \frac{x_j + y_j}{\hat{\beta}^{(r + 1)} + 1} \quad (j = 2, 3, \ldots, n). \tag{7.2.23}
-> $$
+\hat{\beta}^{(r + 1)} = \frac{\sum_{i=1}^{n} y_i}{\tau_1^{(r)} + \sum_{i=2}^{n} x_i}, \qquad \hat{\tau}_1^{(r + 1)} = \frac{\tau_1^{(r)} + y_1}{\hat{\beta}^{(r + 1)} + 1}, \qquad \hat{\tau}_j^{(r + 1)} = \frac{x_j + y_j}{\hat{\beta}^{(r + 1)} + 1} \quad (j = 2, 3, \ldots, n). \tag{7.2.23}
+$$
 >
 > 这同时定义了 E 步（导致以 $$\tau_1^{(r)}$$ 替换 $$x_1$$）与 M 步（导致 (7.2.23) 中第 $$r$$ 次迭代的 MLE 计算）。EM 算法的性质使我们确信序列 $$\bigl( \hat{\beta}^{(r)}, \hat{\tau}_1^{(r)}, \ldots, \hat{\tau}_n^{(r)} \bigr)$$ 当 $$r \to \infty$$ 时收敛到不完全数据 MLE。更多内容见习题 7.27。
 
@@ -667,14 +667,14 @@ $$
 > 由 (7.2.20) 定义的序列 $$\{ \hat{\theta}^{(r)} \}$$ 满足
 >
 > $$
-> L\bigl( \hat{\theta}^{(r + 1)} \mid \textbf{y} \bigr) \geq L\bigl( \hat{\theta}^{(r)} \mid \textbf{y} \bigr), \tag{7.2.24}
-> $$
+L\bigl( \hat{\theta}^{(r + 1)} \mid \textbf{y} \bigr) \geq L\bigl( \hat{\theta}^{(r)} \mid \textbf{y} \bigr), \tag{7.2.24}
+$$
 >
 > 等号成立当且仅当相继迭代给出相同的最大化期望完全数据对数似然值，即
 >
 > $$
-> \mathrm{E}\Bigl[ \log L\bigl( \hat{\theta}^{(r + 1)} \mid \textbf{y}, \textbf{X} \bigr) \mid \hat{\theta}^{(r)}, \textbf{y} \Bigr] = \mathrm{E}\Bigl[ \log L\bigl( \hat{\theta}^{(r)} \mid \textbf{y}, \textbf{X} \bigr) \mid \hat{\theta}^{(r)}, \textbf{y} \Bigr].
-> $$
+\mathrm{E}\Bigl[ \log L\bigl( \hat{\theta}^{(r + 1)} \mid \textbf{y}, \textbf{X} \bigr) \mid \hat{\theta}^{(r)}, \textbf{y} \Bigr] = \mathrm{E}\Bigl[ \log L\bigl( \hat{\theta}^{(r)} \mid \textbf{y}, \textbf{X} \bigr) \mid \hat{\theta}^{(r)}, \textbf{y} \Bigr].
+$$
 
 ## 7.3 评价估计量的方法（Methods of Evaluating Estimators）
 
@@ -717,15 +717,15 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是 iid $$n(\mu, \sigma^2)$$。统计量 $$\bar{X}$$ 与 $$S^2$$ 都是无偏估计量，因为
 >
 > $$
-> \mathrm{E} \bar{X} = \mu, \qquad \mathrm{E} S^2 = \sigma^2 \qquad \text{（对一切}\ \mu\ \text{与}\ \sigma^2\text{）}
-> $$
+\mathrm{E} \bar{X} = \mu, \qquad \mathrm{E} S^2 = \sigma^2 \qquad \text{（对一切}\ \mu\ \text{与}\ \sigma^2\text{）}
+$$
 >
 > （没有正态性假设时这也成立；见定理 5.2.6）。这些估计量的 MSE 为
 >
 > $$
-> \mathrm{E} (\bar{X} - \mu)^2 = \mathrm{Var} \bar{X} = \frac{\sigma^2}{n}, \qquad
-> \mathrm{E} \bigl( S^2 - \sigma^2 \bigr)^2 = \mathrm{Var} S^2 = \frac{2 \sigma^4}{n - 1}.
-> $$
+\mathrm{E} (\bar{X} - \mu)^2 = \mathrm{Var} \bar{X} = \frac{\sigma^2}{n}, \qquad
+\mathrm{E} \bigl( S^2 - \sigma^2 \bigr)^2 = \mathrm{Var} S^2 = \frac{2 \sigma^4}{n - 1}.
+$$
 >
 > 即使放弃正态性假设，$$\bar{X}$$ 的 MSE 仍是 $$\sigma^2/n$$；但若放宽正态性假设，上述 $$S^2$$ 的 MSE 表达式不再相同（见习题 5.8）。
 
@@ -736,26 +736,26 @@ $$
 > $$\sigma^2$$ 的一个替代估计量是最大似然估计量 $$\hat{\sigma}^2 = \frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X})^2 = \frac{n - 1}{n}\, S^2$$。容易计算
 >
 > $$
-> \mathrm{E} \hat{\sigma}^2 = \mathrm{E}\Bigl[ \frac{n - 1}{n}\, S^2 \Bigr] = \frac{n - 1}{n}\, \sigma^2,
-> $$
+\mathrm{E} \hat{\sigma}^2 = \mathrm{E}\Bigl[ \frac{n - 1}{n}\, S^2 \Bigr] = \frac{n - 1}{n}\, \sigma^2,
+$$
 >
 > 故 $$\hat{\sigma}^2$$ 是 $$\sigma^2$$ 的有偏估计量。$$\hat{\sigma}^2$$ 的方差也可计算为
 >
 > $$
-> \mathrm{Var} \hat{\sigma}^2 = \mathrm{Var}\Bigl[ \frac{n - 1}{n}\, S^2 \Bigr] = \Bigl( \frac{n - 1}{n} \Bigr)^2\, \mathrm{Var} S^2 = \frac{2 (n - 1)\, \sigma^4}{n^2},
-> $$
+\mathrm{Var} \hat{\sigma}^2 = \mathrm{Var}\Bigl[ \frac{n - 1}{n}\, S^2 \Bigr] = \Bigl( \frac{n - 1}{n} \Bigr)^2\, \mathrm{Var} S^2 = \frac{2 (n - 1)\, \sigma^4}{n^2},
+$$
 >
 > 故其 MSE 为
 >
 > $$
-> \mathrm{E} \bigl( \hat{\sigma}^2 - \sigma^2 \bigr)^2 = \frac{2 (n - 1)\, \sigma^4}{n^2} + \Biggl( \frac{n - 1}{n}\, \sigma^2 - \sigma^2 \Biggr)^2 = \frac{2n - 1}{n^2}\, \sigma^4.
-> $$
+\mathrm{E} \bigl( \hat{\sigma}^2 - \sigma^2 \bigr)^2 = \frac{2 (n - 1)\, \sigma^4}{n^2} + \Biggl( \frac{n - 1}{n}\, \sigma^2 - \sigma^2 \Biggr)^2 = \frac{2n - 1}{n^2}\, \sigma^4.
+$$
 >
 > 于是有
 >
 > $$
-> \mathrm{E} \bigl( \hat{\sigma}^2 - \sigma^2 \bigr)^2 = \frac{2n - 1}{n^2}\, \sigma^4 < \frac{2}{n - 1}\, \sigma^4 = \mathrm{E} \bigl( S^2 - \sigma^2 \bigr)^2,
-> $$
+\mathrm{E} \bigl( \hat{\sigma}^2 - \sigma^2 \bigr)^2 = \frac{2n - 1}{n^2}\, \sigma^4 < \frac{2}{n - 1}\, \sigma^4 = \mathrm{E} \bigl( S^2 - \sigma^2 \bigr)^2,
+$$
 >
 > 表明 $$\hat{\sigma}^2$$ 的 MSE 小于 $$S^2$$。因此，用方差换偏差，MSE 得到了改进。
 
@@ -768,24 +768,24 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{Bernoulli}(p)$$。$$\bar{X}$$ 作为 $$p$$ 的估计量的 MSE 为
 >
 > $$
-> \mathrm{E}_p\, (\bar{X} - p)^2 = \mathrm{Var}_p\, \bar{X} = \frac{p\, (1 - p)}{n}.
-> $$
+\mathrm{E}_p\, (\bar{X} - p)^2 = \mathrm{Var}_p\, \bar{X} = \frac{p\, (1 - p)}{n}.
+$$
 >
 > 令 $$Y = \sum X_i$$，回忆例 7.2.14 中导出的贝叶斯估计量 $$\hat{p}_B = \dfrac{Y + \alpha}{\alpha + \beta + n}$$。这个 $$p$$ 的贝叶斯估计量的 MSE 为
 >
 > $$
-> \begin{aligned}
-> \mathrm{E}_p\, \bigl( \hat{p}_B - p \bigr)^2 &= \mathrm{Var}_p\, \hat{p}_B + \bigl( \mathrm{Bias}_p\, \hat{p}_B \bigr)^2
-> = \mathrm{Var}_p\Biggl( \frac{Y + \alpha}{\alpha + \beta + n} \Biggr) + \mathrm{E}_p\Biggl( \frac{Y + \alpha}{\alpha + \beta + n} - p \Biggr)^2\\
-> &= \frac{n p (1 - p)}{(\alpha + \beta + n)^2} + \Biggl( \frac{n p + \alpha}{\alpha + \beta + n} - p \Biggr)^2.
-> \end{aligned}
-> $$
+\begin{aligned}
+\mathrm{E}_p\, \bigl( \hat{p}_B - p \bigr)^2 &= \mathrm{Var}_p\, \hat{p}_B + \bigl( \mathrm{Bias}_p\, \hat{p}_B \bigr)^2
+= \mathrm{Var}_p\Biggl( \frac{Y + \alpha}{\alpha + \beta + n} \Biggr) + \mathrm{E}_p\Biggl( \frac{Y + \alpha}{\alpha + \beta + n} - p \Biggr)^2\\
+&= \frac{n p (1 - p)}{(\alpha + \beta + n)^2} + \Biggl( \frac{n p + \alpha}{\alpha + \beta + n} - p \Biggr)^2.
+\end{aligned}
+$$
 >
 > 在缺乏关于 $$p$$ 的良好先验信息时，我们可以试着选 $$\alpha$$ 与 $$\beta$$ 使 $$\hat{p}_B$$ 的 MSE 为常数。细节不难（见习题 7.33），取 $$\alpha = \beta = \sqrt{n}/4$$ 得
 >
 > $$
-> \hat{p}_B = \frac{Y + \sqrt{n}/4}{n + \sqrt{n}} \qquad\text{与}\qquad \mathrm{E}\bigl( \hat{p}_B - p \bigr)^2 = \frac{n}{4 (n + \sqrt{n})^2}.
-> $$
+\hat{p}_B = \frac{Y + \sqrt{n}/4}{n + \sqrt{n}} \qquad\text{与}\qquad \mathrm{E}\bigl( \hat{p}_B - p \bigr)^2 = \frac{n}{4 (n + \sqrt{n})^2}.
+$$
 >
 > 若要基于 MSE 在 $$\hat{p}_B$$ 与 $$\bar{X}$$ 之间抉择，图 7.3.1 颇有帮助：小 $$n$$ 时 $$\hat{p}_B$$ 更好（除非坚信 $$p$$ 接近 0 或 1）；大 $$n$$ 时 $$\bar{X}$$ 更好（除非坚信 $$p$$ 接近 $$\tfrac{1}{2}$$）。即使 MSE 准则没有显示某个估计量一致更优，它也提供了有用信息；这些信息结合对具体问题的了解，可以导致为该情形选出更好的估计量。
 
@@ -810,19 +810,19 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是 iid $$f(x - \theta)$$。估计量 $$W(X_1, \ldots, X_n)$$ 要满足 $$W\bigl( g_a(\textbf{x}) \bigr) = \bar{g}_a\bigl( W(\textbf{x}) \bigr)$$，必须有
 >
 > $$
-> W(x_1, \ldots, x_n) + a = W(x_1 + a, \ldots, x_n + a), \tag{7.3.2}
-> $$
+W(x_1, \ldots, x_n) + a = W(x_1 + a, \ldots, x_n + a), \tag{7.3.2}
+$$
 >
 > 这规定了关于变换群 $$\mathcal{G} = \{ g_a(\textbf{x}) : -\infty < a < \infty \}$$（$$g_a(x_1, \ldots, x_n) = (x_1 + a, \ldots, x_n + a)$$）的等变估计量。对这些估计量：
 >
 > $$
-> \begin{aligned}
-> \mathrm{E}_{\theta}\, \bigl( W(X_1, \ldots, X_n) - \theta \bigr)^2 &= \mathrm{E}_{\theta}\, \bigl( W(X_1 + a, \ldots, X_n + a) - a - \theta \bigr)^2\\
-> &= \mathrm{E}_{\theta}\, \bigl( W(X_1 - \theta, \ldots, X_n - \theta) \bigr)^2 \qquad （a = -\theta）\\
-> &= \int_{-\infty}^{\infty} \cdots \int_{-\infty}^{\infty} \bigl( W(x_1 - \theta, \ldots, x_n - \theta) \bigr)^2 \prod_{i=1}^{n} f(x_i - \theta)\, dx_i\\
-> &= \int_{-\infty}^{\infty} \cdots \int_{-\infty}^{\infty} \bigl( W(u_1, \ldots, u_n) \bigr)^2 \prod_{i=1}^{n} f(u_i)\, du_i \qquad （u_i = x_i - \theta）.
-> \end{aligned} \tag{7.3.3}
-> $$
+\begin{aligned}
+\mathrm{E}_{\theta}\, \bigl( W(X_1, \ldots, X_n) - \theta \bigr)^2 &= \mathrm{E}_{\theta}\, \bigl( W(X_1 + a, \ldots, X_n + a) - a - \theta \bigr)^2\\
+&= \mathrm{E}_{\theta}\, \bigl( W(X_1 - \theta, \ldots, X_n - \theta) \bigr)^2 \qquad （a = -\theta）\\
+&= \int_{-\infty}^{\infty} \cdots \int_{-\infty}^{\infty} \bigl( W(x_1 - \theta, \ldots, x_n - \theta) \bigr)^2 \prod_{i=1}^{n} f(x_i - \theta)\, dx_i\\
+&= \int_{-\infty}^{\infty} \cdots \int_{-\infty}^{\infty} \bigl( W(u_1, \ldots, u_n) \bigr)^2 \prod_{i=1}^{n} f(u_i)\, du_i \qquad （u_i = x_i - \theta）.
+\end{aligned} \tag{7.3.3}
+$$
 >
 > 最后的表达式不依赖 $$\theta$$，故这些等变估计量的 MSE 不是 $$\theta$$ 的函数。因此可以用 MSE 给等变估计量排序，找到 MSE 最小的等变估计量。事实上该估计量就是如下数学问题的解：在约束 (7.3.2) 下最小化 (7.3.3) 求函数 $$W$$。（见习题 7.35 与 7.36。）
 
@@ -861,8 +861,8 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{Poisson}(\lambda)$$，$$\bar{X}$$ 与 $$S^2$$ 分别为样本均值与方差。回忆泊松 pmf 的均值与方差都等于 $$\lambda$$。应用定理 5.2.6：
 >
 > $$
-> \mathrm{E}_{\lambda}\, \bar{X} = \lambda \quad \text{（对一切}\ \lambda\text{）}, \qquad \mathrm{E}_{\lambda}\, S^2 = \lambda \quad \text{（对一切}\ \lambda\text{）},
-> $$
+\mathrm{E}_{\lambda}\, \bar{X} = \lambda \quad \text{（对一切}\ \lambda\text{）}, \qquad \mathrm{E}_{\lambda}\, S^2 = \lambda \quad \text{（对一切}\ \lambda\text{）},
+$$
 >
 > 故 $$\bar{X}$$ 与 $$S^2$$ 都是 $$\lambda$$ 的无偏估计量。
 >
@@ -871,8 +871,8 @@ $$
 > 即使能确立 $$\bar{X}$$ 优于 $$S^2$$，考虑估计量类
 >
 > $$
-> W_a(\bar{X}, S^2) = a \bar{X} + (1 - a)\, S^2.
-> $$
+W_a(\bar{X}, S^2) = a \bar{X} + (1 - a)\, S^2.
+$$
 >
 > 对每个常数 $$a$$，$$\mathrm{E}_{\lambda}\, W_a(\bar{X}, S^2) = \lambda$$，于是现在有无穷多个 $$\lambda$$ 的无偏估计量。即使 $$\bar{X}$$ 优于 $$S^2$$，它优于每个 $$W_a(\bar{X}, S^2)$$ 吗？此外如何确信没有潜伏在别处的更好的无偏估计量？
 
@@ -883,64 +883,64 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是以 $$f(\textbf{x} \mid \theta)$$ 为 pdf 的样本，$$W(\textbf{X}) = W(X_1, \ldots, X_n)$$ 是任何满足
 >
 > $$
-> \frac{d}{d\theta}\, \mathrm{E}_{\theta}\, W(\textbf{X}) = \int_{\mathcal{X}} \frac{\partial}{\partial \theta}\, \bigl[ W(\textbf{x})\, f(\textbf{x} \mid \theta) \bigr]\, d\textbf{x}
-> \qquad\text{与}\qquad \mathrm{Var}_{\theta}\, W(\textbf{X}) < \infty \tag{7.3.4}
-> $$
+\frac{d}{d\theta}\, \mathrm{E}_{\theta}\, W(\textbf{X}) = \int_{\mathcal{X}} \frac{\partial}{\partial \theta}\, \bigl[ W(\textbf{x})\, f(\textbf{x} \mid \theta) \bigr]\, d\textbf{x}
+\qquad\text{与}\qquad \mathrm{Var}_{\theta}\, W(\textbf{X}) < \infty \tag{7.3.4}
+$$
 >
 > 的估计量。则
 >
 > $$
-> \mathrm{Var}_{\theta}\bigl( W(\textbf{X}) \bigr) \geq \frac{\Bigl( \dfrac{d}{d\theta}\, \mathrm{E}_{\theta}\, W(\textbf{X}) \Bigr)^{2}}{\mathrm{E}_{\theta}\Biggl[ \Bigl( \dfrac{\partial}{\partial \theta} \log f(\textbf{X} \mid \theta) \Bigr)^2 \Biggr]}. \tag{7.3.5}
-> $$
+\mathrm{Var}_{\theta}\bigl( W(\textbf{X}) \bigr) \geq \frac{\Bigl( \dfrac{d}{d\theta}\, \mathrm{E}_{\theta}\, W(\textbf{X}) \Bigr)^{2}}{\mathrm{E}_{\theta}\Biggl[ \Bigl( \dfrac{\partial}{\partial \theta} \log f(\textbf{X} \mid \theta) \Bigr)^2 \Biggr]}. \tag{7.3.5}
+$$
 >
 > **证明**　该定理的证明极其简洁，是柯西—施瓦茨不等式的巧妙应用；用统计语言表述：对任意两个随机变量 $$X$$ 与 $$Y$$，
 >
 > $$
-> \bigl[ \mathrm{Cov}(X, Y) \bigr]^2 \leq (\mathrm{Var} X)\, (\mathrm{Var} Y). \tag{7.3.6}
-> $$
+\bigl[ \mathrm{Cov}(X, Y) \bigr]^2 \leq (\mathrm{Var} X)\, (\mathrm{Var} Y). \tag{7.3.6}
+$$
 >
 > 整理 (7.3.6) 可得 $$X$$ 方差的下界：
 >
 > $$
-> \mathrm{Var} X \geq \frac{\bigl[ \mathrm{Cov}(X, Y) \bigr]^2}{\mathrm{Var} Y}.
-> $$
+\mathrm{Var} X \geq \frac{\bigl[ \mathrm{Cov}(X, Y) \bigr]^2}{\mathrm{Var} Y}.
+$$
 >
 > 定理的巧妙之处在于取 $$X$$ 为估计量 $$W(\textbf{X})$$、取 $$Y$$ 为量 $$\frac{\partial}{\partial \theta} \log f(\textbf{X} \mid \theta)$$，再应用柯西—施瓦茨不等式。
 >
 > 首先注意
 >
 > $$
-> \frac{d}{d\theta}\, \mathrm{E}_{\theta}\, W(\textbf{X}) = \int_{\mathcal{X}} W(\textbf{x})\, \frac{\partial}{\partial \theta}\, f(\textbf{x} \mid \theta)\, d\textbf{x}
-> = \mathrm{E}_{\theta}\, W(\textbf{X})\, \frac{\dfrac{\partial}{\partial \theta}\, f(\textbf{X} \mid \theta)}{f(\textbf{X} \mid \theta)} \qquad （\text{乘以}\ f(\textbf{X} \mid \theta)/f(\textbf{X} \mid \theta)） \tag{7.3.7}
-> $$
+\frac{d}{d\theta}\, \mathrm{E}_{\theta}\, W(\textbf{X}) = \int_{\mathcal{X}} W(\textbf{x})\, \frac{\partial}{\partial \theta}\, f(\textbf{x} \mid \theta)\, d\textbf{x}
+= \mathrm{E}_{\theta}\, W(\textbf{X})\, \frac{\dfrac{\partial}{\partial \theta}\, f(\textbf{X} \mid \theta)}{f(\textbf{X} \mid \theta)} \qquad （\text{乘以}\ f(\textbf{X} \mid \theta)/f(\textbf{X} \mid \theta)） \tag{7.3.7}
+$$
 >
 > $$
-> = \mathrm{E}_{\theta}\, W(\textbf{X})\, \frac{\partial}{\partial \theta}\, \log f(\textbf{X} \mid \theta) \qquad （\text{对数的性质}），
-> $$
+= \mathrm{E}_{\theta}\, W(\textbf{X})\, \frac{\partial}{\partial \theta}\, \log f(\textbf{X} \mid \theta) \qquad （\text{对数的性质}），
+$$
 >
 > 这提示 $$W(\textbf{X})$$ 与 $$\frac{\partial}{\partial \theta} \log f(\textbf{X} \mid \theta)$$ 之间存在协方差。要成为协方差须减去期望的乘积，故计算 $$\mathrm{E}_{\theta}\Bigl[ \frac{\partial}{\partial \theta} \log f(\textbf{X} \mid \theta) \Bigr]$$。在 (7.3.7) 中取 $$W(\textbf{x}) = 1$$ 得
 >
 > $$
-> \mathrm{E}_{\theta}\Biggl[ \frac{\partial}{\partial \theta}\, \log f(\textbf{X} \mid \theta) \Biggr] = \frac{d}{d\theta}\, \mathrm{E}_{\theta}\bigl[ 1 \bigr] = 0. \tag{7.3.8}
-> $$
+\mathrm{E}_{\theta}\Biggl[ \frac{\partial}{\partial \theta}\, \log f(\textbf{X} \mid \theta) \Biggr] = \frac{d}{d\theta}\, \mathrm{E}_{\theta}\bigl[ 1 \bigr] = 0. \tag{7.3.8}
+$$
 >
 > 因此 $$\mathrm{Cov}_{\theta}\Bigl( W(\textbf{X}),\, \frac{\partial}{\partial \theta} \log f(\textbf{X} \mid \theta) \Bigr)$$ 等于乘积的期望，由 (7.3.7) 与 (7.3.8) 得
 >
 > $$
-> \mathrm{Cov}_{\theta}\Biggl( W(\textbf{X}),\, \frac{\partial}{\partial \theta}\, \log f(\textbf{X} \mid \theta) \Biggr) = \mathrm{E}_{\theta}\Biggl[ W(\textbf{X})\, \frac{\partial}{\partial \theta}\, \log f(\textbf{X} \mid \theta) \Biggr] = \frac{d}{d\theta}\, \mathrm{E}_{\theta}\, W(\textbf{X}). \tag{7.3.9}
-> $$
+\mathrm{Cov}_{\theta}\Biggl( W(\textbf{X}),\, \frac{\partial}{\partial \theta}\, \log f(\textbf{X} \mid \theta) \Biggr) = \mathrm{E}_{\theta}\Biggl[ W(\textbf{X})\, \frac{\partial}{\partial \theta}\, \log f(\textbf{X} \mid \theta) \Biggr] = \frac{d}{d\theta}\, \mathrm{E}_{\theta}\, W(\textbf{X}). \tag{7.3.9}
+$$
 >
 > 又由 $$\mathrm{E}_{\theta}\Bigl( \frac{\partial}{\partial \theta} \log f(\textbf{X} \mid \theta) \Bigr) = 0$$ 得
 >
 > $$
-> \mathrm{Var}_{\theta}\Biggl( \frac{\partial}{\partial \theta}\, \log f(\textbf{X} \mid \theta) \Biggr) = \mathrm{E}_{\theta}\Biggl[ \Bigl( \frac{\partial}{\partial \theta}\, \log f(\textbf{X} \mid \theta) \Bigr)^2 \Biggr]. \tag{7.3.10}
-> $$
+\mathrm{Var}_{\theta}\Biggl( \frac{\partial}{\partial \theta}\, \log f(\textbf{X} \mid \theta) \Biggr) = \mathrm{E}_{\theta}\Biggl[ \Bigl( \frac{\partial}{\partial \theta}\, \log f(\textbf{X} \mid \theta) \Bigr)^2 \Biggr]. \tag{7.3.10}
+$$
 >
 > 用柯西—施瓦茨不等式并结合 (7.3.9) 与 (7.3.10)，得
 >
 > $$
-> \mathrm{Var}_{\theta}\bigl( W(\textbf{X}) \bigr) \geq \frac{\Bigl( \dfrac{d}{d\theta}\, \mathrm{E}_{\theta}\, W(\textbf{X}) \Bigr)^{2}}{\mathrm{E}_{\theta}\Biggl[ \Bigl( \dfrac{\partial}{\partial \theta} \log f(\textbf{X} \mid \theta) \Bigr)^2 \Biggr]},
-> $$
+\mathrm{Var}_{\theta}\bigl( W(\textbf{X}) \bigr) \geq \frac{\Bigl( \dfrac{d}{d\theta}\, \mathrm{E}_{\theta}\, W(\textbf{X}) \Bigr)^{2}}{\mathrm{E}_{\theta}\Biggl[ \Bigl( \dfrac{\partial}{\partial \theta} \log f(\textbf{X} \mid \theta) \Bigr)^2 \Biggr]},
+$$
 >
 > 定理得证。 ∎
 
@@ -951,37 +951,37 @@ $$
 > 若定理 7.3.9 的假设满足，且 $$X_1, \ldots, X_n$$ 是具有 pdf $$f(x \mid \theta)$$ 的 iid 样本，则
 >
 > $$
-> \mathrm{Var}_{\theta}\, W(\textbf{X}) \geq \frac{\Bigl( \dfrac{d}{d\theta}\, \mathrm{E}_{\theta}\, W(\textbf{X}) \Bigr)^{2}}{n\, \mathrm{E}_{\theta}\Biggl[ \Bigl( \dfrac{\partial}{\partial \theta}\, \log f(X \mid \theta) \Bigr)^2 \Biggr]}.
-> $$
+\mathrm{Var}_{\theta}\, W(\textbf{X}) \geq \frac{\Bigl( \dfrac{d}{d\theta}\, \mathrm{E}_{\theta}\, W(\textbf{X}) \Bigr)^{2}}{n\, \mathrm{E}_{\theta}\Biggl[ \Bigl( \dfrac{\partial}{\partial \theta}\, \log f(X \mid \theta) \Bigr)^2 \Biggr]}.
+$$
 >
 > **证明**　只须证明
 >
 > $$
-> \mathrm{E}_{\theta}\Biggl[ \Biggl( \frac{\partial}{\partial \theta}\, \log f(\textbf{X} \mid \theta) \Biggr)^2 \Biggr] = n\, \mathrm{E}_{\theta}\Biggl[ \Biggl( \frac{\partial}{\partial \theta}\, \log f(X \mid \theta) \Biggr)^2 \Biggr].
-> $$
+\mathrm{E}_{\theta}\Biggl[ \Biggl( \frac{\partial}{\partial \theta}\, \log f(\textbf{X} \mid \theta) \Biggr)^2 \Biggr] = n\, \mathrm{E}_{\theta}\Biggl[ \Biggl( \frac{\partial}{\partial \theta}\, \log f(X \mid \theta) \Biggr)^2 \Biggr].
+$$
 >
 > 由于 $$X_1, \ldots, X_n$$ 独立：
 >
 > $$
-> \mathrm{E}_{\theta}\Biggl[ \Biggl( \frac{\partial}{\partial \theta}\, \log f(\textbf{X} \mid \theta) \Biggr)^2 \Biggr] = \mathrm{E}_{\theta}\Biggl[ \Biggl( \frac{\partial}{\partial \theta}\, \log \prod_{i=1}^{n} f(X_i \mid \theta) \Biggr)^2 \Biggr] = \mathrm{E}_{\theta}\Biggl[ \Biggl( \sum_{i=1}^{n} \frac{\partial}{\partial \theta}\, \log f(X_i \mid \theta) \Biggr)^2 \Biggr] \qquad （\text{对数的性质}）
-> $$
+\mathrm{E}_{\theta}\Biggl[ \Biggl( \frac{\partial}{\partial \theta}\, \log f(\textbf{X} \mid \theta) \Biggr)^2 \Biggr] = \mathrm{E}_{\theta}\Biggl[ \Biggl( \frac{\partial}{\partial \theta}\, \log \prod_{i=1}^{n} f(X_i \mid \theta) \Biggr)^2 \Biggr] = \mathrm{E}_{\theta}\Biggl[ \Biggl( \sum_{i=1}^{n} \frac{\partial}{\partial \theta}\, \log f(X_i \mid \theta) \Biggr)^2 \Biggr] \qquad （\text{对数的性质}）
+$$
 >
 > $$
-> = \sum_{i=1}^{n} \mathrm{E}_{\theta}\Biggl[ \Biggl( \frac{\partial}{\partial \theta}\, \log f(X_i \mid \theta) \Biggr)^2 \Biggr] + \sum_{i \neq j} \mathrm{E}_{\theta}\Biggl[ \frac{\partial}{\partial \theta}\, \log f(X_i \mid \theta)\, \frac{\partial}{\partial \theta}\, \log f(X_j \mid \theta) \Biggr]. \tag{7.3.11}
-> $$
+= \sum_{i=1}^{n} \mathrm{E}_{\theta}\Biggl[ \Biggl( \frac{\partial}{\partial \theta}\, \log f(X_i \mid \theta) \Biggr)^2 \Biggr] + \sum_{i \neq j} \mathrm{E}_{\theta}\Biggl[ \frac{\partial}{\partial \theta}\, \log f(X_i \mid \theta)\, \frac{\partial}{\partial \theta}\, \log f(X_j \mid \theta) \Biggr]. \tag{7.3.11}
+$$
 >
 > 对 $$i \neq j$$：
 >
 > $$
-> \mathrm{E}_{\theta}\Biggl[ \frac{\partial}{\partial \theta}\, \log f(X_i \mid \theta)\, \frac{\partial}{\partial \theta}\, \log f(X_j \mid \theta) \Biggr]
-> = \mathrm{E}_{\theta}\Biggl[ \frac{\partial}{\partial \theta}\, \log f(X_i \mid \theta) \Biggr]\, \mathrm{E}_{\theta}\Biggl[ \frac{\partial}{\partial \theta}\, \log f(X_j \mid \theta) \Biggr] = 0
-> $$
+\mathrm{E}_{\theta}\Biggl[ \frac{\partial}{\partial \theta}\, \log f(X_i \mid \theta)\, \frac{\partial}{\partial \theta}\, \log f(X_j \mid \theta) \Biggr]
+= \mathrm{E}_{\theta}\Biggl[ \frac{\partial}{\partial \theta}\, \log f(X_i \mid \theta) \Biggr]\, \mathrm{E}_{\theta}\Biggl[ \frac{\partial}{\partial \theta}\, \log f(X_j \mid \theta) \Biggr] = 0
+$$
 >
 > （独立性；(7.3.8)）。故 (7.3.11) 中第二个和为零，第一项为
 >
 > $$
-> \sum_{i=1}^{n} \mathrm{E}_{\theta}\Biggl[ \Biggl( \frac{\partial}{\partial \theta}\, \log f(X_i \mid \theta) \Biggr)^2 \Biggr] = n\, \mathrm{E}_{\theta}\Biggl[ \Biggl( \frac{\partial}{\partial \theta}\, \log f(X \mid \theta) \Biggr)^2 \Biggr] \qquad （\text{同分布}），
-> $$
+\sum_{i=1}^{n} \mathrm{E}_{\theta}\Biggl[ \Biggl( \frac{\partial}{\partial \theta}\, \log f(X_i \mid \theta) \Biggr)^2 \Biggr] = n\, \mathrm{E}_{\theta}\Biggl[ \Biggl( \frac{\partial}{\partial \theta}\, \log f(X \mid \theta) \Biggr)^2 \Biggr] \qquad （\text{同分布}），
+$$
 >
 > 推论得证。 ∎
 
@@ -1000,14 +1000,14 @@ $$
 > 若 $$f(x \mid \theta)$$ 满足
 >
 > $$
-> \frac{d}{d\theta}\, \mathrm{E}_{\theta}\Biggl[ \frac{\partial}{\partial \theta}\, \log f(X \mid \theta) \Biggr] = \int \frac{\partial}{\partial \theta}\, \Biggl[ \frac{\partial}{\partial \theta}\, \log f(x \mid \theta) \Biggr]\, f(x \mid \theta)\, dx
-> $$
+\frac{d}{d\theta}\, \mathrm{E}_{\theta}\Biggl[ \frac{\partial}{\partial \theta}\, \log f(X \mid \theta) \Biggr] = \int \frac{\partial}{\partial \theta}\, \Biggl[ \frac{\partial}{\partial \theta}\, \log f(x \mid \theta) \Biggr]\, f(x \mid \theta)\, dx
+$$
 >
 > （指数族满足），则
 >
 > $$
-> \mathrm{E}_{\theta}\Biggl[ \Biggl( \frac{\partial}{\partial \theta}\, \log f(X \mid \theta) \Biggr)^2 \Biggr] = -\,\mathrm{E}_{\theta}\Biggl[ \frac{\partial^2}{\partial \theta^2}\, \log f(X \mid \theta) \Biggr].
-> $$
+\mathrm{E}_{\theta}\Biggl[ \Biggl( \frac{\partial}{\partial \theta}\, \log f(X \mid \theta) \Biggr)^2 \Biggr] = -\,\mathrm{E}_{\theta}\Biggl[ \frac{\partial^2}{\partial \theta^2}\, \log f(X \mid \theta) \Biggr].
+$$
 
 用刚发展的工具，回到并解决泊松的例子。
 
@@ -1016,25 +1016,25 @@ $$
 > 此处 $$\tau(\lambda) = \lambda$$，故 $$\tau'(\lambda) = 1$$。又由于我们面对指数族，用引理 7.3.11 得
 >
 > $$
-> \mathrm{E}_{\lambda}\Biggl[ \Biggl( \frac{\partial}{\partial \lambda}\, \log \prod_{i=1}^{n} f(X_i \mid \lambda) \Biggr)^2 \Biggr] = -n\, \mathrm{E}_{\lambda}\Biggl[ \frac{\partial^2}{\partial \lambda^2}\, \log f(X \mid \lambda) \Biggr]
-> = -n\, \mathrm{E}_{\lambda}\Biggl[ \frac{\partial^2}{\partial \lambda^2}\, \log\Biggl( \frac{e^{-\lambda}\, \lambda^{X}}{X!} \Biggr) \Biggr]
-> $$
+\mathrm{E}_{\lambda}\Biggl[ \Biggl( \frac{\partial}{\partial \lambda}\, \log \prod_{i=1}^{n} f(X_i \mid \lambda) \Biggr)^2 \Biggr] = -n\, \mathrm{E}_{\lambda}\Biggl[ \frac{\partial^2}{\partial \lambda^2}\, \log f(X \mid \lambda) \Biggr]
+= -n\, \mathrm{E}_{\lambda}\Biggl[ \frac{\partial^2}{\partial \lambda^2}\, \log\Biggl( \frac{e^{-\lambda}\, \lambda^{X}}{X!} \Biggr) \Biggr]
+$$
 >
 > $$
-> = -n\, \mathrm{E}_{\lambda}\Biggl[ \frac{\partial}{\partial \lambda}\, \Bigl( -\lambda + X \log \lambda - \log X! \Bigr) \Biggr] = -n\, \mathrm{E}_{\lambda}\Biggl[ -\frac{1}{\lambda} + \frac{X}{\lambda^2} \Biggr] = -n\, \frac{-\lambda + \lambda}{\lambda^2}\ \cdot\ (-1)\ \cdot\ \frac{1}{\lambda}
-> $$
+= -n\, \mathrm{E}_{\lambda}\Biggl[ \frac{\partial}{\partial \lambda}\, \Bigl( -\lambda + X \log \lambda - \log X! \Bigr) \Biggr] = -n\, \mathrm{E}_{\lambda}\Biggl[ -\frac{1}{\lambda} + \frac{X}{\lambda^2} \Biggr] = -n\, \frac{-\lambda + \lambda}{\lambda^2}\ \cdot\ (-1)\ \cdot\ \frac{1}{\lambda}
+$$
 >
 > 整理：$$\frac{\partial}{\partial \lambda}(-\lambda + X \log \lambda - \log X!) = -1 + X/\lambda$$，再求导得 $$-X/\lambda^2$$，故
 >
 > $$
-> \mathrm{E}_{\lambda}\Biggl[ \Biggl( \frac{\partial}{\partial \lambda}\, \log \prod_{i=1}^{n} f(X_i \mid \lambda) \Biggr)^2 \Biggr] = -n\, \mathrm{E}_{\lambda}\Biggl[ -\frac{X}{\lambda^2} \Biggr] = \frac{n}{\lambda}.
-> $$
+\mathrm{E}_{\lambda}\Biggl[ \Biggl( \frac{\partial}{\partial \lambda}\, \log \prod_{i=1}^{n} f(X_i \mid \lambda) \Biggr)^2 \Biggr] = -n\, \mathrm{E}_{\lambda}\Biggl[ -\frac{X}{\lambda^2} \Biggr] = \frac{n}{\lambda}.
+$$
 >
 > 于是对 $$\lambda$$ 的任何无偏估计量 $$W$$，必有
 >
 > $$
-> \mathrm{Var}_{\lambda}\, W \geq \frac{\lambda}{n}.
-> $$
+\mathrm{Var}_{\lambda}\, W \geq \frac{\lambda}{n}.
+$$
 >
 > 由于 $$\mathrm{Var}_{\lambda}\, \bar{X} = \lambda/n$$，$$\bar{X}$$ 是 $$\lambda$$ 的最佳无偏估计量。
 
@@ -1045,34 +1045,34 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是 pdf $$f(x \mid \theta) = 1/\theta$$（$$0 < x < \theta$$）的 iid 样本。由于 $$\frac{\partial}{\partial \theta} \log f(x \mid \theta) = -1/\theta$$，有
 >
 > $$
-> \mathrm{E}_{\theta}\Biggl[ \Biggl( \frac{\partial}{\partial \theta}\, \log f(X \mid \theta) \Biggr)^2 \Biggr] = \frac{1}{\theta^2}.
-> $$
+\mathrm{E}_{\theta}\Biggl[ \Biggl( \frac{\partial}{\partial \theta}\, \log f(X \mid \theta) \Biggr)^2 \Biggr] = \frac{1}{\theta^2}.
+$$
 >
 > Cramér–Rao 定理似乎表明：若 $$W$$ 是 $$\theta$$ 的任何无偏估计量，则
 >
 > $$
-> \mathrm{Var}_{\theta}\, W \geq \frac{\theta^2}{n}.
-> $$
+\mathrm{Var}_{\theta}\, W \geq \frac{\theta^2}{n}.
+$$
 >
 > 我们现在想找方差小的无偏估计量。第一猜是考虑充分统计量 $$Y = \max(X_1, \ldots, X_n)$$——最大次序统计量。$$Y$$ 的 pdf 为 $$f_Y(y \mid \theta) = n\, y^{n-1} / \theta^{n}$$（$$0 < y < \theta$$），故
 >
 > $$
-> \mathrm{E}_{\theta}\, Y = \int_0^{\theta} \frac{n y^{n}}{\theta^{n}}\, dy = \frac{n}{n + 1}\, \theta,
-> $$
+\mathrm{E}_{\theta}\, Y = \int_0^{\theta} \frac{n y^{n}}{\theta^{n}}\, dy = \frac{n}{n + 1}\, \theta,
+$$
 >
 > 表明 $$\frac{n+1}{n}\, Y$$ 是 $$\theta$$ 的无偏估计量。接着计算
 >
 > $$
-> \mathrm{Var}_{\theta}\Biggl( \frac{n + 1}{n}\, Y \Biggr) = \Bigl( \frac{n + 1}{n} \Bigr)^2\, \mathrm{Var}_{\theta}\, Y
-> = \Bigl( \frac{n + 1}{n} \Bigr)^2 \Biggl[ \mathrm{E}_{\theta}\, Y^2 - \Bigl( \frac{n}{n + 1}\, \theta \Bigr)^2 \Biggr]
-> = \Bigl( \frac{n + 1}{n} \Bigr)^2 \Biggl[ \frac{n}{n + 2}\, \theta^2 - \frac{n^2}{(n + 1)^2}\, \theta^2 \Biggr] = \frac{1}{n (n + 2)}\, \theta^2,
-> $$
+\mathrm{Var}_{\theta}\Biggl( \frac{n + 1}{n}\, Y \Biggr) = \Bigl( \frac{n + 1}{n} \Bigr)^2\, \mathrm{Var}_{\theta}\, Y
+= \Bigl( \frac{n + 1}{n} \Bigr)^2 \Biggl[ \mathrm{E}_{\theta}\, Y^2 - \Bigl( \frac{n}{n + 1}\, \theta \Bigr)^2 \Biggr]
+= \Bigl( \frac{n + 1}{n} \Bigr)^2 \Biggl[ \frac{n}{n + 2}\, \theta^2 - \frac{n^2}{(n + 1)^2}\, \theta^2 \Biggr] = \frac{1}{n (n + 2)}\, \theta^2,
+$$
 >
 > 它一致地小于 $$\theta^2/n$$。这表明 Cramér–Rao 定理不适用于该 pdf。为看清这一点，可用莱布尼茨法则（2.4 节）计算：
 >
 > $$
-> \frac{d}{d\theta} \int_0^{\theta} h(x)\, f(x \mid \theta)\, dx = \frac{d}{d\theta} \int_0^{\theta} \frac{h(x)}{\theta}\, dx = \frac{h(\theta)}{\theta} + \int_0^{\theta} h(x)\, \frac{\partial}{\partial \theta}\, \frac{1}{\theta}\, dx \neq \int_0^{\theta} h(x)\, \frac{\partial}{\partial \theta}\, f(x \mid \theta)\, dx,
-> $$
+\frac{d}{d\theta} \int_0^{\theta} h(x)\, f(x \mid \theta)\, dx = \frac{d}{d\theta} \int_0^{\theta} \frac{h(x)}{\theta}\, dx = \frac{h(\theta)}{\theta} + \int_0^{\theta} h(x)\, \frac{\partial}{\partial \theta}\, \frac{1}{\theta}\, dx \neq \int_0^{\theta} h(x)\, \frac{\partial}{\partial \theta}\, f(x \mid \theta)\, dx,
+$$
 >
 > 除非对一切 $$\theta$$ 有 $$h(\theta)/\theta = 0$$。故 Cramér–Rao 定理不适用。一般地，若 pdf 的范围依赖参数，该定理将不适用。
 
@@ -1083,26 +1083,26 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是 iid $$n(\mu, \sigma^2)$$，考虑 $$\sigma^2$$ 的估计（$$\mu$$ 未知）。正态 pdf 满足 Cramér–Rao 定理与引理 7.3.11 的假设，故
 >
 > $$
-> \frac{\partial^2}{\partial (\sigma^2)^2}\, \log\Biggl( \frac{1}{(2\pi\sigma^2)^{1/2}}\, e^{-(1/2)(x - \mu)^2/\sigma^2} \Biggr) = \frac{1}{2\sigma^4} - \frac{(x - \mu)^2}{\sigma^6},
-> $$
+\frac{\partial^2}{\partial (\sigma^2)^2}\, \log\Biggl( \frac{1}{(2\pi\sigma^2)^{1/2}}\, e^{-(1/2)(x - \mu)^2/\sigma^2} \Biggr) = \frac{1}{2\sigma^4} - \frac{(x - \mu)^2}{\sigma^6},
+$$
 >
 > 且
 >
 > $$
-> -\mathrm{E}_{\mu,\sigma^2}\Biggl[ \frac{\partial^2}{\partial (\sigma^2)^2}\, \log f(X \mid \mu, \sigma^2) \Biggr] = -\mathrm{E}_{\mu,\sigma^2}\Biggl[ \frac{1}{2\sigma^4} - \frac{(X - \mu)^2}{\sigma^6} \Biggr] = \frac{1}{2\sigma^4}.
-> $$
+-\mathrm{E}_{\mu,\sigma^2}\Biggl[ \frac{\partial^2}{\partial (\sigma^2)^2}\, \log f(X \mid \mu, \sigma^2) \Biggr] = -\mathrm{E}_{\mu,\sigma^2}\Biggl[ \frac{1}{2\sigma^4} - \frac{(X - \mu)^2}{\sigma^6} \Biggr] = \frac{1}{2\sigma^4}.
+$$
 >
 > 于是 $$\sigma^2$$ 的任何无偏估计量 $$W$$ 必满足
 >
 > $$
-> \mathrm{Var}\bigl( W \mid \mu, \sigma^2 \bigr) \geq \frac{2 \sigma^4}{n}.
-> $$
+\mathrm{Var}\bigl( W \mid \mu, \sigma^2 \bigr) \geq \frac{2 \sigma^4}{n}.
+$$
 >
 > 例 7.3.3 中我们见过
 >
 > $$
-> \mathrm{Var}\bigl( S^2 \mid \mu, \sigma^2 \bigr) = \frac{2 \sigma^4}{n - 1},
-> $$
+\mathrm{Var}\bigl( S^2 \mid \mu, \sigma^2 \bigr) = \frac{2 \sigma^4}{n - 1},
+$$
 >
 > 故 $$S^2$$ 未达到 Cramér–Rao 下界。
 
@@ -1115,16 +1115,16 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是 iid $$f(x \mid \theta)$$，$$f$$ 满足 Cramér–Rao 定理的条件。设 $$L(\theta \mid \textbf{x}) = \prod_{i=1}^{n} f(x_i \mid \theta)$$ 为似然函数。若 $$W(\textbf{X}) = W(X_1, \ldots, X_n)$$ 是 $$\tau(\theta)$$ 的任何无偏估计量，则 $$W(\textbf{X})$$ 达到 Cramér–Rao 下界当且仅当
 >
 > $$
-> a(\theta)\, \bigl[ W(\textbf{x}) - \tau(\theta) \bigr] = \frac{\partial}{\partial \theta}\, \log L(\theta \mid \textbf{x}), \tag{7.3.12}
-> $$
+a(\theta)\, \bigl[ W(\textbf{x}) - \tau(\theta) \bigr] = \frac{\partial}{\partial \theta}\, \log L(\theta \mid \textbf{x}), \tag{7.3.12}
+$$
 >
 > 对某函数 $$a(\theta)$$ 成立。
 >
 > **证明**　如 (7.3.6) 所给的 Cramér–Rao 不等式可写为
 >
 > $$
-> \Biggl[ \mathrm{Cov}_{\theta}\Biggl( W(\textbf{X}),\, \frac{\partial}{\partial \theta}\, \log \prod_{i=1}^{n} f(X_i \mid \theta) \Biggr) \Biggr]^2 \leq \mathrm{Var}_{\theta}\, W(\textbf{X})\; \mathrm{Var}_{\theta}\Biggl( \frac{\partial}{\partial \theta}\, \log \prod_{i=1}^{n} f(X_i \mid \theta) \Biggr),
-> $$
+\Biggl[ \mathrm{Cov}_{\theta}\Biggl( W(\textbf{X}),\, \frac{\partial}{\partial \theta}\, \log \prod_{i=1}^{n} f(X_i \mid \theta) \Biggr) \Biggr]^2 \leq \mathrm{Var}_{\theta}\, W(\textbf{X})\; \mathrm{Var}_{\theta}\Biggl( \frac{\partial}{\partial \theta}\, \log \prod_{i=1}^{n} f(X_i \mid \theta) \Biggr),
+$$
 >
 > 且回忆 $$\mathrm{E}_{\theta} W = \tau(\theta)$$、$$\mathrm{E}_{\theta}\Bigl( \frac{\partial}{\partial \theta} \log \prod_{i=1}^{n} f(X_i \mid \theta) \Bigr) = 0$$，用定理 4.5.7 的结果，等号成立当且仅当 $$W(\textbf{x}) - \tau(\theta)$$ 与 $$\frac{\partial}{\partial \theta} \log \prod_{i=1}^{n} f(x_i \mid \theta)$$ 成比例，这正是 (7.3.12) 表达的。 ∎
 
@@ -1133,14 +1133,14 @@ $$
 > 此处
 >
 > $$
-> L(\mu, \sigma^2 \mid \textbf{x}) = \frac{1}{(2\pi\sigma^2)^{n/2}}\, e^{-(1/2) \sum_{i=1}^{n} (x_i - \mu)^2 / \sigma^2},
-> $$
+L(\mu, \sigma^2 \mid \textbf{x}) = \frac{1}{(2\pi\sigma^2)^{n/2}}\, e^{-(1/2) \sum_{i=1}^{n} (x_i - \mu)^2 / \sigma^2},
+$$
 >
 > 故
 >
 > $$
-> \frac{\partial}{\partial \sigma^2}\, \log L(\mu, \sigma^2 \mid \textbf{x}) = \frac{n}{2 \sigma^4}\, \Biggl( \frac{1}{n} \sum_{i=1}^{n} (x_i - \mu)^2 - \sigma^2 \Biggr).
-> $$
+\frac{\partial}{\partial \sigma^2}\, \log L(\mu, \sigma^2 \mid \textbf{x}) = \frac{n}{2 \sigma^4}\, \Biggl( \frac{1}{n} \sum_{i=1}^{n} (x_i - \mu)^2 - \sigma^2 \Biggr).
+$$
 >
 > 于是取 $$a(\sigma^2) = \dfrac{n}{2 \sigma^4}$$ 表明 $$\sigma^2$$ 的最佳无偏估计量是 $$\frac{1}{n} \sum_{i=1}^{n} (x_i - \mu)^2$$，它只在 $$\mu$$ 已知时可以计算。若 $$\mu$$ 未知，该界不可达。
 
@@ -1167,14 +1167,14 @@ $$
 > **证明**　由 (7.3.13)，
 >
 > $$
-> \tau(\theta) = \mathrm{E}_{\theta}\, W = \mathrm{E}_{\theta}\bigl[ \mathrm{E}(W \mid T) \bigr] = \mathrm{E}_{\theta}\, \phi(T),
-> $$
+\tau(\theta) = \mathrm{E}_{\theta}\, W = \mathrm{E}_{\theta}\bigl[ \mathrm{E}(W \mid T) \bigr] = \mathrm{E}_{\theta}\, \phi(T),
+$$
 >
 > 故 $$\phi(T)$$ 是 $$\tau(\theta)$$ 的无偏估计。又
 >
 > $$
-> \mathrm{Var}_{\theta}\, W = \mathrm{Var}_{\theta}\bigl[ \mathrm{E}(W \mid T) \bigr] + \mathrm{E}_{\theta}\bigl[ \mathrm{Var}(W \mid T) \bigr] = \mathrm{Var}_{\theta}\, \phi(T) + \mathrm{E}_{\theta}\bigl[ \mathrm{Var}(W \mid T) \bigr] \geq \mathrm{Var}_{\theta}\, \phi(T) \qquad （\mathrm{Var}(W \mid T) \geq 0）.
-> $$
+\mathrm{Var}_{\theta}\, W = \mathrm{Var}_{\theta}\bigl[ \mathrm{E}(W \mid T) \bigr] + \mathrm{E}_{\theta}\bigl[ \mathrm{Var}(W \mid T) \bigr] = \mathrm{Var}_{\theta}\, \phi(T) + \mathrm{E}_{\theta}\bigl[ \mathrm{Var}(W \mid T) \bigr] \geq \mathrm{Var}_{\theta}\, \phi(T) \qquad （\mathrm{Var}(W \mid T) \geq 0）.
+$$
 >
 > 故 $$\phi(T)$$ 一致优于 $$W$$；剩下的只须证明 $$\phi(T)$$ 确实是一个估计量，即 $$\phi(T) = \mathrm{E}(W \mid T)$$ 只是样本的函数、特别是不依赖 $$\theta$$。由充分性的定义及 $$W$$ 只是样本的函数这一事实，$$W \mid T$$ 的分布不依赖 $$\theta$$。故 $$\phi(T)$$ 是 $$\tau(\theta)$$ 的一致更好的无偏估计量。 ∎
 
@@ -1187,8 +1187,8 @@ $$
 > 设 $$X_1, X_2$$ 是 iid $$n(\theta, 1)$$。统计量 $$\bar{X} = \tfrac{1}{2} (X_1 + X_2)$$ 满足 $$\mathrm{E}_{\theta}\, \bar{X} = \theta$$ 与 $$\mathrm{Var}_{\theta}\, \bar{X} = \tfrac{1}{2}$$。考虑对 $$X_1$$（不充分）取条件。令 $$\phi(X_1) = \mathrm{E}_{\theta}\bigl( \bar{X} \mid X_1 \bigr)$$。由 (7.3.13)，$$\mathrm{E}_{\theta}\, \phi(X_1) = \theta$$ 且 $$\mathrm{Var}_{\theta}\, \phi(X_1) \leq \mathrm{Var}_{\theta}\, \bar{X}$$，故 $$\phi(X_1)$$ 优于 $$\bar{X}$$。然而
 >
 > $$
-> \phi(X_1) = \mathrm{E}_{\theta}\bigl( \bar{X} \mid X_1 \bigr) = \frac{1}{2}\, \mathrm{E}_{\theta}\bigl( X_1 \mid X_1 \bigr) + \frac{1}{2}\, \mathrm{E}_{\theta}\bigl( X_2 \mid X_1 \bigr) = \frac{1}{2}\, X_1 + \frac{1}{2}\, \theta,
-> $$
+\phi(X_1) = \mathrm{E}_{\theta}\bigl( \bar{X} \mid X_1 \bigr) = \frac{1}{2}\, \mathrm{E}_{\theta}\bigl( X_1 \mid X_1 \bigr) + \frac{1}{2}\, \mathrm{E}_{\theta}\bigl( X_2 \mid X_1 \bigr) = \frac{1}{2}\, X_1 + \frac{1}{2}\, \theta,
+$$
 >
 > 最后一步因独立性有 $$\mathrm{E}_{\theta}\bigl( X_2 \mid X_1 \bigr) = \mathrm{E}_{\theta}\, X_2$$。故 $$\phi(X_1)$$ 不是估计量。
 
@@ -1201,19 +1201,19 @@ $$
 > **证明**　设 $$W'$$ 是另一个最佳无偏估计量，考虑估计量 $$W^{*} = \tfrac{1}{2} (W + W')$$。注意 $$\mathrm{E}_{\theta}\, W^{*} = \tau(\theta)$$ 且
 >
 > $$
-> \begin{aligned}
-> \mathrm{Var}_{\theta}\, W^{*} &= \mathrm{Var}_{\theta}\Bigl( \frac{1}{2}\, W + \frac{1}{2}\, W' \Bigr)\\
-> &= \frac{1}{4}\, \mathrm{Var}_{\theta}\, W + \frac{1}{4}\, \mathrm{Var}_{\theta}\, W' + \frac{1}{2}\, \mathrm{Cov}_{\theta}(W, W') \qquad （\text{习题 4.44}）\\
-> &\leq \frac{1}{4}\, \mathrm{Var}_{\theta}\, W + \frac{1}{4}\, \mathrm{Var}_{\theta}\, W' + \frac{1}{2}\, \bigl[ (\mathrm{Var}_{\theta}\, W)\, (\mathrm{Var}_{\theta}\, W') \bigr]^{1/2} \qquad （\text{柯西—施瓦茨}）\\
-> &= \mathrm{Var}_{\theta}\, W \qquad （\mathrm{Var}_{\theta}\, W = \mathrm{Var}_{\theta}\, W'）.
-> \end{aligned} \tag{7.3.14}
-> $$
+\begin{aligned}
+\mathrm{Var}_{\theta}\, W^{*} &= \mathrm{Var}_{\theta}\Bigl( \frac{1}{2}\, W + \frac{1}{2}\, W' \Bigr)\\
+&= \frac{1}{4}\, \mathrm{Var}_{\theta}\, W + \frac{1}{4}\, \mathrm{Var}_{\theta}\, W' + \frac{1}{2}\, \mathrm{Cov}_{\theta}(W, W') \qquad （\text{习题 4.44}）\\
+&\leq \frac{1}{4}\, \mathrm{Var}_{\theta}\, W + \frac{1}{4}\, \mathrm{Var}_{\theta}\, W' + \frac{1}{2}\, \bigl[ (\mathrm{Var}_{\theta}\, W)\, (\mathrm{Var}_{\theta}\, W') \bigr]^{1/2} \qquad （\text{柯西—施瓦茨}）\\
+&= \mathrm{Var}_{\theta}\, W \qquad （\mathrm{Var}_{\theta}\, W = \mathrm{Var}_{\theta}\, W'）.
+\end{aligned} \tag{7.3.14}
+$$
 >
 > 但若上述不等式严格，则与 $$W$$ 的最佳无偏性矛盾，故必须对所有 $$\theta$$ 取等。由于该不等式是柯西—施瓦茨的应用，取等仅当 $$W' = a(\theta)\, W + b(\theta)$$。用协方差的性质：
 >
 > $$
-> \mathrm{Cov}_{\theta}(W, W') = \mathrm{Cov}_{\theta}\bigl[ W,\ a(\theta)\, W + b(\theta) \bigr] = \mathrm{Cov}_{\theta}\bigl[ W,\ a(\theta)\, W \bigr] = a(\theta)\, \mathrm{Var}_{\theta}\, W,
-> $$
+\mathrm{Cov}_{\theta}(W, W') = \mathrm{Cov}_{\theta}\bigl[ W,\ a(\theta)\, W + b(\theta) \bigr] = \mathrm{Cov}_{\theta}\bigl[ W,\ a(\theta)\, W \bigr] = a(\theta)\, \mathrm{Var}_{\theta}\, W,
+$$
 >
 > 但 (7.3.14) 中取等意味着 $$\mathrm{Cov}_{\theta}(W, W') = \mathrm{Var}_{\theta}\, W$$。故 $$a(\theta) = 1$$；又 $$\mathrm{E}_{\theta}\, W' = \tau(\theta)$$，必有 $$b(\theta) = 0$$，从而 $$W = W'$$，$$W$$ 唯一。 ∎
 
@@ -1240,14 +1240,14 @@ $$
 > 现设有无偏估计量 $$W$$ 与一切零的无偏估计量不相关。设 $$W'$$ 是满足 $$\mathrm{E}_{\theta}\, W' = \mathrm{E}_{\theta}\, W = \tau(\theta)$$ 的任何其他估计量，我们将证明 $$W$$ 优于 $$W'$$。写
 >
 > $$
-> W' = W + (W' - W),
-> $$
+W' = W + (W' - W),
+$$
 >
 > 计算
 >
 > $$
-> \mathrm{Var}_{\theta}\, W' = \mathrm{Var}_{\theta}\, W + \mathrm{Var}_{\theta}\, (W' - W) + 2\, \mathrm{Cov}_{\theta}\bigl( W,\ W' - W \bigr) = \mathrm{Var}_{\theta}\, W + \mathrm{Var}_{\theta}\, (W' - W), \tag{7.3.15}
-> $$
+\mathrm{Var}_{\theta}\, W' = \mathrm{Var}_{\theta}\, W + \mathrm{Var}_{\theta}\, (W' - W) + 2\, \mathrm{Cov}_{\theta}\bigl( W,\ W' - W \bigr) = \mathrm{Var}_{\theta}\, W + \mathrm{Var}_{\theta}\, (W' - W), \tag{7.3.15}
+$$
 >
 > 最后的等式成立是因为 $$W' - W$$ 是零的无偏估计量，且由假设与 $$W$$ 不相关。由于 $$\mathrm{Var}_{\theta}(W' - W) \geq 0$$，(7.3.15) 蕴含 $$\mathrm{Var}_{\theta}\, W' \geq \mathrm{Var}_{\theta}\, W$$。$$W'$$ 任意，故 $$W$$ 是 $$\tau(\theta)$$ 的最佳无偏估计量。 ∎
 
@@ -1260,32 +1260,32 @@ $$
 > 设 $$X$$ 是 uniform $$(\theta, \theta + 1)$$ 分布的一次观测。则
 >
 > $$
-> \mathrm{E}_{\theta}\, X = \int_{\theta}^{\theta + 1} x\, dx = \theta + \frac{1}{2},
-> $$
+\mathrm{E}_{\theta}\, X = \int_{\theta}^{\theta + 1} x\, dx = \theta + \frac{1}{2},
+$$
 >
 > 故 $$X - \tfrac{1}{2}$$ 是 $$\theta$$ 的无偏估计量，且容易验证 $$\mathrm{Var}_{\theta}\, X = \tfrac{1}{12}$$。
 >
 > 对该 pdf，零的无偏估计量是周期为 1 的周期函数。这来自如下事实：若 $$h(x)$$ 满足
 >
 > $$
-> \int_{\theta}^{\theta + 1} h(x)\, dx = 0 \qquad \text{（对一切}\ \theta\text{）},
-> $$
+\int_{\theta}^{\theta + 1} h(x)\, dx = 0 \qquad \text{（对一切}\ \theta\text{）},
+$$
 >
 > 则
 >
 > $$
-> 0 = \frac{d}{d\theta} \int_{\theta}^{\theta + 1} h(x)\, dx = h(\theta + 1) - h(\theta) \qquad \text{（对一切}\ \theta\text{）}.
-> $$
+0 = \frac{d}{d\theta} \int_{\theta}^{\theta + 1} h(x)\, dx = h(\theta + 1) - h(\theta) \qquad \text{（对一切}\ \theta\text{）}.
+$$
 >
 > 这样的函数是 $$h(x) = \sin(2\pi x)$$。现在
 >
 > $$
-> \begin{aligned}
-> \mathrm{Cov}_{\theta}\Bigl( X - \frac{1}{2},\ \sin(2\pi X) \Bigr) &= \mathrm{Cov}_{\theta}\bigl( X,\ \sin(2\pi X) \bigr) = \int_{\theta}^{\theta + 1} x\, \sin(2\pi x)\, dx\\
-> &= -\frac{\bigl[ x\, \cos(2\pi x) \bigr]_{\theta}^{\theta + 1}}{2\pi} + \int_{\theta}^{\theta + 1} \frac{\cos(2\pi x)}{2\pi}\, dx \qquad （\text{分部积分}）\\
-> &= -\frac{\cos(2\pi\theta)}{2\pi},
-> \end{aligned}
-> $$
+\begin{aligned}
+\mathrm{Cov}_{\theta}\Bigl( X - \frac{1}{2},\ \sin(2\pi X) \Bigr) &= \mathrm{Cov}_{\theta}\bigl( X,\ \sin(2\pi X) \bigr) = \int_{\theta}^{\theta + 1} x\, \sin(2\pi x)\, dx\\
+&= -\frac{\bigl[ x\, \cos(2\pi x) \bigr]_{\theta}^{\theta + 1}}{2\pi} + \int_{\theta}^{\theta + 1} \frac{\cos(2\pi x)}{2\pi}\, dx \qquad （\text{分部积分}）\\
+&= -\frac{\cos(2\pi\theta)}{2\pi},
+\end{aligned}
+$$
 >
 > 其中用了 $$\cos\bigl( 2\pi(\theta + 1) \bigr) = \cos(2\pi\theta)$$ 与 $$\sin\bigl( 2\pi(\theta + 1) \bigr) = \sin(2\pi\theta)$$。
 >
@@ -1300,137 +1300,88 @@ $$
 > **例 7.3.22（例 7.3.13 的继续）**
 >
 > 对 $$X_1, \ldots, X_n$$ iid uniform$(0, \theta)$$，我们见到 $$\frac{n+1}{n}\, Y$$ 是 $$\theta$$ 的无偏估计量（$$Y = \max\{X_1, \ldots, X_n\}$$）。Cramér–Rao 定理的条件不满足，我们尚未确定该估计量是否最佳无偏。但例 6.2.23 中已证 $$Y$$ 是完备充分统计量：这意味着 $$Y$$ 的 pdf 族完备，基于 $$Y$$ 没有零的无偏估计量（由 Rao–Blackwell 定理形式的充分性，只须考虑基于 $$Y$$ 的零的无偏估计量）。因此 $$\frac{n+1}{n}\, Y$$ 与一切零的无偏估计量不相关（因为唯一的那个就是零本身），故 $$\frac{n+1}{n}\, Y$$ 是 $$\theta$$ 的最佳无偏估计量。
-
 值得再次指出：重要的是充分统计量分布族的完备性，而原分布族的完备性无关紧要。这由 Rao–Blackwell 定理而来——我们可以把注意力限制在充分统计量的函数上，一切期望都对该统计量的分布取。
-
 在下列定理中总结完备性与最佳无偏性的关系。
-
-> **定理 7.3.23（Lehmann–Scheffé 型定理）**
->
-> 设 $$T$$ 是参数 $$\theta$$ 的完备充分统计量，$$\phi(T)$$ 是只基于 $$T$$ 的任何估计量。则 $$\phi(T)$$ 是其期望值的唯一最佳无偏估计量。
-
+**定理 7.3.23（Lehmann–Scheffé 型定理）**
+设 $$T$$ 是参数 $$\theta$$ 的完备充分统计量，$$\phi(T)$$ 是只基于 $$T$$ 的任何估计量。则 $$\phi(T)$$ 是其期望值的唯一最佳无偏估计量。
 本节以这里发展的理论的一个有趣且有用的应用结束。许多情形下，$$\tau(\theta)$$ 的无偏估计量没有明显的候选者，更谈不上最佳无偏估计量的候选者。然而在完备性在场时，本节的理论告诉我们：只要能找到任何无偏估计量，就能找到最佳无偏估计量。若 $$T$$ 是参数 $$\theta$$ 的完备充分统计量，$$h(X_1, \ldots, X_n)$$ 是 $$\tau(\theta)$$ 的任何无偏估计量，则 $$\phi(T) = \mathrm{E}\bigl( h(X_1, \ldots, X_n) \mid T \bigr)$$ 就是 $$\tau(\theta)$$ 的最佳无偏估计量（见习题 7.56）。
-
-> **例 7.3.24（二项最佳无偏估计）**
->
-> 设 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{binomial}(k, \theta)$$。问题是从 $$\mathrm{binomial}(k, \theta)$$ 估计“恰有一次成功”的概率，即估计
->
-> $$
+**例 7.3.24（二项最佳无偏估计）**
+设 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{binomial}(k, \theta)$$。问题是从 $$\mathrm{binomial}(k, \theta)$$ 估计“恰有一次成功”的概率，即估计
+$$
 > \tau(\theta) = P_{\theta}(X = 1) = k\, \theta\, (1 - \theta)^{k - 1}.
 > $$
->
-> 现在 $$\sum_{i=1}^{n} X_i \sim \mathrm{binomial}(kn, \theta)$$ 是完备充分统计量，但基于它的无偏估计量并不显而易见。身处这种境地时，试试最简单的解。朴素的估计量
->
-> $$
+现在 $$\sum_{i=1}^{n} X_i \sim \mathrm{binomial}(kn, \theta)$$ 是完备充分统计量，但基于它的无偏估计量并不显而易见。身处这种境地时，试试最简单的解。朴素的估计量
+$$
 > h(X_1) = \begin{cases} 1 & \text{若}\ X_1 = 1,\\ 0 & \text{其他} \end{cases}
 > $$
->
-> 满足
->
-> $$
+满足
+$$
 > \mathrm{E}_{\theta}\, h(X_1) = \sum_{x_1=0}^{k} h(x_1)\, \binom{k}{x_1}\, \theta^{x_1} (1 - \theta)^{k - x_1} = k\, \theta\, (1 - \theta)^{k - 1},
 > $$
->
-> 故它是 $$k\, \theta (1 - \theta)^{k - 1}$$ 的无偏估计量。我们的理论现在告诉我们：估计量
->
-> $$
+故它是 $$k\, \theta (1 - \theta)^{k - 1}$$ 的无偏估计量。我们的理论现在告诉我们：估计量
+$$
 > \phi\Biggl( \sum_{i=1}^{n} X_i \Biggr) = \mathrm{E}\Biggl[ h(X_1) \,\Bigg\vert \, \sum_{i=1}^{n} X_i \Biggr]
 > $$
->
-> 是 $$k\, \theta (1 - \theta)^{k - 1}$$ 的最佳无偏估计量。（注意我们无须实际计算 $$\phi\bigl( \sum_{i=1}^{n} X_i \bigr)$$ 的期望：由迭代期望的性质，我们知道它有正确的期望值。）但我们必须能求值 $$\phi$$。设观测到 $$\sum_{i=1}^{n} X_i = t$$，则
->
-> $$
+是 $$k\, \theta (1 - \theta)^{k - 1}$$ 的最佳无偏估计量。（注意我们无须实际计算 $$\phi\bigl( \sum_{i=1}^{n} X_i \bigr)$$ 的期望：由迭代期望的性质，我们知道它有正确的期望值。）但我们必须能求值 $$\phi$$。设观测到 $$\sum_{i=1}^{n} X_i = t$$，则
+$$
 > \phi(t) = \mathrm{E}\Biggl[ h(X_1) \,\Bigg\vert \, \sum_{i=1}^{n} X_i = t \Biggr] = P\Biggl( X_1 = 1 \,\Bigg\vert \, \sum_{i=1}^{n} X_i = t \Biggr) \qquad （\text{该期望不依赖}\ \theta；\ h\ \text{取 0 或 1}）
 > $$
->
-> $$
+$$
 > = \frac{P_{\theta}\Bigl( X_1 = 1,\ \sum_{i=1}^{n} X_i = t \Bigr)}{P_{\theta}\Bigl( \sum_{i=1}^{n} X_i = t \Bigr)} \qquad （\text{条件概率的定义}）
 > = \frac{P_{\theta}\Bigl( X_1 = 1,\ \sum_{i=2}^{n} X_i = t - 1 \Bigr)}{P_{\theta}\Bigl( \sum_{i=1}^{n} X_i = t \Bigr)} \qquad （X_1 = 1\ \text{冗余}）
 > $$
->
-> $$
+$$
 > = \frac{P_{\theta}(X_1 = 1)\, P_{\theta}\Bigl( \sum_{i=2}^{n} X_i = t - 1 \Bigr)}{P_{\theta}\Bigl( \sum_{i=1}^{n} X_i = t \Bigr)} \qquad （X_1\ \text{与}\ X_2, \ldots, X_n\ \text{独立}）.
 > $$
->
-> 现在 $$X_1 \sim \mathrm{binomial}(k, \theta)$$，$$\sum_{i=2}^{n} X_i \sim \mathrm{binomial}(k (n - 1), \theta)$$，$$\sum_{i=1}^{n} X_i \sim \mathrm{binomial}(kn, \theta)$$。用这些事实：
->
-> $$
+现在 $$X_1 \sim \mathrm{binomial}(k, \theta)$$，$$\sum_{i=2}^{n} X_i \sim \mathrm{binomial}(k (n - 1), \theta)$$，$$\sum_{i=1}^{n} X_i \sim \mathrm{binomial}(kn, \theta)$$。用这些事实：
+$$
 > \phi(t) = \frac{k\, \theta (1 - \theta)^{k - 1}\, \dbinom{k (n - 1)}{t - 1}\, \theta^{t - 1} (1 - \theta)^{k (n - 1) - (t - 1)}}{\dbinom{kn}{t}\, \theta^{t} (1 - \theta)^{kn - t}} = k\, \frac{\dbinom{k (n - 1)}{t - 1}}{\dbinom{kn}{t}}.
 > $$
->
-> 注意所有 $$\theta$$ 都消去了——既然 $$\sum_{i=1}^{n} X_i$$ 充分，理应如此。故 $$k\, \theta (1 - \theta)^{k - 1}$$ 的最佳无偏估计量是
->
-> $$
+注意所有 $$\theta$$ 都消去了——既然 $$\sum_{i=1}^{n} X_i$$ 充分，理应如此。故 $$k\, \theta (1 - \theta)^{k - 1}$$ 的最佳无偏估计量是
+$$
 > \phi\Biggl( \sum_{i=1}^{n} X_i \Biggr) = k\, \frac{\dbinom{k (n - 1)}{\sum_i X_i - 1}}{\dbinom{kn}{\sum_i X_i}}.
 > $$
->
-> 我们无须完成 $$\mathrm{E}_{\theta}\bigl[ \phi\bigl( \sum_{i=1}^{n} X_i \bigr) \bigr]$$ 的困难求值即可断言无偏性。
-
+我们无须完成 $$\mathrm{E}_{\theta}\bigl[ \phi\bigl( \sum_{i=1}^{n} X_i \bigr) \bigr]$$ 的困难求值即可断言无偏性。
 ### 7.3.4 损失函数最优性（Loss Function Optimality）
-
 我们对点估计量的评价一直基于其均方误差表现。均方误差是一种称为损失函数的函数的特例。通过损失函数评价估计量之表现与最优性的研究，是决策论的一个分支。
-
 在观测到数据 $$\textbf{X} = \textbf{x}$$（其中 $$\textbf{X} \sim f(\textbf{x} \mid \theta)$$，$$\theta \in \Theta$$）之后，就要对 $$\theta$$ 作出决策。允许决策的集合称为行动空间（action space），记作 $$\mathcal{A}$$。点估计问题中 $$\mathcal{A}$$ 常等于参数空间 $$\Theta$$，但在其他问题（如假设检验——见 8.3.5 节）中会改变。
-
 点估计问题中的损失函数反映如下事实：若行动 $$a$$ 接近 $$\theta$$，则决策 $$a$$ 合理、损失很小；若 $$a$$ 远离 $$\theta$$，则损失很大。损失函数是非负函数，一般随 $$a$$ 与 $$\theta$$ 之间距离增大而增大。若 $$\theta$$ 是实值的，两种常用损失函数是
-
 $$
 \text{绝对误差损失：}\quad L(\theta, a) = \vert a - \theta\vert ,
 $$
-
 $$
 \text{平方误差损失：}\quad L(\theta, a) = (a - \theta)^2.
 $$
-
 两者都随 $$\theta$$ 与 $$a$$ 之间距离增大而增大，最小值 $$L(\theta, \theta) = 0$$：行动正确时损失最小。平方误差损失对大偏差的惩罚相对更重，绝对误差损失对小偏差的惩罚相对更重。平方误差损失的一个变体——对高估的惩罚重于低估——是
-
 $$
 L(\theta, a) = \begin{cases} (a - \theta)^2 & \text{若}\ a < \theta,\\ 10 (a - \theta)^2 & \text{若}\ a \geq \theta. \end{cases}
 $$
-
 在 $$\theta$$ 接近零时比 $$\vert \theta\vert $$ 大时更重地惩罚估计误差的损失——相对平方误差损失——是
-
 $$
 L(\theta, a) = \frac{(a - \theta)^2}{\vert \theta\vert  + 1}.
 $$
-
 注意后面两种平方误差损失的变体本也可以基于绝对误差损失构造。一般地，实验者必须考虑各种 $$\theta$$ 值下估计误差的后果，并规定反映这些后果的损失函数。
-
 在损失函数或决策论分析中，估计量的质量由其风险函数（risk function）量化：对 $$\theta$$ 的估计量 $$\delta(\textbf{x})$$，风险函数（$$\theta$$ 的函数）为
-
 $$
 R(\theta, \delta) = \mathrm{E}_{\theta}\, L\bigl( \theta, \delta(\textbf{X}) \bigr). \tag{7.3.16}
 $$
-
 在给定 $$\theta$$ 处，风险函数是使用估计量 $$\delta(\textbf{x})$$ 时将承受的平均损失。
-
 由于 $$\theta$$ 的真值未知，我们希望使用对所有 $$\theta$$ 值都有小 $$R(\theta, \delta)$$ 的估计量：无论 $$\theta$$ 真值为何，估计量都有小的期望损失。要比较两个估计量 $$\delta_1$$ 与 $$\delta_2$$ 的优劣，就比较其风险函数 $$R(\theta, \delta_1)$$ 与 $$R(\theta, \delta_2)$$。若对所有 $$\theta \in \Theta$$ 有 $$R(\theta, \delta_1) < R(\theta, \delta_2)$$，则 $$\delta_1$$ 受偏爱，因为它对所有 $$\theta$$ 表现更好。更常见的情形是两条风险函数交叉，此时哪个估计更好的判断未必那么分明。
-
 估计量 $$\delta$$ 的风险函数就是 (7.3.16) 定义的期望损失。对平方误差损失，风险函数是熟悉的量——7.3.1 节使用的均方误差：那里估计量的 MSE 定义为 $$\mathrm{MSE}(\theta) = \mathrm{E}_{\theta}\, \bigl( \delta(\textbf{X}) - \theta \bigr)^2$$，当 $$L(\theta, a) = (a - \theta)^2$$ 时它恰是 $$\mathrm{E}_{\theta}\, L\bigl( \theta, \delta(\textbf{X}) \bigr) = R(\theta, \delta)$$。如 (7.3.1)，对平方误差损失有
-
 $$
 R(\theta, \delta) = \mathrm{Var}_{\theta}\, \delta(\textbf{X}) + \bigl( \mathrm{E}_{\theta}\, \delta(\textbf{X}) - \theta \bigr)^2 = \mathrm{Var}_{\theta}\, \delta(\textbf{X}) + \bigl( \mathrm{Bias}_{\theta}\, \delta(\textbf{X}) \bigr)^2. \tag{7.3.17}
 $$
-
 平方误差损失的风险函数清楚表明：好的估计量应同时有小方差与小偏差。决策论分析会评判估计量在同时最小化这两个量上的成败。
-
 像 7.3.2 节那样把允许估计量集合 $$\mathcal{D}$$ 限制为无偏估计量集合的决策论分析是非典型的：那时最小化风险就是最小化方差。决策论分析更全面——方差与偏差都在风险之中、被同时考虑。估计量若同时具有小（但可能非零的）偏差与小方差，会被判为好估计量。
-
-> **例 7.3.25（二项风险函数）**
->
-> 例 7.3.5 中考虑了来自 $$\mathrm{Bernoulli}(p)$$ 总体的随机样本 $$X_1, \ldots, X_n$$，以及两个估计量
->
-> $$
+**例 7.3.25（二项风险函数）**
+例 7.3.5 中考虑了来自 $$\mathrm{Bernoulli}(p)$$ 总体的随机样本 $$X_1, \ldots, X_n$$，以及两个估计量
+$$
 > \hat{p}_B = \frac{\sum_{i=1}^{n} X_i + \sqrt{n}/4}{n + \sqrt{n}} \qquad\text{与}\qquad \bar{X} = \frac{1}{n} \sum_{i=1}^{n} X_i.
 > $$
->
-> 这两个估计量在 $$n = 4$$ 与 $$n = 400$$ 时的风险函数绘于图 7.3.1，其比较正如例 7.3.5 所述：基于风险比较，小 $$n$$ 时偏爱 $$\hat{p}_B$$，大 $$n$$ 时偏爱 $$\bar{X}$$。
-
-> **例 7.3.26（正态方差的风险）**
->
-> 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\mu, \sigma^2)$$ 总体的随机样本。考虑在平方误差损失下估计 $$\sigma^2$$。我们考虑形如 $$\delta_b(\textbf{X}) = b\, S^2$$ 的估计量（$$S^2$$ 为样本方差，$$b$$ 为任意非负常数）。回忆 $$\mathrm{E} S^2 = \sigma^2$$，且对正态样本 $$\mathrm{Var} S^2 = 2 \sigma^4 / (n - 1)$$。用 (7.3.17) 可计算 $$\delta_b$$ 的风险函数：
->
-> $$
+这两个估计量在 $$n = 4$$ 与 $$n = 400$$ 时的风险函数绘于图 7.3.1，其比较正如例 7.3.5 所述：基于风险比较，小 $$n$$ 时偏爱 $$\hat{p}_B$$，大 $$n$$ 时偏爱 $$\bar{X}$$。
+**例 7.3.26（正态方差的风险）**
+设 $$X_1, \ldots, X_n$$ 是来自 $$n(\mu, \sigma^2)$$ 总体的随机样本。考虑在平方误差损失下估计 $$\sigma^2$$。我们考虑形如 $$\delta_b(\textbf{X}) = b\, S^2$$ 的估计量（$$S^2$$ 为样本方差，$$b$$ 为任意非负常数）。回忆 $$\mathrm{E} S^2 = \sigma^2$$，且对正态样本 $$\mathrm{Var} S^2 = 2 \sigma^4 / (n - 1)$$。用 (7.3.17) 可计算 $$\delta_b$$ 的风险函数：
+$$
 > \begin{aligned}
 > R\bigl( (\mu, \sigma^2),\, \delta_b \bigr) &= \mathrm{Var}\bigl( b\, S^2 \bigr) + \bigl( \mathrm{E}\, b\, S^2 - \sigma^2 \bigr)^2
 > = b^2\, \mathrm{Var} S^2 + \bigl( b\, \mathrm{E} S^2 - \sigma^2 \bigr)^2\\
@@ -1438,94 +1389,59 @@ $$
 > &= \Biggl( \frac{2b^2}{n - 1} + (b - 1)^2 \Biggr)\, \sigma^4.
 > \end{aligned}
 > $$
->
-> $$\delta_b$$ 的风险函数不依赖 $$\mu$$，是 $$\sigma^2$$ 的二次函数，形如 $$c_b\, (\sigma^2)^2$$（$$c_b$$ 为正常数）。要比较两条风险函数（从而两个估计量的优劣），注意若 $$c_b < c_{b'}$$，则对一切 $$(\mu, \sigma^2)$$ 值有
->
-> $$
+$$\delta_b$$ 的风险函数不依赖 $$\mu$$，是 $$\sigma^2$$ 的二次函数，形如 $$c_b\, (\sigma^2)^2$$（$$c_b$$ 为正常数）。要比较两条风险函数（从而两个估计量的优劣），注意若 $$c_b < c_{b'}$$，则对一切 $$(\mu, \sigma^2)$$ 值有
+$$
 > R\bigl( (\mu, \sigma^2),\, \delta_b \bigr) = c_b\, (\sigma^2)^2 < c_{b'}\, (\sigma^2)^2 = R\bigl( (\mu, \sigma^2),\, \delta_{b'} \bigr),
 > $$
->
-> 故 $$\delta_b$$ 优于 $$\delta_{b'}$$。给出
->
-> $$
+故 $$\delta_b$$ 优于 $$\delta_{b'}$$。给出
+$$
 > c_b = \frac{2b^2}{n - 1} + (b - 1)^2 \tag{7.3.18}
 > $$
->
-> 整体最小值的 $$b$$ 给出该类中最好的估计量 $$\delta_b$$。标准微积分方法表明最小化值为 $$b = \frac{n - 1}{n + 1}$$。于是在每个 $$(\mu, \sigma^2)$$ 值处，估计量
->
-> $$
+整体最小值的 $$b$$ 给出该类中最好的估计量 $$\delta_b$$。标准微积分方法表明最小化值为 $$b = \frac{n - 1}{n + 1}$$。于是在每个 $$(\mu, \sigma^2)$$ 值处，估计量
+$$
 > \tilde{S}^2 = \frac{n - 1}{n + 1}\, S^2 = \frac{1}{n + 1} \sum_{i=1}^{n} \bigl( X_i - \bar{X} \bigr)^2
 > $$
->
-> 在所有形如 $$b\, S^2$$ 的估计量中风险最小。图 7.3.2 展示了 $$n = 5$$ 时该估计量与该类中另两个估计量的风险函数：另两个是 $$S^2$$（无偏估计量）与 $$\hat{\sigma}^2 = \frac{n - 1}{n}\, S^2$$（$$\sigma^2$$ 的 MLE）。显然 $$\tilde{S}^2$$ 的风险函数处处最小。
-
+在所有形如 $$b\, S^2$$ 的估计量中风险最小。图 7.3.2 展示了 $$n = 5$$ 时该估计量与该类中另两个估计量的风险函数：另两个是 $$S^2$$（无偏估计量）与 $$\hat{\sigma}^2 = \frac{n - 1}{n}\, S^2$$（$$\sigma^2$$ 的 MLE）。显然 $$\tilde{S}^2$$ 的风险函数处处最小。
 ![ch07_fig_7_3_2](fig/ch07_fig_7_3_2.png)
-
 *图 7.3.2　 例 7.3.26 中三个方差估计量的风险函数（原书 Figure 7.3.2）*
-
-> **例 7.3.27（用 Stein 损失估计方差）**
->
-> 再次考虑用形如 $$b\, S^2$$ 的估计量估计总体方差 $$\sigma^2$$。这一分析可以相当一般：只设 $$X_1, \ldots, X_n$$ 是来自某方差 $$\sigma^2$$（正且有限）的总体的随机样本。现在使用归功于 Stein 的损失函数（James and Stein 1961；另见 Brown 1990a）：
->
-> $$
+**例 7.3.27（用 Stein 损失估计方差）**
+再次考虑用形如 $$b\, S^2$$ 的估计量估计总体方差 $$\sigma^2$$。这一分析可以相当一般：只设 $$X_1, \ldots, X_n$$ 是来自某方差 $$\sigma^2$$（正且有限）的总体的随机样本。现在使用归功于 Stein 的损失函数（James and Stein 1961；另见 Brown 1990a）：
+$$
 > L(\sigma^2, a) = \frac{a}{\sigma^2} - 1 - \log\frac{a}{\sigma^2}.
 > $$
->
-> 该损失比平方误差损失复杂，但有些合理的性质。注意 $$a = \sigma^2$$ 时损失为零；且对固定的 $$\sigma^2$$，当 $$a \to 0$$ 或 $$a \to \infty$$ 时 $$L(\sigma^2, a) \to \infty$$，即严重的低估与严重的低估一样受重罚。（平方误差损失在方差估计问题中受到的批评是：低估只有有限惩罚而高估有无穷惩罚。）该损失函数也来自正态总体样本中 $$\sigma^2$$ 的似然函数，从而把好的决策论性质与好的似然性质联系在一起（见习题 7.61）。
->
-> 对估计量 $$\delta_b = b\, S^2$$，风险函数为
->
-> $$
+该损失比平方误差损失复杂，但有些合理的性质。注意 $$a = \sigma^2$$ 时损失为零；且对固定的 $$\sigma^2$$，当 $$a \to 0$$ 或 $$a \to \infty$$ 时 $$L(\sigma^2, a) \to \infty$$，即严重的低估与严重的低估一样受重罚。（平方误差损失在方差估计问题中受到的批评是：低估只有有限惩罚而高估有无穷惩罚。）该损失函数也来自正态总体样本中 $$\sigma^2$$ 的似然函数，从而把好的决策论性质与好的似然性质联系在一起（见习题 7.61）。
+对估计量 $$\delta_b = b\, S^2$$，风险函数为
+$$
 > R(\sigma^2, \delta_b) = \mathrm{E}\Biggl[ \frac{b\, S^2}{\sigma^2} - 1 - \log \frac{b\, S^2}{\sigma^2} \Biggr] = b\, \mathrm{E} \frac{S^2}{\sigma^2} - 1 - \mathrm{E} \log \frac{b\, S^2}{\sigma^2}
 > = b - \log b - 1 - \mathrm{E}\Bigl[ \log \frac{S^2}{\sigma^2} \Bigr] \qquad （\mathrm{E}_{\sigma^2} \frac{S^2}{\sigma^2} = 1）.
 > $$
->
-> 量 $$\mathrm{E} \log(S^2 / \sigma^2)$$ 可以是 $$\sigma^2$$ 与其他总体参数的函数，但不是 $$b$$ 的函数。故对一切 $$\sigma^2$$，$$R(\sigma^2, \delta_b)$$ 在最小化 $$b - \log b$$ 的 $$b$$ 值——即 $$b = 1$$——处最小。因此形如 $$b\, S^2$$ 的估计量中对一切 $$\sigma^2$$ 值风险最小的是 $$\delta_1 = S^2$$。
-
+量 $$\mathrm{E} \log(S^2 / \sigma^2)$$ 可以是 $$\sigma^2$$ 与其他总体参数的函数，但不是 $$b$$ 的函数。故对一切 $$\sigma^2$$，$$R(\sigma^2, \delta_b)$$ 在最小化 $$b - \log b$$ 的 $$b$$ 值——即 $$b = 1$$——处最小。因此形如 $$b\, S^2$$ 的估计量中对一切 $$\sigma^2$$ 值风险最小的是 $$\delta_1 = S^2$$。
 对损失函数最优性问题也可以采用贝叶斯途径，此时我们有先验分布 $$\pi(\theta)$$。贝叶斯分析会用该先验分布计算平均风险
-
 $$
 \int_{\Theta} R(\theta, \delta)\, \pi(\theta)\, d\theta,
 $$
-
 称为贝叶斯风险（Bayes risk）。对风险函数取平均给了我们一个数，用于评估估计量相对于给定损失函数的表现；而且可以尝试求使贝叶斯风险最小的估计量，这样的估计量称为关于先验 $$\pi$$ 的贝叶斯法则（Bayes rule），常记作 $$\delta^{\pi}$$。
-
 求给定先验 $$\pi$$ 的贝叶斯决策法则看似任务艰巨，实则相当机械，如下面定理所示。（按如下方法求贝叶斯法则的技术比这里呈现的更一般；见 Brown and Purves 1973。）
-
 对 $$\textbf{X} \sim f(\textbf{x} \mid \theta)$$ 与 $$\theta \sim \pi$$，决策法则 $$\delta$$ 的贝叶斯风险可写为
-
 $$
 \int_{\Theta} R(\theta, \delta)\, \pi(\theta)\, d\theta = \int_{\Theta} \int_{\mathcal{X}} L\bigl( \theta, \delta(\textbf{x}) \bigr)\, f(\textbf{x} \mid \theta)\, dx\, \pi(\theta)\, d\theta.
 $$
-
 现在写 $$f(\textbf{x} \mid \theta)\, \pi(\theta) = \pi(\theta \mid \textbf{x})\, m(\textbf{x})$$（$$\pi(\theta \mid \textbf{x})$$ 为 $$\theta$$ 的后验分布，$$m(\textbf{x})$$ 为 $$\textbf{X}$$ 的边缘分布），贝叶斯风险可写为
-
 $$
 \int_{\Theta} R(\theta, \delta)\, \pi(\theta)\, d\theta = \int_{\mathcal{X}} \Biggl[ \int_{\Theta} L\bigl( \theta, \delta(\textbf{x}) \bigr)\, \pi(\theta \mid \textbf{x})\, d\theta \Biggr]\, m(\textbf{x})\, dx. \tag{7.3.19}
 $$
-
 方括号中的量是损失函数关于后验分布的期望值，称为后验期望损失（posterior expected loss）；它只是 **x** 的函数而非 $$\theta$$ 的函数。于是对每个 **x**，若选行动 $$\delta(\textbf{x})$$ 使后验期望损失最小，我们就最小化了贝叶斯风险。
-
 注意我们由此得到构造贝叶斯法则的配方：对给定观测 **x**，贝叶斯法则应使后验期望损失最小。这与此前各节的任何处方都相当不同。例如考虑先前讨论的求最佳无偏估计量的方法：使用定理 7.3.23 首先要找完备充分统计量 $$T$$；然后要找作为参数无偏估计量的函数 $$\phi(T)$$；Rao–Blackwell 定理（定理 7.3.17）在已知参数某个无偏估计量时或有帮助；但若想不出任何无偏估计量，该方法并未告诉我们如何构造一个。
-
 即使后验期望损失的最小化无法解析完成，积分可以求值、最小化可以数值进行。事实上观测到 $$\textbf{X} = \textbf{x}$$ 后，只须对这个特定的 **x** 做最小化。不过有些问题中我们可以显式描述贝叶斯法则。
-
-> **例 7.3.28（两个贝叶斯法则）**
->
-> 考虑实值参数 $$\theta$$ 的点估计问题。
->
-> - a. 平方误差损失下，后验期望损失为
->
->   $$
+**例 7.3.28（两个贝叶斯法则）**
+考虑实值参数 $$\theta$$ 的点估计问题。
+- a. 平方误差损失下，后验期望损失为
+  $$
 >   \int_{\Theta} (\theta - a)^2\, \pi(\theta \mid \textbf{x})\, d\theta = \mathrm{E}\Bigl[ (\theta - a)^2 \mid \textbf{X} = \textbf{x} \Bigr].
 >   $$
->
->   这里 $$\theta$$ 是具有分布 $$\pi(\theta \mid \textbf{x})$$ 的随机变量。由例 2.2.6，该期望在 $$\delta^{\pi}(\textbf{x}) = \mathrm{E}(\theta \mid \textbf{x})$$ 处最小。故贝叶斯法则是后验分布的均值。
->
-> - b. 绝对误差损失下，后验期望损失为 $$\mathrm{E}\bigl( \vert \theta - a\vert  \mid \textbf{X} = \textbf{x} \bigr)$$。应用习题 2.18 可见：取 $$\delta^{\pi}(\textbf{x}) = \pi(\theta \mid \textbf{x})$$ 的中位数即可使其最小。
-
+  这里 $$\theta$$ 是具有分布 $$\pi(\theta \mid \textbf{x})$$ 的随机变量。由例 2.2.6，该期望在 $$\delta^{\pi}(\textbf{x}) = \mathrm{E}(\theta \mid \textbf{x})$$ 处最小。故贝叶斯法则是后验分布的均值。
+- b. 绝对误差损失下，后验期望损失为 $$\mathrm{E}\bigl( \vert \theta - a\vert  \mid \textbf{X} = \textbf{x} \bigr)$$。应用习题 2.18 可见：取 $$\delta^{\pi}(\textbf{x}) = \pi(\theta \mid \textbf{x})$$ 的中位数即可使其最小。
 表 7.3.1　 二项 $$p$$ 的三个估计量（$$n = 10$$，先验 $$\pi(p) \sim \mathrm{uniform}(0, 1)$$；原书 Table 7.3.1）
-
 | $$y$$ | MLE | 贝叶斯（绝对误差） | 贝叶斯（平方误差） |
 |:---:|:---:|:---:|:---:|
 | 0 | 0.0000 | 0.0611 | 0.0833 |
@@ -1539,31 +1455,21 @@ $$
 | 8 | 0.8000 | 0.7642 | 0.7500 |
 | 9 | 0.9000 | 0.8520 | 0.8333 |
 | 10 | 1.0000 | 0.9389 | 0.9137 |
-
 7.2.3 节讨论的贝叶斯估计量是 $$\delta^{\pi}(\textbf{x}) = \mathrm{E}(\theta \mid \textbf{x})$$，即后验均值。现在我们看到：这是平方误差损失下的贝叶斯估计量。若认为其他损失函数比平方误差损失更合适，贝叶斯估计量可能是不同的统计量。
-
-> **例 7.3.29（正态贝叶斯估计）**
->
-> 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\theta, \sigma^2)$$ 总体的随机样本，$$\pi(\theta)$$ 为 $$n(\mu, \tau^2)$$；$$\sigma^2$$、$$\mu$$、$$\tau^2$$ 已知。例 7.2.16（经习题 7.22 推广）中我们求得给定 $$\textbf{X} = \textbf{x}$$ 时 $$\theta$$ 的后验分布是正态的，且
->
-> $$
+**例 7.3.29（正态贝叶斯估计）**
+设 $$X_1, \ldots, X_n$$ 是来自 $$n(\theta, \sigma^2)$$ 总体的随机样本，$$\pi(\theta)$$ 为 $$n(\mu, \tau^2)$$；$$\sigma^2$$、$$\mu$$、$$\tau^2$$ 已知。例 7.2.16（经习题 7.22 推广）中我们求得给定 $$\textbf{X} = \textbf{x}$$ 时 $$\theta$$ 的后验分布是正态的，且
+$$
 > \mathrm{E}(\theta \mid \textbf{x}) = \frac{\tau^2}{\tau^2 + (\sigma^2/n)}\, \bar{x} + \frac{\sigma^2/n}{\tau^2 + (\sigma^2/n)}\, \mu, \qquad
 > \mathrm{Var}(\theta \mid \textbf{x}) = \frac{\tau^2\, \sigma^2 / n}{\tau^2 + (\sigma^2/n)}.
 > $$
->
-> 平方误差损失下贝叶斯估计量是 $$\delta^{\pi}(\textbf{x}) = \mathrm{E}(\theta \mid \textbf{x})$$。由于后验分布是正态的、关于其均值对称，$$\pi(\theta \mid \textbf{x})$$ 的中位数等于 $$\mathrm{E}(\theta \mid \textbf{x})$$。故绝对误差损失下贝叶斯估计量也是 $$\delta^{\pi}(\textbf{x}) = \mathrm{E}(\theta \mid \textbf{x})$$。
-
-> **例 7.3.30（二项贝叶斯估计）**
->
-> 设 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{Bernoulli}(p)$$，$$Y = \sum X_i$$；设 $$p$$ 的先验为 $$\mathrm{beta}(\alpha, \beta)$$。例 7.2.14 中发现后验分布只通过观测值 $$Y = y$$ 依赖样本，且为 $$\mathrm{beta}(y + \alpha,\ n - y + \beta)$$。故 $$\delta^{\pi}(y) = \mathrm{E}(p \mid y) = \dfrac{y + \alpha}{\alpha + \beta + n}$$ 是平方误差损失下 $$p$$ 的贝叶斯估计量。
->
-> 绝对误差损失下需要求 $$\pi(p \mid y) = \mathrm{beta}(y + \alpha,\ n - y + \beta)$$ 的中位数。一般没有该中位数的简单表达式；中位数隐式定义为满足
->
-> $$
+平方误差损失下贝叶斯估计量是 $$\delta^{\pi}(\textbf{x}) = \mathrm{E}(\theta \mid \textbf{x})$$。由于后验分布是正态的、关于其均值对称，$$\pi(\theta \mid \textbf{x})$$ 的中位数等于 $$\mathrm{E}(\theta \mid \textbf{x})$$。故绝对误差损失下贝叶斯估计量也是 $$\delta^{\pi}(\textbf{x}) = \mathrm{E}(\theta \mid \textbf{x})$$。
+**例 7.3.30（二项贝叶斯估计）**
+设 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{Bernoulli}(p)$$，$$Y = \sum X_i$$；设 $$p$$ 的先验为 $$\mathrm{beta}(\alpha, \beta)$$。例 7.2.14 中发现后验分布只通过观测值 $$Y = y$$ 依赖样本，且为 $$\mathrm{beta}(y + \alpha,\ n - y + \beta)$$。故 $$\delta^{\pi}(y) = \mathrm{E}(p \mid y) = \dfrac{y + \alpha}{\alpha + \beta + n}$$ 是平方误差损失下 $$p$$ 的贝叶斯估计量。
+绝对误差损失下需要求 $$\pi(p \mid y) = \mathrm{beta}(y + \alpha,\ n - y + \beta)$$ 的中位数。一般没有该中位数的简单表达式；中位数隐式定义为满足
+$$
 > \int_0^{m} \frac{\Gamma(\alpha + \beta + n)}{\Gamma(y + \alpha)\, \Gamma(n - y + \beta)}\, p^{y + \alpha - 1} (1 - p)^{n - y + \beta - 1}\, dp = \frac{1}{2}
 > $$
->
-> 的数 $$m$$。可以数值求值该积分以找出（近似）满足等式的 $$m$$。我们对 $$n = 10$$、$$\alpha = \beta = 1$$（uniform$(0,1)$$ 先验）做了这一计算；绝对误差损失下的贝叶斯估计量见表 7.3.1，表中还列出了上面导出的平方误差损失下的贝叶斯估计量以及 MLE $$\hat{p} = y/n$$。
+的数 $$m$$。可以数值求值该积分以找出（近似）满足等式的 $$m$$。我们对 $$n = 10$$、$$\alpha = \beta = 1$$（uniform$(0,1)$$ 先验）做了这一计算；绝对误差损失下的贝叶斯估计量见表 7.3.1，表中还列出了上面导出的平方误差损失下的贝叶斯估计量以及 MLE $$\hat{p} = y/n$$。
 >
 > 注意表 7.3.1 中，与 MLE 不同，两个贝叶斯估计量即使 $$y$$ 为 0 或 $$n$$ 也不把 $$p$$ 估计为 0 或 1。贝叶斯估计量的典型特征是不会取到参数空间中的极端值：无论样本量多大，先验总对估计量有影响并倾向于把它拉离极端值。从 $$\mathrm{E}(p \mid y)$$ 的表达式可见，即使 $$y = 0$$ 且 $$n$$ 很大，贝叶斯估计量仍是正数。
 
@@ -1816,13 +1722,10 @@ $$
 $$
 
 其中我们观测到来自 $$f(x - \theta)$$ 的随机样本 $$X_1, \ldots, X_n$$。Pitman 证明了该估计量是具有最小均方误差的位置等变估计量（即它最小化 (7.3.3)）。本习题的目标较为有限。(a) 证明 $$\delta_P(\textbf{X})$$ 关于例 7.3.6 的位置群不变；(b) 证明若 $$f(x - \theta)$$ 是 $$n(\theta, 1)$$，则 $$\delta_P(\textbf{X}) = \bar{X}$$；(c) 证明若 $$f(x - \theta)$$ 是 uniform$\bigl( \theta - \tfrac{1}{2},\ \theta + \tfrac{1}{2} \bigr)$$，则 $$\delta_P(\textbf{X}) = \tfrac{1}{2}\bigl( X_{(1)} + X_{(n)} \bigr)$$。
-
 **7.36** 尺度的 Pitman 估计量为
-
 $$
 \delta_{P_r}(\textbf{X}) = \frac{\displaystyle\int_0^{\infty} t^{n + r - 1}\, \prod_{i=1}^{n} f(t x_i)\, dt}{\displaystyle\int_0^{\infty} t^{n + 2 r - 1}\, \prod_{i=1}^{n} f(t x_i)\, dt},
 $$
-
 其中我们观测到来自 $$\frac{1}{\sigma} f(x/\sigma)$$ 的随机样本 $$X_1, \ldots, X_n$$。Pitman 证明该估计量是 $$\sigma^r$$ 的具有最小尺度化均方误差的尺度等变估计量（即它最小化 $$\mathrm{E} (d - \sigma^r)^2 / \sigma^{2r}$$）。(a) 证明 $$\delta_{P_r}(\textbf{X})$$ 关于尺度群等变，即对任意常数 $$c > 0$$ 满足 $$\delta_{P_r}(c x_1, \ldots, c x_n) = c^{r}\, \delta_{P_r}(x_1, \ldots, x_n)$$；(b) 若 $$X_1, \ldots, X_n$$ 是 iid $$n(0, \sigma^2)$$，求 $$\sigma^2$$ 的 Pitman 尺度等变估计量；(c) 若 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{exponential}(\beta)$$，求 $$\beta$$ 的 Pitman 尺度等变估计量；(d) 若 $$X_1, \ldots, X_n$$ 是 iid uniform$(0, \theta)$$，求 $$\theta$$ 的 Pitman 尺度等变估计量。
 
 **7.37** 设 $$X_1, \ldots, X_n$$ 是来自 pdf
@@ -1880,187 +1783,118 @@ $$
 处最小，这无用因为它依赖参数。(e) 证明：(i) 对峰度 $$\kappa > 3$$ 的分布，最优 $$a$$ 满足 $$a < \frac{n-1}{n+1}$$；(ii) 对峰度 $$\kappa < 3$$ 的分布，最优 $$a$$ 满足 $$\frac{n-1}{n+1} < a < 1$$。更多细节见 Searls and Intarapanich (1990)。
 
 **7.46** 设 $$X_1, X_2, X_3$$ 是 uniform$(\theta, 2\theta)$$ 分布（$$\theta > 0$$）的容量为 3 的随机样本。(a) 求 $$\theta$$ 的矩估计量；(b) 求 MLE $$\hat{\theta}$$，并求使 $$\mathrm{E}_{\theta}\bigl( k\, \hat{\theta} \bigr) = \theta$$ 的常数 $$k$$；(c) 两个估计量中哪个可以用充分性改进？如何改进？(d) 基于数据
-
 $$
 1.29,\ 0.86,\ 1.33
 $$
-
 （酿酒葡萄平均粒径（厘米）的三个观测）求 $$\theta$$ 的矩估计值与 MLE。
-
 **7.47** 设测量圆的半径时产生的误差服从 $$n(0, \sigma^2)$$ 分布。若做了 $$n$$ 次独立测量，求圆面积的无偏估计量。它是最佳无偏的吗？
-
 **7.48** 设 $$X_i$$（$$i = 1, \ldots, n$$）是 iid $$\mathrm{Bernoulli}(p)$$。(a) 证明 $$p$$ 的 MLE 的方差达到 Cramér–Rao 下界；(b) 对 $$n \geq 4$$，证明乘积 $$X_1 X_2 X_3 X_4$$ 是 $$p^4$$ 的无偏估计量，并用这一事实求 $$p^4$$ 的最佳无偏估计量。
-
 **7.49** 设 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{exponential}(\lambda)$$。(a) 仅基于 $$Y = \min\{X_1, \ldots, X_n\}$$ 求 $$\lambda$$ 的无偏估计量；(b) 找一个优于 (a) 中估计量的估计量并证明它更好；(c) 下列数据是航天飞机持续压力环境中使用的 Kevlar/环氧球形压力容器的高应力失效时间（小时）：
-
 $$
 50.1,\ 70.1,\ 137.0,\ 166.9,\ 170.5,\ 152.8,\ 80.5,\ 123.5,\ 112.6,\ 148.5,\ 160.0,\ 125.4.
 $$
-
 失效时间常用指数分布建模。用 (a) 与 (b) 的估计量估计平均失效时间。
-
 **7.50** 设 $$X_1, \ldots, X_n$$ 是 iid $$n(\theta, \theta^2)$$，$$\theta > 0$$。对该模型，$$\bar{X}$$ 与 $$c\, S$$ 都是 $$\theta$$ 的无偏估计量，其中
-
 $$
 c = \frac{\sqrt{n - 1}\, \Gamma\bigl( (n - 1)/2 \bigr)}{\sqrt{2}\, \Gamma(n/2)}.
 $$
-
 (a) 证明对任意数 $$a$$，估计量 $$a\, \bar{X} + (1 - a)(c\, S)$$ 是 $$\theta$$ 的无偏估计量；(b) 求产生最小方差估计量的 $$a$$ 值；(c) 证明 $$(\bar{X}, S^2)$$ 是 $$\theta$$ 的充分统计量，但不是完备充分统计量。
-
 **7.51** Gleser and Healy (1976) 详细处理了 $$n(\theta, a\theta^2)$$ 族（$$a$$ 为已知常数）中的估计问题（习题 7.50 是其特例）。这里探索其结果的一小部分。仍设 $$X_1, \ldots, X_n$$ 是 iid $$n(\theta, \theta^2)$$，$$\theta > 0$$；$$\bar{X}$$ 与 $$c\, S$$ 如习题 7.46（应为 7.50）所定义。定义估计量类
-
 $$
 \mathcal{T} = \bigl\{ T : T = a_1\, \bar{X} + a_2\, (c\, S) \bigr\},
 $$
-
 不假设 $$a_1 + a_2 = 1$$。(a) 求 $$\mathcal{T}$$ 中最小化 $$\mathrm{E}_{\theta}\, (\theta - T)^2$$ 的估计量 $$T^{*}$$；(b) 证明 $$T^{*}$$ 的 MSE 小于习题 7.50(b) 导出的估计量的 MSE；(c) 证明 $$T^{*}_{+} = \max\{0,\ T^{*}\}$$ 的 MSE 小于 $$T^{*}$$ 的 MSE；(d) $$\theta$$ 应归类为位置参数还是尺度参数？解释。
-
 **7.52** 设 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{Poisson}(\lambda)$$，$$\bar{X}$$ 与 $$S^2$$ 分别为样本均值与方差。现在用另一种方式完成例 7.3.8：那里用了 Cramér–Rao 界；现在用完备性。(a) 不用 Cramér–Rao 定理证明 $$\bar{X}$$ 是 $$\lambda$$ 的最佳无偏估计量；(b) 证明相当 remarkable 的恒等式 $$\mathrm{E}\bigl( S^2 \mid \bar{X} \bigr) = \bar{X}$$，并用它显式演示 $$\mathrm{Var} S^2 > \mathrm{Var} \bar{X}$$；(c) 用完备性，能否表述一个一般定理，使 (b) 中的恒等式是其特例？
-
 **7.53** 补足定理 7.3.20 证明中省略的细节。设 $$W$$ 是 $$\tau(\theta)$$ 的无偏估计量，$$U$$ 是零的无偏估计量。证明若对某 $$\theta = \theta_0$$ 有 $$\mathrm{Cov}_{\theta_0}(W, U) \neq 0$$，则 $$W$$ 不可能是 $$\tau(\theta)$$ 的最佳无偏估计量。
-
 **7.54** 对“尼罗河问题”（见习题 6.37）：(a) 证明 $$T$$ 是 $$\theta$$ 的 MLE 且 $$U$$ 辅助，并
-
 $$
 \mathrm{E}(T) = \frac{\Gamma(n + \tfrac{1}{2})\, \Gamma(n - \tfrac{1}{2})}{[\Gamma(n)]^2}\, \theta \qquad\text{与}\qquad \mathrm{E}\bigl( T^2 \bigr) = \frac{\Gamma(n + 1)\, \Gamma(n - 1)}{[\Gamma(n)]^2}\, \theta^2;
 $$
-
 (b) 设 $$Z_1 = \frac{1}{n - 1} \sum X_i$$，$$Z_2 = \frac{1}{n} \sum Y_i$$。证明两者都无偏，方差分别为 $$\theta^2 / (n - 2)$$ 与 $$\theta^2 / n$$；(c) 求形如 $$a\, Z_1 + (1 - a)\, Z_2$$ 的最佳无偏估计量，计算其方差，并与偏差校正的 MLE 比较。
-
 **7.55** 对下列每个 pdf，设 $$X_1, \ldots, X_n$$ 是来自该分布的样本。每种情形求 $$\theta^r$$ 的最佳无偏估计量。（该问题的完整讨论见 Guenther 1978。）(a) $$f(x \mid \theta) = \dfrac{1}{\theta}$$，$$0 < x < \theta$$，$$r < n$$；(b) $$f(x \mid \theta) = e^{-(x - \theta)}$$，$$x > \theta$$；(c) $$f(x \mid \theta) = \dfrac{e^{-\theta}\, e^{-e^{-(x - \theta)}}}{1 - e^{-e^{-b}}}$$ 型（即 $$e^{-\theta} e^{-e^{-(x-\theta)}} / \bigl( 1 - e^{-e^{-(b - \theta)}} \bigr)$$ 的截断极值密度），$$\theta < x < b$$，$$b$$ 已知。
-
 **7.56** 证明例 7.3.24 之前正文所作的断言：若 $$T$$ 是参数 $$\theta$$ 的完备充分统计量，$$h(X_1, \ldots, X_n)$$ 是 $$\tau(\theta)$$ 的任何无偏估计量，则 $$\phi(T) = \mathrm{E}\bigl( h(X_1, \ldots, X_n) \mid T \bigr)$$ 是 $$\tau(\theta)$$ 的最佳无偏估计量。
-
 **7.57** 设 $$X_1, \ldots, X_{n+1}$$ 是 iid $$\mathrm{Bernoulli}(p)$$，定义函数
-
 $$
 h(p) = P\Biggl( \sum_{i=1}^{n} X_i > X_{n+1} \,\Big\vert \, p \Biggr),
 $$
-
 即前 $$n$$ 个观测超过第 $$(n + 1)$$ 个的概率。(a) 证明
-
 $$
 T(X_1, \ldots, X_{n+1}) = \begin{cases} 1 & \text{若}\ \sum_{i=1}^{n} X_i > X_{n+1},\\ 0 & \text{其他} \end{cases}
 $$
-
 是 $$h(p)$$ 的无偏估计量；(b) 求 $$h(p)$$ 的最佳无偏估计量。
-
 **7.58** 设 $$X$$ 是来自 pdf
-
 $$
 f(x \mid \theta) = \Bigl( \frac{\theta}{2} \Bigr)^{\vert x\vert } (1 - \theta)^{1 - \vert x\vert }, \qquad x = -1, 0, 1; \quad 0 \leq \theta \leq 1
 $$
-
 的一次观测。(a) 求 $$\theta$$ 的 MLE；(b) 定义估计量
-
 $$
 T(X) = \begin{cases} 2 & \text{若}\ x = 1,\\ 0 & \text{其他}. \end{cases}
 $$
-
 证明 $$T(X)$$ 是 $$\theta$$ 的无偏估计量；(c) 找一个优于 $$T(X)$$ 的估计量并证明它更好。
-
 **7.59** 设 $$X_1, \ldots, X_n$$ 是 iid $$n(\mu, \sigma^2)$$。求 $$\sigma^p$$ 的最佳无偏估计量，其中 $$p$$ 是已知正常数（不必为整数）。
-
 **7.60** 设 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{gamma}(\alpha, \beta)$$（$$\alpha$$ 已知）。求 $$1/\beta$$ 的最佳无偏估计量。
-
 **7.61** 证明：基于观测 $$S^2 \sim \sigma^2 \chi_{\nu}^2 / \nu$$ 估计 $$\sigma^2$$ 的似然函数的对数可以写成
-
 $$
 \log L(\sigma^2 \mid s^2) = K_1\, \frac{s^2}{\sigma^2} - K_2 \log \frac{s^2}{\sigma^2} + K_3,
 $$
-
 其中 $$K_1, K_2, K_3$$ 是不依赖 $$\sigma^2$$ 的常数。把上述对数似然与例 7.3.27 讨论的损失函数联系起来。这一关系的讨论见 Anderson (1984a)。
-
 **7.62** 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\theta, \sigma^2)$$ 总体（$$\sigma^2$$ 已知）的随机样本。考虑在平方误差损失下估计 $$\theta$$。设 $$\pi(\theta)$$ 是 $$\theta$$ 的 $$n(\mu, \tau^2)$$ 先验分布，$$\delta^{\pi}$$ 为 $$\theta$$ 的贝叶斯估计量。验证风险函数与贝叶斯风险的下列公式：(a) 对任意常数 $$a$$ 与 $$b$$，估计量 $$\delta(\textbf{x}) = a\, \bar{X} + b$$ 的风险函数为
-
 $$
 R(\theta, \delta) = a^2\, \frac{\sigma^2}{n} + \bigl( b - (1 - a)\, \theta \bigr)^2;
 $$
-
 (b) 令 $$\eta = \sigma^2 / (n \tau^2 + \sigma^2)$$。贝叶斯估计量的风险函数为
-
 $$
 R(\theta, \delta^{\pi}) = (1 - \eta)^2\, \frac{\sigma^2}{n} + \eta^2\, (\theta - \mu)^2;
 $$
-
 (c) 贝叶斯估计量的贝叶斯风险为
-
 $$
 B(\pi, \delta^{\pi}) = \tau^2\, \eta.
 $$
-
 **7.63** 设 $$X \sim n(\mu, 1)$$。设 $$\delta^{\pi}$$ 为平方误差损失下 $$\mu$$ 的贝叶斯估计量。计算并绘制 $$\pi(\mu) \sim n(0, 1)$$ 与 $$\pi(\mu) \sim n(0, 10)$$ 时的风险函数 $$R(\mu, \delta^{\pi})$$。评论先验如何影响贝叶斯估计量的风险函数。
-
 **7.64** 设 $$X_1, \ldots, X_n$$ 是独立随机变量，$$X_i$$ 有 cdf $$F(x \mid \theta_i)$$。证明：对 $$i = 1, \ldots, n$$，若 $$\delta_i^{\pi_i}(X_i)$$ 是用损失 $$L(\theta_i, a_i)$$ 与先验 $$\pi_i(\theta_i)$$ 估计 $$\theta_i$$ 的贝叶斯法则，则 $$\boldsymbol{\delta}^{\boldsymbol{\pi}}(\textbf{X}) = \bigl( \delta_1^{\pi_1}(X_1), \ldots, \delta_n^{\pi_n}(X_n) \bigr)$$ 是用损失 $$\sum_{i=1}^{n} L(\theta_i, a_i)$$ 与先验 $$\pi(\boldsymbol{\theta}) = \prod_{i=1}^{n} \pi_i(\theta_i)$$ 估计 $$\boldsymbol{\theta} = (\theta_1, \ldots, \theta_n)$$ 的贝叶斯法则。
-
 **7.65** Zellner (1986) 研究的一种损失函数是 LINEX（线性—指数）损失，一种能平滑处理不对称性的损失函数：
-
 $$
 L(\theta, a) = e^{c (a - \theta)} - c\, (a - \theta) - 1,
 $$
-
 其中 $$c$$ 是正常数。随常数 $$c$$ 变化，损失函数从非常不对称到几乎对称。(a) 对 $$c = 0.2, 0.5, 1$$，把 $$L(\theta, a)$$ 作为 $$a - \theta$$ 的函数作图；(b) 若 $$X \sim F(x \mid \theta)$$，证明使用先验 $$\pi$$ 的 $$\theta$$ 的贝叶斯估计量由 $$\delta^{\pi}(\textbf{X}) = -\dfrac{1}{c} \log \mathrm{E}\bigl( e^{-c\theta} \mid \textbf{X} \bigr)$$ 给出；(c) 设 $$X_1, \ldots, X_n$$ 是 iid $$n(\theta, \sigma^2)$$（$$\sigma^2$$ 已知），$$\theta$$ 有非正常先验 $$\pi(\theta) = 1$$。证明 LINEX 损失下的贝叶斯估计量为 $$\delta^{B}(\textbf{X}) = \bar{X} - \dfrac{c\, \sigma^2}{2n}$$；(d) 计算 $$\delta^{B}(\textbf{X})$$ 与 $$\bar{X}$$ 在 LINEX 损失下的后验期望损失；(e) 计算 $$\delta^{B}(\textbf{X})$$ 与 $$\bar{X}$$ 在平方误差损失下的后验期望损失。
-
 **7.66** 刀切法（jackknife）是减少估计量偏差的一般技术（Quenouille 1956）。一步刀切估计量定义如下：设 $$X_1, \ldots, X_n$$ 是随机样本，$$T_n = T_n(X_1, \ldots, X_n)$$ 是参数 $$\theta$$ 的某个估计量。为对 $$T_n$$ “刀切”，计算 $$n$$ 个统计量 $$T_n^{(i)}$$（$$i = 1, \ldots, n$$），其中 $$T_n^{(i)}$$ 的计算方式与 $$T_n$$ 相同但使用剔除 $$X_i$$ 后的 $$n - 1$$ 个观测。$$\theta$$ 的刀切估计量记作 $$\mathrm{JK}(T_n)$$：
-
 $$
 \mathrm{JK}(T_n) = n\, T_n - \frac{n - 1}{n} \sum_{i=1}^{n} T_n^{(i)}.
 $$
-
 （一般 $$\mathrm{JK}(T_n)$$ 的偏差比 $$T_n$$ 小。刀切性质的良好综述见 Miller 1974。）现在具体地：设 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{Bernoulli}(\theta)$$，目标是估计 $$\theta^2$$。(a) 证明 $$\theta^2$$ 的 MLE $$\bigl( \frac{1}{n} \sum_{i=1}^{n} X_i \bigr)^2$$ 是 $$\theta^2$$ 的有偏估计量；(b) 基于 MLE 导出一步刀切估计量；(c) 证明一步刀切估计量是 $$\theta^2$$ 的无偏估计量。（一般刀切只减少偏差；但在这一特例中它完全消除了偏差。）(d) 该刀切估计量是 $$\theta^2$$ 的最佳无偏估计量吗？若是，证明之；若否，求最佳无偏估计量。
-
 **7.67** 证明定理 10.1.5。
-
 ## 7.5 杂记（Miscellanea）
-
 ### 7.5.1 矩估计量与 MLE（Moment Estimators and MLEs）
-
 一般地，矩估计量不是充分统计量的函数，因此通过对充分统计量取条件总可以改进它们。但在指数族情形，修改后的矩方法策略与最大似然估计之间可以存在对应。这一对应由 Davidson and Solomon (1974) 详细讨论，他们还讲述了有趣的历史。
-
 设我们有来自指数族 pdf（见定理 5.2.11）的随机样本 $$\textbf{X} = (X_1, \ldots, X_n)$$：
-
 $$
 f(x \mid \theta) = h(x)\, c(\theta)\, \exp\Bigl( \sum_{i=1}^{k} w_i(\theta)\, t_i(x) \Bigr),
 $$
-
 其中 $$f(x \mid \theta)$$ 的范围独立于 $$\theta$$（注意 $$\theta$$ 可以是向量）。似然函数形如
-
 $$
 L(\theta \mid \textbf{x}) = H(\textbf{x})\, \bigl[ c(\theta) \bigr]^{n}\, \exp\Biggl( \sum_{i=1}^{k} w_i(\theta)\, \sum_{j=1}^{n} t_i(x_j) \Biggr),
 $$
-
 修改后的矩方法会用 $$\hat{w}_i(\theta)$$ 估计 $$w_i(\theta)$$（$$i = 1, \ldots, k$$），$$\hat{w}_i(\theta)$$ 是 $$k$$ 个方程
-
 $$
 \sum_{j=1}^{n} t_i(x_j) = \mathrm{E}_{\theta}\Biggl[ \sum_{j=1}^{n} t_i(X_j) \Biggr], \qquad i = 1, \ldots, k
 $$
-
 的解。Davidson and Solomon 推广 Huzurbazar (1949) 的工作，证明估计量 $$\hat{w}_i(\theta)$$ 事实上就是 $$w_i(\theta)$$ 的 MLE。若定义 $$\eta_i = w_i(\theta)$$（$$i = 1, \ldots, k$$），则 $$g(\eta_i)$$ 的 MLE 等于 $$g(\hat{\eta}_i) = g\bigl( \hat{w}_i(\theta) \bigr)$$（对任意一一函数 $$g$$）。上述期望的计算可以用如下事实（Lehmann 1986, Section 2.7）简化：
-
 $$
 \mathrm{E}_{\theta}\bigl( t_i(X_j) \bigr) = \frac{\partial}{\partial w_i(\theta)}\, \log\bigl( c(\theta) \bigr), \qquad i = 1, \ldots, k, \quad j = 1, \ldots, n;
 $$
-
 $$
 \mathrm{Cov}_{\theta}\bigl( t_i(X_j),\, t_{i'}(X_j) \bigr) = \frac{\partial^2}{\partial w_i(\theta)\, \partial w_{i'}(\theta)}\, \log\bigl( c(\theta) \bigr), \qquad i, i' = 1, \ldots, k, \quad j = 1, \ldots, n.
 $$
-
 ### 7.5.2 无偏的贝叶斯估计（Unbiased Bayes Estimates）
-
 如 7.2.3 节所见，做贝叶斯计算时通常取后验分布的均值为点估计。具体地，若 $$X$$ 有 pdf $$f(x \mid \theta)$$、$$\mathrm{E}_{\theta}(X) = \theta$$，且有先验分布 $$\pi(\theta)$$，则后验均值——$$\theta$$ 的贝叶斯点估计量——为
-
 $$
 \mathrm{E}(\theta \mid x) = \int \theta\, \pi(\theta \mid x)\, d\theta.
 $$
-
 可以问：$$\mathrm{E}(\theta \mid X)$$ 能是 $$\theta$$ 的无偏估计量吗，即满足方程
-
 $$
 \mathrm{E}_{\theta}\bigl[ \mathrm{E}(\theta \mid X) \bigr] = \int \Bigl( \int \theta\, \pi(\theta \mid x)\, d\theta \Bigr) f(x \mid \theta)\, dx = \theta \quad ？
 $$
-
 答案是否定的：后验均值绝不是无偏估计量。若它们无偏，对 $$X$$ 与 $$\theta$$ 的联合分布取期望可以写
-
 $$
 \begin{aligned}
 \mathrm{E}\bigl[ (X - \theta)^2 \bigr] &= \mathrm{E}\bigl[ X^2 - 2 X \theta + \theta^2 \bigr] \qquad （\text{展开平方}）\\
@@ -2069,9 +1903,7 @@ $$
 &= \mathrm{E}\Bigl[ \mathrm{E}\bigl( X^2 \mid \theta \bigr) - \theta^2 \Bigr] = \mathrm{E}(X^2) - \mathrm{E}(\theta^2) \qquad （\text{期望的性质}），
 \end{aligned}
 $$
-
 （按这一方式取条件）；而对 $$X$$ 取条件可以类似计算
-
 $$
 \begin{aligned}
 \mathrm{E}\bigl[ (X - \theta)^2 \bigr] &= \mathrm{E}\Bigl[ \mathrm{E}\bigl[ (X^2 - 2 X \theta + \theta^2) \mid X \bigr] \Bigr]\\
@@ -2079,68 +1911,39 @@ $$
 &= \mathrm{E}(\theta^2) - \mathrm{E}(X^2).
 \end{aligned}
 $$
-
 比较两个计算可见：唯一不矛盾的方式是 $$\mathrm{E}(X^2) = \mathrm{E}(\theta^2)$$，而这蕴含 $$\mathrm{E} (X - \theta)^2 = 0$$，故 $$X = \theta$$。这只在 $$P(X = \theta) = 1$$ 时发生——无趣的情形，于是我们论证出了矛盾。故要么 $$\mathrm{E}(X \mid \theta) \neq \theta$$，要么 $$\mathrm{E}(\theta \mid X) \neq X$$，表明后验均值不能是无偏估计量。
-
 注意我们隐含假设了 $$\mathrm{E}(X^2) < \infty$$，但该结果在更一般的条件下也成立。Bickel and Mallows (1988) 对该主题有更彻底的发展；更高层次上，这一联系由 Noorbaloochi and Meeden (1983) 刻画。
-
 ### 7.5.3 Lehmann–Scheffé 定理（The Lehmann–Scheffé Theorem）
-
 Lehmann–Scheffé 定理是数理统计的一项重大成就，把充分性、完备性与唯一性联系在一起。正文的展开与 Lehmann–Scheffé 定理多少互补，因此我们从未以经典形式（类似定理 7.3.23）陈述它。事实上，Lehmann–Scheffé 定理包含在定理 7.3.19 与 7.3.23 之中。
-
-> **定理 7.5.1（Lehmann–Scheffé 定理）**
->
-> 基于完备充分统计量的无偏估计量是唯一的。
->
-> **证明**　设 $$T$$ 是完备充分统计量，$$\phi(T)$$ 是满足 $$\mathrm{E}_{\theta}\, \phi(T) = \tau(\theta)$$ 的估计量。由定理 7.3.23 知 $$\phi(T)$$ 是 $$\tau(\theta)$$ 的最佳无偏估计量，由定理 7.3.19 知最佳无偏估计量唯一。 ∎
-
+**定理 7.5.1（Lehmann–Scheffé 定理）**
+基于完备充分统计量的无偏估计量是唯一的。
+**证明**　设 $$T$$ 是完备充分统计量，$$\phi(T)$$ 是满足 $$\mathrm{E}_{\theta}\, \phi(T) = \tau(\theta)$$ 的估计量。由定理 7.3.23 知 $$\phi(T)$$ 是 $$\tau(\theta)$$ 的最佳无偏估计量，由定理 7.3.19 知最佳无偏估计量唯一。 ∎
 该定理也可以不用定理 7.3.19（原文如此，应为 7.3.3）而只用完备性的推论证明，为定理 7.3.23 提供略微不同的路线。
-
 ### 7.5.4 EM 算法的更多内容（More on the EM Algorithm）
-
 EM 算法的根源在二十世纪五十年代的工作（Hartley 1958），但在 Dempster, Laird, and Rubin (1977) 的开创性工作之后才真正在统计学中声名鹊起；该工作详述了算法的底层结构并在广泛的应用中演示了其用法。
-
 EM 算法的一个优点是收敛到不完全数据 MLE 的条件已知，尽管这一话题还附加了些民间传说。Dempster, Laird, and Rubin (1977) 原始的收敛证明有缺陷，但有效的收敛证明后来由 Boyles (1983) 与 Wu (1983) 给出；另见 Finch 等 (1989)。
-
 在我们的展开中我们止步于定理 7.2.20，它保证似然在每次迭代中增加。但这可能不足以断言序列 $$\{ \hat{\theta}^{(r)} \}$$ 收敛到最大似然估计量；这样的保证需要进一步的条件。归功于 Wu (1983) 的下述定理保证收敛到驻点——它可能是局部最大或鞍点。
-
-> **定理 7.5.2（EM 序列的收敛）**
->
-> 若期望的完全数据对数似然 $$\mathrm{E}\bigl[ \log L(\theta \mid \textbf{y}, \textbf{x}) \mid \theta', \textbf{y} \bigr]$$ 关于 $$\theta$$ 与 $$\theta'$$ 都连续，则 EM 序列 $$\{ \hat{\theta}^{(r)} \}$$ 的一切极限点都是 $$L(\theta \mid \textbf{y})$$ 的驻点，且 $$L\bigl( \hat{\theta}^{(r)} \mid \textbf{y} \bigr)$$ 单调收敛到 $$L(\hat{\theta} \mid \textbf{y})$$（某个驻点 $$\hat{\theta}$$）。
-
+**定理 7.5.2（EM 序列的收敛）**
+若期望的完全数据对数似然 $$\mathrm{E}\bigl[ \log L(\theta \mid \textbf{y}, \textbf{x}) \mid \theta', \textbf{y} \bigr]$$ 关于 $$\theta$$ 与 $$\theta'$$ 都连续，则 EM 序列 $$\{ \hat{\theta}^{(r)} \}$$ 的一切极限点都是 $$L(\theta \mid \textbf{y})$$ 的驻点，且 $$L\bigl( \hat{\theta}^{(r)} \mid \textbf{y} \bigr)$$ 单调收敛到 $$L(\hat{\theta} \mid \textbf{y})$$（某个驻点 $$\hat{\theta}$$）。
 在指数族中，因为对数似然对缺失数据是线性的，计算得以简化：可以写
-
 $$
 \mathrm{E}\Bigl[ \log L(\theta \mid \textbf{y}, \textbf{x}) \mid \theta', \textbf{y} \Bigr] = \mathrm{E}_{\theta'}\Bigl[ \log\bigl( h(\textbf{y}, \textbf{X})\, e^{\sum \eta_i(\theta)\, T_i - B(\theta)} \bigr) \mid \textbf{y} \Bigr]
 = \mathrm{E}_{\theta'}\bigl[ \log h(\textbf{y}, \textbf{X}) \bigr] + \sum \eta_i(\theta)\, \mathrm{E}_{\theta'}\bigl[ T_i \mid \textbf{y} \bigr] - B(\theta).
 $$
-
 于是计算完全数据 MLE 只涉及更简单的期望 $$\mathrm{E}_{\theta'}\bigl[ T_i \mid \textbf{y} \bigr]$$。
-
 EM 算法的良好综述由 Little and Rubin (1987)、Tanner (1996) 与 Sheaffer (1997) 提供；另见 Lehmann and Casella (1998, Section 6.4)。McLachlan and Krishnan (1997) 对 EM 有整本专著级的处理。
-
 ### 7.5.5 其他似然（Other Likelihoods）
-
 本章我们使用了最大似然法，并看到它不仅提供了寻找估计量的方法，还带来对推断相当有用的大样本理论。
-
 似然有许多修改。一些用于处理多余参数（如轮廓似然）；一些在希望更稳健的设定时使用（如拟似然）；另一些在数据删失时有用（如部分似然）。
-
 还有许多其他变体，它们都能对我们此处描述的朴素似然提供一些改进。进入这一丰富似然世界的入口有 Hinkley (1980) 的综述文章或 Hinkley, Reid, and Snell (1991) 编辑的综述文集。
-
 ### 7.5.6 其他贝叶斯分析（Other Bayes Analyses）
-
 **1. 稳健贝叶斯分析**　 贝叶斯法则可能对（主观的）先验分布选择相当敏感，这让许多贝叶斯统计学家担忧。Berger (1984) 的文章引入了稳健贝叶斯分析的想法：这是一类贝叶斯分析，寻找对一族先验分布都有良好性质的估计量。也就是说，我们寻找这样的估计量 $$\delta^{*}$$：其表现稳健，不敏感于先验类中哪个先验 $$\pi$$ 才是正确先验。稳健贝叶斯估计量也可以有好的频率派表现，使其颇具吸引力。该主题的入口有 Berger (1990, 1994) 与 Wasserman (1994) 的综述论文。
-
 **2. 经验贝叶斯分析**　 标准贝叶斯分析中，先验分布通常含有须由实验者指定的参数。例如考虑设定
-
 $$
 X \mid \theta \sim n(\theta, 1), \qquad \theta \mid \tau^2 \sim n(0, \tau^2).
 $$
-
 贝叶斯实验者会为 $$\tau^2$$ 指定一个先验值，然后做贝叶斯分析。然而 $$X$$ 的边缘分布是 $$n(0, \tau^2 + 1)$$，含有关于 $$\tau$$ 的信息，可用于估计 $$\tau$$。这种从边缘分布估计先验参数的想法正是经验贝叶斯分析的特征。经验贝叶斯方法在构造改进程序方面很有用，如 Morris (1983) 与 Casella and Hwang (1987) 所示；Gianola and Fernando (1986) 成功地把这类方法用于解决实际问题。经验贝叶斯的全面论述见 Carlin and Louis (1996)，较平易的入门见 Casella (1985, 1992)。
-
 **3. 分层贝叶斯分析**　 处理上述设定的另一方式——不给 $$\tau^2$$ 指定先验值——是分层设定，即对 $$\tau^2$$ 指定第二阶段先验。例如可以用
-
 $$
 X \mid \theta \sim n(\theta, 1), \qquad \theta \mid \tau^2 \sim n(0, \tau^2), \qquad \tau^2 \sim \mathrm{uniform}(0, \infty) \quad \text{（非正常先验）}.
 $$

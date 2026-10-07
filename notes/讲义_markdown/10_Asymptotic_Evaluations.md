@@ -35,8 +35,8 @@ permalink: /statistics/chap10.html
 > 若估计量序列 $$W_n = W_n(X_1, \ldots, X_n)$$ 满足：对每个 $$\varepsilon > 0$$ 与每个 $$\theta \in \Theta$$，
 >
 > $$
-> \lim_{n \to \infty} P_{\theta}\bigl( \vert W_n - \theta\vert  < \varepsilon \bigr) = 1, \tag{10.1.1}
-> $$
+\lim_{n \to \infty} P_{\theta}\bigl( \vert W_n - \theta\vert  < \varepsilon \bigr) = 1, \tag{10.1.1}
+$$
 >
 > 则称它是参数 $$\theta$$ 的***相合估计量序列***（consistent sequence of estimators）。
 
@@ -53,21 +53,21 @@ $$
 > 设 $$X_1, X_2, \ldots$$ 是 iid $$n(\theta, 1)$$，考虑序列
 >
 > $$
-> \bar{X}_n = \frac{1}{n} \sum_{i=1}^{n} X_i.
-> $$
+\bar{X}_n = \frac{1}{n} \sum_{i=1}^{n} X_i.
+$$
 >
 > 回顾 $$\bar{X}_n \sim n(\theta, 1/n)$$，于是
 >
 > $$
-> \begin{aligned}
-> P_{\theta}\bigl( \vert \bar{X}_n - \theta\vert  < \varepsilon \bigr)
-> &= \int_{\theta - \varepsilon}^{\theta + \varepsilon} \Bigl( \frac{n}{2\pi} \Bigr)^{1/2} e^{-(n/2)(\bar{x}_n - \theta)^2}\, d\bar{x}_n \qquad （\text{定义}）\\
-> &= \int_{-\varepsilon}^{\varepsilon} \Bigl( \frac{n}{2\pi} \Bigr)^{1/2} e^{-(n/2)y^2}\, dy \qquad （\text{代换}\ y = \bar{x}_n - \theta）\\
-> &= \int_{-\varepsilon\sqrt{n}}^{\varepsilon\sqrt{n}} \frac{1}{\sqrt{2\pi}}\, e^{-(1/2)t^2}\, dt \qquad （\text{代换}\ t = y\sqrt{n}）\\
-> &= P(-\varepsilon\sqrt{n} < Z < \varepsilon\sqrt{n}) \qquad （Z \sim n(0, 1)）\\
-> &\to 1 \quad \text{当}\ n \to \infty,
-> \end{aligned}
-> $$
+\begin{aligned}
+P_{\theta}\bigl( \vert \bar{X}_n - \theta\vert  < \varepsilon \bigr)
+&= \int_{\theta - \varepsilon}^{\theta + \varepsilon} \Bigl( \frac{n}{2\pi} \Bigr)^{1/2} e^{-(n/2)(\bar{x}_n - \theta)^2}\, d\bar{x}_n \qquad （\text{定义}）\\
+&= \int_{-\varepsilon}^{\varepsilon} \Bigl( \frac{n}{2\pi} \Bigr)^{1/2} e^{-(n/2)y^2}\, dy \qquad （\text{代换}\ y = \bar{x}_n - \theta）\\
+&= \int_{-\varepsilon\sqrt{n}}^{\varepsilon\sqrt{n}} \frac{1}{\sqrt{2\pi}}\, e^{-(1/2)t^2}\, dt \qquad （\text{代换}\ t = y\sqrt{n}）\\
+&= P(-\varepsilon\sqrt{n} < Z < \varepsilon\sqrt{n}) \qquad （Z \sim n(0, 1)）\\
+&\to 1 \quad \text{当}\ n \to \infty,
+\end{aligned}
+$$
 >
 > 故 $$\bar{X}_n$$ 是 $$\theta$$ 的相合估计序列。
 
@@ -107,10 +107,10 @@ $$
 > 由于
 >
 > $$
-> \mathrm{E}_{\theta} \bar{X}_n = \theta
-> \qquad\text{与}\qquad
-> \mathrm{Var}_{\theta} \bar{X}_n = \frac{1}{n},
-> $$
+\mathrm{E}_{\theta} \bar{X}_n = \theta
+\qquad\text{与}\qquad
+\mathrm{Var}_{\theta} \bar{X}_n = \frac{1}{n},
+$$
 >
 > 定理 10.1.3 的条件满足，序列 $$\bar{X}_n$$ 相合。此外，由定理 5.2.6，若从任何均值为 $$\theta$$、方差有限的总体 iid 抽样，则 $$\bar{X}_n$$ 相合于 $$\theta$$。
 
@@ -136,8 +136,8 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是 iid $$f(x \mid \theta)$$，$$L(\theta \mid \textbf{x}) = \prod_{i=1}^{n} f(x_i \mid \theta)$$ 是似然函数，$$\hat{\theta}$$ 表示 $$\theta$$ 的 MLE。设 $$\tau(\theta)$$ 是 $$\theta$$ 的连续函数。在杂记 10.6.2 节关于 $$f(x \mid \theta)$$（从而 $$L(\theta \mid \textbf{x})$$）的正则条件下，对每个 $$\varepsilon > 0$$ 与每个 $$\theta \in \Theta$$，
 >
 > $$
-> \lim_{n \to \infty} P_{\theta}\bigl( \vert \tau(\hat{\theta}) - \tau(\theta)\vert  \geq \varepsilon \bigr) = 0.
-> $$
+\lim_{n \to \infty} P_{\theta}\bigl( \vert \tau(\hat{\theta}) - \tau(\theta)\vert  \geq \varepsilon \bigr) = 0.
+$$
 >
 > 即 $$\tau(\hat{\theta})$$ 是 $$\tau(\theta)$$ 的相合估计量。
 >
@@ -180,34 +180,34 @@ $$
 > 分层模型
 >
 > $$
-> Y_n \mid W_n = w_n \sim n\bigl( 0,\ w_n + (1 - w_n)\sigma_n^2 \bigr),
-> \qquad
-> W_n \sim \mathrm{Bernoulli}(p_n)
-> $$
+Y_n \mid W_n = w_n \sim n\bigl( 0,\ w_n + (1 - w_n)\sigma_n^2 \bigr),
+\qquad
+W_n \sim \mathrm{Bernoulli}(p_n)
+$$
 >
 > 可以表现出渐近方差与极限方差的巨大差异。（这有时也描述为混合模型：以概率 $$p_n$$ 观测 $$Y_n \sim n(0,1)$$、以概率 $$1 - p_n$$ 观测 $$Y_n \sim n(0, \sigma_n^2)$$。）
 >
 > 首先，由定理 4.4.7 有
 >
 > $$
-> \mathrm{Var}(Y_n) = p_n + (1 - p_n)\sigma_n^2.
-> $$
+\mathrm{Var}(Y_n) = p_n + (1 - p_n)\sigma_n^2.
+$$
 >
 > 由此可得：$$Y_n$$ 的极限方差有限当且仅当 $$\lim_n (1 - p_n)\sigma_n^2 < \infty$$。
 >
 > 另一方面，$$Y_n$$ 的渐近分布可以用
 >
 > $$
-> P(Y_n < a) = p_n P(Z < a) + (1 - p_n) P(Z < a / \sigma_n)
-> $$
+P(Y_n < a) = p_n P(Z < a) + (1 - p_n) P(Z < a / \sigma_n)
+$$
 >
 > 直接计算。现在设 $$p_n \to 1$$、$$\sigma_n \to \infty$$，且 $$(1 - p_n)\sigma_n^2 \to \infty$$。则 $$P(Y_n < a) \to P(Z < a)$$，即 $$Y_n \to n(0,1)$$，于是
 >
 > $$
-> \text{极限方差} = \lim_n \bigl[ p_n + (1 - p_n)\sigma_n^2 \bigr] = \infty,
-> \qquad
-> \text{渐近方差} = 1.
-> $$
+\text{极限方差} = \lim_n \bigl[ p_n + (1 - p_n)\sigma_n^2 \bigr] = \infty,
+\qquad
+\text{渐近方差} = 1.
+$$
 >
 > 更多细节见习题 10.6。
 
@@ -218,8 +218,8 @@ $$
 > 若估计量序列 $$W_n$$ 满足 $$\sqrt{n}\bigl[ W_n - \tau(\theta) \bigr] \to n\bigl[ 0, v(\theta) \bigr]$$（依分布），且
 >
 > $$
-> v(\theta) = \frac{[\tau'(\theta)]^2}{\mathrm{E}_{\theta} \Bigl[ \frac{\partial}{\partial \theta} \log f(X \mid \theta) \Bigr]^2},
-> $$
+v(\theta) = \frac{[\tau'(\theta)]^2}{\mathrm{E}_{\theta} \Bigl[ \frac{\partial}{\partial \theta} \log f(X \mid \theta) \Bigr]^2},
+$$
 >
 > 即 $$W_n$$ 的渐近方差达到 Cramér–Rao 下界，则称 $$W_n$$ 关于参数 $$\tau(\theta)$$ ***渐近有效***（asymptotically efficient）。
 
@@ -230,8 +230,8 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是 iid $$f(x \mid \theta)$$，$$\hat{\theta}$$ 表示 $$\theta$$ 的 MLE，$$\tau(\theta)$$ 是 $$\theta$$ 的连续函数。在杂记 10.6.2 节关于 $$f(x \mid \theta)$$（从而 $$L(\theta \mid \textbf{x})$$）的正则条件下，
 >
 > $$
-> \sqrt{n}\bigl[ \tau(\hat{\theta}) - \tau(\theta) \bigr] \to n\bigl[ 0, v(\theta) \bigr],
-> $$
+\sqrt{n}\bigl[ \tau(\hat{\theta}) - \tau(\theta) \bigr] \to n\bigl[ 0, v(\theta) \bigr],
+$$
 >
 > 其中 $$v(\theta)$$ 是 Cramér–Rao 下界。即 $$\tau(\hat{\theta})$$ 是 $$\tau(\theta)$$ 的相合且渐近有效的估计量。
 >
@@ -240,26 +240,26 @@ $$
 > 回顾 $$l(\theta \mid \textbf{x}) = \sum \log f(x_i \mid \theta)$$ 是对数似然函数，记其（关于 $$\theta$$ 的）导数为 $$l'$$, $$l''$$, …。把对数似然的一阶导数在真值 $$\theta_0$$ 处展开：
 >
 > $$
-> l'(\theta \mid \textbf{x}) = l'(\theta_0 \mid \textbf{x}) + (\theta - \theta_0)\, l''(\theta_0 \mid \textbf{x}) + \cdots, \tag{10.1.4}
-> $$
+l'(\theta \mid \textbf{x}) = l'(\theta_0 \mid \textbf{x}) + (\theta - \theta_0)\, l''(\theta_0 \mid \textbf{x}) + \cdots, \tag{10.1.4}
+$$
 >
 > 我们将忽略高阶项（在正则条件下这是合理的）。
 >
 > 把 MLE $$\hat{\theta}$$ 代入 $$\theta$$，注意 (10.1.4) 左端为零。整理并两边乘以 $$\sqrt{n}$$，得
 >
 > $$
-> \sqrt{n}(\hat{\theta} - \theta_0)
-> = \frac{\sqrt{n}\, \bigl[ -l'(\theta_0 \mid \textbf{x}) \bigr]}{l''(\theta_0 \mid \textbf{x})}
-> = \frac{-\frac{1}{\sqrt{n}}\, l'(\theta_0 \mid \textbf{x})}{\frac{1}{n}\, l''(\theta_0 \mid \textbf{x})}. \tag{10.1.5}
-> $$
+\sqrt{n}(\hat{\theta} - \theta_0)
+= \frac{\sqrt{n}\, \bigl[ -l'(\theta_0 \mid \textbf{x}) \bigr]}{l''(\theta_0 \mid \textbf{x})}
+= \frac{-\frac{1}{\sqrt{n}}\, l'(\theta_0 \mid \textbf{x})}{\frac{1}{n}\, l''(\theta_0 \mid \textbf{x})}. \tag{10.1.5}
+$$
 >
 > 令 $$I(\theta_0) = \mathrm{E}\bigl[ l'(\theta_0 \mid X) \bigr]^2 = 1/v(\theta)$$ 表示信息数。应用中心极限定理与大数定律可得（细节见习题 10.8）
 >
 > $$
-> -\frac{1}{\sqrt{n}}\, l'(\theta_0 \mid \textbf{X}) \to n\bigl[ 0,\ I(\theta_0) \bigr]\ \text{（依分布）}
-> \qquad\text{与}\qquad
-> \frac{1}{n}\, l''(\theta_0 \mid \textbf{X}) \to I(\theta_0)\ \text{（依概率）}. \tag{10.1.6}
-> $$
+-\frac{1}{\sqrt{n}}\, l'(\theta_0 \mid \textbf{X}) \to n\bigl[ 0,\ I(\theta_0) \bigr]\ \text{（依分布）}
+\qquad\text{与}\qquad
+\frac{1}{n}\, l''(\theta_0 \mid \textbf{X}) \to I(\theta_0)\ \text{（依概率）}. \tag{10.1.6}
+$$
 >
 > 于是，令 $$W \sim n\bigl[ 0, I(\theta_0) \bigr]$$，则 $$\sqrt{n}(\hat{\theta} - \theta_0)$$ 依分布收敛到 $$W / I(\theta_0) \sim n\bigl[ 0,\ 1/I(\theta_0) \bigr]$$，定理得证。 ∎
 
@@ -268,15 +268,15 @@ $$
 > 上面的定理表明：MLE 通常既有效又相合。我们要指出，这个说法有些冗余：有效性只在估计量渐近正态时才有定义，而我们将说明渐近正态性蕴含相合性。设
 >
 > $$
-> \sqrt{n}\, \frac{W_n - \mu}{\sigma} \to Z\ \text{（依分布）},
-> $$
+\sqrt{n}\, \frac{W_n - \mu}{\sigma} \to Z\ \text{（依分布）},
+$$
 >
 > 其中 $$Z \sim n(0,1)$$。应用 Slutsky 定理（定理 5.5.17）得
 >
 > $$
-> W_n - \mu = \Bigl( \frac{\sigma}{\sqrt{n}} \Bigr) \Bigl( \sqrt{n}\, \frac{W_n - \mu}{\sigma} \Bigr)
-> \to \lim_{n \to \infty} \frac{\sigma}{\sqrt{n}}\, Z = 0,
-> $$
+W_n - \mu = \Bigl( \frac{\sigma}{\sqrt{n}} \Bigr) \Bigl( \sqrt{n}\, \frac{W_n - \mu}{\sigma} \Bigr)
+\to \lim_{n \to \infty} \frac{\sigma}{\sqrt{n}}\, Z = 0,
+$$
 >
 > 故 $$W_n - \mu$$ 依分布收敛到 0。由定理 5.5.13，依分布收敛到一点等价于依概率收敛，所以 $$W_n$$ 是 $$\mu$$ 的相合估计量。
 
@@ -308,59 +308,59 @@ $$
 > 例 7.2.7 中我们看到：若 $$X_1, \ldots, X_n$$ 是来自 Bernoulli($$p$$) 总体的随机样本，则 $$\hat{p} = \sum X_i / n$$ 是 $$p$$ 的 MLE。而且由直接计算知
 >
 > $$
-> \mathrm{Var}_p \hat{p} = \frac{p(1 - p)}{n},
-> $$
+\mathrm{Var}_p \hat{p} = \frac{p(1 - p)}{n},
+$$
 >
 > $$\mathrm{Var}_p \hat{p}$$ 的一个合理估计是
 >
 > $$
-> \widehat{\mathrm{Var}}_p \hat{p} = \frac{\hat{p}(1 - \hat{p})}{n}. \tag{10.1.8}
-> $$
+\widehat{\mathrm{Var}}_p \hat{p} = \frac{\hat{p}(1 - \hat{p})}{n}. \tag{10.1.8}
+$$
 >
 > 若把 (10.1.7) 的近似用于 $$h(p) = p$$，则得到 $$\mathrm{Var}_p \hat{p}$$ 的估计
 >
 > $$
-> \widehat{\mathrm{Var}}_p \hat{p} \approx \frac{1}{-\frac{\partial^2}{\partial p^2} \log L(p \mid \textbf{x}) \big\vert _{p = \hat{p}}}.
-> $$
+\widehat{\mathrm{Var}}_p \hat{p} \approx \frac{1}{-\frac{\partial^2}{\partial p^2} \log L(p \mid \textbf{x}) \big\vert _{p = \hat{p}}}.
+$$
 >
 > 回顾
 >
 > $$
-> \log L(p \mid \textbf{x}) = n\hat{p} \log(p) + n(1 - \hat{p}) \log(1 - p),
-> $$
+\log L(p \mid \textbf{x}) = n\hat{p} \log(p) + n(1 - \hat{p}) \log(1 - p),
+$$
 >
 > 于是
 >
 > $$
-> \frac{\partial^2}{\partial p^2} \log L(p \mid \textbf{x}) = -\frac{n\hat{p}}{p^2} - \frac{n(1 - \hat{p})}{(1 - p)^2}.
-> $$
+\frac{\partial^2}{\partial p^2} \log L(p \mid \textbf{x}) = -\frac{n\hat{p}}{p^2} - \frac{n(1 - \hat{p})}{(1 - p)^2}.
+$$
 >
 > 在 $$p = \hat{p}$$ 处取值得
 >
 > $$
-> \frac{\partial^2}{\partial p^2} \log L(p \mid \textbf{x}) \Big\vert _{p = \hat{p}} = -\frac{n\hat{p}}{\hat{p}^2} - \frac{n(1 - \hat{p})}{(1 - \hat{p})^2} = -\frac{n}{\hat{p}(1 - \hat{p})},
-> $$
+\frac{\partial^2}{\partial p^2} \log L(p \mid \textbf{x}) \Big\vert _{p = \hat{p}} = -\frac{n\hat{p}}{\hat{p}^2} - \frac{n(1 - \hat{p})}{(1 - \hat{p})^2} = -\frac{n}{\hat{p}(1 - \hat{p})},
+$$
 >
 > 给出的方差近似与 (10.1.8) 相同。现在可以应用定理 10.1.6 断言 $$\hat{p}$$ 渐近有效，特别地，
 >
 > $$
-> \sqrt{n}(\hat{p} - p) \to n\bigl[ 0,\ p(1 - p) \bigr]
-> $$
+\sqrt{n}(\hat{p} - p) \to n\bigl[ 0,\ p(1 - p) \bigr]
+$$
 >
 > （依分布）。若再用定理 5.5.17（Slutsky 定理）还可得
 >
 > $$
-> \sqrt{n}\, \frac{\hat{p} - p}{\sqrt{\hat{p}(1 - \hat{p})}} \to n[0, 1].
-> $$
+\sqrt{n}\, \frac{\hat{p} - p}{\sqrt{\hat{p}(1 - \hat{p})}} \to n[0, 1].
+$$
 >
 > 估计 $$\hat{p}$$ 的方差其实并不难，不必动用这一整套近似机器。但若转向稍复杂的函数，事情就会变得棘手。回顾习题 5.5.22 中我们用 Delta Method 近似了 $$\hat{p}/(1 - \hat{p})$$（几率 $$p/(1-p)$$ 的估计）的方差。现在我们看到这个估计量其实就是几率的 MLE，其方差可估计为
 >
 > $$
-> \widehat{\mathrm{Var}}\Bigl( \frac{\hat{p}}{1 - \hat{p}} \Bigr)
-> \approx \frac{\frac{\partial}{\partial p} \Bigl( \frac{p}{1-p} \Bigr)^{\! 2} \Big\vert _{p = \hat{p}}}{-\frac{\partial^2}{\partial p^2} \log L(p \mid \textbf{x}) \big\vert _{p = \hat{p}}}
-> = \frac{\Bigl( \frac{(1-p) + p}{(1-p)^2} \Bigr)^{\! 2} \Big\vert _{p = \hat{p}}}{\frac{n}{p(1-p)} \Big\vert _{p = \hat{p}}}
-> = \frac{\hat{p}}{n(1 - \hat{p})^3}.
-> $$
+\widehat{\mathrm{Var}}\Bigl( \frac{\hat{p}}{1 - \hat{p}} \Bigr)
+\approx \frac{\frac{\partial}{\partial p} \Bigl( \frac{p}{1-p} \Bigr)^{\! 2} \Big\vert _{p = \hat{p}}}{-\frac{\partial^2}{\partial p^2} \log L(p \mid \textbf{x}) \big\vert _{p = \hat{p}}}
+= \frac{\Bigl( \frac{(1-p) + p}{(1-p)^2} \Bigr)^{\! 2} \Big\vert _{p = \hat{p}}}{\frac{n}{p(1-p)} \Big\vert _{p = \hat{p}}}
+= \frac{\hat{p}}{n(1 - \hat{p})^3}.
+$$
 >
 > 此外我们还知道该估计量渐近有效。
 
@@ -371,11 +371,11 @@ MLE 方差近似在许多情形表现良好，但并非万无一失。特别地�
 > 假设现在要估计 Bernoulli 分布的方差 $$p(1 - p)$$。它的 MLE 是 $$\hat{p}(1 - \hat{p})$$，这个估计量的方差估计可由 (10.1.7) 的近似得到：
 >
 > $$
-> \widehat{\mathrm{Var}}\bigl( \hat{p}(1 - \hat{p}) \bigr)
-> \approx \frac{\frac{\partial}{\partial p} \bigl[ p(1 - p) \bigr]^2 \Big\vert _{p = \hat{p}}}{-\frac{\partial^2}{\partial p^2} \log L(p \mid \textbf{x}) \Big\vert _{p = \hat{p}}}
-> = \frac{(1 - 2p)^2 \big\vert _{p = \hat{p}}}{\frac{n}{p(1-p)} \Big\vert _{p = \hat{p}}}
-> = \frac{\hat{p}(1 - \hat{p})(1 - 2\hat{p})^2}{n},
-> $$
+\widehat{\mathrm{Var}}\bigl( \hat{p}(1 - \hat{p}) \bigr)
+\approx \frac{\frac{\partial}{\partial p} \bigl[ p(1 - p) \bigr]^2 \Big\vert _{p = \hat{p}}}{-\frac{\partial^2}{\partial p^2} \log L(p \mid \textbf{x}) \Big\vert _{p = \hat{p}}}
+= \frac{(1 - 2p)^2 \big\vert _{p = \hat{p}}}{\frac{n}{p(1-p)} \Big\vert _{p = \hat{p}}}
+= \frac{\hat{p}(1 - \hat{p})(1 - 2\hat{p})^2}{n},
+$$
 >
 > 它在 $$\hat{p} = \frac{1}{2}$$ 时可以为零——这显然低估了 $$\hat{p}(1 - \hat{p})$$ 的方差。函数 $$p(1-p)$$ 不单调正是问题的根源。
 >
@@ -388,54 +388,54 @@ MLE 方差近似在许多情形表现良好，但并非万无一失。特别地�
 > 若两个估计量 $$W_n$$ 与 $$V_n$$ 满足
 >
 > $$
-> \sqrt{n}[W_n - \mu] \to n\bigl[ 0, \sigma_W^2 \bigr],
-> \qquad
-> \sqrt{n}[V_n - \mu] \to n\bigl[ 0, \sigma_V^2 \bigr]
-> $$
+\sqrt{n}[W_n - \mu] \to n\bigl[ 0, \sigma_W^2 \bigr],
+\qquad
+\sqrt{n}[V_n - \mu] \to n\bigl[ 0, \sigma_V^2 \bigr]
+$$
 >
 > （依分布），则 $$V_n$$ 关于 $$W_n$$ 的***渐近相对效率***（asymptotic relative efficiency, ARE）为
 >
 > $$
-> \mathrm{ARE}(V_n, W_n) = \frac{\sigma_W^2}{\sigma_V^2}.
-> $$
+\mathrm{ARE}(V_n, W_n) = \frac{\sigma_W^2}{\sigma_V^2}.
+$$
 
 > **例 10.1.17（Poisson 估计量的 ARE）**
 >
 > 设 $$X_1, X_2, \ldots, X_n$$ 是 iid Poisson($$\lambda$$)，我们关心估计零概率（zero probability）。例如，某给定时段内进入银行的顾客数有时建模为 Poisson 随机变量，零概率就是“一个时段内无人进入银行”的概率。若 $$X \sim \mathrm{Poisson}(\lambda)$$，则 $$P(X = 0) = e^{-\lambda}$$。一个自然（但有点朴素）的估计量来自定义 $$Y_i = I(X_i = 0)$$ 并使用
 >
 > $$
-> \hat{\tau} = \frac{1}{n} \sum_{i=1}^{n} Y_i.
-> $$
+\hat{\tau} = \frac{1}{n} \sum_{i=1}^{n} Y_i.
+$$
 >
 > $$Y_i$$ 服从 Bernoulli($$e^{-\lambda}$$)，于是
 >
 > $$
-> \mathrm{E}(\hat{\tau}) = e^{-\lambda}
-> \qquad\text{与}\qquad
-> \mathrm{Var}(\hat{\tau}) = \frac{e^{-\lambda}(1 - e^{-\lambda})}{n}.
-> $$
+\mathrm{E}(\hat{\tau}) = e^{-\lambda}
+\qquad\text{与}\qquad
+\mathrm{Var}(\hat{\tau}) = \frac{e^{-\lambda}(1 - e^{-\lambda})}{n}.
+$$
 >
 > 另一种做法：$$e^{-\lambda}$$ 的 MLE 是 $$e^{-\hat{\lambda}}$$，其中 $$\hat{\lambda} = \sum_i X_i / n$$ 是 $$\lambda$$ 的 MLE。用 Delta Method 近似，有
 >
 > $$
-> \mathrm{E}\bigl( e^{-\hat{\lambda}} \bigr) \approx e^{-\lambda}
-> \qquad\text{与}\qquad
-> \mathrm{Var}\bigl( e^{-\hat{\lambda}} \bigr) \approx \frac{\lambda e^{-2\lambda}}{n}.
-> $$
+\mathrm{E}\bigl( e^{-\hat{\lambda}} \bigr) \approx e^{-\lambda}
+\qquad\text{与}\qquad
+\mathrm{Var}\bigl( e^{-\hat{\lambda}} \bigr) \approx \frac{\lambda e^{-2\lambda}}{n}.
+$$
 >
 > 由于
 >
 > $$
-> \sqrt{n}(\hat{\tau} - e^{-\lambda}) \to n\bigl[ 0,\ e^{-\lambda}(1 - e^{-\lambda}) \bigr],
-> \qquad
-> \sqrt{n}(e^{-\hat{\lambda}} - e^{-\lambda}) \to n\bigl[ 0,\ \lambda e^{-2\lambda} \bigr]
-> $$
+\sqrt{n}(\hat{\tau} - e^{-\lambda}) \to n\bigl[ 0,\ e^{-\lambda}(1 - e^{-\lambda}) \bigr],
+\qquad
+\sqrt{n}(e^{-\hat{\lambda}} - e^{-\lambda}) \to n\bigl[ 0,\ \lambda e^{-2\lambda} \bigr]
+$$
 >
 > （依分布），$$\hat{\tau}$$ 关于 MLE $$e^{-\hat{\lambda}}$$ 的 ARE 为
 >
 > $$
-> \mathrm{ARE}(\hat{\tau}, e^{-\hat{\lambda}}) = \frac{\lambda e^{-2\lambda}}{e^{-\lambda}(1 - e^{-\lambda})}.
-> $$
+\mathrm{ARE}(\hat{\tau}, e^{-\hat{\lambda}}) = \frac{\lambda e^{-2\lambda}}{e^{-\lambda}(1 - e^{-\lambda})}.
+$$
 >
 > 考察该函数可知：它严格递减，在 $$\lambda = 0$$ 处达到最大值 1（$$\hat{\tau}$$ 所能指望的最好情形），并随 $$\lambda \to \infty$$ 迅速衰减、渐近于 0；当 $$\lambda = 4$$ 时已小于 10%。（见习题 10.9。）
 
@@ -448,16 +448,16 @@ MLE 方差近似在许多情形表现良好，但并非万无一失。特别地�
 > 说出来也许难以置信：估计 gamma 分布的均值并非易事。回顾 gamma pdf
 >
 > $$
-> f(x \mid \alpha, \beta) = \frac{1}{\Gamma(\alpha) \beta^{\alpha}}\, x^{\alpha - 1} e^{-x/\beta}.
-> $$
+f(x \mid \alpha, \beta) = \frac{1}{\Gamma(\alpha) \beta^{\alpha}}\, x^{\alpha - 1} e^{-x/\beta}.
+$$
 >
 > 该分布的均值是 $$\alpha\beta$$；要计算极大似然估计量就得处理 gamma 函数的导数（称为双 gamma 函数，digamma function），这绝不是什么愉快的事。相比之下，矩方法给出了一个容易计算的估计。
 >
 > 具体地，设 $$X_1, X_2, \ldots, X_n$$ 是来自上述 gamma 密度的随机样本，但重新参数化使均值 $$\mu = \alpha\beta$$ 显式出现：
 >
 > $$
-> f(x \mid \mu, \beta) = \frac{1}{\Gamma(\mu/\beta)\, \beta^{\mu/\beta}}\, x^{\mu/\beta - 1} e^{-x/\beta},
-> $$
+f(x \mid \mu, \beta) = \frac{1}{\Gamma(\mu/\beta)\, \beta^{\mu/\beta}}\, x^{\mu/\beta - 1} e^{-x/\beta},
+$$
 >
 > $$\mu$$ 的矩估计量是 $$\bar{X}$$，方差为 $$\beta\mu / n$$。
 >
@@ -466,8 +466,8 @@ MLE 方差近似在许多情形表现良好，但并非万无一失。特别地�
 > 由定理 10.1.6 知 $$\hat{\mu}$$ 渐近有效。关心的问题是：使用更易计算的矩估计量要损失多少？为比较，计算渐近相对效率
 >
 > $$
-> \mathrm{ARE}(\bar{X}, \hat{\mu}) = \frac{\beta\mu}{\mathrm{E} \Bigl[ -\frac{d^2}{d\mu^2}\, l(\mu, \beta \mid \textbf{X}) \Bigr]}
-> $$
+\mathrm{ARE}(\bar{X}, \hat{\mu}) = \frac{\beta\mu}{\mathrm{E} \Bigl[ -\frac{d^2}{d\mu^2}\, l(\mu, \beta \mid \textbf{X}) \Bigr]}
+$$
 >
 > 并对若干 $$\beta$$ 值画在图 10.1.1 中。当然我们知道 ARE 必大于 1；但从图可见，对较大的 $$\beta$$ 值，做更复杂的计算、使用 MLE 是值得的。（推广见习题 10.11；计算的细节见例 12.6.7。）
 
@@ -488,16 +488,16 @@ bootstrap 基于一个简单而有力的想法（其数学可以相当复杂[^1]
 > 例 1.2.20 中，我们对从
 >
 > $$
-> 2,\quad 4,\quad 9,\quad 12
-> $$
+2,\quad 4,\quad 9,\quad 12
+$$
 >
 > 中有放回抽出的四个数的所有可能平均做了计算。这是最简单的 bootstrap 形式，有时称为**非参数 bootstrap**。图 1.2.2 以直方图显示了这些值。
 >
 > 我们所创造的，是样本均值可能值的一个重抽样集合。我们看到共有 $$\binom{4 + 4 - 1}{4} = 35$$ 个不同的可能值，但这些值并非等可能（因此不能当作随机样本处理）。$$4^4 = 256$$ 个（非去重的）重抽样都是等可能的，它们可以被当作随机样本。对第 $$i$$ 个重抽样，令 $$\bar{x}_i^{*}$$ 为其均值，则可以用
 >
 > $$
-> \mathrm{Var}^{*}(\bar{X}) = \frac{1}{n - 1} \sum_{i=1}^{n} \bigl( \bar{x}_i^{*} - \bar{\bar{x}}^{*} \bigr)^2 \tag{10.1.9}
-> $$
+\mathrm{Var}^{*}(\bar{X}) = \frac{1}{n - 1} \sum_{i=1}^{n} \bigl( \bar{x}_i^{*} - \bar{\bar{x}}^{*} \bigr)^2 \tag{10.1.9}
+$$
 >
 > 估计样本均值 $$\bar{X}$$ 的方差，其中 $$\bar{\bar{x}}^{*} = \frac{1}{n} \sum_{i=1}^{n} \bar{x}_i^{*}$$ 是重抽样均值。（习惯上用星号 $$*$$ 标记 bootstrap（重抽样）值。）
 >
@@ -516,8 +516,8 @@ $$
 > 例 10.1.15 中我们用 Delta Method 估计了 $$\hat{p}(1 - \hat{p})$$ 的方差。基于容量 $$n$$ 的样本，也可以改用下式估计该方差：
 >
 > $$
-> \mathrm{Var}^{*}\bigl( \hat{p}(1 - \hat{p}) \bigr) = \frac{1}{n - 1} \sum_{i=1}^{n} \bigl( \hat{p}(1 - \hat{p})_i^{*} - \overline{\hat{p}(1 - \hat{p})}^{*} \bigr)^2.
-> $$
+\mathrm{Var}^{*}\bigl( \hat{p}(1 - \hat{p}) \bigr) = \frac{1}{n - 1} \sum_{i=1}^{n} \bigl( \hat{p}(1 - \hat{p})_i^{*} - \overline{\hat{p}(1 - \hat{p})}^{*} \bigr)^2.
+$$
 
 但现在冒出一个问题。例 10.1.19 中 $$n = 4$$，bootstrap 和式只有 256 项；在更典型的样本量下，这个数大得无法计算（$$n > 15$$ 时枚举所有重抽样实际上不可能——至少对本书作者如此）。这时要记住我们是统计学家——我们对“重抽样的样本”再抽样！
 
@@ -557,14 +557,14 @@ $$
 > 设有样本
 >
 > $$
-> -1.81,\quad 0.63,\quad 2.22,\quad 2.41,\quad 2.95,\quad 4.16,\quad 4.24,\quad 4.53,\quad 5.09
-> $$
+-1.81,\quad 0.63,\quad 2.22,\quad 2.41,\quad 2.95,\quad 4.16,\quad 4.24,\quad 4.53,\quad 5.09
+$$
 >
 > 其 $$\bar{x} = 2.71$$、$$s^2 = 4.82$$。若假定底层分布为正态，则参数 bootstrap 将从
 >
 > $$
-> X_1^{*}, X_2^{*}, \ldots, X_n^{*} \sim n(2.71, 4.82)
-> $$
+X_1^{*}, X_2^{*}, \ldots, X_n^{*} \sim n(2.71, 4.82)
+$$
 >
 > 抽样。基于 $$B = 1000$$ 个样本，算得 $$\mathrm{Var}_B^{*}(S^2) = 4.33$$。按正态理论，$$S^2$$ 的方差是 $$2(\sigma^2)^2/8$$，可用 MLE 估计为 $$2(4.82)^2/8 = 5.81$$。数据本是从方差为 4 的正态分布模拟的，因此这里参数 bootstrap 给出了更好的估计。（例 5.6.6 中我们用现在所知的参数 bootstrap 估计过 $$S^2$$ 的分布。）
 
@@ -619,20 +619,20 @@ $$
 > 为考察 (2)——$$\bar{X}$$ 在模型小偏离下的表现——先要决定“小偏离”的含义。一种常见的解释是使用 $$\delta$$-污染模型（$$\delta$$-contamination model）：对小的 $$\delta$$，假定观测
 >
 > $$
-> X_i \sim
-> \begin{cases}
-> n(\mu, \sigma^2), & \text{概率 } 1 - \delta,\\
-> f(x), & \text{概率 } \delta,
-> \end{cases}
-> $$
+X_i \sim
+\begin{cases}
+n(\mu, \sigma^2), & \text{概率 } 1 - \delta,\\
+f(x), & \text{概率 } \delta,
+\end{cases}
+$$
 >
 > 其中 $$f(x)$$ 是某个其他分布。
 >
 > 设 $$f(x)$$ 是均值为 $$\mu$$、方差为 $$\tau^2$$ 的任意密度，则
 >
 > $$
-> \mathrm{Var}(\bar{X}) = (1 - \delta)\, \frac{\sigma^2}{n} + \delta\, \frac{\tau^2}{n} + \frac{\delta(1 - \delta)(\theta - \mu)^2}{n}.
-> $$
+\mathrm{Var}(\bar{X}) = (1 - \delta)\, \frac{\sigma^2}{n} + \delta\, \frac{\tau^2}{n} + \frac{\delta(1 - \delta)(\theta - \mu)^2}{n}.
+$$
 >
 > 对 $$\bar{X}$$ 来说这看起来相当不错：若 $$\theta \approx \mu$$ 且 $$\sigma \approx \tau$$，$$\bar{X}$$ 将接近最优。然而只需把模型再扰动一点，情况就会变得很糟：若 $$f(x)$$ 是 Cauchy pdf，则立即可得 $$\mathrm{Var}(\bar{X}) = \infty$$。（细节见习题 10.18；另一种情形见习题 10.19。）
 
@@ -643,10 +643,10 @@ $$
 > 设 $$X_{(1)} < \cdots < X_{(n)}$$ 是容量 $$n$$ 的有序样本，$$T_n$$ 是基于该样本的统计量。若对每个 $$\varepsilon > 0$$，
 >
 > $$
-> \lim_{X_{(\{(1-b)n\})} \to \infty} T_n < \infty
-> \quad\text{且}\quad
-> \lim_{X_{(\{(1-(b+\varepsilon))n\})} \to \infty} T_n = \infty,
-> $$
+\lim_{X_{(\{(1-b)n\})} \to \infty} T_n < \infty
+\quad\text{且}\quad
+\lim_{X_{(\{(1-(b+\varepsilon))n\})} \to \infty} T_n = \infty,
+$$
 >
 > 则称 $$T_n$$ 具有崩溃值（breakdown value）$$b$$，$$0 \leq b \leq 1$$。（百分位记号见定义 5.4.2。）
 
@@ -663,39 +663,39 @@ $$
 > 设 $$X_1, X_2, \ldots, X_n$$ 是来自具有 pdf $$f$$ 与 cdf $$F$$（设可微）的总体的样本，$$P(X_i \leq \mu) = 1/2$$，即 $$\mu$$ 是总体中位数。令 $$M_n$$ 为样本中位数，考虑对某个 $$a$$ 计算
 >
 > $$
-> \lim_{n \to \infty} P\Bigl( \sqrt{n}(M_n - \mu) \leq a \Bigr).
-> $$
+\lim_{n \to \infty} P\Bigl( \sqrt{n}(M_n - \mu) \leq a \Bigr).
+$$
 >
 > 定义随机变量
 >
 > $$
-> Y_i =
-> \begin{cases}
-> 1, & \text{若 } X_i \leq \mu + a/\sqrt{n},\\
-> 0, & \text{其他},
-> \end{cases}
-> $$
+Y_i =
+\begin{cases}
+1, & \text{若 } X_i \leq \mu + a/\sqrt{n},\\
+0, & \text{其他},
+\end{cases}
+$$
 >
 > 则 $$Y_i$$ 是成功概率 $$p_n = F\bigl( \mu + a/\sqrt{n} \bigr)$$ 的 Bernoulli 随机变量。为避免复杂，设 $$n$$ 为奇数，从而事件 $$\{ M_n \leq \mu + a/\sqrt{n} \}$$ 等价于事件 $$\{ \sum_i Y_i \geq (n+1)/2 \}$$。
 >
 > 稍作代数运算得
 >
 > $$
-> P\Bigl( \sqrt{n}(M_n - \mu) \leq a \Bigr)
-> = P\Biggl( \frac{\sum_i Y_i - np_n}{\sqrt{np_n(1 - p_n)}} \geq \frac{(n+1)/2 - np_n}{\sqrt{np_n(1 - p_n)}} \Biggr).
-> $$
+P\Bigl( \sqrt{n}(M_n - \mu) \leq a \Bigr)
+= P\Biggl( \frac{\sum_i Y_i - np_n}{\sqrt{np_n(1 - p_n)}} \geq \frac{(n+1)/2 - np_n}{\sqrt{np_n(1 - p_n)}} \Biggr).
+$$
 >
 > 现在 $$p_n \to p = F(\mu) = 1/2$$，于是可以期望：应用 CLT 表明 $$\frac{\sum_i Y_i - np_n}{\sqrt{np_n(1-p_n)}}$$ 依分布收敛到标准正态随机变量 $$Z$$。直接的极限计算还给出
 >
 > $$
-> \frac{(n+1)/2 - np_n}{\sqrt{np_n(1 - p_n)}} \to -2aF'(\mu) = -2a f(\mu).
-> $$
+\frac{(n+1)/2 - np_n}{\sqrt{np_n(1 - p_n)}} \to -2aF'(\mu) = -2a f(\mu).
+$$
 >
 > 合在一起得
 >
 > $$
-> P\Bigl( \sqrt{n}(M_n - \mu) \leq a \Bigr) \to P\bigl( Z \geq -2a f(\mu) \bigr),
-> $$
+P\Bigl( \sqrt{n}(M_n - \mu) \leq a \Bigr) \to P\bigl( Z \geq -2a f(\mu) \bigr),
+$$
 >
 > 故 $$\sqrt{n}(M_n - \mu)$$ 渐近正态，均值为 0、方差为 $$1 / [2f(\mu)]^2$$。（细节见习题 10.22；严格且更一般的展开见 Shao 1999, 5.3 节。）
 
@@ -736,8 +736,8 @@ $$
 > 把 (10.2.1) 与 (10.2.2) 的最小值点定义的估计量称为 **Huber 估计量**。为看它如何工作、$$k$$ 的选择为何重要，考虑由八个标准正态偏差与三个“离群值”组成的数据集：
 >
 > $$
-> \textbf{x} = -1.28,\ -0.96,\ -0.46,\ -0.44,\ -0.26,\ -0.21,\ -0.063,\ 0.39,\ 3,\ 6,\ 9.
-> $$
+\textbf{x} = -1.28,\ -0.96,\ -0.46,\ -0.44,\ -0.26,\ -0.21,\ -0.063,\ 0.39,\ 3,\ 6,\ 9.
+$$
 >
 > 对这些数据，均值是 1.33，中位数是 $$-0.21$$。随 $$k$$ 变化，得到表 10.2.3 给出的一系列 Huber 估计。可见 $$k$$ 增大时 Huber 估计在中位数与均值之间变动；因此把 $$k$$ 的增大解释为对离群值稳健性的降低。
 >
@@ -800,43 +800,43 @@ $$
 > 设 $$X_1, X_2, \ldots, X_n$$ 是 iid，pdf 为 $$f(x - \theta)$$，$$f$$ 关于零对称。则对 (10.2.2) 给出的 $$\rho$$ 有
 >
 > $$
-> \psi(x) =
-> \begin{cases}
-> x, & \vert x\vert  \leq k,\\
-> k, & x > k,\\
-> -k, & x < -k,
-> \end{cases} \tag{10.2.7}
-> $$
+\psi(x) =
+\begin{cases}
+x, & \vert x\vert  \leq k,\\
+k, & x > k,\\
+-k, & x < -k,
+\end{cases} \tag{10.2.7}
+$$
 >
 > 于是
 >
 > $$
-> \begin{aligned}
-> \mathrm{E}_{\theta}\, \psi(X - \theta)
-> &= -\int_{\theta - k}^{\theta + k} (x - \theta) f(x - \theta)\, dx
-> + 2k \int_{-\infty}^{\theta - k} f(x - \theta)\, dx - 2k \int_{\theta + k}^{\infty} f(x - \theta)\, dx\\
-> &= -\int_{-k}^{k} y f(y)\, dy + 2k \int_{-\infty}^{-k} f(y)\, dy - 2k \int_{k}^{\infty} f(y)\, dy = 0,
-> \end{aligned} \tag{10.2.8}
-> $$
+\begin{aligned}
+\mathrm{E}_{\theta}\, \psi(X - \theta)
+&= -\int_{\theta - k}^{\theta + k} (x - \theta) f(x - \theta)\, dx
++ 2k \int_{-\infty}^{\theta - k} f(x - \theta)\, dx - 2k \int_{\theta + k}^{\infty} f(x - \theta)\, dx\\
+&= -\int_{-k}^{k} y f(y)\, dy + 2k \int_{-\infty}^{-k} f(y)\, dy - 2k \int_{k}^{\infty} f(y)\, dy = 0,
+\end{aligned} \tag{10.2.8}
+$$
 >
 > 其中作了代换 $$y = x - \theta$$；由 $$f$$ 的对称性，各积分相加为零。因此 Huber 估计量具有正确的均值中心（见一般化情形习题 10.25）。
 >
 > 为计算方差需要 $$\psi'$$ 的期望。虽然 $$\psi$$ 不可微，但在不可微点（$$x = \pm k$$）之外 $$\psi'$$ 为零，因此只需处理 $$\vert x\vert  \leq k$$ 上的期望：
 >
 > $$
-> \begin{aligned}
-> \mathrm{E}_{\theta}\, \psi'(X - \theta) &= \int_{\theta - k}^{\theta + k} f(x - \theta)\, dx = P_0\bigl( \vert X\vert  \leq k \bigr),\\
-> \mathrm{E}_{\theta}\bigl[ \psi(X - \theta) \bigr]^2
-> &= \int_{\theta - k}^{\theta + k} (x - \theta)^2 f(x - \theta)\, dx + k^2 \int_{\theta + k}^{\infty} f(x - \theta)\, dx + k^2 \int_{-\infty}^{\theta - k} f(x - \theta)\, dx\\
-> &= \int_{-k}^{k} x^2 f(x)\, dx + 2k^2 \int_{k}^{\infty} f(x)\, dx.
-> \end{aligned}
-> $$
+\begin{aligned}
+\mathrm{E}_{\theta}\, \psi'(X - \theta) &= \int_{\theta - k}^{\theta + k} f(x - \theta)\, dx = P_0\bigl( \vert X\vert  \leq k \bigr),\\
+\mathrm{E}_{\theta}\bigl[ \psi(X - \theta) \bigr]^2
+&= \int_{\theta - k}^{\theta + k} (x - \theta)^2 f(x - \theta)\, dx + k^2 \int_{\theta + k}^{\infty} f(x - \theta)\, dx + k^2 \int_{-\infty}^{\theta - k} f(x - \theta)\, dx\\
+&= \int_{-k}^{k} x^2 f(x)\, dx + 2k^2 \int_{k}^{\infty} f(x)\, dx.
+\end{aligned}
+$$
 >
 > 于是可以得出：Huber 估计量渐近正态，均值为 $$\theta$$，渐近方差为
 >
 > $$
-> \frac{\int_{-k}^{k} x^2 f(x)\, dx + k^2\, P_0\bigl( \vert X\vert  > k \bigr)}{\bigl[ P_0\bigl( \vert X\vert  \leq k \bigr) \bigr]^2}.
-> $$
+\frac{\int_{-k}^{k} x^2 f(x)\, dx + k^2\, P_0\bigl( \vert X\vert  > k \bigr)}{\bigl[ P_0\bigl( \vert X\vert  \leq k \bigr) \bigr]^2}.
+$$
 
 正如在例 10.2.4 中所做的，现在考察 Huber 估计量在多种分布下的 ARE。
 
@@ -923,22 +923,22 @@ $$
 > 对检验 $$H_0 : \theta = \theta_0$$ 对 $$H_1 : \theta \neq \theta_0$$，设 $$X_1, \ldots, X_n$$ 是 iid $$f(x \mid \theta)$$，$$\hat{\theta}$$ 是 $$\theta$$ 的 MLE，$$f(x \mid \theta)$$ 满足杂记 10.6.2 节的正则条件。则在 $$H_0$$ 下，当 $$n \to \infty$$ 时
 >
 > $$
-> -2 \log \lambda(\textbf{X}) \to \chi_1^2 \quad \text{（依分布）},
-> $$
+-2 \log \lambda(\textbf{X}) \to \chi_1^2 \quad \text{（依分布）},
+$$
 >
 > 其中 $$\chi_1^2$$ 是自由度为 1 的 $$\chi^2$$ 随机变量。
 >
 > **证明**　先把 $$\log L(\theta \mid \textbf{x}) = l(\theta \mid \textbf{x})$$ 在 $$\hat{\theta}$$ 处作 Taylor 展开：
 >
 > $$
-> l(\theta \mid \textbf{x}) = l(\hat{\theta} \mid \textbf{x}) + l'(\hat{\theta} \mid \textbf{x})(\theta - \hat{\theta}) + l''(\hat{\theta} \mid \textbf{x})\, \frac{(\theta - \hat{\theta})^2}{2!} + \cdots.
-> $$
+l(\theta \mid \textbf{x}) = l(\hat{\theta} \mid \textbf{x}) + l'(\hat{\theta} \mid \textbf{x})(\theta - \hat{\theta}) + l''(\hat{\theta} \mid \textbf{x})\, \frac{(\theta - \hat{\theta})^2}{2!} + \cdots.
+$$
 >
 > 把 $$l(\theta_0 \mid \textbf{x})$$ 的该展开代入 $$-2 \log \lambda(\textbf{x}) = -2 l(\theta_0 \mid \textbf{x}) + 2 l(\hat{\theta} \mid \textbf{x})$$，得
 >
 > $$
-> -2 \log \lambda(\textbf{x}) \approx \frac{(\theta_0 - \hat{\theta})^2}{-l''(\hat{\theta} \mid \textbf{x})},
-> $$
+-2 \log \lambda(\textbf{x}) \approx \frac{(\theta_0 - \hat{\theta})^2}{-l''(\hat{\theta} \mid \textbf{x})},
+$$
 >
 > 其中利用了 $$l'(\hat{\theta} \mid \textbf{x}) = 0$$。由于分母是观测信息 $$\hat{I}_n(\hat{\theta})$$，且 $$\frac{1}{n} \hat{I}_n(\hat{\theta}) \to I(\theta_0)$$，由定理 10.1.12 与 Slutsky 定理（定理 5.5.17）即得 $$-2 \log \lambda(\textbf{X}) \to \chi_1^2$$。 ∎
 
@@ -947,9 +947,9 @@ $$
 > 基于观测 $$X_1, \ldots, X_n$$（iid Poisson($$\lambda$$)）检验 $$H_0 : \lambda = \lambda_0$$ 对 $$H_1 : \lambda \neq \lambda_0$$，有
 >
 > $$
-> -2 \log \lambda(\textbf{X}) = -2 \log \Bigl( \frac{e^{-n\lambda_0} \lambda_0^{\sum x_i}}{e^{-n\hat{\lambda}} \hat{\lambda}^{\sum x_i}} \Bigr)
-> = 2n \Bigl[ (\lambda_0 - \hat{\lambda}) - \hat{\lambda} \log(\lambda_0 / \hat{\lambda}) \Bigr],
-> $$
+-2 \log \lambda(\textbf{X}) = -2 \log \Bigl( \frac{e^{-n\lambda_0} \lambda_0^{\sum x_i}}{e^{-n\hat{\lambda}} \hat{\lambda}^{\sum x_i}} \Bigr)
+= 2n \Bigl[ (\lambda_0 - \hat{\lambda}) - \hat{\lambda} \log(\lambda_0 / \hat{\lambda}) \Bigr],
+$$
 >
 > 其中 $$\hat{\lambda} = \sum x_i / n$$ 是 $$\lambda$$ 的 MLE。应用定理 10.3.1，若 $$-2 \log \lambda(\textbf{x}) > \chi^2_{1, \alpha}$$ 就在水平 $$\alpha$$ 拒绝 $$H_0$$。
 >
@@ -994,53 +994,53 @@ $$
 > 设 $$\theta = (p_1, p_2, p_3, p_4, p_5)$$，诸 $$p_j$$ 非负且和为 1。设 $$X_1, \ldots, X_n$$ 是 iid 离散随机变量，$$P_{\theta}(X_i = j) = p_j$$，$$j = 1, \ldots, 5$$。于是 $$X_i$$ 的 pmf 为 $$f(j \mid \theta) = p_j$$，似然函数为
 >
 > $$
-> L(\theta \mid \textbf{x}) = \prod_{i=1}^{n} f(x_i \mid \theta) = p_1^{y_1} p_2^{y_2} p_3^{y_3} p_4^{y_4} p_5^{y_5},
-> $$
+L(\theta \mid \textbf{x}) = \prod_{i=1}^{n} f(x_i \mid \theta) = p_1^{y_1} p_2^{y_2} p_3^{y_3} p_4^{y_4} p_5^{y_5},
+$$
 >
 > 其中 $$y_j$$ 是 $$x_1, \ldots, x_n$$ 中等于 $$j$$ 的个数。考虑检验
 >
 > $$
-> H_0 :\ p_1 = p_2 = p_3\ \text{且}\ p_4 = p_5
-> \qquad\text{对}\qquad
-> H_1 :\ H_0\ \text{不成立}.
-> $$
+H_0 :\ p_1 = p_2 = p_3\ \text{且}\ p_4 = p_5
+\qquad\text{对}\qquad
+H_1 :\ H_0\ \text{不成立}.
+$$
 >
 > 完整参数空间 $$\Theta$$ 实际上是四维集合：由于 $$p_5 = 1 - p_1 - p_2 - p_3 - p_4$$，只有四个自由参数。参数集合定义为
 >
 > $$
-> \sum_{j=1}^{4} p_j \leq 1 \quad\text{与}\quad p_j \geq 0,\ j = 1, \ldots, 4,
-> $$
+\sum_{j=1}^{4} p_j \leq 1 \quad\text{与}\quad p_j \geq 0,\ j = 1, \ldots, 4,
+$$
 >
 > 它是 $$\Re^4$$ 的包含 $$\Re^4$$ 开子集的子集，故 $$q = 4$$。$$H_0$$ 指定的集合中只有一个自由参数：因为一旦 $$p_1$$（$$0 \leq p_1 \leq \frac{1}{3}$$）固定，$$p_2 = p_3$$ 必等于 $$p_1$$，$$p_4 = p_5$$ 必等于 $$\frac{1 - 3p_1}{2}$$。故 $$p = 1$$，自由度 $$\nu = 4 - 1 = 3$$。
 >
 > 为计算 $$\lambda(\textbf{x})$$，必须求出 $$\theta$$ 在 $$\Theta_0$$ 与 $$\Theta$$ 下的 MLE。令
 >
 > $$
-> \frac{\partial}{\partial p_j} \log L(\theta \mid \textbf{x}) = 0, \qquad j = 1, \ldots, 4,
-> $$
+\frac{\partial}{\partial p_j} \log L(\theta \mid \textbf{x}) = 0, \qquad j = 1, \ldots, 4,
+$$
 >
 > 并利用 $$p_5 = 1 - p_1 - p_2 - p_3 - p_4$$ 与 $$y_5 = n - y_1 - y_2 - y_3 - y_4$$，可验证 $$\Theta$$ 下 $$p_j$$ 的 MLE 是 $$\hat{p}_j = y_j / n$$。在 $$H_0$$ 下似然函数化为
 >
 > $$
-> L(\theta \mid \textbf{x}) = p_1^{y_1 + y_2 + y_3} \Bigl( \frac{1 - 3p_1}{2} \Bigr)^{y_4 + y_5}.
-> $$
+L(\theta \mid \textbf{x}) = p_1^{y_1 + y_2 + y_3} \Bigl( \frac{1 - 3p_1}{2} \Bigr)^{y_4 + y_5}.
+$$
 >
 > 同样，令导数为零的标准方法表明 $$H_0$$ 下 $$p_1$$ 的 MLE 是 $$\hat{p}_{10} = (y_1 + y_2 + y_3)/(3n)$$；于是 $$\hat{p}_{10} = \hat{p}_{20} = \hat{p}_{30}$$，$$\hat{p}_{40} = \hat{p}_{50} = (1 - 3\hat{p}_{10})/2$$。把这些值与诸 $$\hat{p}_j$$ 代入 $$L(\theta \mid \textbf{x})$$ 并合并同指数的项，得
 >
 > $$
-> \lambda(\textbf{x}) =
-> \Bigl( \frac{y_1 + y_2 + y_3}{3y_1} \Bigr)^{y_1}
-> \Bigl( \frac{y_1 + y_2 + y_3}{3y_2} \Bigr)^{y_2}
-> \Bigl( \frac{y_1 + y_2 + y_3}{3y_3} \Bigr)^{y_3}
-> \Bigl( \frac{y_4 + y_5}{2y_4} \Bigr)^{y_4}
-> \Bigl( \frac{y_4 + y_5}{2y_5} \Bigr)^{y_5}.
-> $$
+\lambda(\textbf{x}) =
+\Bigl( \frac{y_1 + y_2 + y_3}{3y_1} \Bigr)^{y_1}
+\Bigl( \frac{y_1 + y_2 + y_3}{3y_2} \Bigr)^{y_2}
+\Bigl( \frac{y_1 + y_2 + y_3}{3y_3} \Bigr)^{y_3}
+\Bigl( \frac{y_4 + y_5}{2y_4} \Bigr)^{y_4}
+\Bigl( \frac{y_4 + y_5}{2y_5} \Bigr)^{y_5}.
+$$
 >
 > 于是检验统计量为
 >
 > $$
-> -2 \log \lambda(\textbf{x}) = 2 \sum_{i=1}^{5} y_i \log\Bigl( \frac{y_i}{m_i} \Bigr), \tag{10.3.2}
-> $$
+-2 \log \lambda(\textbf{x}) = 2 \sum_{i=1}^{5} y_i \log\Bigl( \frac{y_i}{m_i} \Bigr), \tag{10.3.2}
+$$
 >
 > 其中 $$m_1 = m_2 = m_3 = (y_1 + y_2 + y_3)/3$$，$$m_4 = m_5 = (y_4 + y_5)/2$$。渐近尺寸 $$\alpha$$ 检验在 $$-2 \log \lambda(\textbf{x}) \geq \chi^2_{3, \alpha}$$ 时拒绝 $$H_0$$。本例属于一大类广泛使用似然比检验渐近理论的检验问题。
 
@@ -1096,22 +1096,22 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是来自 Bernoulli($$p$$) 总体的随机样本。考虑检验 $$H_0 : p \leq p_0$$ 对 $$H_1 : p > p_0$$，其中 $$0 < p_0 < 1$$ 是指定值。基于容量 $$n$$ 的样本，$$p$$ 的 MLE 是 $$\hat{p}_n = \sum_{i=1}^{n} X_i / n$$。由于 $$\hat{p}_n$$ 就是样本均值，中心极限定理适用：对任何 $$p \in (0,1)$$，$$(\hat{p}_n - p)/\sigma_n$$ 收敛到标准正态随机变量，这里 $$\sigma_n = \sqrt{p(1-p)/n}$$，它依赖未知参数 $$p$$。$$\sigma_n$$ 的合理估计是 $$S_n = \sqrt{\hat{p}_n(1 - \hat{p}_n)/n}$$，且可以证明（习题 5.32）$$\sigma_n / S_n$$ 依概率收敛到 1。于是对任何 $$p \in (0, 1)$$，
 >
 > $$
-> \frac{\hat{p}_n - p}{\sqrt{\hat{p}_n(1 - \hat{p}_n)/n}} \to n(0, 1).
-> $$
+\frac{\hat{p}_n - p}{\sqrt{\hat{p}_n(1 - \hat{p}_n)/n}} \to n(0, 1).
+$$
 >
 > 用 $$p_0$$ 替换 $$p$$ 就定义了 Wald 检验统计量 $$Z_n$$，大样本 Wald 检验在 $$Z_n > z_{\alpha}$$ 时拒绝 $$H_0$$。作为 $$\sigma_n$$ 的另一种估计，容易验证 $$1/I(\hat{p}_n) = \hat{p}_n(1 - \hat{p}_n)/n$$；所以若用信息数导出 $$\hat{p}_n$$ 的标准误，得到的也是同一个统计量 $$Z_n$$。
 >
 > 若关心检验双侧假设 $$H_0 : p = p_0$$ 对 $$H_1 : p \neq p_0$$（$$0 < p_0 < 1$$ 指定），上述策略再次适用。但此时另有一个近似检验。由中心极限定理，对任何 $$p \in (0, 1)$$，
 >
 > $$
-> \frac{\hat{p}_n - p}{\sqrt{p(1 - p)/n}} \to n(0, 1).
-> $$
+\frac{\hat{p}_n - p}{\sqrt{p(1 - p)/n}} \to n(0, 1).
+$$
 >
 > 因此若原假设为真，统计量
 >
 > $$
-> Z_n' = \frac{\hat{p}_n - p_0}{\sqrt{p_0(1 - p_0)/n}} \sim n(0, 1) \qquad （\text{近似}） \tag{10.3.4}
-> $$
+Z_n' = \frac{\hat{p}_n - p_0}{\sqrt{p_0(1 - p_0)/n}} \sim n(0, 1) \qquad （\text{近似}） \tag{10.3.4}
+$$
 >
 > 近似的水平 $$\alpha$$ 检验在 $$\vert Z_n'\vert  > z_{\alpha/2}$$ 时拒绝 $$H_0$$。
 >
@@ -1144,16 +1144,16 @@ $$
 > 再考虑例 10.3.5 的 Bernoulli 模型，检验 $$H_0 : p = p_0$$ 对 $$H_1 : p \neq p_0$$。直接计算得
 >
 > $$
-> S(p) = \frac{\hat{p}_n - p}{p(1 - p)/n}
-> \qquad\text{与}\qquad
-> I(p) = \frac{n}{p(1 - p)}.
-> $$
+S(p) = \frac{\hat{p}_n - p}{p(1 - p)/n}
+\qquad\text{与}\qquad
+I(p) = \frac{n}{p(1 - p)}.
+$$
 >
 > 于是得分统计量为
 >
 > $$
-> Z_S = \frac{S(p_0)}{\sqrt{I(p_0)}} = \frac{\hat{p}_n - p_0}{\sqrt{p_0(1 - p_0)/n}},
-> $$
+Z_S = \frac{S(p_0)}{\sqrt{I(p_0)}} = \frac{\hat{p}_n - p_0}{\sqrt{p_0(1 - p_0)/n}},
+$$
 >
 > 与 (10.3.4) 相同。
 
@@ -1189,21 +1189,21 @@ $$
 > 设 $$X_1, X_2, \ldots, X_n$$ 是 iid，pdf 为 $$f(x - \theta)$$，$$f$$ 关于零对称。对使用 (10.2.2) 的 $$\rho$$ 函数与 (10.2.7) 的 $$\psi$$ 函数的 Huber M-估计量，渐近方差为
 >
 > $$
-> \frac{\int_{-k}^{k} x^2 f(x)\, dx + k^2\, P_0\bigl( \vert X\vert  > k \bigr)}{\bigl[ P_0\bigl( \vert X\vert  \leq k \bigr) \bigr]^2}. \tag{10.3.7}
-> $$
+\frac{\int_{-k}^{k} x^2 f(x)\, dx + k^2\, P_0\bigl( \vert X\vert  > k \bigr)}{\bigl[ P_0\bigl( \vert X\vert  \leq k \bigr) \bigr]^2}. \tag{10.3.7}
+$$
 >
 > 于是基于 M-估计量的渐近正态性，可以（例如）这样在水平 $$\alpha$$ 检验 $$H_0 : \theta = \theta_0$$ 对 $$H_1 : \theta \neq \theta_0$$：在 $$\vert Z_{GS}\vert  > z_{\alpha/2}$$ 时拒绝 $$H_0$$。更实用一点，我们看使用估计标准误的近似检验：用统计量 $$Z_{GW}$$，但方差估计基于 (10.3.7)，即
 >
 > $$
-> \widehat{\mathrm{Var}}_2(\hat{\theta}_M) =
-> \frac{\frac{1}{n} \sum_{i=1}^{n} (x_i - \hat{\theta}_M)^2\, I\bigl( \vert x_i - \hat{\theta}_M\vert  < k \bigr) + k^2\, \frac{1}{n} \sum_{i=1}^{n} I\bigl( \vert x_i - \hat{\theta}_M\vert  > k \bigr)}{\Bigl[ 1 - \frac{1}{n} \sum_{i=1}^{n} I\bigl( \vert x_i - \hat{\theta}_M\vert  < k \bigr) \Bigr]^2}. \tag{10.3.8}
-> $$
+\widehat{\mathrm{Var}}_2(\hat{\theta}_M) =
+\frac{\frac{1}{n} \sum_{i=1}^{n} (x_i - \hat{\theta}_M)^2\, I\bigl( \vert x_i - \hat{\theta}_M\vert  < k \bigr) + k^2\, \frac{1}{n} \sum_{i=1}^{n} I\bigl( \vert x_i - \hat{\theta}_M\vert  > k \bigr)}{\Bigl[ 1 - \frac{1}{n} \sum_{i=1}^{n} I\bigl( \vert x_i - \hat{\theta}_M\vert  < k \bigr) \Bigr]^2}. \tag{10.3.8}
+$$
 >
 > 另外还加入一个“朴素”检验 $$Z_N$$，它使用简单的方差估计
 >
 > $$
-> \widehat{\mathrm{Var}}_3(\hat{\theta}_M) = \frac{1}{n} \sum_{i=1}^{n} (x_i - \hat{\theta}_M)^2. \tag{10.3.9}
-> $$
+\widehat{\mathrm{Var}}_3(\hat{\theta}_M) = \frac{1}{n} \sum_{i=1}^{n} (x_i - \hat{\theta}_M)^2. \tag{10.3.9}
+$$
 >
 > 这些检验表现如何？解析评价困难，但下面的小型模拟表明：$$z_{\alpha/2}$$ 截断点一般太小（没有考虑方差估计中的变异），实际尺寸通常大于名义尺寸。不过，在一系列分布上表现一致，其中双指数是最好的情形。（最后这一点并不完全令人惊讶：Huber 估计量对指数尾分布具有最优性性质；见 Huber 1981, 第 4 章。）
 >
@@ -1258,14 +1258,14 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是来自 Bernoulli($$p$$) 总体的随机样本。我们看到可以用 MLE $$\hat{p}/(1 - \hat{p})$$ 估计几率比（odds ratio）$$p/(1 - p)$$，且该估计有近似方差
 >
 > $$
-> \widehat{\mathrm{Var}}\Bigl( \frac{\hat{p}}{1 - \hat{p}} \Bigr) \approx \frac{\hat{p}}{n(1 - \hat{p})^3}.
-> $$
+\widehat{\mathrm{Var}}\Bigl( \frac{\hat{p}}{1 - \hat{p}} \Bigr) \approx \frac{\hat{p}}{n(1 - \hat{p})^3}.
+$$
 >
 > 于是可以构造近似置信区间
 >
 > $$
-> \frac{\hat{p}}{1 - \hat{p}} - z_{\alpha/2} \sqrt{\widehat{\mathrm{Var}}\Bigl( \frac{\hat{p}}{1 - \hat{p}} \Bigr)} \leq \frac{p}{1 - p} \leq \frac{\hat{p}}{1 - \hat{p}} + z_{\alpha/2} \sqrt{\widehat{\mathrm{Var}}\Bigl( \frac{\hat{p}}{1 - \hat{p}} \Bigr)}.
-> $$
+\frac{\hat{p}}{1 - \hat{p}} - z_{\alpha/2} \sqrt{\widehat{\mathrm{Var}}\Bigl( \frac{\hat{p}}{1 - \hat{p}} \Bigr)} \leq \frac{p}{1 - p} \leq \frac{\hat{p}}{1 - \hat{p}} + z_{\alpha/2} \sqrt{\widehat{\mathrm{Var}}\Bigl( \frac{\hat{p}}{1 - \hat{p}} \Bigr)}.
+$$
 
 似然近似的一种限制更多的形式（但适用时给出更好的区间）基于得分统计量（10.3.2 节）。随机量
 
@@ -1302,16 +1302,16 @@ $$
 > 再用一个二项例子。设 $$Y = \sum_{i=1}^{n} X_i$$，诸 $$X_i$$ 是独立 Bernoulli($$p$$) 随机变量，则
 >
 > $$
-> Q(Y \mid p) = \frac{\frac{\partial}{\partial p} \log L(p \mid Y)}{\sqrt{-\mathrm{E}_p \Bigl[ \frac{\partial^2}{\partial p^2} \log L(p \mid Y) \Bigr]}}
-> = \frac{\frac{y}{p} - \frac{n - y}{1 - p}}{\sqrt{\frac{n}{p(1-p)}}}
-> = \frac{\hat{p} - p}{\sqrt{p(1 - p)/n}},
-> $$
+Q(Y \mid p) = \frac{\frac{\partial}{\partial p} \log L(p \mid Y)}{\sqrt{-\mathrm{E}_p \Bigl[ \frac{\partial^2}{\partial p^2} \log L(p \mid Y) \Bigr]}}
+= \frac{\frac{y}{p} - \frac{n - y}{1 - p}}{\sqrt{\frac{n}{p(1-p)}}}
+= \frac{\hat{p} - p}{\sqrt{p(1 - p)/n}},
+$$
 >
 > 其中 $$\hat{p} = y/n$$。用 (10.4.2) 得近似 $$1 - \alpha$$ 置信区间
 >
 > $$
-> \Biggl\{ p : \Biggl\vert  \frac{\hat{p} - p}{\sqrt{p(1 - p)/n}} \Biggr\vert  \leq z_{\alpha/2} \Biggr\}. \tag{10.4.4}
-> $$
+\Biggl\{ p : \Biggl\vert  \frac{\hat{p} - p}{\sqrt{p(1 - p)/n}} \Biggr\vert  \leq z_{\alpha/2} \Biggr\}. \tag{10.4.4}
+$$
 >
 > 这是反转得分统计量（例 10.3.6）得到的区间。计算该区间需要解关于 $$p$$ 的二次方程；细节见例 10.4.6。
 
@@ -1330,8 +1330,8 @@ $$
 > 对 $$Y = \sum_{i=1}^{n} X_i$$（诸 $$X_i$$ 为独立 Bernoulli($$p$$) 随机变量），有近似 $$1 - \alpha$$ 置信集合
 >
 > $$
-> \Bigl\{ p : -2 \log \frac{p^y (1 - p)^{n - y}}{\hat{p}^y (1 - \hat{p})^{n - y}} \leq \chi^2_{1, \alpha} \Bigr\}.
-> $$
+\Bigl\{ p : -2 \log \frac{p^y (1 - p)^{n - y}}{\hat{p}^y (1 - \hat{p})^{n - y}} \leq \chi^2_{1, \alpha} \Bigr\}.
+$$
 >
 > 该置信集合与基于得分检验与 Wald 检验的区间将在例 10.4.7 中比较。
 
@@ -1356,20 +1356,20 @@ $$
 > 若 $$X_1, \ldots, X_n$$ 是 iid，均值为 $$\mu$$、方差为 $$\sigma^2$$，则由中心极限定理
 >
 > $$
-> \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \to n(0, 1).
-> $$
+\frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \to n(0, 1).
+$$
 >
 > 而且由 Slutsky 定理，若 $$S^2 \to \sigma^2$$（依概率），则
 >
 > $$
-> \frac{\bar{X} - \mu}{S / \sqrt{n}} \to n(0, 1),
-> $$
+\frac{\bar{X} - \mu}{S / \sqrt{n}} \to n(0, 1),
+$$
 >
 > 给出近似 $$1 - \alpha$$ 置信区间
 >
 > $$
-> \bar{x} - z_{\alpha/2}\, \frac{s}{\sqrt{n}} \leq \mu \leq \bar{x} + z_{\alpha/2}\, \frac{s}{\sqrt{n}}. \tag{10.4.6}
-> $$
+\bar{x} - z_{\alpha/2}\, \frac{s}{\sqrt{n}} \leq \mu \leq \bar{x} + z_{\alpha/2}\, \frac{s}{\sqrt{n}}. \tag{10.4.6}
+$$
 >
 > 为看近似的好坏，我们做一个模拟，对多种 pdf 计算近似区间的精确覆盖概率。注意由于该区间是枢轴的，覆盖概率不依赖参数值——它是常数，因而就是置信系数。从表 10.4.7 可见：即使样本量小到 $$n = 15$$，枢轴置信区间做得也还算合理，但显然未达到名义置信系数。这无疑归咎于使用 $$z_{\alpha/2}$$ 截断点的乐观性——它没有考虑 $$S$$ 的变异性。样本量增大时近似会改善。
 >
@@ -1387,20 +1387,20 @@ $$
 > 若 $$X_1, \ldots, X_n$$ 是 iid Poisson($$\lambda$$)，则我们知道
 >
 > $$
-> \frac{\bar{X} - \lambda}{S / \sqrt{n}} \to n(0, 1).
-> $$
+\frac{\bar{X} - \lambda}{S / \sqrt{n}} \to n(0, 1).
+$$
 >
 > 但即使不是从 Poisson 总体抽样，这一点也成立。利用 Poisson 假设，我们知道 $$\mathrm{Var}(\bar{X}) = \lambda / n = \mathrm{E} \bar{X} / n$$，且 $$\bar{X}$$ 是 $$\lambda$$ 的好估计量（第 7 章）。于是利用 Poisson 假设，还可以从
 >
 > $$
-> \frac{\bar{X} - \lambda}{\sqrt{\bar{X} / n}} \to n(0, 1)
-> $$
+\frac{\bar{X} - \lambda}{\sqrt{\bar{X} / n}} \to n(0, 1)
+$$
 >
 > 得到近似置信区间——这是反转 Wald 检验得到的区间。还可以用另一种方式利用 Poisson 假设：由于 $$\mathrm{Var}(\bar{X}) = \lambda/n$$，有
 >
 > $$
-> \frac{\bar{X} - \lambda}{\sqrt{\lambda / n}} \to n(0, 1),
-> $$
+\frac{\bar{X} - \lambda}{\sqrt{\lambda / n}} \to n(0, 1),
+$$
 >
 > 得到对应得分检验的区间——它也是 (10.4.2) 的似然区间，并且按 Wilks (1938) 是最优的（见习题 10.40）。
 
@@ -1411,48 +1411,48 @@ $$
 > 对来自 Bernoulli($$p$$) 总体的随机样本 $$X_1, \ldots, X_n$$，例 10.3.5 中看到：当 $$n \to \infty$$ 时
 >
 > $$
-> \frac{\hat{p} - p}{\sqrt{\hat{p}(1 - \hat{p})/n}}
-> \qquad\text{与}\qquad
-> \frac{\hat{p} - p}{\sqrt{p(1 - p)/n}}
-> $$
+\frac{\hat{p} - p}{\sqrt{\hat{p}(1 - \hat{p})/n}}
+\qquad\text{与}\qquad
+\frac{\hat{p} - p}{\sqrt{p(1 - p)/n}}
+$$
 >
 > 都依分布收敛到标准正态随机变量，其中 $$\hat{p} = \sum x_i / n$$。例 10.3.5 中看到两个近似都可以作为检验的基础，前者是 Wald 检验，后者是得分检验。我们也知道两个近似都可用来构造 $$p$$ 的置信区间。然而得分检验近似（用的统计量更少、参数值更多）给出例 10.4.2 的区间 (10.4.4)，它是渐近最优的。也就是说，
 >
 > $$
-> \Biggl\{ p : \Biggl\vert  \frac{\hat{p} - p}{\sqrt{p(1 - p)/n}} \Biggr\vert  \leq z_{\alpha/2} \Biggr\}
-> $$
+\Biggl\{ p : \Biggl\vert  \frac{\hat{p} - p}{\sqrt{p(1 - p)/n}} \Biggr\vert  \leq z_{\alpha/2} \Biggr\}
+$$
 >
 > 是更好的近似区间。
 >
 > 这个区间长相如何并不立即可见，但可以显式解出这组值。两边平方并整理，要找满足
 >
 > $$
-> \Bigl\{ p : (\hat{p} - p)^2 \leq z^2_{\alpha/2}\, \frac{p(1 - p)}{n} \Bigr\}
-> $$
+\Bigl\{ p : (\hat{p} - p)^2 \leq z^2_{\alpha/2}\, \frac{p(1 - p)}{n} \Bigr\}
+$$
 >
 > 的 $$p$$ 值集合。该不等式是 $$p$$ 的二次式，进一步整理可化为更熟悉的形式：
 >
 > $$
-> \Biggl\{ p : \Bigl( 1 + \frac{z^2_{\alpha/2}}{n} \Bigr) p^2 - \Bigl( 2\hat{p} + \frac{z^2_{\alpha/2}}{n} \Bigr) p + \hat{p}^2 \leq 0 \Biggr\}.
-> $$
+\Biggl\{ p : \Bigl( 1 + \frac{z^2_{\alpha/2}}{n} \Bigr) p^2 - \Bigl( 2\hat{p} + \frac{z^2_{\alpha/2}}{n} \Bigr) p + \hat{p}^2 \leq 0 \Biggr\}.
+$$
 >
 > 由于二次项系数为正，抛物线开口向上，故不等式在 $$p$$ 位于两根之间时成立。两根为
 >
 > $$
-> \frac{2\hat{p} + z^2_{\alpha/2}/n \pm \sqrt{\bigl( 2\hat{p} + z^2_{\alpha/2}/n \bigr)^2 - 4\hat{p}^2 \bigl( 1 + z^2_{\alpha/2}/n \bigr)}}{2\bigl( 1 + z^2_{\alpha/2}/n \bigr)}, \tag{10.4.7}
-> $$
+\frac{2\hat{p} + z^2_{\alpha/2}/n \pm \sqrt{\bigl( 2\hat{p} + z^2_{\alpha/2}/n \bigr)^2 - 4\hat{p}^2 \bigl( 1 + z^2_{\alpha/2}/n \bigr)}}{2\bigl( 1 + z^2_{\alpha/2}/n \bigr)}, \tag{10.4.7}
+$$
 >
 > 两根定义了 $$p$$ 的置信区间的端点。虽然根的表达式有些难看，但该区间其实是 $$p$$ 的非常好的区间。不过，通过使用连续性校正（例 3.3.2）区间还能进一步改进。做法是解两个单独的二次式（见习题 10.45）：
 >
 > $$
-> \Biggl\vert  \frac{\hat{p} + \frac{1}{2n} - p}{\sqrt{p(1 - p)/n}} \Biggr\vert  \leq z_{\alpha/2}
-> \qquad （\text{较大的根} = \text{区间上端点}）,
-> $$
+\Biggl\vert  \frac{\hat{p} + \frac{1}{2n} - p}{\sqrt{p(1 - p)/n}} \Biggr\vert  \leq z_{\alpha/2}
+\qquad （\text{较大的根} = \text{区间上端点}）,
+$$
 >
 > $$
-> \Biggl\vert  \frac{\hat{p} - \frac{1}{2n} - p}{\sqrt{p(1 - p)/n}} \Biggr\vert  \leq z_{\alpha/2}
-> \qquad （\text{较小的根} = \text{区间下端点}）.
-> $$
+\Biggl\vert  \frac{\hat{p} - \frac{1}{2n} - p}{\sqrt{p(1 - p)/n}} \Biggr\vert  \leq z_{\alpha/2}
+\qquad （\text{较小的根} = \text{区间下端点}）.
+$$
 >
 > 在端点处有显然的修改：若 $$\sum x_i = 0$$，下端点取 0；若 $$\sum x_i = n$$，上端点取 1。好的近似见 Blyth (1986)。
 
@@ -1463,8 +1463,8 @@ $$
 > 对 $$Y = \sum_{i=1}^{n} X_i$$（$$X_1, \ldots, X_n$$ iid 来自 Bernoulli($$p$$) 总体），Wald 区间是
 >
 > $$
-> \hat{p} - z_{\alpha/2} \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}} \leq p \leq \hat{p} + z_{\alpha/2} \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}, \tag{10.4.8}
-> $$
+\hat{p} - z_{\alpha/2} \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}} \leq p \leq \hat{p} + z_{\alpha/2} \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}, \tag{10.4.8}
+$$
 >
 > 得分区间（带连续性校正）在例 10.4.6 中描述，近似 LRT 区间在例 10.4.3 中给出。为比较，看一个例子。
 >
@@ -1490,8 +1490,8 @@ $$
 > 在与例 10.3.7 类似的展开中，可以构造基于 Huber M-估计量的渐近置信区间。设 $$X_1, X_2, \ldots, X_n$$ 是 iid，pdf 为 $$f(x - \theta)$$，$$f$$ 关于零对称，则 $$\theta$$ 的近似区间为
 >
 > $$
-> \hat{\theta}_M \pm z_{\alpha/2} \sqrt{\frac{\mathrm{Var}(\hat{\theta}_M)}{n}},
-> $$
+\hat{\theta}_M \pm z_{\alpha/2} \sqrt{\frac{\mathrm{Var}(\hat{\theta}_M)}{n}},
+$$
 >
 > 其中 $$\mathrm{Var}(\hat{\theta}_M)$$ 由 (10.3.7) 给出。现在把 $$\mathrm{Var}(\hat{\theta}_M)$$ 换成估计 (10.3.8) 与 (10.3.9)，得到 Wald 型区间。为评价这些区间，我们制作了与表 10.4.7 类似的表。有意思的是：除双指数分布外，表 10.4.8 中的区间比表 10.4.7 中基于通常均值与方差的区间表现更差。我们没有好的解释，只能再次归咎于 $$z_{\alpha/2}$$ 截断点的过度乐观。
 >
@@ -1511,14 +1511,14 @@ $$
 > 习题 2.38 建立了：当 $$p \to 0$$ 时
 >
 > $$
-> 2pY \to \chi^2_{2nr} \quad \text{（依分布）}.
-> $$
+2pY \to \chi^2_{2nr} \quad \text{（依分布）}.
+$$
 >
 > 于是对小的 $$p$$，$$2pY$$ 是一个枢轴！利用这一事实可以构造对小 $$p$$ 有效的枢轴 $$1 - \alpha$$ 置信区间：
 >
 > $$
-> \Bigl\{ p : \frac{\chi^2_{2nr,\, 1 - \alpha/2}}{2y} \leq p \leq \frac{\chi^2_{2nr,\, \alpha/2}}{2y} \Bigr\}.
-> $$
+\Bigl\{ p : \frac{\chi^2_{2nr,\, 1 - \alpha/2}}{2y} \leq p \leq \frac{\chi^2_{2nr,\, \alpha/2}}{2y} \Bigr\}.
+$$
 >
 > 细节见习题 10.47。
 
@@ -2158,18 +2158,18 @@ bootstrap 的惊人之处在于：在某些情形它会自动把展开式的第�
 > 设 $$X_1, X_2, \ldots, X_n$$ 是来自具有 cdf $$F$$ 的总体的样本。统计量 $$T = T(F_n)$$ 在点 $$x$$ 处的***影响函数***（influence function）为
 >
 > $$
-> \mathrm{IF}(T, x) = \lim_{\delta \to 0} \frac{1}{\delta}\, \bigl[ T(F_{\delta}) - T(F) \bigr],
-> $$
+\mathrm{IF}(T, x) = \lim_{\delta \to 0} \frac{1}{\delta}\, \bigl[ T(F_{\delta}) - T(F) \bigr],
+$$
 >
 > 其中 $$X \sim F_{\delta}$$ 表示
 >
 > $$
-> X \sim
-> \begin{cases}
-> F, & \text{概率 } 1 - \delta,\\
-> x, & \text{概率 } \delta,
-> \end{cases}
-> $$
+X \sim
+\begin{cases}
+F, & \text{概率 } 1 - \delta,\\
+x, & \text{概率 } \delta,
+\end{cases}
+$$
 >
 > 即 $$F_{\delta}$$ 是 $$F$$ 与点 $$x$$ 的混合。
 
@@ -2178,20 +2178,20 @@ bootstrap 的惊人之处在于：在某些情形它会自动把展开式的第�
 > 设总体具有连续 cdf $$F$$ 与 pdf $$f$$。记 $$\mu$$ 为总体均值、$$\bar{X}$$ 为样本均值，并设 $$T(\cdot)$$ 是计算总体均值的泛函。于是 $$T(F_n) = \bar{X}$$，$$T(F) = \mu$$，且
 >
 > $$
-> T(F_{\delta}) = (1 - \delta)\mu + \delta x,
-> $$
+T(F_{\delta}) = (1 - \delta)\mu + \delta x,
+$$
 >
 > 故 $$\mathrm{IF}(\bar{X}, x) = x - \mu$$；$$x$$ 越大，它对 $$\bar{X}$$ 的影响越大。
 >
 > 对中位数 $$M$$，我们有（习题 10.27）
 >
 > $$
-> \mathrm{IF}(M, x) =
-> \begin{cases}
-> \dfrac{1}{2 f(m)}, & \text{若 } x > m,\\[6pt]
-> -\dfrac{1}{2 f(m)}, & \text{其他}.
-> \end{cases}
-> $$
+\mathrm{IF}(M, x) =
+\begin{cases}
+\dfrac{1}{2 f(m)}, & \text{若 } x > m,\\[6pt]
+-\dfrac{1}{2 f(m)}, & \text{其他}.
+\end{cases}
+$$
 >
 > 所以与均值对比，中位数具有有界的影响函数。
 
