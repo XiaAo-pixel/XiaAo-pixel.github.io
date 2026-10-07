@@ -76,10 +76,17 @@ foreach ($course in $courses) {
   $known = @{}
   foreach ($g in $generated) { $known[$g.file] = $true }
 
-  # 源文件 = 目录里的 .md，排除上次生成的文件，也排除生成文件的命名格式
-  $sources = @(Get-ChildItem $dir -Filter *.md |
-    Where-Object { -not $known.ContainsKey($_.Name) -and $_.Name -notmatch '^ch\d{2}-\d{2}\.md$' } |
-    Sort-Object { if ($_.Name -match '^第(\d+)章') { [int]$Matches[1] } else { 999 } }, Name)
+  # 源文件放在目录下（兼容旧结构）或 _source/ 子目录里；
+  # 生成文件（ch<章号>-<节号>.md）与上次清单里的文件都排除掉
+  $sourceDirs = @($dir) + @(Join-Path $dir '_source')
+  $sources = @(
+    foreach ($sd in $sourceDirs) {
+      if (Test-Path $sd) {
+        Get-ChildItem $sd -Filter *.md |
+          Where-Object { -not $known.ContainsKey($_.Name) -and $_.Name -notmatch '^ch\d{2}-\d{2}\.md$' }
+      }
+    }
+  ) | Sort-Object { if ($_.Name -match '^第(\d+)章') { [int]$Matches[1] } elseif ($_.Name -match '^(\d+)') { [int]$Matches[1] } else { 999 } }, Name
 
   if ($sources.Count -eq 0) { Write-Warning "跳过 $course：没有找到源文件"; continue }
 
