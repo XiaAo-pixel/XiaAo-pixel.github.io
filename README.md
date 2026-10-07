@@ -126,6 +126,31 @@ notes/statistics/ch07-03.md  →  /statistics/ch07-03.html   ...
 
 要新增一门课时，源文件放进 `notes/<新代号>/_source/`，再跑脚本。
 
+### 讲义里的语义容器（定理 / 定义 / 例子 …）
+
+最优化那份讲义里用了一批 LaTeX 风格的裸 HTML 容器，切分脚本会自动处理它们，**你不用管**，
+但值得知道它们是怎么渲染的：
+
+| 容器 class | 含义 | 外观 |
+| --- | --- | --- |
+| `theorem` `proposition` `lemma` `corollary` | 定理 / 命题 / 引理 / 推论 | 蓝色系 / 青色系淡底纹 + 左侧色条 |
+| `definition` | 定义 | 绿色系 |
+| `example` `exercise` | 例子 / 习题 | 琥珀色系 |
+| `supp` `prereq` | 补充说明 / 本章前置知识 | 紫色系 |
+| `framework` `custom` `minipage` | 知识框架 / 注记 / 对比小页 | 玫红色系 |
+| `algorithm` `algorithmic` | 算法伪代码 | 淡底纹 + 等宽字，虚线左条 |
+| `center` `tabular` | 居中块 / 表格容器 | 无底纹，表格居中或横向滚动 |
+
+**两个关键处理（都在 split-notes.ps1 里）**，改讲义或新增容器时别绕过：
+
+1. **必须给容器加 `markdown="1"`**：kramdown 把裸 `<div class="…">` 当作**原始 HTML**，
+   里面的 `**加粗**`、编号列表、`$$公式$$`、Markdown 表格全都不会被解析，会原样显示成文本。
+   脚本会自动给所有 `<div class="…">` 加上这个属性。
+2. **LaTeX 版式表格要转成 Markdown 表格**：`<div class="tabular">` 里原本是
+   `\@p0.12p0.30@ 类别 & 形式 & 描述 \\` 这种 LaTeX 语法，kramdown 不但不认，
+   还会把行尾的 `\\` 转义成 `\`、把连续行并成一段。脚本会把这类表格自动转成
+   Markdown 表格（表头 + `|:---|` 分隔行 + 数据行）。
+
 **更新「最后更新」日期**：跑一次 [update-dates.ps1](update-dates.ps1)，它会把
 
 1. 两本书封面页 frontmatter 的 `date`（笔记页页脚取的就是这个值）、
