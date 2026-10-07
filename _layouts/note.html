@@ -20,6 +20,7 @@
      Liquid 里会报 "comparison of Array with Array failed"，改成显式循环筛选。 {% endcomment %}
 {% assign book = "" | split: "" %}
 {% assign cover = nil %}
+{{ "ZZTYPES path=" | append: page.path | append: " course=" | append: page.course | jsonify }}
 {% for p in site.pages %}
   {% if p.course == page.course %}
     {% if p.kind == "book" %}{% assign cover = p %}{% endif %}
@@ -78,7 +79,7 @@
       {% if next %}<a class="next" href="{{ next.url }}"><span class="hint">下一节 →</span><span class="t">{{ next.title | split: "·" | last | strip }}</span></a>{% else %}<span class="next" aria-hidden="true"></span>{% endif %}
     </nav>
 
-    <footer>最后更新：{{ page.date | date: "%Y-%m-%d" }} · DEBUG book={{ book.size }} chapters={{ chapters.size }} course={{ page.course | jsonify }} order={{ page.order | jsonify }}</footer>
+    <footer>最后更新：{{ page.date | date: "%Y-%m-%d" }} · DEBUG book={{ book.size }} chapters={{ chapters.size }} course_json={{ page.course | jsonify }} order={{ page.order | jsonify }}</footer>
   </main>
 
 </div>
