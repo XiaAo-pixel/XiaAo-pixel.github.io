@@ -12,24 +12,25 @@
   <script defer src="/assets/outline.js"></script>
 </head>
 <body class="note-page">
-{% assign mine = page.course | first | default: page.course %}
-{% capture zz %}{{ "ZZTYPES path=" | append: page.path | append: " raw=" | append: page.course | jsonify | append: " mine=" | append: mine }}{% endcapture %}
-<pre style="display:none">{{ zz }}</pre>
-{% assign book = "" | split: "" %}
-{% assign cover = nil %}
 {% comment %} 笔记页 = 独立整页阅读版式（仿 Harvard bookdown）：
-     左侧栏「书名 + 全书章节（当前章展开各小节）+ 当前小节内大纲」，右侧正文。
+     左侧栏「书名 + 全书章节 + 当前章各小节 + 当前小节内大纲」，右侧正文。
      侧栏不列站内其它栏目，避免臃肿——从「← 主页」或书名回总览再进。
 
-     注意：这里刻意不用 where 过滤器。`where: "course", page.course` 在 GitHub Pages 的
-     Liquid 里会报 "comparison of Array with Array failed"，改成显式循环筛选。 {% endcomment %}
+     实现注意：**不要**在这里用 where / sort / push 过滤器。
+     GitHub Pages 的 Liquid 下 `where: "course", page.course` 与 `sort: "order"`
+     会抛 "comparison of Array with Array failed"，所以书名 / 章节 / 翻页
+     全部用「单遍循环 + order 分组 + url 前缀判章」算出来。 {% endcomment %}
+
+{% comment %} 本页所在章的 url 前缀，例如 /statistics/ch07-01.html → /statistics/ch07-
+     用它判断某个页面是不是「本章的小节」（同一章的所有小节页共享这个前缀） {% endcomment %}
+{% assign chapter_prefix = page.url | split: "." | first | slice: 0, 16 %}
+
+{% comment %} 第 1 遍：找本书封面页 {% endcomment %}
+{% assign cover = nil %}
 {% for p in site.pages %}
-  {% if p.course == mine %}
-    {% if p.kind == "book" %}{% assign cover = p %}{% endif %}
-    {% if p.kind == "note" %}{% assign book = book | push: p %}{% endif %}
-  {% endif %}
+  {% if p.course == page.course and p.kind == "book" %}{% assign cover = p %}{% endif %}
 {% endfor %}
-{% assign book = book | sort: "order" %}
+
 <div class="page page-note">
 
   <aside class="sidebar">
@@ -41,16 +42,24 @@
       <a class="nav-item" href="/index.html">← 主页</a>
       <a class="note-book" href="{{ cover.url | default: '/courses.html' }}">{{ cover.title | default: page.course }}</a>
       <div class="subnav book-toc" aria-label="本书目录">
-{% comment %} order 由 split-notes.ps1 写成两位数字串（01、02…），字符串排序即阅读顺序；
-     同一 order 的所有小节页属于同一章 {% endcomment %}
-{% assign chapters = book | group_by: "order" %}
-{% for ch in chapters %}
-        <a class="book-chapter" href="{{ ch.items.first.url }}"><span class="sr">第 {{ ch.name }} 章 </span>{{ ch.items.first.chapter | default: ch.items.first.title }}</a>
-{% if ch.name == page.order %}
-{% for sec in ch.items %}
-        <a class="book-section{% if sec.url == page.url %} active{% endif %}" href="{{ sec.url }}"><span class="sr">{{ sec.chapter | default: '' }} </span>{{ sec.title | split: "·" | last | strip }}</a>
-{% endfor %}
-{% endif %}
+{% comment %} 第 2 遍：site.pages 按 url 排序，ch<章>-<节> 本身就是阅读顺序。
+     order 一变就是新的一章：出一行章名（标题取该章第一节的 chapter 字段）；
+     属于本章（url 前缀相同）的页面再作为小节列出来，当前小节高亮。 {% endcomment %}
+{% assign last_order = "" %}
+{% assign last_chapter = "" %}
+{% for p in site.pages %}
+  {% if p.course == page.course and p.order %}
+    {% if p.order != last_order %}
+      {% assign last_order = p.order %}
+      {% assign last_chapter = p.chapter | default: p.title %}
+      <a class="book-chapter" href="{{ p.url }}"><span class="sr">第 {{ p.order }} 章 </span>{{ last_chapter }}</a>
+    {% endif %}
+    {% assign in_chapter = false %}
+    {% if p.order == page.order %}{% assign in_chapter = true %}{% endif %}
+    {% if in_chapter %}
+      <a class="book-section{% if p.url == page.url %} active{% endif %}" href="{{ p.url }}"><span class="sr">{{ last_chapter }} </span>{{ p.title | split: "·" | last | strip }}</a>
+    {% endif %}
+  {% endif %}
 {% endfor %}
       </div>
     </nav>
@@ -66,14 +75,21 @@
 
     {{ content }}
 
-{% comment %} 页底「上一节 / 下一节」：按章节顺序 + 小节顺序取相邻页
-    （order 是两位数字串，url 里也带两位章号节号，字典序即阅读顺序） {% endcomment %}
-{% assign flat = book | sort: "url" %}
-{% assign prev = nil %}{% assign next = nil %}
-{% for c in flat %}
-  {% if c.url == page.url %}
-    {% unless forloop.first %}{% assign pi = forloop.index0 | minus: 1 %}{% assign prev = flat[pi] %}{% endunless %}
-    {% unless forloop.last %}{% assign ni = forloop.index0 | plus: 1 %}{% assign next = flat[ni] %}{% endunless %}
+{% comment %} 页底「上一节 / 下一节」：同一遍扫完，用「上一个命中的页面」拿上一节 {% endcomment %}
+{% assign prev = nil %}
+{% assign next = nil %}
+{% assign last_page = nil %}
+{% assign found = false %}
+{% for p in site.pages %}
+  {% if p.course == page.course and p.order %}
+    {% if found %}
+      {% if next == nil %}{% assign next = p %}{% endif %}
+    {% elsif p.url == page.url %}
+      {% assign found = true %}
+      {% assign prev = last_page %}
+    {% else %}
+      {% assign last_page = p %}
+    {% endif %}
   {% endif %}
 {% endfor %}
     <nav class="pager" aria-label="小节翻页">
@@ -81,7 +97,7 @@
       {% if next %}<a class="next" href="{{ next.url }}"><span class="hint">下一节 →</span><span class="t">{{ next.title | split: "·" | last | strip }}</span></a>{% else %}<span class="next" aria-hidden="true"></span>{% endif %}
     </nav>
 
-    <footer>最后更新：{{ page.date | date: "%Y-%m-%d" }} · DEBUG book={{ book.size }} chapters={{ chapters.size }} raw={{ page.course | jsonify }} mine={{ mine }} order={{ page.order | jsonify }}</footer>
+    <footer>最后更新：{{ page.date | date: "%Y-%m-%d" }}</footer>
   </main>
 
 </div>
