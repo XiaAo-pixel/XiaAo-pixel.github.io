@@ -31,9 +31,9 @@ homepage/
 ├── split-notes.ps1      ★ 把"一章一个 .md"按 h2 切成"一节一页"（见下文）
 ├── note-template.md     章节源文件模板（复制它来写新的一章）
 ├── notes/              笔记源文件 + 脚本生成的小节页
-│   ├── <课程代号>/第N章_xxx.md      你写的源文件（一章一个）
-│   ├── <课程代号>/chNN-MM.md        split-notes.ps1 生成的小节页（别手改）
-│   └── 讲义_markdown/               尚未归入某门课的原始讲义
+│   ├── <课程代号>/_source/第N章_xxx.md   你写的源文件（一章一个；下划线开头，Jekyll 不渲染）
+│   ├── <课程代号>/chNN-MM.md             split-notes.ps1 生成的小节页（别手改）
+│   └── <课程代号>/.sections.json         生成清单（本地文件，不进仓库）
 ├── _layouts/note.html  笔记页模板（卡片版 / 整页阅读版都在这一个文件里）
 ├── assets/
 │   ├── outline.js       笔记页侧栏：本节大纲 + 随滚动高亮
@@ -92,7 +92,7 @@ homepage/
 
 **写新一章（以"数理统计第 7 章"为例）**：
 
-1. 复制 `note-template.md` → 放进 `notes/statistics/`，命名成你能认出的英文名（如 `ch07_point_estimation.md`）；
+1. 复制 `note-template.md` → 放进 `notes/<课程代号>/_source/`，命名成你能认出的英文名（如 `07_Point_Estimation.md`）；
 2. 改开头 6 行：`title`（章标题，如 `第七章　点估计`）、`course: statistics`、`order: 7`、`date`；`permalink` **不要写**（由脚本生成）；
 3. 用 `##` 分小节写正文（`## 7.1 引言`、`## 7.2 寻找估计量的方法`…），小节内部用 `###` / `####`；支持 LaTeX：行内 `$...$`，行间 `$$...$$`；
 4. 在仓库根目录跑一次脚本，把这一章切成小节页：
@@ -107,7 +107,7 @@ homepage/
 **切分规则**：每个 `##` 标题 = 一小节 = 一页；正文自带编号（`## 7.1 xxx`）就沿用编号，没有编号就按出现顺序编号；一节里的 `###` / `####` 会下移一级显示（页面上是 h3 / h4），并自动收进侧栏「本节大纲」。文件名与线上地址：
 
 ```
-notes/statistics/ch07_point_estimation.md   ← 源文件（你写）
+notes/statistics/_source/07_Point_Estimation.md   ← 源文件（你写，Jekyll 不渲染）
         ↓ split-notes.ps1
 notes/statistics/ch07-01.md  →  /statistics/ch07-01.html
 notes/statistics/ch07-02.md  →  /statistics/ch07-02.html
@@ -116,7 +116,14 @@ notes/statistics/ch07-03.md  →  /statistics/ch07-03.html   ...
 
 `course` 取值与书对应：`statistics`=数理统计（`/statistics/`）、`optimization`=最优化方法（`/optimization/`）、`misc-2026`/`misc-2025`=杂记年份；新课程按"新增一门课"登记新代号。
 
-**已有笔记**：`optimization`（6 章 53 节）已经切好；`notes/讲义_markdown/` 里那 13 份原始讲义还没归入某门课，要启用就先建书封面页（见下）再把 `.md` 放进 `notes/statistics/` 跑脚本。
+**已有笔记**：`optimization`（6 章 53 节）与 `statistics`（13 章 79 节）都已切好并上线。要新增一门课时，源文件同样放进 `notes/<新代号>/_source/`。
+
+**踩过的坑（改 `_layouts/note.html` 时注意）**：Jekyll 在 GitHub Pages 上的 Liquid 里，
+`where: "course", page.course` 和 `sort: "order"` 会抛
+`comparison of Array with Array failed`（页面属性在某些情况下是数组），导致整个站点构建失败。
+所以侧栏的「本书章节 / 当前章小节 / 上一节下一节」都是用**循环遍历 + order 分组**算出来的，
+不要再改回过滤器写法。改完 `_layouts` 或模板后，务必确认线上构建成功
+（仓库 Actions → "pages build and deployment"）。
 
 ### 新增一门课（以"操作系统"为例）
 

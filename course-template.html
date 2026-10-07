@@ -9,9 +9,9 @@ title: 【课程名称】
   新增一门课的完整流程：
   1. 复制本文件 → 建目录 <课程代号>/index.html（如 os/index.html），填写 frontmatter：
      kind: book、course: <课程代号>（须与章节笔记 frontmatter 里的 course 一致）、title、date
-  2. 章节笔记：复制 _source 里的原始笔记（一章一个 .md）放进 notes/<课程代号>/，
+  2. 章节笔记：把每章的源文件（一章一个 .md）放进 notes/<课程代号>/_source/，
      frontmatter 写 layout: note、kind: note、title、course: <课程代号>、order: <章号>、date；
-     然后运行 split-notes.ps1，它会按各章 h2 自动切成"一节一页"并写进 notes/<课程代号>/
+     然后运行 split-notes.ps1，它会按各章 h2 自动切成"一节一页"，写到 notes/<课程代号>/ 下
      （生成文件以 ch<章号>-<节号>.md 命名，permalink 形如 /os/ch03-02.html，不用手写）
   3. 两处登记：
      1) 所有页面侧边栏 subnav 里加：<a href="/<课程代号>/">【课程名称】</a>
