@@ -151,7 +151,7 @@ $$
 
 > **定义 10.1.7（极限方差）**
 >
-> 对估计量 $$T_n$$，若 $$\lim_{n \to \infty} k_n \mathrm{Var} T_n = \tau^2 < \infty$$（$$\{k_n\}$$ 是常数序列），则称 $$\tau^2$$ 为***极限方差***（limiting variance）或方差的极限。
+> 对估计量 $$T_n$$，若 $$\lim_{n \to \infty} k_n \mathrm{Var} T_n = \tau^2 < \infty$$（$$\lbrace k_n \rbrace$$ 是常数序列），则称 $$\tau^2$$ 为***极限方差***（limiting variance）或方差的极限。
 
 > **例 10.1.8（极限方差）**
 >
@@ -643,9 +643,9 @@ $$
 > 设 $$X_{(1)} < \cdots < X_{(n)}$$ 是容量 $$n$$ 的有序样本，$$T_n$$ 是基于该样本的统计量。若对每个 $$\varepsilon > 0$$，
 >
 > $$
-\lim_{X_{(\{(1-b)n\})} \to \infty} T_n < \infty
+\lim_{X_{(\lbrace (1-b)n \rbrace)} \to \infty} T_n < \infty
 \quad\text{且}\quad
-\lim_{X_{(\{(1-(b+\varepsilon))n\})} \to \infty} T_n = \infty,
+\lim_{X_{(\lbrace (1-(b+\varepsilon))n \rbrace)} \to \infty} T_n = \infty,
 $$
 >
 > 则称 $$T_n$$ 具有崩溃值（breakdown value）$$b$$，$$0 \leq b \leq 1$$。（百分位记号见定义 5.4.2。）
@@ -676,7 +676,7 @@ Y_i =
 \end{cases}
 $$
 >
-> 则 $$Y_i$$ 是成功概率 $$p_n = F\bigl( \mu + a/\sqrt{n} \bigr)$$ 的 Bernoulli 随机变量。为避免复杂，设 $$n$$ 为奇数，从而事件 $$\{ M_n \leq \mu + a/\sqrt{n} \}$$ 等价于事件 $$\{ \sum_i Y_i \geq (n+1)/2 \}$$。
+> 则 $$Y_i$$ 是成功概率 $$p_n = F\bigl( \mu + a/\sqrt{n} \bigr)$$ 的 Bernoulli 随机变量。为避免复杂，设 $$n$$ 为奇数，从而事件 $$\lbrace  M_n \leq \mu + a/\sqrt{n}  \rbrace$$ 等价于事件 $$\lbrace  \sum_i Y_i \geq (n+1)/2  \rbrace$$。
 >
 > 稍作代数运算得
 >
@@ -906,7 +906,7 @@ $$
 \lambda(\textbf{x}) = \frac{\sup_{\Theta_0} L(\theta \mid \textbf{x})}{\sup_{\Theta} L(\theta \mid \textbf{x})}
 $$
 
-以及拒绝区域的显式形式 $$\{ \textbf{x} : \lambda(\textbf{x}) \leq c \}$$。数据 $$\textbf{X} = \textbf{x}$$ 被观测后，似然函数 $$L(\theta \mid \textbf{x})$$ 是变量 $$\theta$$ 的完全确定的函数。即使 $$L(\theta \mid \textbf{x})$$ 在 $$\Theta_0$$ 与 $$\Theta$$ 上的两个上确界无法解析求得，通常也可以数值计算。因此，即使没有定义 $$\lambda(\textbf{x})$$ 的便捷公式，也能对观测数据点求出检验统计量 $$\lambda(\textbf{x})$$。
+以及拒绝区域的显式形式 $$\lbrace  \textbf{x} : \lambda(\textbf{x}) \leq c  \rbrace$$。数据 $$\textbf{X} = \textbf{x}$$ 被观测后，似然函数 $$L(\theta \mid \textbf{x})$$ 是变量 $$\theta$$ 的完全确定的函数。即使 $$L(\theta \mid \textbf{x})$$ 在 $$\Theta_0$$ 与 $$\Theta$$ 上的两个上确界无法解析求得，通常也可以数值计算。因此，即使没有定义 $$\lambda(\textbf{x})$$ 的便捷公式，也能对观测数据点求出检验统计量 $$\lambda(\textbf{x})$$。
 
 要定义水平 $$\alpha$$ 检验，常数 $$c$$ 必须选得使
 
@@ -1276,7 +1276,7 @@ $$
 当 $$n \to \infty$$ 时渐近服从 $$n(0,1)$$ 分布。于是集合
 
 $$
-\Bigl\{ \theta : \bigl\vert  Q(\textbf{x} \mid \theta) \bigr\vert  \leq z_{\alpha/2} \Bigr\} \tag{10.4.2}
+\Bigl\lbrace  \theta : \bigl\vert  Q(\textbf{x} \mid \theta) \bigr\vert  \leq z_{\alpha/2} \Bigr \rbrace \tag{10.4.2}
 $$
 
 是近似 $$1 - \alpha$$ 置信集合。注意，应用 7.3.2 节的结果，有
@@ -1310,7 +1310,7 @@ $$
 > 其中 $$\hat{p} = y/n$$。用 (10.4.2) 得近似 $$1 - \alpha$$ 置信区间
 >
 > $$
-\Biggl\{ p : \Biggl\vert  \frac{\hat{p} - p}{\sqrt{p(1 - p)/n}} \Biggr\vert  \leq z_{\alpha/2} \Biggr\}. \tag{10.4.4}
+\Biggl\lbrace  p : \Biggl\vert  \frac{\hat{p} - p}{\sqrt{p(1 - p)/n}} \Biggr\vert  \leq z_{\alpha/2} \Biggr \rbrace. \tag{10.4.4}
 $$
 >
 > 这是反转得分统计量（例 10.3.6）得到的区间。计算该区间需要解关于 $$p$$ 的二次方程；细节见例 10.4.6。
@@ -1318,7 +1318,7 @@ $$
 10.3 节中我们还基于“$$-2 \log \lambda(\textbf{X})$$ 具有渐近卡方分布”导出了另一个似然检验。这提示：若 $$X_1, \ldots, X_n$$ 是 iid $$f(x \mid \theta)$$，$$\hat{\theta}$$ 是 $$\theta$$ 的 MLE，则集合
 
 $$
-\Bigl\{ \theta : -2 \log \frac{L(\theta \mid \textbf{x})}{L(\hat{\theta} \mid \textbf{x})} \leq \chi^2_{1, \alpha} \Bigr\} \tag{10.4.5}
+\Bigl\lbrace  \theta : -2 \log \frac{L(\theta \mid \textbf{x})}{L(\hat{\theta} \mid \textbf{x})} \leq \chi^2_{1, \alpha} \Bigr \rbrace \tag{10.4.5}
 $$
 
 是近似 $$1 - \alpha$$ 置信区间。事实确实如此，这又给了我们一类近似似然区间。
@@ -1330,7 +1330,7 @@ $$
 > 对 $$Y = \sum_{i=1}^{n} X_i$$（诸 $$X_i$$ 为独立 Bernoulli($$p$$) 随机变量），有近似 $$1 - \alpha$$ 置信集合
 >
 > $$
-\Bigl\{ p : -2 \log \frac{p^y (1 - p)^{n - y}}{\hat{p}^y (1 - \hat{p})^{n - y}} \leq \chi^2_{1, \alpha} \Bigr\}.
+\Bigl\lbrace  p : -2 \log \frac{p^y (1 - p)^{n - y}}{\hat{p}^y (1 - \hat{p})^{n - y}} \leq \chi^2_{1, \alpha} \Bigr \rbrace.
 $$
 >
 > 该置信集合与基于得分检验与 Wald 检验的区间将在例 10.4.7 中比较。
@@ -1419,7 +1419,7 @@ $$
 > 都依分布收敛到标准正态随机变量，其中 $$\hat{p} = \sum x_i / n$$。例 10.3.5 中看到两个近似都可以作为检验的基础，前者是 Wald 检验，后者是得分检验。我们也知道两个近似都可用来构造 $$p$$ 的置信区间。然而得分检验近似（用的统计量更少、参数值更多）给出例 10.4.2 的区间 (10.4.4)，它是渐近最优的。也就是说，
 >
 > $$
-\Biggl\{ p : \Biggl\vert  \frac{\hat{p} - p}{\sqrt{p(1 - p)/n}} \Biggr\vert  \leq z_{\alpha/2} \Biggr\}
+\Biggl\lbrace  p : \Biggl\vert  \frac{\hat{p} - p}{\sqrt{p(1 - p)/n}} \Biggr\vert  \leq z_{\alpha/2} \Biggr \rbrace
 $$
 >
 > 是更好的近似区间。
@@ -1427,13 +1427,13 @@ $$
 > 这个区间长相如何并不立即可见，但可以显式解出这组值。两边平方并整理，要找满足
 >
 > $$
-\Bigl\{ p : (\hat{p} - p)^2 \leq z^2_{\alpha/2}\, \frac{p(1 - p)}{n} \Bigr\}
+\Bigl\lbrace  p : (\hat{p} - p)^2 \leq z^2_{\alpha/2}\, \frac{p(1 - p)}{n} \Bigr \rbrace
 $$
 >
 > 的 $$p$$ 值集合。该不等式是 $$p$$ 的二次式，进一步整理可化为更熟悉的形式：
 >
 > $$
-\Biggl\{ p : \Bigl( 1 + \frac{z^2_{\alpha/2}}{n} \Bigr) p^2 - \Bigl( 2\hat{p} + \frac{z^2_{\alpha/2}}{n} \Bigr) p + \hat{p}^2 \leq 0 \Biggr\}.
+\Biggl\lbrace  p : \Bigl( 1 + \frac{z^2_{\alpha/2}}{n} \Bigr) p^2 - \Bigl( 2\hat{p} + \frac{z^2_{\alpha/2}}{n} \Bigr) p + \hat{p}^2 \leq 0 \Biggr \rbrace.
 $$
 >
 > 由于二次项系数为正，抛物线开口向上，故不等式在 $$p$$ 位于两根之间时成立。两根为
@@ -1517,7 +1517,7 @@ $$
 > 于是对小的 $$p$$，$$2pY$$ 是一个枢轴！利用这一事实可以构造对小 $$p$$ 有效的枢轴 $$1 - \alpha$$ 置信区间：
 >
 > $$
-\Bigl\{ p : \frac{\chi^2_{2nr,\, 1 - \alpha/2}}{2y} \leq p \leq \frac{\chi^2_{2nr,\, \alpha/2}}{2y} \Bigr\}.
+\Bigl\lbrace  p : \frac{\chi^2_{2nr,\, 1 - \alpha/2}}{2y} \leq p \leq \frac{\chi^2_{2nr,\, \alpha/2}}{2y} \Bigr \rbrace.
 $$
 >
 > 细节见习题 10.47。
@@ -1864,7 +1864,7 @@ C e^{-c\vert x\vert  + c^2/2}, & \vert x\vert  > c,
 \end{cases}
 $$
 
-其中 $$\psi(x) = \max\{ -c,\ \min(c,\ x) \}$$，$$C$$ 与 $$c$$ 是常数。
+其中 $$\psi(x) = \max\lbrace  -c,\ \min(c,\ x)  \rbrace$$，$$C$$ 与 $$c$$ 是常数。
 
 （更多细节见 Huber 1981, 3.5 节。）
 
@@ -1873,7 +1873,7 @@ $$
 $$
 b^{*} = \frac{\eta}{1 + \eta},
 \qquad
-\eta = \min\Biggl\{ -\frac{\psi(-\infty)}{\psi(\infty)},\ -\frac{\psi(\infty)}{\psi(-\infty)} \Biggr\}
+\eta = \min\Biggl\lbrace  -\frac{\psi(-\infty)}{\psi(\infty)},\ -\frac{\psi(\infty)}{\psi(-\infty)} \Biggr \rbrace
 $$
 
 给出。
@@ -2064,7 +2064,7 @@ $$
 (a) 补全例 10.4.9 的细节，即证明对小 $$p$$，区间
 
 $$
-\Bigl\{ p : \frac{\chi^2_{2nr,\, 1 - \alpha/2}}{2 \sum x} \leq p \leq \frac{\chi^2_{2nr,\, \alpha/2}}{2 \sum x} \Bigr\}
+\Bigl\lbrace  p : \frac{\chi^2_{2nr,\, 1 - \alpha/2}}{2 \sum x} \leq p \leq \frac{\chi^2_{2nr,\, \alpha/2}}{2 \sum x} \Bigr \rbrace
 $$
 
 是近似 $$1 - \alpha$$ 置信区间；

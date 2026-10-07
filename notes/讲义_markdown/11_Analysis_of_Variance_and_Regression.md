@@ -89,7 +89,7 @@ $$
 
 > **定义 11.2.2（可识别性）**
 >
-> 称分布族 $$\{ f(x \mid \theta) : \theta \in \Theta \}$$ 的参数 $$\theta$$ 是***可识别的***（identifiable），若 $$\theta$$ 的不同取值对应不同的 pdf 或 pmf。即若 $$\theta \neq \theta'$$，则 $$f(x \mid \theta)$$ 作为 $$x$$ 的函数不等于 $$f(x \mid \theta')$$。
+> 称分布族 $$\lbrace  f(x \mid \theta) : \theta \in \Theta  \rbrace$$ 的参数 $$\theta$$ 是***可识别的***（identifiable），若 $$\theta$$ 的不同取值对应不同的 pdf 或 pmf。即若 $$\theta \neq \theta'$$，则 $$f(x \mid \theta)$$ 作为 $$x$$ 的函数不等于 $$f(x \mid \theta')$$。
 
 可识别性是模型的性质，而不是某个估计量或估计程序的性质。但如果模型不可识别，做推断就会有困难。例如若 $$f(x \mid \theta) = f(x \mid \theta')$$，则来自两个分布的观测看起来完全一样，我们无从知道参数真值是 $$\theta$$ 还是 $$\theta'$$；特别地，$$\theta$$ 与 $$\theta'$$ 会给似然函数带来相同的值。
 
@@ -198,7 +198,7 @@ $$
 \sum_{i=1}^{k} a_i \theta_i = 0 \quad \text{对一切}\ \textbf{a} \in \mathcal{A},
 $$
 >
-> 其中 $$\mathcal{A}$$ 是满足 $$\mathcal{A} = \{ \textbf{a} = (a_1, \ldots, a_k) : \sum a_i = 0 \}$$ 的常数集合，即所有对照必须满足 $$\sum a_i \theta_i = 0$$。
+> 其中 $$\mathcal{A}$$ 是满足 $$\mathcal{A} = \lbrace  \textbf{a} = (a_1, \ldots, a_k) : \sum a_i = 0  \rbrace$$ 的常数集合，即所有对照必须满足 $$\sum a_i \theta_i = 0$$。
 >
 > **证明**　若 $$\theta_1 = \cdots = \theta_k = \theta$$，则
 >
@@ -363,16 +363,16 @@ H_0 :\ \sum_{i=1}^{k} a_i \theta_i = 0\ \text{对一切}\ \textbf{a} \in \mathca
 H_1 :\ \sum_{i=1}^{k} a_i \theta_i \neq 0\ \text{对某个}\ \textbf{a} \in \mathcal{A},
 $$
 
-其中 $$\mathcal{A} = \{ \textbf{a} = (a_1, \ldots, a_k) : \sum_{i=1}^{k} a_i = 0 \}$$。为更清楚地看出这是一个并–交检验，对每个 $$\textbf{a}$$ 定义集合
+其中 $$\mathcal{A} = \lbrace  \textbf{a} = (a_1, \ldots, a_k) : \sum_{i=1}^{k} a_i = 0  \rbrace$$。为更清楚地看出这是一个并–交检验，对每个 $$\textbf{a}$$ 定义集合
 
 $$
-\Theta_{\textbf{a}} = \Bigl\{ \theta = (\theta_1, \ldots, \theta_k) : \sum_{i=1}^{k} a_i \theta_i = 0 \Bigr\}.
+\Theta_{\textbf{a}} = \Bigl\lbrace  \theta = (\theta_1, \ldots, \theta_k) : \sum_{i=1}^{k} a_i \theta_i = 0 \Bigr \rbrace.
 $$
 
 则
 
 $$
-\theta \in \{ \theta : \theta_1 = \theta_2 = \cdots = \theta_k \}
+\theta \in \lbrace  \theta : \theta_1 = \theta_2 = \cdots = \theta_k  \rbrace
 \iff
 \theta \in \Theta_{\textbf{a}}\ \text{对一切}\ \textbf{a} \in \mathcal{A}
 \iff
@@ -395,7 +395,7 @@ $$
 
 > **引理 11.2.7（受约束的最大值）**
 >
-> 设 $$(v_1, \ldots, v_k)$$ 是常数，$$(c_1, \ldots, c_k)$$ 是正常数。则对 $$\mathcal{A} = \{ \textbf{a} = (a_1, \ldots, a_k) : \sum a_i = 0 \}$$，
+> 设 $$(v_1, \ldots, v_k)$$ 是常数，$$(c_1, \ldots, c_k)$$ 是正常数。则对 $$\mathcal{A} = \lbrace  \textbf{a} = (a_1, \ldots, a_k) : \sum a_i = 0  \rbrace$$，
 >
 > $$
 \max_{\textbf{a} \in \mathcal{A}} \frac{\Bigl( \sum_{i=1}^{k} a_i v_i \Bigr)^2}{\sum_{i=1}^{k} a_i^2 / c_i} = \sum_{i=1}^{k} c_i (v_i - \bar{v}_c)^2, \tag{11.2.10}
@@ -403,7 +403,7 @@ $$
 >
 > 其中 $$\bar{v}_c = \sum c_i v_i / \sum c_i$$。最大值在形如 $$a_i = K c_i (v_i - \bar{v}_c)$$（$$K$$ 是非零常数）的任何 $$\textbf{a}$$ 处达到。
 >
-> **证明**　定义 $$\mathcal{B} = \{ \textbf{b} = (b_1, \ldots, b_k) : \sum b_i = 0\ \text{且}\ \sum b_i^2 / c_i = 1 \}$$。对任何 $$\textbf{a} \in \mathcal{A}$$，定义 $$\textbf{b} = (b_1, \ldots, b_k)$$ 为
+> **证明**　定义 $$\mathcal{B} = \lbrace  \textbf{b} = (b_1, \ldots, b_k) : \sum b_i = 0\ \text{且}\ \sum b_i^2 / c_i = 1  \rbrace$$。对任何 $$\textbf{a} \in \mathcal{A}$$，定义 $$\textbf{b} = (b_1, \ldots, b_k)$$ 为
 >
 > $$
 b_i = \frac{a_i}{\sqrt{\sum_{i=1}^{k} a_i^2 / c_i}},
@@ -534,7 +534,7 @@ $$
 > 许多时候人们关心均值的成对差异。若 ANOVA 有均值 $$\theta_1, \ldots, \theta_k$$，可能关心 $$\theta_1 - \theta_2$$、$$\theta_2 - \theta_3$$、$$\theta_3 - \theta_4$$ 等的区间估计。利用 Bonferroni 不等式可以建立同时推断陈述。定义
 >
 > $$
-C_{ij} = \Bigl\{ \theta_i - \theta_j : \theta_i - \theta_j \in \bar{Y}_{i\cdot} - \bar{Y}_{j\cdot} \pm t_{N-k, \alpha/2} \sqrt{S_p^2 \Bigl( \frac{1}{n_i} + \frac{1}{n_j} \Bigr)} \Bigr\}.
+C_{ij} = \Bigl\lbrace  \theta_i - \theta_j : \theta_i - \theta_j \in \bar{Y}_{i\cdot} - \bar{Y}_{j\cdot} \pm t_{N-k, \alpha/2} \sqrt{S_p^2 \Bigl( \frac{1}{n_i} + \frac{1}{n_j} \Bigr)} \Bigr \rbrace.
 $$
 >
 > 则对每个 $$C_{ij}$$ 有 $$P(C_{ij}) = 1 - \alpha$$，但例如 $$P(C_{12}\ \text{且}\ C_{23}) < 1 - \alpha$$。然而后面这种推断正是我们在 ANOVA 中想作的那种。
@@ -575,7 +575,7 @@ Scheffé 程序对所有对照具有同时 $$1 - \alpha$$ 覆盖这一事实，�
 \sum_{i=1}^{k} a_i \bar{Y}_{i\cdot} - M \sqrt{S_p^2 \sum_{i=1}^{k} \frac{a_i^2}{n_i}} \;\leq\; \sum_{i=1}^{k} a_i \theta_i \;\leq\; \sum_{i=1}^{k} a_i \bar{Y}_{i\cdot} + M \sqrt{S_p^2 \sum_{i=1}^{k} \frac{a_i^2}{n_i}},
 $$
 >
-> 且上式对一切 $$\textbf{a} \in \mathcal{A} = \{ \textbf{a} = (a_1, \ldots, a_k) : \sum a_i = 0 \}$$ **同时**成立。
+> 且上式对一切 $$\textbf{a} \in \mathcal{A} = \lbrace  \textbf{a} = (a_1, \ldots, a_k) : \sum a_i = 0  \rbrace$$ **同时**成立。
 >
 > **证明**　同时概率陈述要求 $$M$$ 满足
 >

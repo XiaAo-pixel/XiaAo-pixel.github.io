@@ -40,10 +40,10 @@ $$
 >
 > 对样本点 $$(3,3)$$：$$X = 3 + 3 = 6$$，$$Y = \vert 3 - 3\vert  = 0$$；对 $$(4,1)$$：$$X = 5$$，$$Y = 3$$。这也正是样本点 $$(1, 4)$$ 的 $$X$$、$$Y$$ 值。对 36 个样本点逐个计算 $$X$$ 与 $$Y$$ 的值，我们就定义了二元随机向量 $$(X, Y)$$。
 >
-> 定义了随机向量 $$(X, Y)$$ 后，即可讨论由 $$(X, Y)$$ 表出的事件的概率。由 $$X$$ 与 $$Y$$ 表出的事件的概率，由样本空间 $$S$$ 中相应事件的概率给出。$$P(X = 5\ \text{且}\ Y = 3)$$ 是多少？可以验证：使 $$X = 5$$ 且 $$Y = 3$$ 的样本点只有 $$(4, 1)$$ 与 $$(1, 4)$$。故事件“$$X = 5$$ 且 $$Y = 3$$”发生当且仅当事件 $$\{(4,1), (1,4)\}$$ 发生。由于 $$S$$ 的 36 个样本点等可能，
+> 定义了随机向量 $$(X, Y)$$ 后，即可讨论由 $$(X, Y)$$ 表出的事件的概率。由 $$X$$ 与 $$Y$$ 表出的事件的概率，由样本空间 $$S$$ 中相应事件的概率给出。$$P(X = 5\ \text{且}\ Y = 3)$$ 是多少？可以验证：使 $$X = 5$$ 且 $$Y = 3$$ 的样本点只有 $$(4, 1)$$ 与 $$(1, 4)$$。故事件“$$X = 5$$ 且 $$Y = 3$$”发生当且仅当事件 $$\lbrace (4,1), (1,4) \rbrace$$ 发生。由于 $$S$$ 的 36 个样本点等可能，
 >
 > $$
-P\bigl( \{(4,1), (1,4)\} \bigr) = \frac{2}{36} = \frac{1}{18},
+P\bigl( \lbrace (4,1), (1,4) \rbrace \bigr) = \frac{2}{36} = \frac{1}{18},
 $$
 >
 > 故
@@ -79,7 +79,7 @@ $$
 P\bigl( (X, Y) \in A \bigr) = \sum_{(x,y) \in A} f(x, y).
 $$
 
-由于 $$(X, Y)$$ 离散，$$f(x, y)$$ 至多在可数个点 $$(x, y)$$ 上非零，故即使 $$A$$ 含不可数多个点，该和仍可解释为可数和。例如取 $$A = \{(x, y) : x = 7\ \text{且}\ y \leq 4\}$$，这是 $$\Re^2$$ 中一条半无限直线；但由表 4.1.1 可见，$$A$$ 中使 $$f(x, y)$$ 非零的只有 $$(x, y) = (7, 1)$$ 与 $$(x, y) = (7, 3)$$，故
+由于 $$(X, Y)$$ 离散，$$f(x, y)$$ 至多在可数个点 $$(x, y)$$ 上非零，故即使 $$A$$ 含不可数多个点，该和仍可解释为可数和。例如取 $$A = \lbrace (x, y) : x = 7\ \text{且}\ y \leq 4 \rbrace$$，这是 $$\Re^2$$ 中一条半无限直线；但由表 4.1.1 可见，$$A$$ 中使 $$f(x, y)$$ 非零的只有 $$(x, y) = (7, 1)$$ 与 $$(x, y) = (7, 3)$$，故
 
 $$
 P(X = 7, Y \leq 4) = P\bigl( (X, Y) \in A \bigr) = f(7, 1) + f(7, 3) = \frac{1}{18} + \frac{1}{18} = \frac{1}{9},
@@ -139,7 +139,7 @@ $$
 >
 > 给出。
 >
-> **证明**　证 $$f_X(x)$$ 的结果，$$f_Y(y)$$ 类似。对任意 $$x \in \Re$$，令 $$A_x = \{(x, y) : -\infty < y < \infty\}$$，即平面上第一坐标等于 $$x$$ 的直线。则对任意 $$x \in \Re$$，
+> **证明**　证 $$f_X(x)$$ 的结果，$$f_Y(y)$$ 类似。对任意 $$x \in \Re$$，令 $$A_x = \lbrace (x, y) : -\infty < y < \infty \rbrace$$，即平面上第一坐标等于 $$x$$ 的直线。则对任意 $$x \in \Re$$，
 >
 > $$
 \begin{aligned}
@@ -240,13 +240,13 @@ $$
 \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y)\, dx\, dy = \int_0^1 \int_0^1 6 x y^2\, dx\, dy = \int_0^1 \Bigl[ 3 x^2 y^2 \Bigr]_0^1 dy = \int_0^1 3 y^2\, dy = \Bigl[ y^3 \Bigr]_0^1 = 1.
 $$
 >
-> 现在考虑计算 $$P(X + Y \geq 1)$$ 这样的概率。令 $$A = \{(x, y) : x + y \geq 1\}$$，把概率写成 $$P((X, Y) \in A)$$。由定义 4.1.10，须在集合 $$A$$ 上积分联合 pdf；但联合 pdf 在单位方形之外为 0，故在 $$A$$ 上积分等价于只在 $$A \cap$$ 单位方形上积分。集合 $$A$$ 是平面东北部的半平面，其在单位方形内的部分是由直线 $$x = 1$$、$$y = 1$$ 与 $$x + y = 1$$ 围成的三角形区域。可写
+> 现在考虑计算 $$P(X + Y \geq 1)$$ 这样的概率。令 $$A = \lbrace (x, y) : x + y \geq 1 \rbrace$$，把概率写成 $$P((X, Y) \in A)$$。由定义 4.1.10，须在集合 $$A$$ 上积分联合 pdf；但联合 pdf 在单位方形之外为 0，故在 $$A$$ 上积分等价于只在 $$A \cap$$ 单位方形上积分。集合 $$A$$ 是平面东北部的半平面，其在单位方形内的部分是由直线 $$x = 1$$、$$y = 1$$ 与 $$x + y = 1$$ 围成的三角形区域。可写
 >
 > $$
 \begin{aligned}
-A &= \{(x, y) : x + y \geq 1,\ 0 < x < 1,\ 0 < y < 1\}\\
-&= \{(x, y) : x \geq 1 - y,\ 0 < x < 1,\ 0 < y < 1\}\\
-&= \{(x, y) : 1 - y \leq x < 1,\ 0 < y < 1\}.
+A &= \lbrace (x, y) : x + y \geq 1,\ 0 < x < 1,\ 0 < y < 1 \rbrace\\
+&= \lbrace (x, y) : x \geq 1 - y,\ 0 < x < 1,\ 0 < y < 1 \rbrace\\
+&= \lbrace (x, y) : 1 - y \leq x < 1,\ 0 < y < 1 \rbrace.
 \end{aligned}
 $$
 >
@@ -279,12 +279,12 @@ $$
 > 作为联合 pdf 的另一例，设 $$f(x, y) = e^{-y}$$，$$0 < x < y < \infty$$。虽然 $$e^{-y}$$ 不依赖 $$x$$，但 $$f(x, y)$$ 确实是 $$x$$ 的函数，因为其非零集合依赖于 $$x$$。用示性函数写更明显：
 >
 > $$
-f(x, y) = e^{-y}\, I_{\{(u, v) : 0 < u < v < \infty\}}(x, y).
+f(x, y) = e^{-y}\, I_{\lbrace (u, v) : 0 < u < v < \infty \rbrace}(x, y).
 $$
 >
-> 要计算 $$P(X + Y \geq 1)$$，可以在集合 $$A = \{(x, y) : x + y \geq 1\}$$ 与 $$f(x, y)$$ 非零集合的交上积分。画出这些集合：该交是一个无界区域（图 4.1.1 中较浅的阴影），三条边为直线 $$x = y$$、$$x + y = 1$$ 与 $$x = 0$$。在此区域上积分须至少把区域拆成两块才能写出合适的积分限。
+> 要计算 $$P(X + Y \geq 1)$$，可以在集合 $$A = \lbrace (x, y) : x + y \geq 1 \rbrace$$ 与 $$f(x, y)$$ 非零集合的交上积分。画出这些集合：该交是一个无界区域（图 4.1.1 中较浅的阴影），三条边为直线 $$x = y$$、$$x + y = 1$$ 与 $$x = 0$$。在此区域上积分须至少把区域拆成两块才能写出合适的积分限。
 >
-> 在集合 $$B = \{(x, y) : x + y < 1\}$$ 与 $$f(x, y)$$ 非零集合的交——由直线 $$x = y$$、$$x + y = 1$$ 与 $$x = 0$$ 围成的三角形区域（图 4.1.1 中较深的阴影）——上积分更容易。于是
+> 在集合 $$B = \lbrace (x, y) : x + y < 1 \rbrace$$ 与 $$f(x, y)$$ 非零集合的交——由直线 $$x = y$$、$$x + y = 1$$ 与 $$x = 0$$ 围成的三角形区域（图 4.1.1 中较深的阴影）——上积分更容易。于是
 >
 > $$
 P(X + Y \geq 1) = 1 - P(X + Y < 1) = 1 - \int_0^{1/2} \int_{x}^{1-x} e^{-y}\, dy\, dx
@@ -321,7 +321,7 @@ $$
 
 观测两个随机变量 $$(X, Y)$$ 时，两个变量的取值往往是相关的。例如在从人群抽样时，设 $$X$$ 表示一个人的身高，$$Y$$ 表示同一人的体重。若被告知 $$X = 73$$ 英寸，我们当然比被告知 $$X = 41$$ 英寸时更愿意相信 $$Y > 200$$ 磅。关于 $$X$$ 取值的知识给了我们关于 $$Y$$ 取值的信息，即使它并不能确切告诉我们 $$Y$$ 的值。给定 $$X$$ 值的知识后关于 $$Y$$ 的条件概率，可以用 $$(X, Y)$$ 的联合分布计算。但有时关于 $$X$$ 的知识对 $$Y$$ 不提供任何信息。本节讨论与条件概率有关的这些课题。
 
-若 $$(X, Y)$$ 是离散随机向量，则形如 $$P(Y = y \mid X = x)$$ 的条件概率完全按定义 1.3.2 解释。对可数个（可能有限个）使 $$P(X = x) > 0$$ 的 $$x$$ 值，按定义 $$P(Y = y \mid X = x)$$ 就是 $$P(X = x, Y = y) / P(X = x)$$：公式中事件 $$A$$ 取 $$\{Y = y\}$$、事件 $$B$$ 取 $$\{X = x\}$$。对固定的 $$x$$，可对所有可能的 $$y$$ 计算 $$P(Y = y \mid X = x)$$，从而在已知观察到 $$X = x$$ 的条件下评估 $$Y$$ 取各种值的概率。用 $$X$$ 与 $$Y$$ 的联合 pmf 与边缘 pmf 表出：$$P(X = x, Y = y) = f(x, y)$$，$$P(X = x) = f_X(x)$$。由此得如下定义。
+若 $$(X, Y)$$ 是离散随机向量，则形如 $$P(Y = y \mid X = x)$$ 的条件概率完全按定义 1.3.2 解释。对可数个（可能有限个）使 $$P(X = x) > 0$$ 的 $$x$$ 值，按定义 $$P(Y = y \mid X = x)$$ 就是 $$P(X = x, Y = y) / P(X = x)$$：公式中事件 $$A$$ 取 $$\lbrace Y = y \rbrace$$、事件 $$B$$ 取 $$\lbrace X = x \rbrace$$。对固定的 $$x$$，可对所有可能的 $$y$$ 计算 $$P(Y = y \mid X = x)$$，从而在已知观察到 $$X = x$$ 的条件下评估 $$Y$$ 取各种值的概率。用 $$X$$ 与 $$Y$$ 的联合 pmf 与边缘 pmf 表出：$$P(X = x, Y = y) = f(x, y)$$，$$P(X = x) = f_X(x)$$。由此得如下定义。
 
 > **定义 4.2.1（离散条件 pmf）**
 >
@@ -564,7 +564,7 @@ $$
 >
 > 则对一切 $$x \in \Re$$ 与 $$y \in \Re$$ 都有 $$f(x, y) = g(x) h(y)$$。由引理 4.2.7 得 $$X$$ 与 $$Y$$ 独立——我们无需计算边缘 pdf。
 
-若 $$X$$ 与 $$Y$$ 独立，则由 (4.2.1) 显然 $$f(x, y)$$ 在集合 $$\{(x, y) : x \in A\ \text{且}\ y \in B\}$$ 上为正，其中 $$A = \{x : f_X(x) > 0\}$$、$$B = \{y : f_Y(y) > 0\}$$。这种形式的集合称为***叉积***（cross-product），通常记作 $$A \times B$$；判断一个点是否属于叉积可以分别检查其 $$x$$ 与 $$y$$ 坐标。若 $$f(x, y)$$ 是联合 pdf 或 pmf 而其正性集合不是叉积，则以 $$f(x, y)$$ 为联合 pdf 或 pmf 的 $$X$$ 与 $$Y$$ 不独立。例 4.2.4 中集合 $$0 < x < y < \infty$$ 就不是叉积：判断归属不仅要检查 $$0 < x < \infty$$ 与 $$0 < y < \infty$$，还要检查 $$x < y$$。故例 4.2.4 中的随机变量不独立。例 4.2.2 给出了一个正性集合不是叉积的联合 pmf 的例子。
+若 $$X$$ 与 $$Y$$ 独立，则由 (4.2.1) 显然 $$f(x, y)$$ 在集合 $$\lbrace (x, y) : x \in A\ \text{且}\ y \in B \rbrace$$ 上为正，其中 $$A = \lbrace x : f_X(x) > 0 \rbrace$$、$$B = \lbrace y : f_Y(y) > 0 \rbrace$$。这种形式的集合称为***叉积***（cross-product），通常记作 $$A \times B$$；判断一个点是否属于叉积可以分别检查其 $$x$$ 与 $$y$$ 坐标。若 $$f(x, y)$$ 是联合 pdf 或 pmf 而其正性集合不是叉积，则以 $$f(x, y)$$ 为联合 pdf 或 pmf 的 $$X$$ 与 $$Y$$ 不独立。例 4.2.4 中集合 $$0 < x < y < \infty$$ 就不是叉积：判断归属不仅要检查 $$0 < x < \infty$$ 与 $$0 < y < \infty$$，还要检查 $$x < y$$。故例 4.2.4 中的随机变量不独立。例 4.2.2 给出了一个正性集合不是叉积的联合 pmf 的例子。
 
 > **例 4.2.9（联合概率模型）**
 >
@@ -600,7 +600,7 @@ $$
 >
 > 设 $$X$$ 与 $$Y$$ 独立。
 >
-> - a. 对任意 $$A \subset \Re$$ 与 $$B \subset \Re$$，$$P(X \in A, Y \in B) = P(X \in A)\, P(Y \in B)$$，即事件 $$\{X \in A\}$$ 与 $$\{Y \in B\}$$ 独立。
+> - a. 对任意 $$A \subset \Re$$ 与 $$B \subset \Re$$，$$P(X \in A, Y \in B) = P(X \in A)\, P(Y \in B)$$，即事件 $$\lbrace X \in A \rbrace$$ 与 $$\lbrace Y \in B \rbrace$$ 独立。
 >
 > - b. 设 $$g(x)$$ 只是 $$x$$ 的函数，$$h(y)$$ 只是 $$y$$ 的函数，则
 >
@@ -621,7 +621,7 @@ $$
 \end{aligned}
 $$
 >
-> 离散随机变量的结果把积分换成求和即可。(a) 可以按与上类似的一系列步骤证明，或用如下论证：取 $$g(x)$$ 为集合 $$A$$ 的示性函数，$$h(y)$$ 为集合 $$B$$ 的示性函数；注意 $$g(x) h(y)$$ 是集合 $$C = \{(x, y) : x \in A,\ y \in B\} \subset \Re^2$$ 的示性函数；又对示性函数 $$g(x)$$ 有 $$\mathrm{E} g(X) = P(X \in A)$$。于是用刚才证明的期望等式：
+> 离散随机变量的结果把积分换成求和即可。(a) 可以按与上类似的一系列步骤证明，或用如下论证：取 $$g(x)$$ 为集合 $$A$$ 的示性函数，$$h(y)$$ 为集合 $$B$$ 的示性函数；注意 $$g(x) h(y)$$ 是集合 $$C = \lbrace (x, y) : x \in A,\ y \in B \rbrace \subset \Re^2$$ 的示性函数；又对示性函数 $$g(x)$$ 有 $$\mathrm{E} g(X) = P(X \in A)$$。于是用刚才证明的期望等式：
 >
 > $$
 P(X \in A, Y \in B) = P\bigl( (X, Y) \in C \bigr) = \mathrm{E}\bigl( g(X) h(Y) \bigr) = \bigl( \mathrm{E} g(X) \bigr) \bigl( \mathrm{E} h(Y) \bigr) = P(X \in A)\, P(Y \in B).
@@ -690,15 +690,15 @@ P\bigl( (X, Y) \in B \bigr) &= \iint_B f(x, y)\, dx\, dy = \iint_{B \cap A^c} f(
 \end{aligned}
 $$
 
-故 $$(X, Y)$$ 与 $$(X^{*}, Y^{*})$$ 有相同的概率分布。例如 $$f(x, y) = e^{-x - y}$$（$$x > 0$$，$$y > 0$$）是两个独立指数随机变量的 pdf 且满足 (4.2.1)；而与 $$f(x, y)$$ 除“当 $$x = y$$ 时 $$f^{*}(x, y) = 0$$”外处处相等的 $$f^{*}(x, y)$$ 同样是两个独立指数随机变量的 pdf，尽管 (4.2.1) 在集合 $$A = \{(x, x) : x > 0\}$$ 上不成立。
+故 $$(X, Y)$$ 与 $$(X^{*}, Y^{*})$$ 有相同的概率分布。例如 $$f(x, y) = e^{-x - y}$$（$$x > 0$$，$$y > 0$$）是两个独立指数随机变量的 pdf 且满足 (4.2.1)；而与 $$f(x, y)$$ 除“当 $$x = y$$ 时 $$f^{*}(x, y) = 0$$”外处处相等的 $$f^{*}(x, y)$$ 同样是两个独立指数随机变量的 pdf，尽管 (4.2.1) 在集合 $$A = \lbrace (x, x) : x > 0 \rbrace$$ 上不成立。
 
 ## 4.3 二元变换（Bivariate Transformations）
 
 2.1 节讨论了求随机变量函数分布的方法。本节把这些想法推广到二元随机向量的情形。
 
-设 $$(X, Y)$$ 是概率分布已知的二元随机向量。考虑由 $$U = g_1(X, Y)$$ 与 $$V = g_2(X, Y)$$ 定义的新二元随机向量 $$(U, V)$$，其中 $$g_1(x, y)$$ 与 $$g_2(x, y)$$ 是指定函数。若 $$B$$ 是 $$\Re^2$$ 的任意子集，则 $$(U, V) \in B$$ 当且仅当 $$(X, Y) \in A$$，其中 $$A = \{(x, y) : (g_1(x, y), g_2(x, y)) \in B\}$$。于是 $$P((U, V) \in B) = P((X, Y) \in A)$$：$$(U, V)$$ 的概率分布完全由 $$(X, Y)$$ 的概率分布决定。
+设 $$(X, Y)$$ 是概率分布已知的二元随机向量。考虑由 $$U = g_1(X, Y)$$ 与 $$V = g_2(X, Y)$$ 定义的新二元随机向量 $$(U, V)$$，其中 $$g_1(x, y)$$ 与 $$g_2(x, y)$$ 是指定函数。若 $$B$$ 是 $$\Re^2$$ 的任意子集，则 $$(U, V) \in B$$ 当且仅当 $$(X, Y) \in A$$，其中 $$A = \lbrace (x, y) : (g_1(x, y), g_2(x, y)) \in B \rbrace$$。于是 $$P((U, V) \in B) = P((X, Y) \in A)$$：$$(U, V)$$ 的概率分布完全由 $$(X, Y)$$ 的概率分布决定。
 
-若 $$(X, Y)$$ 是离散二元随机向量，则使 $$(X, Y)$$ 的联合 pmf 为正的值只有可数多个；记该集合为 $$\mathcal{A}$$。定义集合 $$\mathcal{B} = \{(u, v) : u = g_1(x, y)\ \text{且}\ v = g_2(x, y)\ \text{对某个}\ (x, y) \in \mathcal{A}\}$$，它就是离散随机向量 $$(U, V)$$ 的可能值的可数集。若对任意 $$(u, v) \in \mathcal{B}$$ 定义 $$A_{uv} = \{(x, y) \in \mathcal{A} : g_1(x, y) = u\ \text{且}\ g_2(x, y) = v\}$$，则 $$(U, V)$$ 的联合 pmf $$f_{U,V}(u, v)$$ 可由 $$(X, Y)$$ 的联合 pmf 算得：
+若 $$(X, Y)$$ 是离散二元随机向量，则使 $$(X, Y)$$ 的联合 pmf 为正的值只有可数多个；记该集合为 $$\mathcal{A}$$。定义集合 $$\mathcal{B} = \lbrace (u, v) : u = g_1(x, y)\ \text{且}\ v = g_2(x, y)\ \text{对某个}\ (x, y) \in \mathcal{A} \rbrace$$，它就是离散随机向量 $$(U, V)$$ 的可能值的可数集。若对任意 $$(u, v) \in \mathcal{B}$$ 定义 $$A_{uv} = \lbrace (x, y) \in \mathcal{A} : g_1(x, y) = u\ \text{且}\ g_2(x, y) = v \rbrace$$，则 $$(U, V)$$ 的联合 pmf $$f_{U,V}(u, v)$$ 可由 $$(X, Y)$$ 的联合 pmf 算得：
 
 $$
 f_{U,V}(u, v) = P(U = u, V = v) = P\bigl( (X, Y) \in A_{uv} \bigr) = \sum_{(x,y) \in A_{uv}} f_{X,Y}(x, y). \tag{4.3.1}
@@ -712,10 +712,10 @@ $$
 f_{X,Y}(x, y) = \frac{\theta^{x} e^{-\theta}}{x!} \cdot \frac{\lambda^{y} e^{-\lambda}}{y!}, \qquad x = 0, 1, 2, \ldots, \quad y = 0, 1, 2, \ldots
 $$
 >
-> 集合 $$\mathcal{A} = \{(x, y) : x = 0, 1, 2, \ldots\ \text{且}\ y = 0, 1, 2, \ldots\}$$。现定义 $$U = X + Y$$ 与 $$V = Y$$，即 $$g_1(x, y) = x + y$$、$$g_2(x, y) = y$$。描述可能值集合 $$\mathcal{B}$$：$$v$$ 的可能值是非负整数（$$v = y$$，取值集合相同）；对给定的 $$v$$，$$u = x + y = x + v$$ 必须是 $$\geq v$$ 的整数（因 $$x$$ 是非负整数）。故全部可能值集合为
+> 集合 $$\mathcal{A} = \lbrace (x, y) : x = 0, 1, 2, \ldots\ \text{且}\ y = 0, 1, 2, \ldots \rbrace$$。现定义 $$U = X + Y$$ 与 $$V = Y$$，即 $$g_1(x, y) = x + y$$、$$g_2(x, y) = y$$。描述可能值集合 $$\mathcal{B}$$：$$v$$ 的可能值是非负整数（$$v = y$$，取值集合相同）；对给定的 $$v$$，$$u = x + y = x + v$$ 必须是 $$\geq v$$ 的整数（因 $$x$$ 是非负整数）。故全部可能值集合为
 >
 > $$
-\mathcal{B} = \{(u, v) : v = 0, 1, 2, \ldots\ \text{且}\ u = v, v+1, v+2, \ldots\}.
+\mathcal{B} = \lbrace (u, v) : v = 0, 1, 2, \ldots\ \text{且}\ u = v, v+1, v+2, \ldots \rbrace.
 $$
 >
 > 对任意 $$(u, v) \in \mathcal{B}$$，满足 $$x + y = u$$ 与 $$y = v$$ 的 $$(x, y)$$ 只有 $$x = u - v$$ 与 $$y = v$$，故本例中 $$A_{uv}$$ 总只含单点 $$(u - v, v)$$。由 (4.3.1) 得 $$(U, V)$$ 的联合 pmf：
@@ -742,7 +742,7 @@ $$
 >
 > 若 $$X \sim \mathrm{Poisson}(\theta)$$，$$Y \sim \mathrm{Poisson}(\lambda)$$，且 $$X$$ 与 $$Y$$ 独立，则 $$X + Y \sim \mathrm{Poisson}(\theta + \lambda)$$。
 
-若 $$(X, Y)$$ 是具有联合 pdf $$f_{X,Y}(x, y)$$ 的连续随机向量，则 $$(U, V)$$ 的联合 pdf 可以用与 (2.1.8) 类似的方式由 $$f_{X,Y}(x, y)$$ 表出。同前，$$\mathcal{A} = \{(x, y) : f_{X,Y}(x, y) > 0\}$$，$$\mathcal{B} = \{(u, v) : u = g_1(x, y)\ \text{且}\ v = g_2(x, y)\ \text{对某个}\ (x, y) \in \mathcal{A}\}$$；联合 pdf $$f_{U,V}(u, v)$$ 在集合 $$\mathcal{B}$$ 上为正。这一结果的最简版本假设变换 $$u = g_1(x, y)$$、$$v = g_2(x, y)$$ 定义了从 $$\mathcal{A}$$ 到 $$\mathcal{B}$$ 上的一一变换。“映上”由 $$\mathcal{B}$$ 的定义保证；我们假设的是对每个 $$(u, v) \in \mathcal{B}$$，恰有一个 $$(x, y) \in \mathcal{A}$$ 使 $$(u, v) = (g_1(x, y), g_2(x, y))$$。对这样的一一映上变换，可以把方程 $$u = g_1(x, y)$$ 与 $$v = g_2(x, y)$$ 解出 $$x$$ 与 $$y$$（用 $$u$$、$$v$$ 表示）；记这一逆变换为 $$x = h_1(u, v)$$ 与 $$y = h_2(u, v)$$。一元情形中导数扮演的角色，现在由变换的雅可比（Jacobian）承担：这个 $$(u, v)$$ 的函数记作 $$J$$，是偏导数矩阵的行列式：
+若 $$(X, Y)$$ 是具有联合 pdf $$f_{X,Y}(x, y)$$ 的连续随机向量，则 $$(U, V)$$ 的联合 pdf 可以用与 (2.1.8) 类似的方式由 $$f_{X,Y}(x, y)$$ 表出。同前，$$\mathcal{A} = \lbrace (x, y) : f_{X,Y}(x, y) > 0 \rbrace$$，$$\mathcal{B} = \lbrace (u, v) : u = g_1(x, y)\ \text{且}\ v = g_2(x, y)\ \text{对某个}\ (x, y) \in \mathcal{A} \rbrace$$；联合 pdf $$f_{U,V}(u, v)$$ 在集合 $$\mathcal{B}$$ 上为正。这一结果的最简版本假设变换 $$u = g_1(x, y)$$、$$v = g_2(x, y)$$ 定义了从 $$\mathcal{A}$$ 到 $$\mathcal{B}$$ 上的一一变换。“映上”由 $$\mathcal{B}$$ 的定义保证；我们假设的是对每个 $$(u, v) \in \mathcal{B}$$，恰有一个 $$(x, y) \in \mathcal{A}$$ 使 $$(u, v) = (g_1(x, y), g_2(x, y))$$。对这样的一一映上变换，可以把方程 $$u = g_1(x, y)$$ 与 $$v = g_2(x, y)$$ 解出 $$x$$ 与 $$y$$（用 $$u$$、$$v$$ 表示）；记这一逆变换为 $$x = h_1(u, v)$$ 与 $$y = h_2(u, v)$$。一元情形中导数扮演的角色，现在由变换的雅可比（Jacobian）承担：这个 $$(u, v)$$ 的函数记作 $$J$$，是偏导数矩阵的行列式：
 
 $$
 J = \begin{vmatrix} \dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v} \\[8pt] \dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v} \end{vmatrix} = \frac{\partial x}{\partial u}\, \frac{\partial y}{\partial v} - \frac{\partial y}{\partial u}\, \frac{\partial x}{\partial v},
@@ -766,7 +766,7 @@ $$
 f_{X,Y}(x, y) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\, \Gamma(\beta)}\, x^{\alpha - 1} (1 - x)^{\beta - 1} \cdot \frac{\Gamma(\alpha + \beta + \gamma)}{\Gamma(\alpha + \beta)\, \Gamma(\gamma)}\, y^{\alpha + \beta - 1} (1 - y)^{\gamma - 1},
 $$
 >
-> $$0 < x < 1$$，$$0 < y < 1$$。考虑变换 $$U = XY$$ 与 $$V = X$$。$$V$$ 的可能值范围是 $$0 < v < 1$$（因 $$V = X$$）。对固定的 $$V = v$$，由于 $$X = V = v$$ 而 $$Y \in (0,1)$$，$$U$$ 必须介于 0 与 $$v$$ 之间。故该变换把集合 $$\mathcal{A}$$ 映到集合 $$\mathcal{B} = \{(u, v) : 0 < u < v < 1\}$$ 上。对任意 $$(u, v) \in \mathcal{B}$$，方程 $$u = xy$$ 与 $$v = x$$ 可唯一解出 $$x = h_1(u, v) = v$$ 与 $$y = h_2(u, v) = u/v$$。注意：若视为定义在整个 $$\Re^2$$ 上的变换，它不是一一的——任何点 $$(0, y)$$ 都被映到 $$(0, 0)$$；但作为只定义在 $$\mathcal{A}$$ 上的函数，它是到 $$\mathcal{B}$$ 上的一一变换。雅可比为
+> $$0 < x < 1$$，$$0 < y < 1$$。考虑变换 $$U = XY$$ 与 $$V = X$$。$$V$$ 的可能值范围是 $$0 < v < 1$$（因 $$V = X$$）。对固定的 $$V = v$$，由于 $$X = V = v$$ 而 $$Y \in (0,1)$$，$$U$$ 必须介于 0 与 $$v$$ 之间。故该变换把集合 $$\mathcal{A}$$ 映到集合 $$\mathcal{B} = \lbrace (u, v) : 0 < u < v < 1 \rbrace$$ 上。对任意 $$(u, v) \in \mathcal{B}$$，方程 $$u = xy$$ 与 $$v = x$$ 可唯一解出 $$x = h_1(u, v) = v$$ 与 $$y = h_2(u, v) = u/v$$。注意：若视为定义在整个 $$\Re^2$$ 上的变换，它不是一一的——任何点 $$(0, y)$$ 都被映到 $$(0, 0)$$；但作为只定义在 $$\mathcal{A}$$ 上的函数，它是到 $$\mathcal{B}$$ 上的一一变换。雅可比为
 >
 > $$
 J = \begin{vmatrix} \dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v} \\[8pt] \dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v} \end{vmatrix} = \begin{vmatrix} 0 & 1 \\[4pt] \dfrac{1}{v} & -\dfrac{u}{v^2} \end{vmatrix} = -\frac{1}{v}.
@@ -843,7 +843,7 @@ $$
 > **证明**　设 $$U$$ 与 $$V$$ 是连续随机变量来证明。对任意 $$u \in \Re$$ 与 $$v \in \Re$$，定义
 >
 > $$
-A_u = \{x : g(x) \leq u\} \qquad\text{与}\qquad B_v = \{y : h(y) \leq v\}.
+A_u = \lbrace x : g(x) \leq u \rbrace \qquad\text{与}\qquad B_v = \lbrace y : h(y) \leq v \rbrace.
 $$
 >
 > 则 $$(U, V)$$ 的联合 cdf 为
@@ -866,7 +866,7 @@ $$
 
 也可能只对单一函数（如 $$U = g_1(X, Y)$$）感兴趣。此时该方法仍可用于求 $$U$$ 的分布：若能选出另一个便利函数 $$V = g_2(X, Y)$$ 使从 $$(X, Y)$$ 到 $$(U, V)$$ 的变换在 $$\mathcal{A}$$ 上一一，则可用 (4.3.2) 导出 $$(U, V)$$ 的联合 pdf，进而由联合 pdf 得 $$U$$ 的边缘 pdf。在上例中，也许我们只关心 $$U = XY$$；可以选取 $$V = X$$（该变换在 $$\mathcal{A}$$ 上一一），然后按例 4.3.3 的步骤得到 $$U$$ 的边缘 pdf。其他选择（如 $$V = Y$$）同样可行（见习题 4.23）。
 
-当然，很多情形下所关心的变换不是一一的。正如定理 2.1.8 把一元方法推广到多对一函数，这里同样可以推广。同前，设 $$\mathcal{A} = \{(x, y) : f_{X,Y}(x, y) > 0\}$$，且 $$A_0, A_1, \ldots, A_k$$ 构成 $$\mathcal{A}$$ 的具有下列性质的分割：集合 $$A_0$$（可为空）满足 $$P((X, Y) \in A_0) = 0$$；变换 $$U = g_1(X, Y)$$、$$V = g_2(X, Y)$$ 对每个 $$i = 1, 2, \ldots, k$$ 都是从 $$A_i$$ 到 $$\mathcal{B}$$ 上的一一变换。于是对每个 $$i$$ 可找到从 $$\mathcal{B}$$ 到 $$A_i$$ 的逆函数；记第 $$i$$ 个逆为 $$x = h_{1i}(u, v)$$ 与 $$y = h_{2i}(u, v)$$。该逆对 $$(u, v) \in \mathcal{B}$$ 给出 $$A_i$$ 中唯一使 $$(u, v) = (g_1(x, y), g_2(x, y))$$ 的 $$(x, y)$$。令 $$J_i$$ 表示由第 $$i$$ 个逆算得的雅可比。假设这些雅可比在 $$\mathcal{B}$$ 上不恒为零，则联合 pdf $$f_{U,V}(u, v)$$ 有如下表示：
+当然，很多情形下所关心的变换不是一一的。正如定理 2.1.8 把一元方法推广到多对一函数，这里同样可以推广。同前，设 $$\mathcal{A} = \lbrace (x, y) : f_{X,Y}(x, y) > 0 \rbrace$$，且 $$A_0, A_1, \ldots, A_k$$ 构成 $$\mathcal{A}$$ 的具有下列性质的分割：集合 $$A_0$$（可为空）满足 $$P((X, Y) \in A_0) = 0$$；变换 $$U = g_1(X, Y)$$、$$V = g_2(X, Y)$$ 对每个 $$i = 1, 2, \ldots, k$$ 都是从 $$A_i$$ 到 $$\mathcal{B}$$ 上的一一变换。于是对每个 $$i$$ 可找到从 $$\mathcal{B}$$ 到 $$A_i$$ 的逆函数；记第 $$i$$ 个逆为 $$x = h_{1i}(u, v)$$ 与 $$y = h_{2i}(u, v)$$。该逆对 $$(u, v) \in \mathcal{B}$$ 给出 $$A_i$$ 中唯一使 $$(u, v) = (g_1(x, y), g_2(x, y))$$ 的 $$(x, y)$$。令 $$J_i$$ 表示由第 $$i$$ 个逆算得的雅可比。假设这些雅可比在 $$\mathcal{B}$$ 上不恒为零，则联合 pdf $$f_{U,V}(u, v)$$ 有如下表示：
 
 $$
 f_{U,V}(u, v) = \sum_{i=1}^{k} f_{X,Y}\bigl( h_{1i}(u, v),\, h_{2i}(u, v) \bigr)\, \vert J_i\vert . \tag{4.3.6}
@@ -877,10 +877,10 @@ $$
 > 设 $$X$$ 与 $$Y$$ 是独立的 $$n(0, 1)$$ 随机变量。考虑变换 $$U = X/Y$$ 与 $$V = \vert Y\vert $$。（若 $$Y = 0$$，可把 $$U$$、$$V$$ 定义为任何值，如 $$(1, 1)$$，因为 $$P(Y = 0) = 0$$。）该变换不是一一的：点 $$(x, y)$$ 与 $$(-x, -y)$$ 被映到同一个 $$(u, v)$$。但若把考虑范围限制在 $$y$$ 为正或 $$y$$ 为负，变换就是一一的。按上述记号，令
 >
 > $$
-A_1 = \{(x, y) : y > 0\}, \qquad A_2 = \{(x, y) : y < 0\}, \qquad A_0 = \{(x, y) : y = 0\}.
+A_1 = \lbrace (x, y) : y > 0 \rbrace, \qquad A_2 = \lbrace (x, y) : y < 0 \rbrace, \qquad A_0 = \lbrace (x, y) : y = 0 \rbrace.
 $$
 >
-> $$A_0$$、$$A_1$$、$$A_2$$ 构成 $$\mathcal{A} = \Re^2$$ 的分割，且 $$P((X, Y) \in A_0) = P(Y = 0) = 0$$。对 $$A_1$$ 或 $$A_2$$：若 $$(x, y) \in A_i$$，则 $$v = \vert y\vert  > 0$$；对固定的 $$v = \vert y\vert $$，$$u = x/y$$ 可为任意实数（因 $$x$$ 任意）。故 $$\mathcal{B} = \{(u, v) : v > 0\}$$ 同时是 $$A_1$$ 与 $$A_2$$ 在变换下的像。此外，从 $$\mathcal{B}$$ 到 $$A_1$$ 与 $$\mathcal{B}$$ 到 $$A_2$$ 的逆变换为
+> $$A_0$$、$$A_1$$、$$A_2$$ 构成 $$\mathcal{A} = \Re^2$$ 的分割，且 $$P((X, Y) \in A_0) = P(Y = 0) = 0$$。对 $$A_1$$ 或 $$A_2$$：若 $$(x, y) \in A_i$$，则 $$v = \vert y\vert  > 0$$；对固定的 $$v = \vert y\vert $$，$$u = x/y$$ 可为任意实数（因 $$x$$ 任意）。故 $$\mathcal{B} = \lbrace (u, v) : v > 0 \rbrace$$ 同时是 $$A_1$$ 与 $$A_2$$ 在变换下的像。此外，从 $$\mathcal{B}$$ 到 $$A_1$$ 与 $$\mathcal{B}$$ 到 $$A_2$$ 的逆变换为
 >
 > $$
 x = h_{11}(u, v) = uv, \quad y = h_{21}(u, v) = v; \qquad
@@ -1121,20 +1121,20 @@ $$
 > 最后一项等于 0，通过迭代期望容易看出：
 >
 > $$
-\mathrm{E}\bigl( \bigl[ X - \mathrm{E}(X \mid Y) \bigr] \bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr] \bigr) = \mathrm{E}\Bigl( \mathrm{E}\Bigl\{ \bigl[ X - \mathrm{E}(X \mid Y) \bigr] \bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr] \,\Big\vert \, Y \Bigr\} \Bigr). \tag{4.4.6}
+\mathrm{E}\bigl( \bigl[ X - \mathrm{E}(X \mid Y) \bigr] \bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr] \bigr) = \mathrm{E}\Bigl( \mathrm{E}\Bigl\lbrace  \bigl[ X - \mathrm{E}(X \mid Y) \bigr] \bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr] \,\Big\vert \, Y \Bigr \rbrace \Bigr). \tag{4.4.6}
 $$
 >
 > 在条件分布 $$X \mid Y$$ 中，随机变量是 $$X$$；因此在表达式
 >
 > $$
-\mathrm{E}\Bigl\{ \bigl[ X - \mathrm{E}(X \mid Y) \bigr] \bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr] \,\Big\vert \, Y \Bigr\}
+\mathrm{E}\Bigl\lbrace  \bigl[ X - \mathrm{E}(X \mid Y) \bigr] \bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr] \,\Big\vert \, Y \Bigr \rbrace
 $$
 >
 > 中，$$\mathrm{E}(X \mid Y)$$ 与 $$\mathrm{E} X$$ 都是常数。于是
 >
 > $$
 \begin{aligned}
-\mathrm{E}\Bigl\{ \bigl[ X - \mathrm{E}(X \mid Y) \bigr] \bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr] \,\Big\vert \, Y \Bigr\} &= \bigl( \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr) \Bigl( \mathrm{E}\bigl\{ X - \mathrm{E}(X \mid Y) \mid Y \bigr\} \Bigr)\\
+\mathrm{E}\Bigl\lbrace  \bigl[ X - \mathrm{E}(X \mid Y) \bigr] \bigl[ \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr] \,\Big\vert \, Y \Bigr \rbrace &= \bigl( \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr) \Bigl( \mathrm{E}\bigl\lbrace  X - \mathrm{E}(X \mid Y) \mid Y \bigr \rbrace \Bigr)\\
 &= \bigl( \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr) \bigl( \mathrm{E}(X \mid Y) - \mathrm{E}(X \mid Y) \bigr)\\
 &= \bigl( \mathrm{E}(X \mid Y) - \mathrm{E} X \bigr) \cdot 0 = 0.
 \end{aligned}
@@ -1380,7 +1380,7 @@ $$
 > 设 $$-\infty < \mu_X < \infty$$，$$-\infty < \mu_Y < \infty$$，$$0 < \sigma_X$$，$$0 < \sigma_Y$$，$$-1 < \rho < 1$$ 为五个实数。均值为 $$\mu_X$$ 与 $$\mu_Y$$、方差为 $$\sigma_X^2$$ 与 $$\sigma_Y^2$$、相关为 $$\rho$$ 的***二元正态 pdf***（bivariate normal pdf）是对 $$-\infty < x < \infty$$ 与 $$-\infty < y < \infty$$ 定义的二元 pdf：
 >
 > $$
-f(x, y) = \frac{1}{2 \pi \sigma_X \sigma_Y \sqrt{1 - \rho^2}} \exp\Biggl\{ -\frac{1}{2(1 - \rho^2)} \Biggl[ \Bigl( \frac{x - \mu_X}{\sigma_X} \Bigr)^{2} - 2 \rho \Bigl( \frac{x - \mu_X}{\sigma_X} \Bigr) \Bigl( \frac{y - \mu_Y}{\sigma_Y} \Bigr) + \Bigl( \frac{y - \mu_Y}{\sigma_Y} \Bigr)^{2} \Biggr] \Biggr\}.
+f(x, y) = \frac{1}{2 \pi \sigma_X \sigma_Y \sqrt{1 - \rho^2}} \exp\Biggl\lbrace  -\frac{1}{2(1 - \rho^2)} \Biggl[ \Bigl( \frac{x - \mu_X}{\sigma_X} \Bigr)^{2} - 2 \rho \Bigl( \frac{x - \mu_X}{\sigma_X} \Bigr) \Bigl( \frac{y - \mu_Y}{\sigma_Y} \Bigr) + \Bigl( \frac{y - \mu_Y}{\sigma_Y} \Bigr)^{2} \Biggr] \Biggr \rbrace.
 $$
 
 二元正态 pdf 的公式虽然看似吓人，这一二元分布却是最常用的分布之一。（事实上，该公式的推导完全可以不吓人，见习题 4.46。）
@@ -1419,7 +1419,7 @@ $$
 $$
 
 $$
-= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} s\, \frac{1}{2\pi \sigma_X \sigma_Y \sqrt{1 - \rho^2}} \exp\Biggl\{ -\frac{1}{2(1 - \rho^2)} \Biggl[ t^2 - 2\rho s + \Bigl( \frac{s}{t} \Bigr)^2 \Biggr] \Biggr\}\, \frac{\sigma_X \sigma_Y}{\vert t\vert }\, ds\, dt.
+= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} s\, \frac{1}{2\pi \sigma_X \sigma_Y \sqrt{1 - \rho^2}} \exp\Biggl\lbrace  -\frac{1}{2(1 - \rho^2)} \Biggl[ t^2 - 2\rho s + \Bigl( \frac{s}{t} \Bigr)^2 \Biggr] \Biggr \rbrace\, \frac{\sigma_X \sigma_Y}{\vert t\vert }\, ds\, dt.
 $$
 
 注意 $$\sqrt{t^2} = \vert t\vert $$ 且 $$t^2 - 2\rho s + \bigl( \tfrac{s}{t} \bigr)^2 = \dfrac{(s - \rho t)^2}{t^2} + (1 - \rho^2)\, t^2$$，可把上式改写为
@@ -1597,7 +1597,7 @@ $$
 
 定理 4.6.4 表明多项 pmf 求和为 1：集合 $$\mathcal{A}$$ 正是定义 4.6.2 中具正概率的点集，pmf 在这些点上的和由定理 4.6.4 为 $$(p_1 + \cdots + p_n)^m = 1^m = 1$$。
 
-现在考虑多项模型的一些边缘分布与条件分布。考虑单个坐标 $$X_i$$：若把第 $$i$$ 个结果的发生标为“成功”、其余标为“失败”，则 $$X_i$$ 是 $$m$$ 次独立试验中成功次数的计数，每次试验成功概率为 $$p_i$$。故 $$X_i$$ 应有 $$\mathrm{binomial}(m, p_i)$$ 分布。为验证，应使用 (4.6.5) 计算 $$X_i$$ 的边缘分布。以 $$X_n$$ 的边缘 pmf 为例：对固定的 $$x_n \in \{0, 1, \ldots, m\}$$，为计算边缘 pmf $$f(x_n)$$，须对所有可能的 $$(x_1, \ldots, x_{n-1})$$ 求和——即使诸 $$x_i$$ 均为非负整数且 $$\sum_{i=1}^{n-1} x_i = m - x_n$$ 的那些点；记该集合为 $$\mathcal{B}$$。则
+现在考虑多项模型的一些边缘分布与条件分布。考虑单个坐标 $$X_i$$：若把第 $$i$$ 个结果的发生标为“成功”、其余标为“失败”，则 $$X_i$$ 是 $$m$$ 次独立试验中成功次数的计数，每次试验成功概率为 $$p_i$$。故 $$X_i$$ 应有 $$\mathrm{binomial}(m, p_i)$$ 分布。为验证，应使用 (4.6.5) 计算 $$X_i$$ 的边缘分布。以 $$X_n$$ 的边缘 pmf 为例：对固定的 $$x_n \in \lbrace 0, 1, \ldots, m \rbrace$$，为计算边缘 pmf $$f(x_n)$$，须对所有可能的 $$(x_1, \ldots, x_{n-1})$$ 求和——即使诸 $$x_i$$ 均为非负整数且 $$\sum_{i=1}^{n-1} x_i = m - x_n$$ 的那些点；记该集合为 $$\mathcal{B}$$。则
 
 $$
 \begin{aligned}
@@ -1729,7 +1729,7 @@ $$
 
 本节最后描述求随机向量变换分布之技术的推广。我们将给出公式 (4.3.6) 的推广，它用原随机向量的 pdf 表示新随机向量的 pdf。注意：要完全理解本节余下内容需要一些矩阵代数知识（例如见 Searle (1982)），特别是需要计算矩阵的行列式；这是全书中唯一需要这类知识的地方。
 
-设 $$(X_1, \ldots, X_n)$$ 是以 $$f_{\textbf{X}}(x_1, \ldots, x_n)$$ 为 pdf 的随机向量，$$\mathcal{A} = \{\textbf{x} : f_{\textbf{X}}(\textbf{x}) > 0\}$$。考虑新随机向量 $$(U_1, \ldots, U_n)$$：$$U_1 = g_1(X_1, \ldots, X_n)$$，$$U_2 = g_2(X_1, \ldots, X_n)$$，……，$$U_n = g_n(X_1, \ldots, X_n)$$。设 $$A_0, A_1, \ldots, A_k$$ 构成 $$\mathcal{A}$$ 的具有下列性质的分割：集合 $$A_0$$（可为空）满足 $$P((X_1, \ldots, X_n) \in A_0) = 0$$；变换 $$(U_1, \ldots, U_n) = (g_1(\textbf{X}), \ldots, g_n(\textbf{X}))$$ 对每个 $$i = 1, 2, \ldots, k$$ 都是从 $$A_i$$ 到 $$\mathcal{B}$$ 上的一一变换。于是对每个 $$i$$ 可找到从 $$\mathcal{B}$$ 到 $$A_i$$ 的逆函数，记第 $$i$$ 个逆为 $$x_1 = h_{1i}(u_1, \ldots, u_n)$$，……，$$x_n = h_{ni}(u_1, \ldots, u_n)$$；该逆对 $$(u_1, \ldots, u_n) \in \mathcal{B}$$ 给出 $$A_i$$ 中唯一使 $$(u_1, \ldots, u_n) = (g_1(\textbf{x}), \ldots, g_n(\textbf{x}))$$ 的 $$(x_1, \ldots, x_n)$$。令 $$J_i$$ 表示由第 $$i$$ 个逆算得的雅可比，即
+设 $$(X_1, \ldots, X_n)$$ 是以 $$f_{\textbf{X}}(x_1, \ldots, x_n)$$ 为 pdf 的随机向量，$$\mathcal{A} = \lbrace \textbf{x} : f_{\textbf{X}}(\textbf{x}) > 0 \rbrace$$。考虑新随机向量 $$(U_1, \ldots, U_n)$$：$$U_1 = g_1(X_1, \ldots, X_n)$$，$$U_2 = g_2(X_1, \ldots, X_n)$$，……，$$U_n = g_n(X_1, \ldots, X_n)$$。设 $$A_0, A_1, \ldots, A_k$$ 构成 $$\mathcal{A}$$ 的具有下列性质的分割：集合 $$A_0$$（可为空）满足 $$P((X_1, \ldots, X_n) \in A_0) = 0$$；变换 $$(U_1, \ldots, U_n) = (g_1(\textbf{X}), \ldots, g_n(\textbf{X}))$$ 对每个 $$i = 1, 2, \ldots, k$$ 都是从 $$A_i$$ 到 $$\mathcal{B}$$ 上的一一变换。于是对每个 $$i$$ 可找到从 $$\mathcal{B}$$ 到 $$A_i$$ 的逆函数，记第 $$i$$ 个逆为 $$x_1 = h_{1i}(u_1, \ldots, u_n)$$，……，$$x_n = h_{ni}(u_1, \ldots, u_n)$$；该逆对 $$(u_1, \ldots, u_n) \in \mathcal{B}$$ 给出 $$A_i$$ 中唯一使 $$(u_1, \ldots, u_n) = (g_1(\textbf{x}), \ldots, g_n(\textbf{x}))$$ 的 $$(x_1, \ldots, x_n)$$。令 $$J_i$$ 表示由第 $$i$$ 个逆算得的雅可比，即
 
 $$
 J_i = \begin{vmatrix}
@@ -1766,7 +1766,7 @@ $$
 U_1 = X_1, \qquad U_2 = X_2 - X_1, \qquad U_3 = X_3 - X_2, \qquad U_4 = X_4 - X_3.
 $$
 >
-> 该变换把 $$\mathcal{A}$$ 映到集合 $$\mathcal{B} = \{\textbf{u} : 0 < u_i < \infty,\ i = 1, 2, 3, 4\}$$ 上。变换是一一的，故 $$k = 1$$，逆变换为
+> 该变换把 $$\mathcal{A}$$ 映到集合 $$\mathcal{B} = \lbrace \textbf{u} : 0 < u_i < \infty,\ i = 1, 2, 3, 4 \rbrace$$ 上。变换是一一的，故 $$k = 1$$，逆变换为
 >
 > $$
 X_1 = U_1, \qquad X_2 = U_1 + U_2, \qquad X_3 = U_1 + U_2 + U_3, \qquad X_4 = U_1 + U_2 + U_3 + U_4.
@@ -1885,19 +1885,19 @@ $$
 赫尔德不等式的其他特例也常有用。在 (4.7.3) 中取 $$Y \equiv 1$$ 得
 
 $$
-\mathrm{E}\vert X\vert  \leq \bigl\{ \mathrm{E}\bigl( \vert X\vert ^{p} \bigr) \bigr\}^{1/p}, \qquad 1 < p < \infty. \tag{4.7.5}
+\mathrm{E}\vert X\vert  \leq \bigl\lbrace  \mathrm{E}\bigl( \vert X\vert ^{p} \bigr) \bigr \rbrace^{1/p}, \qquad 1 < p < \infty. \tag{4.7.5}
 $$
 
 对 $$1 < r < p$$，在 (4.7.5) 中把 $$\vert X\vert $$ 换成 $$\vert X\vert ^{r}$$ 得
 
 $$
-\mathrm{E}\vert X\vert ^{r} \leq \Bigl\{ \mathrm{E}\bigl( \vert X\vert ^{p r} \bigr) \Bigr\}^{1/p}.
+\mathrm{E}\vert X\vert ^{r} \leq \Bigl\lbrace  \mathrm{E}\bigl( \vert X\vert ^{p r} \bigr) \Bigr \rbrace^{1/p}.
 $$
 
 写 $$s = pr$$（注意 $$s > r$$）并整理：
 
 $$
-\bigl\{ \mathrm{E}\vert X\vert ^{r} \bigr\}^{1/r} \leq \Bigl\{ \mathrm{E}\bigl( \vert X\vert ^{s} \bigr) \Bigr\}^{1/s}, \qquad 1 < r < s < \infty, \tag{4.7.6}
+\bigl\lbrace  \mathrm{E}\vert X\vert ^{r} \bigr \rbrace^{1/r} \leq \Bigl\lbrace  \mathrm{E}\bigl( \vert X\vert ^{s} \bigr) \Bigr \rbrace^{1/s}, \qquad 1 < r < s < \infty, \tag{4.7.6}
 $$
 
 即李亚普诺夫不等式（Liapounov's Inequality）。
@@ -2153,7 +2153,7 @@ $$
 **4.26** $$X$$ 与 $$Y$$ 独立，$$X \sim \mathrm{exponential}(\lambda)$$，$$Y \sim \mathrm{exponential}(\mu)$$。无法直接观测 $$X$$ 与 $$Y$$，转而观测随机变量
 
 $$
-Z = \min\{X, Y\} \qquad\text{与}\qquad W = \begin{cases} 1 & \text{若}\ Z = X,\\ 0 & \text{若}\ Z = Y. \end{cases}
+Z = \min\lbrace X, Y \rbrace \qquad\text{与}\qquad W = \begin{cases} 1 & \text{若}\ Z = X,\\ 0 & \text{若}\ Z = Y. \end{cases}
 $$
 
 （这种情形特别出现在医学实验中：$$X$$ 与 $$Y$$ 变量被删失。）(a) 求 $$Z$$ 与 $$W$$ 的联合分布；(b) 证明 $$Z$$ 与 $$W$$ 独立。（提示：证明对 $$i = 0$$ 或 1 有 $$P(Z \leq z \mid W = i) = P(Z \leq z)$$。）
@@ -2347,7 +2347,7 @@ $$
 **4.48** Gelman and Meng (1991) 给出了一大类非二元正态但具有正态条件分布的二元分布。定义 $$(X, Y)$$ 的联合 pdf 为
 
 $$
-f(x, y) \propto \exp\Bigl\{ -\frac{1}{2} \Bigl[ A x^2 y^2 + x^2 + y^2 - 2 B x y - 2 C x - 2 D y \Bigr] \Bigr\},
+f(x, y) \propto \exp\Bigl\lbrace  -\frac{1}{2} \Bigl[ A x^2 y^2 + x^2 + y^2 - 2 B x y - 2 C x - 2 D y \Bigr] \Bigr \rbrace,
 $$
 
 其中 $$A, B, C, D$$ 是常数。(a) 证明 $$X \mid Y = y$$ 的分布是均值为 $$\dfrac{B y + C}{A y^2 + 1}$$、方差为 $$\dfrac{1}{A y^2 + 1}$$ 的正态分布。对 $$Y \mid X = x$$ 导出相应结果。(b) 一个非常有趣的配置是 $$A = 1$$，$$B = 0$$，$$C = D = 8$$。证明该联合分布是双峰的。
@@ -2400,10 +2400,10 @@ $$
 
 **4.60** 参照杂记 4.9.3：对“条件 $$Y = X$$”的三种解释，分别求 $$Y$$ 在“$$Y = X$$”给定下的条件分布。
 
-**4.61** DeGroot (1986) 给出玻尔悖论（杂记 4.9.3）的如下例子：设 $$X_1$$ 与 $$X_2$$ 是 iid $$\mathrm{exponential}(1)$$ 随机变量，定义 $$Z = (X_2 - 1)/X_1$$。概率为零的集合 $$\{Z = 0\}$$ 与 $$\{X_2 = 1\}$$ 看似提供同样的信息，却导致不同的条件分布。(a) 求 $$X_1 \mid Z = 0$$ 的分布，并与 $$X_1 \mid X_2 = 1$$ 的分布比较；(b) 对小 $$\varepsilon > 0$$ 与 $$x_1 > 0$$、$$x_2 > 0$$，考虑集合
+**4.61** DeGroot (1986) 给出玻尔悖论（杂记 4.9.3）的如下例子：设 $$X_1$$ 与 $$X_2$$ 是 iid $$\mathrm{exponential}(1)$$ 随机变量，定义 $$Z = (X_2 - 1)/X_1$$。概率为零的集合 $$\lbrace Z = 0 \rbrace$$ 与 $$\lbrace X_2 = 1 \rbrace$$ 看似提供同样的信息，却导致不同的条件分布。(a) 求 $$X_1 \mid Z = 0$$ 的分布，并与 $$X_1 \mid X_2 = 1$$ 的分布比较；(b) 对小 $$\varepsilon > 0$$ 与 $$x_1 > 0$$、$$x_2 > 0$$，考虑集合
 
 $$
-B_1 = \Bigl\{ (x_1, x_2) : -\varepsilon < \frac{x_2 - 1}{x_1} < \varepsilon \Bigr\} \qquad\text{与}\qquad B_2 = \bigl\{ (x_1, x_2) : 1 - \varepsilon < x_2 < 1 + \varepsilon \bigr\}.
+B_1 = \Bigl\lbrace  (x_1, x_2) : -\varepsilon < \frac{x_2 - 1}{x_1} < \varepsilon \Bigr \rbrace \qquad\text{与}\qquad B_2 = \bigl\lbrace  (x_1, x_2) : 1 - \varepsilon < x_2 < 1 + \varepsilon \bigr \rbrace.
 $$
 
 画出这些集合，论证 $$B_1$$ 含有关于 $$X_1$$ 的信息而 $$B_2$$ 不含；(c) 计算 $$P(X_1 \leq x \mid B_1)$$ 与 $$P(X_1 \leq x \mid B_2)$$，并证明其极限（$$\varepsilon \to 0$$）与 (a) 一致。（由俄亥俄州立大学 L. Mark Berliner 传达。）
@@ -2466,7 +2466,7 @@ $$
 
 形式上，条件期望中的取条件是关于一个子 sigma 代数（定义 1.2.1）进行的：条件期望 $$\mathrm{E}(Y \mid \mathcal{G})$$ 定义为一个随机变量，它在子 sigma 代数 $$\mathcal{G}$$ 的任何集合上的积分与 $$Y$$ 在该集合上的积分一致。这是概率论中相当高级的概念（见 Billingsley 1995, Section 34）。
 
-由于条件期望只通过其积分定义，即使取条件是良定义的，它也可能不唯一。而当我们在概率为零的集合（如 $$\{X = x\}$$）上取条件时，取条件可能不是良定义的，从而更容易出现不同的条件期望。看看这会如何影响我们：最简单的是考察条件分布，即计算 $$\mathrm{E}\bigl[ I(Y \leq y) \mid X = x \bigr]$$。
+由于条件期望只通过其积分定义，即使取条件是良定义的，它也可能不唯一。而当我们在概率为零的集合（如 $$\lbrace X = x \rbrace$$）上取条件时，取条件可能不是良定义的，从而更容易出现不同的条件期望。看看这会如何影响我们：最简单的是考察条件分布，即计算 $$\mathrm{E}\bigl[ I(Y \leq y) \mid X = x \bigr]$$。
 
 Proschan and Presnell (1998) 讲述了一次统计考试的故事。考题是：“若 $$X$$ 与 $$Y$$ 是独立的标准正态，给定 $$Y = X$$ 时 $$Y$$ 的条件分布是什么？”不同学生对条件 $$Y = X$$ 有如下解释：(1) $$Z_1 = 0$$，其中 $$Z_1 = Y - X$$；(2) $$Z_2 = 1$$，其中 $$Z_2 = Y/X$$；(3) $$Z_3 = 1$$，其中 $$Z_3 = I(Y = X)$$。每一种解释都是对条件 $$Y = X$$ 的正确解读，而每一种都导致不同的条件分布（习题 4.60）。
 

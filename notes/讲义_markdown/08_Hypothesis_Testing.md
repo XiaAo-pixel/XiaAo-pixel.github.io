@@ -47,7 +47,7 @@ permalink: /statistics/chap08.html
 
 在哲学层面，有人担心“拒绝 $$H_0$$”与“接受 $$H_1$$”的区别：前者并不蕴含实验者接受了什么状态，只表示拒绝 $$H_0$$ 所定义的状态。类似地，“接受 $$H_0$$”与“不拒绝 $$H_0$$”也可区分：前者蕴含实验者愿意断言 $$H_0$$ 规定的自然状态，后者蕴含实验者其实不信 $$H_0$$ 但没有拒绝它的证据。多数时候我们不纠结这些问题；我们把假设检验问题视为将采取两种行动之一的问题——行动即断言 $$H_0$$ 或 $$H_1$$。
 
-典型地，假设检验用检验统计量 $$W(X_1, \ldots, X_n) = W(\textbf{X})$$（样本的函数）表述。例如某检验可以规定：若样本均值 $$\bar{X}$$ 大于 3 则拒绝 $$H_0$$。此时 $$W(\textbf{X}) = \bar{X}$$ 是检验统计量，拒绝区域是 $$\{ (x_1, \ldots, x_n) : \bar{x} > 3 \}$$。8.2 节讨论选择检验统计量与拒绝区域的方法；8.3 节引入评价检验的准则。与点估计量一样，寻找检验的方法不带保证：它们给出的检验在价值确立之前必须加以评价。
+典型地，假设检验用检验统计量 $$W(X_1, \ldots, X_n) = W(\textbf{X})$$（样本的函数）表述。例如某检验可以规定：若样本均值 $$\bar{X}$$ 大于 3 则拒绝 $$H_0$$。此时 $$W(\textbf{X}) = \bar{X}$$ 是检验统计量，拒绝区域是 $$\lbrace  (x_1, \ldots, x_n) : \bar{x} > 3  \rbrace$$。8.2 节讨论选择检验统计量与拒绝区域的方法；8.3 节引入评价检验的准则。与点估计量一样，寻找检验的方法不带保证：它们给出的检验在价值确立之前必须加以评价。
 
 ## 8.2 寻找检验的方法（Methods of Finding Tests）
 
@@ -71,7 +71,7 @@ $$
 \lambda(\textbf{x}) = \frac{\sup_{\Theta_0} L(\theta \mid \textbf{x})}{\sup_{\Theta} L(\theta \mid \textbf{x})}.
 $$
 >
-> ***似然比检验***（likelihood ratio test，LRT）是任何具有形如 $$\{ \textbf{x} : \lambda(\textbf{x}) \leq c \}$$ 的拒绝区域的检验，其中 $$c$$ 是满足 $$0 \leq c \leq 1$$ 的任意数。
+> ***似然比检验***（likelihood ratio test，LRT）是任何具有形如 $$\lbrace  \textbf{x} : \lambda(\textbf{x}) \leq c  \rbrace$$ 的拒绝区域的检验，其中 $$c$$ 是满足 $$0 \leq c \leq 1$$ 的任意数。
 
 LRT 的道理在 $$f(\textbf{x} \mid \theta)$$ 为离散随机变量 pmf 的情形最容易理解：此时 $$\lambda(\textbf{x})$$ 的分子是观测样本的最大概率——最大在原假设的参数上计算（见习题 8.4）；分母是观测样本在一切可能参数上的最大概率。若备择假设中存在参数点使观测样本比原假设中任何参数点都更可能出现，这两个最大值之比就小。此时 LRT 准则说应拒绝 $$H_0$$、接受 $$H_1$$ 为真。选择数 $$c$$ 的方法在 8.3 节讨论。
 
@@ -101,10 +101,10 @@ $$
 \lambda(\textbf{x}) = \exp\bigl( -n (\bar{x} - \theta_0)^2 / 2 \bigr). \tag{8.2.2}
 $$
 >
-> LRT 是对小 $$\lambda(\textbf{x})$$ 值拒绝 $$H_0$$ 的检验。用 (8.2.2)，拒绝区域 $$\{ \textbf{x} : \lambda(\textbf{x}) \leq c \}$$ 可写为
+> LRT 是对小 $$\lambda(\textbf{x})$$ 值拒绝 $$H_0$$ 的检验。用 (8.2.2)，拒绝区域 $$\lbrace  \textbf{x} : \lambda(\textbf{x}) \leq c  \rbrace$$ 可写为
 >
 > $$
-\Biggl\{ \textbf{x} : \vert \bar{x} - \theta_0\vert  \geq \sqrt{-2 (\log c) / n} \Biggr\}.
+\Biggl\lbrace  \textbf{x} : \vert \bar{x} - \theta_0\vert  \geq \sqrt{-2 (\log c) / n} \Biggr \rbrace.
 $$
 >
 > 当 $$c$$ 在 0 与 1 之间变动时，$$\sqrt{-2 (\log c)/n}$$ 在 0 与 $$\infty$$ 之间变动。故 LRT 恰是“若样本均值与假设值 $$\theta_0$$ 之差超过指定量就拒绝 $$H_0 : \theta = \theta_0$$”的那些检验。
@@ -137,7 +137,7 @@ $$
 \lambda(\textbf{x}) = \begin{cases} 1 & x_{(1)} \leq \theta_0,\\ e^{-n (x_{(1)} - \theta_0)} & x_{(1)} > \theta_0. \end{cases}
 $$
 >
-> $$\lambda(\textbf{x})$$ 的图形见图 8.2.1。LRT（若 $$\lambda(\textbf{X}) \leq c$$ 则拒绝 $$H_0$$ 的检验）是具有拒绝区域 $$\{ \textbf{x} : x_{(1)} \geq \theta_0 - \frac{\log c}{n} \}$$ 的检验。注意拒绝区域只通过充分统计量 $$X_{(1)}$$ 依赖样本；一般情形也是如此（见定理 8.2.4）。
+> $$\lambda(\textbf{x})$$ 的图形见图 8.2.1。LRT（若 $$\lambda(\textbf{X}) \leq c$$ 则拒绝 $$H_0$$ 的检验）是具有拒绝区域 $$\lbrace  \textbf{x} : x_{(1)} \geq \theta_0 - \frac{\log c}{n}  \rbrace$$ 的检验。注意拒绝区域只通过充分统计量 $$X_{(1)}$$ 依赖样本；一般情形也是如此（见定理 8.2.4）。
 
 ![ch08_fig_8_2_1](fig/ch08_fig_8_2_1.png)
 
@@ -187,7 +187,7 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\mu, \sigma^2)$$ 的随机样本，实验者只关心关于 $$\mu$$ 的推断，例如检验 $$H_0 : \mu \leq \mu_0$$ 对 $$H_1 : \mu > \mu_0$$。此时参数 $$\sigma^2$$ 是多余参数。LRT 统计量为
 >
 > $$
-\lambda(\textbf{x}) = \frac{\max_{\{\mu, \sigma^2 : \mu \leq \mu_0,\ \sigma^2 \geq 0\}} L(\mu, \sigma^2 \mid \textbf{x})}{\max_{\{\mu, \sigma^2 : -\infty < \mu < \infty,\ \sigma^2 \geq 0\}} L(\mu, \sigma^2 \mid \textbf{x})} = \frac{\max_{\{\mu, \sigma^2 : \mu \leq \mu_0,\ \sigma^2 \geq 0\}} L(\mu, \sigma^2 \mid \textbf{x})}{L(\hat{\mu}, \hat{\sigma}^2 \mid \textbf{x})},
+\lambda(\textbf{x}) = \frac{\max_{\lbrace \mu, \sigma^2 : \mu \leq \mu_0,\ \sigma^2 \geq 0 \rbrace} L(\mu, \sigma^2 \mid \textbf{x})}{\max_{\lbrace \mu, \sigma^2 : -\infty < \mu < \infty,\ \sigma^2 \geq 0 \rbrace} L(\mu, \sigma^2 \mid \textbf{x})} = \frac{\max_{\lbrace \mu, \sigma^2 : \mu \leq \mu_0,\ \sigma^2 \geq 0 \rbrace} L(\mu, \sigma^2 \mid \textbf{x})}{L(\hat{\mu}, \hat{\sigma}^2 \mid \textbf{x})},
 $$
 >
 > 其中 $$\hat{\mu}$$ 与 $$\hat{\sigma}^2$$ 是 $$\mu$$ 与 $$\sigma^2$$ 的 MLE（例 7.2.11）。进一步：若 $$\hat{\mu} \leq \mu_0$$，则受限最大与无限制最大相同；若 $$\hat{\mu} > \mu_0$$，受限最大是 $$L(\mu_0, \hat{\sigma}_0^2 \mid \textbf{x})$$，其中 $$\hat{\sigma}_0^2 = \sum (x_i - \mu_0)^2 / n$$。故
@@ -208,7 +208,7 @@ $$
 
 概率 $$P(H_0\ \text{为真} \mid \textbf{x})$$ 与 $$P(H_1\ \text{为真} \mid \textbf{x})$$ 对经典统计学家没有意义：经典统计学家视 $$\theta$$ 为固定数，因此假设要么为真要么为假。若 $$\theta \in \Theta_0$$，则对一切 **x** 有 $$P(H_0\ \text{为真} \mid \textbf{x}) = 1$$、$$P(H_1\ \text{为真} \mid \textbf{x}) = 0$$；若 $$\theta \in \Theta_0^{c}$$ 则反之。由于这些概率未知（$$\theta$$ 未知）且不依赖样本 **x**，经典统计学家不使用它们。而在假设检验问题的贝叶斯表述中，这些概率依赖样本 **x**，能提供关于 $$H_0$$ 与 $$H_1$$ 真伪的有用信息。
 
-贝叶斯检验者可以决定：若 $$P(\theta \in \Theta_0 \mid \textbf{X}) \geq P(\theta \in \Theta_0^{c} \mid \textbf{X})$$ 则接受 $$H_0$$ 为真，否则拒绝 $$H_0$$。用前几节的话说，检验统计量（样本的函数）是 $$P(\theta \in \Theta_0^{c} \mid \textbf{X})$$，拒绝区域是 $$\{ \textbf{x} : P(\theta \in \Theta_0^{c} \mid \textbf{x}) > \tfrac{1}{2} \}$$。另一种做法：若贝叶斯检验者想防止错误地拒绝 $$H_0$$，可以只在 $$P(\theta \in \Theta_0^{c} \mid \textbf{X})$$ 大于某个大数（例如 0.99）时才拒绝 $$H_0$$。
+贝叶斯检验者可以决定：若 $$P(\theta \in \Theta_0 \mid \textbf{X}) \geq P(\theta \in \Theta_0^{c} \mid \textbf{X})$$ 则接受 $$H_0$$ 为真，否则拒绝 $$H_0$$。用前几节的话说，检验统计量（样本的函数）是 $$P(\theta \in \Theta_0^{c} \mid \textbf{X})$$，拒绝区域是 $$\lbrace  \textbf{x} : P(\theta \in \Theta_0^{c} \mid \textbf{x}) > \tfrac{1}{2}  \rbrace$$。另一种做法：若贝叶斯检验者想防止错误地拒绝 $$H_0$$，可以只在 $$P(\theta \in \Theta_0^{c} \mid \textbf{X})$$ 大于某个大数（例如 0.99）时才拒绝 $$H_0$$。
 
 > **例 8.2.7（正态贝叶斯检验）**
 >
@@ -240,18 +240,18 @@ $$
 H_0 : \theta \in \bigcap_{\gamma \in \Gamma} \Theta_{\gamma}. \tag{8.2.3}
 $$
 
-这里 $$\Gamma$$ 是任意指标集，视问题可有限或无限。设对每个问题“检验 $$H_{0\gamma} : \theta \in \Theta_{\gamma}$$ 对 $$H_{1\gamma} : \theta \in \Theta_{\gamma}^{c}$$”都有可用的检验，其检验 $$H_{0\gamma}$$ 的拒绝区域为 $$\{ \textbf{x} : T_{\gamma}(\textbf{x}) \in \mathcal{R}_{\gamma} \}$$。则并—交检验的拒绝区域为
+这里 $$\Gamma$$ 是任意指标集，视问题可有限或无限。设对每个问题“检验 $$H_{0\gamma} : \theta \in \Theta_{\gamma}$$ 对 $$H_{1\gamma} : \theta \in \Theta_{\gamma}^{c}$$”都有可用的检验，其检验 $$H_{0\gamma}$$ 的拒绝区域为 $$\lbrace  \textbf{x} : T_{\gamma}(\textbf{x}) \in \mathcal{R}_{\gamma}  \rbrace$$。则并—交检验的拒绝区域为
 
 $$
-\bigcup_{\gamma \in \Gamma} \bigl\{ \textbf{x} : T_{\gamma}(\textbf{x}) \in \mathcal{R}_{\gamma} \bigr\}. \tag{8.2.4}
+\bigcup_{\gamma \in \Gamma} \bigl\lbrace  \textbf{x} : T_{\gamma}(\textbf{x}) \in \mathcal{R}_{\gamma} \bigr \rbrace. \tag{8.2.4}
 $$
 
 道理简单：若诸 $$H_{0\gamma}$$ 之一被拒绝，则 $$H_0$$——按 (8.2.3) 只有当每个 $$H_{0\gamma}$$ 都真时 $$H_0$$ 才真——也必须被拒绝；只有当每个 $$H_{0\gamma}$$ 都被接受为真时，交 $$H_0$$ 才被接受为真。
 
-某些情形下并—交检验拒绝区域有简单表达式。特别地设每个单独检验的拒绝区域形如 $$\{ \textbf{x} : T_{\gamma}(\textbf{x}) > c \}$$（$$c$$ 不依赖 $$\gamma$$），则 (8.2.4) 给出的并—交检验拒绝区域可表达为
+某些情形下并—交检验拒绝区域有简单表达式。特别地设每个单独检验的拒绝区域形如 $$\lbrace  \textbf{x} : T_{\gamma}(\textbf{x}) > c  \rbrace$$（$$c$$ 不依赖 $$\gamma$$），则 (8.2.4) 给出的并—交检验拒绝区域可表达为
 
 $$
-\bigcup_{\gamma \in \Gamma} \{ \textbf{x} : T_{\gamma}(\textbf{x}) > c \} = \Bigl\{ \textbf{x} : \sup_{\gamma \in \Gamma} T_{\gamma}(\textbf{x}) > c \Bigr\}.
+\bigcup_{\gamma \in \Gamma} \lbrace  \textbf{x} : T_{\gamma}(\textbf{x}) > c  \rbrace = \Bigl\lbrace  \textbf{x} : \sup_{\gamma \in \Gamma} T_{\gamma}(\textbf{x}) > c \Bigr \rbrace.
 $$
 
 故检验 $$H_0$$ 的检验统计量是 $$T(\textbf{x}) = \sup_{\gamma \in \Gamma} T_{\gamma}(\textbf{x})$$。$$T(\textbf{x})$$ 有简单公式的例子见第 11 章。
@@ -261,7 +261,7 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\mu, \sigma^2)$$ 总体的随机样本。考虑检验 $$H_0 : \mu = \mu_0$$ 对 $$H_1 : \mu \neq \mu_0$$（$$\mu_0$$ 指定）。可以把 $$H_0$$ 写成两个集合的交：
 >
 > $$
-H_0 : \{ \mu : \mu \leq \mu_0 \} \cap \{ \mu : \mu \geq \mu_0 \}.
+H_0 : \lbrace  \mu : \mu \leq \mu_0  \rbrace \cap \lbrace  \mu : \mu \geq \mu_0  \rbrace.
 $$
 >
 > $$H_{0L} : \mu \leq \mu_0$$ 对 $$H_{1L} : \mu > \mu_0$$ 的 LRT 是
@@ -296,16 +296,16 @@ $$
 H_0 : \theta \in \bigcup_{\gamma \in \Gamma} \Theta_{\gamma}. \tag{8.2.5}
 $$
 
-设对每个 $$\gamma \in \Gamma$$，$$\{ \textbf{x} : T_{\gamma}(\textbf{x}) \in \mathcal{R}_{\gamma} \}$$ 是检验 $$H_{0\gamma} : \theta \in \Theta_{\gamma}$$ 对 $$H_{1\gamma} : \theta \in \Theta_{\gamma}^{c}$$ 的拒绝区域。则 $$H_0$$ 对 $$H_1$$ 的交—并检验的拒绝区域为
+设对每个 $$\gamma \in \Gamma$$，$$\lbrace  \textbf{x} : T_{\gamma}(\textbf{x}) \in \mathcal{R}_{\gamma}  \rbrace$$ 是检验 $$H_{0\gamma} : \theta \in \Theta_{\gamma}$$ 对 $$H_{1\gamma} : \theta \in \Theta_{\gamma}^{c}$$ 的拒绝区域。则 $$H_0$$ 对 $$H_1$$ 的交—并检验的拒绝区域为
 
 $$
-\bigcap_{\gamma \in \Gamma} \bigl\{ \textbf{x} : T_{\gamma}(\textbf{x}) \in \mathcal{R}_{\gamma} \bigr\}. \tag{8.2.6}
+\bigcap_{\gamma \in \Gamma} \bigl\lbrace  \textbf{x} : T_{\gamma}(\textbf{x}) \in \mathcal{R}_{\gamma} \bigr \rbrace. \tag{8.2.6}
 $$
 
-由 (8.2.5)，$$H_0$$ 为假当且仅当所有 $$H_{0\gamma}$$ 都假，故当且仅当每个单独假设 $$H_{0\gamma}$$ 都能被拒绝时 $$H_0$$ 才能被拒绝。同样，若单独假设的拒绝区域都形如 $$\{ \textbf{x} : T_{\gamma}(\textbf{x}) \geq c \}$$（$$c$$ 与 $$\gamma$$ 无关），检验可以大大简化：此时 $$H_0$$ 的拒绝区域为
+由 (8.2.5)，$$H_0$$ 为假当且仅当所有 $$H_{0\gamma}$$ 都假，故当且仅当每个单独假设 $$H_{0\gamma}$$ 都能被拒绝时 $$H_0$$ 才能被拒绝。同样，若单独假设的拒绝区域都形如 $$\lbrace  \textbf{x} : T_{\gamma}(\textbf{x}) \geq c  \rbrace$$（$$c$$ 与 $$\gamma$$ 无关），检验可以大大简化：此时 $$H_0$$ 的拒绝区域为
 
 $$
-\bigcap_{\gamma \in \Gamma} \{ \textbf{x} : T_{\gamma}(\textbf{x}) \geq c \} = \Bigl\{ \textbf{x} : \inf_{\gamma \in \Gamma} T_{\gamma}(\textbf{x}) \geq c \Bigr\}.
+\bigcap_{\gamma \in \Gamma} \lbrace  \textbf{x} : T_{\gamma}(\textbf{x}) \geq c  \rbrace = \Bigl\lbrace  \textbf{x} : \inf_{\gamma \in \Gamma} T_{\gamma}(\textbf{x}) \geq c \Bigr \rbrace.
 $$
 
 交—并检验对统计量 $$\inf_{\gamma \in \Gamma} T_{\gamma}(\textbf{X})$$ 的大值拒绝 $$H_0$$。
@@ -317,7 +317,7 @@ $$
 > 评估装饰织物质量的两个重要参数是 $$\theta_1$$（平均断裂强度）与 $$\theta_2$$（通过可燃性测试的概率）。标准可规定 $$\theta_1$$ 应超过 50 磅、$$\theta_2$$ 应超过 0.95，织物只有同时满足两项标准才合格。这可以用假设检验建模：
 >
 > $$
-H_0 : \{ \theta_1 \leq 50\ \text{或}\ \theta_2 \leq 0.95 \} \qquad\text{对}\qquad H_1 : \{ \theta_1 > 50\ \text{且}\ \theta_2 > 0.95 \},
+H_0 : \lbrace  \theta_1 \leq 50\ \text{或}\ \theta_2 \leq 0.95  \rbrace \qquad\text{对}\qquad H_1 : \lbrace  \theta_1 > 50\ \text{且}\ \theta_2 > 0.95  \rbrace,
 $$
 >
 > 一批材料只有在 $$H_1$$ 被接受时才合格。
@@ -325,7 +325,7 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是 $$n$$ 个样品断裂强度的测量，假设为 iid $$n(\theta_1, \sigma^2)$$。$$H_{01} : \theta_1 \leq 50$$ 的 LRT 将在 $$(\bar{X} - 50)/(S/\sqrt{n}) > t$$ 时拒绝 $$H_{01}$$。设还有 $$m$$ 个可燃性测试结果 $$Y_1, \ldots, Y_m$$（第 $$i$$ 个样品通过测试时 $$Y_i = 1$$，否则为 0）。若 $$Y_1, \ldots, Y_m$$ 建模为 iid $$\mathrm{Bernoulli}(\theta_2)$$ 随机变量，LRT 将在 $$\sum_{i=1}^{m} Y_i > b$$ 时拒绝 $$H_{02} : \theta_2 \leq 0.95$$（见习题 8.3）。综合起来，交—并检验的拒绝区域为
 >
 > $$
-\Biggl\{ (\textbf{x}, \textbf{y}) : \frac{\bar{x} - 50}{s / \sqrt{n}} > t \ \text{且}\ \sum_{i=1}^{m} y_i > b \Biggr\}.
+\Biggl\lbrace  (\textbf{x}, \textbf{y}) : \frac{\bar{x} - 50}{s / \sqrt{n}} > t \ \text{且}\ \sum_{i=1}^{m} y_i > b \Biggr \rbrace.
 $$
 >
 > 于是交—并检验判定产品合格（即 $$H_1$$ 为真），当且仅当它判定每个单独参数都达标（即每个 $$H_{1i}$$ 为真）。若定义产品质量的参数多于两个，可以用交—并方法把各参数的单独检验组合成产品质量的总体检验。
@@ -581,7 +581,7 @@ $$
 \alpha = P_{\theta_0}(T \in \mathcal{S}). \tag{8.3.5}
 $$
 >
-> **证明**　用原样本 $$\textbf{X}$$ 表示，基于 $$T$$ 的检验有拒绝区域 $$\mathcal{R} = \{ \textbf{x} : T(\textbf{x}) \in \mathcal{S} \}$$。由因子分解定理，$$\textbf{X}$$ 的 pdf 或 pmf 可写为 $$f(\textbf{x} \mid \theta_i) = g\bigl( T(\textbf{x}) \mid \theta_i \bigr)\, h(\textbf{x})$$（$$i = 0, 1$$，某非负函数 $$h(\textbf{x})$$）。把 (8.3.4) 中的不等式乘以该非负函数，可见 $$\mathcal{R}$$ 满足
+> **证明**　用原样本 $$\textbf{X}$$ 表示，基于 $$T$$ 的检验有拒绝区域 $$\mathcal{R} = \lbrace  \textbf{x} : T(\textbf{x}) \in \mathcal{S}  \rbrace$$。由因子分解定理，$$\textbf{X}$$ 的 pdf 或 pmf 可写为 $$f(\textbf{x} \mid \theta_i) = g\bigl( T(\textbf{x}) \mid \theta_i \bigr)\, h(\textbf{x})$$（$$i = 0, 1$$，某非负函数 $$h(\textbf{x})$$）。把 (8.3.4) 中的不等式乘以该非负函数，可见 $$\mathcal{R}$$ 满足
 >
 > $$
 \textbf{x} \in \mathcal{R}\ \text{若}\ f(\textbf{x} \mid \theta_1) = g\bigl( T(\textbf{x}) \mid \theta_1 \bigr)\, h(\textbf{x}) > k\, g\bigl( T(\textbf{x}) \mid \theta_0 \bigr)\, h(\textbf{x}) = k\, f(\textbf{x} \mid \theta_0)
@@ -629,13 +629,13 @@ $$
 
 > **定义 8.3.16（单调似然比）**
 >
-> 设 $$\{ g(t \mid \theta) : \theta \in \Theta \}$$ 是实值参数 $$\theta$$ 的一元随机变量 $$T$$ 的 pdf 或 pmf 族。若对每个 $$\theta_2 > \theta_1$$，$$g(t \mid \theta_2)/g(t \mid \theta_1)$$ 在 $$\{ t : g(t \mid \theta_1) > 0\ \text{或}\ g(t \mid \theta_2) > 0 \}$$ 上是 $$t$$ 的单调（非增或非降）函数，则称该族具有单调似然比（monotone likelihood ratio，MLR）。注意当 $$0 < c$$ 时 $$c/0$$ 定义为 $$\infty$$。
+> 设 $$\lbrace  g(t \mid \theta) : \theta \in \Theta  \rbrace$$ 是实值参数 $$\theta$$ 的一元随机变量 $$T$$ 的 pdf 或 pmf 族。若对每个 $$\theta_2 > \theta_1$$，$$g(t \mid \theta_2)/g(t \mid \theta_1)$$ 在 $$\lbrace  t : g(t \mid \theta_1) > 0\ \text{或}\ g(t \mid \theta_2) > 0  \rbrace$$ 上是 $$t$$ 的单调（非增或非降）函数，则称该族具有单调似然比（monotone likelihood ratio，MLR）。注意当 $$0 < c$$ 时 $$c/0$$ 定义为 $$\infty$$。
 
 许多常见分布族有 MLR：例如正态族（方差已知、均值未知）、泊松族与二项族都有 MLR。事实上任何正则指数族 $$g(t \mid \theta) = h(t)\, c(\theta)\, e^{w(\theta)\, t}$$，只要 $$w(\theta)$$ 是非降函数，就有 MLR（见习题 8.25）。
 
 > **定理 8.3.17（Karlin–Rubin 定理）**
 >
-> 考虑检验 $$H_0 : \theta \leq \theta_0$$ 对 $$H_1 : \theta > \theta_0$$。设 $$T$$ 是 $$\theta$$ 的充分统计量，$$T$$ 的 pdf 或 pmf 族 $$\{ g(t \mid \theta) : \theta \in \Theta \}$$ 有 MLR。则对任意 $$t_0$$，“当且仅当 $$T > t_0$$ 时拒绝 $$H_0$$”的检验是 UMP 水平 $$\alpha$$ 检验，其中 $$\alpha = P_{\theta_0}(T > t_0)$$。
+> 考虑检验 $$H_0 : \theta \leq \theta_0$$ 对 $$H_1 : \theta > \theta_0$$。设 $$T$$ 是 $$\theta$$ 的充分统计量，$$T$$ 的 pdf 或 pmf 族 $$\lbrace  g(t \mid \theta) : \theta \in \Theta  \rbrace$$ 有 MLR。则对任意 $$t_0$$，“当且仅当 $$T > t_0$$ 时拒绝 $$H_0$$”的检验是 UMP 水平 $$\alpha$$ 检验，其中 $$\alpha = P_{\theta_0}(T > t_0)$$。
 >
 > **证明**　设 $$\beta(\theta) = P_{\theta}(T > t_0)$$ 为检验的功效函数。固定 $$\theta' > \theta_0$$，考虑检验 $$H_0' : \theta = \theta_0$$ 对 $$H_1' : \theta = \theta'$$。由于 $$T$$ 的 pdf 或 pmf 族有 MLR，$$\beta(\theta)$$ 非降（习题 8.34），故
 >
@@ -647,7 +647,7 @@ $$
   k' = \inf_{t \in \mathcal{T}}\, \frac{g(t \mid \theta')}{g(t \mid \theta_0)},
   $$
 >
->   其中 $$\mathcal{T} = \{ t : t > t_0\ \text{且}\ g(t \mid \theta') > 0\ \text{或}\ g(t \mid \theta_0) > 0 \}$$，可得
+>   其中 $$\mathcal{T} = \lbrace  t : t > t_0\ \text{且}\ g(t \mid \theta') > 0\ \text{或}\ g(t \mid \theta_0) > 0  \rbrace$$，可得
 >
 >   $$
   T > t_0 \iff \frac{g(t \mid \theta')}{g(t \mid \theta_0)} > k'.
@@ -726,10 +726,10 @@ $$
 > 考虑检验 $$H_0 : \theta \in \Theta_0$$ 对 $$H_1 : \theta \in \Theta_0^{c}$$，$$\Theta_0 = \bigcap_{\gamma \in \Gamma} \Theta_{\gamma}$$，$$\lambda_{\gamma}(\textbf{x})$$ 如上段所定义。定义 $$T(\textbf{x}) = \inf_{\gamma \in \Gamma} \lambda_{\gamma}(\textbf{x})$$，构成拒绝区域
 >
 > $$
-\Bigl\{ \textbf{x} : \lambda_{\gamma}(\textbf{x}) < c\ \text{对某个}\ \gamma \in \Gamma \Bigr\} = \{ \textbf{x} : T(\textbf{x}) < c \}
+\Bigl\lbrace  \textbf{x} : \lambda_{\gamma}(\textbf{x}) < c\ \text{对某个}\ \gamma \in \Gamma \Bigr \rbrace = \lbrace  \textbf{x} : T(\textbf{x}) < c  \rbrace
 $$
 >
-> 的 UIT；同时考虑拒绝区域为 $$\{ \textbf{x} : \lambda(\textbf{x}) < c \}$$ 的通常 LRT。则
+> 的 UIT；同时考虑拒绝区域为 $$\lbrace  \textbf{x} : \lambda(\textbf{x}) < c  \rbrace$$ 的通常 LRT。则
 >
 > - a. 对每个 **x**，$$T(\textbf{x}) \geq \lambda(\textbf{x})$$；
 >
@@ -744,7 +744,7 @@ $$
 \lambda_{\gamma}(\textbf{x}) \geq \lambda(\textbf{x})
 $$
 >
-> （单个 $$\lambda_{\gamma}$$ 的最大化区域更大）。故 $$T(\textbf{x}) = \inf_{\gamma \in \Gamma} \lambda_{\gamma}(\textbf{x}) \geq \lambda(\textbf{x})$$，(a) 得证。由 (a)，$$\{ \textbf{x} : T(\textbf{x}) < c \} \subset \{ \textbf{x} : \lambda(\textbf{x}) < c \}$$，故
+> （单个 $$\lambda_{\gamma}$$ 的最大化区域更大）。故 $$T(\textbf{x}) = \inf_{\gamma \in \Gamma} \lambda_{\gamma}(\textbf{x}) \geq \lambda(\textbf{x})$$，(a) 得证。由 (a)，$$\lbrace  \textbf{x} : T(\textbf{x}) < c  \rbrace \subset \lbrace  \textbf{x} : \lambda(\textbf{x}) < c  \rbrace$$，故
 >
 > $$
 \beta_T(\theta) = P_{\theta}\bigl( T(\textbf{X}) < c \bigr) \leq P_{\theta}\bigl( \lambda(\textbf{X}) < c \bigr) = \beta_{\lambda}(\theta),
@@ -1036,7 +1036,7 @@ $$
 
 **8.25** 证明下列每族都有 MLR：(a) $$\sigma^2$$ 已知的 $$n(\theta, \sigma^2)$$ 族；(b) $$\mathrm{Poisson}(\theta)$$ 族；(c) $$n$$ 已知的 $$\mathrm{binomial}(n, \theta)$$ 族。
 
-**8.26** (a) 证明：若 pdf 族 $$\{ f(\textbf{x} \mid \theta) : \theta \in \Theta \}$$ 有 MLR，则相应的 cdf 族关于 $$\theta$$ 随机递增。（另见杂记一节。）(b) 证明 (a) 的逆不成立：给出一个 cdf 族关于 $$\theta$$ 随机递增但相应 pdf 族没有 MLR 的例子。
+**8.26** (a) 证明：若 pdf 族 $$\lbrace  f(\textbf{x} \mid \theta) : \theta \in \Theta  \rbrace$$ 有 MLR，则相应的 cdf 族关于 $$\theta$$ 随机递增。（另见杂记一节。）(b) 证明 (a) 的逆不成立：给出一个 cdf 族关于 $$\theta$$ 随机递增但相应 pdf 族没有 MLR 的例子。
 
 **8.27** 设 $$g(t \mid \theta) = h(t)\, c(\theta)\, e^{w(\theta)\, t}$$ 是随机变量 $$T$$ 的单参数指数族。证明若 $$w(\theta)$$ 是 $$\theta$$ 的递增函数，该族有 MLR。给出三个这样的族的例子。
 

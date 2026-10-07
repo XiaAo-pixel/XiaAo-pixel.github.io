@@ -37,28 +37,28 @@ $$
 与 $$g$$ 相联系的是一个逆映射，记作 $$g^{-1}$$，它是从 $$\mathcal{Y}$$ 的子集到 $$\mathcal{X}$$ 的子集的映射，定义为
 
 $$
-g^{-1}(A) = \{ x \in \mathcal{X} : g(x) \in A \}. \tag{2.1.1}
+g^{-1}(A) = \lbrace  x \in \mathcal{X} : g(x) \in A  \rbrace. \tag{2.1.1}
 $$
 
-注意映射 $$g^{-1}$$ 把集合映为集合，即 $$g^{-1}(A)$$ 是 $$\mathcal{X}$$ 中被 $$g(x)$$ 送入集合 $$A$$ 的那些点的全体。$$A$$ 可以是单点集，例如 $$A = \{y\}$$，此时
+注意映射 $$g^{-1}$$ 把集合映为集合，即 $$g^{-1}(A)$$ 是 $$\mathcal{X}$$ 中被 $$g(x)$$ 送入集合 $$A$$ 的那些点的全体。$$A$$ 可以是单点集，例如 $$A = \lbrace y \rbrace$$，此时
 
 $$
-g^{-1}(\{y\}) = \{ x \in \mathcal{X} : g(x) = y \}.
+g^{-1}(\lbrace y \rbrace) = \lbrace  x \in \mathcal{X} : g(x) = y  \rbrace.
 $$
 
-这种情况下我们常写 $$g^{-1}(y)$$ 代替 $$g^{-1}(\{y\})$$。但 $$g^{-1}(y)$$ 仍可能是一个集合：若有多于一个 $$x$$ 使 $$g(x) = y$$。若只有一个 $$x$$ 使 $$g(x) = y$$，则 $$g^{-1}(y)$$ 是单点集 $$\{x\}$$，我们就写 $$g^{-1}(y) = x$$。现在若定义随机变量 $$Y = g(X)$$，则对任意集合 $$A \subset \mathcal{Y}$$，
+这种情况下我们常写 $$g^{-1}(y)$$ 代替 $$g^{-1}(\lbrace y \rbrace)$$。但 $$g^{-1}(y)$$ 仍可能是一个集合：若有多于一个 $$x$$ 使 $$g(x) = y$$。若只有一个 $$x$$ 使 $$g(x) = y$$，则 $$g^{-1}(y)$$ 是单点集 $$\lbrace x \rbrace$$，我们就写 $$g^{-1}(y) = x$$。现在若定义随机变量 $$Y = g(X)$$，则对任意集合 $$A \subset \mathcal{Y}$$，
 
 $$
 \begin{aligned}
 P(Y \in A) &= P\bigl( g(X) \in A \bigr)\\
-&= P\bigl( \{ x \in \mathcal{X} : g(x) \in A \} \bigr)\\
+&= P\bigl( \lbrace  x \in \mathcal{X} : g(x) \in A  \rbrace \bigr)\\
 &= P\bigl( X \in g^{-1}(A) \bigr).
 \end{aligned} \tag{2.1.2}
 $$
 
 这就定义了 $$Y$$ 的概率分布。容易证明该概率分布满足柯尔莫哥洛夫公理。
 
-若 $$X$$ 是离散随机变量，则 $$\mathcal{X}$$ 可数。$$Y = g(X)$$ 的样本空间 $$\mathcal{Y} = \{y : y = g(x),\, x \in \mathcal{X}\}$$ 也可数，故 $$Y$$ 也是离散随机变量。利用 (2.1.2)，$$Y$$ 的 pmf 为
+若 $$X$$ 是离散随机变量，则 $$\mathcal{X}$$ 可数。$$Y = g(X)$$ 的样本空间 $$\mathcal{Y} = \lbrace y : y = g(x),\, x \in \mathcal{X} \rbrace$$ 也可数，故 $$Y$$ 也是离散随机变量。利用 (2.1.2)，$$Y$$ 的 pmf 为
 
 $$
 f_Y(y) = P(Y = y) = \sum_{x \in g^{-1}(y)} P(X = x) = \sum_{x \in g^{-1}(y)} f_X(x), \qquad y \in \mathcal{Y},
@@ -74,7 +74,7 @@ $$
 f_X(x) = P(X = x) = \binom{n}{x} p^x (1-p)^{n-x}, \qquad x = 0, 1, \ldots, n, \tag{2.1.3}
 $$
 >
-> 其中 $$n$$ 为正整数，$$0 \leq p \leq 1$$，则称 $$X$$ 服从***二项分布***（binomial distribution）。像 $$n$$ 与 $$p$$ 这样可以取不同值、从而产生不同概率分布的量称为***参数***（parameters）。考虑随机变量 $$Y = g(X)$$，其中 $$g(x) = n - x$$，即 $$Y = n - X$$。这里 $$\mathcal{X} = \{0, 1, \ldots, n\}$$，且 $$\mathcal{Y} = \{y : y = g(x),\, x \in \mathcal{X}\} = \{0, 1, \ldots, n\}$$。对任意 $$y \in \mathcal{Y}$$，$$n - x = g(x) = y$$ 当且仅当 $$x = n - y$$。故 $$g^{-1}(y)$$ 是单点 $$x = n - y$$，于是
+> 其中 $$n$$ 为正整数，$$0 \leq p \leq 1$$，则称 $$X$$ 服从***二项分布***（binomial distribution）。像 $$n$$ 与 $$p$$ 这样可以取不同值、从而产生不同概率分布的量称为***参数***（parameters）。考虑随机变量 $$Y = g(X)$$，其中 $$g(x) = n - x$$，即 $$Y = n - X$$。这里 $$\mathcal{X} = \lbrace 0, 1, \ldots, n \rbrace$$，且 $$\mathcal{Y} = \lbrace y : y = g(x),\, x \in \mathcal{X} \rbrace = \lbrace 0, 1, \ldots, n \rbrace$$。对任意 $$y \in \mathcal{Y}$$，$$n - x = g(x) = y$$ 当且仅当 $$x = n - y$$。故 $$g^{-1}(y)$$ 是单点 $$x = n - y$$，于是
 >
 > $$
 \begin{aligned}
@@ -93,12 +93,12 @@ $$Y = g(X)$$ 的 cdf 为
 $$
 \begin{aligned}
 F_Y(y) &= P(Y \leq y) = P\bigl( g(X) \leq y \bigr)\\
-&= P\bigl( \{ x \in \mathcal{X} : g(x) \leq y \} \bigr)\\
-&= \int_{\{x \in \mathcal{X} : g(x) \leq y\}} f_X(x)\, dx.
+&= P\bigl( \lbrace  x \in \mathcal{X} : g(x) \leq y  \rbrace \bigr)\\
+&= \int_{\lbrace x \in \mathcal{X} : g(x) \leq y \rbrace} f_X(x)\, dx.
 \end{aligned} \tag{2.1.4}
 $$
 
-有时识别集合 $$\{x \in \mathcal{X} : g(x) \leq y\}$$ 并在其上积分 $$f_X(x)$$ 可能有困难，如下例所示。
+有时识别集合 $$\lbrace x \in \mathcal{X} : g(x) \leq y \rbrace$$ 并在其上积分 $$f_X(x)$$ 可能有困难，如下例所示。
 
 > **例 2.1.2（均匀变换）**
 >
@@ -141,7 +141,7 @@ $$
 做变换时，随时记牢随机变量的样本空间非常重要，否则极易产生混淆。从 $$X$$ 变换到 $$Y = g(X)$$ 时，最方便的取法是
 
 $$
-\mathcal{X} = \{x : f_X(x) > 0\} \qquad\text{与}\qquad \mathcal{Y} = \{y : y = g(x)\ \text{对某个}\ x \in \mathcal{X}\}. \tag{2.1.7}
+\mathcal{X} = \lbrace x : f_X(x) > 0 \rbrace \qquad\text{与}\qquad \mathcal{Y} = \lbrace y : y = g(x)\ \text{对某个}\ x \in \mathcal{X} \rbrace. \tag{2.1.7}
 $$
 
 随机变量 $$X$$ 的 pdf 仅在集合 $$\mathcal{X}$$ 上为正，在其余处为零。这样的集合称为分布的***支撑集***（support set），或通俗地称为分布的***支撑***（support）。这一术语同样适用于 pmf，或更一般地适用于任何非负函数。
@@ -157,13 +157,13 @@ $$
 若 $$g$$ 递增，则
 
 $$
-\{ x \in \mathcal{X} : g(x) \leq y \} = \bigl\{ x \in \mathcal{X} : g^{-1}(g(x)) \leq g^{-1}(y) \bigr\} = \bigl\{ x \in \mathcal{X} : x \leq g^{-1}(y) \bigr\}. \tag{2.1.8}
+\lbrace  x \in \mathcal{X} : g(x) \leq y  \rbrace = \bigl\lbrace  x \in \mathcal{X} : g^{-1}(g(x)) \leq g^{-1}(y) \bigr \rbrace = \bigl\lbrace  x \in \mathcal{X} : x \leq g^{-1}(y) \bigr \rbrace. \tag{2.1.8}
 $$
 
 若 $$g$$ 递减，则
 
 $$
-\{ x \in \mathcal{X} : g(x) \leq y \} = \bigl\{ x \in \mathcal{X} : g^{-1}(g(x)) \geq g^{-1}(y) \bigr\} = \bigl\{ x \in \mathcal{X} : x \geq g^{-1}(y) \bigr\}. \tag{2.1.9}
+\lbrace  x \in \mathcal{X} : g(x) \leq y  \rbrace = \bigl\lbrace  x \in \mathcal{X} : g^{-1}(g(x)) \geq g^{-1}(y) \bigr \rbrace = \bigl\lbrace  x \in \mathcal{X} : x \geq g^{-1}(y) \bigr \rbrace. \tag{2.1.9}
 $$
 
 （画一张图即可说明递减情形不等号为何反向。）
@@ -171,7 +171,7 @@ $$
 若 $$g(x)$$ 是递增函数，则由 (2.1.4) 可写
 
 $$
-F_Y(y) = \int_{\{x \in \mathcal{X} : x \leq g^{-1}(y)\}} f_X(x)\, dx = \int_{-\infty}^{g^{-1}(y)} f_X(x)\, dx = F_X\bigl( g^{-1}(y) \bigr).
+F_Y(y) = \int_{\lbrace x \in \mathcal{X} : x \leq g^{-1}(y) \rbrace} f_X(x)\, dx = \int_{-\infty}^{g^{-1}(y)} f_X(x)\, dx = F_X\bigl( g^{-1}(y) \bigr).
 $$
 
 若 $$g(x)$$ 是递减函数，则
@@ -294,7 +294,7 @@ $$
 >
 > - ii. $$g_i(x)$$ 在 $$A_i$$ 上单调；
 >
-> - iii. 集合 $$\mathcal{Y}_i = \{y : y = g_i(x)\ \text{对某个}\ x \in A_i\}$$ 对每个 $$i = 1, \ldots, k$$ 相同；
+> - iii. 集合 $$\mathcal{Y}_i = \lbrace y : y = g_i(x)\ \text{对某个}\ x \in A_i \rbrace$$ 对每个 $$i = 1, \ldots, k$$ 相同；
 >
 > - iv. 对每个 $$i = 1, \ldots, k$$，$$g_i^{-1}(y)$$ 在 $$\mathcal{Y}$$ 上有连续导数。
 >
@@ -322,7 +322,7 @@ $$
 >
 > $$
 \begin{aligned}
-A_0 &= \{0\};\\
+A_0 &= \lbrace 0 \rbrace;\\
 A_1 &= (-\infty, 0), \qquad g_1(x) = x^2, \qquad g_1^{-1}(y) = -\sqrt{y};\\
 A_2 &= (0, \infty), \qquad\ \ g_2(x) = x^2, \qquad g_2^{-1}(y) = \sqrt{y}.
 \end{aligned}
@@ -360,7 +360,7 @@ $$
 如下定义可以避免这一问题：对 $$0 < y < 1$$，
 
 $$
-F_X^{-1}(y) = \inf \{ x : F_X(x) \geq y \}, \tag{2.1.13}
+F_X^{-1}(y) = \inf \lbrace  x : F_X(x) \geq y  \rbrace, \tag{2.1.13}
 $$
 
 该定义在 $$F_X$$ 非常数的情形与 (2.1.12) 一致，并且即使 $$F_X$$ 不是严格递增的也给出单值的 $$F_X^{-1}$$。按此定义，在图 2.1.2(b) 中 $$F_X^{-1}(y) = x_1$$。在 $$y$$ 值域的端点处 $$F_X^{-1}(y)$$ 也可定义：若对所有 $$x$$ 有 $$F_X(x) < 1$$，则 $$F_X^{-1}(1) = \infty$$；且对任何 $$F_X$$，$$F_X^{-1}(0) = -\infty$$。
@@ -904,7 +904,7 @@ $$
 
 > **定理 2.3.12（mgf 的收敛，Convergence of MGFs）**
 >
-> 设 $$\{X_i,\ i = 1, 2, \ldots\}$$ 是一列随机变量，各有 mgf $$M_{X_i}(t)$$。进一步设在 0 的某邻域内的所有 $$t$$ 处
+> 设 $$\lbrace X_i,\ i = 1, 2, \ldots \rbrace$$ 是一列随机变量，各有 mgf $$M_{X_i}(t)$$。进一步设在 0 的某邻域内的所有 $$t$$ 处
 >
 > $$
 \lim_{i \to \infty} M_{X_i}(t) = M_X(t),

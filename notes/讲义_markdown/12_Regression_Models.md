@@ -460,7 +460,7 @@ $$
 于是我们识别出一个枢轴量，结论是集合
 
 $$
-\Biggl\{ \beta : \frac{(n - 2) r_{\lambda}^2(\beta)}{1 - r_{\lambda}^2(\beta)} \leq F_{1, n-2, \alpha} \Biggr\} \tag{12.2.24}
+\Biggl\lbrace  \beta : \frac{(n - 2) r_{\lambda}^2(\beta)}{1 - r_{\lambda}^2(\beta)} \leq F_{1, n-2, \alpha} \Biggr \rbrace \tag{12.2.24}
 $$
 
 是 $$\beta$$ 的 $$1 - \alpha$$ 置信集合（见习题 12.11）。

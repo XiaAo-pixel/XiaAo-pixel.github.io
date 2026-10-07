@@ -388,13 +388,13 @@ Sterne (1954) 提出了如下构造二项置信集合的方法，它产生的集
 首先，回顾定理 2.1.10（概率积分变换）：它告诉我们随机变量 $$F_T(T \mid \theta)$$ 服从 uniform$(0,1)$$，是一个枢轴。于是若 $$\alpha_1 + \alpha_2 = \alpha$$，则假设 $$H_0 : \theta = \theta_0$$ 的水平 $$\alpha$$ 接受区域可取为（习题 9.11）
 
 $$
-\bigl\{ t : \alpha_1 \leq F_T(t \mid \theta_0) \leq 1 - \alpha_2 \bigr\},
+\bigl\lbrace  t : \alpha_1 \leq F_T(t \mid \theta_0) \leq 1 - \alpha_2 \bigr \rbrace,
 $$
 
 其相应的置信集合为
 
 $$
-\bigl\{ \theta : \alpha_1 \leq F_T(t \mid \theta) \leq 1 - \alpha_2 \bigr\}.
+\bigl\lbrace  \theta : \alpha_1 \leq F_T(t \mid \theta) \leq 1 - \alpha_2 \bigr \rbrace.
 $$
 
 现在，为保证置信集合是区间，需要 $$F_T(t \mid \theta)$$ 关于 $$\theta$$ 单调。这一点我们其实已经见过，就在随机递增（stochastically increasing）与随机递减（stochastically decreasing）的定义中（见第 8 章杂记一节及习题 8.26，或习题 3.41–3.43）。若对 $$T$$ 的样本空间 $$\mathcal{T}$$ 中每个 $$t$$，$$F(t \mid \theta)$$ 都是 $$\theta$$ 的递减（递增）函数，则称 cdf 族 $$F(t \mid \theta)$$ 关于 $$\theta$$ 随机递增（随机递减）。下面的讨论只需要 $$F$$ 单调（递增或递减）这一事实；随机递增或递减这些更“统计”的概念只充当解释工具。
@@ -424,14 +424,14 @@ $$
 >
 > **证明**　只证明情形 (i)；情形 (ii) 的证明类似，留作习题 9.19。
 >
-> 设已构造 $$1 - \alpha$$ 接受区域 $$\{ t : \alpha_1 \leq F_T(t \mid \theta_0) \leq 1 - \alpha_2 \}$$。由于对每个 $$t$$，$$F_T(t \mid \theta)$$ 关于 $$\theta$$ 递减，且 $$1 - \alpha_2 > \alpha_1$$，故 $$\theta_L(t) < \theta_U(t)$$，且 $$\theta_L(t)$$ 与 $$\theta_U(t)$$ 唯一。又
+> 设已构造 $$1 - \alpha$$ 接受区域 $$\lbrace  t : \alpha_1 \leq F_T(t \mid \theta_0) \leq 1 - \alpha_2  \rbrace$$。由于对每个 $$t$$，$$F_T(t \mid \theta)$$ 关于 $$\theta$$ 递减，且 $$1 - \alpha_2 > \alpha_1$$，故 $$\theta_L(t) < \theta_U(t)$$，且 $$\theta_L(t)$$ 与 $$\theta_U(t)$$ 唯一。又
 >
 > $$
 F_T(t \mid \theta) < \alpha_1 \iff \theta > \theta_U(t), \qquad
 F_T(t \mid \theta) > 1 - \alpha_2 \iff \theta < \theta_L(t),
 $$
 >
-> 从而 $$\{ \theta : \alpha_1 \leq F_T(t \mid \theta) \leq 1 - \alpha_2 \} = \{ \theta : \theta_L(T) \leq \theta \leq \theta_U(T) \}$$。 ∎
+> 从而 $$\lbrace  \theta : \alpha_1 \leq F_T(t \mid \theta) \leq 1 - \alpha_2  \rbrace = \lbrace  \theta : \theta_L(T) \leq \theta \leq \theta_U(T)  \rbrace$$。 ∎
 
 我们注意到：在没有附加信息时，通常取 $$\alpha_1 = \alpha_2 = \alpha/2$$。虽然这未必总是最优（见定理 9.3.2），但在大多数情形是合理的策略。然而若需要单侧区间，只需取 $$\alpha_1$$ 或 $$\alpha_2$$ 等于零即可轻松实现。
 
@@ -455,7 +455,7 @@ $$
 >
 > 本方法可用于位置指数 pdf 的置信区间（习题 9.25 将这里的结果与似然法、枢轴法所得进行比较；另见习题 9.41）。
 >
-> 设 $$X_1, \ldots, X_n$$ iid，pdf 为 $$f(x \mid \mu) = e^{-(x-\mu)} I_{[\mu, \infty)}(x)$$，则 $$Y = \min\{X_1, \ldots, X_n\}$$ 是 $$\mu$$ 的充分统计量，pdf 为
+> 设 $$X_1, \ldots, X_n$$ iid，pdf 为 $$f(x \mid \mu) = e^{-(x-\mu)} I_{[\mu, \infty)}(x)$$，则 $$Y = \min\lbrace X_1, \ldots, X_n \rbrace$$ 是 $$\mu$$ 的充分统计量，pdf 为
 >
 > $$
 f_Y(y \mid \mu) = n e^{-n(y - \mu)} I_{[\mu, \infty)}(y).
@@ -488,7 +488,7 @@ $$
 > 故随机区间
 >
 > $$
-C(Y) = \Bigl\{ \mu : Y + \frac{1}{n} \log\Bigl( \frac{\alpha}{2} \Bigr) \leq \mu \leq Y + \frac{1}{n} \log\Bigl( 1 - \frac{\alpha}{2} \Bigr) \Bigr\}
+C(Y) = \Bigl\lbrace  \mu : Y + \frac{1}{n} \log\Bigl( \frac{\alpha}{2} \Bigr) \leq \mu \leq Y + \frac{1}{n} \log\Bigl( 1 - \frac{\alpha}{2} \Bigr) \Bigr \rbrace
 $$
 >
 > 是 $$\mu$$ 的 $$1 - \alpha$$ 置信区间。
@@ -533,10 +533,10 @@ $$
 > 首先回顾习题 2.10：$$F_T(T \mid \theta)$$ 随机地大于均匀随机变量，即对一切 $$x \in [0,1]$$ 有 $$P_{\theta}\bigl( F_T(T \mid \theta) \leq x \bigr) \leq x$$；而且量 $$\bar{F}_T(T \mid \theta) = P(T \geq T \mid \theta)$$ 具有同样的性质。这说明集合
 >
 > $$
-\bigl\{ \theta : F_T(T \mid \theta) \geq \alpha_1\ \text{且}\ \bar{F}_T(T \mid \theta) \geq \alpha_2 \bigr\}
+\bigl\lbrace  \theta : F_T(T \mid \theta) \geq \alpha_1\ \text{且}\ \bar{F}_T(T \mid \theta) \geq \alpha_2 \bigr \rbrace
 $$
 >
-> 是一个 $$1 - \alpha$$ 置信集合：记 $$A = \{ F_T(T \mid \theta) < \alpha_1 \}$$、$$B = \{ \bar{F}_T(T \mid \theta) < \alpha_2 \}$$，则 $$P_{\theta}(A) \leq \alpha_1$$、$$P_{\theta}(B) \leq \alpha_2$$，于是
+> 是一个 $$1 - \alpha$$ 置信集合：记 $$A = \lbrace  F_T(T \mid \theta) < \alpha_1  \rbrace$$、$$B = \lbrace  \bar{F}_T(T \mid \theta) < \alpha_2  \rbrace$$，则 $$P_{\theta}(A) \leq \alpha_1$$、$$P_{\theta}(B) \leq \alpha_2$$，于是
 >
 > $$
 P_{\theta}\bigl( \theta \in C(T) \bigr) = 1 - P_{\theta}(A \cup B) \geq 1 - \alpha_1 - \alpha_2 = 1 - \alpha.
@@ -550,9 +550,9 @@ $$
 \theta < \theta_L(t) \Rightarrow \bar{F}_T(t \mid \theta) < \alpha_2,
 $$
 >
-> 从而 $$\bigl\{ \theta : F_T(T \mid \theta) \geq \alpha_1\ \text{且}\ \bar{F}_T(T \mid \theta) \geq \alpha_2 \bigr\} = \{ \theta : \theta_L(T) \leq \theta \leq \theta_U(T) \}$$。
+> 从而 $$\bigl\lbrace  \theta : F_T(T \mid \theta) \geq \alpha_1\ \text{且}\ \bar{F}_T(T \mid \theta) \geq \alpha_2 \bigr \rbrace = \lbrace  \theta : \theta_L(T) \leq \theta \leq \theta_U(T)  \rbrace$$。
 >
-> **原书注：**原书证明中两个集合显示为 $$\{ \theta : F_T(T \mid \theta) \leq \alpha_1$$ 且 $$\bar{F}_T(T \mid \theta) \leq \alpha_2 \}$$，且两条推导式右端写作 $$\alpha/2$$。按原书条件（$$F_T(t \mid \theta)$$ 递减、$$\bar{F}_T(t \mid \theta)$$ 递增、$$\theta_L(t) < \theta_U(t)$$）与习题 2.10 的性质 $$P_{\theta}\bigl( F_T(T \mid \theta) \leq x \bigr) \leq x$$，这两处不等号方向应取“$$\geq$$”（若取“$$\leq$$”，作为 $$\theta$$ 的集合两条件互相矛盾、恰为空集），而 $$\alpha/2$$ 对应常用的特例 $$\alpha_1 = \alpha_2 = \alpha/2$$（例 9.2.15 正是如此使用）。上文按更正后的逻辑叙述，结论与原书定理一致。 ∎
+> **原书注：**原书证明中两个集合显示为 $$\lbrace  \theta : F_T(T \mid \theta) \leq \alpha_1$$ 且 $$\bar{F}_T(T \mid \theta) \leq \alpha_2  \rbrace$$，且两条推导式右端写作 $$\alpha/2$$。按原书条件（$$F_T(t \mid \theta)$$ 递减、$$\bar{F}_T(t \mid \theta)$$ 递增、$$\theta_L(t) < \theta_U(t)$$）与习题 2.10 的性质 $$P_{\theta}\bigl( F_T(T \mid \theta) \leq x \bigr) \leq x$$，这两处不等号方向应取“$$\geq$$”（若取“$$\leq$$”，作为 $$\theta$$ 的集合两条件互相矛盾、恰为空集），而 $$\alpha/2$$ 对应常用的特例 $$\alpha_1 = \alpha_2 = \alpha/2$$（例 9.2.15 正是如此使用）。上文按更正后的逻辑叙述，结论与原书定理一致。 ∎
 
 本节最后用一个例子说明定理 9.2.14 构造的使用。注意，反转 LRT 也可以构造另一个区间（习题 9.23）。
 
@@ -589,7 +589,7 @@ $$
 > 做一些代数运算，得 $$\lambda$$ 的 $$1 - \alpha$$ 置信区间
 >
 > $$
-\Bigl\{ \lambda : \frac{1}{2n} \chi^2_{2y_0,\, 1-\alpha/2} \leq \lambda \leq \frac{1}{2n} \chi^2_{2(y_0+1),\, \alpha/2} \Bigr\}. \tag{9.2.17}
+\Bigl\lbrace  \lambda : \frac{1}{2n} \chi^2_{2y_0,\, 1-\alpha/2} \leq \lambda \leq \frac{1}{2n} \chi^2_{2(y_0+1),\, \alpha/2} \Bigr \rbrace. \tag{9.2.17}
 $$
 >
 > （当 $$y_0 = 0$$ 时约定 $$\chi^2_{0,\, 1-\alpha/2} = 0$$。）
@@ -653,7 +653,7 @@ $$
 > 于是 $$1 - \alpha$$ 可信区间为
 >
 > $$
-\Bigl\{ \lambda : \frac{b}{2(nb + 1)}\, \chi^2_{2(\sum x + a),\, 1 - \alpha/2} \leq \lambda \leq \frac{b}{2(nb + 1)}\, \chi^2_{2(\sum x + a),\, \alpha/2} \Bigr\}. \tag{9.2.20}
+\Bigl\lbrace  \lambda : \frac{b}{2(nb + 1)}\, \chi^2_{2(\sum x + a),\, 1 - \alpha/2} \leq \lambda \leq \frac{b}{2(nb + 1)}\, \chi^2_{2(\sum x + a),\, \alpha/2} \Bigr \rbrace. \tag{9.2.20}
 $$
 >
 > 取 $$a = b = 1$$，则给定 $$\sum X = \sum x$$ 时 $$\lambda$$ 的后验分布可表示为 $$2(n+1)\lambda \sim \chi^2_{2(\sum x + 1)}$$。与例 9.2.15 一样，取 $$n = 10$$、$$\sum x = 6$$。由 $$\chi^2_{14, .95} = 6.571$$ 与 $$\chi^2_{14, .05} = 23.685$$，$$\lambda$$ 的 90% 可信集合为 $$[0.299,\ 1.077]$$。
@@ -745,7 +745,7 @@ $$
 >
 > 虽然我们从一个 $$1 - \alpha$$ 可信集合出发，但得到的并不是 $$1 - \alpha$$ 置信集合。考察如下参数配置即可看出：固定 $$\theta \neq \mu$$，令 $$\tau = \sigma/\sqrt{n}$$（从而 $$\gamma = 1$$），并让 $$\sigma/\sqrt{n}$$ 非常小（趋于 0）。容易看出此时上述概率趋于零：若 $$\theta > \mu$$，则下界趋于 $$+\infty$$；若 $$\theta < \mu$$，则上界趋于 $$-\infty$$。而当 $$\theta = \mu$$ 时，覆盖概率是有下界的（正的），不会趋于零。
 >
-> 另一方面，$$\theta$$ 的通常 $$1 - \alpha$$ 置信集合是 $$\{ \theta : \vert \theta - \bar{x}\vert  \leq z_{\alpha/2}\, \sigma / \sqrt{n} \}$$。该集合的可信概率（此时 $$\theta \sim \pi(\theta \mid \bar{x})$$）为
+> 另一方面，$$\theta$$ 的通常 $$1 - \alpha$$ 置信集合是 $$\lbrace  \theta : \vert \theta - \bar{x}\vert  \leq z_{\alpha/2}\, \sigma / \sqrt{n}  \rbrace$$。该集合的可信概率（此时 $$\theta \sim \pi(\theta \mid \bar{x})$$）为
 >
 > $$
 \begin{aligned}
@@ -788,7 +788,7 @@ $$
 > 的 $$a, b$$ 都给出 $$1 - \alpha$$ 置信区间
 >
 > $$
-\Bigl\{ \mu : \bar{x} - b\, \frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{x} - a\, \frac{\sigma}{\sqrt{n}} \Bigr\}.
+\Bigl\lbrace  \mu : \bar{x} - b\, \frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{x} - a\, \frac{\sigma}{\sqrt{n}} \Bigr \rbrace.
 $$
 >
 > 怎样的 $$a, b$$ 最好？更形式化地：怎样的 $$a, b$$ 在保持 $$1 - \alpha$$ 覆盖的同时使置信区间的长度最小？注意区间长度等于 $$(b - a)\sigma/\sqrt{n}$$，而因子 $$\sigma/\sqrt{n}$$ 出现在每个区间的长度中，可以忽略，长度的比较可基于 $$b - a$$ 的值。于是要找一对数 $$a, b$$，满足 $$P(a \leq Z \leq b) = 1 - \alpha$$ 并使 $$b - a$$ 最小。
@@ -905,7 +905,7 @@ $$
 > 来得到置信区间。然而，机械套用定理 9.3.2 并不能给出最短置信区间：取 $$a, b$$ 满足 (9.3.1) 且 $$f_Y(a) = f_Y(b)$$ 并不是最优的。原因在于，由 (9.3.1) 得到的 $$\beta$$ 的区间形如
 >
 > $$
-\Bigl\{ \beta : \frac{x}{b} \leq \beta \leq \frac{x}{a} \Bigr\},
+\Bigl\lbrace  \beta : \frac{x}{b} \leq \beta \leq \frac{x}{a} \Bigr \rbrace,
 $$
 >
 > 其长度为 $$\bigl( \tfrac{1}{a} - \tfrac{1}{b} \bigr) x$$，即长度正比于 $$\tfrac{1}{a} - \tfrac{1}{b}$$ 而不是 $$b - a$$。
@@ -976,7 +976,7 @@ $$
 > 设 $$X_1, \ldots, X_n$$ 是 iid $$n(\mu, \sigma^2)$$，$$\sigma^2$$ 已知。区间
 >
 > $$
-C(\textbf{x}) = \Bigl\{ \mu : \mu \geq \bar{x} - z_{\alpha}\, \frac{\sigma}{\sqrt{n}} \Bigr\}
+C(\textbf{x}) = \Bigl\lbrace  \mu : \mu \geq \bar{x} - z_{\alpha}\, \frac{\sigma}{\sqrt{n}} \Bigr \rbrace
 $$
 >
 > 是 $$1 - \alpha$$ UMA 下置信界，因为它可以通过反转 $$H_0 : \mu = \mu_0$$ 对 $$H_1 : \mu > \mu_0$$ 的 UMP 检验得到。
@@ -984,7 +984,7 @@ $$
 > 更常见的双侧区间
 >
 > $$
-C(\textbf{x}) = \Bigl\{ \mu : \bar{x} - z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{x} + z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \Bigr\}
+C(\textbf{x}) = \Bigl\lbrace  \mu : \bar{x} - z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{x} + z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \Bigr \rbrace
 $$
 >
 > 不是 UMA 的，因为它由反转 $$H_0 : \mu = \mu_0$$ 对 $$H_1 : \mu \neq \mu_0$$ 的双侧接受区域得到，而对这组假设不存在 UMP 检验。
@@ -1002,7 +1002,7 @@ $$
 > 双侧正态区间
 >
 > $$
-C(\textbf{x}) = \Bigl\{ \mu : \bar{x} - z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{x} + z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \Bigr\}
+C(\textbf{x}) = \Bigl\lbrace  \mu : \bar{x} - z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{x} + z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \Bigr \rbrace
 $$
 >
 > 是无偏区间：它可以由例 8.3.20 给出的 $$H_0 : \mu = \mu_0$$ 对 $$H_1 : \mu \neq \mu_0$$ 的无偏检验反转得到。类似地，基于 $$t$$ 分布的区间 (9.2.14) 也是无偏区间，因为它同样可以由反转无偏检验得到（习题 8.38）。
@@ -1035,7 +1035,7 @@ $$
 > 这一串等式建立了恒等式，定理得证。积分次序的交换由 Fubini 定理正式保证（Lehmann and Casella 1998, 1.2 节）；但容易看出，只要所有被积函数有限，交换就是合理的。置信区间的反转是标准的，其中用到关系
 >
 > $$
-\theta \in \{ \theta : L(x) \leq \theta \leq U(x) \} \iff x \in \bigl\{ x : U^{-1}(\theta) \leq x \leq L^{-1}(\theta) \bigr\},
+\theta \in \lbrace  \theta : L(x) \leq \theta \leq U(x)  \rbrace \iff x \in \bigl\lbrace  x : U^{-1}(\theta) \leq x \leq L^{-1}(\theta) \bigr \rbrace,
 $$
 >
 > 它成立是因为 $$L$$ 与 $$U$$ 递增的假设。注意定理可以修改后适用于端点递减的区间。 ∎
@@ -1061,19 +1061,19 @@ $$
 > 若后验密度 $$\pi(\theta \mid \textbf{x})$$ 单峰，则对给定的 $$\alpha$$ 值，$$\theta$$ 的最短可信区间为
 >
 > $$
-\Bigl\{ \theta : \pi(\theta \mid \textbf{x}) \geq k \Bigr\},
+\Bigl\lbrace  \theta : \pi(\theta \mid \textbf{x}) \geq k \Bigr \rbrace,
 \qquad \text{其中}\
-\int_{\{ \theta : \pi(\theta \mid \textbf{x}) \geq k \}} \pi(\theta \mid \textbf{x})\, d\theta = 1 - \alpha.
+\int_{\lbrace  \theta : \pi(\theta \mid \textbf{x}) \geq k  \rbrace} \pi(\theta \mid \textbf{x})\, d\theta = 1 - \alpha.
 $$
 
 推论 9.3.10 描述的可信集合称为***最高后验密度***（highest posterior density, HPD）区域，因为它由后验密度最高的那些参数值组成。注意 HPD 区域与似然区域在形式上的相似性。
 
 > **例 9.3.11（Poisson HPD 区域）**
 >
-> 在例 9.2.16 中我们为 Poisson 参数导出了一个 $$1 - \alpha$$ 可信集合。现在构造 HPD 区域。由推论 9.3.10，该区域为 $$\{ \lambda : \pi(\lambda \mid \sum x) \geq k \}$$，其中 $$k$$ 选得使
+> 在例 9.2.16 中我们为 Poisson 参数导出了一个 $$1 - \alpha$$ 可信集合。现在构造 HPD 区域。由推论 9.3.10，该区域为 $$\lbrace  \lambda : \pi(\lambda \mid \sum x) \geq k  \rbrace$$，其中 $$k$$ 选得使
 >
 > $$
-1 - \alpha = \int_{\{ \lambda : \pi(\lambda \mid \sum x) \geq k \}} \pi(\lambda \mid \sum x)\, d\lambda.
+1 - \alpha = \int_{\lbrace  \lambda : \pi(\lambda \mid \sum x) \geq k  \rbrace} \pi(\lambda \mid \sum x)\, d\lambda.
 $$
 >
 > 回忆 $$\lambda$$ 的后验 pdf 是 $$\mathrm{gamma}\bigl( a + \sum x,\ [n + (1/b)]^{-1} \bigr)$$，于是需要求 $$\lambda_L$$ 与 $$\lambda_U$$ 使
@@ -1096,7 +1096,7 @@ HPD 区域的形状由后验分布的形状决定。一般地，HPD 区域关于
 
 > **例 9.3.12（正态 HPD 区域）**
 >
-> 例 9.2.18 导出的等尾可信集合事实上就是 HPD 区域。由于 $$\theta$$ 的后验分布是均值为 $$\delta^{B}$$ 的正态分布，故（习题 9.40）对某个 $$k'$$ 有 $$\{ \theta : \pi(\theta \mid \bar{x}) \geq k \} = \{ \theta : \theta \in \delta^{B} \pm k' \}$$，即 HPD 区域关于均值 $$\delta^{B}(\bar{x})$$ 对称。
+> 例 9.2.18 导出的等尾可信集合事实上就是 HPD 区域。由于 $$\theta$$ 的后验分布是均值为 $$\delta^{B}$$ 的正态分布，故（习题 9.40）对某个 $$k'$$ 有 $$\lbrace  \theta : \pi(\theta \mid \bar{x}) \geq k  \rbrace = \lbrace  \theta : \theta \in \delta^{B} \pm k'  \rbrace$$，即 HPD 区域关于均值 $$\delta^{B}(\bar{x})$$ 对称。
 
 ### 9.3.4 损失函数最优性（Loss Function Optimality）
 
@@ -1172,7 +1172,7 @@ $$
 另一个困难在于对 $$A$$ 中允许集合形状的限制。理想情况下，损失与风险函数应当用来评判哪种形状最好。但人们总可以向区间估计量添加孤立点，在不付出大小惩罚的情况下改进覆盖概率。在上例中完全可以使用估计量
 
 $$
-C(\textbf{x}) = [x - c\sigma,\ x + c\sigma] \cup \{ \mu\ \text{的一切整数值} \}.
+C(\textbf{x}) = [x - c\sigma,\ x + c\sigma] \cup \lbrace  \mu\ \text{的一切整数值}  \rbrace.
 $$
 
 这些集合的“长度”与原来相同，但现在对 $$\mu$$ 的一切整数值覆盖概率都是一。要避免这类反常，必须使用更复杂的大小度量。（Joshi 1969 通过定义估计量的等价类处理了这一问题。）
@@ -1234,7 +1234,7 @@ $$
 
 (b) 证明取 $$g = 1$$、$$Q(t, \theta) = F_{\theta}(t)$$（$$T$$ 的 cdf）时 (9.2.11) 成立。（这就是概率积分变换。）
 
-**9.11** 设 $$T$$ 是具有 cdf $$F_T(t \mid \theta)$$ 的连续随机变量，$$\alpha_1 + \alpha_2 = \alpha$$。证明 $$\{ t : \alpha_1 \leq F_T(t \mid \theta_0) \leq 1 - \alpha_2 \}$$ 是假设 $$H_0 : \theta = \theta_0$$ 的水平 $$\alpha$$ 接受区域，其相应的 $$1 - \alpha$$ 置信集合是 $$\{ \theta : \alpha_1 \leq F_T(t \mid \theta) \leq 1 - \alpha_2 \}$$。
+**9.11** 设 $$T$$ 是具有 cdf $$F_T(t \mid \theta)$$ 的连续随机变量，$$\alpha_1 + \alpha_2 = \alpha$$。证明 $$\lbrace  t : \alpha_1 \leq F_T(t \mid \theta_0) \leq 1 - \alpha_2  \rbrace$$ 是假设 $$H_0 : \theta = \theta_0$$ 的水平 $$\alpha$$ 接受区域，其相应的 $$1 - \alpha$$ 置信集合是 $$\lbrace  \theta : \alpha_1 \leq F_T(t \mid \theta) \leq 1 - \alpha_2  \rbrace$$。
 
 **9.12** 对来自 $$n(\theta, \theta)$$ 总体（$$\theta > 0$$）的容量为 $$n$$ 的随机样本，找一个枢轴量，并用它建立 $$\theta$$ 的 $$1 - \alpha$$ 置信区间。
 
@@ -1251,9 +1251,9 @@ $$
 (a) 用 Bonferroni 不等式把两个置信集合
 
 $$
-\Bigl\{ \mu : \bar{x} - \frac{ks}{\sqrt{n}} \leq \mu \leq \bar{x} + \frac{ks}{\sqrt{n}} \Bigr\}
+\Bigl\lbrace  \mu : \bar{x} - \frac{ks}{\sqrt{n}} \leq \mu \leq \bar{x} + \frac{ks}{\sqrt{n}} \Bigr \rbrace
 \qquad\text{与}\qquad
-\Bigl\{ \sigma^2 : \frac{(n-1)s^2}{b} \leq \sigma^2 \leq \frac{(n-1)s^2}{a} \Bigr\}
+\Bigl\lbrace  \sigma^2 : \frac{(n-1)s^2}{b} \leq \sigma^2 \leq \frac{(n-1)s^2}{a} \Bigr \rbrace
 $$
 
 合并成 $$(\mu, \sigma)$$ 的一个置信集合。说明如何选取 $$a, b, k$$ 使联合集合成为 $$1 - \alpha$$ 置信集合；
@@ -1261,9 +1261,9 @@ $$
 (b) 用 Bonferroni 不等式把两个置信集合
 
 $$
-\Bigl\{ \mu : \bar{x} - \frac{k\sigma}{\sqrt{n}} \leq \mu \leq \bar{x} + \frac{k\sigma}{\sqrt{n}} \Bigr\}
+\Bigl\lbrace  \mu : \bar{x} - \frac{k\sigma}{\sqrt{n}} \leq \mu \leq \bar{x} + \frac{k\sigma}{\sqrt{n}} \Bigr \rbrace
 \qquad\text{与}\qquad
-\Bigl\{ \sigma^2 : \frac{(n-1)s^2}{b} \leq \sigma^2 \leq \frac{(n-1)s^2}{a} \Bigr\}
+\Bigl\lbrace  \sigma^2 : \frac{(n-1)s^2}{b} \leq \sigma^2 \leq \frac{(n-1)s^2}{a} \Bigr \rbrace
 $$
 
 合并成 $$(\mu, \sigma)$$ 的一个置信集合。说明如何选取 $$a, b, k$$ 使联合集合成为 $$1 - \alpha$$ 置信集合；
@@ -1304,13 +1304,13 @@ $$
 
 | $$p$$ 的范围 | 接受区域 |
 |:---:|:---:|
-| $$[0.000, 0.238]$$ | $$\{0\}$$ |
-| $$(0.238, 0.305)$$ | $$\{0, 1\}$$ |
-| $$[0.305, 0.362]$$ | $$\{1\}$$ |
-| $$(0.362, 0.634)$$ | $$\{1, 2\}$$ |
-| $$[0.634, 0.695]$$ | $$\{2\}$$ |
-| $$(0.695, 0.762)$$ | $$\{2, 3\}$$ |
-| $$[0.762, 1.00]$$ | $$\{3\}$$ |
+| $$[0.000, 0.238]$$ | $$\lbrace 0 \rbrace$$ |
+| $$(0.238, 0.305)$$ | $$\lbrace 0, 1 \rbrace$$ |
+| $$[0.305, 0.362]$$ | $$\lbrace 1 \rbrace$$ |
+| $$(0.362, 0.634)$$ | $$\lbrace 1, 2 \rbrace$$ |
+| $$[0.634, 0.695]$$ | $$\lbrace 2 \rbrace$$ |
+| $$(0.695, 0.762)$$ | $$\lbrace 2, 3 \rbrace$$ |
+| $$[0.762, 1.00]$$ | $$\lbrace 3 \rbrace$$ |
 
 （这基本上是 Crow（1956）对 Sterne 构造的修改；见杂记 9.5.2 节。）
 
@@ -1320,7 +1320,7 @@ $$
 
 (a) 证明若 $$F_T(T \mid \theta)$$ 随机地大于等于均匀随机变量，则 $$\bar{F}_T(T \mid \theta)$$ 也是。即若对每个 $$x \in [0, 1]$$ 有 $$P_{\theta}\bigl( F_T(T \mid \theta) \leq x \bigr) \leq x$$，则对每个 $$x \in [0, 1]$$ 有 $$P_{\theta}\bigl( \bar{F}_T(T \mid \theta) \leq x \bigr) \leq x$$；
 
-(b) 证明对 $$\alpha_1 + \alpha_2 = \alpha$$，集合 $$\{ \theta : F_T(T \mid \theta) \geq \alpha_1$$ 且 $$\bar{F}_T(T \mid \theta) \geq \alpha_2 \}$$ 是 $$1 - \alpha$$ 置信集合；
+(b) 证明对 $$\alpha_1 + \alpha_2 = \alpha$$，集合 $$\lbrace  \theta : F_T(T \mid \theta) \geq \alpha_1$$ 且 $$\bar{F}_T(T \mid \theta) \geq \alpha_2  \rbrace$$ 是 $$1 - \alpha$$ 置信集合；
 
 (c) 若 cdf $$F_T(t \mid \theta)$$ 对每个 $$t$$ 关于 $$\theta$$ 递减，证明由 $$\bar{F}_T(t \mid \theta) = P(T \geq t \mid \theta)$$ 定义的函数 $$\bar{F}_T(t \mid \theta)$$ 对每个 $$t$$ 是 $$\theta$$ 的非降函数；
 
@@ -1370,7 +1370,7 @@ $$
 
 由此解释图 9.2.5 中 Poisson 区间覆盖概率的图形为何在不同置信区间的端点处出现跳跃。
 
-**9.25** 若 $$X_1, \ldots, X_n$$ iid，pdf 为 $$f(x \mid \mu) = e^{-(x-\mu)} I_{[\mu, \infty)}(x)$$，则 $$Y = \min\{X_1, \ldots, X_n\}$$ 是 $$\mu$$ 的充分统计量，pdf 为 $$f_Y(y \mid \mu) = n e^{-n(y-\mu)} I_{[\mu, \infty)}(y)$$。例 9.2.13 用 9.2.3 节的方法求出了 $$\mu$$ 的 $$1 - \alpha$$ 置信区间。把该区间与用似然法及枢轴法得到的 $$1 - \alpha$$ 区间进行比较。
+**9.25** 若 $$X_1, \ldots, X_n$$ iid，pdf 为 $$f(x \mid \mu) = e^{-(x-\mu)} I_{[\mu, \infty)}(x)$$，则 $$Y = \min\lbrace X_1, \ldots, X_n \rbrace$$ 是 $$\mu$$ 的充分统计量，pdf 为 $$f_Y(y \mid \mu) = n e^{-n(y-\mu)} I_{[\mu, \infty)}(y)$$。例 9.2.13 用 9.2.3 节的方法求出了 $$\mu$$ 的 $$1 - \alpha$$ 置信区间。把该区间与用似然法及枢轴法得到的 $$1 - \alpha$$ 区间进行比较。
 
 **9.26** 设 $$X_1, \ldots, X_n$$ 是来自 beta($$\theta$$, 1) pdf 的 iid 观测，并设 $$\theta$$ 服从 gamma($$r$$, $$\lambda$$) 先验 pdf。求 $$\theta$$ 的 $$1 - \alpha$$ 贝叶斯可信集合。
 
@@ -1401,7 +1401,7 @@ $$
 (c) $$\theta$$ 的经典 $$1 - \alpha$$ 置信集合可以表示为
 
 $$
-\Bigl\{ \theta : \vert \theta - \bar{x}\vert ^2 \leq F_{1, n-1, \alpha/2}\, \frac{s^2}{n} \Bigr\}.
+\Bigl\lbrace  \theta : \vert \theta - \bar{x}\vert ^2 \leq F_{1, n-1, \alpha/2}\, \frac{s^2}{n} \Bigr \rbrace.
 $$
 
 是否存在 $$\tau^2, a, b$$ 的某个（极限）序列使 (b) 中的贝叶斯集合逼近该集合？
@@ -1451,7 +1451,7 @@ $$
 
 (c) 但若 $$\theta = \mu$$，证明覆盖概率被正数托住。求该覆盖概率的最小值与最大值；
 
-(d) 现在看另一方面。$$\theta$$ 的通常 $$1 - \alpha$$ 置信集合是 $$\{ \theta : \vert \theta - \bar{x}\vert  \leq z_{\alpha/2}\, \sigma/\sqrt{n} \}$$。证明该集合的可信概率为
+(d) 现在看另一方面。$$\theta$$ 的通常 $$1 - \alpha$$ 置信集合是 $$\lbrace  \theta : \vert \theta - \bar{x}\vert  \leq z_{\alpha/2}\, \sigma/\sqrt{n}  \rbrace$$。证明该集合的可信概率为
 
 $$
 P_{\bar{x}}\Bigl( \vert \theta - \bar{x}\vert  \leq z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \Bigr)
@@ -1463,7 +1463,7 @@ $$
 **9.33** 设 $$X \sim n(\mu, 1)$$，考虑置信区间
 
 $$
-C_a(x) = \bigl\{ \mu : \min\{0,\ (x - a)\} \leq \mu \leq \max\{0,\ (x + a)\} \bigr\}.
+C_a(x) = \bigl\lbrace  \mu : \min\lbrace 0,\ (x - a) \rbrace \leq \mu \leq \max\lbrace 0,\ (x + a) \rbrace \bigr \rbrace.
 $$
 
 (a) 对 $$a = 1.645$$，证明 $$C_a(x)$$ 的覆盖概率对一切 $$\mu$$ 恰为 0.95，唯一例外是 $$\mu = 0$$，此时覆盖概率为 1；

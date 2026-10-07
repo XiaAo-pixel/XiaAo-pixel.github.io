@@ -330,7 +330,7 @@ $$
 为此对 $$\tau(\theta)$$ 定义诱导似然函数（induced likelihood function）$$L^{*}$$：
 
 $$
-L^{*}(\eta \mid \textbf{x}) = \sup_{\{ \theta : \tau(\theta) = \eta \}} L(\theta \mid \textbf{x}). \tag{7.2.5}
+L^{*}(\eta \mid \textbf{x}) = \sup_{\lbrace  \theta : \tau(\theta) = \eta  \rbrace} L(\theta \mid \textbf{x}). \tag{7.2.5}
 $$
 
 最大化 $$L^{*}(\eta \mid \textbf{x})$$ 的值 $$\hat{\eta}$$ 将称为 $$\eta = \tau(\theta)$$ 的 MLE；由 (7.2.5) 可见 $$L^{*}$$ 与 $$L$$ 的最大值重合。
@@ -342,13 +342,13 @@ $$
 > **证明**　设 $$\hat{\eta}$$ 表示最大化 $$L^{*}(\eta \mid \textbf{x})$$ 的值。须证 $$L^{*}(\hat{\eta} \mid \textbf{x}) = L^{*}\bigl[ \tau(\hat{\theta}) \mid \textbf{x} \bigr]$$。如上所述，$$L$$ 与 $$L^{*}$$ 的最大值重合，故
 >
 > $$
-L^{*}(\hat{\eta} \mid \textbf{x}) = \sup_{\eta}\, \sup_{\{\theta : \tau(\theta) = \eta\}}\, L(\theta \mid \textbf{x}) = \sup_{\theta} L(\theta \mid \textbf{x}) = L(\hat{\theta} \mid \textbf{x}),
+L^{*}(\hat{\eta} \mid \textbf{x}) = \sup_{\eta}\, \sup_{\lbrace \theta : \tau(\theta) = \eta \rbrace}\, L(\theta \mid \textbf{x}) = \sup_{\theta} L(\theta \mid \textbf{x}) = L(\hat{\theta} \mid \textbf{x}),
 $$
 >
 > （$$L^{*}$$ 的定义；第二个等式由“迭代最大化等于对 $$\theta$$ 的无条件最大化、且在 $$\hat{\theta}$$ 处取得”。）进一步，
 >
 > $$
-L(\hat{\theta} \mid \textbf{x}) = \sup_{\{\theta : \tau(\theta) = \tau(\hat{\theta})\}}\, L(\theta \mid \textbf{x}) = L^{*}\bigl[ \tau(\hat{\theta}) \mid \textbf{x} \bigr]
+L(\hat{\theta} \mid \textbf{x}) = \sup_{\lbrace \theta : \tau(\theta) = \tau(\hat{\theta}) \rbrace}\, L(\theta \mid \textbf{x}) = L^{*}\bigl[ \tau(\hat{\theta}) \mid \textbf{x} \bigr]
 \qquad （\hat{\theta}\ \text{是 MLE}；\ L^{*}\ \text{的定义}）.
 $$
 >
@@ -660,11 +660,11 @@ $$
 >
 > 这同时定义了 E 步（导致以 $$\tau_1^{(r)}$$ 替换 $$x_1$$）与 M 步（导致 (7.2.23) 中第 $$r$$ 次迭代的 MLE 计算）。EM 算法的性质使我们确信序列 $$\bigl( \hat{\beta}^{(r)}, \hat{\tau}_1^{(r)}, \ldots, \hat{\tau}_n^{(r)} \bigr)$$ 当 $$r \to \infty$$ 时收敛到不完全数据 MLE。更多内容见习题 7.27。
 
-我们不给出 EM 序列 $$\{ \hat{\theta}^{(r)} \}$$ 收敛到不完全数据 MLE 的完整证明，但下面的关键性质提示这是真的。证明留作习题 7.31。
+我们不给出 EM 序列 $$\lbrace  \hat{\theta}^{(r)}  \rbrace$$ 收敛到不完全数据 MLE 的完整证明，但下面的关键性质提示这是真的。证明留作习题 7.31。
 
 > **定理 7.2.20（EM 序列的单调性）**
 >
-> 由 (7.2.20) 定义的序列 $$\{ \hat{\theta}^{(r)} \}$$ 满足
+> 由 (7.2.20) 定义的序列 $$\lbrace  \hat{\theta}^{(r)}  \rbrace$$ 满足
 >
 > $$
 L\bigl( \hat{\theta}^{(r + 1)} \mid \textbf{y} \bigr) \geq L\bigl( \hat{\theta}^{(r)} \mid \textbf{y} \bigr), \tag{7.2.24}
@@ -813,7 +813,7 @@ $$
 W(x_1, \ldots, x_n) + a = W(x_1 + a, \ldots, x_n + a), \tag{7.3.2}
 $$
 >
-> 这规定了关于变换群 $$\mathcal{G} = \{ g_a(\textbf{x}) : -\infty < a < \infty \}$$（$$g_a(x_1, \ldots, x_n) = (x_1 + a, \ldots, x_n + a)$$）的等变估计量。对这些估计量：
+> 这规定了关于变换群 $$\mathcal{G} = \lbrace  g_a(\textbf{x}) : -\infty < a < \infty  \rbrace$$（$$g_a(x_1, \ldots, x_n) = (x_1 + a, \ldots, x_n + a)$$）的等变估计量。对这些估计量：
 >
 > $$
 \begin{aligned}
@@ -837,7 +837,7 @@ $$
 继续之前注意：虽然我们在处理无偏估计量，本节与下节的结果实际上更具一般性。设有 $$\theta$$ 的估计量 $$W^{*}$$ 满足 $$\mathrm{E}_{\theta} W^{*} = \tau(\theta) \neq \theta$$，我们想考察 $$W^{*}$$ 的价值。考虑估计量类
 
 $$
-\mathcal{C}_{\tau} = \bigl\{ W : \mathrm{E}_{\theta}\, W = \tau(\theta) \bigr\}.
+\mathcal{C}_{\tau} = \bigl\lbrace  W : \mathrm{E}_{\theta}\, W = \tau(\theta) \bigr \rbrace.
 $$
 
 对任意 $$W_1, W_2 \in \mathcal{C}_{\tau}$$，$$\mathrm{Bias}_{\theta} W_1 = \mathrm{Bias}_{\theta} W_2$$，故
@@ -1475,7 +1475,7 @@ $$
 
 ## 7.4 习题（Exercises）
 
-**7.1** 对离散随机变量 $$X$$（pmf 为 $$f(x \mid \theta)$$，$$\theta \in \{1, 2, 3\}$$）取一次观测。求 $$\theta$$ 的 MLE。
+**7.1** 对离散随机变量 $$X$$（pmf 为 $$f(x \mid \theta)$$，$$\theta \in \lbrace 1, 2, 3 \rbrace$$）取一次观测。求 $$\theta$$ 的 MLE。
 
 | $$x$$ | $$f(x \mid 1)$$ | $$f(x \mid 2)$$ | $$f(x \mid 3)$$ |
 |:---:|:---:|:---:|:---:|
@@ -1591,7 +1591,7 @@ $$
 
 (b) Tweedie (1957) 证明 $$\hat{\mu}_n$$ 与 $$\hat{\lambda}_n$$ 独立，$$\hat{\mu}_n$$ 服从参数 $$\mu$$ 与 $$n\lambda$$ 的逆高斯分布，$$n \lambda / \hat{\lambda}_n$$ 服从 $$\chi_{n-1}^2$$ 分布；Schwarz and Samanta (1991) 用归纳法证明这些事实。(i) 证明 $$\hat{\mu}_2$$ 服从参数 $$\mu$$ 与 $$2\lambda$$ 的逆高斯分布，$$2\lambda/\hat{\lambda}_2$$ 服从 $$\chi_1^2$$，且两者独立；(ii) 设结论对 $$n = k$$ 成立，并得到新的独立观测 $$x$$。建立 Schwarz and Samanta (1991) 所用的归纳步骤，把 pdf $$f(x, \hat{\mu}_k, \hat{\lambda}_k)$$ 变换到 $$f(x, \hat{\mu}_{k+1}, \hat{\lambda}_{k+1})$$。证明该密度按恰当方式因子化，从而得到 Tweedie 的结果。
 
-**7.16** Berger and Casella (1992) 还考察了幂均值（见习题 4.57）。回忆幂均值定义为 $$\Bigl( \frac{1}{n} \sum_{i=1}^{n} x_i^{r} \Bigr)^{1/r}$$。注意幂函数 $$x^r$$ 可以换成任何连续单调函数 $$h$$，得到广义均值 $$h^{-1}\Bigl( \frac{1}{n} \sum_{i=1}^{n} h(x_i) \Bigr)$$。(a) 最小二乘问题 $$\min_a \sum_i (x_i - a)^2$$ 有时用变换后的变量求解，即解 $$\min_a \sum_i \bigl[ h(x_i) - h(a) \bigr]^2$$。证明后一问题的解是 $$a = h^{-1}\bigl( \frac{1}{n} \sum_i h(x_i) \bigr)$$；(b) 证明算术均值是未变换最小二乘问题的解，几何均值是经 $$h(x) = \log x$$ 变换的问题的解，调和均值是经 $$h(x) = 1/x$$ 变换的问题的解；(c) 证明若最小二乘问题用 Box–Cox 变换（见习题 11.3）变换，则解是 $$h(x) = x^{\lambda}$$ 的广义均值；(d) 设 $$X_1, X_2, \ldots, X_n$$ 是来自 $$\mathrm{lognormal}(\mu, \sigma^2)$$ 总体的样本。证明 $$\mu$$ 的 MLE 是几何均值；(e) 设 $$X_1, X_2, \ldots, X_n$$ 是来自单参数指数族 $$f(x \mid \theta) = \exp\{ \theta\, h(x) - H(\theta) \}\, g(x)$$ 的样本，其中 $$h = H'$$ 且 $$h$$ 递增。(i) 证明 $$\theta$$ 的 ML 估计量是 $$\hat{\theta} = h^{-1}\bigl( \frac{1}{n} \sum_i h(x_i) \bigr)$$；(ii) 证明满足 $$h = H'$$ 的两个密度是正态与逆伽马密度 $$f(x \mid \theta) = \theta\, x^{-2}\, \exp\{-\theta/x\}$$（$$x > 0$$）；对正态 MLE 是算术均值，对逆伽马是调和均值。
+**7.16** Berger and Casella (1992) 还考察了幂均值（见习题 4.57）。回忆幂均值定义为 $$\Bigl( \frac{1}{n} \sum_{i=1}^{n} x_i^{r} \Bigr)^{1/r}$$。注意幂函数 $$x^r$$ 可以换成任何连续单调函数 $$h$$，得到广义均值 $$h^{-1}\Bigl( \frac{1}{n} \sum_{i=1}^{n} h(x_i) \Bigr)$$。(a) 最小二乘问题 $$\min_a \sum_i (x_i - a)^2$$ 有时用变换后的变量求解，即解 $$\min_a \sum_i \bigl[ h(x_i) - h(a) \bigr]^2$$。证明后一问题的解是 $$a = h^{-1}\bigl( \frac{1}{n} \sum_i h(x_i) \bigr)$$；(b) 证明算术均值是未变换最小二乘问题的解，几何均值是经 $$h(x) = \log x$$ 变换的问题的解，调和均值是经 $$h(x) = 1/x$$ 变换的问题的解；(c) 证明若最小二乘问题用 Box–Cox 变换（见习题 11.3）变换，则解是 $$h(x) = x^{\lambda}$$ 的广义均值；(d) 设 $$X_1, X_2, \ldots, X_n$$ 是来自 $$\mathrm{lognormal}(\mu, \sigma^2)$$ 总体的样本。证明 $$\mu$$ 的 MLE 是几何均值；(e) 设 $$X_1, X_2, \ldots, X_n$$ 是来自单参数指数族 $$f(x \mid \theta) = \exp\lbrace  \theta\, h(x) - H(\theta)  \rbrace\, g(x)$$ 的样本，其中 $$h = H'$$ 且 $$h$$ 递增。(i) 证明 $$\theta$$ 的 ML 估计量是 $$\hat{\theta} = h^{-1}\bigl( \frac{1}{n} \sum_i h(x_i) \bigr)$$；(ii) 证明满足 $$h = H'$$ 的两个密度是正态与逆伽马密度 $$f(x \mid \theta) = \theta\, x^{-2}\, \exp\lbrace -\theta/x \rbrace$$（$$x > 0$$）；对正态 MLE 是算术均值，对逆伽马是调和均值。
 
 **7.17** 玻尔悖论（杂记 4.9.3）也会在推断问题中出现。设 $$X_1$$ 与 $$X_2$$ 是 iid $$\mathrm{exponential}(\theta)$$ 随机变量。(a) 若只观测 $$X_2$$，证明 $$\theta$$ 的 MLE 是 $$\hat{\theta} = X_2$$；(b) 设改为只观测 $$Z = (X_2 - 1)/X_1$$。求 $$(X_1, Z)$$ 的联合分布，并对 $$X_1$$ 积分得到似然函数；(c) 设 $$X_2 = 1$$。比较 (a) 与 (b) 中 $$\theta$$ 的 MLE；(d) 贝叶斯分析对玻尔悖论并不免疫。若 $$\pi(\theta)$$ 是 $$\theta$$ 的先验密度，证明在 $$X_2 = 1$$ 处，(a) 与 (b) 的后验分布不同。（由俄亥俄州立大学 L. Mark Berliner 传达。）
 

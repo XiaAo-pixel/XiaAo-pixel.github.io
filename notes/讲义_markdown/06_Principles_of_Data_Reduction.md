@@ -22,7 +22,7 @@ permalink: /statistics/chap06.html
 
 任何统计量 $$T(\textbf{X})$$ 都定义了一种数据约简（data reduction）或数据汇总。只使用统计量的观测值 $$T(\textbf{x})$$ 而非整个观测样本 **x** 的实验者，将把满足 $$T(\textbf{x}) = T(\textbf{y})$$ 的两个样本 **x** 与 **y** 视为等同，尽管实际样本值可能有某些差别。
 
-以特定统计量为依据的数据约简可以视为对样本空间 $$\mathcal{X}$$ 的一个分割。令 $$\mathcal{T} = \{t : t = T(\textbf{x})\ \text{对某个}\ \textbf{x} \in \mathcal{X}\}$$ 为 $$\mathcal{X}$$ 在 $$T(\textbf{x})$$ 下的像，则 $$T(\textbf{x})$$ 把样本空间分割成集合 $$A_t$$（$$t \in \mathcal{T}$$），其中 $$A_t = \{\textbf{x} : T(\textbf{x}) = t\}$$。统计量之所以汇总数据，在于它不报告整个样本 **x**，而只报告 $$T(\textbf{x}) = t$$（等价地 $$\textbf{x} \in A_t$$）。例如若 $$T(\textbf{x}) = x_1 + \cdots + x_n$$，则 $$T(\textbf{x})$$ 不报告实际样本值而只报告和；可能有许多不同的样本点具有相同的和。这种数据约简的优点与后果正是本章的主题。
+以特定统计量为依据的数据约简可以视为对样本空间 $$\mathcal{X}$$ 的一个分割。令 $$\mathcal{T} = \lbrace t : t = T(\textbf{x})\ \text{对某个}\ \textbf{x} \in \mathcal{X} \rbrace$$ 为 $$\mathcal{X}$$ 在 $$T(\textbf{x})$$ 下的像，则 $$T(\textbf{x})$$ 把样本空间分割成集合 $$A_t$$（$$t \in \mathcal{T}$$），其中 $$A_t = \lbrace \textbf{x} : T(\textbf{x}) = t \rbrace$$。统计量之所以汇总数据，在于它不报告整个样本 **x**，而只报告 $$T(\textbf{x}) = t$$（等价地 $$\textbf{x} \in A_t$$）。例如若 $$T(\textbf{x}) = x_1 + \cdots + x_n$$，则 $$T(\textbf{x})$$ 不报告实际样本值而只报告和；可能有许多不同的样本点具有相同的和。这种数据约简的优点与后果正是本章的主题。
 
 我们研究数据约简的三条原理。我们关心的是这样的数据约简方法：既不丢弃关于未知参数 $$\theta$$ 的重要信息，又能成功地丢弃就获得关于 $$\theta$$ 的知识而言无关紧要的信息。***充分性原理***（Sufficiency Principle）提倡一种不丢弃 $$\theta$$ 的信息、同时实现数据一定汇总的约简方法。***似然原理***（Likelihood Principle）描述了一个由观测样本确定的、包含样本中关于 $$\theta$$ 的全部信息的参数函数。***等变原理***（Equivariance Principle）规定了另一种数据约简方法，它仍保留模型的某些重要特征。
 
@@ -48,9 +48,9 @@ permalink: /statistics/chap06.html
 
 为理解定义 6.2.1，设 $$t$$ 是 $$T(\textbf{X})$$ 的可能取值，即满足 $$P_{\theta}\bigl( T(\textbf{X}) = t \bigr) > 0$$ 的值。我们要考虑条件概率 $$P_{\theta}\bigl( \textbf{X} = \textbf{x} \mid T(\textbf{X}) = t \bigr)$$。若 **x** 是满足 $$T(\textbf{x}) \neq t$$ 的样本点，则显然该条件概率为 0。因此我们感兴趣的是 $$P\bigl( \textbf{X} = \textbf{x} \mid T(\textbf{X}) = T(\textbf{x}) \bigr)$$。按定义，若 $$T(\textbf{X})$$ 是充分统计量，这一条件概率对一切 $$\theta$$ 值相同，故我们省去了下标。
 
-充分统计量正是在这一意义上抓住了关于 $$\theta$$ 的全部信息。考虑实验者 1：他观测到 $$\textbf{X} = \textbf{x}$$，当然也能计算 $$T(\textbf{X}) = T(\textbf{x})$$；对 $$\theta$$ 作推断时他可以使用“$$\textbf{X} = \textbf{x}$$”与“$$T(\textbf{X}) = T(\textbf{x})$$”两种信息。再看实验者 2：没人告诉他 $$\textbf{X}$$ 的值，只告诉他 $$T(\textbf{X}) = T(\textbf{x})$$。实验者 2 知道 $$P\bigl( \textbf{X} = \textbf{y} \mid T(\textbf{X}) = T(\textbf{x}) \bigr)$$——集合 $$A_{T(\textbf{x})} = \{\textbf{y} : T(\textbf{y}) = T(\textbf{x})\}$$ 上的一个概率分布——因为它可以由模型算出而无需知道 $$\theta$$ 的真值。于是实验者 2 可以利用该分布与某种随机化装置（如随机数表）生成满足 $$P\bigl( Y = \textbf{y} \mid T(\textbf{X}) = T(\textbf{x}) \bigr) = P\bigl( \textbf{X} = \textbf{y} \mid T(\textbf{X}) = T(\textbf{x}) \bigr)$$ 的观测 $$Y$$。事实证明（下文即见），对每个 $$\theta$$ 值，$$X$$ 与 $$Y$$ 具有相同的无条件概率分布。所以知道 $$X$$ 的实验者 1 与知道 $$Y$$ 的实验者 2 关于 $$\theta$$ 的信息等价；但用随机数表生成 $$Y$$ 显然没有增加实验者 2 对 $$\theta$$ 的知识——他关于 $$\theta$$ 的全部知识都包含在“$$T(\textbf{X}) = T(\textbf{x})$$”之中。因此只知道 $$T(\textbf{X}) = T(\textbf{x})$$ 的实验者 2，其关于 $$\theta$$ 的信息与知道整个样本 $$\textbf{X} = \textbf{x}$$ 的实验者 1 恰恰一样多。
+充分统计量正是在这一意义上抓住了关于 $$\theta$$ 的全部信息。考虑实验者 1：他观测到 $$\textbf{X} = \textbf{x}$$，当然也能计算 $$T(\textbf{X}) = T(\textbf{x})$$；对 $$\theta$$ 作推断时他可以使用“$$\textbf{X} = \textbf{x}$$”与“$$T(\textbf{X}) = T(\textbf{x})$$”两种信息。再看实验者 2：没人告诉他 $$\textbf{X}$$ 的值，只告诉他 $$T(\textbf{X}) = T(\textbf{x})$$。实验者 2 知道 $$P\bigl( \textbf{X} = \textbf{y} \mid T(\textbf{X}) = T(\textbf{x}) \bigr)$$——集合 $$A_{T(\textbf{x})} = \lbrace \textbf{y} : T(\textbf{y}) = T(\textbf{x}) \rbrace$$ 上的一个概率分布——因为它可以由模型算出而无需知道 $$\theta$$ 的真值。于是实验者 2 可以利用该分布与某种随机化装置（如随机数表）生成满足 $$P\bigl( Y = \textbf{y} \mid T(\textbf{X}) = T(\textbf{x}) \bigr) = P\bigl( \textbf{X} = \textbf{y} \mid T(\textbf{X}) = T(\textbf{x}) \bigr)$$ 的观测 $$Y$$。事实证明（下文即见），对每个 $$\theta$$ 值，$$X$$ 与 $$Y$$ 具有相同的无条件概率分布。所以知道 $$X$$ 的实验者 1 与知道 $$Y$$ 的实验者 2 关于 $$\theta$$ 的信息等价；但用随机数表生成 $$Y$$ 显然没有增加实验者 2 对 $$\theta$$ 的知识——他关于 $$\theta$$ 的全部知识都包含在“$$T(\textbf{X}) = T(\textbf{x})$$”之中。因此只知道 $$T(\textbf{X}) = T(\textbf{x})$$ 的实验者 2，其关于 $$\theta$$ 的信息与知道整个样本 $$\textbf{X} = \textbf{x}$$ 的实验者 1 恰恰一样多。
 
-为完成上述论证，须证 $$X$$ 与 $$Y$$ 有相同的无条件分布，即对一切 **x** 与 $$\theta$$ 有 $$P_{\theta}(\textbf{X} = \textbf{x}) = P_{\theta}(Y = \textbf{x})$$。注意事件 $$\{\textbf{X} = \textbf{x}\}$$ 与 $$\{Y = \textbf{x}\}$$ 都是事件 $$\{T(\textbf{X}) = T(\textbf{x})\}$$ 的子集；且回忆
+为完成上述论证，须证 $$X$$ 与 $$Y$$ 有相同的无条件分布，即对一切 **x** 与 $$\theta$$ 有 $$P_{\theta}(\textbf{X} = \textbf{x}) = P_{\theta}(Y = \textbf{x})$$。注意事件 $$\lbrace \textbf{X} = \textbf{x} \rbrace$$ 与 $$\lbrace Y = \textbf{x} \rbrace$$ 都是事件 $$\lbrace T(\textbf{X}) = T(\textbf{x}) \rbrace$$ 的子集；且回忆
 
 $$
 P\bigl( \textbf{X} = \textbf{x} \mid T(\textbf{X}) = T(\textbf{x}) \bigr) = P\bigl( Y = \textbf{x} \mid T(\textbf{X}) = T(\textbf{x}) \bigr)
@@ -68,7 +68,7 @@ P_{\theta}(\textbf{X} = \textbf{x}) &= P_{\theta}\bigl( \textbf{X} = \textbf{x}\
 \end{aligned}
 $$
 
-要用定义 6.2.1 验证统计量 $$T(\textbf{X})$$ 是 $$\theta$$ 的充分统计量，必须验证：对任意固定的 **x** 与 $$t$$，条件概率 $$P_{\theta}\bigl( \textbf{X} = \textbf{x} \mid T(\textbf{X}) = t \bigr)$$ 对一切 $$\theta$$ 值相同。当 $$T(\textbf{x}) \neq t$$ 时该概率对所有 $$\theta$$ 都为 0，故只须验证 $$P_{\theta}\bigl( \textbf{X} = \textbf{x} \mid T(\textbf{X}) = T(\textbf{x}) \bigr)$$ 不依赖 $$\theta$$。由于 $$\{\textbf{X} = \textbf{x}\}$$ 是 $$\{T(\textbf{X}) = T(\textbf{x})\}$$ 的子集，
+要用定义 6.2.1 验证统计量 $$T(\textbf{X})$$ 是 $$\theta$$ 的充分统计量，必须验证：对任意固定的 **x** 与 $$t$$，条件概率 $$P_{\theta}\bigl( \textbf{X} = \textbf{x} \mid T(\textbf{X}) = t \bigr)$$ 对一切 $$\theta$$ 值相同。当 $$T(\textbf{x}) \neq t$$ 时该概率对所有 $$\theta$$ 都为 0，故只须验证 $$P_{\theta}\bigl( \textbf{X} = \textbf{x} \mid T(\textbf{X}) = T(\textbf{x}) \bigr)$$ 不依赖 $$\theta$$。由于 $$\lbrace \textbf{X} = \textbf{x} \rbrace$$ 是 $$\lbrace T(\textbf{X}) = T(\textbf{x}) \rbrace$$ 的子集，
 
 $$
 P_{\theta}\bigl( \textbf{X} = \textbf{x} \mid T(\textbf{X}) = T(\textbf{x}) \bigr) = \frac{P_{\theta}\bigl( \textbf{X} = \textbf{x}\ \text{且}\ T(\textbf{X}) = T(\textbf{x}) \bigr)}{P_{\theta}\bigl( T(\textbf{X}) = T(\textbf{x}) \bigr)} = \frac{P_{\theta}(\textbf{X} = \textbf{x})}{P_{\theta}\bigl( T(\textbf{X}) = T(\textbf{x}) \bigr)} = \frac{p(\textbf{x} \mid \theta)}{q\bigl( T(\textbf{x}) \mid \theta \bigr)},
@@ -154,7 +154,7 @@ $$
 >
 > 因子分解 (6.2.3) 即已展示。从上面最后两行还可见 $$P_{\theta}\bigl( T(\textbf{X}) = T(\textbf{x}) \bigr) = g\bigl( T(\textbf{x}) \mid \theta \bigr)$$，故 $$g\bigl( T(\textbf{x}) \mid \theta \bigr)$$ 就是 $$T(\textbf{X})$$ 的 pmf。
 >
-> 现设因子分解 (6.2.3) 存在。设 $$q(t \mid \theta)$$ 为 $$T(\textbf{X})$$ 的 pmf。为证 $$T(\textbf{X})$$ 充分，考察比值 $$f(\textbf{x} \mid \theta) / q\bigl( T(\textbf{x}) \mid \theta \bigr)$$。定义 $$A_{T(\textbf{x})} = \{\textbf{y} : T(\textbf{y}) = T(\textbf{x})\}$$，则
+> 现设因子分解 (6.2.3) 存在。设 $$q(t \mid \theta)$$ 为 $$T(\textbf{X})$$ 的 pmf。为证 $$T(\textbf{X})$$ 充分，考察比值 $$f(\textbf{x} \mid \theta) / q\bigl( T(\textbf{x}) \mid \theta \bigr)$$。定义 $$A_{T(\textbf{x})} = \lbrace \textbf{y} : T(\textbf{y}) = T(\textbf{x}) \rbrace$$，则
 >
 > $$
 \frac{f(\textbf{x} \mid \theta)}{q\bigl( T(\textbf{x}) \mid \theta \bigr)} = \frac{g\bigl( T(\textbf{x}) \mid \theta \bigr)\, h(\textbf{x})}{q\bigl( T(\textbf{x}) \mid \theta \bigr)} \qquad （\text{因}\ (6.2.3)\ \text{成立}）
@@ -208,19 +208,19 @@ $$
 > 于是 $$X_1, \ldots, X_n$$ 的联合 pmf 为
 >
 > $$
-f(\textbf{x} \mid \theta) = \begin{cases} \theta^{-n} & x_i \in \{1, \ldots, \theta\}\ \text{对}\ i = 1, \ldots, n,\\ 0 & \text{其他}. \end{cases}
+f(\textbf{x} \mid \theta) = \begin{cases} \theta^{-n} & x_i \in \lbrace 1, \ldots, \theta \rbrace\ \text{对}\ i = 1, \ldots, n,\\ 0 & \text{其他}. \end{cases}
 $$
 >
-> 限制“$$x_i \in \{1, \ldots, \theta\}$$（$$i = 1, \ldots, n$$）”可改述为“$$x_i \in \{1, 2, \ldots\}$$（$$i = 1, \ldots, n$$，注意此限制不含 $$\theta$$）且 $$\max_i x_i \leq \theta$$”。定义 $$T(\textbf{x}) = \max_i x_i$$，
+> 限制“$$x_i \in \lbrace 1, \ldots, \theta \rbrace$$（$$i = 1, \ldots, n$$）”可改述为“$$x_i \in \lbrace 1, 2, \ldots \rbrace$$（$$i = 1, \ldots, n$$，注意此限制不含 $$\theta$$）且 $$\max_i x_i \leq \theta$$”。定义 $$T(\textbf{x}) = \max_i x_i$$，
 >
 > $$
-h(\textbf{x}) = \begin{cases} 1 & x_i \in \{1, 2, \ldots\}\ \text{对}\ i = 1, \ldots, n,\\ 0 & \text{其他}, \end{cases} \qquad
+h(\textbf{x}) = \begin{cases} 1 & x_i \in \lbrace 1, 2, \ldots \rbrace\ \text{对}\ i = 1, \ldots, n,\\ 0 & \text{其他}, \end{cases} \qquad
 g(t \mid \theta) = \begin{cases} \theta^{-n} & t \leq \theta,\\ 0 & \text{其他}, \end{cases}
 $$
 >
 > 则容易验证对一切 **x** 与 $$\theta$$ 都有 $$f(\textbf{x} \mid \theta) = g\bigl( T(\textbf{x}) \mid \theta \bigr)\, h(\textbf{x})$$。故最大次序统计量 $$T(\textbf{X}) = \max_i X_i$$ 是本问题的充分统计量。
 >
-> 这类分析有时用示性函数能更清晰、更简洁地进行。回顾 $$I_A(x)$$ 是集合 $$A$$ 的示性函数（$$x \in A$$ 时为 1，否则为 0）。令 $$\mathcal{N} = \{1, 2, \ldots\}$$ 为正整数集，$$\mathcal{N}_{\theta} = \{1, 2, \ldots, \theta\}$$。则 $$X_1, \ldots, X_n$$ 的联合 pmf 为
+> 这类分析有时用示性函数能更清晰、更简洁地进行。回顾 $$I_A(x)$$ 是集合 $$A$$ 的示性函数（$$x \in A$$ 时为 1，否则为 0）。令 $$\mathcal{N} = \lbrace 1, 2, \ldots \rbrace$$ 为正整数集，$$\mathcal{N}_{\theta} = \lbrace 1, 2, \ldots, \theta \rbrace$$。则 $$X_1, \ldots, X_n$$ 的联合 pmf 为
 >
 > $$
 f(\textbf{x} \mid \theta) = \prod_{i=1}^{n} \theta^{-1}\, I_{\mathcal{N}_{\theta}}(x_i) = \theta^{-n} \prod_{i=1}^{n} I_{\mathcal{N}_{\theta}}(x_i).
@@ -304,7 +304,7 @@ $$
 >
 > 若对任何其他充分统计量 $$T'(\textbf{X})$$，$$T(\textbf{x})$$ 都是 $$T'(\textbf{x})$$ 的函数，则称充分统计量 $$T(\textbf{X})$$ 为***最小充分统计量***（minimal sufficient statistic）。
 
-说“$$T(\textbf{x})$$ 是 $$T'(\textbf{x})$$ 的函数”，意思是：若 $$T'(\textbf{x}) = T'(\textbf{y})$$ 则 $$T(\textbf{x}) = T(\textbf{y})$$。用本章开头描述的分割集合的语言：若 $$\{B_{t'} : t' \in \mathcal{T}'\}$$ 是 $$T'(\textbf{x})$$ 的分割集合，$$\{A_t : t \in \mathcal{T}\}$$ 是 $$T(\textbf{x})$$ 的分割集合，则定义 6.2.11 断言每个 $$B_{t'}$$ 都是某个 $$A_t$$ 的子集。于是与最小充分统计量相联系的分割是充分统计量可能的***最粗***分割，最小充分统计量实现了充分统计量可能的最大数据约简。
+说“$$T(\textbf{x})$$ 是 $$T'(\textbf{x})$$ 的函数”，意思是：若 $$T'(\textbf{x}) = T'(\textbf{y})$$ 则 $$T(\textbf{x}) = T(\textbf{y})$$。用本章开头描述的分割集合的语言：若 $$\lbrace B_{t'} : t' \in \mathcal{T}' \rbrace$$ 是 $$T'(\textbf{x})$$ 的分割集合，$$\lbrace A_t : t \in \mathcal{T} \rbrace$$ 是 $$T(\textbf{x})$$ 的分割集合，则定义 6.2.11 断言每个 $$B_{t'}$$ 都是某个 $$A_t$$ 的子集。于是与最小充分统计量相联系的分割是充分统计量可能的***最粗***分割，最小充分统计量实现了充分统计量可能的最大数据约简。
 
 > **例 6.2.12（两个正态充分统计量）**
 >
@@ -318,7 +318,7 @@ $$
 >
 > **证明**　为简化证明，设对一切 $$\textbf{x} \in \mathcal{X}$$ 与 $$\theta$$ 有 $$f(\textbf{x} \mid \theta) > 0$$。
 >
-> 先证 $$T(\textbf{X})$$ 是充分统计量。令 $$\mathcal{T} = \{t : t = T(\textbf{x})\ \text{对某个}\ \textbf{x} \in \mathcal{X}\}$$ 为 $$\mathcal{X}$$ 在 $$T(\textbf{x})$$ 下的像，定义 $$T(\textbf{x})$$ 诱导的分割集合 $$A_t = \{\textbf{x} : T(\textbf{x}) = t\}$$。对每个 $$A_t$$，选定并固定一个元素 $$\textbf{x}_t \in A_t$$。对任意 $$\textbf{x} \in \mathcal{X}$$，$$\textbf{x}_{T(\textbf{x})}$$ 是与 **x** 在同一集合 $$A_{T(\textbf{x})}$$ 中的固定元素。由于 **x** 与 $$\textbf{x}_{T(\textbf{x})}$$ 在同一集合 $$A_t$$ 中，$$T(\textbf{x}) = T\bigl( \textbf{x}_{T(\textbf{x})} \bigr)$$，故 $$f(\textbf{x} \mid \theta) / f\bigl( \textbf{x}_{T(\textbf{x})} \mid \theta \bigr)$$ 作为 $$\theta$$ 的函数为常数。于是可以在 $$\mathcal{X}$$ 上定义函数 $$h(\textbf{x}) = f(\textbf{x} \mid \theta) / f\bigl( \textbf{x}_{T(\textbf{x})} \mid \theta \bigr)$$，且 $$h$$ 不依赖 $$\theta$$；在 $$\mathcal{T}$$ 上定义 $$g(t \mid \theta) = f(\textbf{x}_t \mid \theta)$$。则可见
+> 先证 $$T(\textbf{X})$$ 是充分统计量。令 $$\mathcal{T} = \lbrace t : t = T(\textbf{x})\ \text{对某个}\ \textbf{x} \in \mathcal{X} \rbrace$$ 为 $$\mathcal{X}$$ 在 $$T(\textbf{x})$$ 下的像，定义 $$T(\textbf{x})$$ 诱导的分割集合 $$A_t = \lbrace \textbf{x} : T(\textbf{x}) = t \rbrace$$。对每个 $$A_t$$，选定并固定一个元素 $$\textbf{x}_t \in A_t$$。对任意 $$\textbf{x} \in \mathcal{X}$$，$$\textbf{x}_{T(\textbf{x})}$$ 是与 **x** 在同一集合 $$A_{T(\textbf{x})}$$ 中的固定元素。由于 **x** 与 $$\textbf{x}_{T(\textbf{x})}$$ 在同一集合 $$A_t$$ 中，$$T(\textbf{x}) = T\bigl( \textbf{x}_{T(\textbf{x})} \bigr)$$，故 $$f(\textbf{x} \mid \theta) / f\bigl( \textbf{x}_{T(\textbf{x})} \mid \theta \bigr)$$ 作为 $$\theta$$ 的函数为常数。于是可以在 $$\mathcal{X}$$ 上定义函数 $$h(\textbf{x}) = f(\textbf{x} \mid \theta) / f\bigl( \textbf{x}_{T(\textbf{x})} \mid \theta \bigr)$$，且 $$h$$ 不依赖 $$\theta$$；在 $$\mathcal{T}$$ 上定义 $$g(t \mid \theta) = f(\textbf{x}_t \mid \theta)$$。则可见
 >
 > $$
 f(\textbf{x} \mid \theta) = \frac{f\bigl( \textbf{x}_{T(\textbf{x})} \mid \theta \bigr)\, f(\textbf{x} \mid \theta)}{f\bigl( \textbf{x}_{T(\textbf{x})} \mid \theta \bigr)} = g\bigl( T(\textbf{x}) \mid \theta \bigr)\, h(\textbf{x}),
@@ -503,7 +503,7 @@ $$
 > 设 $$S(\textbf{X})$$ 是任何辅助统计量。则 $$P\bigl( S(\textbf{X}) = s \bigr)$$ 不依赖 $$\theta$$（因为 $$S(\textbf{X})$$ 辅助）。又条件概率
 >
 > $$
-P\bigl( S(\textbf{X}) = s \mid T(\textbf{X}) = t \bigr) = P\Bigl( \textbf{X} \in \{ \textbf{x} : S(\textbf{x}) = s \} \,\Big\vert \, T(\textbf{X}) = t \Bigr)
+P\bigl( S(\textbf{X}) = s \mid T(\textbf{X}) = t \bigr) = P\Bigl( \textbf{X} \in \lbrace  \textbf{x} : S(\textbf{x}) = s  \rbrace \,\Big\vert \, T(\textbf{X}) = t \Bigr)
 $$
 >
 > 不依赖 $$\theta$$，因为 $$T(\textbf{X})$$ 是充分统计量（回忆定义！）。于是要证 $$S(\textbf{X})$$ 与 $$T(\textbf{X})$$ 独立，只需证明对一切可能的 $$t \in \mathcal{T}$$ 有
@@ -696,7 +696,7 @@ $$
 
 对离散分布，似然原理可以从两条直觉上更简单的想法导出；对连续分布，在稍加限定的条件下亦然。本小节只处理离散分布。Berger and Wolpert (1984) 对离散与连续两种情形的似然原理提供了透彻的讨论。这些结果最早由 Birnbaum (1962) 在一篇里程碑式的论文中证明；我们的表述更接近 Berger and Wolpert。
 
-形式地，定义实验（experiment）$$\mathcal{E}$$ 为三元组 $$\bigl( \textbf{X}, \theta, \{f(\textbf{x} \mid \theta)\} \bigr)$$，其中 $$\textbf{X}$$ 是对参数空间 $$\Theta$$ 中某个 $$\theta$$ 具有 pmf $$f(\textbf{x} \mid \theta)$$ 的随机向量。知道做了实验 $$\mathcal{E}$$ 并观测到特定样本 $$\textbf{X} = \textbf{x}$$ 的实验者，会对 $$\theta$$ 作出某种推断或得出某个结论；记该结论为 $$\mathrm{Ev}(\mathcal{E}, \textbf{x})$$，表示由 $$\mathcal{E}$$ 与 **x** 产生的关于 $$\theta$$ 的证据（evidence）。
+形式地，定义实验（experiment）$$\mathcal{E}$$ 为三元组 $$\bigl( \textbf{X}, \theta, \lbrace f(\textbf{x} \mid \theta) \rbrace \bigr)$$，其中 $$\textbf{X}$$ 是对参数空间 $$\Theta$$ 中某个 $$\theta$$ 具有 pmf $$f(\textbf{x} \mid \theta)$$ 的随机向量。知道做了实验 $$\mathcal{E}$$ 并观测到特定样本 $$\textbf{X} = \textbf{x}$$ 的实验者，会对 $$\theta$$ 作出某种推断或得出某个结论；记该结论为 $$\mathrm{Ev}(\mathcal{E}, \textbf{x})$$，表示由 $$\mathcal{E}$$ 与 **x** 产生的关于 $$\theta$$ 的证据（evidence）。
 
 > **例 6.3.4（证据函数）**
 >
@@ -706,13 +706,13 @@ $$
 
 > **形式充分性原理（Formal Sufficiency Principle）**
 >
-> 考虑实验 $$\mathcal{E} = \bigl( \textbf{X}, \theta, \{f(\textbf{x} \mid \theta)\} \bigr)$$，设 $$T(\textbf{X})$$ 是 $$\theta$$ 的充分统计量。若样本点 **x** 与 **y** 满足 $$T(\textbf{x}) = T(\textbf{y})$$，则 $$\mathrm{Ev}(\mathcal{E}, \textbf{x}) = \mathrm{Ev}(\mathcal{E}, \textbf{y})$$。
+> 考虑实验 $$\mathcal{E} = \bigl( \textbf{X}, \theta, \lbrace f(\textbf{x} \mid \theta) \rbrace \bigr)$$，设 $$T(\textbf{X})$$ 是 $$\theta$$ 的充分统计量。若样本点 **x** 与 **y** 满足 $$T(\textbf{x}) = T(\textbf{y})$$，则 $$\mathrm{Ev}(\mathcal{E}, \textbf{x}) = \mathrm{Ev}(\mathcal{E}, \textbf{y})$$。
 
 形式充分性原理比 6.2 节的充分性原理稍稍更进一步：那里没有提到实验；这里我们同意在充分统计量相同时把证据等同。似然原理可以由形式充分性原理与下面这条极其合理的原理导出。
 
 > **条件性原理（Conditionality Principle）**
 >
-> 设 $$\mathcal{E}_1 = \bigl( X_1, \theta, \{f_1(x_1 \mid \theta)\} \bigr)$$ 与 $$\mathcal{E}_2 = \bigl( X_2, \theta, \{f_2(x_2 \mid \theta)\} \bigr)$$ 是两个实验，两实验之间只须有共同未知参数 $$\theta$$。考虑混合实验：观测随机变量 $$J$$（$$P(J = 1) = P(J = 2) = \tfrac{1}{2}$$，与 $$\theta$$、$$X_1$$、$$X_2$$ 独立），然后实施实验 $$\mathcal{E}_J$$。形式地，所实施的实验为 $$\mathcal{E}^{*} = \bigl( \textbf{X}^{*}, \theta, \{f^{*}(x^{*} \mid \theta)\} \bigr)$$，其中 $$\textbf{X}^{*} = (j, X_j)$$，$$f^{*}(x^{*} \mid \theta) = f^{*}\bigl( (j, x_j) \mid \theta \bigr) = \tfrac{1}{2}\, f_j(x_j \mid \theta)$$。则
+> 设 $$\mathcal{E}_1 = \bigl( X_1, \theta, \lbrace f_1(x_1 \mid \theta) \rbrace \bigr)$$ 与 $$\mathcal{E}_2 = \bigl( X_2, \theta, \lbrace f_2(x_2 \mid \theta) \rbrace \bigr)$$ 是两个实验，两实验之间只须有共同未知参数 $$\theta$$。考虑混合实验：观测随机变量 $$J$$（$$P(J = 1) = P(J = 2) = \tfrac{1}{2}$$，与 $$\theta$$、$$X_1$$、$$X_2$$ 独立），然后实施实验 $$\mathcal{E}_J$$。形式地，所实施的实验为 $$\mathcal{E}^{*} = \bigl( \textbf{X}^{*}, \theta, \lbrace f^{*}(x^{*} \mid \theta) \rbrace \bigr)$$，其中 $$\textbf{X}^{*} = (j, X_j)$$，$$f^{*}(x^{*} \mid \theta) = f^{*}\bigl( (j, x_j) \mid \theta \bigr) = \tfrac{1}{2}\, f_j(x_j \mid \theta)$$。则
 >
 > $$
 \mathrm{Ev}\bigl( \mathcal{E}^{*},\, (j, x_j) \bigr) = \mathrm{Ev}\bigl( \mathcal{E}_j,\, x_j \bigr). \tag{6.3.2}
@@ -722,13 +722,13 @@ $$
 
 > **例 6.3.5（二项/负二项实验）**
 >
-> 设关心的参数是概率 $$p$$（$$0 < p < 1$$），它表示某枚硬币被抛掷时落成“正面”的概率。设 $$\mathcal{E}_1$$ 是抛硬币 20 次并记录正面次数的实验：$$\mathcal{E}_1$$ 是二项实验，$$\{f_1(x_1 \mid p)\}$$ 是 $$\mathrm{binomial}(20, p)$$ pmf 族。设 $$\mathcal{E}_2$$ 是抛硬币直到出现第七次正面、并记录第七次正面之前反面次数的实验：$$\mathcal{E}_2$$ 是负二项实验。现在假设实验者用随机数表在这两个实验之间选择，恰好选中 $$\mathcal{E}_2$$，收集到的数据是“第七次正面发生在第 20 次投掷”。条件性原理说：实验者现在拥有的关于 $$\theta$$ 的信息 $$\mathrm{Ev}\bigl( \mathcal{E}^{*}, (2, 13) \bigr)$$，与他若一开始就选择做负二项实验（从未考虑二项实验）所拥有的信息 $$\mathrm{Ev}(\mathcal{E}_2, 13)$$ 相同。
+> 设关心的参数是概率 $$p$$（$$0 < p < 1$$），它表示某枚硬币被抛掷时落成“正面”的概率。设 $$\mathcal{E}_1$$ 是抛硬币 20 次并记录正面次数的实验：$$\mathcal{E}_1$$ 是二项实验，$$\lbrace f_1(x_1 \mid p) \rbrace$$ 是 $$\mathrm{binomial}(20, p)$$ pmf 族。设 $$\mathcal{E}_2$$ 是抛硬币直到出现第七次正面、并记录第七次正面之前反面次数的实验：$$\mathcal{E}_2$$ 是负二项实验。现在假设实验者用随机数表在这两个实验之间选择，恰好选中 $$\mathcal{E}_2$$，收集到的数据是“第七次正面发生在第 20 次投掷”。条件性原理说：实验者现在拥有的关于 $$\theta$$ 的信息 $$\mathrm{Ev}\bigl( \mathcal{E}^{*}, (2, 13) \bigr)$$，与他若一开始就选择做负二项实验（从未考虑二项实验）所拥有的信息 $$\mathrm{Ev}(\mathcal{E}_2, 13)$$ 相同。
 
 下面的形式似然原理现在可以由形式充分性原理与条件性原理导出。
 
 > **形式似然原理（Formal Likelihood Principle）**
 >
-> 设有两个实验 $$\mathcal{E}_1 = \bigl( X_1, \theta, \{f_1(x_1 \mid \theta)\} \bigr)$$ 与 $$\mathcal{E}_2 = \bigl( X_2, \theta, \{f_2(x_2 \mid \theta)\} \bigr)$$，未知参数 $$\theta$$ 在两实验中相同。设 $$x_1^{*}$$ 与 $$x_2^{*}$$ 分别是来自 $$\mathcal{E}_1$$ 与 $$\mathcal{E}_2$$ 的样本点，满足
+> 设有两个实验 $$\mathcal{E}_1 = \bigl( X_1, \theta, \lbrace f_1(x_1 \mid \theta) \rbrace \bigr)$$ 与 $$\mathcal{E}_2 = \bigl( X_2, \theta, \lbrace f_2(x_2 \mid \theta) \rbrace \bigr)$$，未知参数 $$\theta$$ 在两实验中相同。设 $$x_1^{*}$$ 与 $$x_2^{*}$$ 分别是来自 $$\mathcal{E}_1$$ 与 $$\mathcal{E}_2$$ 的样本点，满足
 >
 > $$
 L(\theta \mid x_2^{*}) = C\, L(\theta \mid x_1^{*}) \tag{6.3.3}
@@ -744,7 +744,7 @@ $$
 
 > **似然原理推论（Likelihood Principle Corollary）**
 >
-> 若 $$\mathcal{E} = \bigl( \textbf{X}, \theta, \{f(\textbf{x} \mid \theta)\} \bigr)$$ 是一个实验，则 $$\mathrm{Ev}(\mathcal{E}, \textbf{x})$$ 应当只通过 $$L(\theta \mid \textbf{x})$$ 依赖 $$\mathcal{E}$$ 与 **x**。
+> 若 $$\mathcal{E} = \bigl( \textbf{X}, \theta, \lbrace f(\textbf{x} \mid \theta) \rbrace \bigr)$$ 是一个实验，则 $$\mathrm{Ev}(\mathcal{E}, \textbf{x})$$ 应当只通过 $$L(\theta \mid \textbf{x})$$ 依赖 $$\mathcal{E}$$ 与 **x**。
 
 现在陈述 Birnbaum 定理，然后考察其多少令人意外的推论。
 
@@ -816,7 +816,7 @@ $$
 
 第一种等变可以称为测量等变（measurement equivariance）：它规定所作的推断不应依赖于所用的测量尺度。例如设两位林务员要估计一片森林中树木的平均直径：第一位使用以英寸表示的树径数据，第二位使用以米表示的同一数据。现在要求两人都以英寸给出估计（第二位可以先以米估计平均直径再换算成英寸）。测量等变要求两位林务员给出相同的估计。毫无疑问，几乎所有人都会同意这种等变是合理的。
 
-第二种等变实际上是不变性（invariance），可以称为形式不变性（formal invariance）：它规定若两个推断问题在所用数学模型方面具有相同的形式结构，则两个问题应使用相同的推断程序。模型中必须相同的元素是：$$\Theta$$（参数空间）、$$\{f(\textbf{x} \mid \theta) : \theta \in \Theta\}$$（样本的 pdf 或 pmf 集合）、以及允许的推断集合与错误推断的后果。最后这个元素此前讨论不多；本节我们假设可能推断的集合与 $$\Theta$$ 相同，即一个推断就是从 $$\Theta$$ 中选一个元素作为 $$\theta$$ 真值的估计或猜测。形式不变性只关心涉及的数学实体，而不关心实验的物理描述。例如两个问题中 $$\Theta$$ 都可以是 $$\Theta = \{\theta : \theta > 0\}$$；但一个问题中 $$\theta$$ 可能是美国一打鸡蛋的平均价格（以美分计），另一问题中 $$\theta$$ 可能指肯尼亚长颈鹿的平均身高（以米计）。然而形式不变性把这两个参数空间等同起来，因为它们指同一实数集合。
+第二种等变实际上是不变性（invariance），可以称为形式不变性（formal invariance）：它规定若两个推断问题在所用数学模型方面具有相同的形式结构，则两个问题应使用相同的推断程序。模型中必须相同的元素是：$$\Theta$$（参数空间）、$$\lbrace f(\textbf{x} \mid \theta) : \theta \in \Theta \rbrace$$（样本的 pdf 或 pmf 集合）、以及允许的推断集合与错误推断的后果。最后这个元素此前讨论不多；本节我们假设可能推断的集合与 $$\Theta$$ 相同，即一个推断就是从 $$\Theta$$ 中选一个元素作为 $$\theta$$ 真值的估计或猜测。形式不变性只关心涉及的数学实体，而不关心实验的物理描述。例如两个问题中 $$\Theta$$ 都可以是 $$\Theta = \lbrace \theta : \theta > 0 \rbrace$$；但一个问题中 $$\theta$$ 可能是美国一打鸡蛋的平均价格（以美分计），另一问题中 $$\theta$$ 可能指肯尼亚长颈鹿的平均身高（以米计）。然而形式不变性把这两个参数空间等同起来，因为它们指同一实数集合。
 
 > **等变原理（Equivariance Principle）**
 >
@@ -840,7 +840,7 @@ $$
 
 > **定义 6.4.2（变换群）**
 >
-> 从样本空间 $$\mathcal{X}$$ 到 $$\mathcal{X}$$ 上的一族函数 $$\{g(\textbf{x}) : g \in \mathcal{G}\}$$ 称为 $$\mathcal{X}$$ 的***变换群***，如果
+> 从样本空间 $$\mathcal{X}$$ 到 $$\mathcal{X}$$ 上的一族函数 $$\lbrace g(\textbf{x}) : g \in \mathcal{G} \rbrace$$ 称为 $$\mathcal{X}$$ 的***变换群***，如果
 >
 > - (i) （逆）对每个 $$g \in \mathcal{G}$$ 存在 $$g' \in \mathcal{G}$$ 使 $$g'\bigl( g(\textbf{x}) \bigr) = \textbf{x}$$ 对一切 $$\textbf{x} \in \mathcal{X}$$ 成立；
 >
@@ -852,7 +852,7 @@ $$
 
 > **例 6.4.3（例 6.4.1 的继续）**
 >
-> 本问题只涉及两个变换，故可取 $$\mathcal{G} = \{g_1, g_2\}$$，$$g_1(x) = n - x$$，$$g_2(x) = x$$。条件 (i) 与 (ii) 容易验证。取 $$g' = g$$ 验证 (i)：每个元素都是自己的逆，例如
+> 本问题只涉及两个变换，故可取 $$\mathcal{G} = \lbrace g_1, g_2 \rbrace$$，$$g_1(x) = n - x$$，$$g_2(x) = x$$。条件 (i) 与 (ii) 容易验证。取 $$g' = g$$ 验证 (i)：每个元素都是自己的逆，例如
 >
 > $$
 g_1\bigl( g_1(x) \bigr) = g_1(n - x) = n - (n - x) = x.
@@ -868,17 +868,17 @@ $$
 
 > **定义 6.4.4（不变分布族）**
 >
-> 设 $$\mathcal{F} = \{f(\textbf{x} \mid \theta) : \theta \in \Theta\}$$ 是 $$\textbf{X}$$ 的一族 pdf 或 pmf，$$\mathcal{G}$$ 是样本空间 $$\mathcal{X}$$ 的变换群。若对每个 $$\theta \in \Theta$$ 与 $$g \in \mathcal{G}$$，存在唯一的 $$\theta' \in \Theta$$ 使得：若 $$X$$ 有分布 $$f(\textbf{x} \mid \theta)$$，则 $$Y = g(\textbf{X})$$ 有分布 $$f(\textbf{y} \mid \theta')$$，则称 $$\mathcal{F}$$ 在群 $$\mathcal{G}$$ 下***不变***（invariant）。
+> 设 $$\mathcal{F} = \lbrace f(\textbf{x} \mid \theta) : \theta \in \Theta \rbrace$$ 是 $$\textbf{X}$$ 的一族 pdf 或 pmf，$$\mathcal{G}$$ 是样本空间 $$\mathcal{X}$$ 的变换群。若对每个 $$\theta \in \Theta$$ 与 $$g \in \mathcal{G}$$，存在唯一的 $$\theta' \in \Theta$$ 使得：若 $$X$$ 有分布 $$f(\textbf{x} \mid \theta)$$，则 $$Y = g(\textbf{X})$$ 有分布 $$f(\textbf{y} \mid \theta')$$，则称 $$\mathcal{F}$$ 在群 $$\mathcal{G}$$ 下***不变***（invariant）。
 
 > **例 6.4.5（例 6.4.1 的结论）**
 >
-> 在二项问题中，必须对 $$g_1$$ 与 $$g_2$$ 都检查。若 $$X \sim \mathrm{binomial}(n, p)$$，则 $$g_1(X) = n - X \sim \mathrm{binomial}(n, 1 - p)$$，故 $$p' = 1 - p$$（$$p$$ 扮演定义 6.4.4 中 $$\theta$$ 的角色）；又 $$g_2(X) = X \sim \mathrm{binomial}(n, p)$$，此时 $$p' = p$$。故二项 pmf 的集合在群 $$\mathcal{G} = \{g_1, g_2\}$$ 下不变。
+> 在二项问题中，必须对 $$g_1$$ 与 $$g_2$$ 都检查。若 $$X \sim \mathrm{binomial}(n, p)$$，则 $$g_1(X) = n - X \sim \mathrm{binomial}(n, 1 - p)$$，故 $$p' = 1 - p$$（$$p$$ 扮演定义 6.4.4 中 $$\theta$$ 的角色）；又 $$g_2(X) = X \sim \mathrm{binomial}(n, p)$$，此时 $$p' = p$$。故二项 pmf 的集合在群 $$\mathcal{G} = \lbrace g_1, g_2 \rbrace$$ 下不变。
 
 例 6.4.1 中的变换群只有两个元素。许多情形下变换群是无限的，如下例所示（另见习题 6.41 与 6.42）。
 
 > **例 6.4.6（正态位置不变性）**
 >
-> 设 $$X_1, \ldots, X_n$$ 是 iid $$n(\mu, \sigma^2)$$，$$\mu$$ 与 $$\sigma^2$$ 都未知。考虑变换群 $$\mathcal{G} = \{g_a(\textbf{x}),\ -\infty < a < \infty\}$$，其中 $$g_a(x_1, \ldots, x_n) = (x_1 + a, \ldots, x_n + a)$$。为验证这族变换是群，必须验证定义 6.4.2 的条件 (i) 与 (ii)。对 (i) 注意
+> 设 $$X_1, \ldots, X_n$$ 是 iid $$n(\mu, \sigma^2)$$，$$\mu$$ 与 $$\sigma^2$$ 都未知。考虑变换群 $$\mathcal{G} = \lbrace g_a(\textbf{x}),\ -\infty < a < \infty \rbrace$$，其中 $$g_a(x_1, \ldots, x_n) = (x_1 + a, \ldots, x_n + a)$$。为验证这族变换是群，必须验证定义 6.4.2 的条件 (i) 与 (ii)。对 (i) 注意
 >
 > $$
 g_{-a}\bigl( g_a(x_1, \ldots, x_n) \bigr) = g_{-a}(x_1 + a, \ldots, x_n + a) = (x_1 + a - a, \ldots, x_n + a - a) = (x_1, \ldots, x_n),
@@ -1018,7 +1018,7 @@ $$
 **6.24** 考虑如下分布族：
 
 $$
-\mathcal{P} = \bigl\{ P_{\lambda}(X = x) : P_{\lambda}(X = x) = \lambda^{x} e^{-\lambda} / x!,\ x = 0, 1, 2, \ldots;\ \lambda = 0\ \text{或}\ 1 \bigr\}.
+\mathcal{P} = \bigl\lbrace  P_{\lambda}(X = x) : P_{\lambda}(X = x) = \lambda^{x} e^{-\lambda} / x!,\ x = 0, 1, 2, \ldots;\ \lambda = 0\ \text{或}\ 1 \bigr \rbrace.
 $$
 
 这是 $$\lambda$$ 限制为 0 或 1 的泊松族。证明族 $$\mathcal{P}$$ 不完备，从而说明完备性可以依赖于参数的取值范围。（见习题 6.15 与 6.18。）
@@ -1049,9 +1049,9 @@ $$
 
 充分且完备。(b) 对 $$n = 2$$，证明 $$\bar{X}$$ 服从逆高斯分布、$$n \lambda / T$$ 服从 $$\chi_{n-1}^2$$ 分布，且两者独立。（一般情形见 Schwarz and Samanta 1991。）逆高斯分布有许多应用，特别是在寿命建模中；参见 Chhikara and Folks (1989) 或 Seshadri (1993) 的著作。
 
-**6.28** 证明定理 6.6.5。提示：先建立族 $$\{f_0(x), f_1(x), \ldots, f_k(x)\}$$ 中 $$T(\textbf{X})$$ 的最小充分性可由定理 6.2.13 得到；然后论证 $$\mathcal{F}$$ 中任何充分统计量必是 $$T(\textbf{x})$$ 的函数。
+**6.28** 证明定理 6.6.5。提示：先建立族 $$\lbrace f_0(x), f_1(x), \ldots, f_k(x) \rbrace$$ 中 $$T(\textbf{X})$$ 的最小充分性可由定理 6.2.13 得到；然后论证 $$\mathcal{F}$$ 中任何充分统计量必是 $$T(\textbf{x})$$ 的函数。
 
-**6.29** 最小充分性的概念可以推广到参数分布族之外。证明：若 $$X_1, X_2, \ldots, X_n$$ 是来自未知密度 $$f$$ 的随机样本，则次序统计量是最小充分的。提示：用定理 6.6.5，取族 $$\{f_0(x), f_1(x), \ldots, f_k(x)\}$$ 为逻辑斯蒂密度。
+**6.29** 最小充分性的概念可以推广到参数分布族之外。证明：若 $$X_1, X_2, \ldots, X_n$$ 是来自未知密度 $$f$$ 的随机样本，则次序统计量是最小充分的。提示：用定理 6.6.5，取族 $$\lbrace f_0(x), f_1(x), \ldots, f_k(x) \rbrace$$ 为逻辑斯蒂密度。
 
 **6.30** 设 $$X_1, \ldots, X_n$$ 是来自 pdf $$f(x \mid \mu) = e^{-(x - \mu)}$$（$$-\infty < \mu < x < \infty$$）的随机样本。(a) 证明 $$X_{(1)} = \min_i X_i$$ 是完备充分统计量；(b) 用 Basu 定理证明 $$X_{(1)}$$ 与 $$S^2$$ 独立。
 
@@ -1067,7 +1067,7 @@ $$
 \mathrm{E}\Biggl[ X_{(i)} \,\Bigg\vert \, \sum_{i} X_i \Biggr] = \frac{\mathrm{E}\bigl( X_{(i)} \bigr)}{\mathrm{E}\bigl( \sum_i X_i \bigr)}\, \sum_{i} X_i.
 $$
 
-**6.32** 证明似然原理推论。即：假设形式充分性原理与条件性原理都成立，证明若 $$\mathcal{E} = \bigl( \textbf{X}, \theta, \{f(\textbf{x} \mid \theta)\} \bigr)$$ 是一个实验，则 $$\mathrm{Ev}(\mathcal{E}, \textbf{x})$$ 应当只通过 $$L(\theta \mid \textbf{x})$$ 依赖 $$\mathcal{E}$$ 与 **x**。
+**6.32** 证明似然原理推论。即：假设形式充分性原理与条件性原理都成立，证明若 $$\mathcal{E} = \bigl( \textbf{X}, \theta, \lbrace f(\textbf{x} \mid \theta) \rbrace \bigr)$$ 是一个实验，则 $$\mathrm{Ev}(\mathcal{E}, \textbf{x})$$ 应当只通过 $$L(\theta \mid \textbf{x})$$ 依赖 $$\mathcal{E}$$ 与 **x**。
 
 **6.33** 补足定理 6.3.6（Birnbaum 定理）证明中的空缺。(a) 定义 $$g(t \mid \theta) = g\bigl( (j, x_j) \mid \theta \bigr) = f^{*}\bigl( (j, x_j) \mid \theta \bigr)$$ 与
 
@@ -1092,7 +1092,7 @@ $$
 **6.37** Joshi and Nabar (1989) 考察了所谓“尼罗河问题”中参数线性估计量的性质，其中 $$(X, Y)$$ 具有联合密度
 
 $$
-f(x, y \mid \theta) = \exp\bigl\{ -(\theta x + y/\theta) \bigr\}, \qquad x > 0, \quad y > 0.
+f(x, y \mid \theta) = \exp\bigl\lbrace  -(\theta x + y/\theta) \bigr \rbrace, \qquad x > 0, \quad y > 0.
 $$
 
 (a) 对容量 $$n$$ 的 iid 样本，证明 Fisher 信息为 $$I(\theta) = 2n / \theta^2$$；(b) 对估计量 $$T = \sum Y_i / \sum X_i$$ 与 $$U = \sum X_i \sum Y_i$$，证明：(i) 仅 $$T$$ 中的信息为 $$\bigl[ 2n / (2n + 1) \bigr]\, I(\theta)$$；(ii) $$(T, U)$$ 中的信息为 $$I(\theta)$$；(iii) $$(T, U)$$ 联合充分但不完备。
@@ -1120,11 +1120,11 @@ $$
 **6.42** 设有来自 $$\frac{1}{\sigma} f\bigl( (x - \theta)/\sigma \bigr)$$（位置—尺度 pdf）的随机样本 $$X_1, \ldots, X_n$$。要估计 $$\theta$$，考虑两组变换：
 
 $$
-\mathcal{G}_1 = \{ g_{a, c}(\textbf{x}) : -\infty < a < \infty,\ c > 0 \}, \qquad g_{a, c}(x_1, \ldots, x_n) = (c x_1 + a, \ldots, c x_n + a);
+\mathcal{G}_1 = \lbrace  g_{a, c}(\textbf{x}) : -\infty < a < \infty,\ c > 0  \rbrace, \qquad g_{a, c}(x_1, \ldots, x_n) = (c x_1 + a, \ldots, c x_n + a);
 $$
 
 $$
-\mathcal{G}_2 = \{ g_a(\textbf{x}) : -\infty < a < \infty \}, \qquad g_a(x_1, \ldots, x_n) = (x_1 + a, \ldots, x_n + a).
+\mathcal{G}_2 = \lbrace  g_a(\textbf{x}) : -\infty < a < \infty  \rbrace, \qquad g_a(x_1, \ldots, x_n) = (x_1 + a, \ldots, x_n + a).
 $$
 
 (a) 证明形如 $$W(x_1, \ldots, x_n) = \bar{x} + k$$（$$k$$ 为非零常数）的估计量关于群 $$\mathcal{G}_2$$ 等变，但关于群 $$\mathcal{G}_1$$ 不等变。(b) 对每个群，在什么条件下等变估计量 $$W$$ 满足 $$\mathrm{E}_{\theta} W = \theta$$（即它是估计 $$\theta$$ 的无偏估计）？
@@ -1132,15 +1132,15 @@ $$
 **6.43** 再设我们有来自 $$\frac{1}{\sigma} f\bigl( (x - \theta)/\sigma \bigr)$$（位置—尺度 pdf）的随机样本 $$X_1, \ldots, X_n$$，但现要估计 $$\sigma^2$$。可以考虑三个变换群：
 
 $$
-\mathcal{G}_1 = \{ g_{a, c}(\textbf{x}) : -\infty < a < \infty,\ c > 0 \}, \quad g_{a, c}(x_1, \ldots, x_n) = (c x_1 + a, \ldots, c x_n + a);
+\mathcal{G}_1 = \lbrace  g_{a, c}(\textbf{x}) : -\infty < a < \infty,\ c > 0  \rbrace, \quad g_{a, c}(x_1, \ldots, x_n) = (c x_1 + a, \ldots, c x_n + a);
 $$
 
 $$
-\mathcal{G}_2 = \{ g_a(\textbf{x}) : -\infty < a < \infty \}, \quad g_a(x_1, \ldots, x_n) = (x_1 + a, \ldots, x_n + a);
+\mathcal{G}_2 = \lbrace  g_a(\textbf{x}) : -\infty < a < \infty  \rbrace, \quad g_a(x_1, \ldots, x_n) = (x_1 + a, \ldots, x_n + a);
 $$
 
 $$
-\mathcal{G}_3 = \{ g_c(\textbf{x}) : c > 0 \}, \quad g_c(x_1, \ldots, x_n) = (c x_1, \ldots, c x_n).
+\mathcal{G}_3 = \lbrace  g_c(\textbf{x}) : c > 0  \rbrace, \quad g_c(x_1, \ldots, x_n) = (c x_1, \ldots, c x_n).
 $$
 
 (a) 证明形如 $$k S^2$$（$$k$$ 为正常数，$$S^2$$ 为样本方差）的 $$\sigma^2$$ 估计量关于 $$\mathcal{G}_2$$ 不变，关于其余两群等变；(b) 证明更大一类的 $$\sigma^2$$ 估计量——形如（Brewster and Zidek, 1974）
@@ -1197,7 +1197,7 @@ Lehmann 还指出：若不修改辅助性的定义而修改完备性的定义，
 
 > **定理 6.6.5（最小充分统计量）**
 >
-> 设密度族 $$\{f_0(x), f_1(x), \ldots, f_k(x)\}$$ 有公共支撑。则
+> 设密度族 $$\lbrace f_0(x), f_1(x), \ldots, f_k(x) \rbrace$$ 有公共支撑。则
 >
 > - a. 统计量
 >
@@ -1205,7 +1205,7 @@ Lehmann 还指出：若不修改辅助性的定义而修改完备性的定义，
   T(\textbf{X}) = \Biggl( \frac{f_1(\textbf{X})}{f_0(\textbf{X})},\ \frac{f_2(\textbf{X})}{f_0(\textbf{X})},\ \ldots,\ \frac{f_k(\textbf{X})}{f_0(\textbf{X})} \Biggr)
   $$
 >
->   是族 $$\{f_0(x), f_1(x), \ldots, f_k(x)\}$$ 的最小充分统计量；
+>   是族 $$\lbrace f_0(x), f_1(x), \ldots, f_k(x) \rbrace$$ 的最小充分统计量；
 >
 > - b. 若 $$\mathcal{F}$$ 是有公共支撑的密度族，且
 >
