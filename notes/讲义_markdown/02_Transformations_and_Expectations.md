@@ -5,6 +5,7 @@ title: "第 2 章　变换与期望（Transformations and Expectations）"
 course: statistics
 order: 2
 date: 2026-10-01
+permalink: /statistics/chap02.html
 ---
 
 # 第 2 章　变换与期望（Transformations and Expectations）
@@ -1704,5 +1705,3 @@ $$
 他指出：尽管两个密度看起来明显不同，其累积量生成函数却几乎完全相同——在整个定义域上的最大差异小于 $1.34 \times 10^{-9}$（不到一个像素的尺寸）。因此标题所问问题的答案是：“就数学目的而言是的，但就数值目的而言断然不是。”作为对比，Waller (1995) 说明：虽然 mgf 在数值上无法区分这两个分布，特征函数却表现出色（Waller 等 (1995) 与 Lucenõ (1997) 进一步研究了用特征函数数值地获得 cdf）。细节见习题 2.37。
 
 ---
-
-[← 上一章](01_Probability_Theory.md) ｜ [目录](README.md) ｜ [下一章 →](03_Common_Families_of_Distributions.md)

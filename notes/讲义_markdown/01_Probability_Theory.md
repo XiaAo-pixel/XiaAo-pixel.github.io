@@ -5,6 +5,7 @@ title: "第 1 章　概率论（Probability Theory）"
 course: statistics
 order: 1
 date: 2026-10-01
+permalink: /statistics/chap01.html
 ---
 
 # 第 1 章　概率论（Probability Theory）
@@ -1746,5 +1747,3 @@ $$
 细节见习题 1.42 与 1.43。这些界随项数增加而越来越紧，是对原邦费罗尼界的改进。应用包括游程概率的近似（Karlin and Ost 1988）与多重比较方法（Naiman and Wynn 1992）。
 
 ---
-
-[目录](README.md) ｜ [下一章 →](02_Transformations_and_Expectations.md)

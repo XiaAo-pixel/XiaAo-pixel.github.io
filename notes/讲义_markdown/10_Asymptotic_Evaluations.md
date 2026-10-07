@@ -5,6 +5,7 @@ title: "第 10 章　渐近评价（Asymptotic Evaluations）"
 course: statistics
 order: 10
 date: 2026-10-01
+permalink: /statistics/chap10.html
 ---
 
 # 第 10 章　渐近评价（Asymptotic Evaluations）
@@ -2229,5 +2230,3 @@ $$
 [^1]: 最易读的入门见 Lehmann 1999, 6.5 节。
 
 ---
-
-[← 上一章](09_Interval_Estimation.md) ｜ [目录](README.md) ｜ [下一章 →](11_Analysis_of_Variance_and_Regression.md)

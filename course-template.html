@@ -4,67 +4,74 @@ title: 【课程名称】
 <!DOCTYPE html>
 <html lang="zh-CN">
 <!--
-  课程页面模板：新增一门课时复制本文件 → 重命名成英文文件名（如 course-os.html）
-  → 填写课程名和笔记列表 → 两处登记：
-          <a href="course-statistics.html">数理统计</a>
-  1. 所有页面侧边栏 subnav 里加：<a href="course-os.html">操作系统</a>
-  2. courses.html 总览页的 entries 里加一张卡片
+  书封面页模板（GitBook 式访问：一门课 = 一个目录式 URL）
+
+  新增一门课的完整流程：
+  1. 复制本文件 → 建目录 <课程代号>/index.html（如 optimization/index.html），填写 frontmatter：
+     kind: book、course: <课程代号>（须与章节笔记 frontmatter 里的 course 一致）、title、date
+  2. 章节笔记从 note-template.md 复制，frontmatter 加一行 permalink: /<课程代号>/chap01.html
+  3. 两处登记：
+     1) 所有页面侧边栏 subnav 里加：<a href="/<课程代号>/">【课程名称】</a>
+        （_layouts/note.html、index.html、courses.html、misc.html、hobbies.html、hobby-*.html）
+     2) courses.html 总览页的 entries 里加一张卡片
+  已登记课程可参考：statistics/index.html、optimization/index.html
 -->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>【课程名称】 | XiaAo</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <div class="page">
 
   <aside class="sidebar">
-    <a class="brand" href="index.html">
-      <img class="avatar" src="assets/avatar.jpg" alt="头像">
-      <span class="name"><span class="ph">XiaAo</span></span>
+    <a class="brand" href="/index.html">
+      <img class="avatar" src="/assets/avatar.jpg" alt="头像">
+      <span class="name">XiaAo</span>
     </a>
     <nav>
-      <a class="nav-item" href="index.html">🏠 主页</a>
+      <a class="nav-item" href="/index.html">🏠 主页</a>
       <div class="nav-group">
-        <a class="nav-item" href="courses.html">📚 课程笔记</a>
+        <a class="nav-item active" href="/courses.html">📚 课程笔记</a>
         <div class="subnav">
-          <!-- 新课程的链接加在这里；若想让当前页在侧边栏高亮，
-               给对应 <a> 加 class="active" -->
+          <a href="/statistics/">数理统计</a>
+          <a href="/optimization/">最优化方法</a>
+          <!-- 新课程的链接加在这里 -->
         </div>
       </div>
       <div class="nav-group">
-        <a class="nav-item" href="misc.html">✏️ 杂记</a>
+        <a class="nav-item" href="/misc.html">✏️ 杂记</a>
         <div class="subnav">
         </div>
       </div>
       <div class="nav-group">
-        <a class="nav-item" href="hobbies.html">🎨 兴趣爱好</a>
+        <a class="nav-item" href="/hobbies.html">🎨 兴趣爱好</a>
         <div class="subnav">
-          <a href="hobby-novel.html">小说</a>
-          <a href="hobby-anime.html">动漫</a>
-          <a href="hobby-travel.html">旅行</a>
+          <a href="/hobby-novel.html">小说</a>
+          <a href="/hobby-anime.html">动漫</a>
+          <a href="/hobby-travel.html">旅行</a>
         </div>
       </div>
     </nav>
   </aside>
 
   <main class="content">
-    <h1><span class="ph">【课程名称】</span></h1>
+    <h1>【课程名称】</h1>
     <p class="muted">教师：<span class="ph">【授课教师】</span> · 学期：<span class="ph">【2026 秋】</span> · 教材：<span class="ph">【教材名称】</span></p>
 
-    <h2>笔记列表</h2>
-    <!-- 复制本文件后：把下面两处 "os" 改成新课程的代号，并同步更新所有页面侧边栏 -->
+    <p><span class="ph">【本书简介一两句：讲什么、按什么顺序读。】</span></p>
+
+    <h2>章节目录</h2>
+    <!-- 复制本文件后：把下面两处 os 改成新课程的代号 -->
     <ul class="postlist">
-{% assign course_notes = site.pages | where: "kind", "note" | where: "course", "os" | sort: "date" | reverse %}
-{% for note in course_notes %}
-      <li><a href="{{ note.url }}">{{ note.title }}</a><span class="date">{{ note.date | date: "%Y-%m-%d" }}</span></li>
+{% assign book = site.pages | where: "kind", "note" | where: "course", "os" | sort: "order" %}
+{% for c in book %}
+      <li><a href="{{ c.url }}">{{ c.title }}</a></li>
 {% endfor %}
     </ul>
 
-    <p class="muted">提示：想直接分享 PDF（如课件），把文件放进网站目录，链接写成 <code>&lt;a href="文件名.pdf"&gt;【标题】&lt;/a&gt;</code> 即可。</p>
-
-    <footer>最后更新：2026-10-01</footer>
+    <footer>最后更新：<span class="ph">【日期】</span></footer>
   </main>
 
 </div>

@@ -1,0 +1,18 @@
+---
+layout: note
+kind: book
+course: optimization
+title: 最优化方法
+date: 2026-10-07
+---
+<p class="muted">教师：文再文 · 学期：2026 秋 · 教材：<cite>最优化：建模、算法与理论</cite>（文再文、刘浩洋、户将、李勇锋）</p>
+
+<p>本书记录《最优化方法》课程的完整讲义：从最优化问题的一般形式与分类出发，经过凸集、凸函数与典型优化问题，再到最优性理论与无约束优化算法。每章一页，可按顺序系统阅读，也可从左侧目录直接跳到所需章节；页底有「上一章 / 下一章」按钮便于连贯翻阅。</p>
+
+<h2>章节目录</h2>
+<ul class="postlist">
+{% assign book = site.pages | where: "kind", "note" | where: "course", page.course | sort: "order" %}
+{% for c in book %}
+  <li><a href="{{ c.url }}">{{ c.title }}</a></li>
+{% endfor %}
+</ul>

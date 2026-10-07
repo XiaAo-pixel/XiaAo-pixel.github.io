@@ -5,6 +5,7 @@ title: "第 3 章　常用分布族（Common Families of Distributions）"
 course: statistics
 order: 3
 date: 2026-10-01
+permalink: /statistics/chap03.html
 ---
 
 # 第 3 章　常用分布族（Common Families of Distributions）
@@ -2023,5 +2024,3 @@ $$
 回到对数正态分布：我们知道它没有 mgf，因此不能满足 Brown 意义下的指数族定义。然而，对数正态满足定理 3.4.2 的期望恒等式，并享有 6.2.1 节（定理 6.2.10）详述的充分性性质。对我们的目的而言，这些正是所需的主要性质，也是把一个分布识别为指数族成员的主要理由。而我们在此不考察的更高级性质，可能需要 mgf 的存在性。
 
 ---
-
-[← 上一章](02_Transformations_and_Expectations.md) ｜ [目录](README.md) ｜ [下一章 →](04_Multiple_Random_Variables.md)

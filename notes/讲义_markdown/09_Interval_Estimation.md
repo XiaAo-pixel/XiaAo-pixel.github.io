@@ -5,6 +5,7 @@ title: "第 9 章　区间估计（Interval Estimation）"
 course: statistics
 order: 9
 date: 2026-10-01
+permalink: /statistics/chap09.html
 ---
 
 # 第 9 章　区间估计（Interval Estimation）
@@ -1997,5 +1998,3 @@ Vardeman (1992) 以本小节的标题提出问题，主张主流统计应当花�
 置信区间覆盖一个均值（参数），预测区间覆盖一个新的随机变量，容忍区间覆盖总体的一定比例。它们给出不同的推断，针对手头的问题应选用合适的区间。
 
 ---
-
-[← 上一章](08_Hypothesis_Testing.md) ｜ [目录](README.md) ｜ [下一章 →](10_Asymptotic_Evaluations.md)

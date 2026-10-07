@@ -5,6 +5,7 @@ title: "第 6 章　数据约简原理（Principles of Data Reduction）"
 course: statistics
 order: 6
 date: 2026-10-01
+permalink: /statistics/chap06.html
 ---
 
 # 第 6 章　数据约简原理（Principles of Data Reduction）
@@ -1237,5 +1238,3 @@ Lehmann 还指出：若不修改辅助性的定义而修改完备性的定义，
 关于最小充分性与完备性的更多内容见 Lehmann and Casella (1998, Section 1.6)。
 
 ---
-
-[← 上一章](05_Properties_of_a_Random_Sample.md) ｜ [目录](README.md) ｜ [下一章 →](07_Point_Estimation.md)

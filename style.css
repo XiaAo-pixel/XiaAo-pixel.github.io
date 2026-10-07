@@ -156,6 +156,53 @@ nav { display: flex; flex-direction: column; gap: .25rem; }
   font-weight: 600;
 }
 
+/* 书目录：GitBook 式，当前书在侧边栏常驻全部章节，超长内部滚动 */
+.subnav.book-toc {
+  max-height: 42vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  margin-bottom: .8rem;
+}
+.subnav.book-toc a {
+  font-size: .82rem;
+  line-height: 1.4;
+  padding: .22rem .5rem;
+}
+.subnav.book-toc::-webkit-scrollbar { width: 6px; }
+.subnav.book-toc::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+
+/* 章节翻页条：页底「上一章 / 下一章」 */
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2.6rem;
+}
+.pager a, .pager span[aria-hidden] {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+  padding: .8rem 1.05rem;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: var(--entry-bg);
+}
+.pager a { color: inherit; text-decoration: none; transition: border-color .15s, transform .15s; }
+.pager a:hover {
+  text-decoration: none;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.pager .hint { font-size: .78rem; color: var(--muted); }
+.pager .t { font-weight: 600; font-size: .92rem; line-height: 1.45; }
+.pager a.next { text-align: right; }
+@media (max-width: 720px) {
+  .pager { flex-direction: column; }
+  .subnav.book-toc { display: none; }   /* 窄屏收起章节目录，书封面页里有完整列表 */
+}
+
 /* ---- 右侧内容区 ---- */
 .content { padding: 2.2rem 2.5rem 1.6rem; min-width: 0; }
 

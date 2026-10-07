@@ -5,6 +5,7 @@ title: "第 4 章　多元随机变量（Multiple Random Variables）"
 course: statistics
 order: 4
 date: 2026-10-01
+permalink: /statistics/chap04.html
 ---
 
 # 第 4 章　多元随机变量（Multiple Random Variables）
@@ -2534,5 +2535,3 @@ Proschan and Presnell (1998) 讲述了一次统计考试的故事。考题是：
 这就是玻尔悖论（Borel Paradox）：对概率零取条件集合的不同（正确）解读导致不同的条件期望。如何避免这一悖论？一种办法是避免在概率为零的集合上取条件，即只计算 $\mathrm{E}\bigl( Y \mid X \in B \bigr)$，其中 $B$ 满足 $P(X \in B) > 0$。要计算类似 $\mathrm{E}(Y \mid X = x)$ 的量，可取序列 $B_n \downarrow x$ 并定义 $\mathrm{E}(Y \mid X = x) = \lim_{n \to \infty} \mathrm{E}\bigl( Y \mid X \in B_n \bigr)$。这样就不会有意外：不同的 $\mathrm{E}(Y \mid X = x)$ 答案来自不同的序列（习题 4.61）。
 
 ---
-
-[← 上一章](03_Common_Families_of_Distributions.md) ｜ [目录](README.md) ｜ [下一章 →](05_Properties_of_a_Random_Sample.md)

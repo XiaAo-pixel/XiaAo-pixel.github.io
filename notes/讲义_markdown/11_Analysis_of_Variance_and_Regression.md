@@ -5,6 +5,7 @@ title: "第 11 章　方差分析与回归（Analysis of Variance and Regression
 course: statistics
 order: 11
 date: 2026-10-01
+permalink: /statistics/chap11.html
 ---
 
 # 第 11 章　方差分析与回归（Analysis of Variance and Regression）
@@ -2152,5 +2153,3 @@ $$
 使用 Stein 型估计量已有许多理论发展，不仅在点估计中，也在置信集合估计中——已证明以 Stein 估计量重新定心可以增加覆盖概率并缩小集合。Stein 估计量与经验贝叶斯估计量（杂记 7.5.6 节）之间还有紧密联系，这一联系最早由 Efron and Morris 在二十世纪七十年代的一系列论文（1972, 1973, 1975）中揭示，其中 $\theta$ 的各分量通过公共先验分布被联系在一起。Stein 估计量的理论导引及一些应用见 Lehmann and Casella (1998, 第 5 章)。
 
 ---
-
-[← 上一章](10_Asymptotic_Evaluations.md) ｜ [目录](README.md) ｜ [下一章 →](12_Regression_Models.md)

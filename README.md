@@ -10,20 +10,18 @@
 homepage/
 ├── index.html           主页（自我介绍、快速入口、最近更新）
 ├── courses.html         课程笔记总览（每门课一张卡片入口）
-├── course-template.html 课程页面模板（新增课程复制它）
-├── course-ds.html       示例课程页：数据结构
-├── course-prob.html     示例课程页：概率论与数理统计
-├── misc.html            杂记总览（每年一张卡片入口）
+├── course-template.html 书封面页模板（新增课程复制它）
+├── misc.html            杂记总览
 ├── misc-template.html   杂记子页模板（新增年份/主题复制它）
-├── misc-2026.html       示例杂记子页：2026
-├── misc-2025.html       示例杂记子页：2025
 ├── hobbies.html         兴趣爱好总览
 ├── hobby-novel.html     小说推荐（起点读书链接）
 ├── hobby-anime.html     动漫推荐
 ├── hobby-travel.html    旅行照片墙（分地点）
-├── note-template.md    单篇笔记模板（复制它来写新笔记）
-├── notes/              笔记文件夹：新笔记 .md 放这里，push 后自动变成网页
-├── _layouts/note.html  笔记页模板（自动套侧边栏与公式渲染）
+├── statistics/          数理统计"在线书"：index.html 封面（/statistics/）+ fig/ 章节插图
+├── optimization/        最优化方法"在线书"：index.html 封面（/optimization/）
+├── note-template.md    单章笔记模板（复制它来写新章节）
+├── notes/              章节 .md 源文件放这里，线上地址由 frontmatter 的 permalink 决定
+├── _layouts/note.html  章节页/书封面页模板（侧边栏书目录 + 上一章/下一章 + 公式渲染）
 ├── _config.yml         Jekyll 配置（排除 README 等不发布的文件）
 ├── style.css           全站样式（壁纸、透明度、侧边栏都在这里调）
 ├── assets/
@@ -54,30 +52,32 @@ homepage/
 侧边栏在每个页面的 `<aside class="sidebar">` 里，两级结构，**每一级都是独立页面**：
 
 - 一级栏目（主页 / 课程笔记 / 杂记 / 兴趣爱好）= 一个页面；
-- 子栏目 = 也是独立页面：每门课一个 `course-xxx.html`，杂记按年份一个 `misc-xxxx.html`，兴趣爱好下每项一个 `hobby-xxx.html`。侧边栏直接点过去，当前页会高亮（`class="active"`）。
+- 子栏目 = 也是独立页面。每门课是一个"在线书"（仿 GitBook 访问方式）：`<课程代号>/index.html` 是书封面页（如 `/statistics/`），每个章节是独立一页（如 `/statistics/chap01.html`），打开任何一章，左侧都常驻全书章节目录，页底有「上一章 / 下一章」；杂记按年份一个 `misc-xxxx.html`，兴趣爱好下每项一个 `hobby-xxx.html`。侧边栏直接点过去，当前页会高亮（`class="active"`）。
 
-**新增一门课（以“操作系统”为例）**，三步：
+**新增一门课（以"操作系统"为例）**，三步：
 
-1. 复制 `course-template.html` → 重命名为 `course-os.html`（用英文文件名），填课程名和笔记列表；
-2. **所有页面**侧边栏 `subnav` 里加一条：`<a href="course-os.html">操作系统</a>`；
+1. 复制 `course-template.html` → 新建目录 `os/`，存成 `os/index.html`，改 frontmatter（`course: os`、`title: 操作系统`）并填简介；章节笔记的 `permalink` 以后都写在 `/os/chapNN.html` 下；
+2. **所有页面**侧边栏 `subnav` 里加一条：`<a href="/os/">操作系统</a>`；
 3. 在 `courses.html` 总览页的 `entries` 里照抄一张卡片，改好链接和课程名。
 
-**新增一篇笔记（纯 Markdown，不碰 HTML）**：
+**新增一篇章节笔记（纯 Markdown，不碰 HTML）**：
 
 > 💡 **整文件夹上传**：在"主页助手 → 笔记 → 栏目管理"里 📂 打开某个栏目，用"上传整个文件夹"选一个本地文件夹（里面是分章节的 .md 和它们引用的图片），目录结构会原样保留、图片引用不断链，全部自动归入该栏目。
 
-1. 复制 `note-template.md` → 放进 `notes/` 文件夹 → 重命名为英文文件名（如 `ds-ch3.md`）；
-2. 改文件开头的三行信息：`title`（显示的标题）、`course`（所属栏目代号）、`date`；
+1. 复制 `note-template.md` → 放进 `notes/` 文件夹（子文件夹随意，线上地址由 permalink 决定）→ 重命名为英文文件名（如 `ds-ch3.md`）；
+2. 改文件开头的信息：`title`（显示的标题）、`course`（所属课程代号，与书封面页一致）、`order`（章节序号，决定书目录和翻页顺序）、`date`，以及 **`permalink`**（线上地址，写 `/<课程代号>/chap<两位序号>.html`，如 `/ds/chap03.html`，序号与 `order` 保持一致）；
 3. 用 Markdown 写正文（支持 LaTeX：行内 `$...$`，行间 `$$...$$`；平板上的 Markdown 编辑器写完直接丢进来即可）；
-4. push 上线——课程页/杂记页的列表和主页“最近更新”**自动**出现这篇笔记，不用手动登记。
+4. push 上线——侧边栏书目录、页底「上一章 / 下一章」、书封面页列表和主页"最近更新"**自动**更新，不用手动登记。
 
-`course` 取值与页面对应：`ds`=数据结构、`prob`=概率论与数理统计、`misc-2026`/`misc-2025`=杂记年份；新课程按“新增一门课”登记新代号。
+`course` 取值与书对应：`statistics`=数理统计（`/statistics/`）、`optimization`=最优化方法（`/optimization/`）、`misc-2026`/`misc-2025`=杂记年份；新课程按"新增一门课"登记新代号。
 
 **Markdown 写作注意**：
 
-- 配图放进 `assets/`，引用写 `/assets/图片名.png`（以 `/` 开头）；
+- 章节配图放仓库根目录 `<课程代号>/fig/` 下，正文用 `fig/图片名.png` 引用（相对路径以 permalink 所在目录为基准，改 permalink 文件名时不会断链）；
+- 不属于某本书的图片（杂记等）放 `assets/`，引用写 `/assets/图片名.png`（以 `/` 开头）；
 - 正文里避免出现连续两个 `{`（`{{` 会被 Jekyll 当模板语法），需要时写 `&#123;&#123;`；
-- 公式中的 `*` 建议写成 `\ast`，避免被当成加粗符号。
+- 公式中的 `*` 建议写成 `\ast`，避免被当成加粗符号；
+- 不要在正文里手写"上一章/下一章/目录"导航行——布局会按 `order` 自动生成，手写的链接指向 `.md` 源文件，线上会 404。
 
 **新增一个一级栏目**（比如“转载收藏”）：复制 `misc.html` 改名，再在所有页面的 `<nav>` 里照抄一个 `nav-group`。
 

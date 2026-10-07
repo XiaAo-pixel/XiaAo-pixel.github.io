@@ -5,6 +5,7 @@ title: "第 13 章　后置内容：计算机代数与常用分布表（Back Mat
 course: statistics
 order: 13
 date: 2026-10-01
+permalink: /statistics/chap13.html
 ---
 
 # 第 13 章　后置内容：计算机代数与常用分布表（Back Matter）
@@ -530,5 +531,3 @@ date: 2026-10-01
 - 连续分支：Gamma($r, l$) 在 $r = n/2$、$l = 2$ 时给出 Chi-squared($n$)；$r = 1$ 时给出 Exponential($l$)；$\sum X_i^2$ 给出卡方；$e^{-X/l}$ 由 Exponential 给出；Exponential 经 $\min X_i$、$X_1/g$（$g = 1$）等变换给出 Weibull($g, l$) 与其他分布；$F(n_1, n_2)$ 由 $X_1/n_1$ 与 $X_2/n_2$ 之比给出（$n_2 \to \infty$ 时极限到卡方方向），$n = 1$ 时与 Cauchy 相连（$1/X$ 型变换）；$t(n)$ 与正态及 Cauchy 通过 $n \to \infty$、$n = 1$ 相连；Gamma 经 $\sum X_i$（$r \to \infty$，$m = rl$，$s^2 = rl^2$）极限为 Normal($m, s^2$)；Beta($a, b$) 经 $a = b \to \infty$ 极限为正态，$\frac{X_1}{X_1 + X_2}$（$a = b = 1$）等变换联系均匀分布；Normal 经 $m + sX$、$\log X$、$X - m$、$e^X$ 等变换与 Lognormal、均匀等相连；Double exponential 经 $|X|$、$X_1 - X_2$ 等变换与正态相关。
 
 ---
-
-[← 上一章](12_Regression_Models.md) ｜ [目录](README.md)

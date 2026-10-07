@@ -5,6 +5,7 @@ title: "第 8 章　假设检验（Hypothesis Testing）"
 course: statistics
 order: 8
 date: 2026-10-01
+permalink: /statistics/chap08.html
 ---
 
 # 第 8 章　假设检验（Hypothesis Testing）
@@ -1382,5 +1383,3 @@ Berger and Boos 证明 $p_C$ 是有效 $p$ 值。
 $p_C$ 有两个潜在优点。计算上的优点：在较小的集合 $C$ 上求 sup 可能比在较大的集合 $\Theta_0$ 上容易。统计上的优点：观测到 $\textbf{X}$ 后我们对 $\theta$ 的值已有某些想法——$\theta$ 有很好的机会落在 $C$ 中；考察似乎不为真的 $\theta$ 值看来无关紧要。置信集 $p$ 值只考察 $\Theta_0$ 中那些看起来可信的 $\theta$ 值。Berger and Boos (1994) 与 Silvapulle (1996) 给出大量置信集 $p$ 值的例子。Berger (1996) 指出在比较两个二项概率的问题中，置信集 $p$ 值可以产生功效改进的检验。
 
 ---
-
-[← 上一章](07_Point_Estimation.md) ｜ [目录](README.md) ｜ [下一章 →](09_Interval_Estimation.md)

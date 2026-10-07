@@ -5,6 +5,7 @@ title: "第 5 章　随机样本的性质（Properties of a Random Sample）"
 course: statistics
 order: 5
 date: 2026-10-01
+permalink: /statistics/chap05.html
 ---
 
 # 第 5 章　随机样本的性质（Properties of a Random Sample）
@@ -2278,5 +2279,3 @@ $$
 要完全理解 MCMC 方法确实需要更多马尔可夫链知识，此处不做。MCMC 方法已有浩瀚文献，涵盖理论与应用。Tanner (1993) 是统计学计算方法的良好入门；Robert (1994, Chapter 9) 提供了更具贝叶斯色彩的理论处理；Casella and George (1992) 通过 Gibbs 抽样器（一种特定的 MCMC 方法）给出更平易的入门。Gibbs 抽样器也许仍是使用最广的 MCMC 方法，是这一方法流行的功臣［源于 Gelfand and Smith (1990) 在 Geman and Geman (1984) 基础上的开创性工作］。涉及 MCMC 方法的参考文献多不胜数：其他入门文献还有 Gelman and Rubin (1992)、Geyer and Thompson (1992) 与 Smith and Roberts (1993) 的论文，特别优雅的理论入门见 Tierney (1994)。Robert and Casella (1999) 是该领域的教科书级论述。
 
 ---
-
-[← 上一章](04_Multiple_Random_Variables.md) ｜ [目录](README.md) ｜ [下一章 →](06_Principles_of_Data_Reduction.md)

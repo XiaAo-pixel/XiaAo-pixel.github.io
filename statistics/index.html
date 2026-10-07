@@ -1,0 +1,18 @@
+---
+layout: note
+kind: book
+course: statistics
+title: 数理统计
+date: 2026-10-07
+---
+<p class="muted">教师：周晓华 · 学期：2026 秋 · 教材：<cite>Statistical Inference</cite>（Casella &amp; Berger, 2nd ed.）</p>
+
+<p>本书记录《数理统计》课程的完整讲义，以 Casella &amp; Berger《统计推断》为主线：从概率论基础出发，依次讨论变换与期望、常用分布族、多元随机变量、数据约简原理、点估计、假设检验、区间估计与渐近评价，最后落到方差分析、回归模型与常用分布表。每章一页，可按顺序系统阅读，也可从左侧目录直接跳到所需章节；页底有「上一章 / 下一章」按钮便于连贯翻阅。</p>
+
+<h2>章节目录</h2>
+<ul class="postlist">
+{% assign book = site.pages | where: "kind", "note" | where: "course", page.course | sort: "order" %}
+{% for c in book %}
+  <li><a href="{{ c.url }}">{{ c.title }}</a></li>
+{% endfor %}
+</ul>

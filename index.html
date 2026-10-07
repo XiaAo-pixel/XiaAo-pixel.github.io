@@ -23,8 +23,8 @@ title: 主页
       <div class="nav-group">
         <a class="nav-item" href="courses.html">📚 课程笔记</a>
         <div class="subnav">
-          <a href="course-statistics.html">数理统计</a>
-          <a href="course-optimization.html">最优化方法</a>
+          <a href="/statistics/">数理统计</a>
+          <a href="/optimization/">最优化方法</a>
         </div>
       </div>
       <div class="nav-group">
@@ -73,13 +73,13 @@ title: 主页
 
     <h2>最近更新</h2>
     <ul class="postlist">
-{% comment %} 课程目录式：每门课一行。course 代号须与 course-<代号>.html 对应 {% endcomment %}
+{% comment %} 课程目录式：每门课一行，链接到该课的书封面页（<课程代号>/index.html）。
+   course 代号须与封面页所在目录名一致；暂无封面页的栏目回退到 courses.html {% endcomment %}
 {% assign notes = site.pages | where: "kind", "note" %}
 {% assign groups = notes | group_by: "course" | sort: "name" %}
 {% for g in groups %}
-  {% assign fname = g.name | prepend: "course-" | append: ".html" %}
-  {% assign cpage = site.pages | where: "name", fname | first %}
-      <li><a href="/{{ fname }}">{{ cpage.title | default: g.name }}</a><span class="date">{{ g.items | size }} 篇笔记</span></li>
+  {% assign cover = site.pages | where: "kind", "book" | where: "course", g.name | first %}
+      <li><a href="{{ cover.url | default: "/courses.html" }}">{{ cover.title | default: g.name }}</a><span class="date">{{ g.items | size }} 篇笔记</span></li>
 {% endfor %}
     </ul>
 

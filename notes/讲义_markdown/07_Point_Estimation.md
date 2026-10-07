@@ -5,6 +5,7 @@ title: "第 7 章　点估计（Point Estimation）"
 course: statistics
 order: 7
 date: 2026-10-01
+permalink: /statistics/chap07.html
 ---
 
 # 第 7 章　点估计（Point Estimation）
@@ -2147,5 +2148,3 @@ $$
 分层建模（无论贝叶斯与否）是非常有效的工具，通常给出对底层模型相当稳健的答案。其有用性由 Lindley and Smith (1972) 演示，此后其使用与发展相当广泛。Gelfand and Smith (1990) 的开创性论文把分层模型与计算算法联系起来，贝叶斯方法的适用性随之爆发。Lehmann and Casella (1999, Section 4.5) 给出分层贝叶斯理论的入门；Robert and Casella (1999) 涵盖应用及与计算算法的联系。
 
 ---
-
-[← 上一章](06_Principles_of_Data_Reduction.md) ｜ [目录](README.md) ｜ [下一章 →](08_Hypothesis_Testing.md)

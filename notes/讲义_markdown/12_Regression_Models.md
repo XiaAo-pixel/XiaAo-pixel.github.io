@@ -5,6 +5,7 @@ title: "第 12 章　回归模型（Regression Models）"
 course: statistics
 order: 12
 date: 2026-10-01
+permalink: /statistics/chap12.html
 ---
 
 # 第 12 章　回归模型（Regression Models）
@@ -1347,5 +1348,3 @@ Newton–Raphson 方法也称为迭代重加权最小二乘（iteratively reweig
 **计算。**从实践角度看，稳健估计的计算可能相当有挑战性，因为我们常面对困难的最小化问题。综述 Portnoy and Koenker (1997) 关心 LAD 估计的计算；Hawkins (1993, 1994, 1995) 给出了计算 LMS 及相关估计的多种算法。
 
 ---
-
-[← 上一章](11_Analysis_of_Variance_and_Regression.md) ｜ [目录](README.md) ｜ [下一章 →](13_Back_Matter.md)
