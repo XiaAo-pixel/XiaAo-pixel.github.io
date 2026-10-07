@@ -9,4 +9,4 @@ defaults:
   - scope:
       path: ""
     values:
-      layout: zzdebug
+      layout: zztypes
