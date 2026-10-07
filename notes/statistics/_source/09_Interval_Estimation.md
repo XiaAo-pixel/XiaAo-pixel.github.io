@@ -4,7 +4,7 @@ kind: note
 title: "第 9 章　区间估计（Interval Estimation）"
 course: statistics
 order: 9
-date: 2026-10-01
+date: 2026-10-07
 permalink: /statistics/chap09.html
 ---
 

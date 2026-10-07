@@ -4,7 +4,7 @@ kind: note
 title: "第 3 章　常用分布族（Common Families of Distributions）"
 course: statistics
 order: 3
-date: 2026-10-01
+date: 2026-10-07
 permalink: /statistics/chap03.html
 ---
 

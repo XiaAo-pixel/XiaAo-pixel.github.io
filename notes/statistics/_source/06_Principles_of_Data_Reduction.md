@@ -4,7 +4,7 @@ kind: note
 title: "第 6 章　数据约简原理（Principles of Data Reduction）"
 course: statistics
 order: 6
-date: 2026-10-01
+date: 2026-10-07
 permalink: /statistics/chap06.html
 ---
 

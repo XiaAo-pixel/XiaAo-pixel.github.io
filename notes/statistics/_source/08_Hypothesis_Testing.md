@@ -4,7 +4,7 @@ kind: note
 title: "第 8 章　假设检验（Hypothesis Testing）"
 course: statistics
 order: 8
-date: 2026-10-01
+date: 2026-10-07
 permalink: /statistics/chap08.html
 ---
 

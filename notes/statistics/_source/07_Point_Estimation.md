@@ -4,7 +4,7 @@ kind: note
 title: "第 7 章　点估计（Point Estimation）"
 course: statistics
 order: 7
-date: 2026-10-01
+date: 2026-10-07
 permalink: /statistics/chap07.html
 ---
 

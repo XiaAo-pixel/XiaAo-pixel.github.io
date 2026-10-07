@@ -4,7 +4,7 @@ kind: note
 title: "第 5 章　随机样本的性质（Properties of a Random Sample）"
 course: statistics
 order: 5
-date: 2026-10-01
+date: 2026-10-07
 permalink: /statistics/chap05.html
 ---
 

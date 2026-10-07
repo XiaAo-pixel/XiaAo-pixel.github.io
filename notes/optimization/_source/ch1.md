@@ -1,0 +1,955 @@
+---
+layout: note
+kind: note
+title: "第 1 章　最优化简介"
+course: optimization
+order: 1
+date: 2026-10-07
+---
+
+# 最优化简介
+
+最优化问题（也称优化问题）泛指定量决策问题，主要关心如何对有限资源进行有效分配和控制，并达到某种意义上的最优．它通常需要对需求进行定性和定量分析，建立恰当的数学模型来描述该问题，设计合适的计算方法来寻找问题的最优解，探索研究模型和算法的理论性质，考察算法的计算性能等．由于很多数学问题难以直接给出显式解，最优化模型就成为人们最常见的选择；计算机的高速发展也为最优化方法提供了有力的辅助工具．因此最优化方法被广泛应用于科学与工程计算、金融与经济、管理科学、工业生产、图像与信号处理、数据分析与人工智能、计算物理与化学等众多领域．
+
+本章对应课程 PPT 第 1 讲《最优化：简介》（共 $$35$$ 页幻灯片，依次标号 $$1/35$$ 至 $$35/35$$），它是教材《最优化：建模、算法与理论》（文再文、刘浩洋、户将、李勇锋）的配套电子教案．并利用教材（讲义）第一章（1.1--1.6 节与习题 1）补全 PPT 上留白、未给推导的结论．[^1]本章的目的是：先给出最优化问题的一般形式与分类，再从**稀疏优化**、**低秩矩阵恢复**、**深度学习**三个实际例子出发，让读者直观理解"把一个实际问题写成一个优化问题"这一建模过程；最后系统建立最优解、算法收敛性、收敛速度、复杂度与收敛准则等基本概念，为后续各章提供统一的语言．
+
+## 本章前置知识
+
+<div class="prereq">
+
+本章的内容（尤其是稀疏优化、低秩矩阵恢复与投资组合模型）主要用到以下线性代数、数学分析与概率论工具．下面逐条列出并注明在本章中的用途．
+
+1.  **向量范数．** 对 $$0<p<\infty$$，定义 $$\left\Vert x\right\Vert_p=\Bigl(\sum_{i=1}^{n}\left\vert x_i\right\vert^{p}\Bigr)^{1/p},\qquad
+        \left\Vert x\right\Vert_\infty=\max_{1\le i\le n}\left\vert x_i\right\vert,\qquad
+        \left\Vert x\right\Vert_0\overset{\text{def}}{=}\#\lbracei:x_i\ne 0\rbrace.$$ 范数必须满足正定性、正齐次性与三角不等式；$$\left\Vert x\right\Vert_0$$ 不满足正齐次性（$$\left\Vert2x\right\Vert_0=\left\Vert x\right\Vert_0$$），因此**它不是范数**．*用途：*第 1.2 节三个稀疏优化模型 $$(\ell_0),(\ell_1),(\ell_2)$$；也是收敛性定义中"某种范数"的来源．
+
+2.  **$$\ell_p$$ 范数的相互控制关系．** 对任意 $$x\in\mathbb{R}^n$$， $$\left\Vert x\right\Vert_\infty\le\left\Vert x\right\Vert_2\le\left\Vert x\right\Vert_1\le\sqrt{n}\,\left\Vert x\right\Vert_2\le n\left\Vert x\right\Vert_\infty .$$ 有限维空间上所有范数等价，因此"$$\lbracex^k\rbrace$$ 在某种范数下收敛"与"在任何范数下收敛"是一回事．*用途：*第 1.5.7 节收敛性定义的合理性．
+
+3.  **矩阵内积与 Frobenius 范数．** 对同型矩阵 $$X,Y$$， $$\left\langle X,\,Y\right\rangle=\sum_{i,j}X_{ij}Y_{ij}=\operatorname{tr}(XY^\top),\qquad
+        \left\Vert X\right\Vert_F=\sqrt{\left\langle X,\,X\right\rangle}=\Bigl(\sum_{i,j}X_{ij}^2\Bigr)^{1/2}.$$ *用途：*第 1.4.2 节卷积的定义 $$S_{i,j}=\left\langle I(i:i+k-1,\,j:j+k-1),\,K\right\rangle$$；第 1.3 节秩 $$r$$ 分解的正则项 $$\alpha\left\Vert L\right\Vert_F^2+\beta\left\Vert R\right\Vert_F^2$$．
+
+4.  **奇异值分解（SVD）与秩．** 任意 $$X\in\mathbb{R}^{m\times n}$$ 可写为 $$X=U\operatorname{diag}(\sigma_1,\dots,\sigma_r,0,\dots,0)V^\top$$，其中 $$\sigma_1\ge\sigma_2\ge\cdots\ge\sigma_r>0$$ 为奇异值，$$r=\operatorname{rank}(X)$$．于是 $$\operatorname{rank}(X)=\#\lbracei:\sigma_i(X)\ne 0\rbrace=\left\Vert\sigma(X)\right\Vert_0,\qquad
+        \left\Vert X\right\Vert_2=\sigma_1(X),\qquad \left\Vert X\right\Vert_F=\Bigl(\sum_i\sigma_i^2\Bigr)^{1/2}.$$ *用途：*第 1.3 节用"奇异值之和"替代"非零奇异值个数"，即用核范数替代秩．
+
+5.  **核范数与不等式．** 核范数定义为 $$\left\Vert X\right\Vert_*=\sum_i\sigma_i(X)$$．若 $$r=\operatorname{rank}(X)$$，则 $$\left\Vert X\right\Vert_2\le\left\Vert X\right\Vert_*\le\sqrt{r}\,\left\Vert X\right\Vert_F,\qquad
+        \left\Vert X\right\Vert_F\le\left\Vert X\right\Vert_*\le\sqrt{r}\,\left\Vert X\right\Vert_2 .$$ 核范数是凸函数（下一章将证明它是 $$\operatorname{rank}(\cdot)$$ 在单位谱球上的凸包络），而 $$\operatorname{rank}(\cdot)$$ 不是凸函数．*用途：*第 1.5 节的凸松弛 (1.14)．
+
+6.  **Cauchy--Schwarz 不等式．** $$\left\vert\left\langle x,\,y\right\rangle\right\vert\le\left\Vert x\right\Vert_2\left\Vert y\right\Vert_2$$，等号当且仅当 $$x,y$$ 线性相关．*用途：*卷积值的估计、内积运算的各种不等式放缩．
+
+7.  **广义逆（伪逆）与最小二乘解析解．** 设 $$A\in\mathbb{R}^{m\times n}$$，$$A^{\dagger}$$ 为 Moore--Penrose 伪逆．若 $$A$$ 列满秩，则 $$\min_{x\in\mathbb{R}^n}\ \left\Vert Ax-b\right\Vert_2^2
+        \quad\Longrightarrow\quad
+        x=(A^\top A)^{-1}A^\top b=A^{\dagger}b ;$$ 若 $$A$$ 行满秩（即 $$m<n$$，欠定情形），则最小范数解问题 $$\min_{x\in\mathbb{R}^n}\ \left\Vert x\right\Vert_2\quad \ \text{s.t.}\ Ax=b$$ 有唯一解 $$x=A^\top(AA^\top)^{-1}b=A^{\dagger}b$$．*用途：*$$\ell_2$$ 问题 (1.10) 有显式解 (1.11)；线性回归的解析解．
+
+8.  **仿射集与投影．** 集合 $$\lbracex:Ax=b\rbrace$$ 是仿射集（特别地是凸集）．点 $$y$$ 到闭凸集 $$C$$ 的欧氏投影为 $$\Pi_C(y)=\operatorname*{arg\,min}_{x\in C}\left\Vert x-y\right\Vert_2$$．*用途：*说明 $$\ell_2$$ 问题 (1.10) 的几何意义------它是原点到仿射集 $$Ax=b$$ 的投影．
+
+9.  **期望与方差的线性性．** 对随机变量 $$r$$ 与常数 $$a_i$$， $$\mathbb{E}\Bigl(\sum_i a_ir_i\Bigr)=\sum_i a_i\mathbb{E}(r_i),\qquad
+        \mathop{\mathrm{Var}}\Bigl(\sum_i a_ir_i\Bigr)=\sum_{i,j}a_ia_j\mathop{\mathrm{Cov}}(r_i,r_j).$$ *用途：*第 1.1.2 节推导投资组合的期望回报 $$R=\sum_i\mu_ix_i$$ 与风险 $$V=x^\top\Sigma x$$．
+
+10. **协方差矩阵的半正定性．** $$\Sigma=(\sigma_{ij})$$，$$\sigma_{ij}=\mathop{\mathrm{Cov}}(r_i,r_j)$$．对任意 $$x$$，$$x^\top\Sigma x=\mathop{\mathrm{Var}}(\sum_i x_ir_i)\ge 0$$，故 $$\Sigma\succeq 0$$．*用途：*均值--方差模型的目标函数 $$x^\top\Sigma x$$ 是凸二次函数，问题是二次规划．
+
+11. **下确界、上确界与最值的存在性．** 非空有下界的实数集 $$S$$ 必有下确界 $$\inf S$$，但 $$\inf S$$ 未必属于 $$S$$；只有 $$S$$ 为闭集且下确界有限时才一定有最小值 $$\min S$$．连续函数在紧集上必取到最小值（Weierstrass 定理）．*用途：*把问题中的 $$\min$$ 换成 $$\inf$$ 的说明；最优解存在性的讨论．
+
+12. **凸集与凸函数的初步印象．** $$C$$ 为凸集是指对任意 $$x,y\in C$$ 与 $$\theta\in[0,1]$$ 都有 $$\theta x+(1-\theta)y\in C$$；$$f$$ 为凸函数是指对任意 $$x,y$$ 与 $$\theta\in[0,1]$$ 都有 $$f(\theta x+(1-\theta)y)\le\theta f(x)+(1-\theta)f(y)$$．任何一个范数都是凸函数，但 $$\left\Vert\cdot\right\Vert_1$$ 在 $$0$$ 处不可微；凸优化问题的任何局部最优解都是全局最优解．*用途：*第 1.5.5 节凸/非凸分类，第 1.5.7 节"局部最优即全局最优"．
+
+13. **梯度、海瑟矩阵与一阶最优性必要条件．** $$\nabla f(x)=(\partial f/\partial x_i)$$，$$\nabla^2f(x)=(\partial^2 f/\partial x_i\partial x_j)$$．若 $$x^\star$$ 是无约束问题的一个局部极小点且 $$f$$ 在 $$x^\star$$ 处可微，则 $$\nabla f(x^\star)=0$$．*用途：*收敛准则中的 $$\left\Vert\nabla f(x^k)\right\Vert\le\varepsilon_2$$．
+
+14. **邻域与点列的极限点．** 记 $$N_\varepsilon(\bar x)=\lbracex:\left\Vert x-\bar x\right\Vert<\varepsilon\rbrace$$ 为 $$\bar x$$ 的 $$\varepsilon$$ 邻域；点列的极限点（聚点）是指其某个子列的极限．*用途：*局部极小解的定义；迭代点列收敛性的定义．
+
+</div>
+
+## 本章知识框架
+
+<div class="framework">
+
+`\ifdim\wd\kffitbox>\linewidth
+    \resizebox{\linewidth}{!}{\usebox{\kffitbox}}%
+  \else
+    \ifdim\dimexpr\ht\kffitbox+\dp\kffitbox\relax>0.84\textheight
+      \resizebox{!}{0.84\textheight}{\usebox{\kffitbox}}%
+    \else
+      \usebox{\kffitbox}%
+    \fi`{=latex}
+
+</div>
+
+本章的脉络可以概括为"**从问题到模型，再从模型到算法**"．第 1.3 节给出最优化问题的一般形式 $$\min f(x)\ \ \text{s.t.}\ x\in X$$，说明决策变量、目标函数、约束函数与可行域的含义，并按照目标函数与约束函数的形式、以及最优解的性质对问题进行分类，最后以投资组合优化为例说明"同一个应用问题可以对应性质完全不同的模型"．第 1.4、1.5、1.6 节通过稀疏优化、低秩矩阵恢复、深度学习三个实例展示建模过程：前两者体现了一个共同的核心思想------用**凸的范数**（$$\ell_1$$ 范数、核范数）替代**非凸的稀疏性度量**（$$\ell_0$$"范数"、矩阵的秩），从而把 NP 难问题松弛为可解的凸问题；深度学习则展示了复合结构模型（多层感知机、卷积网络、递归网络）如何写成一个以网络参数为决策变量的大规模非凸优化问题．第 1.7 节回到一般层面，建立最优解的严格定义（全局极小解、局部极小解、严格与非严格局部极小解），给出迭代算法的收敛性、收敛速度（Q-收敛与 R-收敛）、算法复杂度以及收敛准则与停机准则．本章的概念是全书的共同语言：第 2 章将严格建立凸集、凸函数、次梯度等凸分析工具；第 3、4 章将按本章的分类逐一讨论典型优化问题；第 5 章之后的算法章节则围绕本章提出的"泰勒展开、对偶、拆分、块坐标下降"四个基本技巧展开，并以本章的收敛速度与复杂度作为评价算法的统一尺度．
+
+## 最优化问题概括
+
+### 最优化问题的一般形式
+
+最优化问题一般可以描述为 $$\begin{equation}
+  \min\ f(x),\qquad \ \text{s.t.}\ x\in X,
+\end{equation}$$ 其中
+
+- $$x=(x_1,x_2,\dots,x_n)^\top\in\mathbb{R}^n$$ 是**决策变量**（也就是我们要去优化的对象）；
+
+- $$f:\mathbb{R}^n\to\mathbb{R}$$ 是**目标函数**；
+
+- $$X\subseteq\mathbb{R}^n$$ 是**约束集合**或**可行域**，可行域中包含的点称为**可行解**或**可行点**．
+
+记号 $$\mathrm{s.t.}$$ 是"subject to"的缩写，专指约束条件．当 $$X=\mathbb{R}^n$$ 时，问题 (1.1) 称为**无约束优化问题**．
+
+集合 $$X$$ 通常可以由**约束函数** $$c_i(x):\mathbb{R}^n\to\mathbb{R}$$（$$i=1,2,\dots,m+l$$）表达为如下具体形式： $$\begin{equation}
+  X=\bigl\lbracex\in\mathbb{R}^n\ \big\vert\ c_i(x)\le 0,\ i=1,2,\dots,m;\quad
+  c_i(x)=0,\ i=m+1,m+2,\dots,m+l\bigr\rbrace.
+\end{equation}$$ 也就是说，前 $$m$$ 个约束函数给出**不等式约束**，后 $$l$$ 个给出**等式约束**．当可行域写成 (1.2) 的形式时，问题 (1.1) 也可以等价地写成 $$\min_{x\in\mathbb{R}^n}\ f(x)\qquad \ \text{s.t.}\ c_i(x)\le 0\ (i=1,\dots,m),\quad c_i(x)=0\ (i=m+1,\dots,m+l).$$
+
+<div class="definition">
+
+**定义 1.1** 在所有满足约束条件的决策变量中，使目标函数取最小值的变量 $$x^\star$$ 称为优化问题 (1.1) 的**最优解**，即对任意 $$x\in X$$ 都有 $$f(x)\ge f(x^\star).$$
+
+</div>
+
+如果我们要求解在约束集合 $$X$$ 上目标函数 $$f(x)$$ 的*最大值*，则问题 (1.1) 中的"$$\min$$"应相应地替换为"$$\max$$"．注意到在集合 $$X$$ 上，函数 $$f$$ 的最小（最大）值不一定存在，但是其下（上）确界"$$\inf f$$（$$\sup f$$）"总是存在的．因此，当目标函数的最小（最大）值不存在时，我们便关心其下（上）确界，即将问题 (1.1) 中的"$$\min$$（$$\max$$）"改为"$$\inf$$（$$\sup$$）"．例如 $$\min_{x\in\mathbb{R}}\ e^{-x}\quad\text{不存在最小值},\qquad
+  \inf_{x\in\mathbb{R}}\ e^{-x}=0\ \text{（在}\ x\to+\infty\ \text{处取得）}.$$
+
+为了叙述简便，问题 (1.1) 中 $$x$$ 取为 $$\mathbb{R}^n$$ 空间中的向量．实际上，根据具体应用和需求，$$x$$ 还可以是**矩阵**、**多维数组**或**张量**等，本书介绍的很多理论和算法可以相应推广．本章第 1.5 节讨论的低秩矩阵恢复问题，决策变量就是一个矩阵 $$X\in\mathbb{R}^{m\times n}$$；第 1.6 节讨论的深度学习中，决策变量是网络的全部权重参数（可以按层组织为若干矩阵）．
+
+<div class="supp">
+
+由于本书涉及较多公式，请读者根据上下文区分公式中的标量、向量、矩阵．在不加说明的情况下：向量一般用小写英文字母或希腊字母表示（如 $$x,y,\alpha,\beta$$），矩阵一般用大写英文字母或希腊字母表示（如 $$A,X,\Sigma$$）；$$x_i$$ 表示向量 $$x$$ 的第 $$i$$ 个分量，$$X_{ij}$$ 表示矩阵 $$X$$ 的第 $$(i,j)$$ 个元素，$$x^k$$ 表示迭代点列的第 $$k$$ 个点（**上标表示迭代指标，不是幂**），而 $$\left\Vert x\right\Vert_p$$ 中的下标 $$p$$ 表示范数类型．公式中的标量可能使用多种记号，需要根据上下文确定．读者也可参考教材附录 A 的符号表．
+
+</div>
+
+### 最优化问题的类型与应用背景
+
+最优化问题 (1.1) 的具体形式非常丰富，我们可以按照**目标函数与约束函数的形式**以及**最优解的性质**将其分类．
+
+#### （一）按照目标函数和约束函数的形式分类
+
+- 当目标函数和约束函数均为**线性函数**时，问题 (1.1) 称为**线性规划**（linear programming, LP）；
+
+- 当目标函数和约束函数中**至少有一个是非线性函数**时，相应的问题称为**非线性规划**（nonlinear programming, NLP）；
+
+- 如果目标函数是**二次函数**而约束函数是线性函数，则称为**二次规划**（quadratic programming, QP）；
+
+- 包含**非光滑函数**的问题称为**非光滑优化**（nonsmooth optimization）；
+
+- **不能直接求导数**的问题称为**无导数优化**（derivative-free optimization）；
+
+- 变量**只能取整数**的问题称为**整数规划**（integer programming）；
+
+- 在**线性约束**下极小化关于**半正定矩阵**的线性函数的问题称为**半定规划**（semidefinite programming, SDP），其广义形式为**锥规划**（conic programming）．
+
+#### （二）按照最优解的性质分类
+
+- 最优解**只有少量非零元素**的问题称为**稀疏优化**（sparse optimization）；
+
+- 最优解是**低秩矩阵**的问题称为**低秩矩阵优化**（low-rank matrix optimization）．
+
+此外还有**几何优化**、**二次锥规划**（second-order cone programming, SOCP）、**张量优化**、**鲁棒优化**、**全局优化**、**组合优化**、**网络规划**、**随机优化**、**动态规划**、**带微分方程约束优化**、**微分流形约束优化**、**分布式优化**等．
+
+就具体应用而言，问题 (1.1) 可涵盖**统计学习**、**压缩感知**、**最优运输**、**信号处理**、**图像处理**、**机器学习**、**强化学习**、**模式识别**、**金融工程**、**电力系统**等领域的优化模型．
+
+<div class="custom">
+
+注记（建模的多样性） 数学建模很容易给出应用问题不同的模型，可以对应性质很不相同的问题，其求解难度和需要的算法也将差别很大．因此"写出一个模型"只是第一步，判断它属于哪一类问题、是否存在高效算法，才是最优化理论要回答的问题．
+
+</div>
+
+#### （三）一个贯穿全章的实例：投资组合优化
+
+在投资组合优化中，人们希望通过寻求最优的投资组合以降低风险、提高收益．这时决策变量 $$x_i$$ 表示在第 $$i$$ 项资产上的投资额（更常用的是投资的*相对金额*），向量 $$x\in\mathbb{R}^n$$ 表示整体的投资分配．约束条件可能为总资金数、每项资产的最大（最小）投资额、最低收益等；目标函数通常是某种**风险度量**．同一个应用问题，选择不同的风险度量就会得到完全不同类型的问题：
+
+- 如果**极小化收益的方差**，则该问题是典型的**二次规划**；
+
+- 如果**极小化风险价值**（value at risk, VaR）函数，则该问题是**混合整数规划**；
+
+- 如果**极小化条件风险价值**（conditional value at risk, CVaR）函数，则该问题是**非光滑优化**，也可以进一步化成**线性规划**．
+
+下面给出**均值--方差模型**的完整推导．设 $$r_i$$ 为随机变量，表示股票的回报率；$$x_i$$ 表示投资于股票的相对金额． 由于资金全部分配出去，$$\sum_{i=1}^n x_i=1$$，于是总投资回报为 $$r=r_1x_1+r_2x_2+\cdots+r_nx_n=\sum_{i=1}^n r_ix_i .$$ 由期望的线性性，**期望回报**为 $$\begin{equation}
+  R=\mathbb{E}(r)=\mathbb{E}\Bigl(\sum_{i=1}^n r_ix_i\Bigr)=\sum_{i=1}^n \mathbb{E}(r_i)x_i=\sum_{i=1}^n \mu_ix_i,
+  \qquad \mu_i\overset{\text{def}}{=}\mathbb{E}(r_i).
+\end{equation}$$ 记 $$\sigma_{ij}=\mathop{\mathrm{Cov}}(r_i,r_j)=\mathbb{E}\bigl[(r_i-\mu_i)(r_j-\mu_j)\bigr]$$，$$\Sigma=(\sigma_{ij})_{n\times n}$$ 为协方差矩阵，则**风险**（回报的方差）为 $$\begin{equation}
+  V=\mathop{\mathrm{Var}}(r)=\mathbb{E}\bigl(r-R\bigr)^2
+  =\sum_{i=1}^n\sum_{j=1}^n \sigma_{ij}x_ix_j
+  =x^\top\Sigma x .
+\end{equation}$$ (1.4) 的推导只用到方差的双线性性： $$\mathop{\mathrm{Var}}\Bigl(\sum_i x_ir_i\Bigr)
+  =\mathop{\mathrm{Cov}}\Bigl(\sum_i x_ir_i,\sum_j x_jr_j\Bigr)
+  =\sum_{i,j}x_ix_j\mathop{\mathrm{Cov}}(r_i,r_j)
+  =\sum_{i,j}\sigma_{ij}x_ix_j .$$ 于是"在保证期望回报不低于 $$r_0$$ 的前提下极小化风险、且不允许卖空"的投资组合模型为 $$\begin{equation}
+  \begin{aligned}
+    \min_{x\in\mathbb{R}^n}\quad & \frac12 x^\top\Sigma x\\
+    \ \text{s.t.}\ & \sum_{i=1}^n \mu_ix_i\ge r_0,\\
+    & \sum_{i=1}^n x_i=1,\\
+    & x_i\ge 0,\quad i=1,2,\dots,n .
+  \end{aligned}
+\end{equation}$$ 目标函数写成 $$\frac12x^\top\Sigma x$$ 只是为了求导方便（$$\nabla(\frac12x^\top\Sigma x)=\Sigma x$$），与 $$x^\top\Sigma x$$ 的最优解完全相同．因为 $$\Sigma\succeq 0$$，目标函数是凸二次函数、约束是线性的，所以 (1.5) 是一个**凸二次规划**．更一般地，如果把风险换成别的风险度量，就得到 $$\begin{equation}
+  \min_{x\in\mathbb{R}^n}\ \text{risk measure}\quad \ \text{s.t.}\ \sum_{i=1}^n \mu_ix_i\ge r_0,\quad \sum_{i=1}^n x_i=1,\quad x_i\ge 0 .
+\end{equation}$$ 约束 $$\sum_ix_i=1$$ 表示资金全部投入（既不留现金也不加杠杆），$$x_i\ge0$$ 表示不允许卖空．注意 $$r_0$$ 不能取得太大：可行域非空要求 $$r_0\le\max_i\mu_i$$（在 $$x_i\ge0,\sum x_i=1$$ 下 $$\sum\mu_ix_i$$ 是 $$\mu_i$$ 的凸组合）．
+
+#### （四）风险度量：方差、VaR 与 CVaR
+
+设投资回报 $$r$$ 是随机变量，$$\alpha\in(0,1)$$ 为置信水平（如 $$\alpha=0.95$$ 或 $$0.99$$）．
+
+- **方差**（variance）：$$\mathop{\mathrm{Var}}(r)=x^\top\Sigma x$$．它刻画回报围绕均值的波动，是最经典的风险度量，但把高于均值的"好的波动"也当作风险，且要求知道二阶矩 $$\Sigma$$．
+
+- **风险价值**（VaR）：$$\mathrm{VaR}_\alpha(r)=\inf\lbrace\gamma:\mathbf{P}(r\le\gamma)\ge\alpha\rbrace$$，即回报分布的 $$\alpha$$ 分位点．$$\mathrm{VaR}_\alpha$$ 的含义是：在置信水平 $$\alpha$$ 下，损失超过 $$-\mathrm{VaR}_\alpha$$ 的概率不超过 $$1-\alpha$$．VaR 不是凸的风险度量（它不满足次可加性），极小化 VaR 通常需要引入 $$0$$-$$1$$ 变量来刻画"分位点在哪个样本上"，因此是**混合整数规划**．
+
+- **条件风险价值**（CVaR，也称期望短缺 expected shortfall）：$$\mathrm{CVaR}_\alpha(r)=\mathbb{E}\bigl[-r\,\big\vert\,r\le\mathrm{VaR}_\alpha(r)\bigr]$$，即在最坏的 $$1-\alpha$$ 情形下的平均损失．Rockafellar--Uryasev 的经典结果表明 $$\mathrm{CVaR}_\alpha(r)=\min_{\gamma\in\mathbb{R}}\ \Bigl\lbrace\gamma+\frac{1}{1-\alpha}\mathbb{E}\bigl[(-r-\gamma)^+\bigr]\Bigr\rbrace,$$ 其中 $$(\cdot)^+=\max\lbrace\cdot,0\rbrace$$．右端关于 $$\gamma$$ 是凸的，但含有不可微的 $$\max$$ 项，故极小化 CVaR 是**非光滑优化**；若 $$r$$ 的分布用有限个情景 $$r^{(1)},\dots,r^{(S)}$$（每个情景概率为 $$p_s$$）离散近似，引入辅助变量 $$u_s\ge -r^{(s)}-\gamma,\ u_s\ge0$$，则问题变成 $$\min_{\gamma,u}\ \gamma+\frac{1}{1-\alpha}\sum_{s=1}^S p_su_s
+      \quad \ \text{s.t.}\ u_s\ge -\sum_i r_i^{(s)}x_i-\gamma,\quad u_s\ge 0,\ s=1,\dots,S,$$ 连同 (1.6) 中的线性约束，整体是一个**线性规划**．这正是"CVaR 可以进一步化成线性规划"的含义．
+
+| 风险度量 | 定义 | 对应的优化问题类型 |
+|:---|:---|:---|
+| 方差 $$\mathop{\mathrm{Var}}(r)$$ | $$x^\top\Sigma x$$ | 凸二次规划 |
+| VaR$$_\alpha$$ | $$\inf\lbrace\gamma:\mathbf{P}(r\le\gamma)\ge\alpha\rbrace$$ | 混合整数规划 |
+| CVaR$$_\alpha$$ | $$\mathbb{E}[-r\mid r\le\mathrm{VaR}_\alpha(r)]$$ | 非光滑优化（可化为线性规划） |
+
+: 三种常用风险度量及其对应的优化问题类型
+
+本节的讨论说明：**把实际问题写成一个优化模型时，风险度量的选择直接决定了问题的类型与求解难度**．在本章后面的三节和第四章中，我们将通过实际应用中的例子更直观、深入地理解最优化问题．由于篇幅限制，我们通常只简要给出它们的一些典型形式，详细的定义和描述请读者参考本书后面的章节或相关参考文献；在第四章中，我们会将它们按优化问题分类．本书的目标之一是使得读者通过学习本书的理论和算法，能用算法软件包来求解这些模型，并了解这些算法有哪些优缺点，更进一步地，使得读者能独立设计类似问题的算法．
+
+## 实例：稀疏优化
+
+考虑线性方程组求解问题： $$\begin{equation}
+  Ax=b,
+\end{equation}$$ 其中向量 $$x\in\mathbb{R}^n$$，$$b\in\mathbb{R}^m$$，矩阵 $$A\in\mathbb{R}^{m\times n}$$，且向量 $$b$$ 的维数远小于向量 $$x$$ 的维数，即 $$m\ll n$$．在自然科学和工程中常常遇到已知向量 $$b$$ 和矩阵 $$A$$、想要重构向量 $$x$$ 的问题．例如在信号传输过程中，希望通过接收到长度为 $$m$$ 的数字信号精确地重构原始信号．注意到由于 $$m\ll n$$，方程组 (1.7) 是**欠定的**（方程个数少于未知量个数，且 $$A$$ 行满秩时解集是 $$n-m$$ 维仿射空间），因此存在无穷多个解，重构出原始信号看似很难．
+
+所幸的是，这些解当中大部分是我们不感兴趣的，真正有用的解是所谓的**稀疏解**，即原始信号中有较多的零元素．如果加上稀疏性这一先验信息，且矩阵 $$A$$ 以及原问题的解 $$u$$ 满足某些条件，那么我们可以通过求解稀疏优化问题把 $$u$$ 与方程组 (1.7) 的其他解区别开．这类技术广泛应用于**压缩感知**（compressive sensing），即通过部分信息恢复全部信息的解决方案．
+
+#### （一）数值例子与三个模型
+
+先来看一个具体的例子．在 MATLAB 环境里构造 $$A,u$$ 和 $$b$$：
+
+``` {.matlab language="Matlab"}
+m = 128; n = 256;
+A = randn(m, n);
+u = sprandn(n, 1, 0.1);
+b = A * u;
+```
+
+在这个例子中，我们构造了一个 $$128\times256$$ 矩阵 $$A$$，它的每个元素都服从高斯（Gauss）随机分布．精确解 $$u$$ 只有 $$10\%$$ 的元素非零，每一个非零元素也服从高斯分布．这些特征可以在理论上保证 $$u$$ 是方程组 (1.7) 唯一的非零元素最少的解，即 $$u$$ 是如下 **$$\ell_0$$ 范数**[^2]问题的最优解： $$\begin{equation}
+  (\ell_0)\qquad
+  \begin{aligned}
+    \min_{x\in\mathbb{R}^n}\quad & \left\Vert x\right\Vert_0\\
+    \ \text{s.t.}\ & Ax=b,
+  \end{aligned}
+\end{equation}$$ 其中 $$\left\Vert x\right\Vert_0$$ 是指 $$x$$ 中非零元素的个数．定义 $$\ell_1$$ 范数 $$\left\Vert x\right\Vert_1=\sum_{i=1}^n\left\vert x_i\right\vert$$，将其替换到问题 (1.8) 当中，我们得到另一个形式上非常相似的问题（又称 **$$\ell_1$$ 范数优化问题**或**基追踪**（basis pursuit）问题）： $$\begin{equation}
+  (\ell_1)\qquad
+  \begin{aligned}
+    \min_{x\in\mathbb{R}^n}\quad & \left\Vert x\right\Vert_1\\
+    \ \text{s.t.}\ & Ax=b .
+  \end{aligned}
+\end{equation}$$ 再定义 $$\ell_2$$ 范数 $$\left\Vert x\right\Vert_2=\bigl(\sum_{i=1}^n x_i^2\bigr)^{1/2}$$，即求解如下优化问题： $$\begin{equation}
+  (\ell_2)\qquad
+  \begin{aligned}
+    \min_{x\in\mathbb{R}^n}\quad & \left\Vert x\right\Vert_2\\
+    \ \text{s.t.}\ & Ax=b .
+  \end{aligned}
+\end{equation}$$ 问题 (1.8)--(1.10) 正是 PPT 第 $$11$$ 页给出的三个模型（讲义记为 (1.2.2)--(1.2.4)）．
+
+#### （二）为什么 $$\ell_0$$ 问题是 NP 难的
+
+由于 $$\left\Vert x\right\Vert_0$$ 是不连续的函数，且取值只可能是整数，问题 (1.8) 实际上是 **NP**（non-deterministic polynomial）难的，求解起来非常困难．因此当 $$n$$ 较大时通过直接求解问题 (1.8) 来恢复出原始信号 $$u$$ 是行不通的．
+
+<div class="supp">
+
+设 $$A$$ 的列向量为 $$a_1,\dots,a_n\in\mathbb{R}^m$$，则 $$Ax=b$$ 表示"用 $$A$$ 的列来线性表示 $$b$$"，而 $$\left\Vert x\right\Vert_0$$ 正是被使用的列的个数．于是问题 (1.8) 等价于： $$\text{在 } \lbracea_1,\dots,a_n\rbrace \text{ 中选出尽可能少的列，使其线性组合等于 } b .$$ 这本质上是一个**组合搜索**问题：
+
+- 若限定 $$\left\Vert x\right\Vert_0\le s$$，则需要（在最坏情况下）枚举 $$A$$ 的所有 $$\binom{n}{s}$$ 个列子集并判断 $$b$$ 是否落在其张成的子空间中；当 $$s$$ 与 $$n$$ 同阶时 $$\binom{n}{s}$$ 关于 $$n$$ 是指数级增长的；
+
+- Natarajan 已证明该问题是 NP 难的（可由子集和、精确覆盖等经典 NP 完全问题归约得到），不存在（除非 $$\mathrm{P}=\mathrm{NP}$$）多项式时间的精确算法；
+
+- 从优化算法的角度看，$$\left\Vert x\right\Vert_0$$ 既不可微也不连续，其水平集 $$\lbracex:\left\Vert x\right\Vert_0\le s\rbrace$$ 是 $$\binom{n}{s}$$ 个坐标子空间的并，不是凸集；梯度类、内点类算法都无从下手，只能使用分支定界等组合算法．
+
+这就解释了为什么必须寻找它的"可计算的替代品"．
+
+</div>
+
+#### （三）$$\ell_1$$ 范数：一个"几乎免费"的替代品
+
+那有没有替代的方法呢？答案是有的．令人惊讶的是，可以从理论上证明：若 $$A,b$$ 满足一定的条件（例如使用前面随机产生的 $$A$$ 和 $$b$$），向量 $$u$$ 也是 $$\ell_1$$ 范数优化问题 (1.9) 的**唯一最优解**．这一发现的重要之处在于，虽然问题 (1.9) 仍没有显式解，但与问题 (1.8) 相比难度已经大大降低：$$\left\Vert x\right\Vert_1$$ 是凸的连续函数，问题 (1.9) 是一个凸优化问题（甚至是可化为线性规划的**非光滑**凸优化问题），其解可以非常容易地通过现有优化算法得到！
+
+<div class="theorem">
+
+**定理 1.1** 设 $$u$$ 是 $$Ax=b$$ 的一个解，$$s=\left\Vert u\right\Vert_0$$．
+
+1.  （spark 条件）定义 $$\mathrm{spark}(A)$$ 为 $$A$$ 中线性相关的列向量组所含列数的最小值．若 $$s<\frac{\mathrm{spark}(A)}{2},$$ 则 $$u$$ 是问题 (1.8) 的唯一最稀疏解，同时也是问题 (1.9) 的唯一最优解．
+
+2.  （RIP 条件）称 $$A$$ 满足 $$s$$ 阶**有限等距性质**（restricted isometry property, RIP），是指存在 $$\delta_s\in(0,1)$$ 使得对任意 $$s$$-稀疏向量 $$z$$ 都有 $$(1-\delta_s)\left\Vert z\right\Vert_2^2\le\left\Vert Az\right\Vert_2^2\le(1+\delta_s)\left\Vert z\right\Vert_2^2 .$$ 若 $$s$$ 阶 RIP 成立且 $$\delta_{2s}<\sqrt2-1$$，则对任意 $$s$$-稀疏的 $$u$$，问题 (1.9) 都有唯一最优解且该最优解恰为 $$u$$．
+
+</div>
+
+**Proof** **（）** 记 $$S=\lbracei:u_i\ne0\rbrace$$ 为 $$u$$ 的支撑集，则 $$\left\vert S\right\vert=s$$． **（1）先证 $$u$$ 是 (1.8) 的唯一最稀疏解．** 设 $$v$$ 是 $$Ax=b$$ 的另一个解且 $$\left\Vert v\right\Vert_0\le s$$，则 $$h=u-v$$ 满足 $$Ah=0$$ 且 $$\left\Vert h\right\Vert_0\le 2s<\mathrm{spark}(A)$$．由 $$\mathrm{spark}(A)$$ 的定义，$$A$$ 中任意少于 $$\mathrm{spark}(A)$$ 列都线性无关，而 $$Ah=\sum_{i\in\mathrm{supp}(h)}h_ia_i=0$$ 说明 $$\lbracea_i\rbrace_{i\in\mathrm{supp}(h)}$$ 线性相关，故 $$\mathrm{supp}(h)=\varnothing$$，即 $$h=0$$，$$v=u$$．
+
+**（2）再证 $$u$$ 是 (1.9) 的唯一最优解．** 这需要下面的零空间性质（null space property, NSP）．
+
+<div class="lemma">
+
+**引理 1.1** 若对任意 $$h\in\ker A\setminus\lbrace0\rbrace$$ 与任意满足 $$\left\vert S'\right\vert\le s$$ 的指标集 $$S'$$ 都有 $$\left\Vert h_{S'}\right\Vert_1<\left\Vert h_{S'^c}\right\Vert_1,$$ 则称 $$A$$ 满足 **$$s$$ 阶零空间性质**（null space property, NSP）．此时若 $$Ax=b$$ 存在 $$s$$-稀疏解 $$u$$，则 $$\ell_1$$ 问题 (1.9) 的最优解唯一且恰为 $$u$$．
+
+</div>
+
+**Proof** 引理的证明**（引理的证明）** 设 $$h=w-u$$，其中 $$w$$ 是 (1.9) 的任一最优解，于是 $$\left\Vert w\right\Vert_1\le\left\Vert u\right\Vert_1$$．由于 $$h_{S^c}=w_{S^c}$$（$$u$$ 在 $$S^c=\mathrm{supp}(u)^c$$ 上为零），由三角不等式 $$\left\Vert u\right\Vert_1\ge\left\Vert w\right\Vert_1=\left\Vert u+h\right\Vert_1
+  =\left\Vert u_S+h_S\right\Vert_1+\left\Vert h_{S^c}\right\Vert_1
+  \ge\left\Vert u_S\right\Vert_1-\left\Vert h_S\right\Vert_1+\left\Vert h_{S^c}\right\Vert_1
+  =\left\Vert u\right\Vert_1-2\left\Vert h_S\right\Vert_1+\left\Vert h\right\Vert_1,$$ 故 $$\left\Vert h\right\Vert_1\le 2\left\Vert h_S\right\Vert_1$$．若 $$w\ne u$$，则 $$h\in\ker A\setminus\lbrace0\rbrace$$，由 NSP（取 $$S'=S$$）得 $$\left\Vert h_S\right\Vert_1<\left\Vert h_{S^c}\right\Vert_1$$，从而 $$\left\Vert h\right\Vert_1=\left\Vert h_S\right\Vert_1+\left\Vert h_{S^c}\right\Vert_1>2\left\Vert h_S\right\Vert_1,$$ 与 $$\left\Vert h\right\Vert_1\le2\left\Vert h_S\right\Vert_1$$ 矛盾．因此 $$h=0$$，即 $$w=u$$，唯一性得证．
+
+现在只需说明两个充分条件都能推出 NSP：
+
+- **spark 条件 $$\Rightarrow$$ NSP**：这是 Donoho--Elad（$$2003$$）的经典结论．直观地说，若某个 $$h\in\ker A\setminus\lbrace0\rbrace$$ 与某个 $$\left\vert S'\right\vert\le s$$ 满足 $$\left\Vert h_{S'}\right\Vert_1\ge\left\Vert h_{S'^c}\right\Vert_1$$，则可把 $$S'^c$$ 按 $$\left\vert h_i\right\vert$$ 从大到小分成若干块 $$T_1,T_2,\dots$$，每块大小不超过 $$s$$，并证明 $$h_{S'\cup T_1}\ne0$$ 同时 $$Ah_{S'\cup T_1}=0$$，这与 $$\left\vert S'\cup T_1\right\vert\le2s<\mathrm{spark}(A)$$ 矛盾．
+
+- **RIP 条件 $$\Rightarrow$$ NSP**：若 $$s$$ 阶 RIP 成立且 $$\delta_{2s}<\sqrt2-1$$，对 $$h\in\ker A\setminus\lbrace0\rbrace$$ 与 $$\left\vert S'\right\vert\le s$$，把 $$S'^c$$ 分成大小不超过 $$s$$ 的块 $$T_1,T_2,\dots$$ 后可证 $$\left\vert\left\langle Ah_{S'\cup T_1},\,Ah_{S'}\right\rangle\right\vert
+      \le\delta_{2s}\left\Vert h_{S'\cup T_1}\right\Vert_2\left\Vert h_{S'}\right\Vert_2,$$ 结合 $$\left\Vert Ah_{S'\cup T_1}\right\Vert_2^2\ge(1-\delta_{2s})\left\Vert h_{S'\cup T_1}\right\Vert_2^2$$ 与 $$\left\Vert h_{T_1}\right\Vert_2\le\left\Vert h_{S'}\right\Vert_1/\sqrt s$$ 即可推出 $$\left\Vert h_{S'}\right\Vert_1<\left\Vert h_{S'^c}\right\Vert_1$$．
+
+把 NSP 代入第（2）步的论证，即得 $$w=u$$，定理证毕．完整的证明细节可参见压缩感知的经典文献（Candès--Romberg--Tao，Donoho--Elad 等）．
+
+<div class="supp">
+
+设 $$A\in\mathbb{R}^{m\times n}$$ 的元素独立同分布于标准正态分布 $$\mathcal N(0,1)$$（即 PPT 中的 `randn`）．随机矩阵理论表明：只要 $$m\ \ge\ C\,s\log\frac{n}{s}$$ （$$C$$ 为绝对常数），$$A/\sqrt m$$ 就以极高概率满足 $$2s$$ 阶 RIP 且 $$\delta_{2s}<\sqrt2-1$$；同时 $$A$$ 的 spark 以概率 $$1$$ 等于 $$m+1$$（任意 $$m$$ 列几乎必然线性无关）．在本节的例子中 $$m=128,n=256,s\approx 25.6$$，$$s$$ 远小于 $$m/2=64$$，因此 $$u$$ 被 $$\ell_1$$ 问题唯一恢复是有理论保证的．这正是讲义所说的"这些特征可以在理论上保证 $$u$$ 是方程组唯一的非零元素最少的解"．一般地，$$s$$-稀疏信号需要的观测数为 $$O(s\log(n/s))$$，远小于 $$n$$，这就是"用部分信息恢复全部信息"的定量含义．
+
+</div>
+
+#### （四）$$\ell_2$$ 范数为什么不行
+
+既然有如上令人兴奋的结果，我们是否能使用其他更容易求解的范数替代 $$\ell_0$$ 范数呢？事实并非如此．如果简单地把 $$\ell_1$$ 范数修改为 $$\ell_2$$ 范数，即求解问题 (1.10)，几何学的知识表明，问题 (1.10) 实际上就是原点到仿射集 $$\lbracex:Ax=b\rbrace$$ 的**投影**，我们可以直接写出它的显式表达式： $$\begin{equation}
+  x^{\ell_2}=A^\top(AA^\top)^{-1}b=A^{\dagger}b
+  \qquad(\operatorname{rank}(A)=m\ \text{时}),
+\end{equation}$$ 其中 $$A^{\dagger}$$ 是 $$A$$ 的 Moore--Penrose 伪逆．(1.11) 也可由 Lagrange 乘子法得到：对 $$\frac12\left\Vert x\right\Vert_2^2+\lambda^\top(b-Ax)$$ 关于 $$x$$ 求梯度并令其为零得 $$x=A^\top\lambda$$，代入约束得 $$AA^\top\lambda=b$$，故 $$\lambda=(AA^\top)^{-1}b$$．
+
+但遗憾的是，$$u$$ 并不是问题 (1.10) 的解．事实上，图 1.1 给出了一组随机数据下的 $$u$$，以及问题 (1.9) 和问题 (1.10) 的数值解．
+
+**图 1.1**：稀疏优化的例子（对应 PPT 第 $$12$$ 页 Figure “稀疏优化的例子”）：横轴为分量指标 $$i=1,\dots,256$$（示意图中只画出了其中约 $$1/10$$ 的分量），纵轴为分量取值．(a) 精确解 $$u$$ 只有约 $$10\%$$ 的非零元素，非零分量的幅值大致落在 $$[-2.5,3]$$；(b) $$\ell_1$$ 问题 (1.9) 的解与 (a) 在数值上完全一致，稀疏结构被精确恢复；(c) $$\ell_2$$ 问题 (1.10) 的解几乎每个分量都非零，幅值被“摊平”到 $$[-1.5,1.5]$$ 附近，虽然隐约能看出数据点的大致趋势，但已经不可分辨非零元素的具体位置．
+
+可以看出图 1.1(a) 和 (b) 是完全一样的，而 (c) 则与 $$u$$ 相去甚远：$$\ell_1$$ 问题的解与真实稀疏解重合（误差在机器精度量级），而 $$\ell_2$$ 问题的解在 $$256$$ 个分量上几乎全部非零，且幅值被"摊平"到 $$[-1.5,1.5]$$ 附近．这正说明：**只有 $$\ell_1$$ 范数能识别稀疏结构，$$\ell_2$$ 范数不能**．
+
+#### （五）几何直观：为什么 $$\ell_1$$ 解稀疏而 $$\ell_2$$ 解不稀疏
+
+为什么会出现这种情况呢？这要追溯到 $$\ell_0,\ell_1,\ell_2$$ 范数的性质．下面用图示的方式直观说明．为了方便起见，我们在二维空间上讨论求解欠定方程组 $$Ax=b$$，此时 $$Ax=b$$ 是一条直线．在几何上，三种优化问题实际上要找到最小的 $$C$$，使得"范数球" $$\lbracex:\left\Vert x\right\Vert\le C\rbrace$$（$$\left\Vert\cdot\right\Vert$$ 表示任何一种范数）恰好与 $$Ax=b$$ 相交．
+
+**图 1.2**：三种范数优化问题求解示意图（对应 PPT 第 $$11$$–$$12$$ 页与讲义图 1.2）．这里取 $$Ax=b$$ 为直线 $$2x_1+x_2=3$$．(a) $$\ell_0$$“范数球”$$\lbracex:\left\Vert x\right\Vert_0\le1\rbrace$$ 退化为两条坐标轴，与直线的交点必落在坐标轴上，因此解是稀疏的（交点 $$(1.5,0)$$ 与 $$(0,3)$$）；(b) $$\ell_1$$ 范数球是旋转 $$45^\circ$$ 的正方形（菱形），其顶点恰好在坐标轴上，最小的菱形与直线相切于顶点 $$(1.5,0)$$，故解稀疏；(c) $$\ell_2$$ 范数球是圆，边界光滑，最小圆与直线的切点是 $$(1.2,0.6)$$，两个分量都非零，故解一般不稀疏．
+
+图 1.2 中分别展示了三种范数球的几何直观：
+
+- 对 $$\ell_0$$ 范数，$$\lbracex:\left\Vert x\right\Vert_0\le 2\rbrace$$ 是**全平面**（任何一个二维向量至多只有 $$2$$ 个非零分量），它自然与 $$Ax=b$$ 相交；而当 $$C=1$$ 时 $$\lbracex:\left\Vert x\right\Vert_0\le1\rbrace$$ 退化成**两条直线**（坐标轴），此时问题的解是 $$Ax=b$$ 和这两条直线的交点．因此在二维情形下 $$\ell_0$$ 问题的解必然有一个分量为零，是**最稀疏**的．
+
+- 对 $$\ell_1$$ 范数，根据 $$C$$ 的不同 $$\lbracex:\left\Vert x\right\Vert_1\le C\rbrace$$ 为一系列**正方形**（菱形），这些正方形的**顶点恰好都在坐标轴上**；而最小的 $$C$$ 对应的正方形和直线 $$Ax=b$$ 的交点一般都是顶点（只有当直线的斜率恰好与某条边平行时才会交于一整条边，这是需要额外条件的"退化"情形），因此 $$\ell_1$$ 范数的解**有稀疏性**．
+
+- 对 $$\ell_2$$ 范数，当 $$C$$ 取值不同时 $$\lbracex:\left\Vert x\right\Vert_2\le C\rbrace$$ 为一系列**圆**，而圆有光滑的边界，它和直线 $$Ax=b$$ 的切点**可以是圆周上的任何一点**（取决于直线的方向），所以 $$\ell_2$$ 范数优化问题一般不能保证解的稀疏性．
+
+把这个几何直观与高维情形联系起来：$$\ell_1$$ 球是"有尖角的多面体"，其尖角（顶点、棱、面）都位于坐标子空间上，而随机方向的仿射集与低维面相交的概率随着维数增大而迅速减小------这正是 $$\ell_1$$ 极小化能给出稀疏解的几何根源；而 $$\ell_2$$ 球处处光滑，没有任何"偏爱坐标轴"的方向．习题 1.1 将进一步讨论一般的 $$\ell_p$$"范数"（$$0<p<2$$）对应的几何图形．
+
+#### （六）一点历史与算法上的困难
+
+问题 (1.9) 的理论和算法研究在 $$2006$$ 年左右带来了革命性的影响．理论上研究的课题包括：什么条件下问题 (1.9) 的解具有稀疏性，如何改进这些条件，如何推广这些条件到其他应用．常见的数据矩阵 $$A$$ 一般由**离散余弦变换**、**小波变换**、**傅里叶（Fourier）变换**等生成．虽然这些矩阵本身并没有稀疏性，但通常具有很好的分析性质，保证稀疏解的存在性．
+
+注意到绝对值函数在零点处不可微，问题 (1.9) 是**非光滑优化**问题．虽然它可以等价于线性规划问题： $$\min_{x^+,x^-\in\mathbb{R}^n}\ \sum_{i=1}^n\bigl(x_i^++x_i^-\bigr)
+  \quad \ \text{s.t.}\ A(x^+-x^-)=b,\quad x^+\ge0,\ x^-\ge0$$ （其中 $$x=x^+-x^-$$，$$\left\vert x_i\right\vert=x_i^++x_i^-$$ 在最优解处自动成立），但是数据矩阵 $$A$$ 通常是**稠密矩阵**，甚至 $$A$$ 的元素未知或者不能直接存储，只能提供 $$Ax$$ 或 $$A^\top y$$ 等运算结果（即"无矩阵"（matrix-free）的算子形式）．在这些特殊情况下，线性规划经典的**单纯形法**和**内点法**通常不太适用于求解大规模的问题 (1.9)．本书的一个主要目的就是根据这些问题的特点设计合适的算法进行求解．需要强调的是，问题 (1.9) 的主要特点是其**最优解是稀疏向量**，它是稀疏优化的一种典型形式．
+
+#### （七）LASSO 问题
+
+本书还将考虑带 $$\ell_1$$ 范数正则项的优化问题 $$\begin{equation}
+  \min_{x\in\mathbb{R}^n}\ \mu\left\Vert x\right\Vert_1+\frac12\left\Vert Ax-b\right\Vert_2^2,
+\end{equation}$$ 其中 $$\mu>0$$ 是给定的**正则化参数**．问题 (1.12) 又称为 **LASSO**（least absolute shrinkage and selection operator，最小绝对压缩与选择算子），该问题可以看成是问题 (1.9) 的**二次罚函数形式**：把等式约束 $$Ax=b$$ 用二次罚项 $$\frac12\left\Vert Ax-b\right\Vert_2^2$$ 罚到目标函数上，就得到 (1.12)．由于它是**无约束**优化问题，形式上看起来比问题 (1.9) 简单．本书大部分数值算法都将针对问题 (1.9) 或问题 (1.12) 给出具体形式．因此**全面掌握它们的求解方法是掌握基本最优化算法的一个标志**．
+
+<div class="supp">
+
+（1）**shrinkage（压缩）与 selection（选择）**．目标函数 $$\mu\left\Vert x\right\Vert_1+\frac12\left\Vert Ax-b\right\Vert_2^2$$ 的最优性条件为 $$0\in \mu\,\partial\left\Vert x\right\Vert_1+A^\top(Ax-b),
+  \qquad
+  \bigl(\partial\left\vert x_i\right\vert=
+  \begin{cases}
+    \lbrace\mathop{\mathrm{sign}}(x_i)\rbrace, & x_i\ne0,\\
+    [-1,1], & x_i=0
+  \end{cases}\bigr),$$ 它等价于 $$x_i=\mathcal S_{\mu}(\,[A^\top(b-Ax)]_i\,)$$，其中 $$\mathcal S_\mu(t)=\mathop{\mathrm{sign}}(t)\max\lbrace\left\vert t\right\vert-\mu,0\rbrace$$ 是**软阈值算子**．这说明：绝对值罚项一方面把非零分量向零"压缩"，另一方面把绝对值不超过 $$\mu$$ 的分量直接置零，从而同时完成**系数压缩**与**变量选择**． （2）**与 $$\ell_1$$ 问题 (1.9) 的关系**．记 $$x(\mu)$$ 为 (1.12) 的解．当 $$\mu\ge\mu_{\max}=\left\Vert A^\top b\right\Vert_\infty$$ 时 $$x(\mu)=0$$；随着 $$\mu$$ 减小，$$\left\Vert Ax(\mu)-b\right\Vert_2$$ 单调减小；当 $$\mu\to0^+$$ 时，$$x(\mu)$$ 收敛到 $$\min\lbrace\left\Vert x\right\Vert_1:Ax=b\rbrace$$ 的解，即问题 (1.9) 的最小 $$\ell_1$$ 范数解．因此只要 $$\mu$$ 取得充分小，(1.12) 的解就满足 $$Ax=b$$，从而也是 (1.9) 的解------这就是把 (1.12) 看作 (1.9) 的（精确）罚函数形式的含义． （3）**为什么要有无约束形式**．问题 (1.9) 的约束 $$Ax=b$$ 在含噪声的场合过于刚性（观测 $$b$$ 有误差时可能无可行解），而 (1.12) 通过罚参数 $$\mu$$ 自动平衡"拟合误差"与"解的稀疏性"，并允许使用近似点梯度法、交替方向乘子法等成熟的**无约束/简单约束**算法求解，这正是本书后续算法的重点．
+
+</div>
+
+## 实例：低秩矩阵恢复
+
+某视频网站提供了约 $$48$$ 万用户对 $$1$$ 万 $$7$$ 千多部电影的上亿条评级数据，希望对用户的电影评级进行预测，从而改进用户电影推荐系统，为每个用户更有针对性地推荐影片．
+
+显然每一个用户不可能看过所有的电影，每一部电影也不可能收集到全部用户的评级．电影评级由用户打分 $$1$$ 星到 $$5$$ 星表示，记为取值 $$1\sim5$$ 的整数．我们将电影评级放在一个矩阵 $$M$$ 中，矩阵 $$M$$ 的每一行表示不同用户，每一列表示不同电影．由于用户只对看过的电影给出自己的评价，矩阵 $$M$$ 中很多元素是未知的．表 1.2 给出了用户电影评级矩阵 $$M$$ 的一个简单示例．令 $$\Omega$$ 是矩阵 $$M$$ 中所有已知评级元素的下标的集合，则该问题可以初步描述为构造一个矩阵 $$X$$，使得在给定位置的元素等于已知评级元素，即满足 $$X_{ij}=M_{ij},\qquad (i,j)\in\Omega .$$ 不难看出满足这个条件的矩阵 $$X$$ 有无穷多个（未知位置的元素可以任意取值），那么如何得到一个真正有价值的 $$X$$ 呢？这就需要分析 $$X$$ 应该具有什么样的结构．
+
+|          | 电影 $$1$$ | 电影 $$2$$ | 电影 $$3$$ | 电影 $$4$$ | $$\cdots$$ | 电影 $$n$$ |
+|:---------|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+| 用户 $$1$$ |   $$4$$    |   $$?$$    |   $$?$$    |   $$3$$    | $$\cdots$$ |   $$?$$    |
+| 用户 $$2$$ |   $$?$$    |   $$2$$    |   $$4$$    |   $$?$$    | $$\cdots$$ |   $$?$$    |
+| 用户 $$3$$ |   $$3$$    |   $$?$$    |   $$?$$    |   $$?$$    | $$\cdots$$ |   $$?$$    |
+| 用户 $$4$$ |   $$2$$    |   $$?$$    |   $$5$$    |   $$?$$    | $$\cdots$$ |   $$?$$    |
+| $$\vdots$$ | $$\vdots$$ | $$\vdots$$ | $$\vdots$$ | $$\vdots$$ |          | $$\vdots$$ |
+| 用户 $$m$$ |   $$?$$    |   $$3$$    |   $$?$$    |   $$4$$    | $$\cdots$$ |   $$?$$    |
+
+: 用户电影评级矩阵 $$M$$ 示例（对应 PPT 第 $$15$$ 页插图，$$?$$ 表示未知评级） {#tab:rating}
+
+#### （一）低秩假设与"协同过滤"
+
+该问题在推荐系统、图像处理等方面有着广泛的应用．类型相似的电影获得的评分往往是类似的，这意味着这些电影在矩阵 $$M$$ 中所对应的**列也是相似的**，因此矩阵 $$M$$ 的列可能是亏秩的；同样地，相似人群对不同电影的评分也可能是相似的，它们在矩阵 $$M$$ 中所对应的**行也是相似的**，因此矩阵 $$M$$ 的行也可能是亏秩的．因此寻找一个**低秩矩阵** $$X$$ 可能给出很好的解．具体地：
+
+- 由于用户对电影的偏好可进行分类，按年龄可分为年轻人、中年人、老年人；且电影也能分为不同的题材：战争片、悬疑片、言情片等．故这类问题隐含的假设为**补全后的矩阵应为低秩的**，即矩阵的行与列会有"合作"的特性，故该问题具有别名 **collaborative filtering**（协同过滤）：行（用户）之间、列（电影）之间相互"合作"地提供信息，用来补全缺失的元素．从建模的角度看，低秩意味着只用少数几个"潜在因子"（例如 $$r$$ 个：动作、 romance、年代......）就足以近似地解释所有评分．
+
+- 除此之外，由于**低秩矩阵可分解为两个低秩矩阵的乘积**（$$X=LR^\top$$，见本节第（五）部分），所以低秩限制下的矩阵补全问题是比较实用的，这样利于储存且有更好的诠释性．
+
+- 有些用户的打分可能不为自身真实情况，对评分矩阵有影响，所以原矩阵是可能有**噪声**的．这就解释了为什么后面还要引入带罚项的模型 (1.16)．
+
+#### （二）秩极小化模型
+
+令 $$\operatorname{rank}(X)$$ 为矩阵 $$X$$ 的秩，该问题可以表达为 $$\begin{equation}
+  \begin{aligned}
+    \min_{X\in\mathbb{R}^{m\times n}}\quad & \operatorname{rank}(X)\\
+    \ \text{s.t.}\ & X_{ij}=M_{ij},\quad (i,j)\in\Omega,
+  \end{aligned}
+\end{equation}$$ 这类问题称为**低秩矩阵恢复**（low rank matrix completion）．其约束条件保证了构造的低秩矩阵 $$X$$ 与 $$M$$ 中的所有已知元素完全相同．
+
+但是极小化矩阵的秩是 **NP** 难的问题（原因与 $$\ell_0$$ 极小化完全类似：$$\operatorname{rank}(X)$$ 是奇异值向量 $$\sigma(X)$$ 的 $$\ell_0$$"范数"，其水平集 $$\lbraceX:\operatorname{rank}(X)\le r\rbrace$$ 是无穷多个低维流形的并，既非凸也不连续），如何将其化成一个容易求解的问题呢？这里仍然沿用稀疏优化的思想．在稀疏优化问题中，我们将 $$\ell_0$$ 范数换成了 $$\ell_1$$ 范数．而 $$\operatorname{rank}(X)$$ 正好是矩阵 $$X$$ **所有非零奇异值的个数**： $$\operatorname{rank}(X)=\#\lbracei:\sigma_i(X)\ne0\rbrace=\left\Vert\sigma(X)\right\Vert_0 .$$ 根据稀疏优化的思想，我们将其更换成所有奇异值的**和**，即矩阵 $$X$$ 的**核范数**（nuclear norm）： $$\left\Vert X\right\Vert_*=\sum_i\sigma_i(X)=\left\Vert\sigma(X)\right\Vert_1 .$$ 因此问题 (1.13) 就变成 $$\begin{equation}
+  \begin{aligned}
+    \min_{X\in\mathbb{R}^{m\times n}}\quad & \left\Vert X\right\Vert_*\\
+    \ \text{s.t.}\ & X_{ij}=M_{ij},\quad (i,j)\in\Omega .
+  \end{aligned}
+\end{equation}$$ 可以证明问题 (1.14) 是一个**凸优化问题**（核范数是奇异值的 $$\ell_1$$ 范数，而 $$\ell_1$$ 范数是凸函数，核范数作为 $$\ell_1\circ\sigma$$ 的复合仍然是凸函数），并且**在一定条件下它与问题 (1.13) 等价**．也可以将问题 (1.14) 转换为一个**半定规划**问题： $$\begin{equation}
+  \left\Vert X\right\Vert_*=\min_{W_1\in\mathcal S^m,\ W_2\in\mathcal S^n}\ \frac12\bigl(\operatorname{tr}(W_1)+\operatorname{tr}(W_2)\bigr)
+  \qquad \ \text{s.t.}\ 
+  \begin{pmatrix}
+    W_1 & X\\
+    X^\top & W_2
+  \end{pmatrix}\succeq 0,
+\end{equation}$$ 它的最优解为 $$W_1=(XX^\top)^{1/2}$$，$$W_2=(X^\top X)^{1/2}$$，此时 $$\frac12(\operatorname{tr}W_1+\operatorname{tr}W_2)=\sum_i\sigma_i(X)=\left\Vert X\right\Vert_*$$．但**目前半定规划算法所能有效求解的问题规模限制了这种技术的实际应用**：对 $$m\times n$$ 的矩阵，(1.15) 中的矩阵变量规模为 $$(m+n)\times(m+n)$$，当 $$m,n$$ 达到 $$10^4$$ 量级时其存储与计算都难以承受．
+
+<div class="supp">
+
+设 $$M$$ 是秩为 $$r$$ 的矩阵，$$\Omega$$ 中的元素独立均匀随机抽取．Candès 与 Recht 证明：若 $$M$$ 满足某种**不相干性**（incoherence）条件（即 $$M$$ 的左、右奇异向量不与标准基向量"过于对齐"），且观测数目满足 $$\left\vert\Omega\right\vert\ \ge\ C\,n^{1.2}\,r\log n
+  \quad(\text{更精细的结论为}\ \left\vert\Omega\right\vert\ge C(m+n)r\log^2(m+n)),$$ 则以概率至少 $$1-cn^{-3}$$，问题 (1.14) 的唯一最优解恰为 $$M$$．这与稀疏优化中"$$\ell_0$$ 的解也是 $$\ell_1$$ 的解"是平行的结论：**核范数是秩的最紧凸替代**（它是 $$\operatorname{rank}(\cdot)$$ 在单位谱范数球上的凸包络）．若不作任何假设，矩阵补全与秩极小化一样是 NP 难的．
+
+</div>
+
+#### （三）带噪声的二次罚函数形式
+
+同样地，考虑到观测可能出现误差------或者更一般地，当观测到的 $$M_{ij}$$ 含有噪声时约束 $$X_{ij}=M_{ij}$$ 不应被精确满足------对于给定的参数 $$\mu>0$$，我们也写出该问题的**二次罚函数形式**： $$\begin{equation}
+  \min_{X\in\mathbb{R}^{m\times n}}\ \mu\left\Vert X\right\Vert_*+\frac12\sum_{(i,j)\in\Omega}(X_{ij}-M_{ij})^2 .
+\end{equation}$$ 类似于稀疏优化问题 (1.9) 和 (1.12)，本书大部分数值算法都可以针对问题 (1.14) 或问题 (1.16) 给出具体形式．与 (1.12) 一样，(1.16) 是无约束优化问题，$$\mu$$ 平衡"低秩性"与"拟合程度"：$$\mu$$ 越大解越接近低秩矩阵，$$\mu\to0^+$$ 时解趋于满足所有已知元素的核范数最小解．
+
+#### （四）秩 $$r$$ 情形与矩阵分解
+
+**秩 $$r$$ 情形**：$$X=LR^\top$$，其中 $$L\in\mathbb{R}^{m\times r}$$，$$R\in\mathbb{R}^{n\times r}$$ 并且 $$r\ll\min(m,n)$$．则可将问题写为 $$\begin{equation}
+  \min_{L,R}\ \sum_{(i,j)\in\Omega}\bigl[(LR^\top)_{ij}-M_{ij}\bigr]^2+\alpha\left\Vert L\right\Vert_F^2+\beta\left\Vert R\right\Vert_F^2,
+\end{equation}$$ 在该问题中，矩阵 $$X$$ 在定义中已为秩 $$r$$ 矩阵，所以没有必要再加上秩约束正则项．$$\alpha,\beta>0$$ 为正则化参数，这里正则化的作用是**消除解 $$L,R$$ 在放缩意义下的不唯一性**：对任意可逆矩阵 $$Q\in\mathbb{R}^{r\times r}$$，取 $$L'=LQ,\qquad R'=R\,(Q^{-1})^\top=RQ^{-\top},$$ 则 $$L'(R')^\top=LQQ^{-1}R^\top=LR^\top$$，即 $$(L',R')$$ 与 $$(L,R)$$ 给出同一个 $$X$$．因此若不加正则项，问题 (1.17) 的解（在 $$L,R$$ 的层面上）是不唯一的，且当 $$L,R$$ 沿某个方向"同时放大"时目标值不变，优化算法容易在这样的"平坦方向"上浪费迭代或数值溢出．加入 $$\alpha\left\Vert L\right\Vert_F^2+\beta\left\Vert R\right\Vert_F^2$$ 后，每个 $$X$$ 对应的"最优"分解被唯一确定（例如取 $$\alpha=\beta$$ 时最优分解满足 $$\left\Vert L\right\Vert_F=\left\Vert R\right\Vert_F$$），问题成为严格意义上的优化问题．
+
+此时 $$L,R$$ 矩阵中的**数字之和为 $$(m+n)r$$**，远小于 $$X$$ 的 $$mn$$ 个元素，不过此时**问题是非凸的**（$$LR^\top$$ 关于 $$(L,R)$$ 不是凸函数；事实上秩约束 $$X=LR^\top$$ 正是把凸集 $$\lbraceX:\left\Vert X\right\Vert_*\le C\rbrace$$ 的"边界"参数化了）．
+
+<div class="supp">
+
+（1）$$\alpha\left\Vert L\right\Vert_F^2+\beta\left\Vert R\right\Vert_F^2$$ 并不是随意选取的．当 $$\alpha=\beta$$ 时， $$\left\Vert L\right\Vert_F^2+\left\Vert R\right\Vert_F^2\ \ge\ 2\left\Vert LR^\top\right\Vert_* ,$$ 等号当且仅当 $$L=U\Sigma^{1/2}Q$$，$$R=V\Sigma^{1/2}Q^{-\top}$$（$$X=U\Sigma V^\top$$ 为紧奇异值分解）时成立．换言之， $$\left\Vert X\right\Vert_*=\min_{L,R}\ \Bigl\lbrace\frac12\bigl(\left\Vert L\right\Vert_F^2+\left\Vert R\right\Vert_F^2\bigr)\ :\ LR^\top=X\Bigr\rbrace,$$ 即核范数有"分解形式"的变分表示（与 (1.15) 的半定规划表示是同一件事的不同写法）．因此 (1.17) 可以看成是核范数罚问题 (1.16) 的**分解（Burer--Monteiro）形式**：变量维度从 $$mn$$ 降到 $$(m+n)r$$，代价是失去了凸性． （2）尽管这个问题是非凸的，但在某种意义上它是一个可处理问题的近似：**如果对 $$X$$ 有一个完整的观察**，那么秩 $$r$$ 近似可以通过 $$X$$ 的奇异值分解来找到，并根据 $$r$$ 导出的左奇异向量和右奇异向量定义 $$L$$ 和 $$R$$．具体地，由 Eckart--Young 定理，截断奇异值分解 $$X_r=\sum_{i=1}^r\sigma_iu_iv_i^\top
+  =\operatorname*{arg\,min}_{\operatorname{rank}(Y)\le r}\ \left\Vert Y-X\right\Vert_F$$ 是 $$X$$ 的最佳秩 $$r$$ 近似；于是取 $$L=U_r\Sigma_r^{1/2},\qquad R=V_r\Sigma_r^{1/2},
+  \qquad U_r=[u_1,\dots,u_r],\ V_r=[v_1,\dots,v_r],\ \Sigma_r=\operatorname{diag}(\sigma_1,\dots,\sigma_r)$$ 就得到 $$LR^\top=X_r$$．在观测不完整时，可以先用"零填充 $$+$$ 截断 SVD"得到初值，再对 (1.17) 做非凸优化------这也是实践中常用的做法．
+
+</div>
+
+<div class="custom">
+
+注记（稀疏与低秩：同一个思想的两次应用） 稀疏优化与低秩矩阵恢复的建模思路完全平行： $$\underbrace{\left\Vert x\right\Vert_0}_{\text{非凸、NP 难}}\ \longrightarrow\ \underbrace{\left\Vert x\right\Vert_1}_{\text{凸、可解}},
+  \qquad
+  \underbrace{\operatorname{rank}(X)}_{\text{非凸、NP 难}}\ \longrightarrow\ \underbrace{\left\Vert X\right\Vert_*}_{\text{凸、可解}} .$$ 两者的共同点是：用"$$\ell_1$$ 型的量"（元素绝对值之和、奇异值之和）替代"计数型的量"（非零元素个数、非零奇异值个数）；区别在于低秩问题的凸松弛 (1.14) 还可以进一步写成半定规划 (1.15)，但其规模限制了直接求解．这提示我们：**对原问题结构的深入理解（而非简单地套用通用算法）是设计高效算法的关键**．
+
+</div>
+
+## 实例：深度学习
+
+深度学习（deep learning）的起源可以追溯至 $$20$$ 世纪 $$40$$ 年代，其雏形出现在控制论中．近十年来深度学习又重新走入了人们的视野，深度学习问题和算法的研究也经历了一次新的浪潮．虽然卷积网络的设计受到了生物学和神经科学的启发，但深度学习目前的发展早已超越了机器学习模型中的神经科学观点．它用相对简单的函数来表达复杂的表示，从低层特征概括到更加抽象的高层特征，让计算机从经验中挖掘隐含的信息和价值．本节我们通过介绍多层感知机和卷积神经网络来了解优化模型在深度学习中的应用，并简要说明递归神经网络的特点．
+
+#### （一）机器学习中典型的问题形式
+
+很多机器学习中的问题可以写为 $$\begin{equation}
+  \min_{x\in W}\ \frac1N\sum_{i=1}^N \ell\bigl(f(a_i,x),\,b_i\bigr)+\mu\varphi(x),
+\end{equation}$$ 其中
+
+- $$(a_i,b_i)$$ 是给定的**数据对**，$$b_i$$ 是数据 $$a_i$$ 对应的**标签**；
+
+- $$\ell(\cdot,\cdot)$$：度量模型拟合数据点 $$i$$ 的程度（避免拟合不足），称为**损失函数**；
+
+- $$\varphi(x)$$：避免**过拟合**的正则项，常用 $$\left\Vert x\right\Vert_2^2$$ 或者 $$\left\Vert x\right\Vert_1$$ 等等；
+
+- $$f(a,x)$$：**模型**，可以是线性函数，也可以是由深度神经网络构造的模型；
+
+- $$W$$：允许的参数集合（约束集），例如 $$W=\mathbb{R}^n$$ 或者某个范数球；
+
+- $$\mu>0$$：正则化参数，用来平衡"拟合程度"与"解的性质"．
+
+两个最基本的特例是**线性回归** $$\begin{equation}
+  \min_{x\in W}\ \frac1N\sum_{i=1}^N \frac12\left\Vert a_i^\top x-b_i\right\Vert_2^2+\mu\varphi(x)
+  \quad\Bigl(\text{即}\ \frac1{2N}\sum_{i=1}^N(a_i^\top x-b_i)^2+\mu\varphi(x)\Bigr),
+\end{equation}$$ 和**逻辑回归** $$\begin{equation}
+  \min_{x\in W}\ \frac1N\sum_{i=1}^N \log\bigl(1+\exp(-b_ia_i^\top x)\bigr)+\mu\varphi(x),
+\end{equation}$$ 其中 (1.20) 中的标签取 $$b_i\in\lbrace-1,+1\rbrace$$，$$\log(1+e^{-t})$$ 是"合页"式的凸损失（当 $$b_ia_i^\top x\gg0$$ 时损失趋于 $$0$$，当 $$b_ia_i^\top x\ll0$$ 时损失近似线性增长）．(1.18) 中的 $$f$$ 换成深度神经网络，就得到**深度学习的优化模型**：**决策变量就是网络的全部参数**，目标函数是"平均损失 $$+$$ 正则项"．这类问题通常规模极大（参数可达 $$10^8$$ 量级）、非凸且非光滑（ReLU），是当前最优化研究最活跃的应用背景之一．
+
+### 多层感知机
+
+多层感知机（multi-layer perceptron, MLP）也叫作**深度前馈网络**（deep feedforward network）或**前馈神经网络**（feedforward neural network），它通过已有的信息或者知识来对未知事物进行预测．在神经网络中，已知的信息通常用**数据集**来表示．数据集一般分为**训练集**和**测试集**：训练集用来训练神经网络，从而使得神经网络能够掌握训练集上的信息；测试集用来测试训练完的神经网络的预测准确性．一个常见的任务是**分类问题**．假设我们有一个猫和狗的图片集，将其划分成训练集和测试集（保证集合中猫和狗图片要有一定的比例）．神经网络想逼近一个从图片到 $$\lbrace0,1\rbrace$$ 的函数，这里 $$0$$ 表示猫，$$1$$ 表示狗．因为神经网络本身的结构和大量的训练集信息，训练得到的函数与真实结果具有非常高的吻合性．
+
+#### 1. 网络结构与前向传播
+
+具体地，给定训练集 $$D=\lbrace\lbracea_1,b_1\rbrace,\lbracea_2,b_2\rbrace,\dots,\lbracea_m,b_m\rbrace\rbrace$$，假设数据 $$a_i\in\mathbb{R}^p$$，$$b_i\in\mathbb{R}^q$$．为了方便处理模型里的偏差项，还假设 $$a_i$$ 的第一个元素等于 $$1$$，即 $$a_{i1}=1$$．图 1.3 给出了一种由 $$p$$ 个输入单元和 $$q$$ 个输出单元构成的 $$(L+2)$$ 层感知机，其含有**一个输入层、一个输出层和 $$L$$ 个隐藏层**．该感知机的第 $$l$$ 个隐藏层共有 $$m^{(l)}$$ 个神经元；为了方便，我们用 $$l=0$$ 表示输入层，$$l=L+1$$ 表示输出层，并定义 $$m^{(0)}=p,\qquad m^{(L+1)}=q .$$ 设 $$y^{(l)}\in\mathbb{R}^{m^{(l)}}$$ 为第 $$l$$ 层的所有神经元构成的向量．同样地，为了能够处理每一个隐藏层的信号偏差，除输出层外，我们令 $$y^{(l)}$$ 的第一个元素等于 $$1$$，即 $$y^{(l)}_1=1,\qquad 0\le l\le L,$$ 而其余的元素则是通过上一层的神经元的值进行**加权求和**得到．令参数 $$x=\bigl(x^{(1)},x^{(2)},\dots,x^{(L+1)}\bigr)$$ 表示网络中所有层之间的权重，其中 $$x^{(l)}_{i,k}$$ 是第 $$(l-1)$$ 层的第 $$k$$ 个单元连接到第 $$l$$ 层的第 $$i$$ 个单元对应的权重，则在第 $$l$$ 层中，第 $$i$$ 个单元（$$i>1$$，当 $$l=L+1$$ 时可取为 $$i\ge1$$）计算输出信息 $$y^{(l)}_i$$ 为 $$\begin{equation}
+  y^{(l)}_i=t\bigl(z^{(l)}_i\bigr),\qquad
+  z^{(l)}_i=\sum_{k=1}^{m^{(l-1)}}x^{(l)}_{i,k}\,y^{(l-1)}_k .
+\end{equation}$$ 这里函数 $$t(\cdot)$$ 称为**激活函数**，常见的类型有 $$\begin{equation}
+  \begin{aligned}
+    \text{Sigmoid 函数：}\quad & t(z)=\frac{1}{1+\exp(-z)},\\[2pt]
+    \text{Heaviside 函数：}\quad & t(z)=
+      \begin{cases}
+        1, & z\ge0,\\
+        0, & z<0,
+      \end{cases}\\[6pt]
+    \text{ReLU 函数：}\quad & t(z)=\max\lbrace0,z\rbrace.
+  \end{aligned}
+\end{equation}$$ 整个过程可以描述为 $$y^{(0)}\xrightarrow{\ x^{(1)}\ }z^{(1)}\xrightarrow{\ t\ }y^{(1)}\xrightarrow{\ x^{(2)}\ }\cdots\xrightarrow{\ t\ }y^{(L+1)} .$$
+
+**图 1.3**：带 $$p$$ 个输入单元和 $$q$$ 个输出单元的 $$(L+2)$$ 层感知机的网络图（对应 PPT 第 $$22$$ 页插图与讲义图 1.4），第 $$l$$ 个隐藏层包含 $$m^{(l)}$$ 个神经元．除输出层外每层第一个分量恒为 $$1$$，用于吸收偏差项．
+
+容易看出，多层感知机的每一层输出实际就是由其上一层的数值作**线性组合**再逐分量作**非线性变换**得到的．若将 $$y^{(0)}$$ 视为自变量、$$y^{(L+1)}$$ 视为因变量，则多层感知机实际上定义了一个以 $$x$$ 为参数的函数 $$h(a;x):\mathbb{R}^p\to\mathbb{R}^q,$$ 这里 $$a$$ 为输入层 $$y^{(0)}$$ 的取值．当输入数据为 $$a_i$$ 时，其输出 $$h(a_i;x)$$ 将作为真实标签 $$b_i$$ 的估计．
+
+<div class="supp">
+
+把第 $$l$$ 层的权重排成矩阵 $$X^{(l)}\in\mathbb{R}^{m^{(l)}\times m^{(l-1)}}$$，其第 $$(i,k)$$ 个元素为 $$x^{(l)}_{i,k}$$，则 (1.21) 等价于 $$z^{(l)}=X^{(l)}y^{(l-1)},\qquad
+  y^{(l)}=t\bigl(z^{(l)}\bigr)\quad(\text{逐分量作用}),$$ 即通常所说的 $$y^{(l+1)}=\sigma\bigl(W^{(l)}y^{(l)}+b^{(l)}\bigr)$$：由于 $$y^{(l-1)}_1\equiv1$$，矩阵 $$X^{(l)}$$ 的**第一列** $$X^{(l)}_{:,1}$$ 起到的正是偏置项 $$b^{(l)}$$ 的作用，而 $$W^{(l)}$$ 是 $$X^{(l)}$$ 去掉第一列后剩下的 $$m^{(l)}\times(m^{(l-1)}-1)$$ 子矩阵．因此"统一取每层第一个分量为 $$1$$"这一约定，使得偏差项无需单独书写．于是整个前向传播可以写成复合函数 $$h(a;x)=t\Bigl(X^{(L+1)}\,t\bigl(X^{(L)}\cdots t(X^{(1)}a)\cdots\bigr)\Bigr),$$ 这是一个关于 $$x$$ 的**复合（非凸）函数**：即使每个 $$X^{(l)}$$ 的作用都是线性的，层与层之间的非线性激活函数也使 $$h$$ 关于 $$x$$ 高度非凸．
+
+</div>
+
+#### 2. 多层感知机的优化模型
+
+若选择**平方误差**为损失函数，则我们得到多层感知机的优化模型： $$\begin{equation}
+  \min_{x}\ \sum_{i=1}^m\left\Vert h(a_i;x)-b_i\right\Vert_2^2+\lambda r(x),
+\end{equation}$$ 其中 $$r(x)$$ 是**正则项**，用来刻画解的某些性质，如光滑性或稀疏性等；$$\lambda$$ 称为**正则化参数**，用来平衡模型的拟合程度和解的性质．如果 $$\lambda$$ 太小，那么对解的性质没有起到改善作用；如果 $$\lambda$$ 太大，则模型与原问题相差很大，可能是一个糟糕的逼近．注意 (1.23) 与 (1.18) 的唯一差别是：一般形式中对 $$N$$ 个样本的损失取了平均 $$\frac1N$$（使目标函数值与样本量无关），而 (1.23) 直接求和；两者只相差一个常数因子，最优解相同（当 $$\lambda$$ 相应换算时）．此外，若取 $$r(x)=\sum_l\left\Vert X^{(l)}\right\Vert_F^2$$ 就是经典的**权重衰减**（weight decay），若取 $$r(x)=\left\Vert x\right\Vert_1$$ 则鼓励网络参数稀疏．
+
+### 卷积神经网络
+
+卷积神经网络（convolutional neural network, CNN）是一种**深度前馈人工神经网络**，专门用来处理如时间序列数据或图像等**网格数据**，在计算机视觉、视频分析、自然语言处理等诸多领域有大量成功的应用．与图 1.3 对应的**全连接网络**（相邻两层之间的节点都是相连或相关的）不同，卷积神经网络的思想是通过**局部连接**以及**共享参数**的方式来大大减少参数量，从而减少对数据量的依赖以及提高训练的速度．
+
+典型的 CNN 网络结构通常由**一个或多个卷积层**、**下采样层**（subsampling，有时也称为"池化"pooling）和**顶层的全连接层**组成．全连接层的结构与多层感知机的结构相同．卷积层是一种特殊的网络层，它首先对输入数据进行**卷积操作**产生多个**特征映射**，之后使用非线性激活函数（比如 ReLU）对每个特征进行变换．下采样层一般位于卷积层之后，它的作用是减小数据维数并提取数据的多尺度信息，其结果最终会输出到下一组变换．
+
+#### 1. 卷积的定义
+
+给定一个二维图像 $$I\in\mathbb{R}^{n\times n}$$ 和卷积核 $$K\in\mathbb{R}^{k\times k}$$，我们定义一种简单的卷积操作 $$S=I*K$$，它的元素是 $$\begin{equation}
+  S_{i,j}=\left\langle I(i:i+k-1,\ j:j+k-1),\,K\right\rangle,
+\end{equation}$$ 其中两个矩阵 $$X,Y$$ 的**内积**是它们相应元素乘积之和，即 $$\left\langle X,\,Y\right\rangle=\sum_{i,j}X_{ij}Y_{ij}=\operatorname{tr}(XY^\top),$$ 而 $$I(i:i+k-1,\ j:j+k-1)$$ 是矩阵 $$I$$ 从位置 $$(i,j)$$ 开始的一个 $$k\times k$$ **子矩阵**．生成的结果 $$S$$ 可以根据**卷积核的维数**、$$I$$ 的**边界是否填充**（padding）、**卷积操作时滑动的大小**（步长 stride）等相应变化．
+
+具体地，设输入为 $$n\times n$$，卷积核为 $$k\times k$$，边界填充 $$p$$ 圈，滑动步长为 $$s$$，则输出尺寸为 $$\Bigl\lfloor\frac{n+2p-k}{s}\Bigr\rfloor+1\ \times\ \Bigl\lfloor\frac{n+2p-k}{s}\Bigr\rfloor+1 .$$ 例如 $$n=7$$，$$k=3$$，$$p=0$$，$$s=1$$ 时输出为 $$5\times5$$（正是下面图 1.4 的情形）；若取 $$p=1$$（补零一圈），则输出仍为 $$7\times7$$，即"保持尺寸不变"；若取 $$s=2$$，则输出为 $$3\times3$$．
+
+#### 2. 一个完整的手算例子（$$7\times7$$ 输入与 $$3\times3$$ 卷积核）
+
+下面把 PPT 第 $$23$$ 页给出的例子**完整重算一遍**．输入图像为 $$I=\begin{pmatrix}
+    1&2&2&1&2&1&1\\
+    0&0&0&1&2&0&0\\
+    2&0&1&2&0&1&1\\
+    2&1&1&0&1&0&1\\
+    1&0&2&0&1&2&2\\
+    1&2&1&0&1&0&2\\
+    0&2&2&1&1&0&0
+  \end{pmatrix}\in\mathbb{R}^{7\times7},
+  \qquad
+  K=\begin{pmatrix}
+    1&0&1\\
+    0&1&0\\
+    1&0&1
+  \end{pmatrix}\in\mathbb{R}^{3\times3}.$$ 这里 $$K$$ 的 $$9$$ 个元素中只有 $$4$$ 个角与中心为 $$1$$，其余为 $$0$$；PPT 图中在窗口上标注的"$$\times1\ \times0\ \times1\ \times0\ \times1\ \times0\ \times1\ \times0\ \times1$$"正表示用卷积核的 $$9$$ 个权重依次乘以窗口内的 $$9$$ 个元素（按行优先顺序）．按 (1.24)，$$S_{i,j}$$ 就是窗口 $$I(i:i+2,j:j+2)$$ 的**四个角元素与中心元素之和**： $$S_{i,j}=I_{i,j}+I_{i,j+2}+I_{i+1,j+1}+I_{i+2,j}+I_{i+2,j+2},\qquad 1\le i,j\le5 .$$
+
+例如，当 $$i=j=1$$ 时窗口是 $$I(1:3,1:3)=\begin{pmatrix}1&2&2\\0&0&0\\2&0&1\end{pmatrix},
+  \qquad
+  S_{1,1}=1+0+2+0+0+0+2+0+1=1+2+2+1=6 .$$ （这里 $$1+0+2+\cdots+1$$ 是窗口内 $$9$$ 个元素与 $$K$$ 逐元素相乘的结果，其中卷积核为 $$0$$ 的位置对应的乘积为 $$0$$．） 当 $$i=1,j=2$$ 时窗口右移一格： $$I(1:3,2:4)=\begin{pmatrix}2&2&1\\0&0&1\\0&1&2\end{pmatrix},
+  \qquad
+  S_{1,2}=2+1+1+2=5 .$$ 类似地，$$S_{3,3}$$ 对应的窗口是 $$I(3:5,3:5)=\begin{pmatrix}1&2&0\\1&0&1\\2&0&1\end{pmatrix},
+  \qquad S_{3,3}=1+0+0+2+1=4 .$$ 把 $$25$$ 个位置全部算出（每个位置都是"窗口内 $$9$$ 个元素按行优先与 $$K$$ 逐元素相乘再相加"），得到的结果矩阵为 $$\begin{equation}
+  S=I*K=
+  \begin{pmatrix}
+    6&5&6&7&4\\
+    3&3&6&1&5\\
+    7&3&4&6&4\\
+    5&5&4&1&7\\
+    7&4&6&4&4
+  \end{pmatrix}\in\mathbb{R}^{5\times5},
+\end{equation}$$ 与 PPT 第 $$23$$ 页给出的结果完全一致．为便于核对，表 1.3 列出全部 $$25$$ 个元素的计算过程（$$9$$ 个乘积按窗口内行优先顺序排列）．
+
+| 位置      | 计算式                | 位置      | 计算式                |
+|:----------|:----------------------|:----------|:----------------------|
+| $$S_{1,1}$$ | $$1+0+2+0+0+0+2+0+1=6$$ | $$S_{3,4}$$ | $$2+0+1+0+1+0+0+0+2=6$$ |
+| $$S_{1,2}$$ | $$2+0+1+0+0+0+0+0+2=5$$ | $$S_{3,5}$$ | $$0+0+1+0+0+0+1+0+2=4$$ |
+| $$S_{1,3}$$ | $$2+0+2+0+1+0+1+0+0=6$$ | $$S_{4,1}$$ | $$2+0+1+0+0+0+1+0+1=5$$ |
+| $$S_{1,4}$$ | $$1+0+1+0+2+0+2+0+1=7$$ | $$S_{4,2}$$ | $$1+0+0+0+2+0+2+0+0=5$$ |
+| $$S_{1,5}$$ | $$2+0+1+0+0+0+0+0+1=4$$ | $$S_{4,3}$$ | $$1+0+1+0+0+0+1+0+1=4$$ |
+| $$S_{2,1}$$ | $$0+0+0+0+0+0+2+0+1=3$$ | $$S_{4,4}$$ | $$0+0+0+0+1+0+0+0+0=1$$ |
+| $$S_{2,2}$$ | $$0+0+1+0+1+0+1+0+0=3$$ | $$S_{4,5}$$ | $$1+0+1+0+2+0+1+0+2=7$$ |
+| $$S_{2,3}$$ | $$0+0+2+0+2+0+1+0+1=6$$ | $$S_{5,1}$$ | $$1+0+2+0+2+0+0+0+2=7$$ |
+| $$S_{2,4}$$ | $$1+0+0+0+0+0+0+0+0=1$$ | $$S_{5,2}$$ | $$0+0+0+0+1+0+2+0+1=4$$ |
+| $$S_{2,5}$$ | $$2+0+0+0+1+0+1+0+1=5$$ | $$S_{5,3}$$ | $$2+0+1+0+0+0+2+0+1=6$$ |
+| $$S_{3,1}$$ | $$2+0+1+0+1+0+1+0+2=7$$ | $$S_{5,4}$$ | $$0+0+2+0+1+0+1+0+0=4$$ |
+| $$S_{3,2}$$ | $$0+0+2+0+1+0+0+0+0=3$$ | $$S_{5,5}$$ | $$1+0+2+0+0+0+1+0+0=4$$ |
+| $$S_{3,3}$$ | $$1+0+0+0+0+0+2+0+1=4$$ |           |                       |
+
+: 图 1.4 卷积例子的完整计算表（每个窗口内 $$9$$ 个乘积按行优先顺序写出） {#tab:conv}
+
+**图 1.4**：卷积操作（对应 PPT 第 $$23$$ 页插图与讲义图 1.5）：$$7\times7$$ 的输入 $$I$$ 与 $$3\times3$$ 的卷积核 $$K$$ 做卷积得到 $$5\times5$$ 的结果 $$S$$．红框标出 $$S_{1,1}$$ 对应的第一个窗口 $$I(1:3,1:3)$$，它逐元素乘以 $$K$$ 后求和得 $$S_{1,1}=6$$；窗口按步长 $$1$$ 依次向右、向下滑动，共得到 $$5\times5=25$$ 个输出值．
+
+#### 3. CNN 的网络结构与下采样层
+
+图 1.4 只给出了一个卷积层中的一次卷积．一个完整的 CNN 中，输入图片通过**不同的卷积核**生成不同的矩阵（即不同的特征映射），再经过非线性激活函数作用后生成第 $$1$$ 层的特征；第 $$2$$ 层是第 $$1$$ 层的下采样层；第 $$3$$ 层和第 $$4$$ 层又是卷积层和下采样层；第 $$5$$ 层是全连接层；第 $$6$$ 层为输出层．实际的卷积神经网络可达几十层甚至更多，卷积核的大小、网络节点之间的连接方式也可以有很多变化，从而生成不一样的模型．
+
+**下采样层**（subsampling / pooling）的工作方式是：先将第 $$(l-1)$$ 层的每个矩阵划分成若干子矩阵，之后将每个子矩阵里所有元素按照某种规则（例如取**平均值**或**最大值**）变换成一个元素．因此，第 $$(l-1)$$ 特征层每个小框里所有元素的平均值或最大值就对应于第 $$l$$ 特征层的一个元素．容易看出，下采样层实际上是用**一个数代表一个子矩阵**，经过下采样层变换后，前一特征层矩阵的维数会进一步降低（例如 $$2\times2$$ 的最大池化把每个 $$2\times2$$ 小块替换为其最大值，尺寸缩小一半），这既减少了计算量，又带来了一定的平移不变性．
+
+<div class="supp">
+
+（1）**为什么卷积能大幅减少参数**．一个 $$n\times n$$ 输入、$$n\times n$$ 输出的全连接层有 $$n^4$$ 个参数（若含 $$C$$ 个通道还要乘 $$C^2$$），而一个 $$k\times k$$ 的卷积层只有 $$k^2$$ 个参数（多通道时再乘通道数）：**同一个卷积核在整个图像上滑动**，即所有位置**共享同一组权重**，这体现了图像处理的**平移不变性**先验------图像中任意位置出现的同一种局部模式（边缘、角点、纹理）应当用同一个检测器来识别． （2）**LeCun 与手写数字识别**．LeCun 等人开创性地建立了用于数字分类的神经网络（LeNet），几家银行使用它来识别支票上的手写数字．这一工作首次把"卷积 $$+$$ 下采样 $$+$$ 全连接"的结构与反向传播算法结合起来，并在真实的高价值场景中取得了成功，被认为是现代卷积神经网络的起点． （3）**CNN 对应的优化问题**．给定一个训练集 $$D=\lbrace\lbracea_1,b_1\rbrace,\lbracea_2,b_2\rbrace,\dots,\lbracea_m,b_m\rbrace\rbrace$$，其中 $$a_i$$ 是训练图片，$$b_i$$ 是其对应的标签，卷积神经网络对应的优化问题的形式仍可套用 (1.23)，但函数 $$h(a_i;x)$$ 由卷积神经网络构成，而 $$x$$ 是卷积神经网络的参数（各卷积核的权重与全连接层的权重）．也就是说，**网络结构的变化只改变 $$h$$ 的表达式，不改变优化问题的形式**：仍然是"平均损失 $$+$$ 正则项"的非凸、大规模、非光滑（ReLU）优化问题．
+
+</div>
+
+### 递归神经网络
+
+递归神经网络（recurrent neural network, RNN）建立在与前馈神经网络相同的计算单元上．与前馈网络相比，它的特点在于：
+
+- RNN **不必分层组织**（不要求神经元严格按层排列、信息只能从第 $$l$$ 层流向第 $$l+1$$ 层）；
+
+- RNN 允许**定向循环**（directed cycle），即某个单元的输出可以（经过若干步）再回来影响它自己的输入；
+
+- 这样一来，它们就可以拥有内部存储器（internal memory），从而可以处理顺序数据（如文本、语音、时间序列）：当前时刻的输出不仅依赖当前输入，还依赖网络此前"记住"的状态；
+
+- 如图 1.5 所示，可以将 RNN 按顺序"**展开**"（unfold），从而将 RNN 转换为常规前馈神经网络．
+
+**图 1.5**：递归神经网络的紧凑形式与按时间展开（对应 PPT 第 $$25$$ 页插图）：左图中输出经权重 $$W$$ 反馈回隐藏单元，形成内部记忆；右图把它沿时间轴展开成一条前馈链，每一时刻的隐藏状态 $$h_t$$ 由上一时刻状态 $$h_{t-1}$$ 与当前输入 $$x_t$$ 共同决定，且<strong>所有时刻共享同一组参数</strong>．
+
+<div class="supp">
+
+（1）**递推公式**．最朴素的 RNN（Elman 网络）为 $$h_t=\sigma\bigl(W_{hh}h_{t-1}+W_{xh}x_t+b_h\bigr),\qquad
+  o_t=W_{ho}h_t+b_o,\qquad t=1,2,\dots,T,$$ 其中 $$\sigma$$ 为逐分量激活函数（如 $$\tanh$$ 或 ReLU），$$h_0$$ 可取零向量．与多层感知机 (1.21) 比较可见：RNN 每一步的计算与 MLP 的一层完全相同，**区别只在于 $$h_{t-1}$$ 会作为下一步的输入，而且所有时间步共用同一组参数 $$(W_{hh},W_{xh},b_h,W_{ho},b_o)$$**．因此展开后的前馈网络虽然有 $$T$$ 层，但待优化的变量个数与 $$T$$ 无关，这也解释了"参数共享"在 RNN 中的含义：**同一个函数在不同时刻被反复调用**． （2）**展开与训练**．把 RNN 按时间展开成 $$T$$ 层前馈网络后，就可以直接使用反向传播算法计算梯度，这一做法称为**沿时间反向传播**（backpropagation through time, BPTT）．对应的优化模型仍然是 (1.18) 的形式，其中损失函数按时间步求和或取平均，$$f$$ 由上面的递推定义．由于展开后的网络很深，梯度会出现**指数级的衰减或爆炸**（$$\partial h_t/\partial h_{t-1}$$ 的连乘），实践中常采用梯度截断、门控结构（LSTM、GRU）等技术缓解；从优化角度看，这属于"梯度 Lipschitz 常数很大、Hessian 病态"的典型困难． （3）**与本章主题的联系**．无论网络结构如何变化------全连接、卷积、递归------最终都归结为一个以网络参数为决策变量的大规模非凸优化问题；区别只在于 $$h$$ 的表达式与参数的共享方式．这正是本章反复强调的观点：**优化模型的形式是统一的，算法的设计必须利用具体模型的结构**．
+
+</div>
+
+## 最优化基本概念
+
+一般来说，最优化算法研究可以分为三个部分：**构造最优化模型**、**确定最优化问题的类型和设计算法**、**实现算法或调用优化算法软件包进行求解**．最优化模型的构造和实际问题紧密相关．比如说，给定二维欧几里得（Euclid）空间中的若干个离散点，假定它们可以通过一条直线分成两部分，也可以通过一条曲线分成两部分，那么分别使用直线与曲线所得到的最优化模型是不同的．在问题 (1.1) 中，目标函数 $$f$$ 和约束函数 $$c_i$$ 都是由模型来确定的．在确定模型之后，我们需要对模型对应的优化问题进行分类：分类的必要性在于**不存在对于所有优化问题的一个统一的算法**．因此我们需要针对具体优化问题所属的类别，来设计或者调用相应的算法求解器．最后就是模型的求解过程：同一类优化问题往往存在着不同的求解算法，对于具体的优化问题，我们需要充分利用问题的结构，并根据问题的需求（求解精度和速度等）来设计相应的算法．另外，根据算法得到的结果，我们可以来判别模型构造是否合理或者进一步地改进模型：如果构造的模型比较复杂，那么算法求解起来相对困难（时间慢或者精度差），此时算法分析可以帮助我们设计替代模型，以确保快速且比较精确地求出问题的解．
+
+这三个部分的研究对于形成完备的最优化体系是必要的．实际应用导出的各种各样的最优化模型给最优化学科不断注入新鲜的血液，对现有的优化算法进行挑战并推动其向前发展；最优化算法的设计以及理论分析帮助实际问题建立更鲁棒稳定的模型．模型与算法相辅相成，使得最优化学科不断发展．
+
+本节按照"连续/离散 --- 无约束/约束 --- 随机/确定 --- 线性/非线性 --- 凸/非凸 --- 全局/局部 --- 算法"的顺序，逐一介绍最优化问题最基本的几组概念．
+
+### 连续和离散优化问题
+
+最优化问题可以分为连续和离散优化问题两大类．
+
+<div class="definition">
+
+- **连续优化问题**是指决策变量所在的可行集合是**连续**的，比如平面、区间等．如稀疏优化问题 (1.8)--(1.12) 的约束集合就是连续的（$$\mathbb{R}^n$$ 或仿射集 $$\lbracex:Ax=b\rbrace$$）．
+
+- **离散优化问题**是指决策变量能在**离散集合**上取值，比如离散点集、整数集等．常见的离散优化问题有**整数规划**，其对应的决策变量的取值范围是整数集合．
+
+</div>
+
+在连续优化问题中，基于决策变量取值空间以及约束和目标函数的连续性，我们可以从**一个点处**目标和约束函数的取值来估计该点**可行邻域内**的取值情况；进一步地，可以根据邻域内的取值信息来判断该点是否最优（这正是第 1.7 节后面将要介绍的局部极小解与最优性条件的基础）．离散优化问题则不具备这个性质，因为决策变量是在离散集合上取值，邻域内可能根本没有其他可行点．因此在实际中**离散优化问题往往比连续优化问题更难求解**．
+
+实际中的离散优化问题往往可以转化为一系列连续优化问题来进行求解．比如线性整数规划问题中著名的**分支定界方法**，就是松弛成一系列线性规划问题来进行求解：先求解去掉整数约束后的线性规划（松弛问题）得到下界，若松弛解不是整数，则对某个整数变量分支成"$$x_i\le\lfloor \bar x_i\rfloor$$"与"$$x_i\ge\lceil \bar x_i\rceil$$"两个子问题，递归求解并用界剪枝．因此，**连续优化问题的求解在最优化理论与算法中扮演着重要的角色**．本书后续的内容也将围绕连续优化问题展开介绍．
+
+### 无约束和约束优化问题
+
+最优化问题的另外一个重要的分类标准是**约束是否存在**．无约束优化问题的决策变量没有约束条件限制，即可行集合 $$X=\mathbb{R}^n$$；相对地，约束优化问题是指带有约束条件的问题．在实际应用中，这两类优化问题广泛存在．无约束优化问题对应于在欧几里得空间中求解一个函数的最小值点；比如在 $$\ell_1$$ 正则化问题 (1.12) 中，决策变量的可行域是 $$\mathbb{R}^n$$，其为一个无约束优化问题．在问题 (1.8)--(1.10) 中，可行集为 $$\lbracex\mid Ax=b\rbrace$$，其为约束优化问题．
+
+因为问题 (1.1) 可以通过将约束（$$X\ne\mathbb{R}^n$$）罚到目标函数上转化为无约束问题，所以在某种程度上，**约束优化问题就是无约束优化问题**．很多约束优化问题的求解也是转化为一系列的无约束优化问题来做，常见方式有**增广拉格朗日函数法**、**罚函数法**等．例如本章的 (1.12) 就是 (1.9) 的二次罚函数形式，(1.16) 就是 (1.14) 的二次罚函数形式．尽管如此，约束优化问题的理论以及算法研究仍然是非常重要的．主要原因是：**借助于约束函数，我们能够更好地描述可行域的几何性质，进而更有效地找到最优解**．对于典型的约束和无约束优化模型，我们将会在本书的第四章中介绍，相应的理论以及算法会在第五---八章中给出．
+
+### 随机和确定性优化问题
+
+伴随着近年来人工智能的发展，随机优化问题的研究得到了长足的发展．**随机优化问题**是指目标或者约束函数中涉及**随机变量**而带有不确定性的问题．不像确定性优化问题中目标和约束函数都是确定的，随机优化问题中总是包含一些**未知的参数**．在实际问题中，我们往往只能知道这些参数的某些估计．随机优化问题在机器学习、深度学习以及强化学习中有着重要应用，其优化问题的目标函数是关于一个未知参数的**期望**的形式： $$\min_{x\in\mathbb{R}^n}\ \mathbb{E}_{\xi}\bigl[F(x;\xi)\bigr],$$ 其中 $$\xi$$ 是随机变量（例如随机抽取的样本）．因为参数的未知性，实际中常用的方法是通过足够多的样本来**逼近**目标函数，得到一个新的**有限和**形式的目标函数 $$\min_{x\in\mathbb{R}^n}\ \frac1N\sum_{i=1}^N F(x;\xi_i),$$ 这正是本章 (1.18) 中"对 $$N$$ 个样本取平均"的来源．由于样本数量往往非常大，我们还是将这个问题看作相对于指标随机变量的期望形式，然后通过**随机优化方法**来进行求解．
+
+相比于确定性优化问题，随机优化问题的求解往往涉及更多的随机性．很多确定性优化算法都有相应的随机版本．随机性使得这些算法在特定问题上具有更低的计算复杂度或者更好的收敛性质．以目标函数为多项求和的优化问题为例，如果使用确定性优化算法，每一次计算目标函数的梯度都会引入昂贵的复杂度（需要遍历全部 $$N$$ 项）；但是对于随机优化问题，我们每次可能只计算和式中的一项或者几项（如随机梯度下降法每次只用一个样本估计梯度），这大大减少了计算时间，同时我们还能保证算法求解得足够精确．具体的模型介绍会在第四章中给出；确定性优化算法会在第六---八章中给出，随机优化算法会在第八章中介绍．
+
+### 线性和非线性规划问题
+
+**线性规划**是指问题 (1.1) 中目标函数和约束函数都是线性的，即 $$\min_{x\in\mathbb{R}^n}\ c^\top x\qquad \ \text{s.t.}\ Ax\le b,\quad A_{\mathrm{eq}}x=b_{\mathrm{eq}};$$ 当目标函数和约束函数至少有一个是非线性的，那么对应的优化问题称为**非线性规划问题**．线性规划问题在约束优化问题中具有较为简单的形式．类似于连续函数可以用**分片线性函数**来逼近一样，线性规划问题的理论分析与数值求解可以为非线性规划问题提供很好的借鉴和基础．
+
+线性规划问题的研究很早便得到了人们的关注．在 $$1946$$--$$1947$$ 年，George Bernard Dantzig 提出了线性规划的一般形式并提出了至今仍非常流行的**单纯形方法**．虽然单纯形方法在实际问题中经常表现出快速收敛，但是其复杂度**并不是多项式的**（Klee--Minty 的例子说明单纯形法在最坏情况下需要指数步）．$$1979$$ 年，Leonid Khachiyan 证明了线性规划问题**多项式时间算法的存在性**（椭球法）．$$1984$$ 年，Narendra Karmarkar 提出了多项式时间的**内点法**．后来，内点法也被推广到求解一般的非线性规划问题．目前，求解线性规划问题最流行的两类方法依然是**单纯形法**和**内点法**．
+
+### 凸和非凸优化问题
+
+<div class="definition">
+
+凸优化问题是指最小化问题 (1.1) 中的**目标函数**和**可行域**分别是**凸函数**和**凸集**．如果其中有一个或者两者都不是凸的，那么相应的最小化问题是非凸优化问题．
+
+</div>
+
+因为凸优化问题的**任何局部最优解都是全局最优解**，其相应的算法设计以及理论分析相对非凸优化问题简单很多．
+
+<div class="custom">
+
+注记（关于 $$\max$$ 的约定） 若问题 (1.1) 中的 $$\min$$ 改为 $$\max$$，且目标函数和可行域分别为**凹函数**和凸集，我们也称这样的问题为凸优化问题．这是因为对凹函数求极大等价于对其相反数（凸函数）求极小： $$\max_{x\in X}\ f(x)\iff -\min_{x\in X}\ \bigl(-f(x)\bigr),$$ 而 $$-f$$ 是凸函数．
+
+</div>
+
+在实际问题的建模中，我们经常更倾向于得到一个凸优化模型．另外，判断一个问题是否是凸问题也很重要．比如，给定一个非凸优化问题，一种方法是将其转化为一系列凸优化子问题来求解．此时需要清楚原非凸问题中的哪个或哪些函数导致了非凸性，之后考虑的是如何用凸优化模型来逼近原问题．在压缩感知问题中，$$\ell_0$$ 范数是**非凸**的，原问题对应的解的性质难以直接分析，相应的全局收敛的算法也不容易构造．利用 $$\ell_0$$ 范数和 $$\ell_1$$ 范数在某种意义上的等价性（见定理 1.1），我们将原非凸问题转化为凸优化问题：在一定的假设下，我们通过求解 $$\ell_1$$ 范数对应的凸优化问题得到了原非凸优化问题的全局最优解．
+
+### 全局和局部最优解
+
+在求解最优化问题之前，先介绍最小化问题 (1.1) 的最优解的定义．
+
+<div class="definition">
+
+**定义 1.4** 对于可行点 $$\bar x$$（即 $$\bar x\in X$$），定义如下概念：
+
+1.  如果 $$f(\bar x)\le f(x),\qquad \forall\,x\in X,$$ 那么称 $$\bar x$$ 为问题 (1.1) 的**全局极小解**（点），有时也称为（全局）最优解或最小值点；
+
+2.  如果存在 $$\bar x$$ 的一个 $$\varepsilon$$ 邻域 $$N_\varepsilon(\bar x)$$ 使得 $$f(\bar x)\le f(x),\qquad \forall\,x\in N_\varepsilon(\bar x)\cap X,$$ 那么称 $$\bar x$$ 为问题 (1.1) 的**局部极小解**（点），有时也称为局部最优解；
+
+3.  进一步地，如果有 $$f(\bar x)<f(x),\qquad \forall\,x\in N_\varepsilon(\bar x)\cap X,\quad x\ne\bar x$$ 成立，则称 $$\bar x$$ 为问题 (1.1) 的**严格局部极小解**（点）．
+
+如果一个点是局部极小解，但不是严格局部极小解，则称为**非严格局部极小解**．
+
+</div>
+
+在图 1.6 中，我们以一个简单的函数为例，指出了其全局与局部极小解．
+
+**图 1.6**：函数的全局极小、严格局部极小和非严格局部极小解（对应 PPT 第 $$28$$ 页插图与讲义图 1.8）．曲线最低点（约 $$x=0.5$$）是全局极小解；左侧的凹陷底部（约 $$x=-2.7$$）是严格局部极小解，其函数值比全局极小值大；右侧有一段水平线段（$$x\in[1.7,2.9]$$），其上每一点都是非严格局部极小解——因为在它的邻域内存在与它函数值相等的其他可行点．
+
+<div class="supp">
+
+（1）**全局极小解不一定唯一**：例如 $$f(x)=\cos x$$ 在 $$\mathbb{R}$$ 上有无穷多个全局极小解 $$x=2k\pi+\pi$$．但当最小值存在时，**所有全局极小解对应的函数值都相同**，都等于 $$f^\star=\min_{x\in X}f(x)=\inf_{x\in X}f(x);$$ 正因如此，后面定义算法的"依函数值收敛"才有意义．（如果最小值不存在，则 $$f^\star$$ 只能理解为下确界 $$\inf_{x\in X}f(x)$$．） （2）**局部极小解一定是自身某个邻域内的"全局"极小解**，但它与邻域半径 $$\varepsilon$$ 有关：$$\varepsilon$$ 越小，条件越容易满足．如果 $$\bar x$$ 在某个半径下是局部极小解，那么它在任何更小的半径下也是局部极小解，因此"是局部极小解"这一性质与 $$\varepsilon$$ 的具体取值无关（只要存在一个即可）． （3）**"非严格"的核心是"有平坦方向"**：常值函数 $$f\equiv c$$ 的每一点都是非严格局部极小解；$$f(x)=\max\lbracex,0\rbrace$$ 在 $$x=0$$ 处是非严格局部极小解（左侧邻域内 $$f\equiv0=f(0)$$），而 $$f(x)=\left\vert x\right\vert$$ 在 $$x=0$$ 处是严格局部极小解． （4）在问题 (1.1) 的求解中，我们想要得到的是其**全局最优解**，但是由于实际问题的复杂性，往往只能够得到其**局部最优解**．在第四章中，我们将会针对具体的优化问题来分析其全局与局部最优解．
+
+</div>
+
+### 优化算法
+
+在给定优化问题之后，我们要考虑如何求解．根据优化问题的不同形式，其求解的困难程度可能会有很大差别．
+
+#### （一）显式解与迭代算法
+
+对于一个优化问题，如果我们能用代数表达式给出其最优解，那么这个解称为**显式解**，对应的问题往往比较简单．例如二次函数在有界区间上的极小化问题，我们可以通过比较其在对称轴上和区间两个端点处的值得到最优解，这个解可以显式地写出．本章中的 $$\ell_2$$ 问题 (1.10) 的解 (1.11) 也是显式解．但实际问题往往是没有办法显式求解的，因此常采用**迭代算法**．
+
+迭代算法的基本思想是：从**一个初始点 $$x^0$$ 出发**，按照某种给定的规则进行迭代，得到一个序列 $$\lbracex^k\rbrace$$．如果迭代在**有限步内终止**，那么最后一个点就是优化问题的解；如果迭代点列是无穷集合，那么希望该序列的**极限点（或者聚点）**则为优化问题的解．为了使算法能在有限步内终止，我们一般会通过一些**收敛准则**来保证迭代停在问题的一定精度逼近解上（见本小节第（六）部分）．
+
+<div class="definition">
+
+**定义 1.5** 对于问题 (1.1)，给定初始点 $$x^0$$，记算法迭代产生的点列为 $$\lbracex^k\rbrace$$．如果 $$\lbracex^k\rbrace$$ 在某种范数 $$\left\Vert\cdot\right\Vert$$ 的意义下满足 $$\lim_{k\to\infty}\left\Vert x^k-x^\star\right\Vert=0,$$ 且收敛的点 $$x^\star$$ 为一个局部（全局）极小解，那么我们称该点列**收敛到局部（全局）极小解**，相应的算法称为是**依点列收敛到局部（全局）极小解**的．
+
+</div>
+
+在算法的收敛分析中，初始迭代点 $$x^0$$ 的选取也尤为重要．比如一般的牛顿法，只有在初始点足够接近局部（全局）最优解时，才能收敛．但是这样的初始点的选取往往比较困难，此时我们更想要的是一个**从任何初始点出发都能收敛**的算法．因此优化算法的研究包括**如何设计全局化策略**，将已有的可能发散的优化算法修改得到一个新的全局收敛到局部（全局）最优解的算法．比如通过采用合适的全局化策略（如线搜索、信赖域），我们可以修正一般的牛顿法使得修改后的算法是全局收敛到局部（全局）最优解的．
+
+<div class="definition">
+
+**定义 1.6** 如果从**任意初始点** $$x^0$$ 出发，算法都是依点列收敛到局部（全局）极小解的，我们称该算法是**全局依点列收敛到局部（全局）极小解**的．相应地，如果记对应的函数值序列为 $$\lbracef(x^k)\rbrace$$，我们还可以定义算法的**（全局）依函数值收敛到局部（全局）极小值**的概念，即要求 $$\lim_{k\to\infty}f(x^k)=f^\star
+    \quad(\text{或某个局部极小值}).$$
+
+</div>
+
+<div class="supp">
+
+（1）**依点列收敛强于依函数值收敛**．若 $$f$$ 连续且 $$x^k\to x^\star$$，则 $$f(x^k)\to f(x^\star)$$，故依点列收敛蕴含依函数值收敛；反之不然------点列可能一直"绕着"最优解转而不收敛（见习题 1.4：$$\lbracef(x^k)\rbrace$$ 收敛而 $$\lbracex^k\rbrace$$ 不收敛）．在实际算法分析中，往往先证明函数值收敛，再借助问题结构（如凸性、强凸性、KL 不等式）证明点列收敛． （2）**凸优化问题中局部最优即全局最优**．设 $$f$$ 为凸函数、$$X$$ 为凸集，$$\bar x\in X$$ 是问题 (1.1) 的一个局部极小解．若存在 $$\tilde x\in X$$ 使 $$f(\tilde x)<f(\bar x)$$，则对任意 $$\theta\in(0,1)$$，由 $$X$$ 的凸性有 $$x_\theta=\bar x+\theta(\tilde x-\bar x)\in X$$，且当 $$\theta$$ 充分小时 $$x_\theta\in N_\varepsilon(\bar x)$$（因为 $$\left\Vert x_\theta-\bar x\right\Vert=\theta\left\Vert\tilde x-\bar x\right\Vert\to0$$）．由 $$f$$ 的凸性 $$f(x_\theta)=f\bigl((1-\theta)\bar x+\theta\tilde x\bigr)
+    \le(1-\theta)f(\bar x)+\theta f(\tilde x)<f(\bar x),$$ 这与 $$\bar x$$ 是局部极小解矛盾．因此不存在这样的 $$\tilde x$$，即 $$\bar x$$ 是全局极小解．**正因如此，对于凸优化问题，算法的收敛性都是相对于其全局极小而言的**，第 1.7 节前面所说的"凸问题的算法设计与理论分析更简单"正源于此． （3）**最优性条件的收敛**．除了点列和函数值的收敛外，实际中常用的还有**每个迭代点的最优性条件**（如无约束优化问题中的梯度范数 $$\left\Vert\nabla f(x^k)\right\Vert$$，约束优化问题中的最优性条件违反度等等）的收敛，即 $$\left\Vert\nabla f(x^k)\right\Vert\to0
+    \quad\text{或}\quad
+    \text{违反度}\bigl(x^k\bigr)\to0 .$$ 这类收敛性往往比点列收敛更容易证明，而且在目标函数"平坦"或最优解不唯一时仍能给出有意义的结论． （4）**带约束的情形**．对于带约束的情形，给定初始点 $$x^0$$，算法产生的点列 $$\lbracex^k\rbrace$$ **不一定是可行的**（即 $$x^k\in X$$ 未必对任意 $$k$$ 成立，例如罚函数法、增广拉格朗日法产生的点通常在可行域之外）．考虑到约束违反的情形，我们需要保证 $$\lbracex^k\rbrace$$ 在收敛到 $$x^\star$$ 的时候，其**违反度是可接受的**．除此要求之外，算法的收敛性的定义和无约束情形相同．
+
+</div>
+
+#### （二）算法设计的基本技巧
+
+在设计优化算法时，我们有一些基本的准则或技巧．对于复杂的优化问题，基本的想法是将其**转化为一系列简单的优化问题**（其最优解容易计算或者有显式表达式）来逐步求解．常用的技巧有：
+
+1.  **泰勒（Taylor）展开．** 对于一个非线性的目标或者约束函数，我们通过其泰勒展开用简单的线性函数或者二次函数来逼近，从而得到一个简化的问题．因为该简化问题只在小邻域内逼近原始问题，所以我们需要根据迭代点的更新来**重新构造**相应的简化问题．例如梯度法用 $$f(x^k)+\left\langle \nabla f(x^k),\,x-x^k\right\rangle$$ 逼近 $$f$$，牛顿法用二次模型逼近 $$f$$．
+
+2.  **对偶．** 每个优化问题都有对应的对偶问题．特别是凸的情形，当原始问题比较难解的时候，其对偶问题可能很容易求解．通过求解对偶问题或者同时求解原始问题和对偶问题，我们可以简化原始问题的求解，从而设计更有效的算法．
+
+3.  **拆分．** 对于一个复杂的优化问题，我们可以将变量进行拆分，比如 $$\min_x\ h(x)+r(x)
+        \quad\Longleftrightarrow\quad
+        \min_{x,y}\ h(x)+r(y)\quad \ \text{s.t.}\ x=y .$$ 通过引入更多的变量，我们可以得到每个变量的简单问题（较易求解或者解有显式表达式），从而通过交替求解等方式来得到原问题的解．本章的 LASSO 问题 (1.12) 中 $$h(x)=\frac12\left\Vert Ax-b\right\Vert_2^2$$、$$r(x)=\mu\left\Vert x\right\Vert_1$$ 正是这种结构．
+
+4.  **块坐标下降．** 对于一个 $$n$$ 维空间（$$n$$ 很大）的优化问题，我们可以通过逐步求解分量的方式将其转化为多个低维空间中的优化问题．比如，对于 $$n=100$$，我们可以先固定第 $$2$$--$$100$$ 个分量，来求解 $$x_1$$；接着固定下标为 $$1,3$$--$$100$$ 的分量来求解 $$x_2$$；依次类推．
+
+关于这些技巧的具体应用，读者可以进一步阅读本书中的算法部分．本书也会围绕上面介绍的优化算法的四个设计技巧，针对不同类别的问题，来具体地展示相应的算法构造以及有效性分析．
+
+#### （三）算法的渐进收敛速度
+
+对于同一个优化问题，其求解算法可以有很多．在设计和比较不同的算法时，另一个重要的指标是算法的**渐进收敛速度**．我们以点列的 **Q-收敛速度**（$$Q$$ 的含义为"quotient"，即商）为例（函数值的 Q-收敛速度可以类似地定义）．
+
+<div class="definition">
+
+**定义 1.7** 设 $$\lbracex^k\rbrace$$ 为算法产生的迭代点列且收敛于 $$x^\star$$．
+
+- **Q-线性收敛**：若对充分大的 $$k$$ 有 $$\frac{\left\Vert x^{k+1}-x^\star\right\Vert}{\left\Vert x^k-x^\star\right\Vert}\le a,\qquad a\in(0,1),$$ 则称算法（点列）是 Q-线性收敛的；
+
+- **Q-超线性收敛**：若 $$\lim_{k\to\infty}\frac{\left\Vert x^{k+1}-x^\star\right\Vert}{\left\Vert x^k-x^\star\right\Vert}=0,$$ 则称算法（点列）是 Q-超线性收敛的；
+
+- **Q-次线性收敛**：若 $$\lim_{k\to\infty}\frac{\left\Vert x^{k+1}-x^\star\right\Vert}{\left\Vert x^k-x^\star\right\Vert}=1,$$ 则称算法（点列）是 Q-次线性收敛的；
+
+- **Q-二次收敛**：若对充分大的 $$k$$ 有 $$\frac{\left\Vert x^{k+1}-x^\star\right\Vert}{\left\Vert x^k-x^\star\right\Vert^2}\le a,\qquad a>0,$$ 则称算法（点列）是 Q-二次收敛的．
+
+类似地，也可定义更一般的 **Q-$$r$$ 次收敛**（$$r>1$$），即对充分大的 $$k$$ 有 $$\dfrac{\left\Vert x^{k+1}-x^\star\right\Vert}{\left\Vert x^k-x^\star\right\Vert^{r}}\le a$$．
+
+</div>
+
+<div class="proposition">
+
+设 $$\lbracex^k\rbrace$$ 收敛于 $$x^\star$$．则 $$\text{Q-二次收敛}\ \Longrightarrow\ \text{Q-超线性收敛}\ \Longrightarrow\ \text{Q-线性收敛},$$ 而 Q-次线性收敛与它们互不包含．
+
+</div>
+
+**Proof** **（）** 设 Q-二次收敛成立，即 $$\left\Vert x^{k+1}-x^\star\right\Vert\le a\left\Vert x^k-x^\star\right\Vert^2$$（$$k$$ 充分大），两边除以 $$\left\Vert x^k-x^\star\right\Vert>0$$ 得 $$\frac{\left\Vert x^{k+1}-x^\star\right\Vert}{\left\Vert x^k-x^\star\right\Vert}\le a\left\Vert x^k-x^\star\right\Vert\longrightarrow0\qquad(k\to\infty),$$ 故 Q-超线性收敛成立．再设 Q-超线性收敛成立，则比值趋于 $$0$$，故对充分大的 $$k$$ 该比值 $$\le a$$（任取 $$a\in(0,1)$$），即 Q-线性收敛成立．Q-次线性收敛要求比值趋于 $$1$$，与"比值趋于 $$0$$ 或被 $$a<1$$ 控制"不能同时成立，故它与前两者互不包含．
+
+我们举例来更直观地展示不同的 Q-收敛速度，参见图 1.7（图中对所考虑的点列作了适当的变换，纵轴取对数尺度）．
+
+- 点列 $$\lbrace2^{-k}\rbrace$$ 是 **Q-线性收敛**的：$$\dfrac{2^{-(k+1)}}{2^{-k}}=\dfrac12$$，取 $$a=1/2$$ 即可；
+
+- 点列 $$\lbrace2^{-2^k}\rbrace$$ 是 **Q-二次收敛**的（也是 Q-超线性收敛的）： $$\frac{2^{-2^{k+1}}}{\bigl(2^{-2^k}\bigr)^2}=\frac{2^{-2\cdot2^k}}{2^{-2\cdot2^k}}=1,
+      \qquad
+      \frac{2^{-2^{k+1}}}{2^{-2^k}}=2^{-2^k}\longrightarrow0 ;$$
+
+- 点列 $$\lbrace1/k\rbrace$$ 是 **Q-次线性收敛**的：$$\dfrac{1/(k+1)}{1/k}=\dfrac{k}{k+1}\to1$$．
+
+一般来说，具有 Q-超线性收敛速度和 Q-二次收敛速度的算法是**收敛较快**的．
+
+**图 1.7**：不同 Q-收敛速度比较（对应 PPT 第 $$32$$ 页插图与讲义图 1.9）．纵轴为误差 $$\log t_k=\log\left\Vert x^k-x^\star\right\Vert$$，横轴为迭代次数 $$k$$．(a) Q-线性收敛表现为一条斜率有限的直线；(b) Q-二次收敛的误差下降极快，曲线在图上几乎垂直下落（图中 $$k=10$$ 时误差已达 $$2^{-1024}$$ 量级）；(c) Q-次线性收敛的曲线逐渐变平，误差只以多项式速度下降．
+
+<div class="supp">
+
+PPT 与讲义中把 Q-二次收敛的例子写成"$$2^{-2k}$$"，从排版（$$k$$ 作为指数 $$2^k$$ 的上标）以及 PPT 插图（横轴 $$k=1,\dots,10$$，纵轴在对数尺度下低至 $$-800$$ 以下）可以判断其正确含义是 $$x_k=2^{-2^{k}}$$：只有这种"双指数"形式才是 Q-二次收敛的．若误读为 $$x_k=2^{-2k}=4^{-k}$$，则相邻比值为 $$\frac{x_{k+1}}{x_k}=\frac14,$$ 它只是 Q-线性收敛（$$a=1/4$$），而 $$\frac{x_{k+1}}{x_k^2}=\frac{4^{-k-1}}{4^{-2k}}=4^{k-1}\longrightarrow\infty$$ 并不满足 Q-二次收敛的要求．这提醒我们：**判定收敛速度必须看相邻误差的"比值"或"比值除以误差的幂"，而不能只看误差下降的绝对幅度**．
+
+</div>
+
+除 Q-收敛速度外，另一常用概念是 **R-收敛速度**（$$R$$ 的含义为"root"，即开方）．
+
+<div class="definition">
+
+**定义 1.8** 以点列为例，设 $$\lbracex^k\rbrace$$ 为算法产生的迭代点且收敛于 $$x^\star$$，若存在 Q-线性收敛于 $$0$$ 的非负序列 $$t_k$$ 并且 $$\left\Vert x^k-x^\star\right\Vert\le t_k$$ 对任意的 $$k$$ 成立，则称算法（点列）是 **R-线性收敛**的．类似地，可定义 R-超线性收敛和 R-二次收敛等收敛速度．从 R-收敛速度的定义可以看出，序列 $$\lbrace\left\Vert x^k-x^\star\right\Vert\rbrace$$ 被另一趋于 $$0$$ 的序列 $$\lbracet_k\rbrace$$ **控制**．当知道 $$t_k$$ 的形式时，我们也称算法（点列）的收敛速度为 $$O(t_k)$$．
+
+</div>
+
+<div class="supp">
+
+Q-收敛直接要求"相邻误差的比值"满足条件，这在比值可能不存在或上下震荡时无法使用．R-收敛则只要求误差被一个已知的、收敛更规则的序列控制，因此适用范围更广：
+
+- **Q-收敛蕴含 R-收敛**：若 Q-线性收敛，取 $$t_k=\left\Vert x^k-x^\star\right\Vert$$ 即可；故 Q-线性 $$\Rightarrow$$ R-线性，反之不然．
+
+- **典型例子**：$$x_k=4^{-2k}=16^{-k}$$（$$k$$ 为偶数），$$x_k=x_{k-1}/k$$（$$k$$ 为奇数）．偶数项之间以固定比值 $$1/256$$ 下降，因此整个点列是 R-线性的（可取 $$t_k=C\cdot16^{-k/2}$$）；但相邻比值在 $$k$$ 为奇数时等于 $$x_{k+1}/x_k=k/256\to\infty$$，不满足 Q-线性收敛的要求．
+
+- 在数值算法分析中，常见的结论形式是"$$\left\Vert x^k-x^\star\right\Vert\le Cq^k$$（R-线性，$$O(q^k)$$）"或"$$f(x^k)-f^\star\le C/k$$（$$O(1/k)$$）"，它们都属于 R-型的收敛速度描述．
+
+</div>
+
+#### （四）算法复杂度
+
+与收敛速度密切相关的概念是优化算法的**复杂度** $$N(\varepsilon)$$，即计算出给定精度 $$\varepsilon$$ 的解所需的**迭代次数**或**浮点运算次数**．在实际应用中，这两种定义复杂度的方式均很常见．如果能较准确地估计每次迭代的运算量，则可以由算法所需迭代次数推出所需浮点运算次数．我们用具体的例子来进一步解释算法复杂度．
+
+设某一算法产生的迭代序列 $$\lbracex^k\rbrace$$ 满足 $$\begin{equation}
+  f(x^k)-f(x^\star)\le\frac{c}{\sqrt{k}},\qquad \forall\,k>0,
+\end{equation}$$ 其中 $$c>0$$ 为常数，$$x^\star$$ 为全局极小点．如果需要计算算法满足精度 $$f(x^k)-f(x^\star)\le\varepsilon$$ 所需的迭代次数，只需令 $$\frac{c}{\sqrt{k}}\le\varepsilon
+  \ \Longleftarrow\ \sqrt{k}\ge\frac{c}{\varepsilon}
+  \ \Longleftarrow\ k\ge\frac{c^2}{\varepsilon^2},$$ 因此该优化算法对应的（迭代次数）复杂度为 $$\begin{equation}
+  N(\varepsilon)=O\Bigl(\frac{1}{\varepsilon^2}\Bigr).
+\end{equation}$$ (1.27) 的含义是：**精度每提高 $$10$$ 倍，所需迭代次数大约增加 $$100$$ 倍**．注意，渐进收敛速度更多的是考虑迭代次数**充分大**的情形，而**复杂度给出了算法迭代有限步之后产生的解与最优解之间的定量关系**，因此近年来受到人们广泛关注．作为对比，若算法是 R-线性收敛的，即 $$f(x^k)-f(x^\star)\le Cq^k$$（$$q\in(0,1)$$），则由 $$Cq^k\le\varepsilon$$ 得 $$k\ge\frac{\log(C/\varepsilon)}{\log(1/q)},
+  \qquad\text{即}\qquad N(\varepsilon)=O\Bigl(\log\frac1\varepsilon\Bigr),$$ 这从数量级上说明了**线性收敛的算法远快于 $$O(1/\varepsilon^2)$$ 的次线性算法**．
+
+#### （五）收敛准则与停机准则
+
+为了使算法能在有限步内终止，一般会通过一些**收敛准则**来保证迭代停在问题的一定精度逼近解上．对于**无约束优化问题**，常用的收敛准则有 $$\begin{equation}
+  \frac{f(x^k)-f^\star}{\max\lbrace\left\vert f^\star\right\vert,1\rbrace}\le\varepsilon_1,
+  \qquad
+  \left\Vert\nabla f(x^k)\right\Vert\le\varepsilon_2,
+\end{equation}$$ 其中 $$\varepsilon_1,\varepsilon_2$$ 为给定的很小的正数，$$\left\Vert\cdot\right\Vert$$ 表示某种范数（这里可以简单理解为 $$\ell_2$$ 范数：$$\left\Vert x\right\Vert_2=\bigl(\sum_{i=1}^nx_i^2\bigr)^{1/2}$$，第二章将会给出范数的一般定义），$$f^\star$$ 为函数 $$f$$ 的最小值（假设已知或者以某种方式估计得到）以及 $$\nabla f(x^k)$$ 表示函数 $$f$$ 在点 $$x^k$$ 处的梯度（光滑函数在局部最优点处梯度为零向量，第五章中会给出更多介绍）．
+
+对于**约束优化问题**，还需要考虑**约束违反度**．具体地，要求最后得到的点满足 $$\begin{equation}
+  c_i(x^k)\le\varepsilon_3,\quad i=1,2,\dots,m,
+  \qquad
+  \left\vert c_i(x^k)\right\vert\le\varepsilon_4,\quad i=m+1,m+2,\dots,m+l,
+\end{equation}$$ 其中 $$\varepsilon_3,\varepsilon_4$$ 为很小的正数，用来刻画 $$x^k$$ 的可行性．除了约束违反度之外，我们也要考虑 $$x^k$$ 与最优解之间的距离，如 (1.28) 式中给出的函数值与最优值的相对误差．由于一般情况下事先并不知道最优解，在**最优解唯一**的情形下一般使用某种**基准算法**来得到 $$x^\star$$ 的一个估计，之后计算其与 $$x^k$$ 的距离以评价算法的性能．因为约束的存在，我们不能简单地用目标函数的梯度来判断最优性，实际中采用的判别准则是点的**最优性条件的违反度**（关于约束优化的最优性条件，会在第五章中给出）．
+
+对于一个具体的算法，根据其设计的出发点，我们不一定能得到一个高精度的逼近解．此时，为了避免无用的计算开销，我们还需要一些**停机准则**来及时停止算法的进行．常用的停机准则有 $$\begin{equation}
+  \frac{\left\Vert x^{k+1}-x^k\right\Vert}{\max\lbrace\left\Vert x^k\right\Vert,1\rbrace}\le\varepsilon_5,
+  \qquad
+  \frac{\left\vert f(x^{k+1})-f(x^k)\right\vert}{\max\lbrace\left\vert f(x^k)\right\vert,1\rbrace}\le\varepsilon_6,
+\end{equation}$$ 这里的各个 $$\varepsilon$$ 一般互不相等．上面的准则分别表示相邻迭代点和其对应目标函数值的**相对误差很小**．在算法设计中，这两个条件往往**只能反映迭代点列接近收敛，但不能代表收敛到优化问题的最优解**．
+
+<div class="supp">
+
+以 $$f(x)=x^2$$（$$x^\star=0$$，$$f^\star=0$$）为例．假设某算法由于步长被过度缩小、线搜索失败或数值误差累积而"停滞"，产生的点列为 $$x^k=1+2^{-k}$$，则 $$\frac{\left\Vert x^{k+1}-x^k\right\Vert}{\max\lbrace\left\Vert x^k\right\Vert,1\rbrace}
+  =\frac{2^{-k-1}}{1+2^{-k}}\le 2^{-k-1},
+  \qquad
+  \frac{\left\vert f(x^{k+1})-f(x^k)\right\vert}{\max\lbrace\left\vert f(x^k)\right\vert,1\rbrace}
+  =\frac{\bigl(1+2^{-k-1}\bigr)^2-\bigl(1+2^{-k}\bigr)^2}{\bigl(1+2^{-k}\bigr)^2},$$ 其中第二个量约等于 $$3\cdot2^{-k}$$．两者都随 $$k$$ 指数衰减，只要 $$\varepsilon_5,\varepsilon_6$$ 取得稍大，停机准则在 $$k$$ 不大时就被满足；但此时 $$x^k\to1\ne x^\star=0$$，算法**并没有**收敛到最优解．一般地，停机准则失效（给出错误结论）的典型情形包括：
+
+1.  **目标函数存在大范围平坦区域**（或在当前尺度下近似平坦）：$$x^{k+1}-x^k$$ 与 $$f(x^{k+1})-f(x^k)$$ 都很小，但点仍在远离最优解的地方；
+
+2.  **算法停滞**：步长趋于零、方向退化（如梯度被噪声淹没）都会让相邻迭代点几乎不动；
+
+3.  **收敛到局部极小解或驻点**：非凸问题中 $$\left\Vert\nabla f(x^k)\right\Vert\le\varepsilon_2$$ 可以在局部极小点、鞍点甚至"平坦的高原"上成立，而它们都不是全局最优解；
+
+4.  **相对误差的分母被"抬高"**：(1.30) 中分母取 $$\max\lbrace\left\vert f(x^k)\right\vert,1\rbrace$$，当目标函数值很小时，准则实际上退化为"绝对误差很小"，容易过早通过．
+
+因此在实际使用中，应当**同时检查多个准则**（函数值相对误差、梯度范数、约束违反度、相邻点相对误差），并结合问题的先验知识与基准算法的结果来判断解的质量．这也再次说明：**"算法停止"与"问题被解决"是两件不同的事**．
+
+</div>
+
+| 类型 | 表达式 | 含义与注意点 |
+|:---|:---|:---|
+| 函数值准则 | $$\dfrac{f(x^k)-f^\star}{\max\lbrace\left\vert f^\star\right\vert,1\rbrace}\le\varepsilon_1$$ | 与最优值的相对误差 |
+| 梯度准则 | $$\left\Vert\nabla f(x^k)\right\Vert\le\varepsilon_2$$ | 一阶最优性条件的违反度 |
+| 约束违反度 | $$c_i(x^k)\le\varepsilon_3$$，$$\left\vert c_i(x^k)\right\vert\le\varepsilon_4$$ | 刻画 $$x^k$$ 的可行性 |
+| 最优性条件违反度 | KKT 条件的违反度 | 约束问题不能只看目标梯度 |
+| 停机准则（点） | $$\dfrac{\left\Vert x^{k+1}-x^k\right\Vert}{\max\lbrace\left\Vert x^k\right\Vert,1\rbrace}\le\varepsilon_5$$ | 相邻迭代点的相对变化小 |
+| 停机准则（函数值） | $$\dfrac{\left\vert f(x^{k+1})-f(x^k)\right\vert}{\max\lbrace\left\vert f(x^k)\right\vert,1\rbrace}\le\varepsilon_6$$ | 相邻函数值的相对变化小 |
+
+: 收敛准则与停机准则汇总
+
+## 习题 1（附解答要点）
+
+<div class="exercise">
+
+考虑一般的 $$\ell_p$$"范数" $$\left\Vert x\right\Vert_p\overset{\text{def}}{=}\Bigl(\sum_{i=1}^n\left\vert x\right\vert^{p}\Bigr)^{1/p},\qquad 0<p<2,$$ 以及优化问题 $$\min\ \left\Vert x\right\Vert_p\ \ \text{s.t.}\ Ax=b$$．试用几何直观的方式（类似于图 1.2）说明当 $$p\in(0,2)$$ 取何值时，该优化问题的解可能具有稀疏性．
+
+</div>
+
+**（）**   范数球 $$B_p(C)=\lbracex:\left\Vert x\right\Vert_p\le C\rbrace$$ 的形状是关键：
+
+- $$p=1$$ 时 $$B_1(C)$$ 是以坐标轴上的点为顶点的菱形（多面体），最低维的面（顶点）位于坐标轴上，最优点一般落在顶点，故解稀疏；
+
+- $$0<p<1$$ 时 $$B_p(C)$$ 是**非凸**的"星形"区域，它向坐标轴方向强烈内凹，其边界在坐标轴附近比 $$\ell_1$$ 球更"贴近"坐标轴，因此极小化 $$\left\Vert x\right\Vert_p$$ 的解**更稀疏**（事实上 $$\left\Vert x\right\Vert_p$$ 的最优解倾向于具有最小的 $$\left\Vert x\right\Vert_0$$）；但由于 $$B_p(C)$$ 非凸，问题是 NP 难的，实际中难以求解；
+
+- $$1<p<2$$ 时 $$B_p(C)$$ 是凸的且边界光滑（严格凸），越接近 $$p=2$$ 越像圆，最优点一般不落在坐标轴上，因此**一般不具有稀疏性**．
+
+结论：只有当 $$p\le1$$ 时解才具有（可保证的）稀疏性；$$p=1$$ 是"既稀疏又可解"的临界情形，这正是 $$\ell_1$$ 范数在压缩感知中占据核心地位的原因．
+
+<div class="exercise">
+
+给定函数 $$f(x):\mathbb{R}^n\to\mathbb{R}$$ 及其一个局部最优点 $$x^\star$$，则该点沿任何方向 $$d\in\mathbb{R}^n$$ 也是局部最优的，即 $$0$$ 为函数 $$\varphi(\alpha)\overset{\text{def}}{=}f(x^\star+\alpha d)$$ 的一个局部最优解．反之，如果 $$x^\star$$ 沿任何方向 $$d\in\mathbb{R}^n$$ 都是局部最优解，则 $$x^\star$$ 是否为 $$f(x)$$ 的一个局部最优解？
+
+</div>
+
+**（）**   **（1）正向是成立的．** 设 $$x^\star$$ 是 $$f$$ 的局部极小点，即存在 $$\varepsilon>0$$ 使 $$f(x)\ge f(x^\star)$$ 对一切 $$x\in N_\varepsilon(x^\star)$$ 成立．对任意方向 $$d$$，取 $$\delta=\varepsilon/(\left\Vert d\right\Vert+1)>0$$，则当 $$\left\vert\alpha\right\vert<\delta$$ 时 $$\left\Vert\alpha d\right\Vert\le\left\vert\alpha\right\vert\left\Vert d\right\Vert<\varepsilon$$，从而 $$x^\star+\alpha d\in N_\varepsilon(x^\star)$$，于是 $$\varphi(\alpha)=f(x^\star+\alpha d)\ge f(x^\star)=\varphi(0),$$ 即 $$0$$ 是 $$\varphi$$ 的局部极小点．（注：若可行域 $$X\ne\mathbb{R}^n$$，则只对满足 $$x^\star+\alpha d\in X$$ 的**可行方向**成立．） **（2）反之不成立．** 反例： $$f(x,y)=\bigl(y-x^2\bigr)\bigl(y-2x^2\bigr),
+  \qquad x^\star=(0,0).$$ 沿任意直线 $$y=mx$$ 代入得 $$f(x,mx)=x^2(m-x)(m-2x),$$ 当 $$\left\vert x\right\vert$$ 充分小时 $$(m-x)(m-2x)$$ 与 $$m^2\ge0$$ 同号，故 $$f(x,mx)\ge0=f(0,0)$$；沿竖直线 $$x=0$$ 有 $$f(0,y)=y^2\ge0$$．因此 $$0$$ 沿任何方向都是局部极小点．但取抛物线 $$y=\tfrac32x^2$$，有 $$f\bigl(x,\tfrac32x^2\bigr)=\bigl(\tfrac12x^2\bigr)\bigl(-\tfrac12x^2\bigr)=-\tfrac14x^4<0\qquad(x\ne0),$$ 它在任意小的邻域内都取负值，故 $$(0,0)$$ 不是 $$f$$ 的局部极小点．结论：**"沿每个方向都局部最优"严格弱于"局部最优"**，这说明局部极小性不能只沿直线检验．
+
+<div class="exercise">
+
+试给出如下点列的 Q-收敛速度：
+
+1.  $$x_k=\dfrac{1}{k!}$$，$$k=1,2,\dots$$；
+
+2.  $$x_k=\begin{cases}4^{-2^k}, & k\ \text{为偶数},\\[2pt] \dfrac{x_{k-1}}{k}, & k\ \text{为奇数},\end{cases}\qquad k=1,2,\dots$$
+
+</div>
+
+**（）**   两个点列都收敛到 $$x^\star=0$$．
+
+1.  相邻比值为 $$\frac{x_{k+1}}{x_k}=\frac{1/(k+1)!}{1/k!}=\frac{1}{k+1}\longrightarrow0,$$ 故 $$\lbracex_k\rbrace$$ 是 **Q-超线性收敛**的（同时也 Q-线性收敛）．注意它**不是** Q-二次收敛的： $$\frac{x_{k+1}}{x_k^2}=\frac{(k!)^2}{(k+1)!}=\frac{k!}{k+1}\longrightarrow\infty,$$ 更一般地 $$\dfrac{x_{k+1}}{x_k^{r}}=\dfrac{(k!)^{r-1}}{k+1}\to\infty$$ 对任意 $$r>1$$ 成立，故它也不是 Q-$$r$$ 次收敛的．这说明 **Q-超线性收敛严格弱于 Q-二次收敛**．
+
+2.  对偶数 $$k$$，$$x_{k+1}=x_k/(k+1)$$，故比值为 $$1/(k+1)\to0$$；对奇数 $$k$$， $$\frac{x_{k+1}}{x_k}=\frac{4^{-2^{k+1}}}{4^{-2^{k-1}}/k}
+        =k\cdot4^{-\left(2^{k+1}-2^{k-1}\right)}
+        =k\cdot4^{-3\cdot2^{k-1}}\longrightarrow0,$$ 因此所有相邻比值都趋于 $$0$$，$$\lbracex_k\rbrace$$ 是 **Q-超线性收敛**的．（若把偶数项误读为 $$x_k=4^{-2k}=16^{-k}$$，则 $$k$$ 为奇数时比值 $$=k/256\to\infty$$、$$k$$ 为偶数时比值 $$=1/(k+1)\to0$$，此时比值无界，点列不是 Q-收敛的，但偶数子列以固定比值 $$1/256$$ 下降，故整体是 **R-线性收敛**的，收敛速度 $$O(16^{-k/2})$$．）
+
+<div class="exercise">
+
+考虑函数 $$f(x)=x_1^2+x_2^2$$，$$x=(x_1,x_2)\in\mathbb{R}^2$$，以及迭代点列 $$x^k=\Bigl(1+\frac{1}{2^k}\Bigr)(\cos k,\ \sin k)^\top,\qquad k=1,2,\dots$$ 请说明：(a) $$\lbracef(x^{k+1})\rbrace$$ 是否收敛？若收敛，给出 Q-收敛速度；(b) $$\lbracex^{k+1}\rbrace$$ 是否收敛？若收敛，给出 Q-收敛速度．
+
+</div>
+
+**（）**   **(a) 收敛，且为 Q-线性收敛．** 因为 $$\left\Vert(\cos k,\sin k)\right\Vert_2=1$$，故 $$f(x^k)=\Bigl(1+\frac1{2^k}\Bigr)^2\cdot\bigl(\cos^2k+\sin^2k\bigr)=\Bigl(1+\frac1{2^k}\Bigr)^2
+  \longrightarrow1=:f^\star .$$ 记 $$e_k=\left\vert f(x^k)-f^\star\right\vert=\bigl(1+2^{-k}\bigr)^2-1=2^{1-k}+2^{-2k}$$，则 $$\frac{e_{k+1}}{e_k}
+  =\frac{2^{-k}+2^{-2k-2}}{2^{1-k}+2^{-2k}}
+  \longrightarrow\frac12 ,$$ 故 $$\lbracef(x^k)\rbrace$$ 是 **Q-线性收敛**的（收敛因子 $$1/2$$）；它显然不是 Q-超线性、也不是 Q-二次收敛的． **(b) 不收敛．** 由于序列 $$\lbrace\cos k\rbrace$$ 与 $$\lbrace\sin k\rbrace$$ 都在 $$[-1,1]$$ 中稠密地振荡（$$k$$ 取弧度制），点列 $$\lbracex^k\rbrace$$ 的极限点构成整个单位圆周，不存在极限；而 $$\left\Vert x^{k+1}-x^k\right\Vert$$ 也不趋于 $$0$$（相邻两点在圆周上的夹角恒为 $$1$$ 弧度）．因此 $$\lbracex^k\rbrace$$ 没有 Q-收敛速度可言．这个例子说明：**函数值收敛只是"值"的收敛，不能保证点列收敛**；这也是定义 1.5 与定义 1.6 必须分开的原因．
+
+## 本章小结
+
+**（）**   本章简要介绍了优化问题的应用背景、一般形式以及一些基本概念．主要内容可以归纳为四条线索：
+
+1.  **一个统一的形式**：最优化问题都可以写成 $$\min f(x)\ \ \text{s.t.}\ x\in X$$；决策变量可以是向量、矩阵甚至张量，目标函数与约束函数决定了问题的类型与求解难度．按目标与约束分类有线性规划、非线性规划、二次规划、非光滑优化、无导数优化、整数规划、半定规划（锥规划）等；按解的性质分类有稀疏优化、低秩矩阵优化等．
+
+2.  **三个实例**：稀疏优化（$$\ell_0\to\ell_1$$、基追踪、LASSO）、低秩矩阵恢复（秩 $$\to$$ 核范数、矩阵补全、秩 $$r$$ 分解）与深度学习（多层感知机、卷积神经网络、递归神经网络），它们展示了"实际问题 $$\to$$ 优化模型 $$\to$$ 凸松弛/非凸分解"的完整建模链条．其中**用凸的范数替代非凸的计数型稀疏度量**是贯穿前两个实例的核心思想．
+
+3.  **一套基本概念**：连续与离散、无约束与约束、随机与确定、线性与非线性、凸与非凸的分类；全局极小解、局部极小解、严格与非严格局部极小解的定义；凸优化问题中局部最优即全局最优．
+
+4.  **算法与收敛性**：迭代算法的基本思想与四个设计技巧（泰勒展开、对偶、拆分、块坐标下降）；依点列收敛、全局依点列收敛与依函数值收敛；Q-线性、Q-超线性、Q-次线性、Q-二次收敛以及 R-线性收敛与 $$O(t_k)$$ 记号；算法复杂度 $$N(\varepsilon)=O(1/\varepsilon^2)$$ 的推导；无约束与约束问题的收敛准则，以及"停机准则不等于收敛到最优解"的重要注记．
+
+对于优化问题的更多分类、优化领域关心的热点问题，我们会在第三、四章中进一步介绍．对于优化算法的收敛准则、收敛性以及收敛速度，我们会在介绍算法的时候再具体展开．本书也会围绕上面介绍的优化算法的四个设计技巧，针对不同类别的问题，来具体地展示相应的算法构造以及有效性分析．
+
+[^1]: 按 PPT 首页的署名信息：主讲教师文再文，北京大学北京国际数学研究中心；教材《最优化：建模、算法与理论》配套电子教案，网址为 `http://bicmr.pku.edu.cn/wenzw/optbook.html`；致谢：本教案由邓展望协助准备．
+
+[^2]: 实际上，$$\ell_0$$ 范数不是一个范数（它不满足正齐次性：$$\left\Vert\alpha x\right\Vert_0=\left\Vert x\right\Vert_0\ne\left\vert\alpha\right\vert\left\Vert x\right\Vert_0$$，$$\left\vert\alpha\right\vert\ne1$$），这里为了叙述统一而采用了这个术语，读者应当注意这个区别．严格地说应称为"$$\ell_0$$ 拟范数"或"$$0$$ 范数"．

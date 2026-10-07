@@ -4,7 +4,7 @@ kind: note
 title: "第 2 章　变换与期望（Transformations and Expectations）"
 course: statistics
 order: 2
-date: 2026-10-01
+date: 2026-10-07
 permalink: /statistics/chap02.html
 ---
 

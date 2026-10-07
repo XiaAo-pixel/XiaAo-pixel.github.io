@@ -4,7 +4,7 @@ kind: note
 title: "第 4 章　多元随机变量（Multiple Random Variables）"
 course: statistics
 order: 4
-date: 2026-10-01
+date: 2026-10-07
 permalink: /statistics/chap04.html
 ---
 

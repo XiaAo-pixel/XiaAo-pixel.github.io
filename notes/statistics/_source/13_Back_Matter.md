@@ -4,7 +4,7 @@ kind: note
 title: "第 13 章　后置内容：计算机代数与常用分布表（Back Matter）"
 course: statistics
 order: 13
-date: 2026-10-01
+date: 2026-10-07
 permalink: /statistics/chap13.html
 ---
 

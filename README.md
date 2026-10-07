@@ -27,7 +27,9 @@ homepage/
 ├── hobby-anime.html     动漫推荐
 ├── hobby-travel.html    旅行照片墙（分地点）
 ├── statistics/          数理统计"在线书"：index.html 封面（/statistics/）+ fig/ 章节插图
+├── optimization/        最优化方法"在线书"：index.html 封面（/optimization/）
 ├── split-notes.ps1      ★ 把"一章一个 .md"按 h2 切成"一节一页"（见下文）
+├── update-dates.ps1     ★ 一键把全站「最后更新」日期刷成今天（见下文）
 ├── note-template.md     章节源文件模板（复制它来写新的一章）
 ├── notes/              笔记源文件 + 脚本生成的小节页
 │   ├── <课程代号>/_source/第N章_xxx.md   你写的源文件（一章一个；下划线开头，Jekyll 不渲染）
@@ -70,12 +72,12 @@ homepage/
 ### 笔记页的左侧栏（三级）
 
 ```
-📖 数理统计              ← 点回书封面页（列出全书章节）
-第 7 章　点估计          ← 其它章只列章名，点进该章第一页
-  7.1 引言               ← 当前章的各小节（当前小节高亮）
-  7.2 寻找估计量的方法    ← 你在这一页
+📖 最优化方法            ← 点回书封面页（列出全书章节）
+第 7 章　约束优化算法    ← 其它章只列章名，点进该章第一页
+  本章前置知识           ← 当前章的各小节（当前小节高亮）
+  罚函数法               ← 你在这一页
     ▾ 本节大纲
-      7.2.1 矩方法        ← 正文里的 ### / #### 标题，随滚动高亮
+      二次罚函数法          ← 正文里的 ### / #### 标题，随滚动高亮
 ```
 
 行为细节：
@@ -113,9 +115,31 @@ notes/statistics/ch07-02.md  →  /statistics/ch07-02.html
 notes/statistics/ch07-03.md  →  /statistics/ch07-03.html   ...
 ```
 
-`course` 取值与书对应：`statistics`=数理统计（`/statistics/`）、`misc-2026`/`misc-2025`=杂记年份；新课程按"新增一门课"登记新代号。
+`course` 取值与书对应：`statistics`=数理统计（`/statistics/`）、`optimization`=最优化方法（`/optimization/`）、`misc-2026`/`misc-2025`=杂记年份；新课程按"新增一门课"登记新代号。
 
-**已有笔记**：目前只有 `statistics`（13 章 79 节），已切好并上线。要新增一门课时，源文件放进 `notes/<新代号>/_source/`，再跑脚本；`optimization`（最优化方法）已按要求删除。
+**已有笔记**：
+
+| 课程 | 代号 | 章 / 节 |
+| --- | --- | --- |
+| 数理统计 | `statistics` | 13 章 / 79 节 |
+| 最优化方法 | `optimization` | 10 章 / 83 节（8 章正文 + 常用符号表 + 次梯度附录） |
+
+要新增一门课时，源文件放进 `notes/<新代号>/_source/`，再跑脚本。
+
+**更新「最后更新」日期**：跑一次 [update-dates.ps1](update-dates.ps1)，它会把
+
+1. 两本书封面页 frontmatter 的 `date`（笔记页页脚取的就是这个值）、
+2. 各章源文件 frontmatter 的 `date`（生成小节页时会抄过去）、
+3. 生成的小节页 frontmatter 的 `date`（防止漏跑 `split-notes.ps1`）、
+4. 卡片版页面页脚的「最后更新：YYYY-MM-DD」
+
+一次性刷成今天；想指定日期加 `-Date 2026-11-01`，只想看会改什么加 `-Check`。建议的发布顺序：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File split-notes.ps1   # 源文件有改动时
+powershell -NoProfile -ExecutionPolicy Bypass -File update-dates.ps1  # 刷日期
+git add . ; git commit -m "更新内容" ; git push
+```
 
 **踩过的坑（改 `_layouts/note.html` 时注意）**：Jekyll 在 GitHub Pages 上的 Liquid 里，
 `where: "course", page.course` 和 `sort: "order"` 会抛

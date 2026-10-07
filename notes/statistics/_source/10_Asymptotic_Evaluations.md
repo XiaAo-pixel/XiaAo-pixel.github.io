@@ -4,7 +4,7 @@ kind: note
 title: "第 10 章　渐近评价（Asymptotic Evaluations）"
 course: statistics
 order: 10
-date: 2026-10-01
+date: 2026-10-07
 permalink: /statistics/chap10.html
 ---
 

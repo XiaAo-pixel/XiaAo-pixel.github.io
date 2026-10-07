@@ -4,7 +4,7 @@ kind: note
 title: "第 11 章　方差分析与回归（Analysis of Variance and Regression）"
 course: statistics
 order: 11
-date: 2026-10-01
+date: 2026-10-07
 permalink: /statistics/chap11.html
 ---
 

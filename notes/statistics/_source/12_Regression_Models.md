@@ -4,7 +4,7 @@ kind: note
 title: "第 12 章　回归模型（Regression Models）"
 course: statistics
 order: 12
-date: 2026-10-01
+date: 2026-10-07
 permalink: /statistics/chap12.html
 ---
 

@@ -14,7 +14,7 @@
   'use strict';
 
   var MIN_LEVEL = 3;   /* 正文标题从 h3 起（h1 是小节名，已由页面标题显示） */
-  var MAX_LEVEL = 5;
+  var MAX_LEVEL = 6;   /* 源文件最深的 h5 会被降级成 h6，所以到 h6 为止 */
 
   var content = document.querySelector('.content');
   var bookToc = document.querySelector('.book-toc');
