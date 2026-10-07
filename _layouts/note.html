@@ -15,7 +15,18 @@
 {% comment %} 笔记页 = 独立整页阅读版式（仿 Harvard bookdown）：
      左侧栏「书名 + 全书章节（当前章展开各小节）+ 当前小节内大纲」，右侧正文。
      侧栏不列站内其它栏目，避免臃肿——从「← 主页」或书名回总览再进。
-     章节列表由 split-notes.ps1 生成的小节页 frontmatter（order / chapter）自动分组。 {% endcomment %}
+
+     注意：这里刻意不用 where 过滤器。`where: "course", page.course` 在 GitHub Pages 的
+     Liquid 里会报 "comparison of Array with Array failed"，改成显式循环筛选。 {% endcomment %}
+{% assign book = "" | split: "" %}
+{% assign cover = nil %}
+{% for p in site.pages %}
+  {% if p.course == page.course %}
+    {% if p.kind == "book" %}{% assign cover = p %}{% endif %}
+    {% if p.kind == "note" %}{% assign book = book | push: p %}{% endif %}
+  {% endif %}
+{% endfor %}
+{% assign book = book | sort: "order" %}
 <div class="page page-note">
 
   <aside class="sidebar">
@@ -23,8 +34,6 @@
       <img class="avatar" src="/assets/avatar.jpg" alt="头像">
       <span class="name">XiaAo</span>
     </a>
-    {% assign book = site.pages | where: "kind", "note" | where: "course", page.course | sort: "order" %}
-    {% assign cover = site.pages | where: "kind", "book" | where: "course", page.course | first %}
     <nav>
       <a class="nav-item" href="/index.html">← 主页</a>
       <a class="note-book" href="{{ cover.url | default: '/courses.html' }}">{{ cover.title | default: page.course }}</a>
@@ -34,7 +43,7 @@
 {% assign chapters = book | group_by: "order" %}
 {% for ch in chapters %}
         <a class="book-chapter" href="{{ ch.items.first.url }}"><span class="sr">第 {{ ch.name }} 章 </span>{{ ch.items.first.chapter | default: ch.items.first.title }}</a>
-{% if forloop.first %}
+{% if ch.name == page.order %}
 {% for sec in ch.items %}
         <a class="book-section{% if sec.url == page.url %} active{% endif %}" href="{{ sec.url }}"><span class="sr">{{ sec.chapter | default: '' }} </span>{{ sec.title | split: "·" | last | strip }}</a>
 {% endfor %}
@@ -45,12 +54,10 @@
   </aside>
 
   <main class="content">
-{% if page.kind == "note" %}
     <div class="note-bar">
       <a class="back" href="{{ cover.url | default: '/courses.html' }}">← 返回《{{ cover.title | default: page.course }}》</a>
       <a href="/index.html">主页</a>
     </div>
-{% endif %}
     <h1>{{ page.title }}</h1>
     <p class="muted">{{ page.date | date: "%Y-%m-%d" }}</p>
 
@@ -58,7 +65,6 @@
 
 {% comment %} 页底「上一节 / 下一节」：按章节顺序 + 小节顺序取相邻页
     （order 是两位数字串，url 里也带两位章号节号，字典序即阅读顺序） {% endcomment %}
-{% assign book = site.pages | where: "kind", "note" | where: "course", page.course | sort: "order" %}
 {% assign flat = book | sort: "url" %}
 {% assign prev = nil %}{% assign next = nil %}
 {% for c in flat %}
@@ -72,7 +78,7 @@
       {% if next %}<a class="next" href="{{ next.url }}"><span class="hint">下一节 →</span><span class="t">{{ next.title | split: "·" | last | strip }}</span></a>{% else %}<span class="next" aria-hidden="true"></span>{% endif %}
     </nav>
 
-    <footer>最后更新：{{ page.date | date: "%Y-%m-%d" }}</footer>
+    <footer>最后更新：{{ page.date | date: "%Y-%m-%d" }} · DEBUG book={{ book.size }} chapters={{ chapters.size }} course={{ page.course | jsonify }} order={{ page.order | jsonify }}</footer>
   </main>
 
 </div>
