@@ -23,6 +23,22 @@
   /* 笔记页（整页阅读版式）的底色与侧栏底色 */
   --read-bg: #fbfbfd;
   --side-bg: #f4f5f9;
+  /* 讲义里的定理 / 定义 / 例子等语义容器：底纹、描边、左侧色条 */
+  --box-bg: rgba(38, 42, 51, .035);
+  --box-border: rgba(38, 42, 51, .13);
+  --box-accent: #4f6df5;
+  --box-accent-2: #2f9e6f;
+  --box-accent-3: #d99a2b;
+  --box-accent-4: #8a5cf6;
+  --box-accent-5: #2f8fb5;
+  --box-accent-6: #c25a8a;
+  /* 各语义容器的淡色底纹（显式写 rgba，避免依赖 color-mix 的浏览器支持） */
+  --tint-theorem: rgba(79, 109, 245, .07);
+  --tint-lemma: rgba(47, 143, 181, .08);
+  --tint-def: rgba(47, 158, 111, .08);
+  --tint-example: rgba(217, 154, 43, .10);
+  --tint-note: rgba(138, 92, 246, .07);
+  --tint-custom: rgba(194, 90, 138, .07);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -40,6 +56,20 @@
     --shadow: 0 12px 40px rgba(0, 0, 0, .5);
     --read-bg: #12141c;
     --side-bg: #171a24;
+    --box-bg: rgba(255, 255, 255, .045);
+    --box-border: rgba(231, 234, 242, .14);
+    --box-accent: #8ea2ff;
+    --box-accent-2: #6fd3a1;
+    --box-accent-3: #e6b75c;
+    --box-accent-4: #b39bff;
+    --box-accent-5: #6cc4e0;
+    --box-accent-6: #eb92bb;
+    --tint-theorem: rgba(142, 162, 255, .10);
+    --tint-lemma: rgba(108, 196, 224, .10);
+    --tint-def: rgba(111, 211, 161, .10);
+    --tint-example: rgba(230, 183, 92, .12);
+    --tint-note: rgba(179, 155, 255, .10);
+    --tint-custom: rgba(235, 146, 187, .10);
   }
 }
 
@@ -379,6 +409,77 @@ nav { display: flex; flex-direction: column; gap: .25rem; }
 .page-note .content h4 { font-size: 1rem; margin: 1.6rem 0 .5rem; }
 .page-note .content h5, .page-note .content h6 { font-size: .95rem; margin: 1.3rem 0 .4rem; color: var(--muted); }
 .page-note .content p, .page-note .content li { line-height: 1.85; }
+
+/* ============ 讲义里的语义容器（定理 / 定义 / 例子 …） ============
+   源 Markdown 里是 LaTeX 风格的裸 <div class="...">，这里统一给它们
+   「淡底纹 + 细描边 + 左侧色条」的卡片外观，不同类型的色条颜色不同，
+   正文里的粗体标签（**定理 1.1**）自然成为小块标题。 */
+.page-note .content > div[class] {
+  margin: 1.1rem 0;
+  padding: .75rem 1.05rem;
+  border: 1px solid var(--box-border);
+  border-left: 4px solid var(--box-accent);
+  border-radius: 4px 10px 10px 4px;
+  background: var(--box-bg);
+}
+/* 块内首尾元素不要多余的上下外边距 */
+.page-note .content > div[class] > :first-child { margin-top: 0; }
+.page-note .content > div[class] > :last-child { margin-bottom: 0; }
+/* 块内还能再嵌块（例子里套算法等），用浅一点的样式区分层级 */
+.page-note .content > div[class] div[class] { background: transparent; }
+
+/* —— 结论类：定理 / 命题 / 引理 / 推论 —— */
+.theorem      { border-left-color: var(--box-accent);   background: var(--tint-theorem); }
+.proposition  { border-left-color: var(--box-accent);   background: var(--tint-theorem); }
+.lemma        { border-left-color: var(--box-accent-5); background: var(--tint-lemma); }
+.corollary    { border-left-color: var(--box-accent-5); background: var(--tint-lemma); }
+/* —— 定义类 —— */
+.definition   { border-left-color: var(--box-accent-2); background: var(--tint-def); }
+/* —— 例子 / 习题 —— */
+.example      { border-left-color: var(--box-accent-3); background: var(--tint-example); }
+.exercise     { border-left-color: var(--box-accent-3); background: var(--tint-example); }
+/* —— 补充 / 前置知识 / 框架 / 注记 —— */
+.supp         { border-left-color: var(--box-accent-4); background: var(--tint-note); }
+.prereq       { border-left-color: var(--box-accent-4); background: var(--tint-note); }
+.framework    { border-left-color: var(--box-accent-6); background: var(--tint-custom); }
+.custom       { border-left-color: var(--box-accent-6); background: var(--tint-custom); }
+.minipage     { border-left-color: var(--box-accent-6); background: transparent; }
+/* —— 算法：伪代码用等宽字，别再额外加底色 —— */
+.algorithm, .algorithmic {
+  border-left-color: var(--box-accent);
+  background: var(--entry-bg);
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Cascadia Mono", monospace;
+  font-size: .86em;
+  line-height: 1.7;
+}
+.algorithmic { border-left-style: dashed; }
+/* —— 居中块：表格 / 图注居中，不加底纹 —— */
+.center {
+  border: none;
+  border-left: none;
+  background: transparent;
+  text-align: center;
+  padding: 0;
+}
+.center table { margin-left: auto; margin-right: auto; }
+.center img { margin: 0 auto; }
+/* —— 表格容器：横向滚动，内层表格保留自己的边框 —— */
+.tabular {
+  border-left-color: var(--box-border);
+  background: transparent;
+  overflow-x: auto;
+}
+.tabular table { margin: 0; }
+
+/* 行内代码：讲义里偶尔用反引号写 LaTeX 源码 */
+.page-note .content code {
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Cascadia Mono", monospace;
+  font-size: .88em;
+  padding: .1em .35em;
+  border-radius: 5px;
+  background: var(--accent-weak);
+}
+.page-note .content pre code { background: none; padding: 0; font-size: 1em; }
 
 h1 { font-size: 1.5rem; font-weight: 700; margin: 0 0 .5rem; }
 h2 {
