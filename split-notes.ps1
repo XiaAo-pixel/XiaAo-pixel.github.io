@@ -59,6 +59,35 @@ permalink: $permalink
 "@
 }
 
+# 把 <div class="tabular"> 里的 LaTeX 表格源码转成 Markdown 表格。
+# 源文件里是 LaTeX 语法（\@p0.12p0.30@ 类别 & 形式 & 描述 \\），Markdown 不认；
+# 而且 kramdown 会把行尾的 \\ 转义成 \、把连续行并成一段，表格就散架了。
+function Convert-Tabular([string]$inner) {
+  $lines = @($inner -split "\r?\n" | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne '' })
+  if ($lines.Count -eq 0) { return $inner }
+  $rows = New-Object System.Collections.ArrayList
+  $head = ($lines[0] -replace '^\\@[^@]*@\s*', '') -replace '\\+$', ''
+  $cells = @($head -split '&' | ForEach-Object { $_.Trim() })
+  $colCount = $cells.Count
+  if ($colCount -lt 1) { return $inner }
+  [void]$rows.Add("| " + ($cells -join ' | ') + " |")
+  [void]$rows.Add("|" + (($cells | ForEach-Object { ':---' }) -join '|') + "|")
+  for ($i = 1; $i -lt $lines.Count; $i++) {
+    $cs = @((($lines[$i] -replace '\\+$', '') -split '&') | ForEach-Object { $_.Trim() })
+    if ($cs.Count -gt $colCount) { $cs = $cs[($cs.Count - $colCount)..($cs.Count - 1)] }
+    while ($cs.Count -lt $colCount) { $cs = @('') + $cs }
+    [void]$rows.Add("| " + ($cs -join ' | ') + " |")
+  }
+  return ($rows -join "`n")
+}
+
+function Convert-AllTabular([string]$body) {
+  return [regex]::Replace($body, '(?s)<div class="tabular"[^>]*>(.*?)</div>', {
+      param($m)
+      '<div class="tabular" markdown="1">' + "`n`n" + (Convert-Tabular $m.Groups[1].Value) + "`n`n" + '</div>'
+    })
+}
+
 # ---------- 要处理哪些课程 ----------
 if ($Course) { $courses = @($Course) }
 else { $courses = @(Get-ChildItem $notesRoot -Directory | ForEach-Object { $_.Name }) }
@@ -118,10 +147,13 @@ foreach ($course in $courses) {
     $body = $doc.Body
     $body = [regex]::Replace($body, '(?m)^#\s+.*\r?\n', '')   # 正文 h1（章标题）由页面 h1 渲染，去掉
 
+    # LaTeX 版式表格先转成 Markdown 表格（必须在加 markdown="1" 之前做）
+    $body = Convert-AllTabular $body
+
     # 给讲义里的语义容器加 markdown="1"：裸 <div class="..."> 在 kramdown 里是**原始 HTML**，
     # 里面的 Markdown（**加粗**、编号列表、$$公式$$、Markdown 表格）都不会被解析，
     # 会原样显示成文本。加上 markdown="1" 后 kramdown 才会处理容器内部的 Markdown。
-    $body = [regex]::Replace($body, '<div class="([a-zA-Z][\w-]*)"\s*>', '<div class="$1" markdown="1">')
+    $body = [regex]::Replace($body, '<div class="([a-zA-Z][\w-]*)"([^>]*)>', '<div class="$1" markdown="1">')
 
     # 先用原始的 ## 找出小节边界，再整体降级标题（顺序反了之后就再也找不到 ## 了）
     $lines = $body -split "\r?\n"
