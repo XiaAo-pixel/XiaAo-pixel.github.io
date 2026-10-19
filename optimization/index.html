@@ -3,11 +3,11 @@ layout: note
 kind: book
 course: optimization
 title: 最优化方法
-date: 2026-10-07
+date: 2026-10-19
 ---
 <p class="muted">教师：文再文 · 学期：2026 秋 · 教材：<cite>最优化：建模、算法与理论</cite>（文再文、刘浩洋、户将、李勇锋）</p>
 
-<p>本书记录《最优化方法》课程的完整讲义：从最优化问题的一般形式与分类出发，经过凸集、凸函数与典型优化问题，再到最优性理论、无约束优化算法、约束优化算法与复合优化算法，最后附上常用符号表与「次梯度」附录。<strong>每小节一页</strong>（如 6.3 次梯度算法单独成页），点进任意一页后左侧栏会列出全书章节与当前章的小节，页底有「上一节 / 下一节」便于连续翻阅。</p>
+<p>本书记录《最优化方法》课程讲义（精简版）的完整内容：共 19 讲，从最优化问题的一般形式与分类出发，经过凸集、凸函数、典型优化问题与对偶理论，再到最优性条件以及无约束、复合与约束优化算法；书末附有缩写与记号、矩阵与线性代数基础、常用不等式与恒等式及参考文献。<strong>每小节一页</strong>（如 13.1 近似点梯度法单独成页），点进任意一页后左侧栏会列出全书章节与当前讲的小节，页底有「上一节 / 下一节」便于连续翻阅。</p>
 
 <p><a href="/courses.html">← 返回课程笔记总览</a></p>
 
@@ -17,7 +17,12 @@ date: 2026-10-07
 {% assign book = site.pages | where: "kind", "note" | where: "course", page.course | sort: "order" %}
 {% assign chapters = book | group_by: "order" %}
 {% for ch in chapters %}
-<h3>第 {{ ch.name }} 章　{{ ch.items.first.chapter | default: ch.items.first.title }}</h3>
+{% assign chapter_name = ch.items.first.chapter | default: ch.items.first.title %}
+{% if chapter_name contains "附录" %}
+<h3>{{ chapter_name }}</h3>
+{% else %}
+<h3>第 {{ ch.name | plus: 0 }} 讲　{{ chapter_name }}</h3>
+{% endif %}
 <ul class="postlist">
 {% for sec in ch.items %}
   <li><a href="{{ sec.url }}">{{ sec.title | split: "·" | last | strip }}</a></li>
