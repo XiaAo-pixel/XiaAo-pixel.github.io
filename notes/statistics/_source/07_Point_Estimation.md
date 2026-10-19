@@ -1299,7 +1299,7 @@ $$
 
 > **例 7.3.22（例 7.3.13 的继续）**
 >
-> 对 $$X_1, \ldots, X_n$$ iid uniform$(0, \theta)$$，我们见到 $$\frac{n+1}{n}\, Y$$ 是 $$\theta$$ 的无偏估计量（$$Y = \max\{X_1, \ldots, X_n\}$$）。Cramér–Rao 定理的条件不满足，我们尚未确定该估计量是否最佳无偏。但例 6.2.23 中已证 $$Y$$ 是完备充分统计量：这意味着 $$Y$$ 的 pdf 族完备，基于 $$Y$$ 没有零的无偏估计量（由 Rao–Blackwell 定理形式的充分性，只须考虑基于 $$Y$$ 的零的无偏估计量）。因此 $$\frac{n+1}{n}\, Y$$ 与一切零的无偏估计量不相关（因为唯一的那个就是零本身），故 $$\frac{n+1}{n}\, Y$$ 是 $$\theta$$ 的最佳无偏估计量。
+> 对 $$X_1, \ldots, X_n$$ iid uniform$$(0, \theta)$$，我们见到 $$\frac{n+1}{n}\, Y$$ 是 $$\theta$$ 的无偏估计量（$$Y = \max\{X_1, \ldots, X_n\}$$）。Cramér–Rao 定理的条件不满足，我们尚未确定该估计量是否最佳无偏。但例 6.2.23 中已证 $$Y$$ 是完备充分统计量：这意味着 $$Y$$ 的 pdf 族完备，基于 $$Y$$ 没有零的无偏估计量（由 Rao–Blackwell 定理形式的充分性，只须考虑基于 $$Y$$ 的零的无偏估计量）。因此 $$\frac{n+1}{n}\, Y$$ 与一切零的无偏估计量不相关（因为唯一的那个就是零本身），故 $$\frac{n+1}{n}\, Y$$ 是 $$\theta$$ 的最佳无偏估计量。
 值得再次指出：重要的是充分统计量分布族的完备性，而原分布族的完备性无关紧要。这由 Rao–Blackwell 定理而来——我们可以把注意力限制在充分统计量的函数上，一切期望都对该统计量的分布取。
 在下列定理中总结完备性与最佳无偏性的关系。
 **定理 7.3.23（Lehmann–Scheffé 型定理）**
@@ -1469,7 +1469,7 @@ $$
 $$
 \int_0^{m} \frac{\Gamma(\alpha + \beta + n)}{\Gamma(y + \alpha)\, \Gamma(n - y + \beta)}\, p^{y + \alpha - 1} (1 - p)^{n - y + \beta - 1}\, dp = \frac{1}{2}
 $$
-的数 $$m$$。可以数值求值该积分以找出（近似）满足等式的 $$m$$。我们对 $$n = 10$$、$$\alpha = \beta = 1$$（uniform$(0,1)$$ 先验）做了这一计算；绝对误差损失下的贝叶斯估计量见表 7.3.1，表中还列出了上面导出的平方误差损失下的贝叶斯估计量以及 MLE $$\hat{p} = y/n$$。
+的数 $$m$$。可以数值求值该积分以找出（近似）满足等式的 $$m$$。我们对 $$n = 10$$、$$\alpha = \beta = 1$$（uniform$$(0,1)$$ 先验）做了这一计算；绝对误差损失下的贝叶斯估计量见表 7.3.1，表中还列出了上面导出的平方误差损失下的贝叶斯估计量以及 MLE $$\hat{p} = y/n$$。
 >
 > 注意表 7.3.1 中，与 MLE 不同，两个贝叶斯估计量即使 $$y$$ 为 0 或 $$n$$ 也不把 $$p$$ 估计为 0 或 1。贝叶斯估计量的典型特征是不会取到参数空间中的极端值：无论样本量多大，先验总对估计量有影响并倾向于把它拉离极端值。从 $$\mathrm{E}(p \mid y)$$ 的表达式可见，即使 $$y = 0$$ 且 $$n$$ 很大，贝叶斯估计量仍是正数。
 
@@ -1721,12 +1721,12 @@ $$
 \delta_P(\textbf{X}) = \frac{\displaystyle\int_{-\infty}^{\infty} t\, \prod_{i=1}^{n} f(x_i - t)\, dt}{\displaystyle\int_{-\infty}^{\infty} \prod_{i=1}^{n} f(x_i - t)\, dt},
 $$
 
-其中我们观测到来自 $$f(x - \theta)$$ 的随机样本 $$X_1, \ldots, X_n$$。Pitman 证明了该估计量是具有最小均方误差的位置等变估计量（即它最小化 (7.3.3)）。本习题的目标较为有限。(a) 证明 $$\delta_P(\textbf{X})$$ 关于例 7.3.6 的位置群不变；(b) 证明若 $$f(x - \theta)$$ 是 $$n(\theta, 1)$$，则 $$\delta_P(\textbf{X}) = \bar{X}$$；(c) 证明若 $$f(x - \theta)$$ 是 uniform$\bigl( \theta - \tfrac{1}{2},\ \theta + \tfrac{1}{2} \bigr)$$，则 $$\delta_P(\textbf{X}) = \tfrac{1}{2}\bigl( X_{(1)} + X_{(n)} \bigr)$$。
+其中我们观测到来自 $$f(x - \theta)$$ 的随机样本 $$X_1, \ldots, X_n$$。Pitman 证明了该估计量是具有最小均方误差的位置等变估计量（即它最小化 (7.3.3)）。本习题的目标较为有限。(a) 证明 $$\delta_P(\textbf{X})$$ 关于例 7.3.6 的位置群不变；(b) 证明若 $$f(x - \theta)$$ 是 $$n(\theta, 1)$$，则 $$\delta_P(\textbf{X}) = \bar{X}$$；(c) 证明若 $$f(x - \theta)$$ 是 uniform$$\bigl( \theta - \tfrac{1}{2},\ \theta + \tfrac{1}{2} \bigr)$$，则 $$\delta_P(\textbf{X}) = \tfrac{1}{2}\bigl( X_{(1)} + X_{(n)} \bigr)$$。
 **7.36** 尺度的 Pitman 估计量为
 $$
 \delta_{P_r}(\textbf{X}) = \frac{\displaystyle\int_0^{\infty} t^{n + r - 1}\, \prod_{i=1}^{n} f(t x_i)\, dt}{\displaystyle\int_0^{\infty} t^{n + 2 r - 1}\, \prod_{i=1}^{n} f(t x_i)\, dt},
 $$
-其中我们观测到来自 $$\frac{1}{\sigma} f(x/\sigma)$$ 的随机样本 $$X_1, \ldots, X_n$$。Pitman 证明该估计量是 $$\sigma^r$$ 的具有最小尺度化均方误差的尺度等变估计量（即它最小化 $$\mathrm{E} (d - \sigma^r)^2 / \sigma^{2r}$$）。(a) 证明 $$\delta_{P_r}(\textbf{X})$$ 关于尺度群等变，即对任意常数 $$c > 0$$ 满足 $$\delta_{P_r}(c x_1, \ldots, c x_n) = c^{r}\, \delta_{P_r}(x_1, \ldots, x_n)$$；(b) 若 $$X_1, \ldots, X_n$$ 是 iid $$n(0, \sigma^2)$$，求 $$\sigma^2$$ 的 Pitman 尺度等变估计量；(c) 若 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{exponential}(\beta)$$，求 $$\beta$$ 的 Pitman 尺度等变估计量；(d) 若 $$X_1, \ldots, X_n$$ 是 iid uniform$(0, \theta)$$，求 $$\theta$$ 的 Pitman 尺度等变估计量。
+其中我们观测到来自 $$\frac{1}{\sigma} f(x/\sigma)$$ 的随机样本 $$X_1, \ldots, X_n$$。Pitman 证明该估计量是 $$\sigma^r$$ 的具有最小尺度化均方误差的尺度等变估计量（即它最小化 $$\mathrm{E} (d - \sigma^r)^2 / \sigma^{2r}$$）。(a) 证明 $$\delta_{P_r}(\textbf{X})$$ 关于尺度群等变，即对任意常数 $$c > 0$$ 满足 $$\delta_{P_r}(c x_1, \ldots, c x_n) = c^{r}\, \delta_{P_r}(x_1, \ldots, x_n)$$；(b) 若 $$X_1, \ldots, X_n$$ 是 iid $$n(0, \sigma^2)$$，求 $$\sigma^2$$ 的 Pitman 尺度等变估计量；(c) 若 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{exponential}(\beta)$$，求 $$\beta$$ 的 Pitman 尺度等变估计量；(d) 若 $$X_1, \ldots, X_n$$ 是 iid uniform$$(0, \theta)$$，求 $$\theta$$ 的 Pitman 尺度等变估计量。
 
 **7.37** 设 $$X_1, \ldots, X_n$$ 是来自 pdf
 
@@ -1782,7 +1782,7 @@ $$
 
 处最小，这无用因为它依赖参数。(e) 证明：(i) 对峰度 $$\kappa > 3$$ 的分布，最优 $$a$$ 满足 $$a < \frac{n-1}{n+1}$$；(ii) 对峰度 $$\kappa < 3$$ 的分布，最优 $$a$$ 满足 $$\frac{n-1}{n+1} < a < 1$$。更多细节见 Searls and Intarapanich (1990)。
 
-**7.46** 设 $$X_1, X_2, X_3$$ 是 uniform$(\theta, 2\theta)$$ 分布（$$\theta > 0$$）的容量为 3 的随机样本。(a) 求 $$\theta$$ 的矩估计量；(b) 求 MLE $$\hat{\theta}$$，并求使 $$\mathrm{E}_{\theta}\bigl( k\, \hat{\theta} \bigr) = \theta$$ 的常数 $$k$$；(c) 两个估计量中哪个可以用充分性改进？如何改进？(d) 基于数据
+**7.46** 设 $$X_1, X_2, X_3$$ 是 uniform$$(\theta, 2\theta)$$ 分布（$$\theta > 0$$）的容量为 3 的随机样本。(a) 求 $$\theta$$ 的矩估计量；(b) 求 MLE $$\hat{\theta}$$，并求使 $$\mathrm{E}_{\theta}\bigl( k\, \hat{\theta} \bigr) = \theta$$ 的常数 $$k$$；(c) 两个估计量中哪个可以用充分性改进？如何改进？(d) 基于数据
 $$
 1.29,\ 0.86,\ 1.33
 $$

@@ -76,7 +76,7 @@ $$
 
 > **例 9.1.6（尺度均匀分布的区间估计量）**
 >
-> 设 $$X_1, \ldots, X_n$$ 是来自 uniform$(0, \theta)$$ 总体的随机样本，令 $$Y = \max\{X_1, \ldots, X_n\}$$。我们关心 $$\theta$$ 的区间估计量，考察两个候选者：$$[aY, bY]$$（$$1 \leq a < b$$）与 $$[Y + c, Y + d]$$（$$0 \leq c < d$$），其中 $$a, b, c, d$$ 是指定常数。（注意必有 $$\theta > y$$。）对第一个区间，
+> 设 $$X_1, \ldots, X_n$$ 是来自 uniform$$(0, \theta)$$ 总体的随机样本，令 $$Y = \max\{X_1, \ldots, X_n\}$$。我们关心 $$\theta$$ 的区间估计量，考察两个候选者：$$[aY, bY]$$（$$1 \leq a < b$$）与 $$[Y + c, Y + d]$$（$$0 \leq c < d$$），其中 $$a, b, c, d$$ 是指定常数。（注意必有 $$\theta > y$$。）对第一个区间，
 > $$
 > \begin{aligned}
 > P_{\theta}\bigl( \theta \in [aY, bY] \bigr)
@@ -385,7 +385,7 @@ Sterne (1954) 提出了如下构造二项置信集合的方法，它产生的集
 | $$[0.762, 1.00]$$ | $$\{3\}$$ |  |
 令人惊讶的是，置信集合并不是置信区间！这个看似合理的构造给出了一个不合理的程序。该责备的是 pmf：它的表现不符合我们的预期（见习题 9.18）。
 我们把参数 $$\theta$$ 的置信区间构造建立在实值统计量 $$T$$ 及其 cdf $$F_T(t \mid \theta)$$ 之上。（实践中通常取 $$T$$ 为 $$\theta$$ 的充分统计量，但下面的理论并不要求这一点。）先设 $$T$$ 是连续随机变量；$$T$$ 离散的情形类似，只是多了若干技术细节，因此我们将离散情形放在单独的定理中叙述。
-首先，回顾定理 2.1.10（概率积分变换）：它告诉我们随机变量 $$F_T(T \mid \theta)$$ 服从 uniform$(0,1)$$，是一个枢轴。于是若 $$\alpha_1 + \alpha_2 = \alpha$$，则假设 $$H_0 : \theta = \theta_0$$ 的水平 $$\alpha$$ 接受区域可取为（习题 9.11）
+首先，回顾定理 2.1.10（概率积分变换）：它告诉我们随机变量 $$F_T(T \mid \theta)$$ 服从 uniform$$(0,1)$$，是一个枢轴。于是若 $$\alpha_1 + \alpha_2 = \alpha$$，则假设 $$H_0 : \theta = \theta_0$$ 的水平 $$\alpha$$ 接受区域可取为（习题 9.11）
 
 $$
 \bigl\lbrace  t : \alpha_1 \leq F_T(t \mid \theta_0) \leq 1 - \alpha_2 \bigr \rbrace,
@@ -1486,7 +1486,7 @@ $$
 
 **9.36** 设 $$X_1, \ldots, X_n$$ 独立，pdf 为 $$f_{X_i}(x \mid \theta) = e^{i\theta - x} I_{[i\theta, \infty)}(x)$$。证明 $$T = \min_i (X_i / i)$$ 是 $$\theta$$ 的充分统计量。基于 $$T$$，求形如 $$[T + a,\ T + b]$$ 的长度最小的 $$1 - \alpha$$ 置信区间。
 
-**9.37** 设 $$X_1, \ldots, X_n$$ 是 iid uniform$(0, \theta)$$，$$Y$$ 是最大次序统计量。证明 $$Y/\theta$$ 是枢轴量，并证明区间
+**9.37** 设 $$X_1, \ldots, X_n$$ 是 iid uniform$$(0, \theta)$$，$$Y$$ 是最大次序统计量。证明 $$Y/\theta$$ 是枢轴量，并证明区间
 $$
 \Bigl\{ \theta : y \leq \theta \leq \frac{y}{\alpha^{1/n}} \Bigr\}
 $$
@@ -1629,7 +1629,7 @@ $$
 以下两题与杂记 9.5.4 节相关。
 **9.57** 设 $$X_1, X_2, \ldots, X_n$$ 是 iid $$n(\mu, \sigma^2)$$，$$\sigma^2$$ 已知。已知 $$\mu$$ 的 $$1 - \alpha$$ 置信区间是 $$\bar{x} \pm z_{\alpha/2}\, \sigma / \sqrt{n}$$。
 (a) 证明 $$X_{n+1}$$ 的 $$1 - \alpha$$ 预测区间是 $$\bar{x} \pm z_{\alpha/2}\, \sigma \sqrt{1 + \frac{1}{n}}$$；
-(b) 证明覆盖总体 100$p$% 的 $$1 - \alpha$$ 容忍区间由 $$\bar{x} \pm z_{\alpha/2}\, \sigma \bigl( 1 + \frac{1}{\sqrt{n}} \bigr)$$ 给出；
+(b) 证明覆盖总体 100$$p$$% 的 $$1 - \alpha$$ 容忍区间由 $$\bar{x} \pm z_{\alpha/2}\, \sigma \bigl( 1 + \frac{1}{\sqrt{n}} \bigr)$$ 给出；
 (c) 若 $$\sigma^2$$ 未知，求 $$X_{n+1}$$ 的 $$1 - \alpha$$ 预测区间。
 （若 $$\sigma^2$$ 未知，$$1 - \alpha$$ 容忍区间的计算相当繁琐。）
 **9.58** 设 $$X_1, X_2, \ldots, X_n$$ 是来自具有中位数 $$m$$ 的总体的 iid 观测。基于次序统计量 $$X_{(1)} \leq X_{(2)} \leq \cdots \leq X_{(n)}$$ 可以构造分布无关（distribution-free）区间如下。

@@ -343,7 +343,7 @@ $$
 >
 > **mgf：**$$M_X(t) = \dfrac{p e^t}{1 - (1 - p) e^t}$$，$$t < -\log(1 - p)$$。
 >
-> **注记：**$$Y = X - 1$$ 服从 negative binomial$(1, p)$$。该分布是无记忆的：$$P(X > s \mid X > t) = P(X > s - t)$$。
+> **注记：**$$Y = X - 1$$ 服从 negative binomial$$(1, p)$$。该分布是无记忆的：$$P(X > s \mid X > t) = P(X > s - t)$$。
 **定义 Hypergeometric（超几何）**
 **pmf：**$$P(X = x \mid N, M, K) = \dfrac{\binom{M}{x} \binom{N - M}{K - x}}{\binom{N}{K}}$$；$$x = 0, 1, 2, \ldots, K$$；$$M - (N - K) \leq x \leq M$$；$$N, M, K \geq 0$$。
 **均值与方差：**$$\mathrm{E} X = \dfrac{KM}{N}$$，$$\mathrm{Var} X = \dfrac{KM}{N}\, \dfrac{(N - M)(N - K)}{N(N - 1)}$$。

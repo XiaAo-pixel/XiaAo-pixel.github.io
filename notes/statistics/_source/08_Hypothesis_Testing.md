@@ -857,7 +857,7 @@ $$
 p_{\theta}(\textbf{x}) = P_{\theta}\bigl( W(\textbf{X}) \geq W(\textbf{x}) \bigr) = P_{\theta}\bigl( -W(\textbf{X}) \leq -W(\textbf{x}) \bigr) = F_{\theta}\bigl( -W(\textbf{x}) \bigr).
 $$
 >
-> 则随机变量 $$p_{\theta}(\textbf{X})$$ 等于 $$F_{\theta}\bigl( -W(\textbf{X}) \bigr)$$。由概率积分变换（或习题 2.10），$$p_{\theta}(\textbf{X})$$ 的分布随机地大于等于 uniform$(0,1)$$ 分布，即对每个 $$0 \leq \alpha \leq 1$$ 有 $$P_{\theta}\bigl( p_{\theta}(\textbf{X}) \leq \alpha \bigr) \leq \alpha$$。因为对每个 **x** 有 $$p(\textbf{x}) = \sup_{\theta' \in \Theta_0} p_{\theta'}(\textbf{x}) \geq p_{\theta}(\textbf{x})$$，故
+> 则随机变量 $$p_{\theta}(\textbf{X})$$ 等于 $$F_{\theta}\bigl( -W(\textbf{X}) \bigr)$$。由概率积分变换（或习题 2.10），$$p_{\theta}(\textbf{X})$$ 的分布随机地大于等于 uniform$$(0,1)$$ 分布，即对每个 $$0 \leq \alpha \leq 1$$ 有 $$P_{\theta}\bigl( p_{\theta}(\textbf{X}) \leq \alpha \bigr) \leq \alpha$$。因为对每个 **x** 有 $$p(\textbf{x}) = \sup_{\theta' \in \Theta_0} p_{\theta'}(\textbf{x}) \geq p_{\theta}(\textbf{x})$$，故
 > $$
 > P_{\theta}\bigl( p(\textbf{X}) \leq \alpha \bigr) \leq P_{\theta}\bigl( p_{\theta}(\textbf{X}) \leq \alpha \bigr) \leq \alpha.
 > $$
@@ -984,7 +984,7 @@ $$
 **8.10** 设 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{Poisson}(\lambda)$$，$$\lambda$$ 服从 $$\mathrm{gamma}(\alpha, \beta)$$ 分布（泊松的共轭族）。习题 7.24 已求得 $$\lambda$$ 的后验分布（含后验均值与方差）。现考虑贝叶斯检验 $$H_0 : \lambda \leq \lambda_0$$ 对 $$H_1 : \lambda > \lambda_0$$。(a) 计算 $$H_0$$ 与 $$H_1$$ 的后验概率表达式；(b) 若 $$\alpha = \tfrac{5}{2}$$、$$\beta = 2$$，先验分布是自由度 5 的卡方分布。解释如何用卡方表实施贝叶斯检验。
 **8.11** 习题 7.23 中用 $$\sigma^2$$ 的共轭先验（参数 $$\alpha$$ 与 $$\beta$$ 的逆伽马 pdf）求得了给定样本方差 $$S^2$$ 时正态总体方差 $$\sigma^2$$ 的后验分布。基于观测 $$S^2$$，要对假设 $$H_0 : \sigma \leq 1$$ 对 $$H_1 : \sigma > 1$$ 作决策。(a) 求 $$P(\sigma \leq 1 \mid s^2) > P(\sigma > 1 \mid s^2)$$ 的样本空间区域——即贝叶斯检验将判定 $$\sigma \leq 1$$ 的区域；(b) 把 (a) 的区域与 LRT 的接受区域比较。是否存在使两区域一致的先验参数选择？
 **8.12** 对来自均值 $$\mu$$、已知方差 $$\sigma^2$$ 的正态总体的样本量 $$n = 1, 4, 16, 64, 100$$，绘制下列检验的功效函数。取 $$\alpha = 0.05$$。(a) $$H_0 : \mu \leq 0$$ 对 $$H_1 : \mu > 0$$；(b) $$H_0 : \mu = 0$$ 对 $$H_1 : \mu \neq 0$$。
-**8.13** 设 $$X_1, X_2$$ 是 iid uniform$(\theta, \theta + 1)$$。检验 $$H_0 : \theta = 0$$ 对 $$H_1 : \theta > 0$$ 有两个竞争的检验：
+**8.13** 设 $$X_1, X_2$$ 是 iid uniform$$(\theta, \theta + 1)$$。检验 $$H_0 : \theta = 0$$ 对 $$H_1 : \theta > 0$$ 有两个竞争的检验：
 
 $$
 \phi_1(X_1) : \text{若}\ X_1 > 0.95\ \text{则拒绝}\ H_0; \qquad
@@ -1068,7 +1068,7 @@ $$
 
 **8.32** 设 $$X_1, \ldots, X_n$$ 是 iid $$n(\theta, 1)$$，$$\theta_0$$ 为 $$\theta$$ 的指定值。(a) 求 $$H_0 : \theta \geq \theta_0$$ 对 $$H_1 : \theta < \theta_0$$ 的 UMP 尺寸 $$\alpha$$ 检验；(b) 证明不存在 $$H_0 : \theta = \theta_0$$ 对 $$H_1 : \theta \neq \theta_0$$ 的 UMP 尺寸 $$\alpha$$ 检验。
 
-**8.33** 设 $$X_1, \ldots, X_n$$ 是来自 uniform$(\theta, \theta + 1)$$ 分布的随机样本。检验 $$H_0 : \theta = 0$$ 对 $$H_1 : \theta > 0$$ 使用检验
+**8.33** 设 $$X_1, \ldots, X_n$$ 是来自 uniform$$(\theta, \theta + 1)$$ 分布的随机样本。检验 $$H_0 : \theta = 0$$ 对 $$H_1 : \theta > 0$$ 使用检验
 $$
 \text{若}\ Y_n \geq 1\ \text{或}\ Y_1 \geq k\ \text{则拒绝}\ H_0,
 $$
