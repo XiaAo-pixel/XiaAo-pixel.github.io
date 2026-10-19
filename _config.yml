@@ -10,3 +10,8 @@ exclude:
   - _preview/
   - editor/
   - "*.cmd"
+  - "*.exe"
+  - package.json
+  - package-lock.json
+  - node_modules/
+  - desktop/

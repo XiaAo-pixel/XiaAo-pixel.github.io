@@ -72,7 +72,7 @@ homepage/
 
 `editor/` 是随仓库附带的本地编辑器：可以可视化改卡片版页面、两本书的封面介绍，也提供笔记章节/小节的 Markdown 源文件管理与一条龙切分。笔记正文仍然是 Markdown，不是所见即所得的富文本。
 
-启动（需要 Node.js 18+，不需要 `npm install`）：
+启动浏览器版（需要 Node.js 18+，不需要 `npm install`）：
 
 ```bat
 :: 双击根目录的「打开主页助手.cmd」，或者：
@@ -80,6 +80,21 @@ node editor\server.mjs
 ```
 
 默认会启动在 <http://127.0.0.1:4173/>（端口被占用时自动顺延），并自动打开浏览器；关掉终端窗口即停止。编辑器只监听本机回环地址，不会公开到局域网。
+
+### Windows 桌面版（EXE）
+
+`desktop/` 把同一个编辑器封装成独立的 Windows 程序。EXE 里只有编辑器，不含主页内容；它始终直接读写你选择的项目文件夹。
+
+- **使用**：把 `desktop\release\HomepageStudio-1.0.0-portable.exe` 复制到主页工程根目录后双击，会自动识别当前工程；放在其它位置时，首次启动会让你选择包含 `index.html`、`style.css`、`courses.html` 的文件夹，之后会记住上次的项目。也可以用「文件 → 切换项目文件夹…」（`Ctrl+O`）随时切换。
+- **无需安装**：便携版不写注册表、不安装依赖，运行时临时解压，首次启动会慢几秒；不需要 Node.js，也不需要浏览器或终端。笔记切分仍会调用系统自带的 Windows PowerShell。
+- **未签名提示**：EXE 没有购买代码签名证书，Windows SmartScreen 可能提示「Windows 已保护你的电脑」。点「更多信息 → 仍要运行」即可；界面、编辑和「一键发布」行为与浏览器版完全一致。
+- **重新构建**：需要 Node.js 18+，首次执行 `npm install`，然后：
+
+  ```bat
+  npm run desktop:dist
+  ```
+
+  生成的便携版在 `desktop\release\HomepageStudio-1.0.0-portable.exe`；`win-unpacked\` 是打包中间产物。`node_modules/` 和 `desktop/release/` 已在 `.gitignore` 中排除，不会提交进仓库。开发调试可用 `npm run desktop:dev`，无界面自检可用 `npm run desktop:smoke`。
 
 能做什么：
 

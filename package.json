@@ -1,0 +1,55 @@
+{
+  "name": "homepage-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "主页助手 —— 个人主页可视化编辑器的 Windows 桌面版",
+  "main": "desktop/main.cjs",
+  "author": "XiaAo",
+  "license": "MIT",
+  "scripts": {
+    "desktop:dev": "electron .",
+    "desktop:smoke": "electron . --smoke-test",
+    "desktop:pack": "electron-builder --win dir",
+    "desktop:dist": "electron-builder --win portable"
+  },
+  "devDependencies": {
+    "electron": "44.9.0",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "site.xiaao.homepage-studio",
+    "productName": "主页助手",
+    "copyright": "Copyright © 2026 XiaAo",
+    "directories": {
+      "output": "desktop/release",
+      "buildResources": "desktop/build"
+    },
+    "files": [
+      "desktop/main.cjs",
+      "desktop/build/icon.ico",
+      "desktop/build/icon.png",
+      "editor/server.mjs",
+      "editor/config.json",
+      "editor/lib/**/*",
+      "editor/public/**/*",
+      "editor/vendor/**/*"
+    ],
+    "asar": false,
+    "npmRebuild": false,
+    "electronDist": "node_modules/electron/dist",
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "desktop/build/icon.ico",
+      "artifactName": "HomepageStudio-${version}-portable.${ext}",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "portable": {
+      "artifactName": "HomepageStudio-${version}-portable.${ext}"
+    }
+  }
+}

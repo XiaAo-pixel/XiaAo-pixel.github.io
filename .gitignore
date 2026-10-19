@@ -18,3 +18,9 @@ editor/.server.log
 editor/.server.pid
 .qoder-credits/
 
+/desktop/release/
+/desktop/.cache/
+/node_modules/
+
+# 把便携版 EXE 放在工程根目录时，不要让「一键发布」把它提交进仓库
+/HomepageStudio-*-portable.exe
