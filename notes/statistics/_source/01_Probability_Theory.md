@@ -4,7 +4,7 @@ kind: note
 title: "第 1 章　概率论（Probability Theory）"
 course: statistics
 order: 1
-date: 2026-10-07
+date: 2026-10-19
 permalink: /statistics/chap01.html
 ---
 

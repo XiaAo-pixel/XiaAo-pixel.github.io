@@ -4,7 +4,7 @@ kind: note
 title: "第 13 章　后置内容：计算机代数与常用分布表（Back Matter）"
 course: statistics
 order: 13
-date: 2026-10-07
+date: 2026-10-19
 permalink: /statistics/chap13.html
 ---
 
@@ -386,9 +386,9 @@ $$
 **定义 $$F$$（$$F_{\nu_1, \nu_2}$$，$$\nu_1, \nu_2 = 1, \ldots$$）**
 **pdf：**
 $$
-> f(x \mid \nu_1, \nu_2) = \frac{\Gamma\bigl( \frac{\nu_1 + \nu_2}{2} \bigr) \bigl( \frac{\nu_1}{\nu_2} \bigr)^{\nu_1/2}}{\Gamma\bigl( \frac{\nu_1}{2} \bigr) \Gamma\bigl( \frac{\nu_2}{2} \bigr)}\, \frac{x^{(\nu_1 - 2)/2}}{\Bigl( 1 + \frac{\nu_1}{\nu_2} x \Bigr)^{(\nu_1 + \nu_2)/2}},
-> \qquad 0 \leq x < \infty.
-> $$
+f(x \mid \nu_1, \nu_2) = \frac{\Gamma\bigl( \frac{\nu_1 + \nu_2}{2} \bigr) \bigl( \frac{\nu_1}{\nu_2} \bigr)^{\nu_1/2}}{\Gamma\bigl( \frac{\nu_1}{2} \bigr) \Gamma\bigl( \frac{\nu_2}{2} \bigr)}\, \frac{x^{(\nu_1 - 2)/2}}{\Bigl( 1 + \frac{\nu_1}{\nu_2} x \Bigr)^{(\nu_1 + \nu_2)/2}},
+\qquad 0 \leq x < \infty.
+$$
 **均值与方差：**$$\mathrm{E} X = \dfrac{\nu_2}{\nu_2 - 2}$$（$$\nu_2 > 2$$）；$$\mathrm{Var} X = \dfrac{2 \nu_2^2 (\nu_1 + \nu_2 - 2)}{\nu_1 (\nu_2 - 2)^2 (\nu_2 - 4)}$$（$$\nu_2 > 4$$）。
 **矩：**$$\mathrm{E} X^n = \Bigl( \dfrac{\nu_2}{\nu_1} \Bigr)^{\! n} \dfrac{\Gamma\bigl( \frac{\nu_1}{2} + n \bigr) \Gamma\bigl( \frac{\nu_2}{2} - n \bigr)}{\Gamma\bigl( \frac{\nu_1}{2} \bigr) \Gamma\bigl( \frac{\nu_2}{2} \bigr)}$$，$$n < \dfrac{\nu_2}{2}$$（mgf 不存在）。
 **注记：**与卡方相关（$$F_{\nu_1, \nu_2} = \frac{\chi^2_{\nu_1}/\nu_1}{\chi^2_{\nu_2}/\nu_2}$$，其中两个卡方独立），也与 $$t$$ 相关（$$F_{1, \nu} = t_{\nu}^2$$）。

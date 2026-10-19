@@ -4,7 +4,7 @@ kind: note
 title: "第 3 章　常用分布族（Common Families of Distributions）"
 course: statistics
 order: 3
-date: 2026-10-07
+date: 2026-10-19
 permalink: /statistics/chap03.html
 ---
 
@@ -993,81 +993,81 @@ $$
 **例 3.4.1（二项指数族）**
 设 $$n$$ 为正整数，考虑 $$0 < p < 1$$ 的 $$\mathrm{binomial}(n, p)$$ 族。对 $$x = 0, \ldots, n$$ 与 $$0 < p < 1$$，该族的 pmf 为
 $$
-> \begin{aligned}
-> f(x \mid p) &= \binom{n}{x} p^{x} (1 - p)^{n - x}\\
-> &= \binom{n}{x} (1 - p)^{n} \Bigl( \frac{p}{1 - p} \Bigr)^{x}\\
-> &= \binom{n}{x} (1 - p)^{n} \exp\Bigl[ \log\Bigl( \frac{p}{1 - p} \Bigr)\, x \Bigr].
-> \end{aligned} \tag{3.4.2}
-> $$
+\begin{aligned}
+f(x \mid p) &= \binom{n}{x} p^{x} (1 - p)^{n - x}\\
+&= \binom{n}{x} (1 - p)^{n} \Bigl( \frac{p}{1 - p} \Bigr)^{x}\\
+&= \binom{n}{x} (1 - p)^{n} \exp\Bigl[ \log\Bigl( \frac{p}{1 - p} \Bigr)\, x \Bigr].
+\end{aligned} \tag{3.4.2}
+$$
 定义
 $$
-> h(x) = \begin{cases} \dbinom{n}{x} & x = 0, \ldots, n,\\[4pt] 0 & \text{其他}, \end{cases} \qquad
-> c(p) = (1 - p)^{n},\ 0 < p < 1,
-> $$
+h(x) = \begin{cases} \dbinom{n}{x} & x = 0, \ldots, n,\\[4pt] 0 & \text{其他}, \end{cases} \qquad
+c(p) = (1 - p)^{n},\ 0 < p < 1,
 $$
-> w_1(p) = \log\Bigl( \frac{p}{1 - p} \Bigr),\ 0 < p < 1, \qquad t_1(x) = x.
-> $$
+$$
+w_1(p) = \log\Bigl( \frac{p}{1 - p} \Bigr),\ 0 < p < 1, \qquad t_1(x) = x.
+$$
 则
 $$
-> f(x \mid p) = h(x)\, c(p) \exp\bigl[ w_1(p)\, t_1(x) \bigr], \tag{3.4.3}
-> $$
+f(x \mid p) = h(x)\, c(p) \exp\bigl[ w_1(p)\, t_1(x) \bigr], \tag{3.4.3}
+$$
 这是 $$k = 1$$ 时的形式 (3.4.1)。特别要注意 $$h(x) > 0$$ 仅当 $$x = 0, \ldots, n$$，而 $$c(p)$$ 仅在 $$0 < p < 1$$ 时有定义。这一点很重要：(3.4.3) 必须对一切 $$x$$ 的取值都与 (3.4.2) 匹配，且仅当 $$0 < p < 1$$ 时才是指数族（参数函数只在此范围内有定义）。此外，参数值 $$p = 0$$ 与 $$p = 1$$ 有时也包含在二项模型中，但此处未包含，因为 $$p = 0$$ 或 1 时使 $$f(x \mid p) > 0$$ 的 $$x$$ 取值集合不同于其他 $$p$$ 值时的集合。
 (3.4.1) 的特殊形式使指数族具有许多优美的数学性质；但更重要的是，作为一个统计模型，这种形式还带来许多优美的统计性质。下面给出指数族矩计算的一条捷径。
 **定理 3.4.2（指数族的矩恒等式）**
 设 $$X$$ 的 pdf 或 pmf 形如 (3.4.1)，则
 $$
-> \mathrm{E}\Bigl[ \sum_{i=1}^{k} \frac{\partial w_i(\theta)}{\partial \theta_j}\, t_i(X) \Bigr] = -\, \frac{\partial}{\partial \theta_j} \log c(\theta), \tag{3.4.4}
-> $$
+\mathrm{E}\Bigl[ \sum_{i=1}^{k} \frac{\partial w_i(\theta)}{\partial \theta_j}\, t_i(X) \Bigr] = -\, \frac{\partial}{\partial \theta_j} \log c(\theta), \tag{3.4.4}
 $$
-> \mathrm{Var}\Bigl[ \sum_{i=1}^{k} \frac{\partial w_i(\theta)}{\partial \theta_j}\, t_i(X) \Bigr] = -\, \frac{\partial^2}{\partial \theta_j^2} \log c(\theta) - \mathrm{E}\Bigl[ \sum_{i=1}^{k} \frac{\partial^2 w_i(\theta)}{\partial \theta_j^2}\, t_i(X) \Bigr]. \tag{3.4.5}
-> $$
+$$
+\mathrm{Var}\Bigl[ \sum_{i=1}^{k} \frac{\partial w_i(\theta)}{\partial \theta_j}\, t_i(X) \Bigr] = -\, \frac{\partial^2}{\partial \theta_j^2} \log c(\theta) - \mathrm{E}\Bigl[ \sum_{i=1}^{k} \frac{\partial^2 w_i(\theta)}{\partial \theta_j^2}\, t_i(X) \Bigr]. \tag{3.4.5}
+$$
 这些等式虽然看似吓人，但用于具体情形时往往相当漂亮。其优点是可以用求导代替积分或求和，后者通常更直接。
 **例 3.4.3（二项分布的均值与方差）**
 由例 3.4.1，
 $$
-> \frac{d}{dp}\, w_1(p) = \frac{d}{dp} \log \frac{p}{1 - p} = \frac{1}{p(1 - p)},
-> \qquad
-> \frac{d}{dp} \log c(p) = \frac{d}{dp}\, n \log(1 - p) = \frac{-n}{1 - p}.
-> $$
+\frac{d}{dp}\, w_1(p) = \frac{d}{dp} \log \frac{p}{1 - p} = \frac{1}{p(1 - p)},
+\qquad
+\frac{d}{dp} \log c(p) = \frac{d}{dp}\, n \log(1 - p) = \frac{-n}{1 - p}.
+$$
 于是由定理 3.4.2，
 $$
-> \mathrm{E}\Bigl[ \frac{1}{p(1 - p)}\, X \Bigr] = \frac{n}{1 - p},
-> $$
+\mathrm{E}\Bigl[ \frac{1}{p(1 - p)}\, X \Bigr] = \frac{n}{1 - p},
+$$
 稍加整理即得 $$\mathrm{E}(X) = np$$。方差恒等式的用法类似。
 定理 3.4.2 的证明是一次微积分练习，移至习题 3.31 完成；特例另见习题 3.32。
 下面再看一个例子以及指数族的另一些特征。
 **例 3.4.4（正态指数族）**
 设 $$f(x \mid \mu, \sigma^2)$$ 是 $$n(\mu, \sigma^2)$$ pdf 族，$$\theta = (\mu, \sigma)$$，$$-\infty < \mu < \infty$$，$$\sigma > 0$$。则
 $$
-> \begin{aligned}
-> f(x \mid \mu, \sigma^2) &= \frac{1}{\sqrt{2\pi}\, \sigma} \exp\Bigl( -\frac{(x - \mu)^2}{2\sigma^2} \Bigr)\\
-> &= \frac{1}{\sqrt{2\pi}\, \sigma} \exp\Bigl( -\frac{\mu^2}{2\sigma^2} \Bigr)\, \exp\Bigl( -\frac{x^2}{2\sigma^2} + \frac{\mu x}{\sigma^2} \Bigr).
-> \end{aligned} \tag{3.4.6}
-> $$
+\begin{aligned}
+f(x \mid \mu, \sigma^2) &= \frac{1}{\sqrt{2\pi}\, \sigma} \exp\Bigl( -\frac{(x - \mu)^2}{2\sigma^2} \Bigr)\\
+&= \frac{1}{\sqrt{2\pi}\, \sigma} \exp\Bigl( -\frac{\mu^2}{2\sigma^2} \Bigr)\, \exp\Bigl( -\frac{x^2}{2\sigma^2} + \frac{\mu x}{\sigma^2} \Bigr).
+\end{aligned} \tag{3.4.6}
+$$
 定义
 $$
-> h(x) = 1 \ \text{（对一切}\ x\text{）},
-> $$
+h(x) = 1 \ \text{（对一切}\ x\text{）},
 $$
-> c(\theta) = c(\mu, \sigma) = \frac{1}{\sqrt{2\pi}\, \sigma} \exp\Bigl( \frac{-\mu^2}{2\sigma^2} \Bigr), \quad -\infty < \mu < \infty,\ \sigma > 0,
-> $$
 $$
-> w_1(\mu, \sigma) = \frac{1}{\sigma^2}\ \ (\sigma > 0), \qquad w_2(\mu, \sigma) = \frac{\mu}{\sigma^2}\ \ (\sigma > 0),
-> $$
+c(\theta) = c(\mu, \sigma) = \frac{1}{\sqrt{2\pi}\, \sigma} \exp\Bigl( \frac{-\mu^2}{2\sigma^2} \Bigr), \quad -\infty < \mu < \infty,\ \sigma > 0,
 $$
-> t_1(x) = -x^2/2, \qquad t_2(x) = x.
-> $$
+$$
+w_1(\mu, \sigma) = \frac{1}{\sigma^2}\ \ (\sigma > 0), \qquad w_2(\mu, \sigma) = \frac{\mu}{\sigma^2}\ \ (\sigma > 0),
+$$
+$$
+t_1(x) = -x^2/2, \qquad t_2(x) = x.
+$$
 则
 $$
-> f(x \mid \mu, \sigma^2) = h(x)\, c(\mu, \sigma) \exp\bigl[ w_1(\mu, \sigma)\, t_1(x) + w_2(\mu, \sigma)\, t_2(x) \bigr],
-> $$
+f(x \mid \mu, \sigma^2) = h(x)\, c(\mu, \sigma) \exp\bigl[ w_1(\mu, \sigma)\, t_1(x) + w_2(\mu, \sigma)\, t_2(x) \bigr],
+$$
 即 $$k = 2$$ 的形式 (3.4.1)。再次注意参数函数只在参数范围内有定义。
 一般地，在指数族中，使 $$f(x \mid \theta) > 0$$ 的 $$x$$ 取值集合不能依赖于 $$\theta$$。pdf 或 pmf 的完整定义必须纳入形式 (3.4.1)；最方便的做法是用示性函数把 $$x$$ 的范围纳入 $$f(x \mid \theta)$$ 的表达式。
 **定义 3.4.5（示性函数）**
 集合 $$A$$ 的***示性函数***（indicator function）通常记作 $$I_A(x)$$，定义为
 $$
-> I_A(x) = \begin{cases} 1 & x \in A,\\ 0 & x \notin A. \end{cases}
-> $$
+I_A(x) = \begin{cases} 1 & x \in A,\\ 0 & x \notin A. \end{cases}
+$$
 另一种记法是 $$I(x \in A)$$。
 于是例 3.4.4 的正态 pdf 可以写成
 $$
@@ -1095,8 +1095,8 @@ $$
 **例 3.4.6（例 3.4.4 的继续）**
 为确定正态分布族的自然参数空间，把 (3.4.6) 中的 $$w_i(\mu, \sigma)$$ 换成 $$\eta_i$$，得
 $$
-> f(x \mid \eta_1, \eta_2) = \sqrt{\frac{\eta_1}{2\pi}}\, \exp\Bigl( -\frac{\eta_1 \eta_2^2}{2} \Bigr) \exp\Bigl( -\frac{\eta_1 x^2}{2} + \eta_2 x \Bigr). \tag{3.4.8}
-> $$
+f(x \mid \eta_1, \eta_2) = \sqrt{\frac{\eta_1}{2\pi}}\, \exp\Bigl( -\frac{\eta_1 \eta_2^2}{2} \Bigr) \exp\Bigl( -\frac{\eta_1 x^2}{2} + \eta_2 x \Bigr). \tag{3.4.8}
+$$
 当且仅当 $$x^2$$ 的系数为负时积分有限，即 $$\eta_1$$ 必须为正。若 $$\eta_1 > 0$$，无论 $$\eta_2$$ 取何值积分都有限。故自然参数空间是 $$\{(\eta_1, \eta_2) : \eta_1 > 0,\ -\infty < \eta_2 < \infty\}$$。把 (3.4.8) 与 (3.4.6) 对照，可见 $$\eta_2 = \mu/\sigma^2$$，$$\eta_1 = 1/\sigma^2$$。自然参数提供了方便的数学表述，但有时缺乏均值、方差那样的直观解释。
 在表示 (3.4.1) 中，向量 $$\theta$$ 的维数常常等于 $$k$$（指数中和的项数），但不必如此：$$\theta$$ 的维数可以等于 $$d < k$$。这样的指数族称为***曲线指数族***（curved exponential family）。
 **定义 3.4.7（曲线指数族）**
@@ -1104,23 +1104,23 @@ $$
 **例 3.4.8（一个曲线指数族）**
 例 3.4.4 的正态族是满秩指数族。但若假定 $$\sigma^2 = \mu^2$$，该族就变成曲线族（这样的模型可能用于方差分析；见习题 11.1 与 11.2）。此时
 $$
-> \begin{aligned}
-> f(x \mid \mu) &= \frac{1}{\sqrt{2\pi\, \mu^2}} \exp\Bigl( -\frac{(x - \mu)^2}{2\mu^2} \Bigr)\\
-> &= \frac{1}{\sqrt{2\pi\, \mu^2}} \exp\Bigl( -\frac{1}{2} \Bigr) \exp\Bigl( -\frac{x^2}{2\mu^2} + \frac{x}{\mu} \Bigr).
-> \end{aligned} \tag{3.4.9}
-> $$
+\begin{aligned}
+f(x \mid \mu) &= \frac{1}{\sqrt{2\pi\, \mu^2}} \exp\Bigl( -\frac{(x - \mu)^2}{2\mu^2} \Bigr)\\
+&= \frac{1}{\sqrt{2\pi\, \mu^2}} \exp\Bigl( -\frac{1}{2} \Bigr) \exp\Bigl( -\frac{x^2}{2\mu^2} + \frac{x}{\mu} \Bigr).
+\end{aligned} \tag{3.4.9}
+$$
 对正态族，满秩指数族的参数空间是 $$(\mu, \sigma^2) = \Re \times (0, \infty)$$，而曲线族 $$(\mu, \sigma^2) = (\mu, \mu^2)$$ 的参数空间是一条抛物线。
 曲线指数族的用途很多。下一例展示一个简单的用法。
 **例 3.4.9（正态近似）**
 第 5 章将看到：若 $$X_1, \ldots, X_n$$ 是来自 $$\mathrm{Poisson}(\lambda)$$ 总体的样本，则 $$\bar{X} = \sum_i X_i / n$$ 的分布近似为
 $$
-> \bar{X} \sim n(\lambda, \lambda/n),
-> $$
+\bar{X} \sim n(\lambda, \lambda/n),
+$$
 这是一个曲线指数族。
 $$n(\lambda, \lambda/n)$$ 近似由中心极限定理（定理 5.5.14）所支撑。事实上可以意识到，大多数此类 CLT 近似都会产生曲线正态族。我们已经见过正态—二项近似（例 3.3.2）：若 $$X_1, X_2, \ldots, X_n$$ 是 iid $$\mathrm{Bernoulli}(p)$$，则近似地
 $$
-> \bar{X} \sim n\bigl( p,\ p(1 - p)/n \bigr).
-> $$
+\bar{X} \sim n\bigl( p,\ p(1 - p)/n \bigr).
+$$
 另一例见例 5.5.16。
 虽然参数空间维数降低对族的性质有影响，但曲线族仍享有满秩族的许多性质；特别地，定理 3.4.2 对曲线指数族仍然适用。此外，满秩与曲线指数族还有其他统计性质，将在全书余下部分讨论。例如，设我们有一总体的大量数据，其 pdf 或 pmf 形如 (3.4.1)；则只有 $$k$$ 个数（$$k$$ 为 (3.4.1) 中和的项数）——它们可以从数据算出——概括了数据中关于 $$\theta$$ 的全部信息。这一“数据约简”性质将在第 6 章充分统计量的讨论中（定理 6.2.10）详细展开。
 关于指数族的更多入门材料见 Lehmann (1986, Section 2.7) 或 Lehmann and Casella (1998, Section 1.5 and Note 1.10.6)；更彻底的（稍高水平的）介绍见 Brown (1986) 的经典专著。
@@ -1130,14 +1130,14 @@ $$
 **定理 3.5.1（位置—尺度变换产生合法 pdf）**
 设 $$f(x)$$ 是任意 pdf，$$\mu$$ 与 $$\sigma > 0$$ 是任意给定常数。则函数
 $$
-> g(x \mid \mu, \sigma) = \frac{1}{\sigma}\, f\Bigl( \frac{x - \mu}{\sigma} \Bigr)
-> $$
+g(x \mid \mu, \sigma) = \frac{1}{\sigma}\, f\Bigl( \frac{x - \mu}{\sigma} \Bigr)
+$$
 是 pdf。
 **证明**　为验证该变换产生了合法 pdf，需检查 $$(1/\sigma) f\bigl( (x - \mu)/\sigma \bigr)$$ 作为 $$x$$ 的函数，对代入公式的每一组 $$\mu$$ 与 $$\sigma$$ 取值都是 pdf，即非负且积分为 1。因为 $$f(x)$$ 是 pdf，对一切 $$x$$ 有 $$f(x) \geq 0$$，故对一切 $$x$$、$$\mu$$、$$\sigma$$ 有 $$(1/\sigma) f\bigl( (x - \mu)/\sigma \bigr) \geq 0$$。其次，
 $$
-> \int_{-\infty}^{\infty} \frac{1}{\sigma}\, f\Bigl( \frac{x - \mu}{\sigma} \Bigr)\, dx = \int_{-\infty}^{\infty} f(y)\, dy = 1,
-> \qquad （\text{代入}\ y = \frac{x - \mu}{\sigma}；\text{因}\ f(y)\ \text{是 pdf}）
-> $$
+\int_{-\infty}^{\infty} \frac{1}{\sigma}\, f\Bigl( \frac{x - \mu}{\sigma} \Bigr)\, dx = \int_{-\infty}^{\infty} f(y)\, dy = 1,
+\qquad （\text{代入}\ y = \frac{x - \mu}{\sigma}；\text{因}\ f(y)\ \text{是 pdf}）
+$$
 验证完毕。 ∎
 现在讨论第一种构造——位置族。
 **定义 3.5.2（位置族）**
@@ -1161,8 +1161,8 @@ $$
 **例 3.5.3（指数位置族）**
 设 $$f(x) = e^{-x}$$（$$x \geq 0$$），$$f(x) = 0$$（$$x < 0$$）。为构成位置族，把 $$x$$ 换成 $$x - \mu$$：
 $$
-> f(x \mid \mu) = \begin{cases} e^{-(x - \mu)} & x - \mu \geq 0,\\ 0 & x - \mu < 0, \end{cases} = \begin{cases} e^{-(x - \mu)} & x \geq \mu,\\ 0 & x < \mu. \end{cases}
-> $$
+f(x \mid \mu) = \begin{cases} e^{-(x - \mu)} & x - \mu \geq 0,\\ 0 & x - \mu < 0, \end{cases} = \begin{cases} e^{-(x - \mu)} & x \geq \mu,\\ 0 & x < \mu. \end{cases}
+$$
 各 $$\mu$$ 值下 $$f(x \mid \mu)$$ 的图形见图 3.5.2。与图 3.5.1 一样，图形被平移了：现在图像的正部从 $$\mu$$ 而非 0 开始。若 $$X$$ 度量时间，则 $$\mu$$ 可限制为非负，使 $$X$$ 对每个 $$\mu$$ 值都以概率 1 为正。在这种 $$\mu$$ 表示 $$X$$ 取值界的模型中，$$\mu$$ 有时称为***门限参数***（threshold parameter）。
 ![ch03_fig_3_5_2](fig/ch03_fig_3_5_2.png)
 *图 3.5.2　 指数位置密度（原书 Figure 3.5.2）*
@@ -1183,16 +1183,16 @@ $$
 设 $$f(\cdot)$$ 是任意 pdf，$$\mu$$ 为任意实数，$$\sigma$$ 为任意正实数。则 $$X$$ 是以 $$(1/\sigma) f\bigl( (x - \mu)/\sigma \bigr)$$ 为 pdf 的随机变量，当且仅当存在以 $$f(z)$$ 为 pdf 的随机变量 $$Z$$ 使 $$X = \sigma Z + \mu$$。
 **证明**　证“若”部分：定义 $$g(z) = \sigma z + \mu$$，则 $$X = g(Z)$$，$$g$$ 是单调函数，$$g^{-1}(x) = (x - \mu)/\sigma$$，且 $$\Bigl\vert  \frac{d}{dx} g^{-1}(x) \Bigr\vert  = 1/\sigma$$。于是由定理 2.1.5，$$X$$ 的 pdf 为
 $$
-> f_X(x) = f_Z\bigl( g^{-1}(x) \bigr)\, \Bigl\vert  \frac{d}{dx}\, g^{-1}(x) \Bigr\vert  = f\Bigl( \frac{x - \mu}{\sigma} \Bigr)\, \frac{1}{\sigma}.
-> $$
+f_X(x) = f_Z\bigl( g^{-1}(x) \bigr)\, \Bigl\vert  \frac{d}{dx}\, g^{-1}(x) \Bigr\vert  = f\Bigl( \frac{x - \mu}{\sigma} \Bigr)\, \frac{1}{\sigma}.
+$$
 证“仅当”部分：定义 $$g(x) = (x - \mu)/\sigma$$，令 $$Z = g(X)$$。定理 2.1.5 再次适用，$$g^{-1}(z) = \sigma z + \mu$$，$$\Bigl\vert  \frac{d}{dz} g^{-1}(z) \Bigr\vert  = \sigma$$，$$Z$$ 的 pdf 为
 $$
-> f_Z(z) = f_X\bigl( g^{-1}(z) \bigr)\, \Bigl\vert  \frac{d}{dz}\, g^{-1}(z) \Bigr\vert  = f\Bigl( \frac{(\sigma z + \mu) - \mu}{\sigma} \Bigr)\, \sigma = f(z).
-> $$
+f_Z(z) = f_X\bigl( g^{-1}(z) \bigr)\, \Bigl\vert  \frac{d}{dz}\, g^{-1}(z) \Bigr\vert  = f\Bigl( \frac{(\sigma z + \mu) - \mu}{\sigma} \Bigr)\, \sigma = f(z).
+$$
 且有
 $$
-> \sigma Z + \mu = \sigma\, g(X) + \mu = \sigma\, \Bigl( \frac{X - \mu}{\sigma} \Bigr) + \mu = X.
-> $$
+\sigma Z + \mu = \sigma\, g(X) + \mu = \sigma\, \Bigl( \frac{X - \mu}{\sigma} \Bigr) + \mu = X.
+$$
 ∎
 从定理 3.5.6 可以提取一个重要事实：随机变量 $$Z = (X - \mu)/\sigma$$ 的 pdf 为
 $$
@@ -1203,8 +1203,8 @@ $$
 **定理 3.5.7（位置—尺度族的均值与方差）**
 设 $$Z$$ 是以 $$f(z)$$ 为 pdf 的随机变量，$$\mathrm{E} Z$$ 与 $$\mathrm{Var} Z$$ 存在。若 $$X$$ 是以 $$(1/\sigma) f\bigl( (x - \mu)/\sigma \bigr)$$ 为 pdf 的随机变量，则
 $$
-> \mathrm{E} X = \sigma\, \mathrm{E} Z + \mu \qquad\text{与}\qquad \mathrm{Var} X = \sigma^2\, \mathrm{Var} Z.
-> $$
+\mathrm{E} X = \sigma\, \mathrm{E} Z + \mu \qquad\text{与}\qquad \mathrm{Var} X = \sigma^2\, \mathrm{Var} Z.
+$$
 特别地，若 $$\mathrm{E} Z = 0$$ 且 $$\mathrm{Var} Z = 1$$，则 $$\mathrm{E} X = \mu$$ 且 $$\mathrm{Var} X = \sigma^2$$。
 **证明**　由定理 3.5.6，存在 pdf 为 $$f(z)$$ 的随机变量 $$Z^{*}$$ 使 $$X = \sigma Z^{*} + \mu$$。故 $$\mathrm{E} X = \sigma \mathrm{E} Z^{*} + \mu = \sigma \mathrm{E} Z + \mu$$，且 $$\mathrm{Var} X = \sigma^2 \mathrm{Var} Z^{*} = \sigma^2 \mathrm{Var} Z$$。 ∎
 对任何均值与方差都有限的位置—尺度族，可以选标准 pdf $$f(z)$$ 使 $$\mathrm{E} Z = 0$$ 且 $$\mathrm{Var} Z = 1$$（可以这样选取的证明留作习题 3.40）。这带来便利的解释：$$\mu$$ 与 $$\sigma^2$$ 分别是 $$X$$ 的均值与方差。3.3 节正态族的通常定义正是如此。但 3.3 节双指数族的通常定义并非如此——那里 $$\mathrm{Var} Z = 2$$。
@@ -1220,50 +1220,50 @@ $$
 **定理 3.6.1（切比雪夫不等式，Chebychev's Inequality）**
 设 $$X$$ 是随机变量，$$g(x)$$ 是非负函数。则对任意 $$r > 0$$，
 $$
-> P\bigl( g(X) \geq r \bigr) \leq \frac{\mathrm{E} g(X)}{r}.
-> $$
+P\bigl( g(X) \geq r \bigr) \leq \frac{\mathrm{E} g(X)}{r}.
+$$
 **证明**
 $$
-> \begin{aligned}
-> \mathrm{E} g(X) &= \int_{-\infty}^{\infty} g(x)\, f_X(x)\, dx\\
-> &\geq \int_{\{x : g(x) \geq r\}} g(x)\, f_X(x)\, dx \qquad （g\ \text{非负}）\\
-> &\geq r \int_{\{x : g(x) \geq r\}} f_X(x)\, dx\\
-> &= r\, P\bigl( g(X) \geq r \bigr). \qquad （\text{定义}）
-> \end{aligned}
-> $$
+\begin{aligned}
+\mathrm{E} g(X) &= \int_{-\infty}^{\infty} g(x)\, f_X(x)\, dx\\
+&\geq \int_{\{x : g(x) \geq r\}} g(x)\, f_X(x)\, dx \qquad （g\ \text{非负}）\\
+&\geq r \int_{\{x : g(x) \geq r\}} f_X(x)\, dx\\
+&= r\, P\bigl( g(X) \geq r \bigr). \qquad （\text{定义}）
+\end{aligned}
+$$
 整理即得所需不等式。 ∎
 **例 3.6.2（切比雪夫不等式的说明）**
 切比雪夫不等式最广泛的使用涉及均值与方差。取 $$g(x) = (x - \mu)^2/\sigma^2$$，其中 $$\mu = \mathrm{E} X$$，$$\sigma^2 = \mathrm{Var} X$$。为方便写 $$r = t^2$$，则
 $$
-> P\Bigl( \frac{(X - \mu)^2}{\sigma^2} \geq t^2 \Bigr) \leq \frac{1}{t^2}\, \mathrm{E}\Bigl[ \frac{(X - \mu)^2}{\sigma^2} \Bigr] = \frac{1}{t^2}.
-> $$
+P\Bigl( \frac{(X - \mu)^2}{\sigma^2} \geq t^2 \Bigr) \leq \frac{1}{t^2}\, \mathrm{E}\Bigl[ \frac{(X - \mu)^2}{\sigma^2} \Bigr] = \frac{1}{t^2}.
+$$
 做显然的代数变形，得不等式
 $$
-> P\bigl( \vert X - \mu\vert  \geq t \sigma \bigr) \leq \frac{1}{t^2},
-> $$
+P\bigl( \vert X - \mu\vert  \geq t \sigma \bigr) \leq \frac{1}{t^2},
+$$
 及其伴随形式
 $$
-> P\bigl( \vert X - \mu\vert  < t \sigma \bigr) \geq 1 - \frac{1}{t^2},
-> $$
+P\bigl( \vert X - \mu\vert  < t \sigma \bigr) \geq 1 - \frac{1}{t^2},
+$$
 它用 $$\sigma$$ 给出了偏差 $$\vert X - \mu\vert $$ 的普适界。例如取 $$t = 2$$：
 $$
-> P\bigl( \vert X - \mu\vert  \geq 2\sigma \bigr) \leq \frac{1}{2^2} = 0.25,
-> $$
+P\bigl( \vert X - \mu\vert  \geq 2\sigma \bigr) \leq \frac{1}{2^2} = 0.25,
+$$
 即随机变量落在其均值 $$2\sigma$$ 范围之内的机会至少为 75%（无论 $$X$$ 的分布如何）。
 切比雪夫不等式虽然适用广泛，却必然是保守的（例如见习题 3.46 与杂记 3.8.2）。特别地，对某些特定分布常能得到更紧的界。
 **例 3.6.3（正态概率不等式）**
 若 $$Z$$ 是标准正态变量，则
 $$
-> P(\vert Z\vert  \geq t) \leq \sqrt{\frac{2}{\pi}}\, \frac{e^{-t^2/2}}{t}, \qquad \text{对一切}\ t > 0. \tag{3.6.1}
-> $$
+P(\vert Z\vert  \geq t) \leq \sqrt{\frac{2}{\pi}}\, \frac{e^{-t^2/2}}{t}, \qquad \text{对一切}\ t > 0. \tag{3.6.1}
+$$
 与切比雪夫不等式比较：$$t = 2$$ 时切比雪夫给出 $$P(\vert Z\vert  \geq t) \leq 0.25$$，而 $$\sqrt{2/\pi}\, e^{-2/2} / 2 = 0.054$$，改进巨大。
 为证 (3.6.1)，写
 $$
-> P(Z \geq t) = \frac{1}{\sqrt{2\pi}} \int_t^{\infty} e^{-x^2/2}\, dx \leq \frac{1}{\sqrt{2\pi}} \int_t^{\infty} \frac{x}{t}\, e^{-x^2/2}\, dx \qquad （\text{因对}\ x > t\ \text{有}\ x/t > 1）
-> $$
+P(Z \geq t) = \frac{1}{\sqrt{2\pi}} \int_t^{\infty} e^{-x^2/2}\, dx \leq \frac{1}{\sqrt{2\pi}} \int_t^{\infty} \frac{x}{t}\, e^{-x^2/2}\, dx \qquad （\text{因对}\ x > t\ \text{有}\ x/t > 1）
 $$
-> = \frac{1}{\sqrt{2\pi}}\, \frac{e^{-t^2/2}}{t},
-> $$
+$$
+= \frac{1}{\sqrt{2\pi}}\, \frac{e^{-t^2/2}}{t},
+$$
 再用事实 $$P(\vert Z\vert  \geq t) = 2 P(Z \geq t)$$。$$P(\vert Z\vert  \geq t)$$ 的下界可用类似方法建立（见习题 3.47）。
 还有许多其他概率不等式，几乎都与切比雪夫精神相似。例如我们将见到（习题 3.45）
 $$
@@ -1279,66 +1279,66 @@ $$
 **定理 3.6.4（伽马概率的递推）**
 设 $$X_{\alpha,\beta}$$ 表示 $$\mathrm{gamma}(\alpha, \beta)$$ 随机变量，pdf 为 $$f(x \mid \alpha, \beta)$$，$$\alpha > 1$$。则对任意常数 $$a$$ 与 $$b$$，
 $$
-> P(a < X_{\alpha,\beta} < b) = \beta\, \bigl( f(a \mid \alpha, \beta) - f(b \mid \alpha, \beta) \bigr) + P(a < X_{\alpha - 1, \beta} < b). \tag{3.6.3}
-> $$
+P(a < X_{\alpha,\beta} < b) = \beta\, \bigl( f(a \mid \alpha, \beta) - f(b \mid \alpha, \beta) \bigr) + P(a < X_{\alpha - 1, \beta} < b). \tag{3.6.3}
+$$
 **证明**　由定义，
 $$
-> P(a < X_{\alpha,\beta} < b) = \frac{1}{\Gamma(\alpha) \beta^{\alpha}} \int_a^{b} x^{\alpha - 1} e^{-x/\beta}\, dx
-> $$
+P(a < X_{\alpha,\beta} < b) = \frac{1}{\Gamma(\alpha) \beta^{\alpha}} \int_a^{b} x^{\alpha - 1} e^{-x/\beta}\, dx
 $$
-> = \frac{1}{\Gamma(\alpha) \beta^{\alpha}} \left[ \Bigl. -x^{\alpha - 1} \beta\, e^{-x/\beta} \Bigr\vert _a^{b} + \int_a^{b} (\alpha - 1)\, x^{\alpha - 2}\, \beta\, e^{-x/\beta}\, dx \right],
-> $$
+$$
+= \frac{1}{\Gamma(\alpha) \beta^{\alpha}} \left[ \Bigl. -x^{\alpha - 1} \beta\, e^{-x/\beta} \Bigr\vert _a^{b} + \int_a^{b} (\alpha - 1)\, x^{\alpha - 2}\, \beta\, e^{-x/\beta}\, dx \right],
+$$
 这里用分部积分，取 $$u = x^{\alpha-1}$$，$$dv = e^{-x/\beta}\, dx$$。继续：
 $$
-> P(a < X_{\alpha,\beta} < b) = \beta\, \bigl( f(a \mid \alpha, \beta) - f(b \mid \alpha, \beta) \bigr) + \frac{(\alpha - 1)}{\Gamma(\alpha) \beta^{\alpha - 1}} \int_a^{b} x^{\alpha - 2} e^{-x/\beta}\, dx.
-> $$
+P(a < X_{\alpha,\beta} < b) = \beta\, \bigl( f(a \mid \alpha, \beta) - f(b \mid \alpha, \beta) \bigr) + \frac{(\alpha - 1)}{\Gamma(\alpha) \beta^{\alpha - 1}} \int_a^{b} x^{\alpha - 2} e^{-x/\beta}\, dx.
+$$
 用 $$\Gamma(\alpha) = (\alpha - 1) \Gamma(\alpha - 1)$$，可见最后一项是 $$P(a < X_{\alpha-1,\beta} < b)$$。 ∎
 若 $$\alpha$$ 是整数，反复使用 (3.6.3) 最终会得到可以解析求值的积分（$$\alpha = 1$$ 时即指数分布）。因此我们可以轻松计算这些伽马概率。
 有一整类恒等式依赖分部积分。第一个归于 Charles Stein，他在估计多元正态均值的工作中使用了它（Stein 1973, 1981）。
 **引理 3.6.5（斯坦引理，Stein's Lemma）**
 设 $$X \sim n(\theta, \sigma^2)$$，$$g$$ 是满足 $$\mathrm{E}\vert g'(X)\vert  < \infty$$ 的可微函数。则
 $$
-> \mathrm{E}\bigl[ g(X)(X - \theta) \bigr] = \sigma^2\, \mathrm{E} g'(X).
-> $$
+\mathrm{E}\bigl[ g(X)(X - \theta) \bigr] = \sigma^2\, \mathrm{E} g'(X).
+$$
 **证明**　左端为
 $$
-> \mathrm{E}\bigl[ g(X)(X - \theta) \bigr] = \frac{1}{\sqrt{2\pi}\, \sigma} \int_{-\infty}^{\infty} g(x)\, (x - \theta)\, e^{-(x - \theta)^2/(2\sigma^2)}\, dx.
-> $$
+\mathrm{E}\bigl[ g(X)(X - \theta) \bigr] = \frac{1}{\sqrt{2\pi}\, \sigma} \int_{-\infty}^{\infty} g(x)\, (x - \theta)\, e^{-(x - \theta)^2/(2\sigma^2)}\, dx.
+$$
 用分部积分，取 $$u = g(x)$$，$$dv = (x - \theta) e^{-(x-\theta)^2/(2\sigma^2)}\, dx$$，得
 $$
-> \mathrm{E}\bigl[ g(X)(X - \theta) \bigr] = \frac{1}{\sqrt{2\pi}\, \sigma} \left[ \Bigl. -\sigma^2\, g(x)\, e^{-(x - \theta)^2/(2\sigma^2)} \Bigr\vert _{-\infty}^{\infty} + \int_{-\infty}^{\infty} \sigma^2\, g'(x)\, e^{-(x - \theta)^2/(2\sigma^2)}\, dx \right].
-> $$
+\mathrm{E}\bigl[ g(X)(X - \theta) \bigr] = \frac{1}{\sqrt{2\pi}\, \sigma} \left[ \Bigl. -\sigma^2\, g(x)\, e^{-(x - \theta)^2/(2\sigma^2)} \Bigr\vert _{-\infty}^{\infty} + \int_{-\infty}^{\infty} \sigma^2\, g'(x)\, e^{-(x - \theta)^2/(2\sigma^2)}\, dx \right].
+$$
 关于 $$g'$$ 的条件足以保证第一项为 0，右端剩下的正是 $$\sigma^2\, \mathrm{E} g'(X)$$。 ∎
 **例 3.6.6（正态的高阶矩）**
 斯坦引理使高阶矩的计算相当容易。例如若 $$X \sim n(\theta, \sigma^2)$$，则
 $$
-> \begin{aligned}
-> \mathrm{E} X^3 &= \mathrm{E} X^2 (X - \theta + \theta)\\
-> &= \mathrm{E} X^2 (X - \theta) + \theta\, \mathrm{E} X^2\\
-> &= 2\sigma^2\, \mathrm{E} X + \theta\, \mathrm{E} X^2 \qquad （g(x) = x^2,\ g'(x) = 2x）\\
-> &= 2\sigma^2 \theta + \theta (\sigma^2 + \theta^2)\\
-> &= 3\theta\sigma^2 + \theta^3.
-> \end{aligned}
-> $$
+\begin{aligned}
+\mathrm{E} X^3 &= \mathrm{E} X^2 (X - \theta + \theta)\\
+&= \mathrm{E} X^2 (X - \theta) + \theta\, \mathrm{E} X^2\\
+&= 2\sigma^2\, \mathrm{E} X + \theta\, \mathrm{E} X^2 \qquad （g(x) = x^2,\ g'(x) = 2x）\\
+&= 2\sigma^2 \theta + \theta (\sigma^2 + \theta^2)\\
+&= 3\theta\sigma^2 + \theta^3.
+\end{aligned}
+$$
 许多分布都有类似的分部积分恒等式（见习题 3.49 与 Hudson (1978)）。利用特定分布的性质也可以得到有用的恒等式，如下面定理所示。
 **定理 3.6.7（卡方分布的恒等式）**
 设 $$\chi_p^2$$ 表示自由度为 $$p$$ 的卡方随机变量。对任意函数 $$h(x)$$，
 $$
-> \mathrm{E} h\bigl( \chi_p^2 \bigr) = p\, \mathrm{E}\Bigl[ \frac{h\bigl( \chi_{p+2}^2 \bigr)}{\chi_{p+2}^2} \Bigr], \tag{3.6.4}
-> $$
+\mathrm{E} h\bigl( \chi_p^2 \bigr) = p\, \mathrm{E}\Bigl[ \frac{h\bigl( \chi_{p+2}^2 \bigr)}{\chi_{p+2}^2} \Bigr], \tag{3.6.4}
+$$
 前提是各期望存在。
 **证明**　“前提是各期望存在”是回避对 $$h$$ 规定条件的一种省略说法；一般而言，合理的函数都满足 (3.6.4)。我们有
 $$
-> \mathrm{E} h\bigl( \chi_p^2 \bigr) = \frac{1}{\Gamma(p/2)\, 2^{p/2}} \int_0^{\infty} h(x)\, x^{(p/2) - 1} e^{-x/2}\, dx = \frac{1}{\Gamma(p/2)\, 2^{p/2}} \int_0^{\infty} h(x)\, \frac{x^{((p+2)/2) - 1} e^{-x/2}}{x}\, dx,
-> $$
+\mathrm{E} h\bigl( \chi_p^2 \bigr) = \frac{1}{\Gamma(p/2)\, 2^{p/2}} \int_0^{\infty} h(x)\, x^{(p/2) - 1} e^{-x/2}\, dx = \frac{1}{\Gamma(p/2)\, 2^{p/2}} \int_0^{\infty} h(x)\, \frac{x^{((p+2)/2) - 1} e^{-x/2}}{x}\, dx,
+$$
 最后一步是把被积函数乘以 $$x/x$$。现在写
 $$
-> \Gamma\Bigl( \frac{p}{2} \Bigr) 2^{p/2} = \frac{\Gamma\bigl( (p+2)/2 \bigr)\, 2^{(p+2)/2}}{p},
-> $$
+\Gamma\Bigl( \frac{p}{2} \Bigr) 2^{p/2} = \frac{\Gamma\bigl( (p+2)/2 \bigr)\, 2^{(p+2)/2}}{p},
+$$
 故
 $$
-> \mathrm{E} h\bigl( \chi_p^2 \bigr) = p\, \frac{1}{\Gamma\bigl( (p+2)/2 \bigr)\, 2^{(p+2)/2}} \int_0^{\infty} \frac{h(x)\, x^{((p+2)/2) - 1} e^{-x/2}}{x}\, dx = p\, \mathrm{E}\Bigl[ \frac{h\bigl( \chi_{p+2}^2 \bigr)}{\chi_{p+2}^2} \Bigr].
-> $$
+\mathrm{E} h\bigl( \chi_p^2 \bigr) = p\, \frac{1}{\Gamma\bigl( (p+2)/2 \bigr)\, 2^{(p+2)/2}} \int_0^{\infty} \frac{h(x)\, x^{((p+2)/2) - 1} e^{-x/2}}{x}\, dx = p\, \mathrm{E}\Bigl[ \frac{h\bigl( \chi_{p+2}^2 \bigr)}{\chi_{p+2}^2} \Bigr].
+$$
 ∎
 用 (3.6.4) 做某些矩计算非常容易。例如 $$\chi_p^2$$ 的均值：
 $$
@@ -1354,45 +1354,45 @@ $$
 设 $$g(x)$$ 是满足 $$-\infty < \mathrm{E} g(X) < \infty$$ 且 $$-\infty < g(-1) < \infty$$ 的函数。则
 - a. 若 $$X \sim \mathrm{Poisson}(\lambda)$$，
   $$
->   \mathrm{E}\bigl( \lambda\, g(X) \bigr) = \mathrm{E}\bigl( X\, g(X - 1) \bigr). \tag{3.6.5}
->   $$
+  \mathrm{E}\bigl( \lambda\, g(X) \bigr) = \mathrm{E}\bigl( X\, g(X - 1) \bigr). \tag{3.6.5}
+  $$
 - b. 若 $$X \sim \mathrm{negative\ binomial}(r, p)$$，
   $$
->   \mathrm{E}\bigl( (1 - p)\, g(X) \bigr) = \mathrm{E}\Bigl[ \frac{X}{r + X - 1}\, g(X - 1) \Bigr]. \tag{3.6.6}
->   $$
+  \mathrm{E}\bigl( (1 - p)\, g(X) \bigr) = \mathrm{E}\Bigl[ \frac{X}{r + X - 1}\, g(X - 1) \Bigr]. \tag{3.6.6}
+  $$
 **证明**　证 (a)，(b) 留作习题 3.50。我们有
 $$
-> \mathrm{E}\bigl( \lambda\, g(X) \bigr) = \sum_{x=0}^{\infty} \lambda\, g(x)\, \frac{e^{-\lambda} \lambda^{x}}{x!}
-> = \sum_{x=0}^{\infty} g(x)\, \frac{e^{-\lambda} \lambda^{x+1} (x+1)}{x!\, (x+1)}
-> = \sum_{x=0}^{\infty} (x + 1)\, g(x)\, \frac{e^{-\lambda} \lambda^{x+1}}{(x+1)!}.
-> $$
+\mathrm{E}\bigl( \lambda\, g(X) \bigr) = \sum_{x=0}^{\infty} \lambda\, g(x)\, \frac{e^{-\lambda} \lambda^{x}}{x!}
+= \sum_{x=0}^{\infty} g(x)\, \frac{e^{-\lambda} \lambda^{x+1} (x+1)}{x!\, (x+1)}
+= \sum_{x=0}^{\infty} (x + 1)\, g(x)\, \frac{e^{-\lambda} \lambda^{x+1}}{(x+1)!}.
+$$
 变换求和指标，写 $$y = x + 1$$：当 $$x$$ 从 0 到 $$\infty$$ 时 $$y$$ 从 1 到 $$\infty$$。于是
 $$
-> \mathrm{E}\bigl( \lambda\, g(X) \bigr) = \sum_{y=1}^{\infty} y\, g(y - 1)\, \frac{e^{-\lambda} \lambda^{y}}{y!} = \sum_{y=0}^{\infty} y\, g(y - 1)\, \frac{e^{-\lambda} \lambda^{y}}{y!} \qquad （\text{补加的项为}\ 0），
-> $$
+\mathrm{E}\bigl( \lambda\, g(X) \bigr) = \sum_{y=1}^{\infty} y\, g(y - 1)\, \frac{e^{-\lambda} \lambda^{y}}{y!} = \sum_{y=0}^{\infty} y\, g(y - 1)\, \frac{e^{-\lambda} \lambda^{y}}{y!} \qquad （\text{补加的项为}\ 0），
+$$
 最后这个和正是 $$\mathrm{Poisson}(\lambda)$$ 的期望，故等于 $$\mathrm{E}\bigl( X g(X-1) \bigr)$$。 ∎
 Hwang (1982) 以与 Stein 类似的方式使用其恒等式，证明关于多元估计量的结果。该恒等式还有其他应用，特别是矩的计算。
 **例 3.6.9（泊松的高阶矩）**
 对 $$X \sim \mathrm{Poisson}(\lambda)$$，取 $$g(x) = x^2$$ 并用 (3.6.5)：
 $$
-> \mathrm{E}\bigl( \lambda X^2 \bigr) = \mathrm{E}\bigl( X (X - 1)^2 \bigr) = \mathrm{E}\bigl( X^3 - 2X^2 + X \bigr).
-> $$
+\mathrm{E}\bigl( \lambda X^2 \bigr) = \mathrm{E}\bigl( X (X - 1)^2 \bigr) = \mathrm{E}\bigl( X^3 - 2X^2 + X \bigr).
+$$
 因此 $$\mathrm{Poisson}(\lambda)$$ 的三阶矩为
 $$
-> \mathrm{E} X^3 = \lambda\, \mathrm{E} X^2 + 2\, \mathrm{E} X^2 - \mathrm{E} X = \lambda (\lambda + \lambda^2) + 2 (\lambda + \lambda^2) - \lambda = \lambda^3 + 3\lambda^2 + \lambda.
-> $$
+\mathrm{E} X^3 = \lambda\, \mathrm{E} X^2 + 2\, \mathrm{E} X^2 - \mathrm{E} X = \lambda (\lambda + \lambda^2) + 2 (\lambda + \lambda^2) - \lambda = \lambda^3 + 3\lambda^2 + \lambda.
+$$
 对负二项分布，在 (3.6.6) 中取 $$g(x) = r + x$$ 可算出均值：
 $$
-> \mathrm{E}\bigl( (1 - p)(r + X) \bigr) = \mathrm{E}\Bigl[ \frac{X}{r + X - 1}\, (r + X - 1) \Bigr] = \mathrm{E} X,
-> $$
+\mathrm{E}\bigl( (1 - p)(r + X) \bigr) = \mathrm{E}\Bigl[ \frac{X}{r + X - 1}\, (r + X - 1) \Bigr] = \mathrm{E} X,
+$$
 整理得
 $$
-> (\mathrm{E} X)\bigl( (1 - p) - 1 \bigr) = -r(1 - p),
-> $$
+(\mathrm{E} X)\bigl( (1 - p) - 1 \bigr) = -r(1 - p),
+$$
 即
 $$
-> \mathrm{E} X = \frac{r(1 - p)}{p}.
-> $$
+\mathrm{E} X = \frac{r(1 - p)}{p}.
+$$
 其他矩可类似计算。
 ## 3.7 习题（Exercises）
 **3.1** 设 $$X$$ 服从一般离散均匀分布 $$\mathrm{discrete\ uniform}(N_0, N_1)$$，即对值 $$N_0, N_0+1, \ldots, N_1$$ 中的每一个赋予相等概率，其中 $$N_0 \leq N_1$$ 且均为整数。求 $$\mathrm{E} X$$ 与 $$\mathrm{Var} X$$ 的表达式。
@@ -1538,8 +1538,8 @@ $$
 - v. $$\lim_{t \to 0} \dfrac{P(N_t > 1)}{t} = 0$$（无同时到达）。
 若 i–v 成立，则对任意整数 $$n$$，
 $$
-> P(N_t = n) = e^{-\lambda t}\, \frac{(\lambda t)^{n}}{n!},
-> $$
+P(N_t = n) = e^{-\lambda t}\, \frac{(\lambda t)^{n}}{n!},
+$$
 即 $$N_t \sim \mathrm{Poisson}(\lambda t)$$。
 这些公设也可以解释为描述对象在空间中的行为（例如昆虫的移动），从而给出泊松分布在空间分布中的应用。
 ### 3.8.2 切比雪夫及更精细的不等式（Chebychev and Beyond）
@@ -1557,28 +1557,28 @@ $$
 **引理 3.8.3（马尔可夫不等式）**
 若 $$P(Y \geq 0) = 1$$ 且 $$P(Y = 0) < 1$$，则对任意 $$r > 0$$，
 $$
-> P(Y \geq r) \leq \frac{\mathrm{E} Y}{r},
-> $$
+P(Y \geq r) \leq \frac{\mathrm{E} Y}{r},
+$$
 等号成立当且仅当 $$P(Y = r) = p = 1 - P(Y = 0)$$，$$0 < p \leq 1$$。
 把马尔可夫不等式应用于量 $$Y = (\bar{X}_n - \mu)^2 / \sigma^2$$ 即得上面的结果。
 切比雪夫不等式如此宽松的一个原因是它对底层分布没有任何限制。加上单峰性这一附加限制，可以得到更紧的界——高斯不等式（Gauss）与 Vysochanskiĭ–Petunin 不等式（细节与基于初等微积分的证明见 Pukelsheim (1994)）。
 **定理 3.8.4（高斯不等式，Gauss Inequality）**
 设 $$X \sim f$$，$$f$$ 是众数为 $$\nu$$ 的单峰密度，定义 $$\tau^2 = \mathrm{E}(X - \nu)^2$$。则
 $$
-> P\bigl( \vert X - \nu\vert  > \varepsilon \bigr) \leq \begin{cases}
-> \dfrac{4\tau^2}{9\varepsilon^2} & \text{对一切}\ \varepsilon \geq \sqrt{\dfrac{4}{3}}\, \tau,\\[10pt]
-> 1 - \dfrac{\varepsilon}{\sqrt{3}\, \tau} & \text{对一切}\ \varepsilon \leq \sqrt{\dfrac{4}{3}}\, \tau.
-> \end{cases}
-> $$
+P\bigl( \vert X - \nu\vert  > \varepsilon \bigr) \leq \begin{cases}
+\dfrac{4\tau^2}{9\varepsilon^2} & \text{对一切}\ \varepsilon \geq \sqrt{\dfrac{4}{3}}\, \tau,\\[10pt]
+1 - \dfrac{\varepsilon}{\sqrt{3}\, \tau} & \text{对一切}\ \varepsilon \leq \sqrt{\dfrac{4}{3}}\, \tau.
+\end{cases}
+$$
 虽然这比切比雪夫更紧，但对众数的依赖限制了其用处。Vysochanskiĭ–Petunin 的推广去除了这一限制。
 **定理 3.8.5（Vysochanskiĭ–Petunin 不等式）**
 设 $$X \sim f$$，$$f$$ 单峰，对任意点 $$\alpha$$ 定义 $$\xi^2 = \mathrm{E}(X - \alpha)^2$$。则
 $$
-> P\bigl( \vert X - \alpha\vert  > \varepsilon \bigr) \leq \begin{cases}
-> \dfrac{4\xi^2}{9\varepsilon^2} & \text{对一切}\ \varepsilon \geq \sqrt{\dfrac{8}{3}}\, \xi,\\[8pt]
-> \dfrac{4\xi^2}{9\varepsilon^2} - \dfrac{1}{3} & \text{对一切}\ \varepsilon \leq \sqrt{\dfrac{8}{3}}\, \xi.
-> \end{cases}
-> $$
+P\bigl( \vert X - \alpha\vert  > \varepsilon \bigr) \leq \begin{cases}
+\dfrac{4\xi^2}{9\varepsilon^2} & \text{对一切}\ \varepsilon \geq \sqrt{\dfrac{8}{3}}\, \xi,\\[8pt]
+\dfrac{4\xi^2}{9\varepsilon^2} - \dfrac{1}{3} & \text{对一切}\ \varepsilon \leq \sqrt{\dfrac{8}{3}}\, \xi.
+\end{cases}
+$$
 Pukelsheim 指出，取 $$\alpha = \mu = \mathrm{E}(X)$$、$$\varepsilon = 3\sigma$$（$$\sigma^2 = \mathrm{Var}(X)$$）得
 $$
 P\bigl( \vert X - \mu\vert  > 3\sigma \bigr) \leq \frac{4}{81} < 0.05,

@@ -4,7 +4,7 @@ kind: note
 title: "第 9 章　区间估计（Interval Estimation）"
 course: statistics
 order: 9
-date: 2026-10-07
+date: 2026-10-19
 permalink: /statistics/chap09.html
 ---
 
@@ -77,7 +77,7 @@ $$
 > **例 9.1.6（尺度均匀分布的区间估计量）**
 >
 > 设 $$X_1, \ldots, X_n$$ 是来自 uniform$(0, \theta)$$ 总体的随机样本，令 $$Y = \max\{X_1, \ldots, X_n\}$$。我们关心 $$\theta$$ 的区间估计量，考察两个候选者：$$[aY, bY]$$（$$1 \leq a < b$$）与 $$[Y + c, Y + d]$$（$$0 \leq c < d$$），其中 $$a, b, c, d$$ 是指定常数。（注意必有 $$\theta > y$$。）对第一个区间，
-$$
+> $$
 > \begin{aligned}
 > P_{\theta}\bigl( \theta \in [aY, bY] \bigr)
 >  &= P_{\theta}(aY \leq \theta \leq bY)\\
@@ -87,22 +87,22 @@ $$
 > $$
 我们在例 7.3.13 中已见 $$f_Y(y) = ny^{n-1}/\theta^n$$（$$0 \leq y \leq \theta$$），故 $$T$$ 的 pdf 为 $$f_T(t) = nt^{n-1}$$（$$0 \leq t \leq 1$$）。于是
 $$
-> P_{\theta}\Bigl( \frac{1}{b} \leq T \leq \frac{1}{a} \Bigr) = \int_{1/b}^{1/a} nt^{n-1}\, dt = \Bigl( \frac{1}{a} \Bigr)^{\! n} - \Bigl( \frac{1}{b} \Bigr)^{\! n}.
-> $$
+P_{\theta}\Bigl( \frac{1}{b} \leq T \leq \frac{1}{a} \Bigr) = \int_{1/b}^{1/a} nt^{n-1}\, dt = \Bigl( \frac{1}{a} \Bigr)^{\! n} - \Bigl( \frac{1}{b} \Bigr)^{\! n}.
+$$
 第一个区间的覆盖概率与 $$\theta$$ 的值无关，故 $$\left( \tfrac{1}{a} \right)^n - \left( \tfrac{1}{b} \right)^n$$ 就是该区间的置信系数。
 对第二个区间，当 $$\theta \geq d$$ 时类似计算给出
 $$
-> \begin{aligned}
-> P_{\theta}\bigl( \theta \in [Y + c, Y + d] \bigr)
->  &= P_{\theta}(Y + c \leq \theta \leq Y + d)\\
->  &= P_{\theta}\Bigl( 1 - \frac{d}{\theta} \leq T \leq 1 - \frac{c}{\theta} \Bigr) \qquad （T = Y/\theta）\\
->  &= \int_{1-d/\theta}^{1-c/\theta} nt^{n-1}\, dt = \Bigl( 1 - \frac{c}{\theta} \Bigr)^{\! n} - \Bigl( 1 - \frac{d}{\theta} \Bigr)^{\! n}.
-> \end{aligned}
-> $$
+\begin{aligned}
+P_{\theta}\bigl( \theta \in [Y + c, Y + d] \bigr)
+ &= P_{\theta}(Y + c \leq \theta \leq Y + d)\\
+ &= P_{\theta}\Bigl( 1 - \frac{d}{\theta} \leq T \leq 1 - \frac{c}{\theta} \Bigr) \qquad （T = Y/\theta）\\
+ &= \int_{1-d/\theta}^{1-c/\theta} nt^{n-1}\, dt = \Bigl( 1 - \frac{c}{\theta} \Bigr)^{\! n} - \Bigl( 1 - \frac{d}{\theta} \Bigr)^{\! n}.
+\end{aligned}
+$$
 此时覆盖概率依赖于 $$\theta$$。而且容易算出，对任何常数 $$c$$ 与 $$d$$，
 $$
-> \lim_{\theta \to \infty} \Bigl[ \Bigl( 1 - \frac{c}{\theta} \Bigr)^{\! n} - \Bigl( 1 - \frac{d}{\theta} \Bigr)^{\! n} \Bigr] = 0,
-> $$
+\lim_{\theta \to \infty} \Bigl[ \Bigl( 1 - \frac{c}{\theta} \Bigr)^{\! n} - \Bigl( 1 - \frac{d}{\theta} \Bigr)^{\! n} \Bigr] = 0,
+$$
 这表明该区间估计量的置信系数为零。
 两个候选区间的命运迥异，原因何在？第一个区间的覆盖概率可以借助 $$Y/\theta$$ 表达，而 $$Y/\theta$$ 的分布不依赖参数——这样的量称为枢轴量（pivotal quantity），9.2.2 节将系统研究它。
 ## 9.2 寻找区间估计量的方法（Methods of Finding Interval Estimators）
@@ -112,18 +112,18 @@ $$
 **例 9.2.1（反转正态检验）**
 设 $$X_1, \ldots, X_n$$ 是 iid $$n(\mu, \sigma^2)$$，考虑检验 $$H_0 : \mu = \mu_0$$ 对 $$H_1 : \mu \neq \mu_0$$。在给定水平 $$\alpha$$ 下，一个合理的检验（事实上是最强无偏检验）的拒绝区域为 $$\bigl\{ \textbf{x} : \vert \bar{x} - \mu_0\vert  > z_{\alpha/2}\, \sigma / \sqrt{n} \bigr\}$$。注意 $$H_0$$ 在满足
 $$
-> \vert \bar{x} - \mu_0\vert  \leq z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}}
-> \qquad\text{即}\qquad
-> \bar{x} - z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \leq \mu_0 \leq \bar{x} + z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}}
-> $$
+\vert \bar{x} - \mu_0\vert  \leq z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}}
+\qquad\text{即}\qquad
+\bar{x} - z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \leq \mu_0 \leq \bar{x} + z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}}
+$$
 的样本点上被接受。由于该检验的尺寸为 $$\alpha$$，即 $$P(H_0\ \text{被拒绝} \mid \mu = \mu_0) = \alpha$$，换个说法就是 $$P(H_0\ \text{被接受} \mid \mu = \mu_0) = 1 - \alpha$$。把它与上面的接受区域刻画结合起来，可以写成
 $$
-> P\Bigl( \bar{X} - z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \leq \mu_0 \leq \bar{X} + z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \;\Big\vert \; \mu = \mu_0 \Bigr) = 1 - \alpha.
-> $$
+P\Bigl( \bar{X} - z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \leq \mu_0 \leq \bar{X} + z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \;\Big\vert \; \mu = \mu_0 \Bigr) = 1 - \alpha.
+$$
 但这一概率陈述对每个 $$\mu_0$$ 都成立，故陈述
 $$
-> P_{\mu}\Bigl( \bar{X} - z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{X} + z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \Bigr) = 1 - \alpha
-> $$
+P_{\mu}\Bigl( \bar{X} - z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{X} + z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \Bigr) = 1 - \alpha
+$$
 为真。通过反转水平 $$\alpha$$ 检验的接受区域得到的区间 $$\bigl[ \bar{x} - z_{\alpha/2}\, \sigma / \sqrt{n},\ \bar{x} + z_{\alpha/2}\, \sigma / \sqrt{n} \bigr]$$ 是一个 $$1 - \alpha$$ 置信区间。
 我们已例示了置信集合与检验之间的对应。假设检验的接受区域（样本空间中接受 $$H_0 : \mu = \mu_0$$ 的集合）为
 $$
@@ -144,28 +144,28 @@ $$
 **定理 9.2.2（检验与置信集合的对应）**
 对每个 $$\theta_0 \in \Theta$$，设 $$A(\theta_0)$$ 是 $$H_0 : \theta = \theta_0$$ 的一个水平 $$\alpha$$ 检验的接受区域。对每个 $$\textbf{x} \in \mathcal{X}$$，在参数空间中定义集合
 $$
-> C(\textbf{x}) = \{ \theta_0 : \textbf{x} \in A(\theta_0) \}. \tag{9.2.1}
-> $$
+C(\textbf{x}) = \{ \theta_0 : \textbf{x} \in A(\theta_0) \}. \tag{9.2.1}
+$$
 则随机集合 $$C(\textbf{X})$$ 是一个 $$1 - \alpha$$ 置信集合。反之，设 $$C(\textbf{X})$$ 是一个 $$1 - \alpha$$ 置信集合。对任意 $$\theta_0 \in \Theta$$，定义
 $$
-> A(\theta_0) = \{ \textbf{x} : \theta_0 \in C(\textbf{x}) \}.
-> $$
+A(\theta_0) = \{ \textbf{x} : \theta_0 \in C(\textbf{x}) \}.
+$$
 则 $$A(\theta_0)$$ 是 $$H_0 : \theta = \theta_0$$ 的一个水平 $$\alpha$$ 检验的接受区域。
 **证明**　第一部分：由于 $$A(\theta_0)$$ 是水平 $$\alpha$$ 检验的接受区域，
 $$
-> P_{\theta_0}\bigl( \textbf{X} \notin A(\theta_0) \bigr) \leq \alpha
-> \quad\text{从而}\quad
-> P_{\theta_0}\bigl( \textbf{X} \in A(\theta_0) \bigr) \geq 1 - \alpha.
-> $$
+P_{\theta_0}\bigl( \textbf{X} \notin A(\theta_0) \bigr) \leq \alpha
+\quad\text{从而}\quad
+P_{\theta_0}\bigl( \textbf{X} \in A(\theta_0) \bigr) \geq 1 - \alpha.
+$$
 因 $$\theta_0$$ 任意，将其换写为 $$\theta$$。结合上面的不等式与 (9.2.1)，集合 $$C(\textbf{X})$$ 的覆盖概率为
 $$
-> P_{\theta}\bigl( \theta \in C(\textbf{X}) \bigr) = P_{\theta}\bigl( \textbf{X} \in A(\theta) \bigr) \geq 1 - \alpha,
-> $$
+P_{\theta}\bigl( \theta \in C(\textbf{X}) \bigr) = P_{\theta}\bigl( \textbf{X} \in A(\theta) \bigr) \geq 1 - \alpha,
+$$
 故 $$C(\textbf{X})$$ 是 $$1 - \alpha$$ 置信集合。
 第二部分：对 $$H_0 : \theta = \theta_0$$ 的、以 $$A(\theta_0)$$ 为接受区域的检验，其第一类错误概率为
 $$
-> P_{\theta_0}\bigl( \textbf{X} \notin A(\theta_0) \bigr) = P_{\theta_0}\bigl( \theta_0 \notin C(\textbf{X}) \bigr) \leq \alpha,
-> $$
+P_{\theta_0}\bigl( \textbf{X} \notin A(\theta_0) \bigr) = P_{\theta_0}\bigl( \theta_0 \notin C(\textbf{X}) \bigr) \leq \alpha,
+$$
 故这是一个水平 $$\alpha$$ 检验。 ∎
 人们常说“反转一个检验得到置信集合”，但定理 9.2.2 表明：我们实际反转的是一个**检验族**——对每个 $$\theta_0 \in \Theta$$ 各有一个检验——从而得到一个置信集合。
 检验可以反转为置信集合（反之亦然）在理论上有意思，而定理 9.2.2 真正有用的是第一部分：构造水平 $$\alpha$$ 的接受区域是件相对容易的事，而构造置信集合才是困难的任务。因此，通过反转接受区域来获得置信集合的方法相当有用——我们掌握的所有寻找检验的手段都可以立即用于构造置信集合。
@@ -180,55 +180,55 @@ $$
 假设我们想为 exponential($$\lambda$$) 总体的均值 $$\lambda$$ 构造一个置信区间。可以通过反转 $$H_0 : \lambda = \lambda_0$$ 对 $$H_1 : \lambda \neq \lambda_0$$ 的水平 $$\alpha$$ 检验得到。
 取随机样本 $$X_1, \ldots, X_n$$，LRT 统计量为
 $$
-> \frac{\lambda_0^n e^{-\sum x_i / \lambda_0}}{\sup_{\lambda} \lambda^n e^{-\sum x_i / \lambda}}
-> = \frac{\lambda_0^n e^{-\sum x_i / \lambda_0}}{\bigl( \sum x_i / n \bigr)^n e^{-n}}
-> = \Bigl( \frac{\sum x_i}{n \lambda_0} \Bigr)^{\! n} e^{\,n}\, e^{-\sum x_i / \lambda_0}.
-> $$
+\frac{\lambda_0^n e^{-\sum x_i / \lambda_0}}{\sup_{\lambda} \lambda^n e^{-\sum x_i / \lambda}}
+= \frac{\lambda_0^n e^{-\sum x_i / \lambda_0}}{\bigl( \sum x_i / n \bigr)^n e^{-n}}
+= \Bigl( \frac{\sum x_i}{n \lambda_0} \Bigr)^{\! n} e^{\,n}\, e^{-\sum x_i / \lambda_0}.
+$$
 对固定的 $$\lambda_0$$，接受区域为
 $$
-> A(\lambda_0) = \Bigl\{ \textbf{x} : \Bigl( \frac{\sum x_i}{\lambda_0} \Bigr)^{\! n} e^{-\sum x_i / \lambda_0} \geq k^{*} \Bigr\}, \tag{9.2.2}
-> $$
+A(\lambda_0) = \Bigl\{ \textbf{x} : \Bigl( \frac{\sum x_i}{\lambda_0} \Bigr)^{\! n} e^{-\sum x_i / \lambda_0} \geq k^{*} \Bigr\}, \tag{9.2.2}
+$$
 其中常数 $$k^{*}$$ 选得使 $$P_{\lambda_0}\bigl( \textbf{X} \in A(\lambda_0) \bigr) = 1 - \alpha$$（常数 $$e^n / n^n$$ 已被吸收进 $$k^{*}$$）。这是样本空间中的一个集合，见图 9.2.2。反转该接受区域得到 $$1 - \alpha$$ 置信集合
 $$
-> C(\textbf{x}) = \Bigl\{ \lambda : \Bigl( \frac{\sum x_i}{\lambda} \Bigr)^{\! n} e^{-\sum x_i / \lambda} \geq k^{*} \Bigr\}.
-> $$
+C(\textbf{x}) = \Bigl\{ \lambda : \Bigl( \frac{\sum x_i}{\lambda} \Bigr)^{\! n} e^{-\sum x_i / \lambda} \geq k^{*} \Bigr\}.
+$$
 如图 9.2.2 所示，这是参数空间中的一个区间。
 ![ch09_fig_9_2_2](fig/ch09_fig_9_2_2.png)
 图 9.2.2　 例 9.2.3 的接受区域与置信区间：接受区域为 $$A(\lambda_0) = \bigl\{ \textbf{x} : \bigl( \sum_i x_i / \lambda_0 \bigr)^n e^{-\sum_i x_i / \lambda_0} \geq k^{*} \bigr\}$$，置信区间为 $$C(\textbf{x}) = \bigl\{ \lambda : \bigl( \sum_i x_i / \lambda \bigr)^n e^{-\sum_i x_i / \lambda} \geq k^{*} \bigr\}$$（原书 Figure 9.2.2）
 定义 $$C(\textbf{x})$$ 的表达式只通过 $$\sum x_i$$ 依赖 $$\textbf{x}$$，故置信区间可以写成
 $$
-> C\bigl( \textstyle\sum x_i \bigr) = \bigl\{ \lambda : L\bigl( \textstyle\sum x_i \bigr) \leq \lambda \leq U\bigl( \textstyle\sum x_i \bigr) \bigr\} \tag{9.2.3}
-> $$
+C\bigl( \textstyle\sum x_i \bigr) = \bigl\{ \lambda : L\bigl( \textstyle\sum x_i \bigr) \leq \lambda \leq U\bigl( \textstyle\sum x_i \bigr) \bigr\} \tag{9.2.3}
+$$
 的形式，其中 $$L$$ 与 $$U$$ 由如下约束确定：集合 (9.2.2) 的概率为 $$1 - \alpha$$，且
 $$
-> \Bigl( \frac{\sum x_i}{L(\sum x_i)} \Bigr)^{\! n} e^{-\sum x_i / L(\sum x_i)}
-> = \Bigl( \frac{\sum x_i}{U(\sum x_i)} \Bigr)^{\! n} e^{-\sum x_i / U(\sum x_i)}. \tag{9.2.4}
-> $$
+\Bigl( \frac{\sum x_i}{L(\sum x_i)} \Bigr)^{\! n} e^{-\sum x_i / L(\sum x_i)}
+= \Bigl( \frac{\sum x_i}{U(\sum x_i)} \Bigr)^{\! n} e^{-\sum x_i / U(\sum x_i)}. \tag{9.2.4}
+$$
 令
 $$
-> \frac{\sum x_i}{L(\sum x_i)} = a, \qquad \frac{\sum x_i}{U(\sum x_i)} = b, \tag{9.2.5}
-> $$
+\frac{\sum x_i}{L(\sum x_i)} = a, \qquad \frac{\sum x_i}{U(\sum x_i)} = b, \tag{9.2.5}
+$$
 其中 $$a > b$$ 是常数，则 (9.2.4) 变为
 $$
-> a^n e^{-a} = b^n e^{-b}, \tag{9.2.6}
-> $$
+a^n e^{-a} = b^n e^{-b}, \tag{9.2.6}
+$$
 它容易数值求解。为算出一些细节，取 $$n = 2$$，注意 $$\sum X_i \sim \mathrm{gamma}(2, \lambda)$$，从而 $$\sum X_i / \lambda \sim \mathrm{gamma}(2, 1)$$。于是由 (9.2.5)，置信区间为 $$\bigl\{ \lambda : \tfrac{1}{a} \sum x_i \leq \lambda \leq \tfrac{1}{b} \sum x_i \bigr\}$$，其中 $$a, b$$ 满足
 $$
-> P_{\lambda}\Bigl( \frac{1}{a} \sum X_i \leq \lambda \leq \frac{1}{b} \sum X_i \Bigr)
-> = P\Bigl( b \leq \frac{\sum X_i}{\lambda} \leq a \Bigr) = 1 - \alpha,
-> $$
+P_{\lambda}\Bigl( \frac{1}{a} \sum X_i \leq \lambda \leq \frac{1}{b} \sum X_i \Bigr)
+= P\Bigl( b \leq \frac{\sum X_i}{\lambda} \leq a \Bigr) = 1 - \alpha,
+$$
 且由 (9.2.6) 有 $$a^2 e^{-a} = b^2 e^{-b}$$。于是
 $$
-> \begin{aligned}
-> P\Bigl( b \leq \frac{\sum X_i}{\lambda} \leq a \Bigr)
-> = \int_b^a t e^{-t}\, dt
-> = e^{-b}(b + 1) - e^{-a}(a + 1) \qquad （\text{分部积分}）.
-> \end{aligned}
-> $$
+\begin{aligned}
+P\Bigl( b \leq \frac{\sum X_i}{\lambda} \leq a \Bigr)
+= \int_b^a t e^{-t}\, dt
+= e^{-b}(b + 1) - e^{-a}(a + 1) \qquad （\text{分部积分}）.
+\end{aligned}
+$$
 例如要得到 90% 置信区间，须同时满足概率条件与约束条件。取三位小数得 $$a = 5.480$$，$$b = 0.441$$，置信系数为 $$0.90006$$。于是
 $$
-> P_{\lambda}\Bigl( \frac{1}{5.480} \sum X_i \leq \lambda \leq \frac{1}{0.441} \sum X_i \Bigr) = 0.90006.
-> $$
+P_{\lambda}\Bigl( \frac{1}{5.480} \sum X_i \leq \lambda \leq \frac{1}{0.441} \sum X_i \Bigr) = 0.90006.
+$$
 反转 $$H_0 : \theta = \theta_0$$ 对 $$H_1 : \theta \neq \theta_0$$ 的 LRT（定义 8.2.1）所得的区域形如“若 $$L(\theta_0 \mid \textbf{x}) / L(\hat{\theta} \mid \textbf{x}) \leq k(\theta_0)$$ 则接受 $$H_0$$”，由此得到的置信区域为
 $$
 \bigl\{ \theta : L(\theta \mid \textbf{x}) \geq k'(\textbf{x}, \theta) \bigr\}, \tag{9.2.7}
@@ -238,44 +238,44 @@ $$
 **例 9.2.4（正态单侧置信界）**
 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\mu, \sigma^2)$$ 总体的随机样本，要构造 $$\mu$$ 的 $$1 - \alpha$$ **上**置信界（upper confidence bound），即形如 $$C(\textbf{x}) = (-\infty, U(\textbf{x})]$$ 的置信区间。用定理 9.2.2 得到这种区间的方法是反转单侧检验 $$H_0 : \mu = \mu_0$$ 对 $$H_1 : \mu < \mu_0$$。（注意这里用 $$H_1$$ 的设定来确定置信区间的形式：$$H_1$$ 指定“大”的 $$\mu_0$$ 值，故置信集合将包含“小”的值——小于某个界的那些值，因此得到上置信界。）$$H_0$$ 对 $$H_1$$ 的尺寸 $$\alpha$$ LRT 在
 $$
-> \frac{\bar{X} - \mu_0}{S / \sqrt{n}} < -t_{n-1, \alpha}
-> $$
+\frac{\bar{X} - \mu_0}{S / \sqrt{n}} < -t_{n-1, \alpha}
+$$
 时拒绝 $$H_0$$（类似例 8.2.6）。于是该检验的接受区域为
 $$
-> A(\mu_0) = \Bigl\{ \textbf{x} : \bar{x} \geq \mu_0 - t_{n-1, \alpha}\, \frac{s}{\sqrt{n}} \Bigr\},
-> $$
+A(\mu_0) = \Bigl\{ \textbf{x} : \bar{x} \geq \mu_0 - t_{n-1, \alpha}\, \frac{s}{\sqrt{n}} \Bigr\},
+$$
 而 $$\textbf{x} \in A(\mu_0) \iff \bar{x} + t_{n-1, \alpha}\, s / \sqrt{n} \geq \mu_0$$。据 (9.2.1) 定义
 $$
-> C(\textbf{x}) = \{ \mu_0 : \textbf{x} \in A(\mu_0) \} = \Bigl\{ \mu_0 : \bar{x} + t_{n-1, \alpha}\, \frac{s}{\sqrt{n}} \geq \mu_0 \Bigr\}.
-> $$
+C(\textbf{x}) = \{ \mu_0 : \textbf{x} \in A(\mu_0) \} = \Bigl\{ \mu_0 : \bar{x} + t_{n-1, \alpha}\, \frac{s}{\sqrt{n}} \geq \mu_0 \Bigr\}.
+$$
 由定理 9.2.2，随机集合 $$C(\textbf{X}) = \bigl( -\infty,\ \bar{X} + t_{n-1, \alpha}\, S / \sqrt{n} \bigr]$$ 是 $$\mu$$ 的 $$1 - \alpha$$ 置信集合。可见它确实是上置信界的正确形式：反转单侧检验得到了单侧置信区间。
 **例 9.2.5（二项单侧置信界）**
 作为单侧置信区间较难的例子，考虑对 Bernoulli 试验序列的成功概率 $$p$$ 给出 $$1 - \alpha$$ **下**置信界（lower confidence bound）。即观测 $$X_1, \ldots, X_n$$（$$X_i \sim \mathrm{Bernoulli}(p)$$），希望区间形如 $$\bigl( L(x_1, \ldots, x_n),\ 1 \bigr]$$，满足 $$P_p\bigl( p \in (L(X_1, \ldots, X_n), 1] \bigr) \geq 1 - \alpha$$。（如将要看到的，所得区间左端是开的。）
 由于我们要的是给出下置信界的单侧区间，考虑反转如下检验的接受区域：
 $$
-> H_0 :\ p = p_0 \qquad\text{对}\qquad H_1 :\ p > p_0.
-> $$
+H_0 :\ p = p_0 \qquad\text{对}\qquad H_1 :\ p > p_0.
+$$
 为简化问题，注意检验可以基于 $$T = \sum_{i=1}^{n} X_i \sim \mathrm{binomial}(n, p)$$，因为 $$T$$ 是 $$p$$ 的充分统计量（见杂记一节）。由于二项分布具有单调似然比（习题 8.25），由 Karlin–Rubin 定理（定理 8.3.17），在 $$T > k(p_0)$$ 时拒绝 $$H_0$$ 的检验是其尺寸的 UMP 检验。对每个 $$p_0$$，选取常数 $$k(p_0)$$（可以是整数）使检验为水平 $$\alpha$$。由于 $$T$$ 的离散性，除某些特定的 $$p_0$$ 外无法使检验尺寸恰为 $$\alpha$$；我们选择 $$k(p_0)$$ 使检验尺寸尽可能接近 $$\alpha$$ 而不超过它。于是 $$k(p_0)$$ 定义为 $$0$$ 与 $$n$$ 之间同时满足如下不等式的整数：
 $$
-> \sum_{y=0}^{k(p_0)} \binom{n}{y} p_0^{\,y} (1 - p_0)^{n-y} \geq 1 - \alpha
-> \quad\text{且}\quad
-> \sum_{y=0}^{k(p_0)-1} \binom{n}{y} p_0^{\,y} (1 - p_0)^{n-y} < 1 - \alpha. \tag{9.2.8}
-> $$
+\sum_{y=0}^{k(p_0)} \binom{n}{y} p_0^{\,y} (1 - p_0)^{n-y} \geq 1 - \alpha
+\quad\text{且}\quad
+\sum_{y=0}^{k(p_0)-1} \binom{n}{y} p_0^{\,y} (1 - p_0)^{n-y} < 1 - \alpha. \tag{9.2.8}
+$$
 由于二项分布的 MLR 性质，对每个 $$k = 0, \ldots, n$$，量
 $$
-> f(p_0 \mid k) = \sum_{y=0}^{k} \binom{n}{y} p_0^{\,y} (1 - p_0)^{n-y}
-> $$
+f(p_0 \mid k) = \sum_{y=0}^{k} \binom{n}{y} p_0^{\,y} (1 - p_0)^{n-y}
+$$
 是 $$p_0$$ 的递减函数（习题 8.26）。当然 $$f(0 \mid 0) = 1$$，故 $$k(0) = 0$$，且 $$f(p_0 \mid 0)$$ 在一段区间上保持大于 $$1 - \alpha$$；到某点处 $$f(p_0 \mid 0) = 1 - \alpha$$，此后 $$f(p_0 \mid 0) < 1 - \alpha$$，于是 $$k(p_0)$$ 跳升到一。此模式持续：$$k(p_0)$$ 是整数值的阶梯函数，在 $$p_0$$ 的一段范围内取常值，然后跳到下一个更大的整数。由于 $$k(p_0)$$ 是 $$p_0$$ 的非降函数，这就给出下置信界。（上置信界见习题 9.5。）求解 (9.2.8) 中的 $$k(p_0)$$ 同时给出检验的接受区域与置信集合。
 对每个 $$p_0$$，接受区域为 $$A(p_0) = \{ t : t \leq k(p_0) \}$$，其中 $$k(p_0)$$ 满足 (9.2.8)。对每个 $$t$$ 值，置信集合为 $$C(t) = \{ p_0 : t \leq k(p_0) \}$$。然而这个集合目前的形式没有多少实用价值：它形式上正确、也是 $$1 - \alpha$$ 置信集合，但它通过 $$p_0$$ 隐式定义，而我们要它通过 $$p_0$$ 显式定义。
 由于 $$k(p_0)$$ 非降，对给定观测 $$T = t$$，存在某个值（记作 $$k^{-1}(t)$$），使一切 $$p_0 \leq k^{-1}(t)$$ 有 $$k(p_0) < t$$；在 $$k^{-1}(t)$$ 处 $$k(p_0)$$ 跳升到等于 $$t$$，且对一切 $$p_0 > k^{-1}(t)$$ 有 $$k(p_0) \geq t$$。（注意在 $$p_0 = k^{-1}(t)$$ 处 $$f(p_0 \mid t - 1) = 1 - \alpha$$，故 $$k(p_0) = t - 1$$ 仍满足 (9.2.8)；只有 $$p_0 > k^{-1}(t)$$ 时才有 $$k(p_0) \geq t$$。）于是置信集合为
 $$
-> C(t) = \{ p_0 : t \leq k(p_0) \} = \bigl\{ p_0 : p_0 > k^{-1}(t) \bigr\}, \tag{9.2.9}
-> $$
+C(t) = \{ p_0 : t \leq k(p_0) \} = \bigl\{ p_0 : p_0 > k^{-1}(t) \bigr\}, \tag{9.2.9}
+$$
 从而我们构造了形如 $$C(T) = \bigl( k^{-1}(T),\ 1 \bigr]$$ 的 $$1 - \alpha$$ 下置信界。
 $$k^{-1}(t)$$ 可定义为
 $$
-> k^{-1}(t) = \sup\Bigl\{ p : \sum_{y=0}^{t-1} \binom{n}{y} p^{\,y} (1 - p)^{n-y} \geq 1 - \alpha \Bigr\}. \tag{9.2.10}
-> $$
+k^{-1}(t) = \sup\Bigl\{ p : \sum_{y=0}^{t-1} \binom{n}{y} p^{\,y} (1 - p)^{n-y} \geq 1 - \alpha \Bigr\}. \tag{9.2.10}
+$$
 注意 $$k^{-1}(t)$$ 并不是 $$k(p_0)$$ 真正的反函数，因为 $$k(p_0)$$ 不是一一对应的；但 (9.2.8) 与 (9.2.10) 给出了 $$k$$ 与 $$k^{-1}$$ 的良定义。
 二项置信界问题最早由 Clopper and Pearson (1934) 处理，他们对双侧区间得到了与上面类似的结果（习题 9.21），并开启了至今仍活跃的研究方向；见杂记 9.5.2 节。
 ### 9.2.2 枢轴量（Pivotal Quantities）
@@ -296,8 +296,8 @@ $$
 **例 9.2.8（gamma 枢轴）**
 设 $$X_1, \ldots, X_n$$ 是 iid exponential($$\lambda$$)。则 $$T = \sum X_i$$ 是 $$\lambda$$ 的充分统计量且 $$T \sim \mathrm{gamma}(n, \lambda)$$。在 gamma pdf 中 $$t$$ 与 $$\lambda$$ 以 $$t/\lambda$$ 的形式同时出现；事实上 $$\mathrm{gamma}(n, \lambda)$$ 的 pdf $$(\Gamma(n) \lambda^n)^{-1} t^{n-1} e^{-t/\lambda}$$ 是一个尺度族。于是若取 $$Q(T, \lambda) = 2T / \lambda$$，则
 $$
-> Q(T, \lambda) \sim \mathrm{gamma}\bigl( n,\ \lambda \cdot (2/\lambda) \bigr) = \mathrm{gamma}(n, 2),
-> $$
+Q(T, \lambda) \sim \mathrm{gamma}\bigl( n,\ \lambda \cdot (2/\lambda) \bigr) = \mathrm{gamma}(n, 2),
+$$
 它不依赖 $$\lambda$$。量 $$Q(T, \lambda) = 2T / \lambda$$ 是一个服从 $$\mathrm{gamma}(n, 2)$$ 分布（即 $$\chi^2_{2n}$$ 分布）的枢轴。
 有时可以观察 pdf 的形式来判断枢轴是否存在。上例中 $$t/\lambda$$ 出现在 pdf 里，而它确实是枢轴；正态 pdf 中出现量 $$(x - \mu)/\sigma$$，它也是枢轴。一般地，设统计量 $$T$$ 的 pdf $$f(t \mid \theta)$$ 可以写成
 $$
@@ -321,42 +321,42 @@ $$
 例 9.2.3 中我们通过反转 $$H_0 : \lambda = \lambda_0$$ 对 $$H_1 : \lambda \neq \lambda_0$$ 的水平 $$\alpha$$ LRT 得到了 exponential($$\lambda$$) pdf 的均值 $$\lambda$$ 的置信区间。现在我们还看到：若有样本 $$X_1, \ldots, X_n$$，可令 $$T = \sum X_i$$ 并取 $$Q(T, \lambda) = 2T/\lambda \sim \chi^2_{2n}$$。
 取常数 $$a, b$$ 使 $$P\bigl( a \leq \chi^2_{2n} \leq b \bigr) = 1 - \alpha$$，则
 $$
-> P_{\lambda}\Bigl( a \leq \frac{2T}{\lambda} \leq b \Bigr)
-> = P_{\lambda}\bigl( a \leq Q(T, \lambda) \leq b \bigr)
-> = P\bigl( a \leq \chi^2_{2n} \leq b \bigr) = 1 - \alpha.
-> $$
+P_{\lambda}\Bigl( a \leq \frac{2T}{\lambda} \leq b \Bigr)
+= P_{\lambda}\bigl( a \leq Q(T, \lambda) \leq b \bigr)
+= P\bigl( a \leq \chi^2_{2n} \leq b \bigr) = 1 - \alpha.
+$$
 反转集合 $$A(\lambda) = \{ t : a \leq 2t/\lambda \leq b \}$$ 得到 $$C(t) = \bigl\{ \lambda : 2t/b \leq \lambda \leq 2t/a \bigr\}$$，这是一个 $$1 - \alpha$$ 置信区间。（注意下端点依赖 $$b$$、上端点依赖 $$a$$，正如前面所述：$$Q(t, \lambda) = 2t/\lambda$$ 关于 $$\lambda$$ 递减。）例如取 $$n = 10$$，查卡方表可知 95% 置信区间为 $$\bigl\{ \lambda : 2T/34.17 \leq \lambda \leq 2T/9.59 \bigr\}$$。
 对位置问题，即使方差未知，枢轴区间的构造与计算也相当容易。事实上我们早已用过这些想法，只是没有正式命名。
 **例 9.2.10（正态枢轴区间）**
 由定理 5.3.1，若 $$X_1, \ldots, X_n$$ 是 iid $$n(\mu, \sigma^2)$$，则 $$(\bar{X} - \mu)/(\sigma / \sqrt{n})$$ 是枢轴。若 $$\sigma^2$$ 已知，可用该枢轴计算 $$\mu$$ 的置信区间：对任意常数 $$a$$，
 $$
-> P\Bigl( -a \leq \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \leq a \Bigr) = P(-a \leq Z \leq a) \qquad （Z\ \text{是标准正态的}）,
-> $$
+P\Bigl( -a \leq \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \leq a \Bigr) = P(-a \leq Z \leq a) \qquad （Z\ \text{是标准正态的}）,
+$$
 经过（如今已）熟悉的代数运算得到置信区间
 $$
-> \Bigl\{ \mu : \bar{x} - a\, \frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{x} + a\, \frac{\sigma}{\sqrt{n}} \Bigr\}.
-> $$
+\Bigl\{ \mu : \bar{x} - a\, \frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{x} + a\, \frac{\sigma}{\sqrt{n}} \Bigr\}.
+$$
 若 $$\sigma^2$$ 未知，可用位置–尺度枢轴 $$(\bar{X} - \mu)/(S/\sqrt{n})$$。由于 $$(\bar{X} - \mu)/(S/\sqrt{n})$$ 服从 Student $$t$$ 分布，
 $$
-> P\Bigl( -a \leq \frac{\bar{X} - \mu}{S / \sqrt{n}} \leq a \Bigr) = P(-a \leq T_{n-1} \leq a).
-> $$
+P\Bigl( -a \leq \frac{\bar{X} - \mu}{S / \sqrt{n}} \leq a \Bigr) = P(-a \leq T_{n-1} \leq a).
+$$
 于是对给定的 $$\alpha$$，取 $$a = t_{n-1, \alpha/2}$$，得 $$1 - \alpha$$ 置信区间
 $$
-> \Bigl\{ \mu : \bar{x} - t_{n-1, \alpha/2}\, \frac{s}{\sqrt{n}} \leq \mu \leq \bar{x} + t_{n-1, \alpha/2}\, \frac{s}{\sqrt{n}} \Bigr\}, \tag{9.2.14}
-> $$
+\Bigl\{ \mu : \bar{x} - t_{n-1, \alpha/2}\, \frac{s}{\sqrt{n}} \leq \mu \leq \bar{x} + t_{n-1, \alpha/2}\, \frac{s}{\sqrt{n}} \Bigr\}, \tag{9.2.14}
+$$
 这就是基于 Student $$t$$ 分布的经典 $$\mu$$ 的 $$1 - \alpha$$ 置信区间。
 继续本例，假设还想给出 $$\sigma$$ 的区间估计。由于 $$(n-1)S^2/\sigma^2 \sim \chi^2_{n-1}$$，它也是枢轴。取 $$a, b$$ 使
 $$
-> P\Bigl( a \leq \frac{(n-1)S^2}{\sigma^2} \leq b \Bigr) = P\bigl( a \leq \chi^2_{n-1} \leq b \bigr) = 1 - \alpha,
-> $$
+P\Bigl( a \leq \frac{(n-1)S^2}{\sigma^2} \leq b \Bigr) = P\bigl( a \leq \chi^2_{n-1} \leq b \bigr) = 1 - \alpha,
+$$
 反转该集合便得 $$1 - \alpha$$ 置信区间
 $$
-> \Bigl\{ \sigma^2 : \frac{(n-1)s^2}{b} \leq \sigma^2 \leq \frac{(n-1)s^2}{a} \Bigr\},
-> $$
+\Bigl\{ \sigma^2 : \frac{(n-1)s^2}{b} \leq \sigma^2 \leq \frac{(n-1)s^2}{a} \Bigr\},
+$$
 等价地，
 $$
-> \Bigl\{ \sigma : \sqrt{\frac{(n-1)s^2}{b}} \leq \sigma \leq \sqrt{\frac{(n-1)s^2}{a}} \Bigr\}.
-> $$
+\Bigl\{ \sigma : \sqrt{\frac{(n-1)s^2}{b}} \leq \sigma \leq \sqrt{\frac{(n-1)s^2}{a}} \Bigr\}.
+$$
 能产生所需区间的一种取法是 $$a = \chi^2_{n-1, 1-\alpha/2}$$ 与 $$b = \chi^2_{n-1, \alpha/2}$$，它把概率平分，各在分布两端放 $$\alpha/2$$。然而 $$\chi^2_{n-1}$$ 分布是偏斜的，对偏斜分布等概率分割是否最优并不显然。（即使对对称分布，等概率分割是否最优也不显然，只是直觉上后一种情形更可信。）事实上，对卡方分布，等概率分割并非最优，这将在 9.3 节看到（另见习题 9.52）。
 关于本问题的最后一点说明：我们已分别构造了 $$\mu$$ 与 $$\sigma$$ 的置信区间。完全可能我们对 $$\mu$$ 与 $$\sigma$$ **同时**的置信集合感兴趣。Bonferroni 不等式是实现这一点的一个简单（且相对好）的方法（见习题 9.14）。
 ### 9.2.3 反转累积分布函数（Pivoting the CDF）

@@ -38,7 +38,7 @@ $$
 
 其中第二项称为罚项，$$\sigma>0$$ 称为罚因子。罚项惩罚不满足约束的点，$$\sigma$$ 越大惩罚越重。由于子问题的极小点一般不满足约束，迭代点列通常位于可行域之外，所以二次罚函数法也称为**外点罚函数法**。
 
-例如对问题 $$\min x+\sqrt{3}y$$ s.t. $$x^2+y^2=1$$，最优解为 $$x^*=(-\frac{1}{2},-\frac{\sqrt{3}}{2})$$，二次罚函数为 $$P_{\mathcal{E}}(x,y,\sigma)=x+\sqrt{3}y+\frac{\sigma}{2}(x^2+y^2-1)^2$$。数值计算表明，$$\sigma=1,2,10$$ 时罚函数的极小点到 $$x^*$$ 的距离分别约为 0.32，0.19，0.047，约束违反度 $$|x^2+y^2-1|$$ 分别约为 0.75，0.42，0.096：要得到精确的解，必须使用很大的罚因子（图 15.1 左）。
+例如对问题 $$\min x+\sqrt{3}y$$ s.t. $$x^2+y^2=1$$，最优解为 $$x^*=(-\frac{1}{2},-\frac{\sqrt{3}}{2})$$，二次罚函数为 $$P_{\mathcal{E}}(x,y,\sigma)=x+\sqrt{3}y+\frac{\sigma}{2}(x^2+y^2-1)^2$$。数值计算表明，$$\sigma=1,2,10$$ 时罚函数的极小点到 $$x^*$$ 的距离分别约为 0.32，0.19，0.047，约束违反度 $$\vert x^2+y^2-1\vert$$ 分别约为 0.75，0.42，0.096：要得到精确的解，必须使用很大的罚因子（图 15.1 左）。
 
 罚因子太小时，罚函数甚至可能无下界。例如 $$\min -x^2+2y^2$$ s.t. $$x=1$$ 的最优解为 $$(1,0)$$，但 $$P_{\mathcal{E}}(x,y,\sigma)=-x^2+2y^2+\frac{\sigma}{2}(x-1)^2$$ 在 $$\sigma\le2$$ 时关于 $$x$$ 无下界。因此求解罚函数法的子问题时需要监测发散：一旦发现迭代点发散，就应终止子问题并增大罚因子。
 
@@ -87,7 +87,7 @@ $$
 \nabla_{xx}^2P_{\mathcal{E}}(x,\sigma)=\nabla^2f(x)+\sum_i\sigma c_i(x)\nabla^2c_i(x)+\sigma\nabla c(x)\nabla c(x)^\top\approx\nabla_{xx}^2L(x,\lambda^*)+\sigma\nabla c(x)\nabla c(x)^\top,
 $$
 
-其中 $$\nabla c(x)=[\nabla c_i(x)]_{i\in\mathcal{E}}\in\mathbb{R}^{n\times|\mathcal{E}|}$$。右端是一个固定矩阵加上一个最大特征值趋于无穷的矩阵，所以条件数趋于无穷。用梯度类算法求解子问题会越来越慢，用牛顿法时牛顿方程本身也越来越病态。因此实际中不可能让罚因子趋于无穷，这是二次罚函数法的根本缺陷。
+其中 $$\nabla c(x)=[\nabla c_i(x)]_{i\in\mathcal{E}}\in\mathbb{R}^{n\times\vert\mathcal{E}\vert}$$。右端是一个固定矩阵加上一个最大特征值趋于无穷的矩阵，所以条件数趋于无穷。用梯度类算法求解子问题会越来越慢，用牛顿法时牛顿方程本身也越来越病态。因此实际中不可能让罚因子趋于无穷，这是二次罚函数法的根本缺陷。
 
 ### 15.1.3 不等式约束与一般约束
 
@@ -411,7 +411,7 @@ $$
 \end{aligned}
 $$
 
-子问题中 $$s$$ 可以消去：固定 $$y$$，关于 $$s$$ 的问题是到盒子 $$\{\|s\|_\infty\le1\}$$ 上的投影，$$s=P_{\|s\|_\infty\le1}(A^\top y+\lambda/\sigma)$$，其中 $$P_{\|s\|_\infty\le1}(z)=\max\{\min\{z,1\},-1\}$$ (逐分量)。记 $$\psi(z)=z-P_{\|s\|_\infty\le1}(z)=\operatorname{sign}(z)\max\{|z|-1,0\}$$ (它恰好是软阈值)，迭代化为
+子问题中 $$s$$ 可以消去：固定 $$y$$，关于 $$s$$ 的问题是到盒子 $$\{\|s\|_\infty\le1\}$$ 上的投影，$$s=P_{\|s\|_\infty\le1}(A^\top y+\lambda/\sigma)$$，其中 $$P_{\|s\|_\infty\le1}(z)=\max\{\min\{z,1\},-1\}$$ (逐分量)。记 $$\psi(z)=z-P_{\|s\|_\infty\le1}(z)=\operatorname{sign}(z)\max\{\vert z\vert-1,0\}$$ (它恰好是软阈值)，迭代化为
 
 $$
 y^{k+1}=\arg\min_y\left\{b^\top y+\frac{\sigma_k}{2}\left\|\psi\left(A^\top y+\frac{\lambda^k}{\sigma_k}\right)\right\|^2\right\},\quad \lambda^{k+1}=\sigma_k\psi\left(A^\top y^{k+1}+\frac{\lambda^k}{\sigma_k}\right).

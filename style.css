@@ -401,6 +401,7 @@ nav { display: flex; flex-direction: column; gap: .25rem; }
   margin: 0 auto;
   width: 100%;
   padding: 3.2rem 3rem 4rem;
+  overflow-x: clip;                 /* 兜底：任何单个元素都不能把整页撑出横向滚动 */
 }
 .page-note .content h1 { font-size: 1.85rem; line-height: 1.35; margin-bottom: 1rem; }
 /* 笔记页的正文标题从 h3 起（h1 = 小节名），h2 用不到，留个兜底 */
@@ -471,15 +472,36 @@ nav { display: flex; flex-direction: column; gap: .25rem; }
 }
 .tabular table { margin: 0; }
 
-/* 行内代码：讲义里偶尔用反引号写 LaTeX 源码 */
+/* 笔记插图：始终限制在正文栏内，避免原图尺寸把页面撑宽 */
+.page-note .content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.15rem auto;
+}
+
+/* 行内代码：讲义里偶尔用反引号写 LaTeX / CVX 源码；允许在必要时断行 */
 .page-note .content code {
   font-family: ui-monospace, SFMono-Regular, Consolas, "Cascadia Mono", monospace;
   font-size: .88em;
   padding: .1em .35em;
   border-radius: 5px;
   background: var(--accent-weak);
+  overflow-wrap: anywhere;
 }
-.page-note .content pre code { background: none; padding: 0; font-size: 1em; }
+/* 代码块：保留缩进，但长行自动折行，避免横向溢出 */
+.page-note .content pre {
+  max-width: 100%;
+  padding: .9rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--accent-weak);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.65;
+}
+.page-note .content pre code { background: none; padding: 0; font-size: 1em; white-space: inherit; }
 
 h1 { font-size: 1.5rem; font-weight: 700; margin: 0 0 .5rem; }
 h2 {
@@ -563,8 +585,7 @@ blockquote {
   overflow-y: hidden;
   padding: 2px 0 4px;
 }
-.content p mjx-container[jax="CHTML"]:not([display="true"]),
-.content li mjx-container[jax="CHTML"]:not([display="true"]) {
+.content mjx-container[jax="CHTML"]:not([display="true"]) {
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;

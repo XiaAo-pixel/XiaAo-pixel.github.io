@@ -4,7 +4,7 @@ kind: note
 title: "第 6 章　数据约简原理（Principles of Data Reduction）"
 course: statistics
 order: 6
-date: 2026-10-07
+date: 2026-10-19
 permalink: /statistics/chap06.html
 ---
 
@@ -456,8 +456,8 @@ $$
 **例 6.2.20（辅助统计量与精度）**
 设 $$X_1$$ 与 $$X_2$$ 是满足
 $$
-> P_{\theta}(X = \theta) = P_{\theta}(X = \theta + 1) = P_{\theta}(X = \theta + 2) = \frac{1}{3}
-> $$
+P_{\theta}(X = \theta) = P_{\theta}(X = \theta + 1) = P_{\theta}(X = \theta + 2) = \frac{1}{3}
+$$
 的离散分布的 iid 观测，其中未知参数 $$\theta$$ 是任意整数。设 $$X_{(1)} \leq X_{(2)}$$ 为样本的次序统计量。用类似例 6.2.15 的论证可以证明 $$(R, M)$$ 是最小充分统计量，其中 $$R = X_{(2)} - X_{(1)}$$，$$M = (X_{(1)} + X_{(2)})/2$$。由于这是位置参数族，由例 6.2.17 的道理，$$R$$ 是辅助统计量。为看 $$R$$ 如何可能在辅助的同时仍提供关于 $$\theta$$ 的信息，考虑样本点 $$(r, m)$$，其中 $$m$$ 是整数。只考虑 $$m$$：要使该样本点有正概率，$$\theta$$ 必须是三个值之一——$$\theta = m$$、$$\theta = m - 1$$ 或 $$\theta = m - 2$$。仅有“$$M = m$$”的信息时，三个 $$\theta$$ 值都有可能。但现在假设获得额外信息 $$R = 2$$，则必有 $$X_{(1)} = m - 1$$ 且 $$X_{(2)} = m + 1$$；有了这一额外信息，$$\theta$$ 唯一可能的取值是 $$\theta = m - 1$$。于是辅助统计量 $$R$$ 的取值知识增进了我们对 $$\theta$$ 的了解。当然，单独知道 $$R$$ 不会提供关于 $$\theta$$ 的任何信息。（辅助统计量提供关于 $$\theta$$ 估计精度的想法并不新鲜；更多想法见 Cox (1971) 或 Efron and Hinkley (1978)。）
 然而对许多重要情形，“最小充分统计量与任何辅助统计量独立”这一直觉是正确的。描述这类情形依赖下面的定义。
 **定义 6.2.21（完备性）**
@@ -466,12 +466,12 @@ $$
 **例 6.2.22（二项完备充分统计量）**
 设 $$T$$ 服从 $$\mathrm{binomial}(n, p)$$ 分布（$$0 < p < 1$$）。设 $$g$$ 是使 $$\mathrm{E}_p\, g(T) = 0$$ 的函数。则
 $$
-> 0 = \mathrm{E}_p\, g(T) = \sum_{t=0}^{n} g(t)\, \binom{n}{t}\, p^{t} (1 - p)^{n - t} = (1 - p)^{n} \sum_{t=0}^{n} g(t)\, \binom{n}{t}\, \Bigl( \frac{p}{1 - p} \Bigr)^{t}
-> $$
+0 = \mathrm{E}_p\, g(T) = \sum_{t=0}^{n} g(t)\, \binom{n}{t}\, p^{t} (1 - p)^{n - t} = (1 - p)^{n} \sum_{t=0}^{n} g(t)\, \binom{n}{t}\, \Bigl( \frac{p}{1 - p} \Bigr)^{t}
+$$
 对一切 $$p \in (0, 1)$$ 成立。因子 $$(1 - p)^{n}$$ 在此范围内不为零。故必有
 $$
-> 0 = \sum_{t=0}^{n} g(t)\, \binom{n}{t}\, \Bigl( \frac{p}{1 - p} \Bigr)^{t} = \sum_{t=0}^{n} g(t)\, \binom{n}{t}\, r^{t}
-> $$
+0 = \sum_{t=0}^{n} g(t)\, \binom{n}{t}\, \Bigl( \frac{p}{1 - p} \Bigr)^{t} = \sum_{t=0}^{n} g(t)\, \binom{n}{t}\, r^{t}
+$$
 对一切 $$r \in (0, \infty)$$ 成立。但最后的表达式是 $$r$$ 的 $$n$$ 次多项式，$$r^t$$ 的系数是 $$g(t) \binom{n}{t}$$。多项式对一切 $$r$$ 为零，则每个系数必须为零。诸 $$\binom{n}{t}$$ 都不为零，故 $$g(t) = 0$$（$$t = 0, 1, \ldots, n$$）。由于 $$T$$ 以概率 1 取值 $$0, 1, \ldots, n$$，这就给出 $$P_p\bigl( g(T) = 0 \bigr) = 1$$（对一切 $$p$$），即所需的结论。故 $$T$$ 是完备统计量。
 **例 6.2.23（均匀完备统计量）**
 设 $$X_1, \ldots, X_n$$ 是 iid uniform$(0, \theta)$$ 观测（$$0 < \theta < \infty$$）。用类似例 6.2.8 的论证可证 $$T(\textbf{X}) = \max_i X_i$$ 是充分统计量；由定理 5.4.4，$$T(\textbf{X})$$ 的 pdf 为

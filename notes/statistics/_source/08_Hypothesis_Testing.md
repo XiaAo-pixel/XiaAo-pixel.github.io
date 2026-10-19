@@ -4,7 +4,7 @@ kind: note
 title: "第 8 章　假设检验（Hypothesis Testing）"
 course: statistics
 order: 8
-date: 2026-10-07
+date: 2026-10-19
 permalink: /statistics/chap08.html
 ---
 
@@ -858,7 +858,7 @@ p_{\theta}(\textbf{x}) = P_{\theta}\bigl( W(\textbf{X}) \geq W(\textbf{x}) \bigr
 $$
 >
 > 则随机变量 $$p_{\theta}(\textbf{X})$$ 等于 $$F_{\theta}\bigl( -W(\textbf{X}) \bigr)$$。由概率积分变换（或习题 2.10），$$p_{\theta}(\textbf{X})$$ 的分布随机地大于等于 uniform$(0,1)$$ 分布，即对每个 $$0 \leq \alpha \leq 1$$ 有 $$P_{\theta}\bigl( p_{\theta}(\textbf{X}) \leq \alpha \bigr) \leq \alpha$$。因为对每个 **x** 有 $$p(\textbf{x}) = \sup_{\theta' \in \Theta_0} p_{\theta'}(\textbf{x}) \geq p_{\theta}(\textbf{x})$$，故
-$$
+> $$
 > P_{\theta}\bigl( p(\textbf{X}) \leq \alpha \bigr) \leq P_{\theta}\bigl( p_{\theta}(\textbf{X}) \leq \alpha \bigr) \leq \alpha.
 > $$
 这对每个 $$\theta \in \Theta_0$$ 与每个 $$0 \leq \alpha \leq 1$$ 成立；$$p(\textbf{X})$$ 是有效 $$p$$ 值。 ∎
@@ -866,27 +866,27 @@ $$
 **例 8.3.28（双侧正态 $$p$$ 值）**
 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\mu, \sigma^2)$$ 总体的随机样本。考虑检验 $$H_0 : \mu = \mu_0$$ 对 $$H_1 : \mu \neq \mu_0$$。由习题 8.38，LRT 对大值 $$W(\textbf{X}) = \vert \bar{X} - \mu_0\vert  / (S/\sqrt{n})$$ 拒绝 $$H_0$$。若 $$\mu = \mu_0$$，无论 $$\sigma$$ 取何值，$$(\bar{X} - \mu_0)/(S/\sqrt{n})$$ 都服从自由度 $$n - 1$$ 的 Student 氏 $$t$$ 分布。故计算 (8.3.9) 时该概率对一切 $$\theta$$ 值（即一切 $$\sigma$$ 值）相同。于是这个双侧 $$t$$ 检验的 (8.3.9) $$p$$ 值为
 $$
-> p(\textbf{x}) = 2\, P\Bigl( T_{n-1} \geq \vert \bar{x} - \mu_0\vert  / (s/\sqrt{n}) \Bigr),
-> $$
+p(\textbf{x}) = 2\, P\Bigl( T_{n-1} \geq \vert \bar{x} - \mu_0\vert  / (s/\sqrt{n}) \Bigr),
+$$
 其中 $$T_{n-1}$$ 服从自由度 $$n-1$$ 的 Student 氏 $$t$$ 分布。
 **例 8.3.29（单侧正态 $$p$$ 值）**
 再次考虑例 8.3.28 的正态模型，但检验 $$H_0 : \mu \leq \mu_0$$ 对 $$H_1 : \mu > \mu_0$$。由习题 8.37，LRT 对大值 $$W(\textbf{X}) = (\bar{X} - \mu_0)/(S/\sqrt{n})$$ 拒绝 $$H_0$$。下面的论证表明对该统计量，(8.3.9) 中的上确界总在参数 $$(\mu_0, \sigma)$$ 处取得，且 $$\sigma$$ 的取值无关紧要。考虑任何 $$\mu \leq \mu_0$$ 与任何 $$\sigma$$：
 $$
-> \begin{aligned}
-> P_{\mu, \sigma}\bigl( W(\textbf{X}) \geq W(\textbf{x}) \bigr) &= P_{\mu, \sigma}\Biggl( \frac{\bar{X} - \mu_0}{S/\sqrt{n}} \geq W(\textbf{x}) \Biggr)\\
-> &= P_{\mu, \sigma}\Biggl( \frac{\bar{X} - \mu}{S/\sqrt{n}} \geq W(\textbf{x}) + \frac{\mu_0 - \mu}{S/\sqrt{n}} \Biggr)\\
-> &= P_{\mu, \sigma}\Biggl( T_{n-1} \geq W(\textbf{x}) + \frac{\mu_0 - \mu}{S/\sqrt{n}} \Biggr)\\
-> &\leq P\Bigl( T_{n-1} \geq W(\textbf{x}) \Bigr).
-> \end{aligned}
-> $$
+\begin{aligned}
+P_{\mu, \sigma}\bigl( W(\textbf{X}) \geq W(\textbf{x}) \bigr) &= P_{\mu, \sigma}\Biggl( \frac{\bar{X} - \mu_0}{S/\sqrt{n}} \geq W(\textbf{x}) \Biggr)\\
+&= P_{\mu, \sigma}\Biggl( \frac{\bar{X} - \mu}{S/\sqrt{n}} \geq W(\textbf{x}) + \frac{\mu_0 - \mu}{S/\sqrt{n}} \Biggr)\\
+&= P_{\mu, \sigma}\Biggl( T_{n-1} \geq W(\textbf{x}) + \frac{\mu_0 - \mu}{S/\sqrt{n}} \Biggr)\\
+&\leq P\Bigl( T_{n-1} \geq W(\textbf{x}) \Bigr).
+\end{aligned}
+$$
 这里 $$T_{n-1}$$ 仍是自由度 $$n-1$$ 的 Student 氏 $$t$$ 分布。最后一行的成立是因为 $$\mu_0 \geq \mu$$ 而 $$(\mu_0 - \mu)/(S/\sqrt{n})$$ 是非负随机变量。这里去掉 $$P$$ 的下标是因为该概率不依赖 $$(\mu, \sigma)$$。进一步，
 $$
-> P\bigl( T_{n-1} \geq W(\textbf{x}) \bigr) = P_{\mu_0, \sigma}\Biggl( \frac{\bar{X} - \mu_0}{S/\sqrt{n}} \geq W(\textbf{x}) \Biggr) = P_{\mu_0, \sigma}\bigl( W(\textbf{X}) \geq W(\textbf{x}) \bigr),
-> $$
+P\bigl( T_{n-1} \geq W(\textbf{x}) \bigr) = P_{\mu_0, \sigma}\Biggl( \frac{\bar{X} - \mu_0}{S/\sqrt{n}} \geq W(\textbf{x}) \Biggr) = P_{\mu_0, \sigma}\bigl( W(\textbf{X}) \geq W(\textbf{x}) \bigr),
+$$
 而这一概率是 (8.3.9) 上确界计算所考虑的概率之一，因为 $$(\mu_0, \sigma) \in \Theta_0$$。故这个单侧 $$t$$ 检验的 (8.3.9) $$p$$ 值为
 $$
-> p(\textbf{x}) = P\bigl( T_{n-1} \geq W(\textbf{x}) \bigr) = P\Bigl( T_{n-1} \geq (\bar{x} - \mu_0)/(s/\sqrt{n}) \Bigr).
-> $$
+p(\textbf{x}) = P\bigl( T_{n-1} \geq W(\textbf{x}) \bigr) = P\Bigl( T_{n-1} \geq (\bar{x} - \mu_0)/(s/\sqrt{n}) \Bigr).
+$$
 定义有效 $$p$$ 值的另一方法（替代使用 (8.3.9)）涉及对充分统计量取条件。设 $$S(\textbf{X})$$ 是模型 $$\{ f(\textbf{x} \mid \theta) : \theta \in \Theta_0 \}$$ 的充分统计量。（为避免低功效的检验，重要的是 $$S$$ 只对零模型充分，而不是对整个模型 $$\{ f(\textbf{x} \mid \theta) : \theta \in \Theta \}$$ 充分。）若原假设为真，给定 $$S = s$$ 时 $$\textbf{X}$$ 的条件分布不依赖 $$\theta$$。仍设 $$W(\textbf{X})$$ 是大值给出 $$H_1$$ 为真证据的检验统计量。则对每个样本点 **x** 定义
 $$
 p(\textbf{x}) = P\Bigl( W(\textbf{X}) \geq W(\textbf{x}) \mid S = S(\textbf{x}) \Bigr). \tag{8.3.10}
@@ -903,12 +903,12 @@ $$
 **例 8.3.30（Fisher 精确检验）**
 设 $$S_1$$ 与 $$S_2$$ 是独立观测，$$S_1 \sim \mathrm{binomial}(n_1, p_1)$$，$$S_2 \sim \mathrm{binomial}(n_2, p_2)$$。考虑检验 $$H_0 : p_1 = p_2$$ 对 $$H_1 : p_1 > p_2$$。在 $$H_0$$ 下令 $$p$$ 表示 $$p_1 = p_2$$ 的公共值，$$(S_1, S_2)$$ 的联合 pmf 为
 $$
-> f(s_1, s_2 \mid p) = \binom{n_1}{s_1}\, p^{s_1} (1 - p)^{n_1 - s_1}\, \binom{n_2}{s_2}\, p^{s_2} (1 - p)^{n_2 - s_2} = \binom{n_1}{s_1}\binom{n_2}{s_2}\, p^{s_1 + s_2}\, (1 - p)^{n_1 + n_2 - (s_1 + s_2)}.
-> $$
+f(s_1, s_2 \mid p) = \binom{n_1}{s_1}\, p^{s_1} (1 - p)^{n_1 - s_1}\, \binom{n_2}{s_2}\, p^{s_2} (1 - p)^{n_2 - s_2} = \binom{n_1}{s_1}\binom{n_2}{s_2}\, p^{s_1 + s_2}\, (1 - p)^{n_1 + n_2 - (s_1 + s_2)}.
+$$
 故 $$H_0$$ 下 $$S = S_1 + S_2$$ 是充分统计量。给定 $$S = s$$ 的值后，用 $$S_1$$ 作为检验统计量、对大 $$S_1$$ 值拒绝 $$H_0$$ 支持 $$H_1$$ 是合理的，因为 $$S_1$$ 的大值对应 $$S_2 = s - S_1$$ 的小值。给定 $$S = s$$ 时 $$S_1$$ 的条件分布是 $$\mathrm{hypergeometric}(n_1 + n_2,\ n_1,\ s)$$（见习题 8.48）。故 (8.3.10) 中的条件 $$p$$ 值为
 $$
-> p(s_1, s_2) = \sum_{j = s_1}^{\min\{ n_1,\ s \}} f(j \mid s),
-> $$
+p(s_1, s_2) = \sum_{j = s_1}^{\min\{ n_1,\ s \}} f(j \mid s),
+$$
 超几何概率之和。由该 $$p$$ 值定义的检验称为 Fisher 精确检验（Fisher's Exact Test）。
 ### 8.3.5 损失函数最优性（Loss Function Optimality）
 决策论分析（如 7.3.4 节）可用于比较假设检验，而不仅通过功效函数比较。进行这类分析必须为假设检验问题规定行动空间与损失函数。
@@ -945,8 +945,8 @@ $$
 **例 8.3.31（UMP 检验的风险）**
 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\mu, \sigma^2)$$ 总体（$$\sigma^2$$ 已知）的随机样本。$$H_0 : \theta \geq \theta_0$$ 对 $$H_1 : \theta < \theta_0$$ 的 UMP 水平 $$\alpha$$ 检验是“若 $$(\bar{X} - \theta_0)/(\sigma/\sqrt{n}) < -z_{\alpha}$$ 则拒绝 $$H_0$$”的检验（例 8.3.15）。该检验的功效函数为
 $$
-> \beta(\theta) = P_{\theta}\Biggl( Z < -z_{\alpha} - \frac{\theta - \theta_0}{\sigma/\sqrt{n}} \Biggr),
-> $$
+\beta(\theta) = P_{\theta}\Biggl( Z < -z_{\alpha} - \frac{\theta - \theta_0}{\sigma/\sqrt{n}} \Biggr),
+$$
 其中 $$Z$$ 服从 $$n(0, 1)$$。取 $$\alpha = 0.10$$、$$c_{\mathrm{I}} = 8$$、$$c_{\mathrm{II}} = 3$$，风险函数 (8.3.12) 绘于图 8.3.4。注意风险函数在 $$\theta = \theta_0$$ 处不连续：这源于在 $$\theta_0$$ 处风险函数中的表达式从 $$\beta(\theta)$$ 切换到 $$1 - \beta(\theta)$$，以及 $$c_{\mathrm{I}}$$ 与 $$c_{\mathrm{II}}$$ 的差别。
 0–1 损失只判断决策的对错。可能某些错误决策比另一些更严重，损失函数应反映这一点。检验 $$H_0 : \theta \geq \theta_0$$ 对 $$H_1 : \theta < \theta_0$$ 时，若 $$\theta$$ 只略大于 $$\theta_0$$ 而拒绝 $$H_0$$ 是第一类错误，但也许不是很严重的错误；若 $$\theta$$ 远大于 $$\theta_0$$ 时拒绝 $$H_0$$，其不良后果可能严重得多。反映这一点的损失函数是
 $$

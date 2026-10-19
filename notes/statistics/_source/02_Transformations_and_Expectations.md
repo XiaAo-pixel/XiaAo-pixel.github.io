@@ -4,7 +4,7 @@ kind: note
 title: "第 2 章　变换与期望（Transformations and Expectations）"
 course: statistics
 order: 2
-date: 2026-10-07
+date: 2026-10-19
 permalink: /statistics/chap02.html
 ---
 
@@ -1578,12 +1578,12 @@ $$
 **定理 2.6.1（特征函数的收敛，Convergence of Characteristic Functions）**
 设 $$X_k$$，$$k = 1, 2, \ldots$$，是一列随机变量，各有特征函数 $$\phi_{X_k}(t)$$。进一步设在 0 的某邻域内的所有 $$t$$ 处
 $$
-> \lim_{k \to \infty} \phi_{X_k}(t) = \phi_X(t),
-> $$
+\lim_{k \to \infty} \phi_{X_k}(t) = \phi_X(t),
+$$
 且 $$\phi_X(t)$$ 是某特征函数。则在 $$F_X(x)$$ 的每个连续点 $$x$$ 处，
 $$
-> \lim_{k \to \infty} F_{X_k}(x) = F_X(x).
-> $$
+\lim_{k \to \infty} F_{X_k}(x) = F_X(x).
+$$
 生成函数的完整论述见 Feller (1968)。特征函数几乎见于任何高等概率教材，如 Billingsley (1995) 或 Resnick (1999)。
 ### 2.6.3 矩母函数能刻画分布吗？（Does the MGF Characterize a Distribution?）
 McCullagh (1994) 在以此标题命名的文章中考察了一对与例 2.3.10 相似的密度
