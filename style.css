@@ -410,6 +410,12 @@ nav { display: flex; flex-direction: column; gap: .25rem; }
 .page-note .content h4 { font-size: 1rem; margin: 1.6rem 0 .5rem; }
 .page-note .content h5, .page-note .content h6 { font-size: .95rem; margin: 1.3rem 0 .4rem; color: var(--muted); }
 .page-note .content p, .page-note .content li { line-height: 1.85; }
+/* 独占一段的加粗标题（例 / 定理 / 定义 / 证明 …）：和正文拉开视觉层级 */
+.page-note .content p > strong:only-child {
+  color: var(--accent);
+  font-size: 1.02em;
+  letter-spacing: .01em;
+}
 
 /* ============ 讲义里的语义容器（定理 / 定义 / 例子 …） ============
    源 Markdown 里是 LaTeX 风格的裸 <div class="...">，这里统一给它们

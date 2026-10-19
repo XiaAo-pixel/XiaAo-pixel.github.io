@@ -1300,12 +1300,19 @@ $$
 > **例 7.3.22（例 7.3.13 的继续）**
 >
 > 对 $$X_1, \ldots, X_n$$ iid uniform$$(0, \theta)$$，我们见到 $$\frac{n+1}{n}\, Y$$ 是 $$\theta$$ 的无偏估计量（$$Y = \max\{X_1, \ldots, X_n\}$$）。Cramér–Rao 定理的条件不满足，我们尚未确定该估计量是否最佳无偏。但例 6.2.23 中已证 $$Y$$ 是完备充分统计量：这意味着 $$Y$$ 的 pdf 族完备，基于 $$Y$$ 没有零的无偏估计量（由 Rao–Blackwell 定理形式的充分性，只须考虑基于 $$Y$$ 的零的无偏估计量）。因此 $$\frac{n+1}{n}\, Y$$ 与一切零的无偏估计量不相关（因为唯一的那个就是零本身），故 $$\frac{n+1}{n}\, Y$$ 是 $$\theta$$ 的最佳无偏估计量。
+
 值得再次指出：重要的是充分统计量分布族的完备性，而原分布族的完备性无关紧要。这由 Rao–Blackwell 定理而来——我们可以把注意力限制在充分统计量的函数上，一切期望都对该统计量的分布取。
+
 在下列定理中总结完备性与最佳无偏性的关系。
+
 **定理 7.3.23（Lehmann–Scheffé 型定理）**
+
 设 $$T$$ 是参数 $$\theta$$ 的完备充分统计量，$$\phi(T)$$ 是只基于 $$T$$ 的任何估计量。则 $$\phi(T)$$ 是其期望值的唯一最佳无偏估计量。
+
 本节以这里发展的理论的一个有趣且有用的应用结束。许多情形下，$$\tau(\theta)$$ 的无偏估计量没有明显的候选者，更谈不上最佳无偏估计量的候选者。然而在完备性在场时，本节的理论告诉我们：只要能找到任何无偏估计量，就能找到最佳无偏估计量。若 $$T$$ 是参数 $$\theta$$ 的完备充分统计量，$$h(X_1, \ldots, X_n)$$ 是 $$\tau(\theta)$$ 的任何无偏估计量，则 $$\phi(T) = \mathrm{E}\bigl( h(X_1, \ldots, X_n) \mid T \bigr)$$ 就是 $$\tau(\theta)$$ 的最佳无偏估计量（见习题 7.56）。
+
 **例 7.3.24（二项最佳无偏估计）**
+
 设 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{binomial}(k, \theta)$$。问题是从 $$\mathrm{binomial}(k, \theta)$$ 估计“恰有一次成功”的概率，即估计
 $$
 \tau(\theta) = P_{\theta}(X = 1) = k\, \theta\, (1 - \theta)^{k - 1}.
@@ -1344,7 +1351,9 @@ $$
 我们无须完成 $$\mathrm{E}_{\theta}\bigl[ \phi\bigl( \sum_{i=1}^{n} X_i \bigr) \bigr]$$ 的困难求值即可断言无偏性。
 ### 7.3.4 损失函数最优性（Loss Function Optimality）
 我们对点估计量的评价一直基于其均方误差表现。均方误差是一种称为损失函数的函数的特例。通过损失函数评价估计量之表现与最优性的研究，是决策论的一个分支。
+
 在观测到数据 $$\textbf{X} = \textbf{x}$$（其中 $$\textbf{X} \sim f(\textbf{x} \mid \theta)$$，$$\theta \in \Theta$$）之后，就要对 $$\theta$$ 作出决策。允许决策的集合称为行动空间（action space），记作 $$\mathcal{A}$$。点估计问题中 $$\mathcal{A}$$ 常等于参数空间 $$\Theta$$，但在其他问题（如假设检验——见 8.3.5 节）中会改变。
+
 点估计问题中的损失函数反映如下事实：若行动 $$a$$ 接近 $$\theta$$，则决策 $$a$$ 合理、损失很小；若 $$a$$ 远离 $$\theta$$，则损失很大。损失函数是非负函数，一般随 $$a$$ 与 $$\theta$$ 之间距离增大而增大。若 $$\theta$$ 是实值的，两种常用损失函数是
 $$
 \text{绝对误差损失：}\quad L(\theta, a) = \vert a - \theta\vert ,
@@ -1361,25 +1370,33 @@ $$
 L(\theta, a) = \frac{(a - \theta)^2}{\vert \theta\vert  + 1}.
 $$
 注意后面两种平方误差损失的变体本也可以基于绝对误差损失构造。一般地，实验者必须考虑各种 $$\theta$$ 值下估计误差的后果，并规定反映这些后果的损失函数。
+
 在损失函数或决策论分析中，估计量的质量由其风险函数（risk function）量化：对 $$\theta$$ 的估计量 $$\delta(\textbf{x})$$，风险函数（$$\theta$$ 的函数）为
 $$
 R(\theta, \delta) = \mathrm{E}_{\theta}\, L\bigl( \theta, \delta(\textbf{X}) \bigr). \tag{7.3.16}
 $$
 在给定 $$\theta$$ 处，风险函数是使用估计量 $$\delta(\textbf{x})$$ 时将承受的平均损失。
+
 由于 $$\theta$$ 的真值未知，我们希望使用对所有 $$\theta$$ 值都有小 $$R(\theta, \delta)$$ 的估计量：无论 $$\theta$$ 真值为何，估计量都有小的期望损失。要比较两个估计量 $$\delta_1$$ 与 $$\delta_2$$ 的优劣，就比较其风险函数 $$R(\theta, \delta_1)$$ 与 $$R(\theta, \delta_2)$$。若对所有 $$\theta \in \Theta$$ 有 $$R(\theta, \delta_1) < R(\theta, \delta_2)$$，则 $$\delta_1$$ 受偏爱，因为它对所有 $$\theta$$ 表现更好。更常见的情形是两条风险函数交叉，此时哪个估计更好的判断未必那么分明。
+
 估计量 $$\delta$$ 的风险函数就是 (7.3.16) 定义的期望损失。对平方误差损失，风险函数是熟悉的量——7.3.1 节使用的均方误差：那里估计量的 MSE 定义为 $$\mathrm{MSE}(\theta) = \mathrm{E}_{\theta}\, \bigl( \delta(\textbf{X}) - \theta \bigr)^2$$，当 $$L(\theta, a) = (a - \theta)^2$$ 时它恰是 $$\mathrm{E}_{\theta}\, L\bigl( \theta, \delta(\textbf{X}) \bigr) = R(\theta, \delta)$$。如 (7.3.1)，对平方误差损失有
 $$
 R(\theta, \delta) = \mathrm{Var}_{\theta}\, \delta(\textbf{X}) + \bigl( \mathrm{E}_{\theta}\, \delta(\textbf{X}) - \theta \bigr)^2 = \mathrm{Var}_{\theta}\, \delta(\textbf{X}) + \bigl( \mathrm{Bias}_{\theta}\, \delta(\textbf{X}) \bigr)^2. \tag{7.3.17}
 $$
 平方误差损失的风险函数清楚表明：好的估计量应同时有小方差与小偏差。决策论分析会评判估计量在同时最小化这两个量上的成败。
+
 像 7.3.2 节那样把允许估计量集合 $$\mathcal{D}$$ 限制为无偏估计量集合的决策论分析是非典型的：那时最小化风险就是最小化方差。决策论分析更全面——方差与偏差都在风险之中、被同时考虑。估计量若同时具有小（但可能非零的）偏差与小方差，会被判为好估计量。
+
 **例 7.3.25（二项风险函数）**
+
 例 7.3.5 中考虑了来自 $$\mathrm{Bernoulli}(p)$$ 总体的随机样本 $$X_1, \ldots, X_n$$，以及两个估计量
 $$
 \hat{p}_B = \frac{\sum_{i=1}^{n} X_i + \sqrt{n}/4}{n + \sqrt{n}} \qquad\text{与}\qquad \bar{X} = \frac{1}{n} \sum_{i=1}^{n} X_i.
 $$
 这两个估计量在 $$n = 4$$ 与 $$n = 400$$ 时的风险函数绘于图 7.3.1，其比较正如例 7.3.5 所述：基于风险比较，小 $$n$$ 时偏爱 $$\hat{p}_B$$，大 $$n$$ 时偏爱 $$\bar{X}$$。
+
 **例 7.3.26（正态方差的风险）**
+
 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\mu, \sigma^2)$$ 总体的随机样本。考虑在平方误差损失下估计 $$\sigma^2$$。我们考虑形如 $$\delta_b(\textbf{X}) = b\, S^2$$ 的估计量（$$S^2$$ 为样本方差，$$b$$ 为任意非负常数）。回忆 $$\mathrm{E} S^2 = \sigma^2$$，且对正态样本 $$\mathrm{Var} S^2 = 2 \sigma^4 / (n - 1)$$。用 (7.3.17) 可计算 $$\delta_b$$ 的风险函数：
 $$
 \begin{aligned}
@@ -1404,24 +1421,30 @@ $$
 在所有形如 $$b\, S^2$$ 的估计量中风险最小。图 7.3.2 展示了 $$n = 5$$ 时该估计量与该类中另两个估计量的风险函数：另两个是 $$S^2$$（无偏估计量）与 $$\hat{\sigma}^2 = \frac{n - 1}{n}\, S^2$$（$$\sigma^2$$ 的 MLE）。显然 $$\tilde{S}^2$$ 的风险函数处处最小。
 ![ch07_fig_7_3_2](fig/ch07_fig_7_3_2.png)
 *图 7.3.2　 例 7.3.26 中三个方差估计量的风险函数（原书 Figure 7.3.2）*
+
 **例 7.3.27（用 Stein 损失估计方差）**
+
 再次考虑用形如 $$b\, S^2$$ 的估计量估计总体方差 $$\sigma^2$$。这一分析可以相当一般：只设 $$X_1, \ldots, X_n$$ 是来自某方差 $$\sigma^2$$（正且有限）的总体的随机样本。现在使用归功于 Stein 的损失函数（James and Stein 1961；另见 Brown 1990a）：
 $$
 L(\sigma^2, a) = \frac{a}{\sigma^2} - 1 - \log\frac{a}{\sigma^2}.
 $$
 该损失比平方误差损失复杂，但有些合理的性质。注意 $$a = \sigma^2$$ 时损失为零；且对固定的 $$\sigma^2$$，当 $$a \to 0$$ 或 $$a \to \infty$$ 时 $$L(\sigma^2, a) \to \infty$$，即严重的低估与严重的低估一样受重罚。（平方误差损失在方差估计问题中受到的批评是：低估只有有限惩罚而高估有无穷惩罚。）该损失函数也来自正态总体样本中 $$\sigma^2$$ 的似然函数，从而把好的决策论性质与好的似然性质联系在一起（见习题 7.61）。
+
 对估计量 $$\delta_b = b\, S^2$$，风险函数为
 $$
 R(\sigma^2, \delta_b) = \mathrm{E}\Biggl[ \frac{b\, S^2}{\sigma^2} - 1 - \log \frac{b\, S^2}{\sigma^2} \Biggr] = b\, \mathrm{E} \frac{S^2}{\sigma^2} - 1 - \mathrm{E} \log \frac{b\, S^2}{\sigma^2}
 = b - \log b - 1 - \mathrm{E}\Bigl[ \log \frac{S^2}{\sigma^2} \Bigr] \qquad （\mathrm{E}_{\sigma^2} \frac{S^2}{\sigma^2} = 1）.
 $$
 量 $$\mathrm{E} \log(S^2 / \sigma^2)$$ 可以是 $$\sigma^2$$ 与其他总体参数的函数，但不是 $$b$$ 的函数。故对一切 $$\sigma^2$$，$$R(\sigma^2, \delta_b)$$ 在最小化 $$b - \log b$$ 的 $$b$$ 值——即 $$b = 1$$——处最小。因此形如 $$b\, S^2$$ 的估计量中对一切 $$\sigma^2$$ 值风险最小的是 $$\delta_1 = S^2$$。
+
 对损失函数最优性问题也可以采用贝叶斯途径，此时我们有先验分布 $$\pi(\theta)$$。贝叶斯分析会用该先验分布计算平均风险
 $$
 \int_{\Theta} R(\theta, \delta)\, \pi(\theta)\, d\theta,
 $$
 称为贝叶斯风险（Bayes risk）。对风险函数取平均给了我们一个数，用于评估估计量相对于给定损失函数的表现；而且可以尝试求使贝叶斯风险最小的估计量，这样的估计量称为关于先验 $$\pi$$ 的贝叶斯法则（Bayes rule），常记作 $$\delta^{\pi}$$。
+
 求给定先验 $$\pi$$ 的贝叶斯决策法则看似任务艰巨，实则相当机械，如下面定理所示。（按如下方法求贝叶斯法则的技术比这里呈现的更一般；见 Brown and Purves 1973。）
+
 对 $$\textbf{X} \sim f(\textbf{x} \mid \theta)$$ 与 $$\theta \sim \pi$$，决策法则 $$\delta$$ 的贝叶斯风险可写为
 $$
 \int_{\Theta} R(\theta, \delta)\, \pi(\theta)\, d\theta = \int_{\Theta} \int_{\mathcal{X}} L\bigl( \theta, \delta(\textbf{x}) \bigr)\, f(\textbf{x} \mid \theta)\, dx\, \pi(\theta)\, d\theta.
@@ -1431,9 +1454,13 @@ $$
 \int_{\Theta} R(\theta, \delta)\, \pi(\theta)\, d\theta = \int_{\mathcal{X}} \Biggl[ \int_{\Theta} L\bigl( \theta, \delta(\textbf{x}) \bigr)\, \pi(\theta \mid \textbf{x})\, d\theta \Biggr]\, m(\textbf{x})\, dx. \tag{7.3.19}
 $$
 方括号中的量是损失函数关于后验分布的期望值，称为后验期望损失（posterior expected loss）；它只是 **x** 的函数而非 $$\theta$$ 的函数。于是对每个 **x**，若选行动 $$\delta(\textbf{x})$$ 使后验期望损失最小，我们就最小化了贝叶斯风险。
+
 注意我们由此得到构造贝叶斯法则的配方：对给定观测 **x**，贝叶斯法则应使后验期望损失最小。这与此前各节的任何处方都相当不同。例如考虑先前讨论的求最佳无偏估计量的方法：使用定理 7.3.23 首先要找完备充分统计量 $$T$$；然后要找作为参数无偏估计量的函数 $$\phi(T)$$；Rao–Blackwell 定理（定理 7.3.17）在已知参数某个无偏估计量时或有帮助；但若想不出任何无偏估计量，该方法并未告诉我们如何构造一个。
+
 即使后验期望损失的最小化无法解析完成，积分可以求值、最小化可以数值进行。事实上观测到 $$\textbf{X} = \textbf{x}$$ 后，只须对这个特定的 **x** 做最小化。不过有些问题中我们可以显式描述贝叶斯法则。
+
 **例 7.3.28（两个贝叶斯法则）**
+
 考虑实值参数 $$\theta$$ 的点估计问题。
 - a. 平方误差损失下，后验期望损失为
   $$
@@ -1456,15 +1483,20 @@ $$
 | 9 | 0.9000 | 0.8520 | 0.8333 |
 | 10 | 1.0000 | 0.9389 | 0.9137 |
 7.2.3 节讨论的贝叶斯估计量是 $$\delta^{\pi}(\textbf{x}) = \mathrm{E}(\theta \mid \textbf{x})$$，即后验均值。现在我们看到：这是平方误差损失下的贝叶斯估计量。若认为其他损失函数比平方误差损失更合适，贝叶斯估计量可能是不同的统计量。
+
 **例 7.3.29（正态贝叶斯估计）**
+
 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\theta, \sigma^2)$$ 总体的随机样本，$$\pi(\theta)$$ 为 $$n(\mu, \tau^2)$$；$$\sigma^2$$、$$\mu$$、$$\tau^2$$ 已知。例 7.2.16（经习题 7.22 推广）中我们求得给定 $$\textbf{X} = \textbf{x}$$ 时 $$\theta$$ 的后验分布是正态的，且
 $$
 \mathrm{E}(\theta \mid \textbf{x}) = \frac{\tau^2}{\tau^2 + (\sigma^2/n)}\, \bar{x} + \frac{\sigma^2/n}{\tau^2 + (\sigma^2/n)}\, \mu, \qquad
 \mathrm{Var}(\theta \mid \textbf{x}) = \frac{\tau^2\, \sigma^2 / n}{\tau^2 + (\sigma^2/n)}.
 $$
 平方误差损失下贝叶斯估计量是 $$\delta^{\pi}(\textbf{x}) = \mathrm{E}(\theta \mid \textbf{x})$$。由于后验分布是正态的、关于其均值对称，$$\pi(\theta \mid \textbf{x})$$ 的中位数等于 $$\mathrm{E}(\theta \mid \textbf{x})$$。故绝对误差损失下贝叶斯估计量也是 $$\delta^{\pi}(\textbf{x}) = \mathrm{E}(\theta \mid \textbf{x})$$。
+
 **例 7.3.30（二项贝叶斯估计）**
+
 设 $$X_1, \ldots, X_n$$ 是 iid $$\mathrm{Bernoulli}(p)$$，$$Y = \sum X_i$$；设 $$p$$ 的先验为 $$\mathrm{beta}(\alpha, \beta)$$。例 7.2.14 中发现后验分布只通过观测值 $$Y = y$$ 依赖样本，且为 $$\mathrm{beta}(y + \alpha,\ n - y + \beta)$$。故 $$\delta^{\pi}(y) = \mathrm{E}(p \mid y) = \dfrac{y + \alpha}{\alpha + \beta + n}$$ 是平方误差损失下 $$p$$ 的贝叶斯估计量。
+
 绝对误差损失下需要求 $$\pi(p \mid y) = \mathrm{beta}(y + \alpha,\ n - y + \beta)$$ 的中位数。一般没有该中位数的简单表达式；中位数隐式定义为满足
 $$
 \int_0^{m} \frac{\Gamma(\alpha + \beta + n)}{\Gamma(y + \alpha)\, \Gamma(n - y + \beta)}\, p^{y + \alpha - 1} (1 - p)^{n - y + \beta - 1}\, dp = \frac{1}{2}
@@ -1866,6 +1898,7 @@ $$
 ## 7.5 杂记（Miscellanea）
 ### 7.5.1 矩估计量与 MLE（Moment Estimators and MLEs）
 一般地，矩估计量不是充分统计量的函数，因此通过对充分统计量取条件总可以改进它们。但在指数族情形，修改后的矩方法策略与最大似然估计之间可以存在对应。这一对应由 Davidson and Solomon (1974) 详细讨论，他们还讲述了有趣的历史。
+
 设我们有来自指数族 pdf（见定理 5.2.11）的随机样本 $$\textbf{X} = (X_1, \ldots, X_n)$$：
 $$
 f(x \mid \theta) = h(x)\, c(\theta)\, \exp\Bigl( \sum_{i=1}^{k} w_i(\theta)\, t_i(x) \Bigr),
@@ -1912,29 +1945,41 @@ $$
 \end{aligned}
 $$
 比较两个计算可见：唯一不矛盾的方式是 $$\mathrm{E}(X^2) = \mathrm{E}(\theta^2)$$，而这蕴含 $$\mathrm{E} (X - \theta)^2 = 0$$，故 $$X = \theta$$。这只在 $$P(X = \theta) = 1$$ 时发生——无趣的情形，于是我们论证出了矛盾。故要么 $$\mathrm{E}(X \mid \theta) \neq \theta$$，要么 $$\mathrm{E}(\theta \mid X) \neq X$$，表明后验均值不能是无偏估计量。
+
 注意我们隐含假设了 $$\mathrm{E}(X^2) < \infty$$，但该结果在更一般的条件下也成立。Bickel and Mallows (1988) 对该主题有更彻底的发展；更高层次上，这一联系由 Noorbaloochi and Meeden (1983) 刻画。
 ### 7.5.3 Lehmann–Scheffé 定理（The Lehmann–Scheffé Theorem）
 Lehmann–Scheffé 定理是数理统计的一项重大成就，把充分性、完备性与唯一性联系在一起。正文的展开与 Lehmann–Scheffé 定理多少互补，因此我们从未以经典形式（类似定理 7.3.23）陈述它。事实上，Lehmann–Scheffé 定理包含在定理 7.3.19 与 7.3.23 之中。
+
 **定理 7.5.1（Lehmann–Scheffé 定理）**
+
 基于完备充分统计量的无偏估计量是唯一的。
+
 **证明**　设 $$T$$ 是完备充分统计量，$$\phi(T)$$ 是满足 $$\mathrm{E}_{\theta}\, \phi(T) = \tau(\theta)$$ 的估计量。由定理 7.3.23 知 $$\phi(T)$$ 是 $$\tau(\theta)$$ 的最佳无偏估计量，由定理 7.3.19 知最佳无偏估计量唯一。 ∎
 该定理也可以不用定理 7.3.19（原文如此，应为 7.3.3）而只用完备性的推论证明，为定理 7.3.23 提供略微不同的路线。
 ### 7.5.4 EM 算法的更多内容（More on the EM Algorithm）
 EM 算法的根源在二十世纪五十年代的工作（Hartley 1958），但在 Dempster, Laird, and Rubin (1977) 的开创性工作之后才真正在统计学中声名鹊起；该工作详述了算法的底层结构并在广泛的应用中演示了其用法。
+
 EM 算法的一个优点是收敛到不完全数据 MLE 的条件已知，尽管这一话题还附加了些民间传说。Dempster, Laird, and Rubin (1977) 原始的收敛证明有缺陷，但有效的收敛证明后来由 Boyles (1983) 与 Wu (1983) 给出；另见 Finch 等 (1989)。
+
 在我们的展开中我们止步于定理 7.2.20，它保证似然在每次迭代中增加。但这可能不足以断言序列 $$\{ \hat{\theta}^{(r)} \}$$ 收敛到最大似然估计量；这样的保证需要进一步的条件。归功于 Wu (1983) 的下述定理保证收敛到驻点——它可能是局部最大或鞍点。
+
 **定理 7.5.2（EM 序列的收敛）**
+
 若期望的完全数据对数似然 $$\mathrm{E}\bigl[ \log L(\theta \mid \textbf{y}, \textbf{x}) \mid \theta', \textbf{y} \bigr]$$ 关于 $$\theta$$ 与 $$\theta'$$ 都连续，则 EM 序列 $$\{ \hat{\theta}^{(r)} \}$$ 的一切极限点都是 $$L(\theta \mid \textbf{y})$$ 的驻点，且 $$L\bigl( \hat{\theta}^{(r)} \mid \textbf{y} \bigr)$$ 单调收敛到 $$L(\hat{\theta} \mid \textbf{y})$$（某个驻点 $$\hat{\theta}$$）。
+
 在指数族中，因为对数似然对缺失数据是线性的，计算得以简化：可以写
 $$
 \mathrm{E}\Bigl[ \log L(\theta \mid \textbf{y}, \textbf{x}) \mid \theta', \textbf{y} \Bigr] = \mathrm{E}_{\theta'}\Bigl[ \log\bigl( h(\textbf{y}, \textbf{X})\, e^{\sum \eta_i(\theta)\, T_i - B(\theta)} \bigr) \mid \textbf{y} \Bigr]
 = \mathrm{E}_{\theta'}\bigl[ \log h(\textbf{y}, \textbf{X}) \bigr] + \sum \eta_i(\theta)\, \mathrm{E}_{\theta'}\bigl[ T_i \mid \textbf{y} \bigr] - B(\theta).
 $$
 于是计算完全数据 MLE 只涉及更简单的期望 $$\mathrm{E}_{\theta'}\bigl[ T_i \mid \textbf{y} \bigr]$$。
+
 EM 算法的良好综述由 Little and Rubin (1987)、Tanner (1996) 与 Sheaffer (1997) 提供；另见 Lehmann and Casella (1998, Section 6.4)。McLachlan and Krishnan (1997) 对 EM 有整本专著级的处理。
 ### 7.5.5 其他似然（Other Likelihoods）
 本章我们使用了最大似然法，并看到它不仅提供了寻找估计量的方法，还带来对推断相当有用的大样本理论。
+
 似然有许多修改。一些用于处理多余参数（如轮廓似然）；一些在希望更稳健的设定时使用（如拟似然）；另一些在数据删失时有用（如部分似然）。
+
 还有许多其他变体，它们都能对我们此处描述的朴素似然提供一些改进。进入这一丰富似然世界的入口有 Hinkley (1980) 的综述文章或 Hinkley, Reid, and Snell (1991) 编辑的综述文集。
 ### 7.5.6 其他贝叶斯分析（Other Bayes Analyses）
 **1. 稳健贝叶斯分析**　 贝叶斯法则可能对（主观的）先验分布选择相当敏感，这让许多贝叶斯统计学家担忧。Berger (1984) 的文章引入了稳健贝叶斯分析的想法：这是一类贝叶斯分析，寻找对一族先验分布都有良好性质的估计量。也就是说，我们寻找这样的估计量 $$\delta^{*}$$：其表现稳健，不敏感于先验类中哪个先验 $$\pi$$ 才是正确先验。稳健贝叶斯估计量也可以有好的频率派表现，使其颇具吸引力。该主题的入口有 Berger (1990, 1994) 与 Wasserman (1994) 的综述论文。

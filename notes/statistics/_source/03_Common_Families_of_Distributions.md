@@ -943,8 +943,11 @@ $$
 \int_{-\infty}^{\infty} \frac{1}{\pi}\, \frac{1}{1 + (x - \theta)^2}\, dx = \left. \frac{1}{\pi} \arctan(x - \theta) \right\vert _{-\infty}^{\infty} = 1,
 $$
 因为 $$\arctan(\pm\infty) = \pm \pi/2$$。
+
 由于 $$\mathrm{E}\vert X\vert  = \infty$$，柯西分布的任何矩都不存在，换言之其一切绝对矩均为 $$\infty$$；特别地，mgf 不存在。
+
 (3.3.19) 中的参数 $$\theta$$ 确实度量分布的中心：它是中位数。若 $$X$$ 服从参数为 $$\theta$$ 的柯西分布，则由习题 3.37 可知 $$P(X \geq \theta) = \tfrac{1}{2}$$，说明 $$\theta$$ 是分布的中位数。图 3.3.5 同时画出了 $$\mathrm{Cauchy}(0)$$ 分布与 $$n(0,1)$$：形状相似，但柯西的尾部厚得多。
+
 柯西分布在统计理论中扮演特殊角色：它是检验各种猜想的极端案例。但不要误以为柯西分布只是病态情形——它总在你最意想不到的时候出现。例如，实验者计算观测值的比值（即随机变量之比）是常见做法（在生长测量中，常把体重与身高合并为“身高体重比”即 体重/身高）。一个惊人的事实是：两个标准正态变量之比服从柯西分布（见例 4.3.6）。取比值可能导致行为不良的分布。
 ![ch03_fig_3_3_5](fig/ch03_fig_3_3_5.png)
 *图 3.3.5　 标准正态密度与柯西密度（原书 Figure 3.3.5）*
@@ -981,6 +984,7 @@ $$
 \mathrm{E} X = \int_{-\infty}^{\infty} \frac{x}{2\sigma}\, e^{-\vert x - \mu\vert /\sigma}\, dx = \int_{-\infty}^{\mu} \frac{x}{2\sigma}\, e^{(x - \mu)/\sigma}\, dx + \int_{\mu}^{\infty} \frac{x}{2\sigma}\, e^{-(x - \mu)/\sigma}\, dx. \tag{3.3.23}
 $$
 注意在两个积分区域上可以去掉绝对值符号（这一策略对处理含绝对值的积分普遍有用：分割积分区域以去掉绝对值）。(3.3.23) 的求值可对每个积分分别分部积分完成。
+
 还有许多其他连续分布在不同统计应用中各有用处，其中许多将出现在本书其余章节。Johnson and Kotz (1969, 1970a, 1970b) 的全面著作是大多数有用统计分布的宝贵参考。
 ## 3.4 指数族（Exponential Families）
 若一族 pdf 或 pmf 可以表示为
@@ -988,9 +992,13 @@ $$
 f(x \mid \theta) = h(x)\, c(\theta)\, \exp\Bigl( \sum_{i=1}^{k} w_i(\theta)\, t_i(x) \Bigr), \tag{3.4.1}
 $$
 则称之为***指数族***（exponential family）。
+
 其中 $$h(x) \geq 0$$ 与 $$t_1(x), \ldots, t_k(x)$$ 是观测 $$x$$ 的实值函数（它们不能依赖于 $$\theta$$）；$$c(\theta) \geq 0$$ 与 $$w_1(\theta), \ldots, w_k(\theta)$$ 是可能取向量值的参数 $$\theta$$ 的实值函数（它们不能依赖于 $$x$$）。上一节引入的许多常见族都是指数族：连续族包括正态族、伽马族与贝塔族；离散族包括二项族、泊松族与负二项族。
+
 要验证一族 pdf 或 pmf 是指数族，必须识别函数 $$h(x)$$、$$c(\theta)$$、$$w_i(\theta)$$ 与 $$t_i(x)$$，并证明该族具有 (3.4.1) 的形式。下例说明这一过程。
+
 **例 3.4.1（二项指数族）**
+
 设 $$n$$ 为正整数，考虑 $$0 < p < 1$$ 的 $$\mathrm{binomial}(n, p)$$ 族。对 $$x = 0, \ldots, n$$ 与 $$0 < p < 1$$，该族的 pmf 为
 $$
 \begin{aligned}
@@ -1012,8 +1020,11 @@ $$
 f(x \mid p) = h(x)\, c(p) \exp\bigl[ w_1(p)\, t_1(x) \bigr], \tag{3.4.3}
 $$
 这是 $$k = 1$$ 时的形式 (3.4.1)。特别要注意 $$h(x) > 0$$ 仅当 $$x = 0, \ldots, n$$，而 $$c(p)$$ 仅在 $$0 < p < 1$$ 时有定义。这一点很重要：(3.4.3) 必须对一切 $$x$$ 的取值都与 (3.4.2) 匹配，且仅当 $$0 < p < 1$$ 时才是指数族（参数函数只在此范围内有定义）。此外，参数值 $$p = 0$$ 与 $$p = 1$$ 有时也包含在二项模型中，但此处未包含，因为 $$p = 0$$ 或 1 时使 $$f(x \mid p) > 0$$ 的 $$x$$ 取值集合不同于其他 $$p$$ 值时的集合。
+
 (3.4.1) 的特殊形式使指数族具有许多优美的数学性质；但更重要的是，作为一个统计模型，这种形式还带来许多优美的统计性质。下面给出指数族矩计算的一条捷径。
+
 **定理 3.4.2（指数族的矩恒等式）**
+
 设 $$X$$ 的 pdf 或 pmf 形如 (3.4.1)，则
 $$
 \mathrm{E}\Bigl[ \sum_{i=1}^{k} \frac{\partial w_i(\theta)}{\partial \theta_j}\, t_i(X) \Bigr] = -\, \frac{\partial}{\partial \theta_j} \log c(\theta), \tag{3.4.4}
@@ -1022,7 +1033,9 @@ $$
 \mathrm{Var}\Bigl[ \sum_{i=1}^{k} \frac{\partial w_i(\theta)}{\partial \theta_j}\, t_i(X) \Bigr] = -\, \frac{\partial^2}{\partial \theta_j^2} \log c(\theta) - \mathrm{E}\Bigl[ \sum_{i=1}^{k} \frac{\partial^2 w_i(\theta)}{\partial \theta_j^2}\, t_i(X) \Bigr]. \tag{3.4.5}
 $$
 这些等式虽然看似吓人，但用于具体情形时往往相当漂亮。其优点是可以用求导代替积分或求和，后者通常更直接。
+
 **例 3.4.3（二项分布的均值与方差）**
+
 由例 3.4.1，
 $$
 \frac{d}{dp}\, w_1(p) = \frac{d}{dp} \log \frac{p}{1 - p} = \frac{1}{p(1 - p)},
@@ -1034,9 +1047,13 @@ $$
 \mathrm{E}\Bigl[ \frac{1}{p(1 - p)}\, X \Bigr] = \frac{n}{1 - p},
 $$
 稍加整理即得 $$\mathrm{E}(X) = np$$。方差恒等式的用法类似。
+
 定理 3.4.2 的证明是一次微积分练习，移至习题 3.31 完成；特例另见习题 3.32。
+
 下面再看一个例子以及指数族的另一些特征。
+
 **例 3.4.4（正态指数族）**
+
 设 $$f(x \mid \mu, \sigma^2)$$ 是 $$n(\mu, \sigma^2)$$ pdf 族，$$\theta = (\mu, \sigma)$$，$$-\infty < \mu < \infty$$，$$\sigma > 0$$。则
 $$
 \begin{aligned}
@@ -1062,23 +1079,29 @@ $$
 f(x \mid \mu, \sigma^2) = h(x)\, c(\mu, \sigma) \exp\bigl[ w_1(\mu, \sigma)\, t_1(x) + w_2(\mu, \sigma)\, t_2(x) \bigr],
 $$
 即 $$k = 2$$ 的形式 (3.4.1)。再次注意参数函数只在参数范围内有定义。
+
 一般地，在指数族中，使 $$f(x \mid \theta) > 0$$ 的 $$x$$ 取值集合不能依赖于 $$\theta$$。pdf 或 pmf 的完整定义必须纳入形式 (3.4.1)；最方便的做法是用示性函数把 $$x$$ 的范围纳入 $$f(x \mid \theta)$$ 的表达式。
+
 **定义 3.4.5（示性函数）**
+
 集合 $$A$$ 的***示性函数***（indicator function）通常记作 $$I_A(x)$$，定义为
 $$
 I_A(x) = \begin{cases} 1 & x \in A,\\ 0 & x \notin A. \end{cases}
 $$
 另一种记法是 $$I(x \in A)$$。
+
 于是例 3.4.4 的正态 pdf 可以写成
 $$
 f(x \mid \mu, \sigma^2) = h(x)\, c(\mu, \sigma) \exp\bigl[ w_1(\mu, \sigma)\, t_1(x) + w_2(\mu, \sigma)\, t_2(x) \bigr]\, I_{(-\infty, \infty)}(x).
 $$
 由于示性函数只是 $$x$$ 的函数，它可以并入 $$h(x)$$，说明该 pdf 具有 (3.4.1) 的形式。
+
 由 (3.4.1)，因子 $$\exp(\cdot)$$ 恒正，故对任意 $$\theta \in \Theta$$（即任意使 $$c(\theta) > 0$$ 的 $$\theta$$），$$\{x : f(x \mid \theta) > 0\} = \{x : h(x) > 0\}$$，且该集合不依赖于 $$\theta$$。例如，pdf 族 $$f(x \mid \theta) = \theta^{-1} \exp\bigl( 1 - (x/\theta) \bigr)$$（$$0 < \theta < x < \infty$$）就不是指数族——尽管我们能写 $$\theta^{-1} \exp\bigl( 1 - (x/\theta) \bigr) = h(x) c(\theta) \exp\bigl( w(\theta) t(x) \bigr)$$，其中 $$h(x) = e$$，$$c(\theta) = \theta^{-1}$$，$$w(\theta) = \theta^{-1}$$，$$t(x) = -x$$。用示性函数写这个 pdf 就能看清原因：
 $$
 f(x \mid \theta) = \theta^{-1} \exp\Bigl( 1 - \frac{x}{\theta} \Bigr)\, I_{[\theta, \infty)}(x).
 $$
 示性函数无法并入 (3.4.1) 的任何一个函数：它既不是单独 $$x$$ 的函数，也不是单独 $$\theta$$ 的函数，也不能写成指数。因此这不是指数族。
+
 指数族有时再参数化为
 $$
 f(x \mid \eta) = h(x)\, c^{*}(\eta) \exp\Bigl( \sum_{i=1}^{k} \eta_i\, t_i(x) \Bigr). \tag{3.4.7}
@@ -1092,16 +1115,23 @@ $$
 c^{*}(\eta) = \Bigl( \int_{-\infty}^{\infty} h(x) \exp\Bigl( \sum_{i=1}^{k} \eta_i\, t_i(x) \Bigr) dx \Bigr)^{-1}.
 $$
 由于 (3.4.1) 中的原 $$f(x \mid \theta)$$ 是 pdf 或 pmf，集合 $$\{\eta = (w_1(\theta), \ldots, w_k(\theta)) : \theta \in \Theta\}$$ 必是自然参数空间的子集；但也可能存在其他 $$\eta \in H$$。自然参数化与自然参数空间有许多有用的数学性质，例如 $$H$$ 是凸的。
+
 **例 3.4.6（例 3.4.4 的继续）**
+
 为确定正态分布族的自然参数空间，把 (3.4.6) 中的 $$w_i(\mu, \sigma)$$ 换成 $$\eta_i$$，得
 $$
 f(x \mid \eta_1, \eta_2) = \sqrt{\frac{\eta_1}{2\pi}}\, \exp\Bigl( -\frac{\eta_1 \eta_2^2}{2} \Bigr) \exp\Bigl( -\frac{\eta_1 x^2}{2} + \eta_2 x \Bigr). \tag{3.4.8}
 $$
 当且仅当 $$x^2$$ 的系数为负时积分有限，即 $$\eta_1$$ 必须为正。若 $$\eta_1 > 0$$，无论 $$\eta_2$$ 取何值积分都有限。故自然参数空间是 $$\{(\eta_1, \eta_2) : \eta_1 > 0,\ -\infty < \eta_2 < \infty\}$$。把 (3.4.8) 与 (3.4.6) 对照，可见 $$\eta_2 = \mu/\sigma^2$$，$$\eta_1 = 1/\sigma^2$$。自然参数提供了方便的数学表述，但有时缺乏均值、方差那样的直观解释。
+
 在表示 (3.4.1) 中，向量 $$\theta$$ 的维数常常等于 $$k$$（指数中和的项数），但不必如此：$$\theta$$ 的维数可以等于 $$d < k$$。这样的指数族称为***曲线指数族***（curved exponential family）。
+
 **定义 3.4.7（曲线指数族）**
+
 若形如 (3.4.1) 的密度族的参数向量维数等于 $$d < k$$，则称之为***曲线指数族***。若 $$d = k$$，则称该族为***满秩指数族***（full exponential family）。（另见杂记 3.8.3。）
+
 **例 3.4.8（一个曲线指数族）**
+
 例 3.4.4 的正态族是满秩指数族。但若假定 $$\sigma^2 = \mu^2$$，该族就变成曲线族（这样的模型可能用于方差分析；见习题 11.1 与 11.2）。此时
 $$
 \begin{aligned}
@@ -1110,8 +1140,11 @@ f(x \mid \mu) &= \frac{1}{\sqrt{2\pi\, \mu^2}} \exp\Bigl( -\frac{(x - \mu)^2}{2\
 \end{aligned} \tag{3.4.9}
 $$
 对正态族，满秩指数族的参数空间是 $$(\mu, \sigma^2) = \Re \times (0, \infty)$$，而曲线族 $$(\mu, \sigma^2) = (\mu, \mu^2)$$ 的参数空间是一条抛物线。
+
 曲线指数族的用途很多。下一例展示一个简单的用法。
+
 **例 3.4.9（正态近似）**
+
 第 5 章将看到：若 $$X_1, \ldots, X_n$$ 是来自 $$\mathrm{Poisson}(\lambda)$$ 总体的样本，则 $$\bar{X} = \sum_i X_i / n$$ 的分布近似为
 $$
 \bar{X} \sim n(\lambda, \lambda/n),
@@ -1122,17 +1155,22 @@ $$
 \bar{X} \sim n\bigl( p,\ p(1 - p)/n \bigr).
 $$
 另一例见例 5.5.16。
+
 虽然参数空间维数降低对族的性质有影响，但曲线族仍享有满秩族的许多性质；特别地，定理 3.4.2 对曲线指数族仍然适用。此外，满秩与曲线指数族还有其他统计性质，将在全书余下部分讨论。例如，设我们有一总体的大量数据，其 pdf 或 pmf 形如 (3.4.1)；则只有 $$k$$ 个数（$$k$$ 为 (3.4.1) 中和的项数）——它们可以从数据算出——概括了数据中关于 $$\theta$$ 的全部信息。这一“数据约简”性质将在第 6 章充分统计量的讨论中（定理 6.2.10）详细展开。
+
 关于指数族的更多入门材料见 Lehmann (1986, Section 2.7) 或 Lehmann and Casella (1998, Section 1.5 and Note 1.10.6)；更彻底的（稍高水平的）介绍见 Brown (1986) 的经典专著。
 ## 3.5 位置族与尺度族（Location and Scale Families）
 3.3 与 3.4 节讨论了几种常见的连续分布族。本节讨论构造分布族的三种技术。所得的族具有直观的物理解释，使其对建模非常有用，同时具有便利的数学性质。
 这三种类型的族称为位置族（location families）、尺度族（scale families）与位置—尺度族（location–scale families）。每一族都通过指定单个 pdf（记作 $$f(x)$$，称为该族的***标准 pdf***，standard pdf）来构造；族中所有其他 pdf 都按预先规定的方式变换标准 pdf 而生成。我们先给出关于 pdf 的一个简单定理。
+
 **定理 3.5.1（位置—尺度变换产生合法 pdf）**
+
 设 $$f(x)$$ 是任意 pdf，$$\mu$$ 与 $$\sigma > 0$$ 是任意给定常数。则函数
 $$
 g(x \mid \mu, \sigma) = \frac{1}{\sigma}\, f\Bigl( \frac{x - \mu}{\sigma} \Bigr)
 $$
 是 pdf。
+
 **证明**　为验证该变换产生了合法 pdf，需检查 $$(1/\sigma) f\bigl( (x - \mu)/\sigma \bigr)$$ 作为 $$x$$ 的函数，对代入公式的每一组 $$\mu$$ 与 $$\sigma$$ 取值都是 pdf，即非负且积分为 1。因为 $$f(x)$$ 是 pdf，对一切 $$x$$ 有 $$f(x) \geq 0$$，故对一切 $$x$$、$$\mu$$、$$\sigma$$ 有 $$(1/\sigma) f\bigl( (x - \mu)/\sigma \bigr) \geq 0$$。其次，
 $$
 \int_{-\infty}^{\infty} \frac{1}{\sigma}\, f\Bigl( \frac{x - \mu}{\sigma} \Bigr)\, dx = \int_{-\infty}^{\infty} f(y)\, dy = 1,
@@ -1140,8 +1178,11 @@ $$
 $$
 验证完毕。 ∎
 现在讨论第一种构造——位置族。
+
 **定义 3.5.2（位置族）**
+
 设 $$f(x)$$ 是任意 pdf。则由参数 $$\mu$$（$$-\infty < \mu < \infty$$）索引的 pdf 族 $$f(x - \mu)$$ 称为以 $$f(x)$$ 为标准 pdf 的***位置族***（location family），$$\mu$$ 称为该族的***位置参数***（location parameter）。
+
 为看出引入位置参数 $$\mu$$ 的效果，考虑图 3.5.1：在 $$x = \mu$$ 处 $$f(x - \mu) = f(0)$$；在 $$x = \mu + 1$$ 处 $$f(x - \mu) = f(1)$$；一般地在 $$x = \mu + a$$ 处 $$f(x - \mu) = f(a)$$。当然 $$\mu = 0$$ 时的 $$f(x - \mu)$$ 就是 $$f(x)$$。因此位置参数 $$\mu$$ 只是平移 pdf $$f(x)$$：图像的形状不变，但原在 $$f(x)$$ 中位于 $$x = 0$$ 上方的那一点，现在位于 $$f(x - \mu)$$ 中 $$x = \mu$$ 的上方。从图 3.5.1 清楚可见，$$f(x)$$ 在 $$x = -1$$ 与 $$x = 2$$ 之间的图形下面积，等于 $$f(x - \mu)$$ 在 $$x = \mu - 1$$ 与 $$x = \mu + 2$$ 之间的面积。于是若 $$X$$ 是以 $$f(x - \mu)$$ 为 pdf 的随机变量，可写
 $$
 P(-1 \leq X \leq 2 \mid 0) = P(\mu - 1 \leq X \leq \mu + 2 \mid \mu),
@@ -1154,11 +1195,17 @@ $$
 f(x) = \frac{1}{\sqrt{2\pi}\, \sigma}\, e^{-x^2/(2\sigma^2)}, \qquad -\infty < x < \infty,
 $$
 则以 $$f(x)$$ 为标准 pdf 的位置族就是未知均值 $$\mu$$、已知方差 $$\sigma^2$$ 的正态分布集合：在公式中把 $$x$$ 换成 $$x - \mu$$ 即得 (3.3.13) 定义的 pdf。类似地，柯西族与双指数族（$$\sigma$$ 取指定值，$$\mu$$ 为参数）都是位置族的例子。但定义 3.5.2 的要点在于：我们可以从***任何*** pdf $$f(x)$$ 出发，通过引入位置参数生成一族 pdf。
+
 若 $$X$$ 是以 $$f(x - \mu)$$ 为 pdf 的随机变量，则 $$X$$ 可以表示为 $$X = Z + \mu$$，其中 $$Z$$ 是以 $$f(z)$$ 为 pdf 的随机变量。该表示是定理 3.5.6（取 $$\sigma = 1$$）的结论，稍后证明。考虑这一表示，可以指明位置族何时适合作为观测变量 $$X$$ 的模型。下面描述两种情形。
+
 第一，假设实验的目的是测量某个物理常数 $$\mu$$，例如某溶液的温度，但观测涉及测量误差。于是实际观测值 $$X$$ 为 $$Z + \mu$$，其中 $$Z$$ 是测量误差：本次观测中 $$Z > 0$$ 则 $$X$$ 大于 $$\mu$$，$$Z < 0$$ 则小于 $$\mu$$。随机测量误差的分布可能由以往使用该测量仪器的经验所熟知；若该分布的 pdf 为 $$f(z)$$，则观测值 $$X$$ 的 pdf 为 $$f(x - \mu)$$。
+
 另一个例子：假设司机在协调性测试中的反应时间分布由以往实验获知。用随机变量 $$Z$$ 表示随机抽取司机的反应时间，其已知分布的 pdf 为 $$f(z)$$。现在考虑对总体“施加处理”：例如设想每个人都喝下三杯啤酒会发生什么。我们或许可以假定每个人的反应时间都改变某个未知量 $$\mu$$（这一非常简单的模型——每个人的反应时间改变同一量 $$\mu$$——可能不是最好的模型；例如已知酒精的作用与体重有关，体重较大者受啤酒影响可能较小）。思想开放的科学家甚至可以允许 $$\mu < 0$$，即反应时间变短。于是“处理”后随机抽取司机的反应时间为 $$X = Z + \mu$$，$$X$$ 的可能分布族就是 $$f(x - \mu)$$。
+
 若使 $$f(x) > 0$$ 的 $$x$$ 集合不是整条实数轴，则使 $$f(x - \mu) > 0$$ 的 $$x$$ 集合将依赖于 $$\mu$$。例 3.5.3 说明了这一点。
+
 **例 3.5.3（指数位置族）**
+
 设 $$f(x) = e^{-x}$$（$$x \geq 0$$），$$f(x) = 0$$（$$x < 0$$）。为构成位置族，把 $$x$$ 换成 $$x - \mu$$：
 $$
 f(x \mid \mu) = \begin{cases} e^{-(x - \mu)} & x - \mu \geq 0,\\ 0 & x - \mu < 0, \end{cases} = \begin{cases} e^{-(x - \mu)} & x \geq \mu,\\ 0 & x < \mu. \end{cases}
@@ -1167,20 +1214,29 @@ $$
 ![ch03_fig_3_5_2](fig/ch03_fig_3_5_2.png)
 *图 3.5.2　 指数位置密度（原书 Figure 3.5.2）*
 本节要讨论的另外两类是尺度族与位置—尺度族。
+
 **定义 3.5.4（尺度族）**
+
 设 $$f(x)$$ 是任意 pdf。则对任意 $$\sigma > 0$$，由参数 $$\sigma$$ 索引的 pdf 族 $$(1/\sigma) f(x/\sigma)$$ 称为以 $$f(x)$$ 为标准 pdf 的***尺度族***（scale family），$$\sigma$$ 称为该族的***尺度参数***（scale parameter）。
+
 引入尺度参数 $$\sigma$$ 的效果是把 $$f(x)$$ 的图形拉伸（$$\sigma > 1$$）或收缩（$$\sigma < 1$$），同时保持图形的基本形状不变，如图 3.5.3 所示。使用尺度参数时，$$f(x)$$ 通常或者关于 0 对称，或者仅在 $$x > 0$$ 时为正；此时拉伸或者关于 0 对称，或者只沿正方向。但在定义中，任何 pdf 都可用作标准 pdf。
 ![ch03_fig_3_5_3](fig/ch03_fig_3_5_3.png)
 *图 3.5.3　 同一尺度族的成员（原书 Figure 3.5.3）*
 3.3 节引入的几族分布是尺度族或以尺度族为子族：若 $$\alpha$$ 固定而 $$\beta$$ 为尺度参数，则伽马族；若 $$\mu = 0$$ 而 $$\sigma$$ 为尺度参数，则正态族；指数族；以及若 $$\mu = 0$$ 而 $$\sigma$$ 为尺度参数时的双指数族。每种情形下，标准 pdf 都是令尺度参数等于 1 所得的 pdf，族中其他成员都可证明具有定义 3.5.4 的形式。
+
 **定义 3.5.5（位置—尺度族）**
+
 设 $$f(x)$$ 是任意 pdf。则对任意 $$\mu$$（$$-\infty < \mu < \infty$$）与任意 $$\sigma > 0$$，由参数 $$(\mu, \sigma)$$ 索引的 pdf 族 $$(1/\sigma) f\bigl( (x - \mu)/\sigma \bigr)$$ 称为以 $$f(x)$$ 为标准 pdf 的***位置—尺度族***（location–scale family）；$$\mu$$ 称为位置参数，$$\sigma$$ 称为尺度参数。
+
 同时引入位置与尺度参数的效果是：先用尺度参数把图形拉伸（$$\sigma > 1$$）或收缩（$$\sigma < 1$$），再平移图形，使原来位于 0 上方的点位于 $$\mu$$ 上方。图 3.5.4 展示了对 $$f(x)$$ 的这一变换。正态族与双指数族都是位置—尺度族的例子；习题 3.39 把柯西族表为位置—尺度族。
 ![ch03_fig_3_5_4](fig/ch03_fig_3_5_4.png)
 *图 3.5.4　 同一位置—尺度族的成员（原书 Figure 3.5.4）*
 下面的定理把定义位置—尺度族的 pdf $$f(x)$$ 的变换，与以 $$f(z)$$ 为 pdf 的随机变量 $$Z$$ 的变换联系起来。如前所述，用 $$Z$$ 表示是很有用的数学工具，能帮助我们在建模情景中理解位置—尺度族何时合适。在定理 3.5.6 中令 $$\sigma = 1$$ 得到（纯）位置族的结果，令 $$\mu = 0$$ 得到（纯）尺度族的结果。
+
 **定理 3.5.6（位置—尺度表示）**
+
 设 $$f(\cdot)$$ 是任意 pdf，$$\mu$$ 为任意实数，$$\sigma$$ 为任意正实数。则 $$X$$ 是以 $$(1/\sigma) f\bigl( (x - \mu)/\sigma \bigr)$$ 为 pdf 的随机变量，当且仅当存在以 $$f(z)$$ 为 pdf 的随机变量 $$Z$$ 使 $$X = \sigma Z + \mu$$。
+
 **证明**　证“若”部分：定义 $$g(z) = \sigma z + \mu$$，则 $$X = g(Z)$$，$$g$$ 是单调函数，$$g^{-1}(x) = (x - \mu)/\sigma$$，且 $$\Bigl\vert  \frac{d}{dx} g^{-1}(x) \Bigr\vert  = 1/\sigma$$。于是由定理 2.1.5，$$X$$ 的 pdf 为
 $$
 f_X(x) = f_Z\bigl( g^{-1}(x) \bigr)\, \Bigl\vert  \frac{d}{dx}\, g^{-1}(x) \Bigr\vert  = f\Bigl( \frac{x - \mu}{\sigma} \Bigr)\, \frac{1}{\sigma}.
@@ -1199,15 +1255,20 @@ $$
 f_Z(z) = \frac{1}{1}\, f\Bigl( \frac{z - 0}{1} \Bigr) = f(z).
 $$
 即 $$Z$$ 的分布是位置—尺度族中对应于 $$\mu = 0$$、$$\sigma = 1$$ 的那个成员。3.3 节已对正态族的特例证明过这一点。
+
 对“标准”随机变量 $$Z$$（pdf 为 $$f(z)$$）常可以完成计算，然后容易导出 pdf 为 $$(1/\sigma) f\bigl( (x - \mu)/\sigma \bigr)$$ 的随机变量 $$X$$ 的相应结果。下面的定理便是一例，它是 3.3 节对正态族所做计算的一般化。
+
 **定理 3.5.7（位置—尺度族的均值与方差）**
+
 设 $$Z$$ 是以 $$f(z)$$ 为 pdf 的随机变量，$$\mathrm{E} Z$$ 与 $$\mathrm{Var} Z$$ 存在。若 $$X$$ 是以 $$(1/\sigma) f\bigl( (x - \mu)/\sigma \bigr)$$ 为 pdf 的随机变量，则
 $$
 \mathrm{E} X = \sigma\, \mathrm{E} Z + \mu \qquad\text{与}\qquad \mathrm{Var} X = \sigma^2\, \mathrm{Var} Z.
 $$
 特别地，若 $$\mathrm{E} Z = 0$$ 且 $$\mathrm{Var} Z = 1$$，则 $$\mathrm{E} X = \mu$$ 且 $$\mathrm{Var} X = \sigma^2$$。
+
 **证明**　由定理 3.5.6，存在 pdf 为 $$f(z)$$ 的随机变量 $$Z^{*}$$ 使 $$X = \sigma Z^{*} + \mu$$。故 $$\mathrm{E} X = \sigma \mathrm{E} Z^{*} + \mu = \sigma \mathrm{E} Z + \mu$$，且 $$\mathrm{Var} X = \sigma^2 \mathrm{Var} Z^{*} = \sigma^2 \mathrm{Var} Z$$。 ∎
 对任何均值与方差都有限的位置—尺度族，可以选标准 pdf $$f(z)$$ 使 $$\mathrm{E} Z = 0$$ 且 $$\mathrm{Var} Z = 1$$（可以这样选取的证明留作习题 3.40）。这带来便利的解释：$$\mu$$ 与 $$\sigma^2$$ 分别是 $$X$$ 的均值与方差。3.3 节正态族的通常定义正是如此。但 3.3 节双指数族的通常定义并非如此——那里 $$\mathrm{Var} Z = 2$$。
+
 位置—尺度族任何成员的概率都可用标准变量 $$Z$$ 计算，因为
 $$
 P(X \leq x) = P\Bigl( \frac{X - \mu}{\sigma} \leq \frac{x - \mu}{\sigma} \Bigr) = P\Bigl( Z \leq \frac{x - \mu}{\sigma} \Bigr).
@@ -1217,12 +1278,16 @@ $$
 统计理论中充满了不等式与恒等式——多到整个学科以此为专题著书。Marshall and Olkin (1979) 的专著包含许多基于控制（majorization）概念的不等式；更早的 Hardy, Littlewood, and Polya (1952) 是经典不等式的汇编。本节与 4.7 节将新旧结果穿插介绍，展示这类结果的面貌。本节专门讨论源于概率考虑的恒等式与不等式，4.7 节的则更多依赖数与函数的基本性质。
 ### 3.6.1 概率不等式（Probability Inequalities）
 最著名、也许最有用的概率不等式是切比雪夫不等式（Chebychev's Inequality）。它的有用源于其广泛的适用性。与许多重要结果一样，其证明几乎是平凡的。
+
 **定理 3.6.1（切比雪夫不等式，Chebychev's Inequality）**
+
 设 $$X$$ 是随机变量，$$g(x)$$ 是非负函数。则对任意 $$r > 0$$，
 $$
 P\bigl( g(X) \geq r \bigr) \leq \frac{\mathrm{E} g(X)}{r}.
 $$
+
 **证明**
+
 $$
 \begin{aligned}
 \mathrm{E} g(X) &= \int_{-\infty}^{\infty} g(x)\, f_X(x)\, dx\\
@@ -1232,7 +1297,9 @@ $$
 \end{aligned}
 $$
 整理即得所需不等式。 ∎
+
 **例 3.6.2（切比雪夫不等式的说明）**
+
 切比雪夫不等式最广泛的使用涉及均值与方差。取 $$g(x) = (x - \mu)^2/\sigma^2$$，其中 $$\mu = \mathrm{E} X$$，$$\sigma^2 = \mathrm{Var} X$$。为方便写 $$r = t^2$$，则
 $$
 P\Bigl( \frac{(X - \mu)^2}{\sigma^2} \geq t^2 \Bigr) \leq \frac{1}{t^2}\, \mathrm{E}\Bigl[ \frac{(X - \mu)^2}{\sigma^2} \Bigr] = \frac{1}{t^2}.
@@ -1250,13 +1317,17 @@ $$
 P\bigl( \vert X - \mu\vert  \geq 2\sigma \bigr) \leq \frac{1}{2^2} = 0.25,
 $$
 即随机变量落在其均值 $$2\sigma$$ 范围之内的机会至少为 75%（无论 $$X$$ 的分布如何）。
+
 切比雪夫不等式虽然适用广泛，却必然是保守的（例如见习题 3.46 与杂记 3.8.2）。特别地，对某些特定分布常能得到更紧的界。
+
 **例 3.6.3（正态概率不等式）**
+
 若 $$Z$$ 是标准正态变量，则
 $$
 P(\vert Z\vert  \geq t) \leq \sqrt{\frac{2}{\pi}}\, \frac{e^{-t^2/2}}{t}, \qquad \text{对一切}\ t > 0. \tag{3.6.1}
 $$
 与切比雪夫不等式比较：$$t = 2$$ 时切比雪夫给出 $$P(\vert Z\vert  \geq t) \leq 0.25$$，而 $$\sqrt{2/\pi}\, e^{-2/2} / 2 = 0.054$$，改进巨大。
+
 为证 (3.6.1)，写
 $$
 P(Z \geq t) = \frac{1}{\sqrt{2\pi}} \int_t^{\infty} e^{-x^2/2}\, dx \leq \frac{1}{\sqrt{2\pi}} \int_t^{\infty} \frac{x}{t}\, e^{-x^2/2}\, dx \qquad （\text{因对}\ x > t\ \text{有}\ x/t > 1）
@@ -1265,6 +1336,7 @@ $$
 = \frac{1}{\sqrt{2\pi}}\, \frac{e^{-t^2/2}}{t},
 $$
 再用事实 $$P(\vert Z\vert  \geq t) = 2 P(Z \geq t)$$。$$P(\vert Z\vert  \geq t)$$ 的下界可用类似方法建立（见习题 3.47）。
+
 还有许多其他概率不等式，几乎都与切比雪夫精神相似。例如我们将见到（习题 3.45）
 $$
 P(X \geq a) \leq e^{-at} M_X(t),
@@ -1276,11 +1348,14 @@ $$
 P(X = x + 1) = \frac{\lambda}{x + 1}\, P(X = x), \tag{3.6.2}
 $$
 使我们能从 $$P(X = 0) = e^{-\lambda}$$ 出发递推地计算泊松概率。几乎所有离散分布都有类似 (3.6.2) 的关系（见习题 3.48）；有时连续分布也有稍不同形式的这类关系。
+
 **定理 3.6.4（伽马概率的递推）**
+
 设 $$X_{\alpha,\beta}$$ 表示 $$\mathrm{gamma}(\alpha, \beta)$$ 随机变量，pdf 为 $$f(x \mid \alpha, \beta)$$，$$\alpha > 1$$。则对任意常数 $$a$$ 与 $$b$$，
 $$
 P(a < X_{\alpha,\beta} < b) = \beta\, \bigl( f(a \mid \alpha, \beta) - f(b \mid \alpha, \beta) \bigr) + P(a < X_{\alpha - 1, \beta} < b). \tag{3.6.3}
 $$
+
 **证明**　由定义，
 $$
 P(a < X_{\alpha,\beta} < b) = \frac{1}{\Gamma(\alpha) \beta^{\alpha}} \int_a^{b} x^{\alpha - 1} e^{-x/\beta}\, dx
@@ -1294,12 +1369,16 @@ P(a < X_{\alpha,\beta} < b) = \beta\, \bigl( f(a \mid \alpha, \beta) - f(b \mid 
 $$
 用 $$\Gamma(\alpha) = (\alpha - 1) \Gamma(\alpha - 1)$$，可见最后一项是 $$P(a < X_{\alpha-1,\beta} < b)$$。 ∎
 若 $$\alpha$$ 是整数，反复使用 (3.6.3) 最终会得到可以解析求值的积分（$$\alpha = 1$$ 时即指数分布）。因此我们可以轻松计算这些伽马概率。
+
 有一整类恒等式依赖分部积分。第一个归于 Charles Stein，他在估计多元正态均值的工作中使用了它（Stein 1973, 1981）。
+
 **引理 3.6.5（斯坦引理，Stein's Lemma）**
+
 设 $$X \sim n(\theta, \sigma^2)$$，$$g$$ 是满足 $$\mathrm{E}\vert g'(X)\vert  < \infty$$ 的可微函数。则
 $$
 \mathrm{E}\bigl[ g(X)(X - \theta) \bigr] = \sigma^2\, \mathrm{E} g'(X).
 $$
+
 **证明**　左端为
 $$
 \mathrm{E}\bigl[ g(X)(X - \theta) \bigr] = \frac{1}{\sqrt{2\pi}\, \sigma} \int_{-\infty}^{\infty} g(x)\, (x - \theta)\, e^{-(x - \theta)^2/(2\sigma^2)}\, dx.
@@ -1309,7 +1388,9 @@ $$
 \mathrm{E}\bigl[ g(X)(X - \theta) \bigr] = \frac{1}{\sqrt{2\pi}\, \sigma} \left[ \Bigl. -\sigma^2\, g(x)\, e^{-(x - \theta)^2/(2\sigma^2)} \Bigr\vert _{-\infty}^{\infty} + \int_{-\infty}^{\infty} \sigma^2\, g'(x)\, e^{-(x - \theta)^2/(2\sigma^2)}\, dx \right].
 $$
 关于 $$g'$$ 的条件足以保证第一项为 0，右端剩下的正是 $$\sigma^2\, \mathrm{E} g'(X)$$。 ∎
+
 **例 3.6.6（正态的高阶矩）**
+
 斯坦引理使高阶矩的计算相当容易。例如若 $$X \sim n(\theta, \sigma^2)$$，则
 $$
 \begin{aligned}
@@ -1321,12 +1402,15 @@ $$
 \end{aligned}
 $$
 许多分布都有类似的分部积分恒等式（见习题 3.49 与 Hudson (1978)）。利用特定分布的性质也可以得到有用的恒等式，如下面定理所示。
+
 **定理 3.6.7（卡方分布的恒等式）**
+
 设 $$\chi_p^2$$ 表示自由度为 $$p$$ 的卡方随机变量。对任意函数 $$h(x)$$，
 $$
 \mathrm{E} h\bigl( \chi_p^2 \bigr) = p\, \mathrm{E}\Bigl[ \frac{h\bigl( \chi_{p+2}^2 \bigr)}{\chi_{p+2}^2} \Bigr], \tag{3.6.4}
 $$
 前提是各期望存在。
+
 **证明**　“前提是各期望存在”是回避对 $$h$$ 规定条件的一种省略说法；一般而言，合理的函数都满足 (3.6.4)。我们有
 $$
 \mathrm{E} h\bigl( \chi_p^2 \bigr) = \frac{1}{\Gamma(p/2)\, 2^{p/2}} \int_0^{\infty} h(x)\, x^{(p/2) - 1} e^{-x/2}\, dx = \frac{1}{\Gamma(p/2)\, 2^{p/2}} \int_0^{\infty} h(x)\, \frac{x^{((p+2)/2) - 1} e^{-x/2}}{x}\, dx,
@@ -1349,8 +1433,11 @@ $$
 \mathrm{E} \bigl( \chi_p^2 \bigr)^2 = p\, \mathrm{E}\Bigl[ \Bigl( \frac{\chi_{p+2}^2}{\chi_{p+2}^2} \Bigr)^{2} \cdot \chi_{p+2}^2 \Bigr] = p\, \mathrm{E} \chi_{p+2}^2 = p(p + 2).
 $$
 故 $$\mathrm{Var} \chi_p^2 = p(p+2) - p^2 = 2p$$。
+
 本节以先前恒等式的离散类似物作结。定理 3.6.8 中两条恒等式的一般版本归功于 Hwang (1982)。
+
 **定理 3.6.8（Hwang 恒等式）**
+
 设 $$g(x)$$ 是满足 $$-\infty < \mathrm{E} g(X) < \infty$$ 且 $$-\infty < g(-1) < \infty$$ 的函数。则
 - a. 若 $$X \sim \mathrm{Poisson}(\lambda)$$，
   $$
@@ -1360,6 +1447,7 @@ $$
   $$
   \mathrm{E}\bigl( (1 - p)\, g(X) \bigr) = \mathrm{E}\Bigl[ \frac{X}{r + X - 1}\, g(X - 1) \Bigr]. \tag{3.6.6}
   $$
+
 **证明**　证 (a)，(b) 留作习题 3.50。我们有
 $$
 \mathrm{E}\bigl( \lambda\, g(X) \bigr) = \sum_{x=0}^{\infty} \lambda\, g(x)\, \frac{e^{-\lambda} \lambda^{x}}{x!}
@@ -1372,7 +1460,9 @@ $$
 $$
 最后这个和正是 $$\mathrm{Poisson}(\lambda)$$ 的期望，故等于 $$\mathrm{E}\bigl( X g(X-1) \bigr)$$。 ∎
 Hwang (1982) 以与 Stein 类似的方式使用其恒等式，证明关于多元估计量的结果。该恒等式还有其他应用，特别是矩的计算。
+
 **例 3.6.9（泊松的高阶矩）**
+
 对 $$X \sim \mathrm{Poisson}(\lambda)$$，取 $$g(x) = x^2$$ 并用 (3.6.5)：
 $$
 \mathrm{E}\bigl( \lambda X^2 \bigr) = \mathrm{E}\bigl( X (X - 1)^2 \bigr) = \mathrm{E}\bigl( X^3 - 2X^2 + X \bigr).
@@ -1529,7 +1619,9 @@ $$
 ## 3.8 杂记（Miscellanea）
 ### 3.8.1 泊松公设（The Poisson Postulates）
 泊松分布可以从一组基本假设导出，这些假设有时称为***泊松公设***（Poisson postulates）。它们与所考察过程的物理性质相关。虽然一般而言这些假设不易验证，但它们为实验者提供了一组指导原则，用于考虑泊松分布是否会提供合理的模型。关于泊松公设更完整的处理见经典教材 Feller (1968) 或 Barr and Zehna (1983)。
+
 **定理 3.8.1（泊松公设）**
+
 对每个 $$t \geq 0$$，设 $$N_t$$ 是具有下列性质的整值随机变量。（把 $$N_t$$ 想作 0 到 $$t$$ 时段内到达的次数。）
 - i. $$N_0 = 0$$（开始时无到达）；
 - ii. $$s < t \Rightarrow N_s$$ 与 $$N_t - N_s$$ 独立（不相交时段内的到达数独立）；
@@ -1541,6 +1633,7 @@ $$
 P(N_t = n) = e^{-\lambda t}\, \frac{(\lambda t)^{n}}{n!},
 $$
 即 $$N_t \sim \mathrm{Poisson}(\lambda t)$$。
+
 这些公设也可以解释为描述对象在空间中的行为（例如昆虫的移动），从而给出泊松分布在空间分布中的应用。
 ### 3.8.2 切比雪夫及更精细的不等式（Chebychev and Beyond）
 Ghosh and Meeden (1977) 讨论了切比雪夫不等式非常保守、几乎从不取等的事实。若以 $$\bar{X}_n$$ 记 $$X_1, X_2, \ldots, X_n$$ 的均值，则切比雪夫不等式断言
@@ -1548,21 +1641,29 @@ $$
 P\Bigl( \bigl\vert  \bar{X}_n - \mu \bigr\vert  \geq \frac{k\sigma}{\sqrt{n}} \Bigr) \leq \frac{1}{k^2}.
 $$
 他们证明了如下定理。
+
 **定理 3.8.2（切比雪夫界何时可取到）**
+
 若 $$0 < \sigma < \infty$$，则
 - a. 若 $$n = 1$$，该不等式对 $$k \geq 1$$ 可以取到等号，对 $$0 < k < 1$$ 不能；
 - b. 若 $$n = 2$$，当且仅当 $$k = 1$$ 时可以取到等号；
 - c. 若 $$n \geq 3$$，该不等式不能取到等号。
 对能取等号的情形给出了例子。其大部分技术论证基于下面的不等式，即***马尔可夫不等式***（Markov's Inequality）。
+
 **引理 3.8.3（马尔可夫不等式）**
+
 若 $$P(Y \geq 0) = 1$$ 且 $$P(Y = 0) < 1$$，则对任意 $$r > 0$$，
 $$
 P(Y \geq r) \leq \frac{\mathrm{E} Y}{r},
 $$
 等号成立当且仅当 $$P(Y = r) = p = 1 - P(Y = 0)$$，$$0 < p \leq 1$$。
+
 把马尔可夫不等式应用于量 $$Y = (\bar{X}_n - \mu)^2 / \sigma^2$$ 即得上面的结果。
+
 切比雪夫不等式如此宽松的一个原因是它对底层分布没有任何限制。加上单峰性这一附加限制，可以得到更紧的界——高斯不等式（Gauss）与 Vysochanskiĭ–Petunin 不等式（细节与基于初等微积分的证明见 Pukelsheim (1994)）。
+
 **定理 3.8.4（高斯不等式，Gauss Inequality）**
+
 设 $$X \sim f$$，$$f$$ 是众数为 $$\nu$$ 的单峰密度，定义 $$\tau^2 = \mathrm{E}(X - \nu)^2$$。则
 $$
 P\bigl( \vert X - \nu\vert  > \varepsilon \bigr) \leq \begin{cases}
@@ -1571,7 +1672,9 @@ P\bigl( \vert X - \nu\vert  > \varepsilon \bigr) \leq \begin{cases}
 \end{cases}
 $$
 虽然这比切比雪夫更紧，但对众数的依赖限制了其用处。Vysochanskiĭ–Petunin 的推广去除了这一限制。
+
 **定理 3.8.5（Vysochanskiĭ–Petunin 不等式）**
+
 设 $$X \sim f$$，$$f$$ 单峰，对任意点 $$\alpha$$ 定义 $$\xi^2 = \mathrm{E}(X - \alpha)^2$$。则
 $$
 P\bigl( \vert X - \alpha\vert  > \varepsilon \bigr) \leq \begin{cases}
@@ -1586,6 +1689,7 @@ $$
 即所谓***三西格玛法则***（three sigma rule）：$$X$$ 偏离总体均值超过三个标准差的概率小于 5%。
 ### 3.8.3 关于指数族的更多内容（More on Exponential Families）
 对数正态分布属于指数族吗？(3.3.21) 给出的密度可以化成 (3.4.1) 规定的形式，因此对数正态可以纳入指数族。
+
 按 Brown (1986, Section 1.1) 的方式定义指数族：从非负函数 $$\nu(x)$$ 出发，定义集合
 $$
 N = \Bigl\{ \theta : \int_{\mathcal{X}} e^{\theta x}\, \nu(x)\, dx < \infty \Bigr\}.

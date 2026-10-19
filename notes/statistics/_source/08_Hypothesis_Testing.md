@@ -861,15 +861,20 @@ $$
 > $$
 > P_{\theta}\bigl( p(\textbf{X}) \leq \alpha \bigr) \leq P_{\theta}\bigl( p_{\theta}(\textbf{X}) \leq \alpha \bigr) \leq \alpha.
 > $$
+
 这对每个 $$\theta \in \Theta_0$$ 与每个 $$0 \leq \alpha \leq 1$$ 成立；$$p(\textbf{X})$$ 是有效 $$p$$ 值。 ∎
 (8.3.9) 中上确界的计算可能困难。下面两个例子演示不太困难的常见情形：第一个不需要上确界；第二个容易确定上确界在哪个 $$\theta$$ 值处取得。
+
 **例 8.3.28（双侧正态 $$p$$ 值）**
+
 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\mu, \sigma^2)$$ 总体的随机样本。考虑检验 $$H_0 : \mu = \mu_0$$ 对 $$H_1 : \mu \neq \mu_0$$。由习题 8.38，LRT 对大值 $$W(\textbf{X}) = \vert \bar{X} - \mu_0\vert  / (S/\sqrt{n})$$ 拒绝 $$H_0$$。若 $$\mu = \mu_0$$，无论 $$\sigma$$ 取何值，$$(\bar{X} - \mu_0)/(S/\sqrt{n})$$ 都服从自由度 $$n - 1$$ 的 Student 氏 $$t$$ 分布。故计算 (8.3.9) 时该概率对一切 $$\theta$$ 值（即一切 $$\sigma$$ 值）相同。于是这个双侧 $$t$$ 检验的 (8.3.9) $$p$$ 值为
 $$
 p(\textbf{x}) = 2\, P\Bigl( T_{n-1} \geq \vert \bar{x} - \mu_0\vert  / (s/\sqrt{n}) \Bigr),
 $$
 其中 $$T_{n-1}$$ 服从自由度 $$n-1$$ 的 Student 氏 $$t$$ 分布。
+
 **例 8.3.29（单侧正态 $$p$$ 值）**
+
 再次考虑例 8.3.28 的正态模型，但检验 $$H_0 : \mu \leq \mu_0$$ 对 $$H_1 : \mu > \mu_0$$。由习题 8.37，LRT 对大值 $$W(\textbf{X}) = (\bar{X} - \mu_0)/(S/\sqrt{n})$$ 拒绝 $$H_0$$。下面的论证表明对该统计量，(8.3.9) 中的上确界总在参数 $$(\mu_0, \sigma)$$ 处取得，且 $$\sigma$$ 的取值无关紧要。考虑任何 $$\mu \leq \mu_0$$ 与任何 $$\sigma$$：
 $$
 \begin{aligned}
@@ -900,7 +905,9 @@ $$
 P_{\theta}\bigl( p(\textbf{X}) \leq \alpha \bigr) = \sum_{s} P\bigl( p(\textbf{X}) \leq \alpha \mid S = s \bigr)\, P_{\theta}(S = s) \leq \sum_{s} \alpha\, P_{\theta}(S = s) \leq \alpha.
 $$
 故由 (8.3.10) 定义的 $$p(\textbf{X})$$ 是有效 $$p$$ 值。$$S$$ 连续时求和可换成积分，但该方法通常用于离散 $$S$$，如下例。
+
 **例 8.3.30（Fisher 精确检验）**
+
 设 $$S_1$$ 与 $$S_2$$ 是独立观测，$$S_1 \sim \mathrm{binomial}(n_1, p_1)$$，$$S_2 \sim \mathrm{binomial}(n_2, p_2)$$。考虑检验 $$H_0 : p_1 = p_2$$ 对 $$H_1 : p_1 > p_2$$。在 $$H_0$$ 下令 $$p$$ 表示 $$p_1 = p_2$$ 的公共值，$$(S_1, S_2)$$ 的联合 pmf 为
 $$
 f(s_1, s_2 \mid p) = \binom{n_1}{s_1}\, p^{s_1} (1 - p)^{n_1 - s_1}\, \binom{n_2}{s_2}\, p^{s_2} (1 - p)^{n_2 - s_2} = \binom{n_1}{s_1}\binom{n_2}{s_2}\, p^{s_1 + s_2}\, (1 - p)^{n_1 + n_2 - (s_1 + s_2)}.
@@ -912,8 +919,11 @@ $$
 超几何概率之和。由该 $$p$$ 值定义的检验称为 Fisher 精确检验（Fisher's Exact Test）。
 ### 8.3.5 损失函数最优性（Loss Function Optimality）
 决策论分析（如 7.3.4 节）可用于比较假设检验，而不仅通过功效函数比较。进行这类分析必须为假设检验问题规定行动空间与损失函数。
+
 假设检验问题中只允许两个行动：“接受 $$H_0$$”或“拒绝 $$H_0$$”，分别记作 $$a_0$$ 与 $$a_1$$。假设检验中的行动空间是两点集 $$\mathcal{A} = \{ a_0, a_1 \}$$。决策法则 $$\delta(\textbf{x})$$（一个假设检验）是 $$\mathcal{X}$$ 上只取 $$a_0$$ 与 $$a_1$$ 两个值的函数；集合 $$\{ \textbf{x} : \delta(\textbf{x}) = a_0 \}$$ 是检验的接受区域，$$\{ \textbf{x} : \delta(\textbf{x}) = a_1 \}$$ 是拒绝区域，正如定义 8.1.3。
+
 假设检验问题中的损失函数应反映：若 $$\theta \in \Theta_0$$ 而作出决策 $$a_1$$，或 $$\theta \in \Theta_0^{c}$$ 而作出决策 $$a_0$$，则犯了错误；其他两种情形则作出了正确决策。既然只有两个可能行动，假设检验问题的损失函数 $$L(\theta, a)$$ 只由两部分组成：$$L(\theta, a_0)$$ 是决定接受 $$H_0$$ 时对各 $$\theta$$ 值产生的损失，$$L(\theta, a_1)$$ 是决定拒绝 $$H_0$$ 时对各 $$\theta$$ 值产生的损失。
+
 检验问题中最简单的损失称为 0–1 损失，定义为
 $$
 L(\theta, a_0) = \begin{cases} 0 & \theta \in \Theta_0,\\ 1 & \theta \in \Theta_0^{c}, \end{cases}
@@ -927,13 +937,16 @@ L(\theta, a_0) = \begin{cases} 0 & \theta \in \Theta_0,\\ c_{\mathrm{II}} & \the
 L(\theta, a_1) = \begin{cases} c_{\mathrm{I}} & \theta \in \Theta_0,\\ 0 & \theta \in \Theta_0^{c}. \end{cases} \tag{8.3.11}
 $$
 其中 $$c_{\mathrm{I}}$$ 是第一类错误（错误拒绝 $$H_0$$）的代价，$$c_{\mathrm{II}}$$ 是第二类错误（错误接受 $$H_0$$）的代价。（其实在比较检验时真正要紧的是比值 $$c_{\mathrm{II}}/c_{\mathrm{I}}$$，而非两个单独的值；若 $$c_{\mathrm{I}} = c_{\mathrm{II}}$$ 本质上就是 0–1 损失。）
+
 决策论分析用风险函数（期望损失）评价假设检验程序。检验的风险函数与其功效函数密切相关，如下面的分析所示。
+
 设 $$\beta(\theta)$$ 为基于决策法则 $$\delta$$ 的检验的功效函数，即若 $$\mathcal{R} = \{ \textbf{x} : \delta(\textbf{x}) = a_1 \}$$ 表示检验的拒绝区域，则
 $$
 \beta(\theta) = P_{\theta}(\textbf{X} \in \mathcal{R}) = P_{\theta}\bigl( \delta(\textbf{X}) = a_1 \bigr).
 $$
 ![ch08_fig_8_3_4](fig/ch08_fig_8_3_4.png)
 图 8.3.4　 例 8.3.31 中检验的风险函数，$$z = \frac{\sqrt{n}}{\sigma}\, \frac{\theta - \theta_0}{\sqrt{n}}$$（即 $$z = \sqrt{n}(\theta - \theta_0)/\sigma$$）（原书 Figure 8.3.4）
+
 与 (8.3.11)——特别是 0–1 损失——相伴的风险函数非常简单。对任意 $$\theta \in \Theta$$，$$L(\theta, a)$$ 只取两个值：$$\theta \in \Theta_0$$ 时为 0 与 $$c_{\mathrm{I}}$$，$$\theta \in \Theta_0^{c}$$ 时为 0 与 $$c_{\mathrm{II}}$$。故风险为
 $$
 \begin{aligned}
@@ -942,12 +955,15 @@ R(\theta, \delta) &= c_{\mathrm{II}}\, P_{\theta}\bigl( \delta(\textbf{X}) = a_0
 \end{aligned} \tag{8.3.12}
 $$
 决策论途径与较传统的功效途径之间的这种相似，部分源于损失函数的形式。但如下文所见，在一切假设检验问题中，功效函数在风险函数中都扮演重要角色。
+
 **例 8.3.31（UMP 检验的风险）**
+
 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\mu, \sigma^2)$$ 总体（$$\sigma^2$$ 已知）的随机样本。$$H_0 : \theta \geq \theta_0$$ 对 $$H_1 : \theta < \theta_0$$ 的 UMP 水平 $$\alpha$$ 检验是“若 $$(\bar{X} - \theta_0)/(\sigma/\sqrt{n}) < -z_{\alpha}$$ 则拒绝 $$H_0$$”的检验（例 8.3.15）。该检验的功效函数为
 $$
 \beta(\theta) = P_{\theta}\Biggl( Z < -z_{\alpha} - \frac{\theta - \theta_0}{\sigma/\sqrt{n}} \Biggr),
 $$
 其中 $$Z$$ 服从 $$n(0, 1)$$。取 $$\alpha = 0.10$$、$$c_{\mathrm{I}} = 8$$、$$c_{\mathrm{II}} = 3$$，风险函数 (8.3.12) 绘于图 8.3.4。注意风险函数在 $$\theta = \theta_0$$ 处不连续：这源于在 $$\theta_0$$ 处风险函数中的表达式从 $$\beta(\theta)$$ 切换到 $$1 - \beta(\theta)$$，以及 $$c_{\mathrm{I}}$$ 与 $$c_{\mathrm{II}}$$ 的差别。
+
 0–1 损失只判断决策的对错。可能某些错误决策比另一些更严重，损失函数应反映这一点。检验 $$H_0 : \theta \geq \theta_0$$ 对 $$H_1 : \theta < \theta_0$$ 时，若 $$\theta$$ 只略大于 $$\theta_0$$ 而拒绝 $$H_0$$ 是第一类错误，但也许不是很严重的错误；若 $$\theta$$ 远大于 $$\theta_0$$ 时拒绝 $$H_0$$，其不良后果可能严重得多。反映这一点的损失函数是
 $$
 L(\theta, a_0) = \begin{cases} 0 & \theta \geq \theta_0,\\ b\, (\theta_0 - \theta) & \theta < \theta_0, \end{cases}
@@ -955,6 +971,7 @@ L(\theta, a_0) = \begin{cases} 0 & \theta \geq \theta_0,\\ b\, (\theta_0 - \thet
 L(\theta, a_1) = \begin{cases} c\, (\theta - \theta_0)^2 & \theta \geq \theta_0,\\ 0 & \theta < \theta_0, \end{cases} \tag{8.3.13}
 $$
 其中 $$b$$ 与 $$c$$ 是正常数。例如实验者检验某药物是否降低胆固醇水平时，$$H_0$$ 与 $$H_1$$ 可以如此设定（$$\theta_0$$ = 标准可接受的胆固醇水平）；由于高胆固醇与心脏病相关，当 $$\theta$$ 很大时拒绝 $$H_0$$ 的后果相当严重，像 (8.3.13) 这样的损失函数反映这种后果。Vardeman (1987) 也提倡类似类型的损失函数。
+
 即使对像 (8.3.13) 这样一般的损失函数，风险函数与功效函数也密切相关。对固定的 $$\theta$$，损失要么是 $$L(\theta, a_0)$$ 要么是 $$L(\theta, a_1)$$。故期望损失为
 $$
 \begin{aligned}
@@ -1149,6 +1166,7 @@ $$
 \frac{(\bar{X} - \bar{Y}) - (\mu_1 - \mu_2)}{\sqrt{\dfrac{1}{n_1} + \dfrac{\rho^2}{n_2}}\ \sqrt{\dfrac{n_1 (n_1 - 1)\, s_X^2 + n_2 (n_2 - 1)\, s_Y^2 / \rho^2}{n_1 + n_2 - 2}}}
 $$
 服从自由度 $$n_1 + n_2 - 2$$ 的 Student 氏 $$t$$ 分布，且 $$\dfrac{\rho^2\, n_1\, s_X^2}{n_2\, s_Y^2}$$ 服从自由度 $$n_1 - 1$$ 与 $$n_2 - 1$$ 的 $$F$$ 分布。
+
 Sprott and Farewell 还注意到 $$t$$ 统计量在 $$\rho^2 = \dfrac{n_1 \sqrt{n_1 - 1}\, s_X^2}{n_2 \sqrt{n_2 - 1}\, s_Y^2}$$ 处最大，他们建议对 $$\rho^2$$ 的可信值（可能取置信区间内的值）绘制该统计量的图。
 **8.44** 验证例 8.3.20 中的检验 3 是无偏的水平 $$\alpha$$ 检验。
 **8.45** 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\theta, \sigma^2)$$ 总体的随机样本。考虑检验
@@ -1204,6 +1222,7 @@ $$
 ## 8.5 杂记（Miscellanea）
 ### 8.5.1 单调功效函数（Monotonic Power Function）
 本章相当广泛地使用了 MLR 性质，特别是与检验功效函数的性质相关。随机序的概念也可用于获得功效函数的性质。（随机序已在前几章遇到，例如习题 1.49、3.41–3.43 与 5.19。cdf $$F$$ 随机地大于 cdf $$G$$，若对一切 $$x$$ 有 $$F(x) \leq G(x)$$ 且对某些 $$x$$ 严格——这意味着若 $$X \sim F$$、$$Y \sim G$$，则对一切 $$x$$ 有 $$P(X > x) \geq P(Y > x)$$（对某些 $$x$$ 严格）。换言之，$$F$$ 给更大的值分配更多概率。）
+
 就假设检验而言，备择假设下的分布常随机地大于零假设下的分布。例如若有来自 $$n(\theta, \sigma^2)$$ 总体的随机样本且关心检验 $$H_0 : \theta \leq \theta_0$$ 对 $$H_1 : \theta > \theta_0$$，则备择中的所有分布都随机地大于零假设中的所有分布。Gilat (1977) 用随机序性质（而非 MLR）在一般条件下证明功效函数的单调性。
 ### 8.5.2 作为证据的似然比（Likelihood Ratio as Evidence）
 似然比 $$L(\theta_1 \mid \textbf{x}) / L(\theta_0 \mid \textbf{x}) = f(\textbf{x} \mid \theta_1) / f(\textbf{x} \mid \theta_0)$$ 在检验 $$H_0 : \theta = \theta_0$$ 对 $$H_1 : \theta = \theta_1$$ 中扮演重要角色。对使 $$\lambda$$ 取小值的 **x**，该比等于 LRT 统计量 $$\lambda(\textbf{x})$$；而且 Neyman–Pearson 引理说 $$H_0$$ 对 $$H_1$$ 的 UMP 水平 $$\alpha$$ 检验可以用该比定义。这一似然比还有重要的贝叶斯解读。设 $$\pi_0$$ 与 $$\pi_1$$ 是我们关于 $$\theta_0$$ 与 $$\theta_1$$ 的先验概率，则支持 $$\theta_1$$ 的后验几率为

@@ -85,11 +85,13 @@ $$
 >  &= P_{\theta}\Bigl( \frac{1}{b} \leq T \leq \frac{1}{a} \Bigr) \qquad （T = Y/\theta）.
 > \end{aligned}
 > $$
+
 我们在例 7.3.13 中已见 $$f_Y(y) = ny^{n-1}/\theta^n$$（$$0 \leq y \leq \theta$$），故 $$T$$ 的 pdf 为 $$f_T(t) = nt^{n-1}$$（$$0 \leq t \leq 1$$）。于是
 $$
 P_{\theta}\Bigl( \frac{1}{b} \leq T \leq \frac{1}{a} \Bigr) = \int_{1/b}^{1/a} nt^{n-1}\, dt = \Bigl( \frac{1}{a} \Bigr)^{\! n} - \Bigl( \frac{1}{b} \Bigr)^{\! n}.
 $$
 第一个区间的覆盖概率与 $$\theta$$ 的值无关，故 $$\left( \tfrac{1}{a} \right)^n - \left( \tfrac{1}{b} \right)^n$$ 就是该区间的置信系数。
+
 对第二个区间，当 $$\theta \geq d$$ 时类似计算给出
 $$
 \begin{aligned}
@@ -104,12 +106,15 @@ $$
 \lim_{\theta \to \infty} \Bigl[ \Bigl( 1 - \frac{c}{\theta} \Bigr)^{\! n} - \Bigl( 1 - \frac{d}{\theta} \Bigr)^{\! n} \Bigr] = 0,
 $$
 这表明该区间估计量的置信系数为零。
+
 两个候选区间的命运迥异，原因何在？第一个区间的覆盖概率可以借助 $$Y/\theta$$ 表达，而 $$Y/\theta$$ 的分布不依赖参数——这样的量称为枢轴量（pivotal quantity），9.2.2 节将系统研究它。
 ## 9.2 寻找区间估计量的方法（Methods of Finding Interval Estimators）
 我们将用五个小节介绍寻找区间估计量的方法。这看起来似乎意味着有五种不同的方法，其实不然：事实上，从操作层面看，接下来四个小节的方法本质上是相同的，都基于**反转检验统计量**的策略；最后一个小节讨论的贝叶斯区间则是一种不同的构造方法。
 ### 9.2.1 反转检验统计量（Inverting a Test Statistic）
 假设检验与区间估计之间存在极强的对应关系。事实上，一般地可以说：每个置信集合都对应一个检验，反之亦然。请看下面的例子。
+
 **例 9.2.1（反转正态检验）**
+
 设 $$X_1, \ldots, X_n$$ 是 iid $$n(\mu, \sigma^2)$$，考虑检验 $$H_0 : \mu = \mu_0$$ 对 $$H_1 : \mu \neq \mu_0$$。在给定水平 $$\alpha$$ 下，一个合理的检验（事实上是最强无偏检验）的拒绝区域为 $$\bigl\{ \textbf{x} : \vert \bar{x} - \mu_0\vert  > z_{\alpha/2}\, \sigma / \sqrt{n} \bigr\}$$。注意 $$H_0$$ 在满足
 $$
 \vert \bar{x} - \mu_0\vert  \leq z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}}
@@ -125,6 +130,7 @@ $$
 P_{\mu}\Bigl( \bar{X} - z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{X} + z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \Bigr) = 1 - \alpha
 $$
 为真。通过反转水平 $$\alpha$$ 检验的接受区域得到的区间 $$\bigl[ \bar{x} - z_{\alpha/2}\, \sigma / \sqrt{n},\ \bar{x} + z_{\alpha/2}\, \sigma / \sqrt{n} \bigr]$$ 是一个 $$1 - \alpha$$ 置信区间。
+
 我们已例示了置信集合与检验之间的对应。假设检验的接受区域（样本空间中接受 $$H_0 : \mu = \mu_0$$ 的集合）为
 $$
 A(\mu_0) = \Bigl\{ (x_1, \ldots, x_n) : \mu_0 - z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \leq \bar{x} \leq \mu_0 + z_{\alpha/2}\, \frac{\sigma}{\sqrt{n}} \Bigr\},
@@ -139,9 +145,13 @@ $$
 $$
 ![ch09_fig_9_2_1](fig/ch09_fig_9_2_1.png)
 图 9.2.1　 置信区间与检验接受区域的关系：上线为 $$\bar{x} = \mu + z_{\alpha/2}\, \sigma / \sqrt{n}$$，下线为 $$\bar{x} = \mu - z_{\alpha/2}\, \sigma / \sqrt{n}$$（原书 Figure 9.2.1）
+
 图 9.2.1 展示了双侧正态问题中检验与区间估计的对应关系。由图或许更容易看出：检验与区间问的是同一个问题，只是视角略有不同。两种程序都在寻找样本统计量与总体参数之间的一致性。假设检验**固定参数**，问哪些样本值（接受区域）与该固定值一致；置信集合**固定样本值**，问哪些参数值（置信区间）使这个样本值最貌似合理。
+
 接受区域与置信集合之间的这种对应关系在一般情形成立。下面的定理给出这一对应的形式化版本。
+
 **定理 9.2.2（检验与置信集合的对应）**
+
 对每个 $$\theta_0 \in \Theta$$，设 $$A(\theta_0)$$ 是 $$H_0 : \theta = \theta_0$$ 的一个水平 $$\alpha$$ 检验的接受区域。对每个 $$\textbf{x} \in \mathcal{X}$$，在参数空间中定义集合
 $$
 C(\textbf{x}) = \{ \theta_0 : \textbf{x} \in A(\theta_0) \}. \tag{9.2.1}
@@ -151,6 +161,7 @@ $$
 A(\theta_0) = \{ \textbf{x} : \theta_0 \in C(\textbf{x}) \}.
 $$
 则 $$A(\theta_0)$$ 是 $$H_0 : \theta = \theta_0$$ 的一个水平 $$\alpha$$ 检验的接受区域。
+
 **证明**　第一部分：由于 $$A(\theta_0)$$ 是水平 $$\alpha$$ 检验的接受区域，
 $$
 P_{\theta_0}\bigl( \textbf{X} \notin A(\theta_0) \bigr) \leq \alpha
@@ -162,22 +173,30 @@ $$
 P_{\theta}\bigl( \theta \in C(\textbf{X}) \bigr) = P_{\theta}\bigl( \textbf{X} \in A(\theta) \bigr) \geq 1 - \alpha,
 $$
 故 $$C(\textbf{X})$$ 是 $$1 - \alpha$$ 置信集合。
+
 第二部分：对 $$H_0 : \theta = \theta_0$$ 的、以 $$A(\theta_0)$$ 为接受区域的检验，其第一类错误概率为
 $$
 P_{\theta_0}\bigl( \textbf{X} \notin A(\theta_0) \bigr) = P_{\theta_0}\bigl( \theta_0 \notin C(\textbf{X}) \bigr) \leq \alpha,
 $$
 故这是一个水平 $$\alpha$$ 检验。 ∎
 人们常说“反转一个检验得到置信集合”，但定理 9.2.2 表明：我们实际反转的是一个**检验族**——对每个 $$\theta_0 \in \Theta$$ 各有一个检验——从而得到一个置信集合。
+
 检验可以反转为置信集合（反之亦然）在理论上有意思，而定理 9.2.2 真正有用的是第一部分：构造水平 $$\alpha$$ 的接受区域是件相对容易的事，而构造置信集合才是困难的任务。因此，通过反转接受区域来获得置信集合的方法相当有用——我们掌握的所有寻找检验的手段都可以立即用于构造置信集合。
+
 定理 9.2.2 中我们只陈述了原假设 $$H_0 : \theta = \theta_0$$；对接受区域唯一的要求是
 $$
 P_{\theta_0}\bigl( \textbf{X} \in A(\theta_0) \bigr) \geq 1 - \alpha.
 $$
 实践中，用检验反转构造置信集合时，我们心目中通常还有备择假设，如 $$H_1 : \theta \neq \theta_0$$ 或 $$H_1 : \theta > \theta_0$$。备择假设决定了怎样的 $$A(\theta_0)$$ 是合理的，而 $$A(\theta_0)$$ 的形式又决定了 $$C(\textbf{x})$$ 的形状。不过请注意，我们谨慎地使用了“集合”而非“区间”一词：这是因为反转检验得到的置信集合不保证是区间。但在大多数情形，单侧检验给出单侧区间，双侧检验给出双侧区间，奇形怪状的接受区域给出奇形怪状的置信集合；后面的例子将展示这一点。
+
 反转检验的性质也会（经适当修改后）传递给置信集合。例如，无偏检验反转后产生无偏置信集合。更重要的是，由于我们知道寻找好检验时可以只限于充分统计量，因此寻找好的置信集合时同样可以只限于充分统计量。
+
 检验反转方法真正大显身手的场合，是我们的直觉失灵、对“怎样的集合才算合理”毫无头绪之时：此时我们只需退回到构造合理检验的通用方法。
+
 **例 9.2.3（反转 LRT）**
+
 假设我们想为 exponential($$\lambda$$) 总体的均值 $$\lambda$$ 构造一个置信区间。可以通过反转 $$H_0 : \lambda = \lambda_0$$ 对 $$H_1 : \lambda \neq \lambda_0$$ 的水平 $$\alpha$$ 检验得到。
+
 取随机样本 $$X_1, \ldots, X_n$$，LRT 统计量为
 $$
 \frac{\lambda_0^n e^{-\sum x_i / \lambda_0}}{\sup_{\lambda} \lambda^n e^{-\sum x_i / \lambda}}
@@ -195,6 +214,7 @@ $$
 如图 9.2.2 所示，这是参数空间中的一个区间。
 ![ch09_fig_9_2_2](fig/ch09_fig_9_2_2.png)
 图 9.2.2　 例 9.2.3 的接受区域与置信区间：接受区域为 $$A(\lambda_0) = \bigl\{ \textbf{x} : \bigl( \sum_i x_i / \lambda_0 \bigr)^n e^{-\sum_i x_i / \lambda_0} \geq k^{*} \bigr\}$$，置信区间为 $$C(\textbf{x}) = \bigl\{ \lambda : \bigl( \sum_i x_i / \lambda \bigr)^n e^{-\sum_i x_i / \lambda} \geq k^{*} \bigr\}$$（原书 Figure 9.2.2）
+
 定义 $$C(\textbf{x})$$ 的表达式只通过 $$\sum x_i$$ 依赖 $$\textbf{x}$$，故置信区间可以写成
 $$
 C\bigl( \textstyle\sum x_i \bigr) = \bigl\{ \lambda : L\bigl( \textstyle\sum x_i \bigr) \leq \lambda \leq U\bigl( \textstyle\sum x_i \bigr) \bigr\} \tag{9.2.3}
@@ -234,8 +254,11 @@ $$
 \bigl\{ \theta : L(\theta \mid \textbf{x}) \geq k'(\textbf{x}, \theta) \bigr\}, \tag{9.2.7}
 $$
 其中函数 $$k'$$ 给出 $$1 - \alpha$$ 置信。在某些情形（如正态分布与 gamma 分布），$$k'$$ 不依赖 $$\theta$$；此时似然区域有一个特别令人愉悦的解释：它由似然函数取值最高的那些 $$\theta$$ 组成。我们还将看到，这样的区间同时由频率派（定理 9.3.2）与贝叶斯（推论 9.3.10）两方面的最优性考量产生。
+
 检验反转方法是完全一般的：可以反转任何检验而得到置信集合。例 9.2.3 中我们反转了 LRT，但其实可以用任何方法构造的检验。还要注意，反转双侧检验给出双侧区间。下面几个例子反转单侧检验以得到单侧区间。
+
 **例 9.2.4（正态单侧置信界）**
+
 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\mu, \sigma^2)$$ 总体的随机样本，要构造 $$\mu$$ 的 $$1 - \alpha$$ **上**置信界（upper confidence bound），即形如 $$C(\textbf{x}) = (-\infty, U(\textbf{x})]$$ 的置信区间。用定理 9.2.2 得到这种区间的方法是反转单侧检验 $$H_0 : \mu = \mu_0$$ 对 $$H_1 : \mu < \mu_0$$。（注意这里用 $$H_1$$ 的设定来确定置信区间的形式：$$H_1$$ 指定“大”的 $$\mu_0$$ 值，故置信集合将包含“小”的值——小于某个界的那些值，因此得到上置信界。）$$H_0$$ 对 $$H_1$$ 的尺寸 $$\alpha$$ LRT 在
 $$
 \frac{\bar{X} - \mu_0}{S / \sqrt{n}} < -t_{n-1, \alpha}
@@ -249,8 +272,11 @@ $$
 C(\textbf{x}) = \{ \mu_0 : \textbf{x} \in A(\mu_0) \} = \Bigl\{ \mu_0 : \bar{x} + t_{n-1, \alpha}\, \frac{s}{\sqrt{n}} \geq \mu_0 \Bigr\}.
 $$
 由定理 9.2.2，随机集合 $$C(\textbf{X}) = \bigl( -\infty,\ \bar{X} + t_{n-1, \alpha}\, S / \sqrt{n} \bigr]$$ 是 $$\mu$$ 的 $$1 - \alpha$$ 置信集合。可见它确实是上置信界的正确形式：反转单侧检验得到了单侧置信区间。
+
 **例 9.2.5（二项单侧置信界）**
+
 作为单侧置信区间较难的例子，考虑对 Bernoulli 试验序列的成功概率 $$p$$ 给出 $$1 - \alpha$$ **下**置信界（lower confidence bound）。即观测 $$X_1, \ldots, X_n$$（$$X_i \sim \mathrm{Bernoulli}(p)$$），希望区间形如 $$\bigl( L(x_1, \ldots, x_n),\ 1 \bigr]$$，满足 $$P_p\bigl( p \in (L(X_1, \ldots, X_n), 1] \bigr) \geq 1 - \alpha$$。（如将要看到的，所得区间左端是开的。）
+
 由于我们要的是给出下置信界的单侧区间，考虑反转如下检验的接受区域：
 $$
 H_0 :\ p = p_0 \qquad\text{对}\qquad H_1 :\ p > p_0.
@@ -266,7 +292,9 @@ $$
 f(p_0 \mid k) = \sum_{y=0}^{k} \binom{n}{y} p_0^{\,y} (1 - p_0)^{n-y}
 $$
 是 $$p_0$$ 的递减函数（习题 8.26）。当然 $$f(0 \mid 0) = 1$$，故 $$k(0) = 0$$，且 $$f(p_0 \mid 0)$$ 在一段区间上保持大于 $$1 - \alpha$$；到某点处 $$f(p_0 \mid 0) = 1 - \alpha$$，此后 $$f(p_0 \mid 0) < 1 - \alpha$$，于是 $$k(p_0)$$ 跳升到一。此模式持续：$$k(p_0)$$ 是整数值的阶梯函数，在 $$p_0$$ 的一段范围内取常值，然后跳到下一个更大的整数。由于 $$k(p_0)$$ 是 $$p_0$$ 的非降函数，这就给出下置信界。（上置信界见习题 9.5。）求解 (9.2.8) 中的 $$k(p_0)$$ 同时给出检验的接受区域与置信集合。
+
 对每个 $$p_0$$，接受区域为 $$A(p_0) = \{ t : t \leq k(p_0) \}$$，其中 $$k(p_0)$$ 满足 (9.2.8)。对每个 $$t$$ 值，置信集合为 $$C(t) = \{ p_0 : t \leq k(p_0) \}$$。然而这个集合目前的形式没有多少实用价值：它形式上正确、也是 $$1 - \alpha$$ 置信集合，但它通过 $$p_0$$ 隐式定义，而我们要它通过 $$p_0$$ 显式定义。
+
 由于 $$k(p_0)$$ 非降，对给定观测 $$T = t$$，存在某个值（记作 $$k^{-1}(t)$$），使一切 $$p_0 \leq k^{-1}(t)$$ 有 $$k(p_0) < t$$；在 $$k^{-1}(t)$$ 处 $$k(p_0)$$ 跳升到等于 $$t$$，且对一切 $$p_0 > k^{-1}(t)$$ 有 $$k(p_0) \geq t$$。（注意在 $$p_0 = k^{-1}(t)$$ 处 $$f(p_0 \mid t - 1) = 1 - \alpha$$，故 $$k(p_0) = t - 1$$ 仍满足 (9.2.8)；只有 $$p_0 > k^{-1}(t)$$ 时才有 $$k(p_0) \geq t$$。）于是置信集合为
 $$
 C(t) = \{ p_0 : t \leq k(p_0) \} = \bigl\{ p_0 : p_0 > k^{-1}(t) \bigr\}, \tag{9.2.9}
@@ -277,14 +305,21 @@ $$
 k^{-1}(t) = \sup\Bigl\{ p : \sum_{y=0}^{t-1} \binom{n}{y} p^{\,y} (1 - p)^{n-y} \geq 1 - \alpha \Bigr\}. \tag{9.2.10}
 $$
 注意 $$k^{-1}(t)$$ 并不是 $$k(p_0)$$ 真正的反函数，因为 $$k(p_0)$$ 不是一一对应的；但 (9.2.8) 与 (9.2.10) 给出了 $$k$$ 与 $$k^{-1}$$ 的良定义。
+
 二项置信界问题最早由 Clopper and Pearson (1934) 处理，他们对双侧区间得到了与上面类似的结果（习题 9.21），并开启了至今仍活跃的研究方向；见杂记 9.5.2 节。
 ### 9.2.2 枢轴量（Pivotal Quantities）
 例 9.1.6 中两个置信区间在许多方面不同，一个重要差别是：区间 $$[aY, bY]$$ 的覆盖概率不依赖参数 $$\theta$$ 的值，而 $$[Y + c, Y + d]$$ 的覆盖概率依赖。原因在于，$$[aY, bY]$$ 的覆盖概率可以借助量 $$Y/\theta$$ 表达，而 $$Y/\theta$$ 是一个分布不依赖参数的随机变量——这样的量称为枢轴量（pivotal quantity）或枢轴（pivot）。
+
 用枢轴量构造置信集合（由此得到所谓枢轴推断，pivotal inference）主要归功于 G. A. Barnard（1949, 1980），但其思想可以追溯到 Fisher（1930），后者使用了“逆概率”（inverse probability）一词。与此密切相关的是 D. A. S. Fraser 的结构推断理论（Fraser 1968, 1979）。Berger and Wolpert (1984) 对这些方法的优缺点给出了有趣的讨论。
+
 **定义 9.2.6（枢轴量）**
+
 若随机变量 $$Q(\textbf{X}, \theta) = Q(X_1, \ldots, X_n, \theta)$$ 的分布不依赖任何参数，则称它为***枢轴量***（pivotal quantity）或枢轴（pivot）。也就是说，若 $$\textbf{X} \sim F(\textbf{x} \mid \theta)$$，则对 $$\theta$$ 的一切取值，$$Q(\textbf{X}, \theta)$$ 都具有相同的分布。
+
 函数 $$Q(\textbf{x}, \theta)$$ 通常同时显含参数与统计量，但对任意集合 $$A$$，$$P_{\theta}\bigl( Q(\textbf{X}, \theta) \in A \bigr)$$ 不依赖 $$\theta$$。由枢轴构造置信集合的技巧在于：找到一个枢轴与一个集合 $$A$$，使 $$\{ \theta : Q(\textbf{x}, \theta) \in A \}$$ 成为 $$\theta$$ 的集合估计。
+
 **例 9.2.7（位置–尺度枢轴）**
+
 在位置族与尺度族中存在大量枢轴量。这里列举几个；更多见习题 9.8。设 $$X_1, \ldots, X_n$$ 是来自下表所指 pdf 的随机样本，$$\bar{X}$$ 与 $$S$$ 分别是样本均值与样本标准差。要证明这些量是枢轴，只需证明它们的 pdf 不依赖参数（细节见习题 9.9）。特别地，若 $$X_1, \ldots, X_n$$ 是来自 $$n(\mu, \sigma^2)$$ 总体的随机样本，则 $$t$$ 统计量 $$(\bar{X} - \mu)/(S / \sqrt{n})$$ 是枢轴，因为 $$t$$ 分布不依赖参数 $$\mu$$ 与 $$\sigma^2$$。
 *表 9.2.1　 位置–尺度枢轴（原书 Table 9.2.1）*
 | pdf 的形式 | pdf 的类型 | 枢轴量 |
@@ -293,17 +328,21 @@ $$
 | $$\dfrac{1}{\sigma} f\Bigl( \dfrac{x}{\sigma} \Bigr)$$ | 尺度 | $$\dfrac{\bar{X}}{\sigma}$$ |
 | $$\dfrac{1}{\sigma} f\Bigl( \dfrac{x - \mu}{\sigma} \Bigr)$$ | 位置–尺度 | $$\dfrac{\bar{X} - \mu}{S}$$ |
 9.2.1 节用检验反转法构造的区间中，有些恰好基于枢轴（例 9.2.3 与例 9.2.4），有些则不是（例 9.2.5）。寻找枢轴没有放之四海而皆准的策略，但我们可以聪明一点而不全凭猜测。例如，对位置参数或尺度参数寻找枢轴是相对容易的任务：一般地，在位置问题中**差**是枢轴，而在尺度问题中**比**（或乘积）是枢轴。
+
 **例 9.2.8（gamma 枢轴）**
+
 设 $$X_1, \ldots, X_n$$ 是 iid exponential($$\lambda$$)。则 $$T = \sum X_i$$ 是 $$\lambda$$ 的充分统计量且 $$T \sim \mathrm{gamma}(n, \lambda)$$。在 gamma pdf 中 $$t$$ 与 $$\lambda$$ 以 $$t/\lambda$$ 的形式同时出现；事实上 $$\mathrm{gamma}(n, \lambda)$$ 的 pdf $$(\Gamma(n) \lambda^n)^{-1} t^{n-1} e^{-t/\lambda}$$ 是一个尺度族。于是若取 $$Q(T, \lambda) = 2T / \lambda$$，则
 $$
 Q(T, \lambda) \sim \mathrm{gamma}\bigl( n,\ \lambda \cdot (2/\lambda) \bigr) = \mathrm{gamma}(n, 2),
 $$
 它不依赖 $$\lambda$$。量 $$Q(T, \lambda) = 2T / \lambda$$ 是一个服从 $$\mathrm{gamma}(n, 2)$$ 分布（即 $$\chi^2_{2n}$$ 分布）的枢轴。
+
 有时可以观察 pdf 的形式来判断枢轴是否存在。上例中 $$t/\lambda$$ 出现在 pdf 里，而它确实是枢轴；正态 pdf 中出现量 $$(x - \mu)/\sigma$$，它也是枢轴。一般地，设统计量 $$T$$ 的 pdf $$f(t \mid \theta)$$ 可以写成
 $$
 f(t \mid \theta) = g\bigl( Q(t, \theta) \bigr) \Bigl\vert  \frac{\partial Q(t, \theta)}{\partial t} \Bigr\vert , \tag{9.2.11}
 $$
 其中 $$g$$ 是某个函数，$$Q$$ 是某个单调函数（对每个 $$\theta$$ 关于 $$t$$ 单调）。则由定理 2.1.5 可以证明（习题 9.10）$$Q(T, \theta)$$ 是枢轴。
+
 有了枢轴之后，怎样用它构造置信集合？这一步相当简单。若 $$Q(\textbf{X}, \theta)$$ 是枢轴，则对指定的 $$\alpha$$ 值可以找到不依赖 $$\theta$$ 的数 $$a$$ 与 $$b$$，使
 $$
 P_{\theta}\bigl( a \leq Q(\textbf{X}, \theta) \leq b \bigr) \geq 1 - \alpha.
@@ -317,8 +356,11 @@ $$
 C(\textbf{x}) = \{ \theta_0 : a \leq Q(\textbf{x}, \theta_0) \leq b \}, \tag{9.2.13}
 $$
 且 $$C(\textbf{X})$$ 是 $$\theta$$ 的 $$1 - \alpha$$ 置信集合。若 $$\theta$$ 是实值参数，且对每个 $$\textbf{x} \in \mathcal{X}$$，$$Q(\textbf{x}, \theta)$$ 是 $$\theta$$ 的单调函数，则 $$C(\textbf{x})$$ 必是区间。事实上，若 $$Q(\textbf{x}, \theta)$$ 关于 $$\theta$$ 递增，则 $$C(\textbf{x})$$ 形如 $$L(\textbf{x}, a) \leq \theta \leq U(\textbf{x}, b)$$；若 $$Q(\textbf{x}, \theta)$$ 关于 $$\theta$$ 递减（这是常见情形），则 $$C(\textbf{x})$$ 形如 $$L(\textbf{x}, b) \leq \theta \leq U(\textbf{x}, a)$$。
+
 **例 9.2.9（例 9.2.8 的续）**
+
 例 9.2.3 中我们通过反转 $$H_0 : \lambda = \lambda_0$$ 对 $$H_1 : \lambda \neq \lambda_0$$ 的水平 $$\alpha$$ LRT 得到了 exponential($$\lambda$$) pdf 的均值 $$\lambda$$ 的置信区间。现在我们还看到：若有样本 $$X_1, \ldots, X_n$$，可令 $$T = \sum X_i$$ 并取 $$Q(T, \lambda) = 2T/\lambda \sim \chi^2_{2n}$$。
+
 取常数 $$a, b$$ 使 $$P\bigl( a \leq \chi^2_{2n} \leq b \bigr) = 1 - \alpha$$，则
 $$
 P_{\lambda}\Bigl( a \leq \frac{2T}{\lambda} \leq b \Bigr)
@@ -326,8 +368,11 @@ P_{\lambda}\Bigl( a \leq \frac{2T}{\lambda} \leq b \Bigr)
 = P\bigl( a \leq \chi^2_{2n} \leq b \bigr) = 1 - \alpha.
 $$
 反转集合 $$A(\lambda) = \{ t : a \leq 2t/\lambda \leq b \}$$ 得到 $$C(t) = \bigl\{ \lambda : 2t/b \leq \lambda \leq 2t/a \bigr\}$$，这是一个 $$1 - \alpha$$ 置信区间。（注意下端点依赖 $$b$$、上端点依赖 $$a$$，正如前面所述：$$Q(t, \lambda) = 2t/\lambda$$ 关于 $$\lambda$$ 递减。）例如取 $$n = 10$$，查卡方表可知 95% 置信区间为 $$\bigl\{ \lambda : 2T/34.17 \leq \lambda \leq 2T/9.59 \bigr\}$$。
+
 对位置问题，即使方差未知，枢轴区间的构造与计算也相当容易。事实上我们早已用过这些想法，只是没有正式命名。
+
 **例 9.2.10（正态枢轴区间）**
+
 由定理 5.3.1，若 $$X_1, \ldots, X_n$$ 是 iid $$n(\mu, \sigma^2)$$，则 $$(\bar{X} - \mu)/(\sigma / \sqrt{n})$$ 是枢轴。若 $$\sigma^2$$ 已知，可用该枢轴计算 $$\mu$$ 的置信区间：对任意常数 $$a$$，
 $$
 P\Bigl( -a \leq \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \leq a \Bigr) = P(-a \leq Z \leq a) \qquad （Z\ \text{是标准正态的}）,
@@ -345,6 +390,7 @@ $$
 \Bigl\{ \mu : \bar{x} - t_{n-1, \alpha/2}\, \frac{s}{\sqrt{n}} \leq \mu \leq \bar{x} + t_{n-1, \alpha/2}\, \frac{s}{\sqrt{n}} \Bigr\}, \tag{9.2.14}
 $$
 这就是基于 Student $$t$$ 分布的经典 $$\mu$$ 的 $$1 - \alpha$$ 置信区间。
+
 继续本例，假设还想给出 $$\sigma$$ 的区间估计。由于 $$(n-1)S^2/\sigma^2 \sim \chi^2_{n-1}$$，它也是枢轴。取 $$a, b$$ 使
 $$
 P\Bigl( a \leq \frac{(n-1)S^2}{\sigma^2} \leq b \Bigr) = P\bigl( a \leq \chi^2_{n-1} \leq b \bigr) = 1 - \alpha,
@@ -358,6 +404,7 @@ $$
 \Bigl\{ \sigma : \sqrt{\frac{(n-1)s^2}{b}} \leq \sigma \leq \sqrt{\frac{(n-1)s^2}{a}} \Bigr\}.
 $$
 能产生所需区间的一种取法是 $$a = \chi^2_{n-1, 1-\alpha/2}$$ 与 $$b = \chi^2_{n-1, \alpha/2}$$，它把概率平分，各在分布两端放 $$\alpha/2$$。然而 $$\chi^2_{n-1}$$ 分布是偏斜的，对偏斜分布等概率分割是否最优并不显然。（即使对对称分布，等概率分割是否最优也不显然，只是直觉上后一种情形更可信。）事实上，对卡方分布，等概率分割并非最优，这将在 9.3 节看到（另见习题 9.52）。
+
 关于本问题的最后一点说明：我们已分别构造了 $$\mu$$ 与 $$\sigma$$ 的置信区间。完全可能我们对 $$\mu$$ 与 $$\sigma$$ **同时**的置信集合感兴趣。Bonferroni 不等式是实现这一点的一个简单（且相对好）的方法（见习题 9.14）。
 ### 9.2.3 反转累积分布函数（Pivoting the CDF）
 上一节我们看到枢轴 $$Q$$ 导出形如 (9.2.13) 的置信集合：
@@ -365,12 +412,19 @@ $$
 C(\textbf{x}) = \{ \theta_0 : a \leq Q(\textbf{x}, \theta_0) \leq b \}.
 $$
 若对每个 $$\theta$$，$$Q(\textbf{x}, \theta)$$ 关于 $$\theta$$ 单调，则可以保证置信集合 $$C(\textbf{x})$$ 是区间。迄今所见的枢轴主要借助位置与尺度变换构造，都给出单调的 $$Q$$ 函数，从而给出置信区间。
+
 本节使用另一种枢轴：它完全一般，且在少量假设下保证得到区间。
+
 拿不准或遇到陌生情形时，我们的建议是：若可能，基于反转 LRT 构造置信集合。这样的集合虽不保证最优，但绝不会太差。然而在某些情形这种策略在分析上或计算上都太难，反转接受区域有时相当繁琐。若本节的方法可以应用，它实现起来相当直接，而且通常给出合理的集合。
+
 为了说明检验反转法在缺乏对接受区域类型的附加条件时可能遇到的麻烦，请看下面的例子——它展示了构造二项成功概率置信集合的早期方法之一。
+
 **例 9.2.11（最短长度二项集合）**
+
 Sterne (1954) 提出了如下构造二项置信集合的方法，它产生的集合具有最短长度。给定 $$\alpha$$，对每个 $$p$$ 值，找由“最可能”的 $$x$$ 值组成的尺寸 $$\alpha$$ 接受区域：即对每个 $$p$$，把 $$x = 0, \ldots, n$$ 的值从最可能到最不可能排序，把值放入接受区域 $$A(p)$$ 直到其概率达到 $$1 - \alpha$$；然后用 (9.2.1) 反转这些接受区域得到 $$1 - \alpha$$ 置信集合。Sterne 宣称这样得到的集合具有长度最优性。
+
 为看清这个看似合理的构造出人意料的问题，考虑一个小例子。设 $$X \sim \mathrm{binomial}(3, p)$$，置信系数取 $$1 - \alpha = 0.442$$。表 9.2.2 给出按 Sterne 构造得到的接受区域，以及反转这族检验导出的置信集合。
+
 表 9.2.2　 Sterne 构造的接受区域与置信集合：$$X \sim \mathrm{binomial}(3, p)$$，$$1 - \alpha = 0.442$$（原书 Table 9.2.2）
 | $$p$$ 的范围 | 接受区域 $$A(p)$$ | 置信集合 $$C(x)$$ |
 |:---:|:---:|:---:|
@@ -384,7 +438,9 @@ Sterne (1954) 提出了如下构造二项置信集合的方法，它产生的集
 | $$(0.695, 0.762)$$ | $$\{2, 3\}$$ |  |
 | $$[0.762, 1.00]$$ | $$\{3\}$$ |  |
 令人惊讶的是，置信集合并不是置信区间！这个看似合理的构造给出了一个不合理的程序。该责备的是 pmf：它的表现不符合我们的预期（见习题 9.18）。
+
 我们把参数 $$\theta$$ 的置信区间构造建立在实值统计量 $$T$$ 及其 cdf $$F_T(t \mid \theta)$$ 之上。（实践中通常取 $$T$$ 为 $$\theta$$ 的充分统计量，但下面的理论并不要求这一点。）先设 $$T$$ 是连续随机变量；$$T$$ 离散的情形类似，只是多了若干技术细节，因此我们将离散情形放在单独的定理中叙述。
+
 首先，回顾定理 2.1.10（概率积分变换）：它告诉我们随机变量 $$F_T(T \mid \theta)$$ 服从 uniform$$(0,1)$$，是一个枢轴。于是若 $$\alpha_1 + \alpha_2 = \alpha$$，则假设 $$H_0 : \theta = \theta_0$$ 的水平 $$\alpha$$ 接受区域可取为（习题 9.11）
 
 $$
@@ -1493,7 +1549,9 @@ $$
 是最短的 $$1 - \alpha$$ 枢轴区间。
 **9.38** 若在定理 9.3.2 中假设 $$f$$ 连续，则可以简化证明。对固定的 $$c$$，考虑积分 $$\int_a^{a+c} f(x)\, dx$$。
 (a) 证明 $$\frac{d}{da} \int_a^{a+c} f(x)\, dx = f(a + c) - f(a)$$；
+
 (b) 证明 $$f$$ 的单峰性蕴含：$$\int_a^{a+c} f(x)\, dx$$ 在满足 $$f(a + c) - f(a) = 0$$ 的 $$a$$ 处达到最大；
+
 (c) 设给定 $$\alpha$$，选取 $$c^{*}$$ 与 $$a^{*}$$ 满足 $$\int_{a^{*}}^{a^{*}+c^{*}} f(x)\, dx = 1 - \alpha$$ 且 $$f(a^{*} + c^{*}) - f(a^{*}) = 0$$。证明这就是最短的 $$1 - \alpha$$ 区间。
 **9.39** 证明定理 9.3.2 的一个特例。设 $$X \sim f(x)$$，$$f$$ 是对称单峰 pdf。对固定的 $$1 - \alpha$$ 值，在所有满足 $$\int_a^b f(x)\, dx = 1 - \alpha$$ 的区间 $$[a, b]$$ 中，最短的是通过选取 $$a, b$$ 使 $$\int_{-\infty}^{a} f(x)\, dx = \alpha/2$$ 且 $$\int_b^{\infty} f(x)\, dx = \alpha/2$$ 而得到的。
 **9.40** 在习题 9.39 的基础上证明：若 $$f$$ 对称，则最优区间形如 $$m \pm k$$，其中 $$m$$ 是 $$f$$ 的众数、$$k$$ 是常数。由此证明：(a) 对称的似然函数产生关于 MLE 对称的似然区域（若 $$k'$$ 不依赖参数，见 (9.2.7)）；(b) 对称的后验密度产生关于后验均值对称的 HPD 区域。
@@ -1501,6 +1559,7 @@ $$
 (b) 用 (a) 的结果求例 9.2.13 中最短的 $$1 - \alpha$$ 置信区间。
 **9.42** 参照例 9.3.4，为求 gamma 尺度参数的最短枢轴区间，需解一个约束极小化问题。
 (a) 证明解由满足 $$\int_a^b f_Y(y)\, dy = 1 - \alpha$$ 且 $$f(b)\, b^2 = f(a)\, a^2$$ 的 $$a, b$$ 给出；
+
 (b) 取形状参数 $$k$$ 已知的 gamma($$k$$, $$\beta$$) 的一个观测，求形如 $$\{ \beta : x/b \leq \beta \leq x/a \}$$ 的最短 $$1 - \alpha$$（枢轴）置信区间。
 **9.43** Juola (1993) 作出如下观察。设有枢轴 $$Q(\textbf{X}, \theta)$$，$$1 - \alpha$$ 置信区间需要找 $$a, b$$ 使 $$P(a < Q < b) = 1 - \alpha$$。区间的长度通常是 $$a, b$$ 的某个函数，如 $$b - a$$ 或 $$1/b^2 - 1/a^2$$。若 $$Q$$ 有密度 $$f$$ 且长度可以写成 $$\int_a^b g(t)\, dt$$，则最短枢轴区间是
 $$
@@ -1511,16 +1570,19 @@ $$
 \min_{C} \int_C g(t)\, dt \quad\text{约束于}\quad \int_C f(t)\, dt \geq 1 - \alpha.
 $$
 (a) 证明解为 $$C = \{ t : g(t) < \lambda f(t) \}$$，其中 $$\lambda$$ 选得使 $$\int_C f(t)\, dt = 1 - \alpha$$。（提示：可以模仿定理 8.3.12（Neyman–Pearson 引理）的证明。）
+
 (b) 把 (a) 的结果应用于习题 9.37 与 9.42 以得到最短区间。
 **9.44** (a) 设 $$X_1, \ldots, X_n$$ 是 iid Poisson($$\lambda$$)。通过反转 $$H_0 : \lambda = \lambda_0$$ 对 $$H_1 : \lambda > \lambda_0$$ 的 UMP 水平 $$\alpha$$ 检验，求 UMA $$1 - \alpha$$ 置信区间；
 (b) 设 $$f(x \mid \theta)$$ 是 logistic($$\theta$$, 1) 位置 pdf。基于一个观测 $$x$$，求形如 $$\{ \theta : \theta \leq U(x) \}$$ 的 UMA 单侧 $$1 - \alpha$$ 置信区间。
 **9.45** 设 $$X_1, \ldots, X_n$$ 是 iid exponential($$\lambda$$)。
 (a) 求 $$H_0 : \lambda = \lambda_0$$ 对 $$H_1 : \lambda < \lambda_0$$ 的 UMP 尺寸 $$\alpha$$ 检验；
+
 (b) 通过反转 (a) 中的检验求 UMA $$1 - \alpha$$ 置信区间。证明该区间可以表示为
 $$
 C^{*}(x_1, \ldots, x_n) = \Bigl\{ \lambda : 0 \leq \lambda \leq \frac{2 \sum x_i}{\chi^2_{2n, \alpha}} \Bigr\};
 $$
 (c) 求 $$C^{*}(x_1, \ldots, x_n)$$ 的期望长度；
+
 (d) Madansky (1962) 展示了一个期望长度比 UMA 区间更短的 $$1 - \alpha$$ 区间。一般情形 Madansky 的区间难以计算，但在如下情形计算相对简单。取 $$1 - \alpha = 0.3$$、$$n = 120$$，Madansky 的区间为
 $$
 C_M(x_1, \ldots, x_n) = \Bigl\{ \lambda : 0 \leq \lambda \leq -\frac{x_{(1)}}{\log(0.99)} \Bigr\},
@@ -1535,7 +1597,9 @@ $$
 **9.47** 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\theta, \sigma^2)$$ 总体的随机样本，$$\sigma^2$$ 已知。证明通常的单侧 $$1 - \alpha$$ 上置信界 $$\{ \theta : \theta \leq \bar{x} + z_{\alpha}\, \sigma/\sqrt{n} \}$$ 是无偏的，相应的下置信界也是无偏的。
 **9.48** 设 $$X_1, \ldots, X_n$$ 是来自 $$n(\theta, \sigma^2)$$ 总体的随机样本，$$\sigma^2$$ 未知。
 (a) 证明区间 $$\theta \leq \bar{x} + t_{n-1, \alpha}\, s/\sqrt{n}$$ 可以通过反转一个 LRT 的接受区域导出；
+
 (b) 证明 (9.2.14) 中相应的双侧区间也可以通过反转 LRT 的接受区域导出；
+
 (c) 证明 (a) 与 (b) 中的区间都是无偏区间。
 **9.49**（Cox 悖论）要检验
 $$
@@ -1550,9 +1614,11 @@ n(\theta, 1), & \text{概率 } 1 - p.
 \end{cases}
 $$
 (a) 证明由“在 $$X > \theta_0 + z_{\alpha}\sigma$$ 时拒绝 $$H_0$$”给出的检验（$$\sigma = 1$$ 或 10，视抽到哪个总体而定）是水平 $$\alpha$$ 检验。反转该检验的接受区域导出 $$1 - \alpha$$ 置信集合；
+
 (b) 证明一个（对 $$\alpha > p$$）更有功效的水平 $$\alpha$$ 检验为“在 $$X > \theta_0 + z_{(\alpha - p)/(1 - p)}$$ 且 $$\sigma = 1$$ 时拒绝 $$H_0$$，否则总是拒绝 $$H_0$$”。反转该检验的接受区域导出 $$1 - \alpha$$ 置信集合，并证明它以正概率是空集。（Cox 悖论指出：经典的最优程序有时忽略条件分布的信息，给出虽然最优、却在某种程度上不合理的程序；见 Cox 1958 或 Cornfield 1969。）
 **9.50** 设 $$X \sim f(x \mid \theta)$$，设区间 $$\{ \theta : a(\textbf{X}) \leq \theta \leq b(\textbf{X}) \}$$ 是 $$\theta$$ 的 UMA 置信集合。
 (a) 求 $$1/\theta$$ 的 UMA 置信集合。注意若 $$a(\textbf{x}) < 0 < b(\textbf{x})$$，该集合是 $$\{ 1/\theta : 1/b(\textbf{x}) \leq 1/\theta \} \cup \{ 1/\theta : 1/\theta \leq 1/a(\textbf{x}) \}$$。因此 UMA 置信集合可能既不是区间也不是有界的；
+
 (b) 证明若 $$h$$ 是严格递增函数，则集合 $$\{ h(\theta) : h(a(\textbf{X})) \leq h(\theta) \leq h(b(\textbf{X})) \}$$ 是 $$h(\theta)$$ 的 UMA 置信集合。对 $$h$$ 的条件可以放宽吗？
 **9.51** 若 $$X_1, \ldots, X_n$$ 是来自位置 pdf $$f(x - \theta)$$ 的 iid 样本，证明置信集合
 $$
@@ -1564,19 +1630,25 @@ $$
 \Bigl\{ \sigma^2 : \frac{(n-1)s^2}{b} \leq \sigma^2 \leq \frac{(n-1)s^2}{a} \Bigr\}
 $$
 的区间，但每种情形 $$a$$ 与 $$b$$ 满足不同的约束。本题的区间由 Tate and Klett (1959) 导出，他们还编制了一些截断点表。
+
 记 $$f_p(t)$$ 为自由度 $$p$$ 的 $$\chi_p^2$$ 随机变量的 pdf。要有 $$1 - \alpha$$ 置信区间，$$a$$ 与 $$b$$ 必须满足
 $$
 \int_a^b f_{n-1}(t)\, dt = 1 - \alpha,
 $$
 但还需要附加约束才能唯一确定 $$a$$ 与 $$b$$。验证下列每个约束可以按所述方式导出。
+
 (a) 似然比区间：反转 $$H_0 : \sigma = \sigma_0$$ 对 $$H_1 : \sigma \neq \sigma_0$$ 的 LRT 得到的 $$1 - \alpha$$ 置信区间形如上式，其中 $$a, b$$ 还满足 $$f_{n+2}(a) = f_{n+2}(b)$$；
+
 (b) 最小长度区间：对上形的区间，通过最小化区间长度得到的 $$1 - \alpha$$ 置信区间约束 $$a, b$$ 满足 $$f_{n+3}(a) = f_{n+3}(b)$$；
+
 (c) 最短无偏区间：对上形的区间，在所有无偏区间中最小化错误覆盖概率得到的 $$1 - \alpha$$ 置信区间约束 $$a, b$$ 满足 $$f_{n+1}(a) = f_{n+1}(b)$$。该区间也可以通过最小化两端点之比导出；
+
 (d) 等尾区间：对上形的区间，要求区间上方与下方的概率相等得到的 $$1 - \alpha$$ 置信区间约束 $$a, b$$ 满足
 $$
 \int_0^a f_{n-1}(t)\, dt = \frac{\alpha}{2}, \qquad \int_b^{\infty} f_{n-1}(t)\, dt = \frac{\alpha}{2}.
 $$
 （该区间虽然非常常用，但显然按任何长度准则都不是最优的。）
+
 (e) 对 $$\alpha = 0.1$$、$$n = 3$$，求上述各情形 $$a$$ 与 $$b$$ 的数值并比较这些区间的长度。
 **9.53** 设 $$X \sim n(\mu, \sigma^2)$$，$$\sigma^2$$ 已知。对每个 $$c \geq 0$$，定义 $$\mu$$ 的区间估计量 $$C(x) = [x - c\sigma,\ x + c\sigma]$$，考虑损失 (9.3.4)。
 (a) 证明风险函数 $$R(\mu, C)$$ 为
@@ -1588,7 +1660,9 @@ $$
 \frac{d}{dc} R(\mu, C) = 2b\sigma - \sqrt{\frac{2}{\pi}}\, e^{-c^2/2},
 $$
 因而该导数对 $$c \geq 0$$ 是 $$c$$ 的增函数；
+
 (c) 证明若 $$b\sigma > 1/\sqrt{2\pi}$$，则导数对一切 $$c \geq 0$$ 为正，故 $$R(\mu, C)$$ 在 $$c = 0$$ 处最小，即最好的区间估计量是点估计量 $$C(x) = [x, x]$$；
+
 (d) 证明若 $$b\sigma \leq 1/\sqrt{2\pi}$$，则使风险最小的 $$c$$ 为 $$c = -2 \log(b\sigma\sqrt{2\pi})$$。因此若选取 $$b$$ 使 $$c = z_{\alpha/2}$$ 对某个 $$\alpha$$ 成立，则使风险最小的区间估计量正是通常的 $$1 - \alpha$$ 置信区间。
 **9.54** 设 $$X \sim n(\mu, \sigma^2)$$，但现在考虑 $$\sigma^2$$ 未知。对每个 $$c \geq 0$$，定义 $$\mu$$ 的区间估计量 $$C(x) = [x - cs,\ x + cs]$$，其中 $$s^2$$ 是与 $$X$$ 独立的 $$\sigma^2$$ 的估计量，$$\nu S^2 / \sigma^2 \sim \chi^2_{\nu}$$（例如通常的样本方差）。考虑损失 (9.3.4) 的修改
 $$
@@ -1599,6 +1673,7 @@ $$
 R\bigl( (\mu, \sigma), C \bigr) = b(2cM) - \bigl[ 2P(T \leq c) - 1 \bigr],
 $$
 其中 $$T \sim t_{\nu}$$，$$M = \mathrm{E} S / \sigma$$；
+
 (b) 若 $$b \leq 1/\sqrt{2\pi}$$，证明使风险最小的 $$c$$ 满足
 $$
 b = \frac{1}{\sqrt{2\pi}} \Bigl( \frac{\nu}{\nu + c^2} \Bigr)^{(\nu+1)/2};
@@ -1626,15 +1701,21 @@ $$
 C_{\pi} = \{ \theta : \pi(\theta \mid x) \geq b \}.
 $$
 （提示：写 $$\mathrm{Len}(C) = \int_C 1\, d\theta$$ 并使用 Neyman–Pearson 引理。）
+
 以下两题与杂记 9.5.4 节相关。
 **9.57** 设 $$X_1, X_2, \ldots, X_n$$ 是 iid $$n(\mu, \sigma^2)$$，$$\sigma^2$$ 已知。已知 $$\mu$$ 的 $$1 - \alpha$$ 置信区间是 $$\bar{x} \pm z_{\alpha/2}\, \sigma / \sqrt{n}$$。
 (a) 证明 $$X_{n+1}$$ 的 $$1 - \alpha$$ 预测区间是 $$\bar{x} \pm z_{\alpha/2}\, \sigma \sqrt{1 + \frac{1}{n}}$$；
+
 (b) 证明覆盖总体 100$$p$$% 的 $$1 - \alpha$$ 容忍区间由 $$\bar{x} \pm z_{\alpha/2}\, \sigma \bigl( 1 + \frac{1}{\sqrt{n}} \bigr)$$ 给出；
+
 (c) 若 $$\sigma^2$$ 未知，求 $$X_{n+1}$$ 的 $$1 - \alpha$$ 预测区间。
+
 （若 $$\sigma^2$$ 未知，$$1 - \alpha$$ 容忍区间的计算相当繁琐。）
 **9.58** 设 $$X_1, X_2, \ldots, X_n$$ 是来自具有中位数 $$m$$ 的总体的 iid 观测。基于次序统计量 $$X_{(1)} \leq X_{(2)} \leq \cdots \leq X_{(n)}$$ 可以构造分布无关（distribution-free）区间如下。
 (a) 证明单侧区间 $$(-\infty, x_{(n)}]$$ 与 $$[x_{(1)}, \infty)$$ 各自是 $$m$$ 的置信系数为 $$1 - (1/2)^n$$ 的置信区间，而区间 $$[x_{(1)}, x_{(n)}]$$ 的置信系数为 $$1 - 2(1/2)^n$$；
+
 (b) 证明 (a) 中的单侧区间是系数为 $$n/(n+1)$$ 的预测区间，双侧区间是系数为 $$(n-1)/(n+1)$$ 的预测区间；
+
 (c) (a) 中的区间也可以用作总体比例 $$p$$ 的容忍区间。证明作为容忍区间考虑时，单侧区间的系数为 $$1 - p^n$$，双侧区间的系数为 $$1 - p^n - n(1 - p) p^{n-1}$$。Vardeman (1992) 把最后这个计算称为“次序统计量的一道好习题”。
 ## 9.5 杂记（Miscellanea）
 ### 9.5.1 置信程序（Confidence Procedures）
@@ -1643,6 +1724,7 @@ $$
 \{ (\textbf{x}, \theta) : (\textbf{x}, \theta) \in C \},
 $$
 其中 $$C \in \mathcal{X} \times \Theta$$。
+
 由置信程序可以定义两个切片（slice）或截面（section）：固定其中一个变量即可得到。固定 $$\textbf{x}$$，定义 $$\theta$$-截面（即置信集合）
 $$
 C(\textbf{x}) = \{ \theta : (\textbf{x}, \theta) \in C \};
@@ -1654,10 +1736,13 @@ $$
 虽然这种处理必须在乘积空间 $$\mathcal{X} \times \Theta$$ 中工作——这也是本书不采用它的原因之一——但它提供了一种更直接地看待检验与集合之间关系的方式。图 9.2.1 在正态情形例示了这种对应。
 ### 9.5.2 离散分布中的置信区间（Confidence Intervals in Discrete Distributions）
 为离散分布的参数构造最优（或至少是改进的）置信区间有着悠久的历史，正如例 9.2.11 所示——那里考察了 Sterne (1954) 对 Clopper–Pearson (1934) 区间的修改。当然 Sterne 构造存在困难，但其基本思想是健全的：Crow (1956) 以及 Blyth and Still (1983) 对 Sterne 的构造作了修改，后者给出了最短的精确区间类。Casella (1986) 给出了寻找一类最短二项置信区间的算法。
+
 Poisson 区间研究的历史（常包括其他离散分布）类似：Garwood (1936) 的构造正是把 Clopper–Pearson 的论证用于 Poisson 情形；Crow and Gardner (1959) 改进了这些区间；Casella and Robert (1989) 找到了一类最短 Poisson 区间。
+
 Blyth (1986) 给出了二项参数的非常精确的近似区间；Leemis and Trivedi (1996) 比较了正态近似与 Poisson 近似；Agresti and Coull (1998) 主张，要求离散区间保持覆盖概率高于名义水平可能过于苛刻。Blaker (2000) 为二项、Poisson 及其他离散分布构造了具有嵌套性质的改进区间：当 $$\alpha < \alpha'$$ 时，$$1 - \alpha$$ 区间包含相应的 $$1 - \alpha'$$ 区间。
 ### 9.5.3 Fieller 定理（Fieller's Theorem）
 Fieller 定理（Fieller 1954）是求正态均值之比的精确置信集合的巧妙论证。
+
 给定来自参数为 $$(\mu_X, \mu_Y, \sigma_X^2, \sigma_Y^2, \rho)$$ 的二元正态分布的随机样本 $$(X_1, Y_1), \ldots, (X_n, Y_n)$$，可以如下构造 $$\theta = \mu_Y / \mu_X$$ 的置信集合。对 $$i = 1, \ldots, n$$，定义 $$Z_{\theta i} = Y_i - \theta X_i$$ 与 $$\bar{Z}_{\theta} = \bar{Y} - \theta \bar{X}$$。可以证明 $$\bar{Z}_{\theta}$$ 服从正态分布，均值为 0，方差为
 $$
 V_{\theta} = \frac{1}{n} \bigl( \sigma_Y^2 - 2\theta \rho\, \sigma_Y \sigma_X + \theta^2 \sigma_X^2 \bigr).
@@ -1685,7 +1770,9 @@ $$
 该集合的一个有趣特征是：取决于抛物线的根，它可以是一个区间、一个区间的补集、或整个实直线（见习题 9.15）。而且为维持 $$1 - \alpha$$ 置信水平，该区间必须以正概率为无穷。基于 bootstrap 的替代方法见 Hwang (1995)，另一种置信方法见 Tsao and Hwang (1998, 1999)。
 ### 9.5.4 还有哪些区间？（What About Other Intervals?）
 Vardeman (1992) 以本小节的标题提出问题，主张主流统计应当花更多时间在双侧置信区间以外的区间上。他特别列举了：(a) 单侧区间，(b) 分布无关区间，(c) 预测区间，(d) 容忍区间。
+
 单侧区间我们已经见过；分布无关区间是指其概率保证在对底层 cdf 几乎（或完全）没有假设时仍然成立的区间（见习题 9.58）。另外两种区间的定义，连同通常的置信区间，给出了一族层层加严的推断。
+
 设 $$X_1, X_2, \ldots, X_n$$ 是来自具有 cdf $$F(x \mid \theta)$$ 的总体的 iid 样本，$$C(\textbf{x}) = [l(\textbf{x}), u(\textbf{x})]$$ 是一个区间。对指定的 $$1 - \alpha$$ 值，它是
 - i. ***置信区间***（confidence interval），若 $$P_{\theta}\bigl[ l(\textbf{X}) \leq \theta \leq u(\textbf{X}) \bigr] \geq 1 - \alpha$$；
 - ii. ***预测区间***（prediction interval），若 $$P_{\theta}\bigl[ l(\textbf{X}) \leq X_{n+1} \leq u(\textbf{X}) \bigr] \geq 1 - \alpha$$；
