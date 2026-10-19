@@ -1,19 +1,30 @@
 /* 大学生个人主页样式：全屏背景 + 磨砂卡片 + 左侧栏目栏（支持子栏目）
-   自动适配深色模式 */
+   支持明暗主题与衬线/无衬线字体切换（由 assets/prefs.js 设置偏好） */
 
 :root {
+  color-scheme: light;
+
   /* ====== 可调参数 ====== */
   /* 卡片不透明度：0 ~ 1，越小越透；壁纸花哨时调大些 */
   --card-alpha: .78;
   /* 本地壁纸：把图片放进 assets/ 并命名为 wallpaper.jpg 即自动启用；
      用其他文件名就改下面这一行；不想要壁纸写 none，会显示默认插画背景 */
   --wallpaper: url("assets/wallpaper.jpg");
+  --wallpaper-tint: rgba(255, 255, 255, 0);
+  --bg-fallback: url("assets/bg-light.svg");
   /* ==================== */
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+  --font-serif: "Songti SC", "STSong", "Noto Serif SC",
+                "Source Han Serif SC", "Source Han Serif CN",
+                "SimSun", Georgia, "Times New Roman", serif;
 
   --text: #262a33;
   --muted: #616877;
   --accent: #4f6df5;
   --accent-weak: rgba(79, 109, 245, .08);
+  --on-accent: #fff;
   --card: rgba(255, 255, 255, var(--card-alpha));
   --card-border: rgba(255, 255, 255, .65);
   --rule: rgba(38, 42, 51, .12);
@@ -41,36 +52,38 @@
   --tint-custom: rgba(194, 90, 138, .07);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --card-alpha: .74;
-    --text: #e7eaf2;
-    --muted: #9aa3b8;
-    --accent: #8ea2ff;
-    --accent-weak: rgba(142, 162, 255, .14);
-    --card: rgba(22, 25, 37, var(--card-alpha));
-    --card-border: rgba(255, 255, 255, .09);
-    --rule: rgba(231, 234, 242, .14);
-    --entry-bg: rgba(255, 255, 255, .045);
-    --hl: rgba(255, 215, 90, .24);
-    --shadow: 0 12px 40px rgba(0, 0, 0, .5);
-    --read-bg: #12141c;
-    --side-bg: #171a24;
-    --box-bg: rgba(255, 255, 255, .045);
-    --box-border: rgba(231, 234, 242, .14);
-    --box-accent: #8ea2ff;
-    --box-accent-2: #6fd3a1;
-    --box-accent-3: #e6b75c;
-    --box-accent-4: #b39bff;
-    --box-accent-5: #6cc4e0;
-    --box-accent-6: #eb92bb;
-    --tint-theorem: rgba(142, 162, 255, .10);
-    --tint-lemma: rgba(108, 196, 224, .10);
-    --tint-def: rgba(111, 211, 161, .10);
-    --tint-example: rgba(230, 183, 92, .12);
-    --tint-note: rgba(179, 155, 255, .10);
-    --tint-custom: rgba(235, 146, 187, .10);
-  }
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --card-alpha: .74;
+  --wallpaper-tint: rgba(4, 6, 15, .42);
+  --bg-fallback: url("assets/bg-dark.svg");
+  --text: #e7eaf2;
+  --muted: #9aa3b8;
+  --accent: #8ea2ff;
+  --accent-weak: rgba(142, 162, 255, .14);
+  --on-accent: #14172a;
+  --card: rgba(22, 25, 37, var(--card-alpha));
+  --card-border: rgba(255, 255, 255, .09);
+  --rule: rgba(231, 234, 242, .14);
+  --entry-bg: rgba(255, 255, 255, .045);
+  --hl: rgba(255, 215, 90, .24);
+  --shadow: 0 12px 40px rgba(0, 0, 0, .5);
+  --read-bg: #12141c;
+  --side-bg: #171a24;
+  --box-bg: rgba(255, 255, 255, .045);
+  --box-border: rgba(231, 234, 242, .14);
+  --box-accent: #8ea2ff;
+  --box-accent-2: #6fd3a1;
+  --box-accent-3: #e6b75c;
+  --box-accent-4: #b39bff;
+  --box-accent-5: #6cc4e0;
+  --box-accent-6: #eb92bb;
+  --tint-theorem: rgba(142, 162, 255, .10);
+  --tint-lemma: rgba(108, 196, 224, .10);
+  --tint-def: rgba(111, 211, 161, .10);
+  --tint-example: rgba(230, 183, 92, .12);
+  --tint-note: rgba(179, 155, 255, .10);
+  --tint-custom: rgba(235, 146, 187, .10);
 }
 
 * { box-sizing: border-box; }
@@ -79,32 +92,30 @@ html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-               "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+  font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.75;
 }
+:root[data-font="serif"] body { font-family: var(--font-serif); }
 /* 章节笔记页：整页阅读版式，正文直接铺在页面上，不再套磨砂卡片 */
 body.note-page { background: var(--read-bg); }
 
-/* 全屏背景：第一层是本地壁纸（存在才生效），第二层是内置插画兜底 */
+/* 全屏背景：第一层是暗色遮罩，第二层是本地壁纸（存在才生效），第三层是内置插画兜底 */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-image: var(--wallpaper), url("assets/bg-light.svg");
-  background-size: cover, cover;
-  background-position: center, center;
-  background-repeat: no-repeat, no-repeat;
+  background-image:
+    linear-gradient(var(--wallpaper-tint), var(--wallpaper-tint)),
+    var(--wallpaper),
+    var(--bg-fallback);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 /* 笔记页不铺壁纸，纯底色更适合长时间阅读 */
 body.note-page::before { display: none; }
-@media (prefers-color-scheme: dark) {
-  body::before {
-    background-image: var(--wallpaper), url("assets/bg-dark.svg");
-  }
-}
 
 /* 磨砂玻璃卡片：左侧栏目栏 + 右侧内容 */
 .page {
@@ -163,9 +174,47 @@ nav { display: flex; flex-direction: column; gap: .25rem; }
   transition: background .15s, color .15s;
 }
 .nav-item:hover { color: var(--text); background: var(--accent-weak); }
-.nav-item.active { color: #fff; background: var(--accent); }
-@media (prefers-color-scheme: dark) {
-  .nav-item.active { color: #14172a; }
+.nav-item.active { color: var(--on-accent); background: var(--accent); }
+
+/* 显示设置：明暗 / 字族切换（由 assets/prefs.js 注入） */
+.sidebar-prefs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+  margin: -.6rem 0 1.15rem;
+}
+.pref-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .32rem;
+  min-height: 30px;
+  padding: .28rem .6rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--entry-bg);
+  color: var(--muted);
+  font: inherit;
+  font-size: .78rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color .15s, border-color .15s, background .15s;
+}
+.pref-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-weak);
+}
+.pref-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.pref-ico { font-size: .86rem; line-height: 1; }
+.pref-aa {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: .84rem;
+  font-weight: 700;
+  line-height: 1;
 }
 
 /* 子栏目：竖排小字，带缩进竖线 */
@@ -567,6 +616,53 @@ blockquote {
 }
 .entry .t { font-weight: 700; margin-bottom: .2rem; }
 .entry .d { font-size: .9rem; color: var(--muted); }
+
+/* 首页访问统计 */
+.visit-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .8rem;
+  margin: 1rem 0 .45rem;
+}
+.visit-stat {
+  min-width: 0;
+  padding: .85rem .9rem;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: var(--entry-bg);
+  text-align: center;
+}
+.visit-stat .num {
+  display: block;
+  color: var(--accent);
+  font-size: 1.38rem;
+  font-weight: 700;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+}
+.visit-stat .num.is-empty {
+  color: var(--muted);
+  font-weight: 600;
+}
+.visit-stat .lbl {
+  display: block;
+  margin-top: .15rem;
+  color: var(--muted);
+  font-size: .8rem;
+  line-height: 1.4;
+}
+.visit-stats-note {
+  margin: .3rem 0 0;
+  color: var(--muted);
+  font-size: .78rem;
+}
+@media (max-width: 720px) {
+  .visit-stats { gap: .5rem; margin-top: .9rem; }
+  .visit-stat { padding: .65rem .4rem; }
+  .visit-stat .num { font-size: 1.18rem; }
+  .visit-stat .lbl { font-size: .72rem; }
+  .visit-stats-note { font-size: .74rem; }
+}
 
 /* 笔记列表：标题在左、日期在右 */
 .postlist li {

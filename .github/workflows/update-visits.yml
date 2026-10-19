@@ -1,0 +1,39 @@
+name: Update visit stats
+
+on:
+  schedule:
+    # 每天 23:30（Asia/Shanghai）记录当天累计访问量
+    - cron: '30 15 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: visit-stats
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Write daily snapshot
+        run: node scripts/update-visits.mjs
+
+      - name: Commit snapshot
+        run: |
+          if git diff --quiet -- assets/data/visits.json; then
+            echo "No snapshot change"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/data/visits.json
+          git commit -m "chore: update visit stats"
+          git push

@@ -8,6 +8,7 @@ title: 主页
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="XiaAo的个人主页：课程笔记与杂记">
   <title>XiaAo | 个人主页</title>
+  <script src="assets/prefs.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -55,6 +56,23 @@ title: 主页
     <h2>关于我</h2>
     <p>北京大学数学科学学院统计系2024级本科生，国家发展研究院双学位在读。</p>
 
+    <h2>访问统计</h2>
+    <div class="visit-stats" id="visit-stats" aria-busy="true">
+      <div class="visit-stat">
+        <span class="num is-empty" data-stat="total">—</span>
+        <span class="lbl">总访问量</span>
+      </div>
+      <div class="visit-stat">
+        <span class="num is-empty" data-stat="7d">—</span>
+        <span class="lbl">近 7 天</span>
+      </div>
+      <div class="visit-stat">
+        <span class="num is-empty" data-stat="30d">—</span>
+        <span class="lbl">近 30 天</span>
+      </div>
+    </div>
+    <p class="visit-stats-note" id="visit-stats-note">统计加载中…</p>
+
     <h2>快速入口</h2>
     <div class="entries">
       <a class="entry" href="courses.html">
@@ -88,5 +106,6 @@ title: 主页
   </main>
 
 </div>
+<script src="assets/visit-stats.js" defer></script>
 </body>
 </html>
