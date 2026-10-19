@@ -6,3 +6,15 @@ notes/*/.sections.json
 
 # 本地预览用的模拟页面与截图
 _preview/
+
+# 主页助手（可视化编辑器）本地运行文件
+editor/.backups/
+editor/node_modules/
+editor/.test-site/
+editor/.test-tools/
+editor/.shots/
+editor/.edge-profile/
+editor/.server.log
+editor/.server.pid
+.qoder-credits/
+

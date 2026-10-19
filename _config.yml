@@ -8,3 +8,5 @@ exclude:
   - misc-template.html
   - split-notes.ps1
   - _preview/
+  - editor/
+  - "*.cmd"

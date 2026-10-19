@@ -1,0 +1,17 @@
+{
+  "siteName": "XiaAo",
+  "siteUrl": "https://xiaao-pixel.github.io",
+  "projectLabel": "个人主页",
+  "groups": ["页面", "兴趣爱好", "书籍封面", "其它页面"],
+  "pageMeta": {
+    "index.html": { "label": "主页", "icon": "home", "group": "页面", "order": 10 },
+    "courses.html": { "label": "课程笔记", "icon": "book", "group": "页面", "order": 20 },
+    "misc.html": { "label": "杂记", "icon": "note", "group": "页面", "order": 30 },
+    "hobbies.html": { "label": "兴趣爱好", "icon": "heart", "group": "兴趣爱好", "order": 10 },
+    "hobby-novel.html": { "label": "小说", "icon": "novel", "group": "兴趣爱好", "order": 20, "form": "books" },
+    "hobby-anime.html": { "label": "动漫", "icon": "film", "group": "兴趣爱好", "order": 30 },
+    "hobby-travel.html": { "label": "旅行", "icon": "map", "group": "兴趣爱好", "order": 40 },
+    "statistics/index.html": { "label": "数理统计", "icon": "book", "group": "书籍封面", "order": 10 },
+    "optimization/index.html": { "label": "最优化方法", "icon": "book", "group": "书籍封面", "order": 20 }
+  }
+}

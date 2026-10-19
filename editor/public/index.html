@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235269f2'/%3E%3Crect x='8' y='7' width='15' height='18' rx='3' fill='none' stroke='white'/%3E%3Cpath d='M12 13h7M12 17h5' stroke='white' stroke-linecap='round'/%3E%3C/svg%3E">
+  <title>主页助手 · 可视化编辑器</title>
+  <link rel="stylesheet" href="/__editor/app.css">
+</head>
+<body>
+<div class="app" id="app">
+  <header class="topbar">
+    <a class="brand" href="/__editor/" aria-label="主页助手">
+      <span class="brand-mark" aria-hidden="true">
+        <span class="bm-card"></span>
+        <span class="bm-line bm-line-a"></span>
+        <span class="bm-line bm-line-b"></span>
+        <span class="bm-dot"></span>
+      </span>
+      <span class="brand-copy">
+        <strong>主页助手</strong>
+        <span>Homepage Studio</span>
+      </span>
+    </a>
+
+    <div class="crumb" id="crumb">
+      <span class="crumb-pulse"></span>
+      <span id="crumb-page">正在读取站点…</span>
+    </div>
+
+    <div class="top-actions">
+      <div class="save-state" id="save-state" data-state="saved" title="直接写入源文件，并自动留备份">
+        <span class="save-dot"></span>
+        <span id="save-label">已保存</span>
+      </div>
+      <button class="icon-btn" id="undo-btn" data-action="undo" title="撤销（Ctrl + Z）" aria-label="撤销" disabled>
+        <span data-icon="undo"></span>
+      </button>
+      <button class="icon-btn" id="redo-btn" data-action="redo" title="重做（Ctrl + Shift + Z）" aria-label="重做" disabled>
+        <span data-icon="redo"></span>
+      </button>
+      <span class="top-sep"></span>
+      <button class="ghost-btn" id="source-btn" data-action="source" title="直接编辑这个页面的 HTML 源文件">
+        <span data-icon="code"></span>
+        <span>源码</span>
+      </button>
+      <button class="publish-btn" id="publish-btn" data-action="publish" title="提交并推送到 GitHub">
+        <span data-icon="cloud-upload"></span>
+        <span class="publish-label">发布</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="workspace">
+    <aside class="rail">
+      <div class="rail-scroll">
+        <div class="rail-section" id="page-nav">
+          <div class="rail-skeleton">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+      <div class="rail-footer">
+        <button class="rail-settings" id="appearance-btn" data-action="appearance">
+          <span class="rail-settings-icon" data-icon="sliders"></span>
+          <span class="rail-settings-copy">
+            <strong>外观与设置</strong>
+            <small>头像、壁纸、主题</small>
+          </span>
+          <span class="rail-chev" data-icon="chevron-right"></span>
+        </button>
+        <a class="rail-online" id="online-link" href="#" target="_blank" rel="noopener" hidden>
+          <span data-icon="external"></span>
+          <span>打开线上主页</span>
+        </a>
+        <div class="rail-meta">
+          <span id="root-label">个人主页</span>
+          <span class="rail-version" id="app-version">v1.0</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="stage">
+      <div class="stage-toolbar">
+        <div class="stage-heading">
+          <span class="stage-icon" id="stage-icon" data-icon="file"></span>
+          <div class="stage-heading-copy">
+            <h1 id="stage-title">正在载入</h1>
+            <p id="stage-sub">单击选中 · 双击文字直接编辑</p>
+          </div>
+        </div>
+
+        <div class="stage-controls">
+          <div class="segmented device-switch" id="device-switch" role="group" aria-label="预览宽度">
+            <button type="button" data-device="desktop" class="active" title="桌面宽度">
+              <span data-icon="desktop"></span>
+            </button>
+            <button type="button" data-device="tablet" title="平板宽度">
+              <span data-icon="tablet"></span>
+            </button>
+            <button type="button" data-device="phone" title="手机宽度">
+              <span data-icon="phone"></span>
+            </button>
+          </div>
+
+          <div class="segmented mode-switch" id="mode-switch" role="group" aria-label="编辑模式">
+            <button type="button" data-mode="edit" class="active">
+              <span data-icon="pencil"></span><span>编辑</span>
+            </button>
+            <button type="button" data-mode="preview">
+              <span data-icon="eye"></span><span>预览</span>
+            </button>
+          </div>
+
+          <button class="icon-btn theme-toggle" id="theme-toggle" data-action="theme" title="切换深浅色预览" aria-label="切换深浅色预览">
+            <span data-icon="moon"></span>
+          </button>
+
+          <div class="zoom-group" role="group" aria-label="缩放">
+            <button type="button" data-zoom="out" title="缩小" aria-label="缩小">−</button>
+            <button type="button" id="zoom-label" data-zoom="reset" title="适应窗口">适应</button>
+            <button type="button" data-zoom="in" title="放大" aria-label="放大">+</button>
+          </div>
+
+          <button class="icon-btn inspector-toggle" id="inspector-toggle" title="打开属性面板" aria-label="打开属性面板">
+            <span data-icon="panel"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="stage-viewport" id="stage-viewport">
+        <div class="stage-glow" aria-hidden="true"></div>
+        <div class="stage-dots" aria-hidden="true"></div>
+        <div class="device-stage" id="device-stage">
+          <div class="device-frame" id="device-frame">
+            <div class="device-chrome">
+              <span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="device-address" id="device-address">xiaao-pixel.github.io</span>
+              <span class="device-badge" id="device-badge">桌面</span>
+            </div>
+            <iframe id="preview" title="个人主页预览" loading="eager"></iframe>
+          </div>
+        </div>
+
+        <div class="stage-loading" id="stage-loading">
+          <div class="spinner" aria-hidden="true"></div>
+          <p>正在装订页面…</p>
+        </div>
+
+        <div class="stage-error" id="stage-error" hidden>
+          <span data-icon="alert"></span>
+          <h2>这一页暂时打不开</h2>
+          <p id="stage-error-message">未知错误</p>
+          <button class="btn ghost" id="error-retry">重新载入</button>
+        </div>
+
+        <div class="inline-editing-hint" id="inline-hint" hidden>
+          <span class="inline-hint-dot"></span>
+          正在页面里直接编辑文字 · 完成后失焦即保存
+        </div>
+      </div>
+    </main>
+
+    <aside class="inspector" id="inspector">
+      <button class="inspector-close" id="inspector-close" title="收起面板" aria-label="收起面板">
+        <span data-icon="close"></span>
+      </button>
+      <div id="inspector-body"></div>
+    </aside>
+  </div>
+</div>
+
+<div class="toast-host" id="toast-host" aria-live="polite"></div>
+<div class="modal-host" id="modal-host" hidden></div>
+<div class="crop-host" id="crop-host" hidden></div>
+
+<script type="module" src="/__editor/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+/* 只注入预览页：选中框、悬停提示与原地编辑工具条。 */
+
+html.editor-mode[data-editor] {}
+
+html.editor-mode * {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html.editor-mode [data-eid] {
+  cursor: default;
+}
+
+html.editor-mode [data-eid]:not([data-editor-text]) a,
+html.editor-mode a[data-eid],
+html.editor-mode a.entry[data-eid],
+html.editor-mode figure[data-eid],
+html.editor-mode [data-eid].entry {
+  cursor: pointer;
+}
+
+html.editor-mode [data-editor-text][data-eid] {
+  cursor: text;
+}
+
+/* 悬停：告诉用户单击会选中哪一块 */
+html.editor-mode [data-editor-hover]:not([data-editor-selected]) {
+  outline: 1.5px dashed rgba(79, 109, 245, .62);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+html.editor-mode [data-eo][data-editor-hover]:not([data-editor-selected]) {
+  outline-color: rgba(120, 128, 148, .62);
+}
+
+/* 选中 */
+html.editor-mode [data-editor-selected] {
+  outline: 2px solid #5b76ff !important;
+  outline-offset: 3px !important;
+  border-radius: 3px;
+  box-shadow: 0 0 0 6px rgba(91, 118, 255, .09);
+}
+
+@media (prefers-color-scheme: dark) {
+  html.editor-mode [data-editor-selected] {
+    outline-color: #aab9ff !important;
+    box-shadow: 0 0 0 6px rgba(150, 168, 255, .12);
+  }
+}
+
+/* 自动生成内容被点击时的提示 */
+html.editor-mode [data-editor-eo-flash] {
+  animation: editor-eo-flash .8s ease;
+  outline: 2px dashed rgba(205, 99, 100, .8);
+  outline-offset: 3px;
+}
+
+@keyframes editor-eo-flash {
+  0%, 100% { background-color: transparent; }
+  35% { background-color: rgba(205, 99, 100, .12); }
+}
+
+/* 原地编辑 */
+html.editor-mode [data-editor-inline="1"] {
+  outline: 2px solid #5b76ff !important;
+  outline-offset: 4px !important;
+  border-radius: 3px;
+  background: rgba(91, 118, 255, .055);
+  cursor: text;
+  min-height: 1em;
+}
+
+html.editor-mode [data-editor-inline="1"]:empty::before {
+  content: "输入文字…";
+  color: rgba(120, 128, 150, .65);
+}
+
+html.editor-mode a[data-editor-inline="1"] {
+  text-decoration: underline;
+}
+
+/* 悬浮编辑条 */
+.editor-inline-toolbar {
+  position: fixed;
+  z-index: 2147483646;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 7px 9px;
+  border-radius: 999px;
+  background: rgba(22, 26, 38, .94);
+  border: 1px solid rgba(255, 255, 255, .12);
+  box-shadow: 0 16px 50px rgba(15, 20, 40, .35);
+  color: #f5f7ff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+  font-size: 12px;
+  line-height: 1;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  animation: editor-bar-in .16s ease-out;
+  user-select: none;
+}
+
+@keyframes editor-bar-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(6px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.editor-inline-toolbar .eit-hint {
+  padding: 0 8px 0 5px;
+  color: rgba(235, 240, 255, .52);
+  font-size: 11px;
+  letter-spacing: .04em;
+}
+
+.editor-inline-toolbar button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: #eef1ff;
+  height: 30px;
+  min-width: 30px;
+  padding: 0 9px;
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+  transition: background .12s ease, color .12s ease;
+}
+
+.editor-inline-toolbar button:hover {
+  background: rgba(255, 255, 255, .1);
+}
+
+.editor-inline-toolbar button b,
+.editor-inline-toolbar button i {
+  font-size: 13px;
+}
+
+.editor-inline-toolbar .eit-sep {
+  width: 1px;
+  height: 16px;
+  margin: 0 4px;
+  background: rgba(255, 255, 255, .14);
+}
+
+.editor-inline-toolbar .eit-done {
+  background: #5b76ff;
+  color: #fff;
+  font-weight: 600;
+}
+
+.editor-inline-toolbar .eit-done:hover {
+  background: #6d86ff;
+}
+
+.editor-inline-toolbar .eit-cancel {
+  color: rgba(235, 240, 255, .68);
+}
+
+/* 不让编辑标记影响打印或页面自身的布局 */
+html.editor-mode ::selection {
+  background: rgba(91, 118, 255, .24);
+}

@@ -80,11 +80,11 @@ title: 主页
 {% assign groups = notes | group_by: "course" | sort: "name" %}
 {% for g in groups %}
   {% assign cover = site.pages | where: "kind", "book" | where: "course", g.name | first %}
-      <li><a href="{{ cover.url | default: '/courses.html' }}" target="_blank" rel="noopener">{{ cover.title | default: g.name }}</a><span class="date">{{ g.items | size }} 节</span></li>
+      <li><a href="{{ cover.url | default: '/courses.html' }}" target="_blank" rel="noopener">{{ cover.title | default: g.name }}</a><span class="date">{% if cover.date %}{{ cover.date | date: "%Y-%m-%d" }} · {% endif %}{{ g.items | size }} 节</span></li>
 {% endfor %}
     </ul>
 
-    <footer>最后更新：2026-10-07</footer>
+    <footer>最后更新：2026-10-19</footer>
   </main>
 
 </div>
