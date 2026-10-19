@@ -4,27 +4,38 @@
      每张的宽度 = 行宽 × 自己的比例 / 比例之和，于是"宽度 ÷ 比例"（也就是高度）对整行都相同。
      结果就是行内自动等高铺满、照片一个不裁，而每行放几张可以随便改：放 2 张就大、放 3 张就小。
   2) 放大：点任意一张打开放大视图，带标题；支持 ← → 切换、Esc 或点空白关闭。
+     页面上可以有多个地点分组（多个 .photo-wall），所有照片共用一个 lightbox，
+     左右切换时按页面顺序浏览全部照片。
 */
 (function () {
-  var wall = document.querySelector('.photo-wall');
-  if (!wall) return;
+  /* 一个页面可以有多个地点的照片墙（南京、无锡、以后新加的分组……） */
+  var walls = Array.prototype.slice.call(document.querySelectorAll('.photo-wall'));
+  if (!walls.length) return;
 
-  /* 1. 行内按原比例分配宽度 */
-  Array.prototype.forEach.call(wall.querySelectorAll('.photo-row'), function (row) {
-    var figs = Array.prototype.slice.call(row.querySelectorAll('figure'));
-    if (figs.length < 2) return;            /* 单张独占一行时按 CSS 的固定宽度走，否则会撑得过高 */
-    figs.forEach(function (fig) {
-      var img = fig.querySelector('img');
-      if (!img) return;
-      var w = parseFloat(img.getAttribute('width'));
-      var h = parseFloat(img.getAttribute('height'));
-      if (w > 0 && h > 0) fig.style.setProperty('--gn', w / h);   /* 写自定义属性，窄屏媒体查询才能覆盖 */
+  /* 1. 每个墙、每一行都按原比例分配宽度 */
+  walls.forEach(function (wall) {
+    Array.prototype.forEach.call(wall.querySelectorAll('.photo-row'), function (row) {
+      var figs = Array.prototype.slice.call(row.querySelectorAll('figure'));
+      if (figs.length < 2) return;            /* 单张独占一行时按 CSS 的固定宽度走，否则会撑得过高 */
+      figs.forEach(function (fig) {
+        var img = fig.querySelector('img');
+        if (!img) return;
+        var w = parseFloat(img.getAttribute('width'));
+        var h = parseFloat(img.getAttribute('height'));
+        if (w > 0 && h > 0) fig.style.setProperty('--gn', w / h);   /* 写自定义属性，窄屏媒体查询才能覆盖 */
+      });
     });
   });
 
-  /* 2. 放大视图 */
+  /* 2. 收集所有墙里的照片，共用一个放大视图 */
   var box = document.getElementById('lightbox');
-  var figures = Array.prototype.slice.call(wall.querySelectorAll('figure'));
+  var figures = [];
+  walls.forEach(function (wall) {
+    Array.prototype.forEach.call(wall.querySelectorAll('figure'), function (fig) {
+      if (!fig.querySelector('img')) return;
+      if (figures.indexOf(fig) === -1) figures.push(fig);
+    });
+  });
   if (!box || !figures.length) return;
 
   var bigImg = box.querySelector('.lb-img');
