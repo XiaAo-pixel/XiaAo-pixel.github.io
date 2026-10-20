@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>旅行 | XiaAo</title>
+  <link rel="preload" as="image" href="assets/wallpaper.jpg" type="image/jpeg" fetchpriority="high">
   <script src="assets/prefs.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -48,31 +49,32 @@
       每个地点一个 <h2> + 一个 .photo-wall。
       行（.photo-row）怎么分行由你定：同一行的照片按各自原比例自动分配宽度、等高铺满，
       所以行内整齐、行与行之间大小不同（一行放 2 张就大，放 3 张就小）。
-      img 的 width/height 必须填真实的像素尺寸，脚本靠它算比例。
+      img 的 width/height 必须填真实的像素尺寸，脚本靠它算比例；
+      srcset 指向 480/960 WebP 变体，data-full 指向原图（灯箱用），换图时一起更新。
     -->
     <h2>南京 · 2026.8</h2>
     <div class="photo-wall">
       <div class="photo-row">
         <figure>
-          <img src="assets/photos/nanjing-1.jpg" width="1706" height="1280" alt="夜幕下的古秦淮牌坊" loading="lazy" decoding="async">
+          <img src="assets/photos/nanjing-1.jpg" srcset="assets/photos/nanjing-1-480.webp 480w, assets/photos/nanjing-1-960.webp 960w" sizes="(max-width: 720px) 32vw, 225px" data-full="assets/photos/nanjing-1.jpg" width="1706" height="1280" alt="夜幕下的古秦淮牌坊" loading="lazy" decoding="async">
           <figcaption>夜幕下的古秦淮牌坊</figcaption>
         </figure>
         <figure>
-          <img src="assets/photos/nanjing-2.jpg" width="1280" height="1706" alt="飞檐翘角与檐下的铜铃" loading="lazy" decoding="async">
+          <img src="assets/photos/nanjing-2.jpg" srcset="assets/photos/nanjing-2-480.webp 480w, assets/photos/nanjing-2-960.webp 960w" sizes="(max-width: 720px) 32vw, 225px" data-full="assets/photos/nanjing-2.jpg" width="1280" height="1706" alt="飞檐翘角与檐下的铜铃" loading="lazy" decoding="async">
           <figcaption>飞檐翘角与檐下的铜铃</figcaption>
         </figure>
         <figure>
-          <img src="assets/photos/nanjing-3.jpg" width="1280" height="1706" alt="古鸡鸣寺" loading="lazy" decoding="async">
+          <img src="assets/photos/nanjing-3.jpg" srcset="assets/photos/nanjing-3-480.webp 480w, assets/photos/nanjing-3-960.webp 960w" sizes="(max-width: 720px) 32vw, 225px" data-full="assets/photos/nanjing-3.jpg" width="1280" height="1706" alt="古鸡鸣寺" loading="lazy" decoding="async">
           <figcaption>古鸡鸣寺</figcaption>
         </figure>
       </div>
       <div class="photo-row">
         <figure>
-          <img src="assets/photos/nanjing-4.jpg" width="1280" height="1706" alt="石阶上摊开肚皮的虎斑猫" loading="lazy" decoding="async">
+          <img src="assets/photos/nanjing-4.jpg" srcset="assets/photos/nanjing-4-480.webp 480w, assets/photos/nanjing-4-960.webp 960w" sizes="(max-width: 720px) 48vw, 330px" data-full="assets/photos/nanjing-4.jpg" width="1280" height="1706" alt="石阶上摊开肚皮的虎斑猫" loading="lazy" decoding="async">
           <figcaption>石阶上摊开肚皮的虎斑猫</figcaption>
         </figure>
         <figure>
-          <img src="assets/photos/nanjing-5.jpg" width="1280" height="1706" alt="大成殿前的孔子像" loading="lazy" decoding="async">
+          <img src="assets/photos/nanjing-5.jpg" srcset="assets/photos/nanjing-5-480.webp 480w, assets/photos/nanjing-5-960.webp 960w" sizes="(max-width: 720px) 48vw, 330px" data-full="assets/photos/nanjing-5.jpg" width="1280" height="1706" alt="大成殿前的孔子像" loading="lazy" decoding="async">
           <figcaption>大成殿前的孔子像</figcaption>
         </figure>
       </div>
@@ -82,43 +84,43 @@
     <div class="photo-wall">
       <div class="photo-row">
         <figure>
-          <img src="assets/photos/photo-20261001-150054-1.jpg" width="1280" height="1706" alt="惠山" loading="lazy" decoding="async">
+          <img src="assets/photos/photo-20261001-150054-1.jpg" srcset="assets/photos/photo-20261001-150054-1-480.webp 480w, assets/photos/photo-20261001-150054-1-960.webp 960w" sizes="(max-width: 720px) 32vw, 225px" data-full="assets/photos/photo-20261001-150054-1.jpg" width="1280" height="1706" alt="惠山" loading="lazy" decoding="async">
           <figcaption>惠山</figcaption>
         </figure>
         <figure>
-          <img src="assets/photos/photo-20261001-150054-2.jpg" width="1280" height="1706" alt="惠山" loading="lazy" decoding="async">
+          <img src="assets/photos/photo-20261001-150054-2.jpg" srcset="assets/photos/photo-20261001-150054-2-480.webp 480w, assets/photos/photo-20261001-150054-2-960.webp 960w" sizes="(max-width: 720px) 32vw, 225px" data-full="assets/photos/photo-20261001-150054-2.jpg" width="1280" height="1706" alt="惠山" loading="lazy" decoding="async">
           <figcaption>惠山</figcaption>
         </figure>
         <figure>
-          <img src="assets/photos/photo-20261001-150054-3.jpg" width="1706" height="1280" alt="惠山" loading="lazy" decoding="async">
+          <img src="assets/photos/photo-20261001-150054-3.jpg" srcset="assets/photos/photo-20261001-150054-3-480.webp 480w, assets/photos/photo-20261001-150054-3-960.webp 960w" sizes="(max-width: 720px) 32vw, 225px" data-full="assets/photos/photo-20261001-150054-3.jpg" width="1706" height="1280" alt="惠山" loading="lazy" decoding="async">
           <figcaption>惠山</figcaption>
         </figure>
       </div>
       <div class="photo-row">
         <figure>
-          <img src="assets/photos/photo-20261001-150054-4.jpg" width="1280" height="1473" alt="古镇猫猫" loading="lazy" decoding="async">
+          <img src="assets/photos/photo-20261001-150054-4.jpg" srcset="assets/photos/photo-20261001-150054-4-480.webp 480w, assets/photos/photo-20261001-150054-4-960.webp 960w" sizes="(max-width: 720px) 32vw, 225px" data-full="assets/photos/photo-20261001-150054-4.jpg" width="1280" height="1473" alt="古镇猫猫" loading="lazy" decoding="async">
           <figcaption>古镇猫猫</figcaption>
         </figure>
         <figure>
-          <img src="assets/photos/photo-20261001-150054-5.jpg" width="1280" height="1706" alt="惠山" loading="lazy" decoding="async">
+          <img src="assets/photos/photo-20261001-150054-5.jpg" srcset="assets/photos/photo-20261001-150054-5-480.webp 480w, assets/photos/photo-20261001-150054-5-960.webp 960w" sizes="(max-width: 720px) 32vw, 225px" data-full="assets/photos/photo-20261001-150054-5.jpg" width="1280" height="1706" alt="惠山" loading="lazy" decoding="async">
           <figcaption>惠山</figcaption>
         </figure>
         <figure>
-          <img src="assets/photos/photo-20261001-150054-6.jpg" width="1706" height="1280" alt="惠山" loading="lazy" decoding="async">
+          <img src="assets/photos/photo-20261001-150054-6.jpg" srcset="assets/photos/photo-20261001-150054-6-480.webp 480w, assets/photos/photo-20261001-150054-6-960.webp 960w" sizes="(max-width: 720px) 32vw, 225px" data-full="assets/photos/photo-20261001-150054-6.jpg" width="1706" height="1280" alt="惠山" loading="lazy" decoding="async">
           <figcaption>惠山</figcaption>
         </figure>
       </div>
       <div class="photo-row">
         <figure>
-          <img src="assets/photos/photo-20261001-150054-7.jpg" width="960" height="1280" alt="sleeping猫猫" loading="lazy" decoding="async">
+          <img src="assets/photos/photo-20261001-150054-7.jpg" srcset="assets/photos/photo-20261001-150054-7-480.webp 480w, assets/photos/photo-20261001-150054-7-960.webp 960w" sizes="(max-width: 720px) 32vw, 225px" data-full="assets/photos/photo-20261001-150054-7.jpg" width="960" height="1280" alt="sleeping猫猫" loading="lazy" decoding="async">
           <figcaption>sleeping猫猫</figcaption>
         </figure>
         <figure>
-          <img src="assets/photos/photo-20261001-150054-8.jpg" width="960" height="1280" alt="静水" loading="lazy" decoding="async">
+          <img src="assets/photos/photo-20261001-150054-8.jpg" srcset="assets/photos/photo-20261001-150054-8-480.webp 480w, assets/photos/photo-20261001-150054-8-960.webp 960w" sizes="(max-width: 720px) 32vw, 225px" data-full="assets/photos/photo-20261001-150054-8.jpg" width="960" height="1280" alt="静水" loading="lazy" decoding="async">
           <figcaption>静水</figcaption>
         </figure>
         <figure>
-          <img src="assets/photos/photo-20261001-150054-9.jpg" width="1706" height="1280" alt="锦鲤" loading="lazy" decoding="async">
+          <img src="assets/photos/photo-20261001-150054-9.jpg" srcset="assets/photos/photo-20261001-150054-9-480.webp 480w, assets/photos/photo-20261001-150054-9-960.webp 960w" sizes="(max-width: 720px) 32vw, 225px" data-full="assets/photos/photo-20261001-150054-9.jpg" width="1706" height="1280" alt="锦鲤" loading="lazy" decoding="async">
           <figcaption>锦鲤</figcaption>
         </figure>
       </div>

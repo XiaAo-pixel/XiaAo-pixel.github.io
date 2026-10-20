@@ -604,7 +604,16 @@
     var img = fig.querySelector('img');
     var cap = fig.querySelector('figcaption');
     if (img) {
-      if (payload.src) img.setAttribute('src', payload.src);
+      if (payload.src) {
+        var sameSrc = String(payload.src).replace(/^\.?\//, '') ===
+          String(img.getAttribute('src') || '').replace(/^\.?\//, '');
+        img.setAttribute('src', payload.src);
+        /* 只有真的换图才丢掉旧的 srcset/data-full；改标题时保留 */
+        if (!sameSrc) {
+          img.removeAttribute('srcset');
+          img.removeAttribute('data-full');
+        }
+      }
       if (payload.width) img.setAttribute('width', payload.width);
       if (payload.height) img.setAttribute('height', payload.height);
       if (Object.prototype.hasOwnProperty.call(payload, 'alt')) img.setAttribute('alt', payload.alt || '');

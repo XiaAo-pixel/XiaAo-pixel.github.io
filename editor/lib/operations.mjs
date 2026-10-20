@@ -329,7 +329,16 @@ export function applyOperation(page, op) {
             src.includes('..')) {
           throw new Error('图片路径无效');
         }
+        const srcLoc = img.startTag.attrs.src;
+        const currentSrc = srcLoc
+          ? (/^src="([^"]*)"/i.exec(body.slice(srcLoc.startOffset, srcLoc.endOffset))?.[1] || '')
+          : '';
         attrs.src = src;
+        /* 只有真的换了图才清掉响应式变体；只改标题/alt 时保留 srcset */
+        if (src !== currentSrc) {
+          attrs.srcset = null;
+          attrs['data-full'] = null;
+        }
       }
       if (Object.hasOwn(op, 'alt')) attrs.alt = compactText(op.alt, 300);
       if (Object.hasOwn(op, 'width')) attrs.width = String(clampInt(op.width, 1, 20000, 1280));

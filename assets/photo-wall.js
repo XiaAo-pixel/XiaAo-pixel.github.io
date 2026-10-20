@@ -43,11 +43,16 @@
   var index = 0;
   var lastFocus = null;
 
+  /* 网格里用 srcset 取小图；放大时优先用 data-full 指回原图 */
+  function fullSrc(img) {
+    return img.getAttribute('data-full') || img.currentSrc || img.getAttribute('src');
+  }
+
   function render() {
     var fig = figures[index];
     var img = fig.querySelector('img');
     var cap = fig.querySelector('figcaption');
-    bigImg.src = img.getAttribute('src');
+    bigImg.src = fullSrc(img);
     bigImg.alt = img.getAttribute('alt') || '';
     bigCap.textContent = cap ? cap.textContent : (img.getAttribute('alt') || '');
     box.setAttribute('aria-label', '照片预览：' + bigCap.textContent);
@@ -62,7 +67,7 @@
     box.querySelector('.lb-close').focus();
     /* 先显示当前的，再偷偷预载下一张，切换时不会白一下 */
     var next = figures[(index + 1) % figures.length].querySelector('img');
-    if (next) new Image().src = next.getAttribute('src');
+    if (next) new Image().src = fullSrc(next);
   }
 
   function close() {
