@@ -56,22 +56,6 @@ title: 主页
     <h2>关于我</h2>
     <p>北京大学数学科学学院统计系2024级本科生，国家发展研究院双学位在读。</p>
 
-    <h2>访问统计</h2>
-    <div class="visit-stats" id="visit-stats" aria-busy="true">
-      <div class="visit-stat">
-        <span class="num is-empty" data-stat="total">—</span>
-        <span class="lbl">总访问量</span>
-      </div>
-      <div class="visit-stat">
-        <span class="num is-empty" data-stat="7d">—</span>
-        <span class="lbl">近 7 天</span>
-      </div>
-      <div class="visit-stat">
-        <span class="num is-empty" data-stat="30d">—</span>
-        <span class="lbl">近 30 天</span>
-      </div>
-    </div>
-
     <h2>快速入口</h2>
     <div class="entries">
       <a class="entry" href="courses.html">
@@ -101,11 +85,28 @@ title: 主页
 {% endfor %}
     </ul>
 
+    <h2>访问统计</h2>
+    <div class="visit-stats" id="visit-stats" aria-busy="true">
+      <div class="visit-stat">
+        <span class="num is-empty" data-stat="total">—</span>
+        <span class="lbl">总访问量</span>
+      </div>
+      <div class="visit-stat">
+        <span class="num is-empty" data-stat="7d">—</span>
+        <span class="lbl">近 7 天</span>
+      </div>
+      <div class="visit-stat">
+        <span class="num is-empty" data-stat="30d">—</span>
+        <span class="lbl">近 30 天</span>
+      </div>
+    </div>
+    <p class="visit-stats-note" id="visit-stats-note" aria-live="polite"></p>
 
     <footer>最后更新：2026-10-20</footer>
   </main>
 
 </div>
+<script src="assets/page-motion.js"></script>
 <script src="assets/visit-stats.js" defer></script>
 </body>
 </html>

@@ -26,6 +26,8 @@
   --accent-weak: rgba(79, 109, 245, 0.08);
   --on-accent: #fff;
   --card: rgba(255, 255, 255, var(--card-alpha));
+  /* 卡片底部渐隐的终点色：与 --card 同色相、alpha 为 0 */
+  --card-fade: rgba(255, 255, 255, 0);
   --card-border: rgba(255, 255, 255, .65);
   --rule: rgba(38, 42, 51, .12);
   --entry-bg: rgba(255, 255, 255, .5);
@@ -63,6 +65,7 @@
   --accent-weak: rgba(142, 162, 255, .14);
   --on-accent: #14172a;
   --card: rgba(22, 25, 37, var(--card-alpha));
+  --card-fade: rgba(22, 25, 37, 0);
   --card-border: rgba(255, 255, 255, .09);
   --rule: rgba(231, 234, 242, .14);
   --entry-bg: rgba(255, 255, 255, .045);
@@ -87,7 +90,11 @@
 }
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+html {
+  -webkit-text-size-adjust: 100%;
+  /* 长短页切换时始终给滚动条留位，避免卡片因滚动条出现/消失而横向跳动 */
+  scrollbar-gutter: stable;
+}
 
 body {
   margin: 0;
@@ -117,25 +124,63 @@ body::before {
 /* 笔记页不铺壁纸，纯底色更适合长时间阅读 */
 body.note-page::before { display: none; }
 
-/* 磨砂玻璃卡片：左侧栏目栏 + 右侧内容 */
+/* 磨砂玻璃卡片：左侧栏目栏 + 右侧内容
+   背景自上而下渐隐，避免整块白底压住壁纸；边框也随之下端淡出。
+   --page-start-height 由 prefs.js 在上一页离开时写入，page-motion.js 用它做高度过渡。 */
 .page {
+  position: relative;
   max-width: 980px;
   margin: 2.6rem auto;
   display: grid;
   grid-template-columns: 232px 1fr;
-  background: var(--card);
-  border: 1px solid var(--card-border);
+  background: linear-gradient(
+    to bottom,
+    var(--card) 0%,
+    var(--card) 40%,
+    var(--card-fade) 100%
+  );
+  border: none;
   border-radius: 20px;
   box-shadow: var(--shadow);
   backdrop-filter: blur(16px) saturate(1.15);
   -webkit-backdrop-filter: blur(16px) saturate(1.15);
   overflow: hidden;
 }
+body:not(.note-page) .page { height: var(--page-start-height, auto); }
+/* 跨页高度过渡：只作用于卡片页，笔记页保持整页阅读版式 */
+.page.is-resizing {
+  transition: height .42s cubic-bezier(.22, 1, .36, 1);
+}
+/* 卡片描边用伪元素实现，底部跟着背景一起淡出 */
+.page:not(.page-note)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border: 1px solid var(--card-border);
+  border-radius: inherit;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+}
 
 /* ---- 左侧栏目栏 ---- */
 .sidebar {
+  position: relative;
   padding: 1.9rem 1.2rem 1.6rem;
   border-right: 1px solid var(--rule);
+}
+/* 卡片页的分隔线与卡片一起淡出；笔记页仍是完整的一条 */
+.page:not(.page-note) .sidebar { border-right: none; }
+.page:not(.page-note) .sidebar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--rule) 0%, var(--rule) 55%, transparent 100%);
+  pointer-events: none;
 }
 .brand {
   display: flex;
@@ -653,8 +698,10 @@ blockquote {
 }
 .visit-stats-note {
   margin: .3rem 0 0;
+  min-height: 3em;                 /* 预留两行：统计数据异步填入时不改变卡片高度 */
   color: var(--muted);
   font-size: .78rem;
+  line-height: 1.5;
 }
 @media (max-width: 720px) {
   .visit-stats { gap: .5rem; margin-top: .9rem; }
@@ -840,6 +887,7 @@ body.lb-open { overflow: hidden; }
     border-bottom: 1px solid var(--rule);
     padding: 1.4rem 1.2rem 1.1rem;
   }
+  .page:not(.page-note) .sidebar::after { display: none; }
   .brand { margin-bottom: 1rem; }
   nav { flex-direction: row; flex-wrap: wrap; align-items: center; }
   .nav-group { display: contents; }

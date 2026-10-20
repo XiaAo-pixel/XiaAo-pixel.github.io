@@ -9,6 +9,7 @@
 
   var THEME_KEY = 'xiaao-theme';
   var FONT_KEY = 'xiaao-font';
+  var HEIGHT_KEY = 'xiaao-card-height';
   var root = document.documentElement;
   var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
   var themeBtn = null;
@@ -22,6 +23,33 @@
       if (value === null) window.localStorage.removeItem(key);
       else window.localStorage.setItem(key, value);
     } catch (e) { /* 隐私模式下忽略 */ }
+  }
+  /* 卡片高度过渡的“起点”：上一页离开时把高度记在 sessionStorage，
+     这里在首帧前先把卡片撑成旧高度，page-motion.js 再平滑过渡到新高度。
+     用 sessionStorage 是为了不跨标签页、不持久化成长期状态。 */
+  function readCardHeight() {
+    try { return window.sessionStorage.getItem(HEIGHT_KEY); } catch (e) { return null; }
+  }
+  function clearCardHeight() {
+    try { window.sessionStorage.removeItem(HEIGHT_KEY); } catch (e) { /* 忽略 */ }
+  }
+  function seedCardHeight() {
+    var raw = readCardHeight();
+    if (!raw) return;
+    clearCardHeight();
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    try {
+      var data = JSON.parse(raw);
+      var age = Date.now() - Number(data && data.t);
+      var height = Number(data && data.h);
+      if (!isFinite(age) || age < 0 || age > 15000) return;
+      if (!isFinite(height) || height < 120 || height > 20000) return;
+      root.style.setProperty('--page-start-height', Math.round(height) + 'px');
+      /* 兜底：page-motion.js 没跑到时，别让卡片一直停在旧高度 */
+      window.setTimeout(function () {
+        root.style.removeProperty('--page-start-height');
+      }, 3000);
+    } catch (e) { /* 忽略损坏的记录 */ }
   }
   function systemTheme() {
     return mq && mq.matches ? 'dark' : 'light';
@@ -114,6 +142,8 @@
     storedFont = null;
   }
   if (storedFont === 'serif') root.setAttribute('data-font', 'serif');
+
+  seedCardHeight();
 
   /* 没有手动选择过时，跟随系统明暗变化 */
   if (mq) {
