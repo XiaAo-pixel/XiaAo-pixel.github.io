@@ -36,6 +36,14 @@
   /* 笔记页（整页阅读版式）的底色与侧栏底色 */
   --read-bg: #fbfbfd;
   --side-bg: #f4f5f9;
+  /* 笔记页的“书桌”背景：底色、网格、两块柔光，以及正文纸张 */
+  --note-desk: #eef1f7;
+  --note-grid: rgba(38, 42, 51, .045);
+  --note-glow-a: rgba(79, 109, 245, .11);
+  --note-glow-b: rgba(47, 158, 111, .07);
+  --note-sheet-border: rgba(38, 42, 51, .06);
+  --note-sheet-shadow: 0 18px 50px rgba(50, 60, 110, .08),
+                       0 2px 6px rgba(50, 60, 110, .04);
   /* 讲义里的定理 / 定义 / 例子等语义容器：底纹、描边、左侧色条 */
   --box-bg: rgba(38, 42, 51, .035);
   --box-border: rgba(38, 42, 51, .13);
@@ -73,6 +81,13 @@
   --shadow: 0 12px 40px rgba(0, 0, 0, .5);
   --read-bg: #12141c;
   --side-bg: #171a24;
+  --note-desk: #0a0d14;
+  --note-grid: rgba(231, 234, 242, .035);
+  --note-glow-a: rgba(79, 109, 245, .16);
+  --note-glow-b: rgba(47, 158, 111, .08);
+  --note-sheet-border: rgba(255, 255, 255, .08);
+  --note-sheet-shadow: 0 18px 50px rgba(0, 0, 0, .35),
+                       0 1px 0 rgba(255, 255, 255, .03);
   --box-bg: rgba(255, 255, 255, .045);
   --box-border: rgba(231, 234, 242, .14);
   --box-accent: #8ea2ff;
@@ -105,7 +120,7 @@ body {
 }
 :root[data-font="serif"] body { font-family: var(--font-serif); }
 /* 章节笔记页：整页阅读版式，正文直接铺在页面上，不再套磨砂卡片 */
-body.note-page { background: var(--read-bg); }
+body.note-page { background: var(--note-desk); }
 
 /* 全屏背景：第一层是暗色遮罩，第二层是本地壁纸（存在才生效），第三层是内置插画兜底 */
 body::before {
@@ -121,8 +136,21 @@ body::before {
   background-position: center;
   background-repeat: no-repeat;
 }
-/* 笔记页不铺壁纸，纯底色更适合长时间阅读 */
+/* 笔记页不铺壁纸，改用“书桌”背景：两块柔光 + 极淡方格，固定不随长文滚动 */
 body.note-page::before { display: none; }
+body.note-page::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(900px 700px at 86% -12%, var(--note-glow-a), transparent 72%),
+    radial-gradient(800px 650px at -12% 90%, var(--note-glow-b), transparent 72%),
+    linear-gradient(to right, var(--note-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--note-grid) 1px, transparent 1px);
+  background-size: auto, auto, 32px 32px, 32px 32px;
+}
 
 /* 磨砂玻璃卡片：左侧栏目栏 + 右侧内容
    背景自上而下渐隐，避免整块白底压住壁纸；边框也随之下端淡出。
@@ -422,7 +450,7 @@ nav { display: flex; flex-direction: column; gap: .25rem; }
   margin: 0;
   min-height: 100vh;
   grid-template-columns: 300px minmax(0, 1fr);
-  background: var(--read-bg);
+  background: transparent;
   border: none;
   border-radius: 0;
   box-shadow: none;
@@ -489,12 +517,16 @@ nav { display: flex; flex-direction: column; gap: .25rem; }
 }
 .note-bar .back { color: var(--muted); }
 .note-bar .back:hover { color: var(--accent); text-decoration: none; }
-/* 正文：居中一栏，行宽控制在适合阅读的范围 */
+/* 正文：居中一栏，行宽控制在适合阅读的范围；纸张浮在“书桌”背景上 */
 .page-note .content {
   max-width: 880px;
-  margin: 0 auto;
+  margin: 1.6rem auto 2.4rem;
   width: 100%;
   padding: 3.2rem 3rem 4rem;
+  background: var(--read-bg);
+  border: 1px solid var(--note-sheet-border);
+  border-radius: 18px;
+  box-shadow: var(--note-sheet-shadow);
   overflow-x: clip;                 /* 兜底：任何单个元素都不能把整页撑出横向滚动 */
 }
 .page-note .content h1 { font-size: 1.85rem; line-height: 1.35; margin-bottom: 1rem; }
@@ -920,7 +952,7 @@ img.avatar { object-fit: cover; display: block; }
 
 /* ---- 笔记页窄屏：侧栏折到正文上方，大纲默认收起 ---- */
 @media (max-width: 900px) {
-  .page-note { grid-template-columns: 1fr; min-height: 0; }
+  .page-note { grid-template-columns: 1fr; min-height: 0; margin: 0; }
   .page-note .sidebar {
     position: static;
     height: auto;
@@ -949,7 +981,12 @@ img.avatar { object-fit: cover; display: block; }
   }
   .page-note .book-chapter { flex: none; }
   .page-note .book-section { flex: none; }
-  .page-note .content { padding: 1.8rem 1.2rem 2.4rem; }
+  .page-note .content {
+    width: auto;
+    padding: 1.8rem 1.2rem 2.4rem;
+    margin: 1rem .8rem 1.6rem;
+    border-radius: 16px;
+  }
 }
 
 /* ---- 窄屏照片墙：一行放不下两列就折行，照片不再撑满整行 ---- */
