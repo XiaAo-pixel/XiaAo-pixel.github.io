@@ -33,17 +33,20 @@
   --entry-bg: rgba(255, 255, 255, .5);
   --hl: #fff3bf;
   --shadow: 0 12px 40px rgba(50, 60, 110, .16);
-  /* 笔记页（整页阅读版式）的底色与侧栏底色 */
-  --read-bg: #fbfbfd;
-  --side-bg: #f4f5f9;
-  /* 笔记页的“书桌”背景：底色、网格、两块柔光，以及正文纸张 */
-  --note-desk: #eef1f7;
-  --note-grid: rgba(38, 42, 51, .045);
-  --note-glow-a: rgba(79, 109, 245, .11);
-  --note-glow-b: rgba(47, 158, 111, .07);
-  --note-sheet-border: rgba(38, 42, 51, .06);
-  --note-sheet-shadow: 0 18px 50px rgba(50, 60, 110, .08),
-                       0 2px 6px rgba(50, 60, 110, .04);
+  /* 笔记页（整页阅读版式）的底色与侧栏底色：珠光白 / 月光白 */
+  --read-bg: #f4f6fb;
+  --side-bg: #e9eef7;
+  /* 笔记页的“书桌”背景：底色、粗细两级方格、两块柔光，以及正文纸张 */
+  --note-desk: #e0e6f2;
+  --note-grid: rgba(54, 64, 90, .075);
+  --note-grid-major: rgba(54, 64, 90, .12);
+  --note-glow-a: rgba(120, 148, 255, .18);
+  --note-glow-b: rgba(190, 160, 255, .12);
+  --note-sheet-border: rgba(74, 88, 120, .12);
+  --note-sheet-shadow: 0 18px 50px rgba(50, 60, 110, .10),
+                       0 2px 6px rgba(50, 60, 110, .05);
+  --note-sheet-glow-a: rgba(168, 190, 255, .18);
+  --note-sheet-glow-b: rgba(255, 206, 232, .10);
   /* 讲义里的定理 / 定义 / 例子等语义容器：底纹、描边、左侧色条 */
   --box-bg: rgba(38, 42, 51, .035);
   --box-border: rgba(38, 42, 51, .13);
@@ -79,15 +82,18 @@
   --entry-bg: rgba(255, 255, 255, .045);
   --hl: rgba(255, 215, 90, .24);
   --shadow: 0 12px 40px rgba(0, 0, 0, .5);
-  --read-bg: #12141c;
-  --side-bg: #171a24;
-  --note-desk: #0a0d14;
-  --note-grid: rgba(231, 234, 242, .035);
-  --note-glow-a: rgba(79, 109, 245, .16);
-  --note-glow-b: rgba(47, 158, 111, .08);
-  --note-sheet-border: rgba(255, 255, 255, .08);
+  --read-bg: #151a24;
+  --side-bg: #1b202c;
+  --note-desk: #0a0e17;
+  --note-grid: rgba(206, 220, 255, .045);
+  --note-grid-major: rgba(206, 220, 255, .085);
+  --note-glow-a: rgba(110, 140, 255, .20);
+  --note-glow-b: rgba(170, 135, 255, .12);
+  --note-sheet-border: rgba(190, 208, 255, .10);
   --note-sheet-shadow: 0 18px 50px rgba(0, 0, 0, .35),
                        0 1px 0 rgba(255, 255, 255, .03);
+  --note-sheet-glow-a: rgba(130, 158, 255, .12);
+  --note-sheet-glow-b: rgba(170, 135, 255, .08);
   --box-bg: rgba(255, 255, 255, .045);
   --box-border: rgba(231, 234, 242, .14);
   --box-accent: #8ea2ff;
@@ -147,9 +153,11 @@ body.note-page::after {
   background-image:
     radial-gradient(900px 700px at 86% -12%, var(--note-glow-a), transparent 72%),
     radial-gradient(800px 650px at -12% 90%, var(--note-glow-b), transparent 72%),
+    linear-gradient(to right, var(--note-grid-major) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--note-grid-major) 1px, transparent 1px),
     linear-gradient(to right, var(--note-grid) 1px, transparent 1px),
     linear-gradient(to bottom, var(--note-grid) 1px, transparent 1px);
-  background-size: auto, auto, 32px 32px, 32px 32px;
+  background-size: auto, auto, 96px 96px, 96px 96px, 32px 32px, 32px 32px;
 }
 
 /* 磨砂玻璃卡片：左侧栏目栏 + 右侧内容
@@ -523,7 +531,10 @@ nav { display: flex; flex-direction: column; gap: .25rem; }
   margin: 1.6rem auto 2.4rem;
   width: 100%;
   padding: 3.2rem 3rem 4rem;
-  background: var(--read-bg);
+  background:
+    radial-gradient(640px 380px at 84% -8%, var(--note-sheet-glow-a), transparent 70%),
+    radial-gradient(520px 340px at 8% 0%, var(--note-sheet-glow-b), transparent 70%),
+    var(--read-bg);
   border: 1px solid var(--note-sheet-border);
   border-radius: 18px;
   box-shadow: var(--note-sheet-shadow);
