@@ -6,7 +6,7 @@
 
   /* ====== 可调参数 ====== */
   /* 卡片不透明度：0 ~ 1，越小越透；壁纸花哨时调大些 */
-  --card-alpha: .78;
+  --card-alpha: 0.63;
   /* 本地壁纸：把图片放进 assets/ 并命名为 wallpaper.jpg 即自动启用；
      用其他文件名就改下面这一行；不想要壁纸写 none，会显示默认插画背景 */
   --wallpaper: url("assets/wallpaper.jpg");
@@ -23,7 +23,7 @@
   --text: #262a33;
   --muted: #616877;
   --accent: #4f6df5;
-  --accent-weak: rgba(79, 109, 245, .08);
+  --accent-weak: rgba(79, 109, 245, 0.08);
   --on-accent: #fff;
   --card: rgba(255, 255, 255, var(--card-alpha));
   --card-border: rgba(255, 255, 255, .65);
