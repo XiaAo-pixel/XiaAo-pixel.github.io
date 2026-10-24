@@ -133,7 +133,7 @@ foreach ($course in $courses) {
     $chapterNo = 0
     if ($src.Name -match '^第(\d+)章') { $chapterNo = [int]$Matches[1] }
     elseif ($front.ContainsKey('order') -and $front['order'] -match '^\d+$') { $chapterNo = [int]$front['order'] }
-    if ($chapterNo -le 0 -or $usedOrders.ContainsKey($chapterNo)) {
+    if ($chapterNo -lt 0 -or $usedOrders.ContainsKey($chapterNo)) {
       $chapterNo = 1
       while ($usedOrders.ContainsKey($chapterNo)) { $chapterNo++ }
     }
@@ -142,7 +142,7 @@ foreach ($course in $courses) {
     $title = if ($front.ContainsKey('title')) { $front['title'] } else { $src.BaseName }
     $date = if ($front.ContainsKey('date')) { $front['date'] } else { (Get-Date -Format 'yyyy-MM-dd') }
     # 去掉标题里的「第 X 章」前缀（章号可能是一位或两位数字，后面可能跟全角/半角空格）
-    $chapterName = $title -replace '^第\s*[0-9０-９一二三四五六七八九十]+\s*章[\s　]*', ''
+    $chapterName = $title -replace '^第\s*[0-9０-９〇零一二三四五六七八九十]+\s*章[\s　]*', ''
 
     $body = $doc.Body
     $body = [regex]::Replace($body, '(?m)^#\s+.*\r?\n', '')   # 正文 h1（章标题）由页面 h1 渲染，去掉

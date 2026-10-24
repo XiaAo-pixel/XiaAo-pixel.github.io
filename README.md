@@ -171,7 +171,7 @@ notes/statistics/ch07-02.md  →  /statistics/ch07-02.html
 notes/statistics/ch07-03.md  →  /statistics/ch07-03.html   ...
 ```
 
-`course` 取值与书对应：`statistics`=数理统计（`/statistics/`）、`optimization`=最优化方法（`/optimization/`）、`misc-2026`/`misc-2025`=杂记年份；新课程按"新增一门课"登记新代号。
+`course` 取值与书对应：`statistics`=数理统计（`/statistics/`）、`optimization`=最优化方法（`/optimization/`）、`stochastic`=应用随机过程（`/stochastic/`）、`misc-2026`/`misc-2025`=杂记年份；新课程按"新增一门课"登记新代号。切分脚本支持 `order: 0` 的"第〇章"（生成 `ch00-xx.md`），章名前缀"第〇章/第零章"也会被正确剥掉。
 
 **已有笔记**：
 
@@ -179,6 +179,7 @@ notes/statistics/ch07-03.md  →  /statistics/ch07-03.html   ...
 | --- | --- | --- |
 | 数理统计 | `statistics` | 13 章 / 79 节 |
 | 最优化方法 | `optimization` | 19 讲 + 附录 A–D / 135 节 |
+| 应用随机过程 | `stochastic` | 2 章（第〇章引言 + 第一章马氏链；第二章跳过程、第三章布朗运动待补）/ 13 节，另附 LaTeX 排版的 PDF 打印版（`stochastic/latex/`） |
 
 要新增一门课时，源文件放进 `notes/<新代号>/_source/`，再跑脚本。
 
