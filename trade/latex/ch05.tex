@@ -1,0 +1,216 @@
+% ============ 第 5 讲 贸易的经验研究（一） ============
+\chap{第 5 讲　贸易的经验研究（一）}{Empirics in Trade (1)}
+
+\textbf{本讲导读}：本讲对应 Lecture 5（Empirics in Trade (1), Fall 2026），共 62 页。内容：经验研究导论（理论为何需要检验、``实证''的两种翻译、统计的三种用法、回归结果的阅读：sign/size/precision、$R^2$）；以``国家按比较优势贸易''这一可检验预测为主线，介绍 Balassa (1963) 的经典检验（美英 44 行业的生产率与出口），以及后续证据 Golub \& Hsieh (2000)、Costinot et al.\ (2012)；最后介绍显示性比较优势（RCA）及其应用（Lin et al.\ 2024 政治轮换与地方产业）。
+
+\secn{5.1 为什么需要经验研究：从理论到可检验预测}
+
+\textbf{目前学到的理论结论（第 3 页）}：
+\begin{itemize}
+  \item \term{贸易的原因}：两国不同（资源、技术、偏好……）；自给自足相对价格差异 $\to$ 套利贸易；
+  \item \term{贸易模式}：按``比较优势''而非``绝对优势''贸易；出口有 CA 的商品（$=$ 更低的相对成本 $=$ 更高的相对生产率）；
+  \item \term{贸易的影响}：总体贸易得益；对产品价格与要素价格的影响。
+\end{itemize}
+
+\textbf{这些理论``正确''吗？（第 4 页）}：如何理解``正确''？——不可能完全正确（\textbf{all models are wrong}，手写批注：``\kw{Assumptions}''——正确与否依赖于假设）；但有些是``有用的''（高亮）——对什么有用？\kw{阐明思想、理解现实模式、预测政策影响}（高亮+下划线）。如何知道理论是否``正确''？——理论给出一系列``\kw{可检验预测}（testable predictions，红波浪线强调）''（即命题/假设）；用\kw{现实数据}（real world data，高亮）检验它们。
+
+\textbf{以李嘉图预测为例（第 5--7 页）}：可检验预测——``\redkw{国家按比较优势（与相对生产率挂钩）贸易}''（红字）。
+\begin{itemize}
+  \item \term{备择论点是什么？}``国家按绝对优势贸易''——Yes or No？``国家可以按其他任何方式贸易''？（蓝字）
+  \item \term{关键变量有哪些？}（手写``Variables''与数据表草图：每行一个观测 obs.，每列一个变量 $Y, X_1, X_2, X_3, \dots$）——\kw{跨行业的相对生产率}、\kw{跨行业的出口结果}（高亮）。
+  \item \term{一个例子够吗？（Is one example enough?）}例 1（蓝字）：英国对法国出口小麦、进口布——与两国 CA 一致（consistent with the prediction）。能下多大结论？例 2（蓝字）：德国向日本出口汽车、日本也向德国出口汽车——观察到一个\term{不一致}的例子时能下什么结论？
+  \item \term{为什么单一观测不够（``孤证不立''）}：现实观测有缺失与噪声——``\redkw{measurement errors}''（红字；也许英法之间的观测只是粗心的 RA 把分子分母弄反了）；单个反例可能只是\redkw{理论关键假设不成立的角落情形（niche area）}——德日汽车是差异化产品、规模报酬递增，与李嘉图不符（后续课程）。
+\end{itemize}
+
+\textbf{寻找系统性模式（第 8 页）}：所以要\term{从现实观测中探索多个案例}（下划线）；目标是找到\kw{系统性模式（systematic pattern，高亮）}——概括成百上千个数据点；这就是社会科学中的``\kw{经验研究（empirical studies，高亮）}''。正式定义：``任何研究的结论严格来自具体的、因而可验证的经验证据。''
+
+\begin{intubox}[``实证''的两种翻译（第 9 页，易混点）]
+中文里两个不同的概念都被译作``实证''：
+\begin{itemize}
+  \item \term{Positive（实证）} vs.\ \term{Normative（规范）}：``实''为 objective、``证''为 reasoning——\term{Positive} 指研究聚焦价值中立的证据（正在发生什么、成因与影响等）——``what is''；\term{Normative} 指关注价值判断——``what should be / what ought to be''。
+  \item \term{Empirical（实证）} vs.\ \term{Theoretical（理论）}：``实''为 reality、``证''为 evidence/test——用现实数据检验理论。
+\end{itemize}
+\end{intubox}
+
+\textbf{经验研究做什么（第 10--14 页）}：用``多个案例''；如何分析？——手写圈注：\kw{Statistics!}（红字）。统计在经验经济学中的\term{三种用法}：
+\begin{enumerate}
+  \item \redkw{我们观察到什么模式？}——\term{描述统计（summary statistics，高亮）}：表格、图形；均值、标准差、比例及其在空间/时间/类别上的变化（例：第 1 讲的美国出口结构图）；\kw{确立需要解释的事实}。
+  \item \redkw{变量之间如何相关？}——\term{回归分析（regression analysis）}。
+  \item \redkw{不同情形下会发生什么？}——\term{结构式经验分析（structural empirical analysis，高亮）}：``Structural''意味着你有一个模型；模型中有未知``参数''；把现实数据喂进模型得到参数值（手写批注：``Observed value of endogenous variables $\to$ values of endogenous parameters''）。例（第 12--13 页）：第 2 讲的 $N$ 国 $G$ 商品禀赋模型 $\frac{EV_g^H}{\beta_g I} = \frac{Q_g^H}{Q_g^w} - \frac{I^H}{I}$——若不知道各国的 $Q_g^H$（如石油产量），只知道各国 GDP 与石油贸易量，未知参数是 $\beta_g$ 与 $\frac{Q_g^H}{Q_g^w}$——如何取值？手写圈注：``\kw{Calibration}（校准）''。校准之后解模型，进一步做``\redkw{counterfactual analysis（反事实分析）}''（红笔下划线）：假设美国页岩革命使石油产量翻倍 $\Rightarrow$ 美国石油禀赋（与收入）增加 $\Rightarrow$ 所有国家的价格、贸易与福利都可能变化（\kw{GE effects!}）。
+\end{enumerate}
+
+\begin{intubox}[结构式分析的得与失（第 14 页）]
+\textbf{好处}：无数可能的``反事实''可讨论；帮你分析全部一般均衡效应（不会只看直接效应而漏掉间接效应）。\textbf{局限}：模型依赖大量假设——它们可接受吗？只能通过模型捕捉的机制起作用——若对某现象的机制不确定呢？前沿的结构模型非常难解（对本科课程太多了！）
+\end{intubox}
+
+\secn{5.2 回归分析：如何读懂论文中的回归表}
+
+\textbf{回归的基本结构（第 15--16 页）}：本学期讨论的经验研究主要使用各种形式的\term{回归分析}（下划线）。
+\[
+y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + \dots + \beta_k x_{ki} + u_i
+\]
+有来自现实世界的数据（样本）；每个观测 $i$ 有若干变量的取值 $(y_i, x_{1i}, \dots, x_{ki})$；$u_i$ 是 $y_i$ 变动中\term{未被观测变量解释的部分}；假设上式描述所有变量的关系；研究者用统计方法估计该方程。
+
+\begin{thmbox}[读回归估计的三个关键维度（第 17--19 页，三个高亮）]
+估计结果 $y_i = \hat\beta_0 + \hat\beta_1 x_{1i} + \hat\beta_2 x_{2i} + \dots + \hat\beta_k x_{ki} + \hat u_i$（$\hat\beta$ 均为高亮）。我们跳过估计本身（计量经济学课程内容），只讨论如何\term{解读估计结果}。三个关键维度：\kw{sign（符号）、size（大小）、precision（精度）}。
+\[
+\text{work hours}_i = \beta_0 + \hat\beta_1\, education_i + \hat\beta_2\, experience_i + \hat\beta_3 \log(wage_i) + \hat u_i
+\]
+（板书：$\hat\beta_1$ 旁手写 ``+1.5 h/wk.''；$\hat\beta_3$ 旁手写 ``+1.5 $\uparrow$+1 yr.'' 与 ``in''）
+\begin{itemize}
+  \item \term{Sign}：若 $\hat\beta_1$ 为正，意味着在观测到的关系中，\redkw{教育增加导致工作小时增加}，\kw{保持其他变量不变}（holding all other variables constant，蓝字）；
+  \item \term{Size}：若 $\hat\beta_1 = 1.5$，意味着教育每增加 1 单位（1 年），工作小时增加 1.5（每周），其他不变（含义：\kw{偏导数}）；
+  \item \term{Precision}：附加统计量（\kw{standard error；t-stat 或 z-stat；p-value；confidence intervals}——均为高亮）告诉你 $\hat\beta_1$ 的估计有多精确。
+\end{itemize}
+\end{thmbox}
+
+\textbf{对数变量的解释（第 19 页）}：$\hat\beta_3$ 的解释——Size：$\log(wage)$ 每增加 1 单位对应工作小时增加 1.5。那``$\log(wage)$ 增加 1 单位''是什么意思？板书：$\Delta \log(wage) = \frac{\Delta wage}{wage}$，即\term{对数变化 $\approx$ 比例变化}：$+0.01 \times 1.5$ 对应工资 $+1\%$ $\Rightarrow$ $\Delta$work hours $= 0.015$。Takeaway：\kw{size 的解读取决于函数形式}（对数-水平、对数-对数、水平-水平各不相同）。
+
+\textbf{$R^2$（第 20 页）}：\kw{R-squared（高亮）}的定义想法：``\redkw{未被解释的项 $\hat u_i$ 相对于被解释变量（Y）总变差有多大}''（红字）。若研究者报告 $R^2 = 0.86$：工作小时变差的 86\% 由教育、工作经验与工资对数解释；剩余 14\% 未被解释。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.86\linewidth]{figs/ch05_fig_01.png}
+  \caption{第 21--24 页：如何读论文中的回归表（老师的板书注释版）——回归式 $Y_{it} = \hat\beta_0 + \hat\beta_1 \text{Env\_inspection\_others(RDiT)}_{it} + \text{Many other controls} + \hat u_{it}$ 与其结果表。注释：第 (1) 列的 $Y$ 是 AQI（空气质量指数）；RDiT 系数 8.662 表示当另一个省份接受中央环保督察时，未受督察省份的平均城市 AQI 上升 8.66 点；(0.910) 是标准误——$\hat\beta_1$ 附近的不确定性；星号是显著性阈值（精度）；表下方的 Mean of Dep.\ / Observations / Bandwidth / Fixed Effects / Controls 行帮助理解回归（因变量均值——与系数对比理解经济含义、样本量、回归设定、控制变量）；通常要与正文描述和表格注释一起读。}
+  \label{fig:ch05-table}
+\end{figure}
+
+\begin{intubox}[显著性星号的含义（第 23 页板书）]
+原假设 $H_0: \beta_1 = 0$；``p-value'' $= \Pr(|\hat\beta_1| \text{ 这么大} \mid \beta_1 = 0)$：$< 0.10 \to *$；$< 0.05 \to **$；$< 0.01 \to ***$。（即：原假设为真时，系数纯靠运气达到这么大取值的概率越小，估计越``显著''。）
+\end{intubox}
+
+\textbf{做``正确的''回归（第 25 页）}：经验研究往往不是做任意回归；研究者需要设计``\kw{correct}''（紫高亮）的回归来分析——``正确''指服务于特定研究目的的恰当（组）回归方程——因研究情境而异；此处从略，未来经验课程再讲。
+
+\begin{intubox}[课间一笑（第 26--27 页）]
+老师展示``数学漫画''：左边《算术入门》用兔子讲 $1 + 1 = 2$，右边``试试看！例 1.7''已是 $\log \Pi(N)$ 与 Borel 函数积分——``Calm down, just joke\ldots''（放松，开个玩笑）。（提醒：完成 empirical lecture quiz；课程网站查看 Problem Set 1 及截止日期；按阅读清单完成文献阅读作业——第 62 页。）
+\end{intubox}
+
+\secn{5.3 检验比较优势：Balassa (1963)}
+
+\textbf{度量的两个挑战（第 29--33 页）}：预测——``\redkw{国家按比较优势（而非绝对优势）贸易}''。第一个挑战：\term{如何度量（measure，红字）变量}。
+\begin{itemize}
+  \item \term{如何度量比较优势？}手写推导链（第 29 页）：$H$ 在 $W$ 上有 C.A.\ 当且仅当
+  \[
+  \frac{MPL_C^H}{MPL_W^H} = \left( \frac{P_W}{P_C} \right)^H < \left( \frac{P_W}{P_C} \right)^F = \frac{MPL_C^F}{MPL_W^F},
+  \]
+  等价地 $\frac{MPL_W^H}{MPL_C^H} > \frac{MPL_W^F}{MPL_C^F}$，或 $\frac{MPL_W^H}{MPL_W^F} > \frac{MPL_C^H}{MPL_C^F}$（各比例均以黄圈标出）。提示：回忆第 3 讲``比较优势''的推导。
+  \item 关键方程（第 3 讲，自给自足）：$\frac{P_W}{P_C} = \frac{MPL_C}{MPL_W}$——多产品情形下，可以尝试观测\kw{相对成本/单位劳动投入（LHS）}或\kw{相对生产率（RHS）}（蓝字）；一个小问题：``相对''是相对什么？
+  \item \term{如何度量贸易？}需要多国多产品的进出口数据，并做平凡调整把``出口''与``进口''统一成一个变量：可能 1：\kw{$Y_g = 1$ 若出口、$Y_g = 0$ 若进口}（高亮）；可能 2：\kw{$Y_g = Q_g - C_g$}，正（负）为出口（进口）（高亮）。
+  \item \term{回归怎么设定？}（第 33 页）把``想解释的（因变量）''放 LHS、``用来解释的（解释变量）''放 RHS（注意：原文如此，通常习惯相反——课堂以``RHS 放 C.A.、LHS 放 Trade''为准）。CA 案例中：手写填空——\kw{C.A.\ 在 RHS，Trade 在 LHS}；有时还在 RHS 加控制变量（暂忽略）。
+\end{itemize}
+
+\textbf{拟议回归与判据（第 34 页）}：
+\[
+Y_g = \hat\beta_0 + \hat\beta_1\, CA_g + \text{Some other controls} + \hat u_g
+\]
+（$\hat\beta_1$ 紫圈标注 $(+)$；旁注 $CA_g = \frac{MPL_g^H}{MPL_g^F}$）。理论预测 $\beta_1 > 0$；\kw{证据（evidence）}：$\hat\beta_1$ 符号为正且足够精确；\term{证伪（falsification）}：符号为负或高度不精确。
+
+\textbf{Balassa (1963) 的数据与度量（第 36--37 页）}：
+\begin{itemize}
+  \item \term{相对生产率的度量}（红字）：\kw{美英 44 个选定行业}（高亮），覆盖两国约一半制造业生产。生产率（板书公式，手写批注``\kw{增加值}''）：
+  \[
+  \text{Labor Productivity}_g = \frac{\text{Gross output}_g - \text{Expenditure on inputs other than labor}_g}{\text{Number of workers}_g}
+  \]
+  （Gross output 手写``\kw{产值}''）。每种产品用美国价格与英国价格计算并取几何平均（注意货币差异）；\kw{把英国生产率指数化为 100}（下划线）（美国生产率以同产品英国生产率的相对值度量；手写：$\frac{MPL_g^{US}}{MPL_g^{UK}} \to$ 问号？）；作者剔除了非常小的行业（为什么？）。
+  \item \term{贸易的度量}（红字）：1950 年美英分行业贸易量；44 个行业样本（约占英国出口的 48\%、美国出口的 41\%，圈注）；\kw{剔除美英之间的贸易}（下划线；什么意思？）——即比较\redkw{美国对第三国的出口}与\redkw{英国对第三国的出口}（红字；为什么？——排除双边贸易政策与距离等双边因素）。用出口\term{价值}（而非数量）——好处/局限？同样把英国出口指数化为 100，取美国相对值。
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\linewidth]{figs/ch05_fig_02.png}
+  \caption{Balassa (1963) Table I：美国/英国生产率、工资、单位成本与出口（各列均以 UK = 100）——出口值比、人均产出（劳动生产率）、工资比、单位劳动成本比、净单位成本比（前 14 个行业示例）。}
+  \label{fig:ch05-balassa-table}
+\end{figure}
+
+\textbf{回归与结果（第 39--43 页）}：
+\begin{itemize}
+  \item 基准回归（高亮）：
+  \[
+  \frac{E_g^{US}}{E_g^{UK}} = \beta_0 + \beta_1 \frac{\text{Labor Productivity}_g^{US}}{\text{Labor Productivity}_g^{UK}} + u_g
+  \]
+  取对数形式（手写``Why log?''——\kw{Elasticity（弹性）}：$\log Y \sim \beta \cdot \log X$，$\frac{\Delta Y}{Y} \sim ``\beta'' \frac{\Delta X}{X}$，红字）：
+  \[
+  \log\left( \frac{E_g^{US}}{E_g^{UK}} \right) = \beta_0 + \beta_1 \log\left( \frac{\text{Labor Productivity}_g^{US}}{\text{Labor Productivity}_g^{UK}} \right) + u_g .
+  \]
+  板书（第 40 页）给出估计 $\hat\beta_1 = 1.594$（红字 ``+1.594, ** (\checkmark)''）。加入工资对数作为\kw{控制}（手写``control''）的版本（第 42 页）：$\hat\beta_1 = 1.457\ (0.328)$——\kw{5\% 水平显著}（板书 ``+''``**''）；$\hat\beta_2 = 1.250\ (0.566)$——\kw{不显著}（工资与出口正相关但不精确——生产率才是关键）。
+  \item 用单位成本替代生产率（第 43 页）：$\log(E^{US}/E^{UK}) = 6.162 - 1.590\ (.301)\, \log(\text{net unit cost}^{US}/\text{net unit cost}^{UK})$——\kw{5\% 水平显著}，负号符合预期（成本更低 $\Rightarrow$ 出口更多）。
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.48\linewidth}\centering
+    \includegraphics[width=\linewidth]{figs/ch05_fig_03.png}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\linewidth}\centering
+    \includegraphics[width=\linewidth]{figs/ch05_fig_04.png}
+  \end{minipage}
+  \caption{Balassa (1963) 的散点图（对数刻度）：左——美国/英国出口比与劳动生产率比（Chart 2，正相关，$\hat\beta_1 = 1.594$，(0.181)，5\% 显著）；右——美国/英国出口比与净单位成本比（Chart 4，负相关，$-1.590$，(0.301)，5\% 显著）。板书注：括号里的数字越小，估计越精确。}
+  \label{fig:ch05-balassa-charts}
+\end{figure}
+
+\begin{thmbox}[Balassa (1963) 的结论与局限（第 44 页）]
+\begin{itemize}
+  \item 美英贸易数据的发现\term{与经典假说一致}（in conformity with the classical hypothesis）；
+  \item 美国相对英国生产率更高的产品，美国对第三国出口更多；美国相对单位成本更低的产品，美国出口更多；
+  \item 局限：样本小（只有 2 国、28 种商品）；只有出口没有进口；没有对双边贸易的直接检验。
+\end{itemize}
+\end{thmbox}
+
+\textbf{后续证据（第 46--48 页）}：
+\begin{itemize}
+  \item \term{Golub and Hsieh (2000)}：新技术允许更大样本与更复杂回归；更丰富的国家集（美、日、法、德、英、意、加、澳、韩、墨）；更细致的贸易数据、更低的贸易壁垒与成本；\redkw{``美国与另一国''每一对的\kw{双边贸易}}（红字）；CA 与贸易的度量仍与 Balassa (1963) 非常相似。\kw{关键发现}：更高的相对劳动生产率一般伴随更强的出口表现；更低的相对单位劳动成本一般伴随更强的出口表现；李嘉图主要预测在更广样本中依然出现；但跨行业贸易变差的大部分仍未被解释。
+  \item \term{Costinot et al.\ (2012)}：多国多行业丰富数据；\term{区分观测到的行业生产率与根本性生产率（fundamental productivity）}——同一行业内，贸易会筛选（filters）特定产品的专业化（老师手写示例：中国汽车业平均生产率统计 BYD、小米……$\sqrt{100}$、$\times 70$，overall 90→82；美国统计 Ford、Buick、Chevrolet……$\times 80$、90 $\checkmark$——被贸易选中的产品不同，用观测生产率会\kw{低估}相对差距）；\kw{经过基于模型的贸易选择修正（model-based correction，粉底高亮）后，相对生产率强烈预测相对出口}。
+\end{itemize}
+
+\secn{5.4 显示性比较优势（RCA）及其应用}
+
+\begin{defbox}[显示性比较优势（第 50--51 页）]
+\term{反向思路}：当国家--产品层面的生产率数据难以获得时，可以\kw{从贸易模式反推 CA}。Balassa (1965) ``Trade Liberalization and Revealed Comparative Advantage'', \textit{The Manchester School} 33, 99--123。国家 $i$ 对商品 $k$ 的``显示性比较优势''（Balassa 版本，荧光高亮）：
+\[
+\mathrm{BI}_i^k \equiv \frac{E_i^k / E^k}{E_i / E}
+\quad\text{其中}\quad
+E_i = \sum_k E_i^k,\;\; E^k = \sum_i E_i^k,\;\; E = \sum_{i,k} E_i^k
+\]
+（手写等价形式：$= \dfrac{E_i^k / E^k}{E^k_i / E}$；注意红笔下划线提醒核对分子分母——常见笔误！）。Costinot et al.\ (2012) 版本：$\ln x_{ij}^k = \delta_{ij} + \delta_l^k + \delta_i^k + \epsilon_{ij}^k$（出口方--进口方、进口方--行业、出口方--行业固定效应；红框圈出 $\delta_i^k$）。
+\end{defbox}
+
+\textbf{通俗形式（第 51 页）}：
+\[
+{\color{hlorange}\mathrm{RCA} = \frac{\text{Industry share of local exports}}{\text{Industry share of reference exports}}}
+\]
+\redkw{RCA $> 1$}（红字）：该行业在本地出口篮子中的份额大于在参照出口篮子中的份额——手写批注：``$\to$ \kw{specialize more}（更加专业化）''。对国家而言，通常的参照是世界出口。
+
+\begin{exbox}[RCA 数值例子（第 52 页）]
+设纺织品占中国出口的 5\%（参照份额）。 illustrative 城市（出口值单位：万元）：
+\begin{center}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+城市 & 纺织出口 & 总出口 & 纺织份额 & RCA \\
+\midrule
+A & 20 & 100 & 20\% & 4.0 \\
+B & 200 & 10{,}000 & 2\% & 0.4 \\
+\bottomrule
+\end{tabular}
+\end{center}
+（板书高亮：City A: $20\% / 5\% = 4$；City B: $2\% / 5\% = 0.4$。）设问（蓝字）：哪个城市出口更多纺织品？（B，200 万 $>$ 20 万）哪个城市在纺织上更专业化？（A，RCA $= 4 > 1$）——\term{出口规模与专业化程度是两个不同的概念，RCA 度量的是后者}。
+\end{exbox}
+
+\textbf{应用：Lin et al.\ (2024)（第 54--59 页）}：论文``Learn, in Order to Practise: The Effect of Political Rotation on Local Comparative Advantage in China''（林毅夫、刘松瑞、Xu、张皓辰，北大）。研究问题（蓝字）：\kw{与特定产业打交道的经验是否随城市领导人的调任而``旅行''（从而惠及其新辖区）？}城市市委书记从 A 市调到 B 市——B 市是否在 A 市擅长（RCA $> 1$）的行业上发展出更强的出口表现？
+\begin{itemize}
+  \item \term{度量问题（第 55--56 页）}：履历告诉我们领导何时在何地工作（手写 A $\to$ B）。\redkw{来源城市}（origin city，红字）：行业知识与政策经验——难以直接观测（上一个城市擅长什么行业？政府可能更着力扶持哪个行业？）——需要一种刻画领导可能``学过''的行业的方法：\kw{用城市--行业数据构建的 RCA}（高亮）。\redkw{目的地城市}（destination city，红字）：这些知识被应用后，不同行业对领导实践的反应——想法是各行业的\term{相对增长}与政策努力度量：所有行业中哪些在领导到来后\kw{RCA 改善更大}（高亮）（可能意味着相对生产率改善，蓝字）？哪些在市政府工作文件中被更频繁提及？
+  \item \term{图示（第 57--58 页）}：领导从 A 市调往 B 市——A 市调动时的 RCA：纺织 4.0（RCA $> 1$：是）、电子 0.5（否）——\term{纺织是领导可能积累相关经验的行业}（城市的专业化提供了暴露（exposure）的间接度量，蓝字）。B 市领导到来后的变化：纺织 RCA 0.4 $\to$ 0.8（红箭头）、电子 1.2 $\to$ 1.2——\kw{纺织在全国出口篮子中的相对权重上升，尽管 RCA 仍小于 1}；仅看总出口增长会漏掉这一行业模式（蓝字）。
+  \item \term{发现（第 59 页）}：领导到来后，\kw{上一城市有 RCA 的行业在目的城市的 RCA 上升更多}；目的城市也更可能在政策文件中表达对这些行业的支持；发现与``行业经验通过政治轮换传播''一致。板书（蓝红字）：\kw{目的地的 RCA 动态揭示哪些行业变化；领导来源城市的静态历史 RCA 提供联系}——\redkw{RCA 使关于知识扩散的抽象问题在城市--行业层面变得可度量}！
+\end{itemize}
+
+\begin{sumbox}[本讲总结：通用结论与方法]
+\begin{enumerate}
+  \item \term{理论需要检验}：模型不可能完全正确（依赖假设），但能给出可检验预测；单一观测``孤证不立''（测量误差、角落情形）；要找的是\kw{系统性模式}——这就是经验研究（结论严格来自可验证的经验证据）。
+  \item \term{术语澄清}：Positive（实证$=$价值中立）vs.\ Normative（规范$=$价值判断）；Empirical（实证$=$现实数据检验）vs.\ Theoretical。
+  \item \term{统计的三种用法}：描述统计（确立待解释事实）、回归分析（变量关系）、结构式分析（校准参数 + 反事实分析，享受 GE 效应但受制于模型假设）。
+  \item \term{回归三维度}：sign（方向，ceteris paribus）、size（大小，注意函数形式——对数差 $\approx$ 比例变化）、precision（标准误、t/z 统计量、p 值、置信区间；星号 $<0.1/0.05/0.01$）；$R^2$ = 被解释的变差比例；读表还要看因变量均值、样本量、固定效应与控制变量行，并结合正文与注释。
+  \item \term{检验李嘉图的思路}：$Y_g$（出口 $=1/0$ 或净出口 $Q_g - C_g$）对 $CA_g = MPL_g^H / MPL_g^F$ 回归；理论预测 $\beta_1 > 0$；证据 $=$ 符号为正且精确。
+  \item \term{Balassa (1963)}：美英 44 行业、以 UK $= 100$ 指数化、剔除双边贸易（比较对第三国的出口）、增加值口径的劳动生产率、几何平均价格折算；对数回归 $\hat\beta_1 \approx 1.59$（5\% 显著），单位成本版 $-1.59$（显著）；结论与经典假说一致；局限：样本小、只有出口、无双边检验。
+  \item \term{后续证据}：Golub \& Hsieh (2000)（多国双边贸易，结论类似但大量变差未解释）；Costinot et al.\ (2012)（区分观测生产率与根本生产率，模型修正贸易选择后相对生产率强烈预测相对出口）。
+  \item \term{RCA}：$\text{RCA} = \frac{\text{本地出口中行业份额}}{\text{参照出口中行业份额}}$（Balassa 版 $\mathrm{BI}_i^k = \frac{E_i^k/E^k}{E_i/E}$）；RCA $> 1$ 表示``更加专业化''；出口规模 $\neq$ 专业化程度。应用（Lin et al.\ 2024）：来源城市的 RCA 刻画领导人的行业暴露，目的地城市的 RCA 动态刻画行业变化——知识扩散随政治轮换传播的机制证据。
+\end{enumerate}
+\end{sumbox}

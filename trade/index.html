@@ -1,0 +1,26 @@
+---
+layout: note
+kind: book
+course: trade
+title: 国际贸易
+date: 2026-10-26
+---
+<p class="muted">学期：2026 秋 · 教材：课堂讲义（Annotated Slides，参考 Krugman-Obstfeld-Melitz 与 Feenstra-Taylor）</p>
+
+<p>本书记录《国际贸易》课程的完整复习讲义，依据课堂 annotated PPT（Lecture 1–9，含打印内容与手写批注/板书）整理：第一章课程导论与贸易研究方法论；第二章禀赋模型；第三、四章李嘉图模型（比较优势、贸易均衡求解、贸易条件、跨期贸易、不可流动要素、非贸易品）；第五章贸易的经验研究（回归阅读法、Balassa 检验、RCA）；第六章特定要素模型；第七章赫克歇尔-俄林模型（H-O 定理、Stolper-Samuelson、要素价格均等化）；第八章禀赋变化（Rybczynski 定理、要素价格不敏感性、多样化锥、移民与 FDI）；第九章移民与外包（单部门移民模型、任务连续统与技能溢价）。每章附「模型构建方法地图」与「通用结论与方法」总结。<strong>每小节一页</strong>，点进任意一页后左侧栏会列出全书章节与当前章的小节，页底有「上一节 / 下一节」便于连续翻阅。本笔记另有 <a href="/trade/latex/notes.pdf">LaTeX 排版的 PDF 打印版</a>（<a href="/trade/latex/main.tex">LaTeX 源码</a>）。</p>
+
+<p><a href="/courses.html">← 返回课程笔记总览</a></p>
+
+<h2>章节目录</h2>
+{% comment %} 章节页由 split-notes.ps1 生成：同一 order 的小节页属于同一章，
+     这里按章分组列出，章标题取第一节的 chapter 字段 {% endcomment %}
+{% assign book = site.pages | where: "kind", "note" | where: "course", page.course | sort: "order" %}
+{% assign chapters = book | group_by: "order" %}
+{% for ch in chapters %}
+<h3>第 {{ ch.name }} 章　{{ ch.items.first.chapter | default: ch.items.first.title }}</h3>
+<ul class="postlist">
+{% for sec in ch.items %}
+  <li><a href="{{ sec.url }}">{{ sec.title | split: "·" | last | strip }}</a></li>
+{% endfor %}
+</ul>
+{% endfor %}

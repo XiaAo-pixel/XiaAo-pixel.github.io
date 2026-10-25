@@ -1,0 +1,132 @@
+% !TeX program = xelatex
+% 《国际贸易》复习讲义（LaTeX 版）
+% 依据课程 annotated PPT（Lecture 1--9）整理，含课堂荧光笔强调内容。
+\documentclass[11pt]{ctexart}
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,amssymb,mathtools,bm}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs,array,multirow,makecell}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+
+% ---------- 颜色与版式 ----------
+\definecolor{mainblue}{RGB}{20,60,110}
+\definecolor{defblue}{RGB}{35,90,170}
+\definecolor{thmgreen}{RGB}{20,120,70}
+\definecolor{exyteal}{RGB}{0,120,125}
+\definecolor{remorange}{RGB}{190,95,10}
+\definecolor{warnred}{RGB}{175,45,45}
+\definecolor{mappurple}{RGB}{105,60,160}
+\definecolor{hlorange}{RGB}{200,100,0}
+
+\setcounter{secnumdepth}{-2}
+\setcounter{tocdepth}{1}
+
+% 章标题（每份 PPT = 一讲）
+\newcommand{\chap}[2]{%
+  \clearpage
+  \vspace*{0.4em}
+  {\color{mainblue}\noindent\rule{\linewidth}{1.6pt}}\\[0.9em]
+  {\centering\LARGE\bfseries\color{mainblue}#1\par}
+  {\centering\large\color{mainblue!70}#2\par}
+  \vspace{0.5em}
+  {\color{mainblue}\noindent\rule{\linewidth}{0.7pt}}
+  \vspace{0.8em}
+  \addcontentsline{toc}{section}{#1}
+  \markboth{#1}{}}
+\newcommand{\secn}[1]{\subsection*{\color{mainblue}#1}\addcontentsline{toc}{section}{#1}\markboth{#1}{}}
+\newcommand{\subsecn}[1]{\subsubsection*{\color{mainblue!80!black}#1}}
+
+% 页眉页脚
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{mainblue}\nouppercase{\leftmark}}
+\fancyhead[R]{\small\color{mainblue}国际贸易复习讲义}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+
+% ---------- 彩色盒子 ----------
+\newtcolorbox{defbox}[1][定义]{enhanced,breakable,colback=defblue!5,colframe=defblue,
+  boxrule=0.7pt,left=2mm,right=2mm,top=1.2mm,bottom=1.2mm,
+  fonttitle=\bfseries,title={#1}}
+\newtcolorbox{assumpbox}[1][模型假设]{enhanced,breakable,colback=defblue!4,colframe=defblue!75!black,
+  boxrule=0.7pt,left=2mm,right=2mm,top=1.2mm,bottom=1.2mm,
+  fonttitle=\bfseries,title={#1}}
+\newtcolorbox{thmbox}[1][结论]{enhanced,breakable,colback=thmgreen!6,colframe=thmgreen,
+  boxrule=0.7pt,left=2mm,right=2mm,top=1.2mm,bottom=1.2mm,
+  fonttitle=\bfseries,title={#1}}
+\newtcolorbox{exbox}[1][例]{enhanced,breakable,colback=exyteal!5,colframe=exyteal,
+  boxrule=0.7pt,left=2mm,right=2mm,top=1.2mm,bottom=1.2mm,
+  fonttitle=\bfseries,title={#1}}
+\newtcolorbox{intubox}[1][直觉与注记]{enhanced,breakable,colback=remorange!7,colframe=remorange,
+  boxrule=0.7pt,left=2mm,right=2mm,top=1.2mm,bottom=1.2mm,
+  fonttitle=\bfseries,title={#1}}
+\newtcolorbox{warnbox}[1][易错点]{enhanced,breakable,colback=warnred!6,colframe=warnred,
+  boxrule=0.7pt,left=2mm,right=2mm,top=1.2mm,bottom=1.2mm,
+  fonttitle=\bfseries,title={#1}}
+\newtcolorbox{mapbox}[1][模型构建方法地图]{enhanced,breakable,colback=mappurple!5,colframe=mappurple,
+  boxrule=1pt,left=2mm,right=2mm,top=1.2mm,bottom=1.2mm,
+  fonttitle=\bfseries\large,title={#1}}
+\newtcolorbox{sumbox}[1][本讲总结：通用结论与方法]{enhanced,breakable,
+  colback=mainblue!4,colframe=mainblue,boxrule=1.2pt,
+  left=2mm,right=2mm,top=1.2mm,bottom=1.2mm,
+  fonttitle=\bfseries\large,title={#1}}
+
+% ---------- 强调记号（模拟PPT荧光笔强调）----------
+\newcommand{\kw}[1]{\textbf{\textcolor{hlorange}{#1}}}      % PPT中荧光高亮的关键词
+\newcommand{\term}[1]{\textbf{#1}}                            % 重要术语
+\newcommand{\redkw}[1]{\textbf{\textcolor{warnred}{#1}}}    % PPT红字强调
+
+% ---------- 常用数学记号 ----------
+\newcommand{\Lbar}{\bar{L}}
+\newcommand{\Kbar}{\bar{K}}
+\newcommand{\Tbar}{\bar{T}}
+\newcommand{\Pbar}{\bar{P}}
+\newcommand{\wbar}{\bar{w}}
+\newcommand{\rbar}{\bar{r}}
+\newcommand{\MPL}{\mathrm{MPL}}
+\newcommand{\MPK}{\mathrm{MPK}}
+\newcommand{\MPT}{\mathrm{MPT}}
+\newcommand{\PPF}{\mathrm{PPF}}
+\newcommand{\RS}{RS}
+\newcommand{\RD}{RD}
+\newcommand{\CIF}{\mathrm{CIF}}
+\newcommand{\FOB}{\mathrm{FOB}}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{2.5cm}
+{\color{mainblue}\rule{\linewidth}{2pt}}\\[1.2em]
+{\Huge\bfseries\color{mainblue} 《国际贸易》复习讲义\par}
+\vspace{0.8em}
+{\Large\color{mainblue!75} International Trade\par}
+\vspace{0.5em}
+{\color{mainblue}\rule{\linewidth}{1pt}}\\[2em]
+{\large 依据课程 Annotated PPT（Lecture 1--9）整理\par
+\vspace{0.5em}
+2026 年 10 月\par}
+\vfill
+{\color{mainblue!60}\itshape 整理自课堂讲义与板书批注；荧光强调处已在文中以\kw{橙色加粗}标出。\par}
+\vspace*{2cm}
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+\input{ch01}
+\input{ch02}
+\input{ch03}
+\input{ch04}
+\input{ch05}
+\input{ch06}
+\input{ch07}
+\input{ch08}
+\input{ch09}
+
+\end{document}

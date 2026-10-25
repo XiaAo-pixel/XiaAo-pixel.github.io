@@ -1,0 +1,337 @@
+% ============ 第 8 讲 贸易模型中的禀赋变化 ============
+\chap{第 8 讲　贸易模型中的禀赋变化}{Endowment Changes in Trade Models}
+
+\textbf{本讲导读}：本讲对应 Lecture 8（Endowment Changes in Trade Models, Oct.\ 21），共 75 页（其中含 3 页整页板书截图）。内容：禀赋变化的来源（移民、FDI、资本积累等）；两大核心问题与本讲设定（长期 H-O vs.\ 短期 SFM、小型开放经济、价格不变）；\kw{Rybczynski 定理}的完整推导（固定要素比例的再配置、Edgeworth 盒图示、要素价格不敏感性、多样化锥、H-O 定理的 Rybczynski 式证明、资本积累与产业升级）；\kw{短期移民与 FDI}（特定要素模型：移民使工资下降、FDI 使工资上升）；含大量板书推导与手写笔记。
+
+\secn{8.1 禀赋为什么重要、如何变化}
+
+\textbf{回顾（第 2 页，板书批注）}：``(要素)禀赋''是贸易模型生产侧的关键——板书逻辑链：\kw{PPF $\Rightarrow$ 自给自足相对价格 $\Rightarrow$ C.A.}；\kw{要素所有者 $\Rightarrow$ 福利影响}。各模型：Endowment 模型（无生产）；李嘉图（单要素、线性 PPF，手写 $\bar{L}$）；特定要素（不可流动要素、``短期''，手写 $\bar{L}, \bar{K}, \bar{T}$）；H-O（要素完全流动、``长期''，手写 $\bar{L}, \bar{K}$）。更多关于生产要素的扩展？本讲目标：\redkw{理解要素禀赋的外生变化}。
+
+\textbf{禀赋变化的形式（第 3 页）}：
+\begin{itemize}
+  \item \term{移民（Migration）}：劳动跨国流动，使\term{目的国}劳动禀赋\kw{增加}（手写 $\bar{L} \uparrow$）、\term{来源国}劳动禀赋\kw{减少}（手写 $\bar{L}^* \downarrow$）；
+  \item \term{FDI}：资本跨国流动，使目的国资本禀赋增加（手写 $\bar{K} \uparrow$）、来源国减少（手写 $\bar{K}^* \downarrow$）；
+  \item \term{更多}：\kw{资本积累（capital accumulation，高亮）}；人口转型等；
+  \item \term{根本上}：都是（相对）要素禀赋的变化。
+\end{itemize}
+
+\textbf{两大核心问题（第 4 页）}：① 假设\redkw{要素禀赋外生变化}，对经济的影响是什么？（本讲；手写：``Sector expansion / contraction、factor prices''）② 若\kw{要素禀赋内生变化}（如人们跨国移民），原因、模式与福利影响是什么？（下一讲前半，蓝字）
+
+\begin{assumpbox}[本讲的设定（第 5--6 页）]
+\begin{itemize}
+  \item 禀赋变化的影响分两种情形（手写标注：\kw{Long run $\to$ H-O}、\kw{Short run $\to$ SFM}）：
+    \begin{itemize}
+      \item \term{长期}：两种要素都可以在国内跨行业流动；
+      \item \term{短期}：某些要素固定在其行业中。
+    \end{itemize}
+  \item 两种情形下都进一步假设 \kw{Small Open Economy（小型开放经济，高亮）}：一国是世界经济\kw{（相对）价格的接受者（price taker，高亮）}；有用的简化：不必担心一国内部的禀赋变化如何影响世界价格。
+  \item 本讲主线（第 6 页大纲，手写 ``H-O''）：\term{长期禀赋变化：Rybczynski}——部门 $L/K$ 不变时调整是否可能？不变的部门 $L/K$ 是否合理（``要素价格不敏感性''）？不完全专业化与多样化锥；Rybczynski 意义下的 H-O 定理证明；资本积累与产业动态。\term{短期移民与 FDI：特定要素}。
+\end{itemize}
+\end{assumpbox}
+
+\begin{exbox}[直觉热身：选择题（第 7 页，板书）]
+H-O 模型中，假设\kw{世界价格固定}（高亮）且移民后两种商品都继续生产。Home 的劳动供给增加，那么……
+a) 租金率上升；b) 工资下降；c) 以上都对；d) 对租金率与工资都无影响；e) 不确定。
+板书推导：$\frac{w}{r} \to$ relative supply（$\uparrow$）/ relative demand；手写：``? : L less scarce. K more scarce. $\frac{w}{r} \downarrow$ ?''——直觉似乎指向 $w/r$ 下降，但\redkw{正确答案出人意料（见后文：d）}。
+\end{exbox}
+
+\secn{8.2 Rybczynski 定理：固定要素比例的再配置}
+
+\textbf{固定投入比例的再配置（第 9--11 页）}：先\redkw{保持每个行业的劳动--资本比固定}（红字）。更高的国家 $L/K$ 不必抬高任何行业内部的 $L/K$。\kw{行业规模能否调整以雇用全部要素？}（红字设问）
+
+\textbf{数值例子（第 10--11 页，板书）}：手写：$L_S/K_S = 2$（1 K、2 L $\to$ 1 S）；$L_C/K_C = 1/2$（2 K、1 L $\to$ 1 C）。充分就业决定生产（高亮方程组）：
+\[
+\begin{cases} L_S + L_C = \bar{L} \\ K_S + K_C = \bar{K} \end{cases}
+\;\Longrightarrow\;
+\begin{cases} 2Y_S + Y_C = \bar{L} \\ Y_S + 2Y_C = \bar{K} \end{cases}
+\]
+（每双鞋用 2 劳动 1 资本、每台计算机用 1 劳动 2 资本，故 $L_S = 2Y_S, K_S = Y_S$；$L_C = Y_C, K_C = 2Y_C$。）解出（高亮）：
+\[
+Y_S = \frac{2}{3}\bar{L} - \frac{1}{3}\bar{K}, \qquad
+Y_C = \frac{2}{3}\bar{K} - \frac{1}{3}\bar{L}.
+\]
+\term{移民 $\Rightarrow$ $Y_S$ 增加、$Y_C$ 减少}（红字斜体）！
+
+\textbf{初始配置与 30 名新工人（第 12--13 页）}：初始有 \kw{300 名工人与 300 台机器}（高亮），$Y_S^0 = 100$，$Y_C^0 = 100$（全部要素在假设的投入比例下就业）。板书（第 13 页）：$\bar{L}: 300 \uparrow 330$，$\Delta L = 30$；代入解：$L_S^0 = 200 \leftarrow Y_S^0 = 100$；\kw{$L_S = 240 \leftarrow Y_S^1 = 120$}、\kw{$Y_C^1 = 90$}（板书红字）。\term{劳动增加 10\%，鞋的产出增加 20\%；计算机的产出下降 10\%。}
+
+\textbf{多余的资源从哪里来？（第 14 页，板书）}：手写（$\frac{w}{r}$ 不变）。直觉：30 名新工人先进入\term{劳动密集的鞋业}（手写 $\Delta L_S = +30$）；但制鞋需要 15 单位资本（手写 $\Delta K_S = +15$）；计算机部门必须收缩以释放资本（手写 $K_C \downarrow, L_C \downarrow$）；计算机部门少用资本时也少需要劳动；均衡时鞋业劳动 $=$ 30 名新工人 $+$ \kw{10 名来自计算机的工人}（下划线）；鞋业资本 $=$ 来自计算机的 \kw{20 台机器}（手写 20 K）。\term{行业规模变化而部门 $L/K$ 保持不变。}接下来在 Edgeworth 盒中追踪这些移动。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.62\linewidth]{figs/ch08_fig_01.png}
+  \caption{第 15 页：要素配置的 Edgeworth 盒——原点 $O_S$（鞋）与 $O_C$（计算机）；从 $O_S$ 出发的浅绿线是鞋的要素比例线（$\frac{L_S}{K_S} = 2$，手写黄字），从 $O_C$ 出发的洋红线是计算机的要素比例线（$\frac{L_C}{K_C} = 1/2$，手写）；交点 $A$ 为初始均衡配置。}
+  \label{fig:ch08-box}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.48\linewidth}\centering
+    \includegraphics[width=\linewidth]{figs/ch08_fig_02.png}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\linewidth}\centering
+    \includegraphics[width=\linewidth]{figs/ch08_fig_03.png}
+  \end{minipage}
+  \caption{劳动扩张对要素配置的影响（第 16--18 页）：步骤 1——移民使 Home 劳动增加，Edgeworth 盒沿 L 轴扩张 $\Delta \bar{L}$（手写标注），$O_C$ 右移至 $O_C'$；步骤 3——在新盒中按（不变的）要素比例线重画两条线，新配置点 $B$：鞋扩张、计算机收缩（手写：$L_C \downarrow, K_C \downarrow$、$\frac{L_C}{K_C} > 1/2$ 洋红、$K_S \uparrow$、$L_S \uparrow$、$\frac{L_S}{K_S} = 2$）。}
+  \label{fig:ch08-boxsteps}
+\end{figure}
+
+\textbf{这个例子说明了什么（第 19 页）}：新增劳动可以在\term{不变的部门 $L/K$} 下被雇用；鞋的生产扩张、计算机的生产收缩；\kw{鞋业吸收新工人与计算机释放的资源}。\redkw{这个模式是普遍的还是特殊的？}（红字设问）\redkw{厂商为什么会保持原来的投入比例？}（红字设问——引出``要素价格不敏感性''。）
+
+\textbf{回到相对要素供求（第 20--23 页）}：H-O 关键方程（手写标注 Relative labor supply 与 Sectoral relative labor demand $\to$ Aggregate Relative L.\ Demand）：
+\[
+\frac{\bar{L}}{\bar{K}} = \frac{L_C}{K_C} \cdot \frac{K_C}{\bar{K}} + \frac{L_S}{K_S} \cdot \frac{K_S}{\bar{K}} .
+\]
+继续固定部门投入比例（板书：$\frac{L_C}{K_C}$ 不变小、$\frac{K_C}{\bar{K}}$ 洋红 $\downarrow$、$\frac{L_S}{K_S}$ 不变大、$\frac{K_S}{\bar{K}}$ 洋红 $\uparrow$）：两行业的劳动--资本比都不变——那么\kw{方程右边如何调整以匹配移民或 FDI 带来的左边变化？}——\kw{通过行业规模的变化！}（绿字粗体，第 22--23 页）移民使 $\bar{L}/\bar{K}$（LHS）上升；右边由 \kw{$K_S/\bar{K}$ 上升、$K_C/\bar{K}$ 下降}（绿字）来匹配——因为劳动密集度 $L_S/K_S > L_C/K_C$——\redkw{而且两个行业的劳动--资本比都不变}！
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.48\linewidth}\centering
+    \includegraphics[width=\linewidth]{figs/ch08_fig_04.png}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\linewidth}\centering
+    \includegraphics[width=\linewidth]{figs/ch08_fig_05.png}
+  \end{minipage}
+  \caption{图示（第 24、26 页）：左——相对要素供给（垂直线）因移民右移（$\Delta L$：$\frac{\bar{L}}{\bar{K}} \uparrow$，手写），均衡点沿相对需求曲线从 $A$ 移到 $A'$；右——相对要素需求（深蓝粗线）是两条行业曲线（浅蓝）的加权平均；S 权重变大、C 权重变小 $\Rightarrow$ 加总要素需求曲线\kw{右移}（红字 red curve）。}
+  \label{fig:ch08-rdshift}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.55\linewidth]{figs/ch08_fig_06.png}
+  \caption{第 27 页：调整行业份额后，相对需求与相对供给可以在\kw{原来的} $w/r$ 相交。板书两个追问（手写）：① ``$\frac{w}{r}$ 是`可以'不变，还是`一定'不变？''② ``何时由 $\frac{w}{r}$ 变化、何时由 $\frac{K_C}{\bar{K}}, \frac{K_S}{\bar{K}}$ 变化来实现均衡调整？''}
+  \label{fig:ch08-questions}
+\end{figure}
+
+\secn{8.3 要素价格不敏感性（Factor Price Insensitivity）}
+
+\begin{thmbox}[要素价格不敏感性（第 29--34 页）]
+\textbf{直觉草图（第 29 页，板书）}：手写链条 $\frac{w}{r} \longleftrightarrow \frac{L_g}{K_g} \Longleftarrow \min wl + rk \ \text{s.t.}\ F(K,L) = Q$；$\frac{L_g}{K_g} \longleftrightarrow$ Cost Function（手写示例：$Q = AK^{\alpha}L^{1-\alpha} = AK^{\alpha}(\ge K)^{1-\alpha}$）。四步：
+\begin{enumerate}
+  \item 相对要素价格（$w/r$）与每个行业的相对要素需求（$L_g/K_g$）一一对应；
+  \item 每个行业中，要素使用比例（$L_g/K_g$）与成本函数（$C_g(Q_g) = wL_g + rK_g$ s.t.\ $Q_g = F(K_g, L_g)$）一一对应；
+  \item 完全竞争：成本函数与该部门价格一一对应（\kw{$\hat{P}_g = MC_g$}，红圈 ③）；
+  \item 两部门价格相除：相对价格（$P_C/P_S$）与两部门的要素使用比例（从而相对要素价格 $w/r$）一一对应。手写总结链（粉底）：``（果）$\frac{w}{r} \longleftrightarrow \frac{L_g}{K_g} \longleftrightarrow C_g \longleftrightarrow P_g$ 不变（因）''。
+\end{enumerate}
+\end{thmbox}
+
+\textbf{C--D 例：最优投入比例与 $w/r$（第 30 页）}：用习题集 2 的 C--D 例子：$Q_C = a_C K_C^{2/3} L_C^{1/3}$，$Q_S = a_S K_S^{1/3} L_S^{2/3}$。成本最小化使每美元的边际产品相等（板书手写推导 C 部门）：
+\[
+\frac{w}{r} = \frac{MPL_g}{MPK_g} = \frac{1}{2} \cdot \frac{K_C}{L_C}
+\;\Longrightarrow\;
+{\color{hlorange}\frac{L_C}{K_C} = \frac{1}{2}\frac{r}{w}}, \qquad \frac{L_S}{K_S} = 2\frac{r}{w}.
+\]
+（手写：$L_C = \frac{1}{2}\frac{r}{w} K_C$。）\term{固定的 $w/r$ 固定两个行业的最优投入比例。}
+
+\textbf{从投入选择到成本函数（第 31 页，板书整页推导，图~\ref{fig:ch08-cost}）}：把最优 $K_C = \left[ \frac{1}{a_C} \left( \frac{2w}{r} \right)^{1/3} Q_C \right]$、$L_C = \frac{1}{a_C} \left( \frac{r}{2w} \right)^{2/3} Q_C$（手写）代入成本，得单位成本函数：
+\[
+C_C = wL_C + rK_C = \frac{1}{a_C} \kappa\, r^{2/3} w^{1/3}\, Q_C, \qquad \kappa = \frac{3}{2^{2/3}}.
+\]
+鞋业同样计算：$C_S = \frac{1}{a_S} \kappa\, r^{1/3} w^{2/3}\, Q_S$。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{figs/ch08_fig_08.png}
+  \caption{第 31 页板书：从成本最小化的投入选择推导两部门的单位成本函数（含全部手写步骤）。}
+  \label{fig:ch08-cost}
+\end{figure}
+
+\textbf{商品价格与要素价格（第 32 页）}：两商品都被竞争性地生产时，零利润意味着（红字价格）：
+\[
+P_C = MC_C = \frac{1}{a_C}\kappa r^{2/3} w^{1/3}, \qquad
+P_S = MC_S = \frac{1}{a_S}\kappa r^{1/3} w^{2/3}.
+\]
+两式相除（手写``不变''）：
+\[
+\frac{P_C}{P_S} = \frac{a_S}{a_C} \left( \frac{r}{w} \right)^{1/3}
+\;\Longrightarrow\;
+\text{\kw{固定的商品相对价格固定 $w/r$ 与最优部门 $L/K$}（黑体）}.
+\]
+（习题集 2 的一道选择题把此例推广到一般 C--D 生产设定。）
+
+\textbf{H-O 风格的说明（第 33 页）}：由 $\frac{P_C}{P_S} = \frac{MPL_S}{MPL_C} = \cdots = \frac{\beta_S^{\beta_S}(1-\beta_S)^{1-\beta_S} a_S}{\beta_C^{\beta_C}(1-\beta_C)^{1-\beta_C} a_C} \left( \frac{w}{r} \right)^{\beta_S - \beta_C}$（高亮；手写 $P_C MPL_C = w = P_S \cdot MPL_S$、$\frac{w}{r}$ 标注）：① H-O 中``相对价格 $=$ MPL 比 $=$ MPK 比''；② 相对价格不变时 MPL 与 MPK 之比不变；③ MPL 比与 MPK 比都是要素密集度 $L_g/K_g$ 的函数；④ 因此 $L_g/K_g$（作为 $w/r$ 的单调函数）不变；⑤ 这要求 $w/r$ 不变。
+
+\begin{thmbox}[回到开头的选择题（第 34 页）]
+``世界价格固定且两种商品都继续生产、Home 劳动供给增加''——\redkw{也许出人意料，正确答案是 (d)：对租金率与工资都无影响！}（红字）——这也被称为``\kw{Factor price insensitivity（要素价格不敏感性）}''（红字）。
+\end{thmbox}
+
+\begin{thmbox}[Rybczynski 定理：小结（第 35、44 页）]
+\kw{The Rybczynski Theorem}：在两商品两要素的 H-O 模型中，\kw{保持产出价格不变}（第 44 页高亮补充），一经济中某要素数量的增加将导致：
+\begin{itemize}
+  \item 相对要素价格\kw{不变}（第 44 页高亮补充：\kw{在多样化锥内}（inside the cone of diversification））；
+  \item \term{密集使用该要素的行业}的产出（与要素使用）\kw{增加}；
+  \item \term{另一行业}的产出（与要素使用）\kw{减少}。
+\end{itemize}
+\end{thmbox}
+
+\secn{8.4 两个关键假设与多样化锥}
+
+\textbf{关键假设 1：商品价格保持不变（第 37 页）}：\kw{goods prices remain fixed}（高亮）。小型开放经济把世界商品价格当作给定；其产出组合可以变化而不改变这些价格；\term{要素价格结果依赖这一假设}。
+
+\textbf{当商品价格也调整时（第 38 页）}：若禀赋变化也改变商品价格呢？走向另一个极端：若 Foreign 相对 Home 极小，世界相对价格 $=$ Home 的自给自足相对价格；自给自足下更大的劳动禀赋 $\to$ 鞋的相对价格更低；由 Stolper--Samuelson，更低的鞋相对价格降低 $w/r$；固定的部门投入比例就不再需要维持。
+
+\textbf{关键假设 2：多样化锥（第 39--41 页）}：设 $L_C/K_C = 1/2$、$L_S/K_S = 2$；但非常大规模的移民后 $\bar{L}/\bar{K} = 3$。代入方程会解出\redkw{负的} $K_C/\bar{K}$（板书手写：$\frac{1}{2}x + 2(1-x) = 3 \Rightarrow x < 0$，其中 $x = K_C/\bar{K}$），无定义。因此：
+\begin{itemize}
+  \item 要素禀赋不应移出区间 \kw{$[L_C/K_C,\, L_S/K_S]$}——这被称为``\kw{cone of diversification（多样化锥，高亮；手写``不完全分工''）}''；
+  \item 在此范围内，两种商品的资本配置份额都可以是正的（且小于 1）（手写：$\frac{K_C}{\bar{K}}, \frac{K_S}{\bar{K}} \in [0,1]$）；
+  \item 因此：若整个经济的劳动--资本禀赋\redkw{保持在多样化锥内}且商品价格不变，则 Rybczynski 定理适用。若假设 2 不成立呢？
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.62\linewidth]{figs/ch08_fig_10.png}
+  \caption{第 41 页：``锥''的图形说明——Edgeworth 盒沿 L 轴不断扩张（多个虚线盒拼接），计算机的要素比例线只能扫过黄色区域（锥内）时两行业共存；超出锥后完全专业化（手写：``Fully specialize on C''左端、``Fully specialize on S''右端）。}
+  \label{fig:ch08-cone}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.55\linewidth]{figs/ch08_fig_11.png}
+  \caption{第 42 页板书（整页手写）：``负权重''与``锥''的扩展图形说明——$O_C$：原始 $\frac{\bar{L}}{\bar{K}}$ 的均衡配置 $A_0$；$O_C'$：锥内的小变化 $\frac{\bar{L}'}{\bar{K}}$，均衡配置 $A_1$；$O_C''$：锥外的大变化 $\frac{\bar{L}''}{\bar{K}}$，解出的 $A_2$ 在盒外 $\Rightarrow$ ``\kw{negative weight（负权重）}''，实际配置为 $A_3$；$O_C^l$ 与 $O_C^u$ 为多样化锥的下界与上界（此时 $K_S/\bar{K} = 0$ 或 $= 1$，即完全专业化）。}
+  \label{fig:ch08-cone2}
+\end{figure}
+
+\textbf{锥外的相对要素需求（第 42--43 页）}：多样化锥之外（图~\ref{fig:ch08-beyond}）：相对需求曲线变为\kw{折线}——锥内是两行业曲线的加权平均（水平段，$w/r$ 固定）；锥外跟随单一行业的曲线（此时\kw{没有要素价格不敏感性}，No factor price insensitivity）。哪一步 H-O 方程失效（第 43 页）？$\frac{P_C}{P_S} = \frac{MPL_S}{MPL_C} = \cdots$（高亮）要求两商品都被生产：手写：$w = P_C \cdot MPL_C \;\not\longleftrightarrow\;$ \kw{specialize S}；$= P_S \cdot MPL_S \;\not\longleftrightarrow\;$ \kw{specialize C}——完全专业化时其中一个等式失去意义。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.55\linewidth]{figs/ch08_fig_18.png}
+  \caption{第 42--43 页：多样化锥之外的相对要素需求——加总相对需求曲线在锥内为水平段（$w/r$ 固定，要素价格不敏感），锥外跟随单一行业曲线（No factor price insensitivity，红字）。}
+  \label{fig:ch08-beyond}
+\end{figure}
+
+\secn{8.5 用 Rybczynski 定理证明 H-O 定理}
+
+\textbf{回顾贸易模式（第 46 页）}：Home 资本丰裕：$\frac{\bar{L}}{\bar{K}} < \frac{\bar{L}^*}{\bar{K}^*}$；计算机（C）资本密集：$\frac{L_C}{K_C} < \frac{L_S}{K_S}\ \forall \frac{w}{r}$。此前用 PPF 形状说明 H-O 定理（蓝字斜体）：\kw{在某要素上丰裕的国家出口密集使用该要素生产的商品}。
+
+\textbf{同一价格下的三个``经济体''（第 47 页）}：贸易均衡下三个经济体面对\kw{相同的 $P_C/P_S$}（高亮）：贸易中的 Home 经济（相对要素供给 $\frac{\bar{L}}{\bar{K}}$）；贸易中的 Foreign 经济（$\frac{\bar{L}^*}{\bar{K}^*}$）；\kw{自给自足的世界经济}（$\frac{\bar{L}+\bar{L}^*}{\bar{K}+\bar{K}^*}$）。由资本丰裕假设（黄圈高亮）：
+\[
+\frac{\bar{L}}{\bar{K}} < \frac{\bar{L}+\bar{L}^*}{\bar{K}+\bar{K}^*} < \frac{\bar{L}^*}{\bar{K}^*} .
+\]
+
+\textbf{应用 Rybczynski（第 48--49 页）}：比较世界自给自足与贸易中的 Home：世界的相对劳动供给 $\frac{\bar{L}+\bar{L}^*}{\bar{K}+\bar{K}^*}$ \kw{大于} Home 的 $\frac{\bar{L}}{\bar{K}}$，且两者商品相对价格相同——于是从世界移动到 Home 等价于\kw{在相对价格不变时相对扩张资本禀赋}（高亮）——由 Rybczynski 定理，Home 的\kw{资本密集部门}（$\frac{K_C}{\bar{K}}$）产出份额比世界（$\frac{K_C + K_C^*}{\bar{K} + \bar{K}^*}$）更大（手写``common preference''批注：偏好相同所以比较生产份额即可）$\Rightarrow$ Home 比 world 平均更专业化于 C $\Rightarrow$ \kw{Home 出口 C}（粉框）。对称地（第 49 页）：世界相对劳动供给小于 Foreign $\Rightarrow$ 从世界移动到 Foreign 是相对扩张劳动禀赋 $\Rightarrow$ Foreign 的劳动密集部门（$\frac{K_S^*}{\bar{K}^*}$）份额更大 $\Rightarrow$ \kw{Foreign 出口 S}（粉框下划线）。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.55\linewidth]{figs/ch08_fig_12.png}
+  \caption{板书（整页手写）：Rybczynski 式 H-O 证明的图形——Home、World、Foreign 三条相对供给垂直线在相同的 $w/r$ 水平线上与各自的需求曲线相交（``Factor price insensitivity''）；贸易均衡中 $\frac{K_C}{\bar{K}} > \frac{K_C + K_C^*}{\bar{K} + \bar{K}^*} > \frac{K_C^*}{\bar{K}^*}$（Home $>$ World $>$ Foreign）；因为加总需求曲线是加权平均，Home 最靠近 $\frac{L_C}{K_C}$、Foreign 最靠近 $\frac{L_S}{K_S}$ $\Rightarrow$ Home 在计算机部门配置更多资源、Foreign 更少 $\Rightarrow$ Home 出口（更专业化于）计算机。}
+  \label{fig:ch08-proof}
+\end{figure}
+
+\textbf{结论：贸易模式（第 50 页）}：\kw{（H-O 定理）一国出口密集使用其相对丰裕要素生产的商品}（红字斜体）。检查关键条件：两商品相对价格固定——由贸易均衡保证；在``多样化锥''内——由不完全专业化保证；世界自给自足可以代表贸易均衡——需要跨国生产技术相同（\kw{H-O 假设 5}）与相同且``位似''的偏好（\kw{H-O 假设 6}，蓝字）。
+
+\secn{8.6 应用：资本积累与产业动态}
+
+\textbf{资本积累与贸易（第 52--53 页）}：资本积累提高 $K/L$，正如内向 FDI。在封闭经济（如 Solow--Swan）或有特定要素（短期要素不可流动）时，资本增加导致资本租金率下降，抑制进一步的资本积累；用本课程的语言：\kw{资本积累过程中资本的相对价格下降}。\redkw{现实世界：中国的资本回报与增长率在约 30 年间保持稳定。}（红字）
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.55\linewidth]{figs/ch08_fig_13.png}
+  \caption{板书（整页手写）：Solow 模型复习（单部门 \& 封闭经济，手写高亮）——$Y = F(K,L)$，劳动不变、MPK 递减；$y = f(k)$（$k = K/L$）；$k_{t+1} - k_t = s \cdot y_t - \delta k_t$（投资 $-$ 折旧）；稳态 $k^*$。在该模型中：资本积累过程中 $K/L \uparrow$ 从而 $\frac{r}{w} \downarrow$（$MPK \downarrow, MPL \uparrow$，黄底）。}
+  \label{fig:ch08-solow}
+\end{figure}
+
+\textbf{资本积累与产业（第 53 页，手写批注）}：在``Rybczynski 世界''（世界价格固定、两种商品都被生产）中，更多资本扩张计算机、收缩鞋（手写：$\bar{K} \uparrow$: C $\uparrow$, S $\downarrow$, $\frac{r}{w} \to$ 不变）；\term{行业规模调整而要素价格不变}。只有两个行业时，这一过程在鞋消失时结束——\kw{进一步的资本积累能带来更多资本密集型行业吗？}（手写批注：``\kw{资本积累、对外开放、结构转型}''）
+
+\textbf{Ju, Lin and Wang (2015)（第 54--55 页）}：``\textit{Endowment structures, industrial dynamics, and economic growth}'', \textit{Journal of Monetary Economics} 76, 244--263。随 $K/L$ 上升，行业进入、扩张与衰落；\kw{更资本密集的行业更晚达到峰值}。其动态预测：\kw{在积累资本的同时实现产业升级，而不降低总资本回报或增长率}。图~\ref{fig:ch08-jlw}：多部门模型中的行业兴衰与各国面板数据（SER 序列图）。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{figs/ch08_fig_14.png}
+  \caption{第 55 页：Ju--Lin--Wang (2015) 的结构转型与贸易——左：多部门模型中各行业产出随时间的进入/峰值/衰落（洋红手绘标注 $t_1, \dots, t_4$ 与总劳动约束 $L$）；右：六国行业份额面板数据（SER01 等，1950--2005）。}
+  \label{fig:ch08-jlw}
+\end{figure}
+
+\secn{8.7 短期移民与 FDI：特定要素模型}
+
+\textbf{设定（第 56--57 页，大纲与概念页）}：\kw{移民：可流动要素的增加}（移动要素 L 增加）；\kw{FDI：某部门特定资本的增加}。短期移民（第 57 页）：若短期资本不能跨行业流动？——短期中劳动可流动；资本与土地不可流动、被困在特定部门；劳动流入的效应：总劳动扩张。
+
+\textbf{特定要素模型中的移民（第 58--61 页）}：劳动市场均衡图（$P_A \cdot MPL_A$ 与 $P_M \cdot MPL_M$ 相交）。假设\kw{最终商品价格不变}（第 59 页；小型开放经济）。劳动总供给右移 $\Delta L$（第 60 页图：右轴右移 $\Delta L$、$w_M$ 曲线随之右移）：
+\begin{itemize}
+  \item \term{名义（与真实）工资下降}；两个部门雇用更多劳动（第 61 页板书：Equil.\ Wage $\to$ \kw{New W*}（黄底），new $L_A^*$、new $L_M$；手写``Show $L_M$ increase''、``Show $L_A$ increase''及小图演示两曲线移动）。
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.62\linewidth]{figs/ch08_fig_15.png}
+  \caption{第 61 页板书：移民的短期效应——劳动总供给扩张 $\Delta L$ 后，均衡工资降至 New W*，两部门就业都增加（new $L_A^*$、new $L_M$）；右上角手绘小图演示 $P_A MPL_A$ 与 $P_M MPL_M$ 的相对移动。}
+  \label{fig:ch08-immigration}
+\end{figure}
+
+\textbf{移民的短期福利影响（第 62--63 页）}：
+\begin{itemize}
+  \item \term{移民使工资下降，从而目的国工人福利下降}（红字斜体 decrease）：两行业就业增加；资本与土地数量固定；每个工人面对更多竞争者、可用的设备/土地更少（板书手绘图：$P_M MPK$ 曲线随 $\bar{K}$（固定）与 $L_M \uparrow, L_A \uparrow$ 移动 $\Rightarrow r_K \uparrow$（洋红）、$r_T \uparrow$）。\kw{资本与土地所有者呢？}
+  \item \term{移民使资本与土地的租金率上升，从而目的国资本与土地所有者福利上升}（红字斜体 increase）：两行业就业增加；$MPK_M$ 与 $MPT_A$ 随 $L_M, L_A$ 递增（每台机器/每块土地有更多工人操作）。
+\end{itemize}
+
+\textbf{短期 FDI（第 57、65--66 页概念页）}：仍用特定要素模型，但不是``资本 vs.\ 土地''——\term{资本分别特定于行业 1 与行业 2}（例如：半导体的 EUV 光刻机 vs.\ 造船的龙门吊）；对一个部门的 FDI 不会转化为另一部门的资本；且短期中国内资本被困在其初始部门。
+
+\textbf{部门 1 资本存量的增加（第 64--66 页，图~\ref{fig:ch08-fdi}）}：劳动市场均衡；假设最终品价格不变。$K_1$ 增加抬高 $MPL_1$（手写 $K_1 \uparrow$、$P_1 \cdot MPL_1$ 红圈）$\Rightarrow$ 部门 1 的劳动需求\kw{上移}（虚线）$\Rightarrow$ \kw{名义（与真实）工资上升}；部门 1（接受 FDI）雇用更多劳动、部门 2 更少（板书：New w* 高于 Equil.\ wage；new $L_1^* > L_1$、new $L_2^* < L_2$）。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{figs/ch08_fig_16.png}
+  \caption{第 64--66 页：部门 1 资本存量增加（FDI）——$K_1 \uparrow \Rightarrow MPL_1 \uparrow \Rightarrow$ 部门 1 劳动需求上移（虚线），均衡工资升至 New w*；部门 1 就业增加、部门 2 就业减少。}
+  \label{fig:ch08-fdi}
+\end{figure}
+
+\textbf{FDI 的短期福利影响（第 69--70 页）}：
+\begin{itemize}
+  \item \term{FDI 使工资上升，从而目的国工人福利上升}（红字斜体）：接受 FDI 的部门每个工人有更多机器；该部门就业增加；无 FDI 部门就业减少（但每个工人机器更多）；两部门 MPL 都上升。\kw{两个行业的资本所有者呢？}
+  \item \term{无 FDI 部门（部门 2）的资本租金率下降}（红字）：资本数量固定但劳动减少 $\Rightarrow$ MPK 下降；\term{对接受 FDI 的部门（部门 1）更模糊}：更多资本压低 MPK vs.\ 更多劳动抬高 MPK；\redkw{净效应是下降}（红字）——读 Feenstra 第 5 章，取决于\kw{资本密集度}（紫字）。C--D 简化说明（高亮公式）：
+  \[
+  w_1 = P_1 \cdot MPL_1 = (1-\alpha_1) P_1 A_1 \left( \frac{K_1}{L_1} \right)^{\alpha_1}, \qquad
+  r_1 = P_1 \cdot MPK_1 = \alpha_1 P_1 A_1 \left( \frac{L_1}{K_1} \right)^{1-\alpha_1};
+  \]
+  手写链：$K_1 \uparrow \Rightarrow w_1 \uparrow \Rightarrow \frac{K_1}{L_1} \uparrow \Rightarrow \frac{L_1}{K_1} \downarrow \Rightarrow r_1 \downarrow$。
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.62\linewidth]{figs/ch08_fig_17.png}
+  \caption{第 69 页板书：FDI 的要素回报效应——部门 2（无 FDI）：劳动减少 $\Rightarrow$ MPK $\downarrow \Rightarrow r_2 \downarrow$（手绘图 $P_2 \cdot MPK_2$ 下移）；部门 1（有 FDI）：手写链 $K_1 \uparrow \Rightarrow w_1 \uparrow \Rightarrow \frac{K_1}{L_1} \uparrow \Rightarrow \frac{L_1}{K_1} \downarrow \Rightarrow r_1 \downarrow$——两部门租金率都下降。}
+  \label{fig:ch08-fdiwelfare}
+\end{figure}
+
+\begin{sumbox}[短期移民与 FDI 小结（第 71 页原文）]
+\begin{itemize}
+  \item \term{移民}：两部门就业与生产都扩张；\redkw{（国内）工人福利下降}（Decrease，红字斜体），\redkw{两行业特定要素所有者福利上升}（increase，红字斜体）；
+  \item \term{某一部门的 FDI}：该部门就业与生产扩张、另一部门收缩；\redkw{工人福利上升}（Increase，红字斜体），\redkw{两行业特定要素所有者福利下降}（decrease，红字斜体）；
+  \item \kw{需要注意的关键假设：最终产品价格不变}。
+\end{itemize}
+\end{sumbox}
+
+\textbf{讨论与下一讲（第 72 页）}：今天：移民是劳动供给的外生变化。\kw{下一讲：劳动为什么会流动、流向哪里？对两国的福利影响是什么？}
+
+\secn{8.8 模型构建方法地图}
+
+\begin{mapbox}[禀赋变化的两种分析路径（本讲方法总图）]
+\textbf{路径 A：长期（H-O 框架，Rybczynski）}——步骤：
+\begin{enumerate}
+  \item 写下充分就业方程组 $\begin{cases} L_S + L_C = \bar L \\ K_S + K_C = \bar K \end{cases}$ 与固定投入比例（$L_i/K_i$ 由 $w/r$ 决定），解出 $Y_S(\bar L, \bar K), Y_C(\bar L, \bar K)$；
+  \item 用相对要素供求框架 $\frac{\bar L}{\bar K} = \frac{L_C}{K_C}\frac{K_C}{\bar K} + \frac{L_S}{K_S}\frac{K_S}{\bar K}$：禀赋变化（LHS）由\kw{行业权重} $K_i/\bar K$ 的变化匹配，行业 $L/K$ 不变；
+  \item 论证行业 $L/K$ 不变的合理性 $=$ \kw{要素价格不敏感性}：$w/r \leftrightarrow L_g/K_g \leftrightarrow C_g \leftrightarrow P_g$（价格固定 $\Rightarrow$ $w/r$ 固定，小型开放经济保证商品价格固定）；
+  \item 检查禀赋变化后仍在\kw{多样化锥} $[L_C/K_C, L_S/K_S]$ 内（否则出现``负权重''、完全专业化，要素价格不再不敏感）；
+  \item 得 \kw{Rybczynski 定理}：价格不变下某要素增加 $\Rightarrow$ 密集使用它的行业产出扩张、另一行业收缩；
+  \item 应用：三经济体比较（Home / World autarky / Foreign，价格相同）$\Rightarrow$ \kw{H-O 定理的 Rybczynski 式证明}；动态应用：资本积累与产业升级（Ju--Lin--Wang 2015）。
+\end{enumerate}
+\textbf{路径 B：短期（SFM 框架）}——价格不变（小型开放经济）下，用劳动市场图（$P_i \cdot MPL_i$ 曲线）分析：
+\begin{itemize}
+  \item \kw{移民}（$\bar L \uparrow$）：两行业劳动需求曲线不动、总劳动条变宽 $\Rightarrow$ 工资 $\downarrow$、两部门就业 $\uparrow$ $\Rightarrow$ 工人福利 $\downarrow$、特定要素回报（$r_K, r_T$）$\uparrow$；
+  \item \kw{FDI}（某部门 $K \uparrow$）：该部门劳动需求曲线上移 $\Rightarrow$ 工资 $\uparrow$、该部门就业 $\uparrow$、另一部门 $\downarrow$ $\Rightarrow$ 工人福利 $\uparrow$、两部门特定要素回报 $\downarrow$（C--D 链：$K_1 \uparrow \Rightarrow w_1 \uparrow \Rightarrow K_1/L_1 \uparrow \Rightarrow L_1/K_1 \downarrow \Rightarrow r_1 \downarrow$）。
+\end{itemize}
+\textbf{对照记忆}：长期：要素价格不变、产出结构变（Rybczynski）；短期：产出结构部分调整、要素价格变（工资与特定要素回报反向变动）。
+\end{mapbox}
+
+\begin{sumbox}[本讲总结：通用结论与方法]
+\begin{enumerate}
+  \item \term{禀赋变化的统一视角}：移民（$\bar L$ 跨国再分配）、FDI（$\bar K$ 跨国再分配）、资本积累等，根本都是（相对）要素禀赋变化；本讲处理外生变化，下一讲处理内生变化。
+  \item \term{Rybczynski 定理}：价格不变 $+$ 多样化锥内 $+$ 两商品都被生产 $\Rightarrow$ 某要素增加使密集使用该要素的行业产出扩张、另一行业收缩（数值例：$Y_S = \frac{2}{3}\bar L - \frac{1}{3}\bar K$，$Y_C = \frac{2}{3}\bar K - \frac{1}{3}\bar L$；劳动 $+10\%$ $\Rightarrow$ 劳动密集品 $+20\%$、资本密集品 $-10\%$——产出变化放大！）。
+  \item \term{要素价格不敏感性}：商品价格固定 $\Rightarrow$ $w/r$ 固定 $\Rightarrow$ 部门 $L/K$ 固定 $\Rightarrow$ 调整全部由行业规模（权重）承担；选择题答案 (d)（对工资与租金都无影响）出人意料但正确。
+  \item \term{多样化锥}：禀赋比必须停留在 $[L_C/K_C, L_S/K_S]$ 内两行业共存；锥外解出``负权重''，经济完全专业化，相对要素需求变折线、要素价格不再不敏感。
+  \item \term{H-O 定理的 Rybczynski 式证明}：三个经济体（贸易中的 Home、自给自足的世界、贸易中的 Foreign）面对相同价格；Home 相对世界是``资本相对扩张''$\Rightarrow$ 更专业化于资本密集品 $\Rightarrow$ 出口它；需要 H-O 假设 5（技术相同）与 6（同质位似偏好）。
+  \item \term{资本积累与结构转型}：Rybczynski 世界中积累资本不改变要素价格、只改变产业结构；对照 Solow 封闭经济（$K/L \uparrow \Rightarrow r/w \downarrow$）；Ju--Lin--Wang (2015)：随禀赋升级行业兴衰更替、总资本回报与增速可保持稳定（中国约 30 年经验）。
+  \item \term{短期移民（SFM）}：工资下降、两部门就业扩张；国内工人受损、特定要素所有者受益。
+  \item \term{短期 FDI（SFM）}：接受部门劳动需求上移；工资上升、该部门就业扩张另一部门收缩；工人受益、两部门特定要素回报都下降（C--D 下可解析证明）。
+  \item \term{关键假设}：小型开放经济 $+$ 最终品价格不变——所有``价格不变''结论都依赖于此；价格内生调整时回到 Stolper--Samuelson 逻辑。
+\end{enumerate}
+\end{sumbox}
