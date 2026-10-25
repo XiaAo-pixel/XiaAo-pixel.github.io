@@ -180,7 +180,7 @@ notes/statistics/ch07-03.md  →  /statistics/ch07-03.html   ...
 | 数理统计 | `statistics` | 13 章 / 79 节 |
 | 最优化方法 | `optimization` | 19 讲 + 附录 A–D / 135 节 |
 | 应用随机过程 | `stochastic` | 2 章（第〇章引言 + 第一章马氏链；第二章跳过程、第三章布朗运动待补）/ 13 节，另附 LaTeX 排版的 PDF 打印版（`stochastic/latex/`） |
-| 实变函数 | `realanalysis` | 6 章（集合论动机、Lebesgue 测度、可测函数、Lebesgue 积分、微分与不定积分、Lp 空间）/ 50 节，另附 LaTeX 排版的 PDF 打印版（`realanalysis/latex/`） |
+| 实变函数 | `realanalysis` | 6 章（实分析研究动机与集合论、Lebesgue 测度、可测函数、Lebesgue 积分、微分与不定积分、Lp 空间）/ 31 节，另附 LaTeX 排版的 PDF 打印版（`realanalysis/latex/`） |
 | 常微分方程 | `ode` | 5 章（引言、存在唯一性、线性系统、幂级数法、Sturm–Liouville 理论）/ 18 节（英文笔记），另附 LaTeX 排版的 PDF 打印版（`ode/latex/`） |
 
 要新增一门课时，源文件放进 `notes/<新代号>/_source/`，再跑脚本。
