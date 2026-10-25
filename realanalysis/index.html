@@ -1,0 +1,26 @@
+---
+layout: note
+kind: book
+course: realanalysis
+title: 实变函数
+date: 2026-10-25
+---
+<p class="muted">学期：2026 秋 · 教材：课堂讲义（参考 Royden《Real Analysis》、周民强《实变函数论》）</p>
+
+<p>本书记录《实变函数》课程的课堂手写笔记（电子版），共六章：第一章从 Riemann 积分的三大缺陷出发引出课程动机，并建立集合论基础（对等与基数、可数集、Cantor 集）；第二章 Lebesgue 测度（外测度、Carathéodory 可测性、结构定理、Vitali 不可测集、测度扩张）；第三章可测函数及其性质（运算封闭性、简单函数逼近、Egorov 与 Lusin 定理、依测度收敛）；第四章 Lebesgue 积分（单调收敛、Fatou、控制收敛三大定理与 Fubini 定理）；第五章微分与不定积分（有界变差、绝对连续与 Newton–Leibniz 公式、Lebesgue 微分定理）；第六章 Lp 空间（完备性、稠密性、对偶与卷积）。<strong>每小节一页</strong>，点进任意一页后左侧栏会列出全书章节与当前章的小节，页底有「上一节 / 下一节」便于连续翻阅。本笔记另有 <a href="/realanalysis/latex/notes.pdf">LaTeX 排版的 PDF 打印版</a>（<a href="/realanalysis/latex/notes.tex">LaTeX 源码</a>）。</p>
+
+<p><a href="/courses.html">← 返回课程笔记总览</a></p>
+
+<h2>章节目录</h2>
+{% comment %} 章节页由 split-notes.ps1 生成：同一 order 的小节页属于同一章，
+     这里按章分组列出，章标题取第一节的 chapter 字段 {% endcomment %}
+{% assign book = site.pages | where: "kind", "note" | where: "course", page.course | sort: "order" %}
+{% assign chapters = book | group_by: "order" %}
+{% for ch in chapters %}
+<h3>第 {{ ch.name }} 章　{{ ch.items.first.chapter | default: ch.items.first.title }}</h3>
+<ul class="postlist">
+{% for sec in ch.items %}
+  <li><a href="{{ sec.url }}">{{ sec.title | split: "·" | last | strip }}</a></li>
+{% endfor %}
+</ul>
+{% endfor %}
