@@ -1,0 +1,302 @@
+---
+layout: note
+kind: note
+title: "Chapter 4　Method of Power Series"
+course: ode
+order: 4
+date: 2026-10-26
+---
+
+本章用幂级数方法研究 ODE：Cauchy 定理（优级数方法证明解析解的存在性），以及用幂级数求解二阶线性方程——常点情形（Hermite、Legendre 方程）与正则奇点情形（Frobenius 理论、Bessel 方程与 Bessel 函数）。
+
+## 4.1 Cauchy Theory
+
+$$
+\begin{cases} y'=f(x,y),\\ y_0=y(x_0), \end{cases}\quad\text{where } f(x,y)\text{ is analytic in the domain }\Omega\subseteq\mathbb{R}\times\mathbb{R}^n.
+$$
+
+The Picard Thm implies existence \& uniqueness of the solution. We want to show the solution is analytic.
+
+> **Def.** (I) $\sum_{\bar{i},\bar{j}}a_{\bar{i}\bar{j}}(x-x_0)^{\bar{i}}(y-y_0)^{\bar{j}}$ \quad (II) $\sum_{\bar{i},\bar{j}}A_{\bar{i}\bar{j}}(x-x_0)^{\bar{i}}(y-y_0)^{\bar{j}}$
+>
+> If $|a_{\bar{i}\bar{j}}|\le|A_{\bar{i}\bar{j}}|$ and (II) converges, we call (II) a **majorant** of (I).
+
+> **Lemma.**
+> If $f(x,y)$ is analytic in $\Omega$, then $\exists\ M>0$,
+> $$
+> F(x,y):=\frac{M}{\Bigl(1-\frac{x-x_0}{a}\Bigr)\bigl(1-\frac{y_1-y_{01}}{b}\bigr)\cdots\bigl(1-\frac{y_n-y_{0n}}{b}\bigr)},
+> $$
+> s.t. $F(x,y)$ is a majorant of $f(x,y)$ in $\Bigl\{(x,y):\ |x-x_0|<a<\alpha,\ |y-y_0|<b<\beta\Bigr\}$.
+>
+> **Pf.** Suppose $f(x,y)=\sum_{\bar{i},\bar{j}}a_{\bar{i}\bar{j}}(x-x_0)^{\bar{i}}(y-y_0)^{\bar{j}}$ converges in $\Omega$; hence $\exists M>0$ s.t. $\forall\bar{i},\bar{j}$: $|a_{\bar{i}\bar{j}}a^{\bar{i}}b^{\bar{j}}|\le M$. Denote $A_{\bar{i},\bar{j}}=\dfrac{M}{a^{\bar{i}}b^{\bar{j}}}$:
+> $$
+> \sum_{\bar{i}\bar{j}}A_{\bar{i},\bar{j}}(x-x_0)^{\bar{i}}(y-y_0)^{\bar{j}}
+> =M\sum_{\bar{i},\bar{j}_k}\Bigl(\frac{x-x_0}{a}\Bigr)^{\bar{i}}\Bigl(\frac{y_1-y_{01}}{b}\Bigr)^{\bar{j}_1}\cdots\Bigl(\frac{y_n-y_{0n}}{b}\Bigr)^{\bar{j}_n}:=F(x,y),
+> $$
+> with $|a_{\bar{i}\bar{j}}|\le|A_{\bar{i}\bar{j}}|$. $\square$
+
+> **Lemma.**
+> $\begin{cases} \frac{dy_k}{dx}=F(x,y)\quad(\forall k)\\ y(x_0)=y_0 \end{cases}$ has an analytic solution on the interval $|x-x_0|<\rho$, $\rho=a\Bigl(1-e^{-\frac{b}{aM(n+1)}}\Bigr)$.
+>
+> **Pf.** $\dfrac{dy_k}{dx}=\dfrac{dy_l}{dx}\ \Rightarrow\ y_k-y_{k_0}=y_l-y_{l_0}$. Then $y_k$ ($k=1,\dots,n$) satisfies
+> $$
+> \frac{dz}{dx}=\frac{M}{\bigl(1-\frac{x-x_0}{a}\bigr)\bigl(1-\frac{z-z_0}{b}\bigr)^n},
+> $$
+> $$
+> \Rightarrow\ \frac{b}{n+1}\Bigl(1-\frac{u-u_0}{b}\Bigr)^{n+1}-\frac{b}{n+1}=aM\ln\Bigl(1-\frac{x-x_0}{a}\Bigr),
+> $$
+> $$
+> \Rightarrow\ u=u_0+b-b\Bigl[1+\frac{(n+1)aM}{b}\ln\Bigl(1-\frac{x-x_0}{a}\Bigr)\Bigr]^{\frac{1}{n+1}}.
+> $$
+> Making $\Bigl|\frac{(n+1)aM}{b}\ln\bigl(1-\frac{x-x_0}{a}\bigr)\Bigr|<1$ we get $|x-x_0|<\rho$.
+>
+> Then this solution can be written as a power series. $\square$
+
+> **Thm.**
+> For the IVP: if $f(x,y)$ is analytic in $\{|x-x_0|<\alpha,\ |y-y_0|<\beta\}$, then the IVP has a unique solution \& analytic in $\{|x-x_0|<\rho\}$.
+>
+> **Pf.** By the Picard theorem we know the solution is unique.
+>
+> Suppose $f_k(x,y)=\sum_{\bar{i},\bar{j}}a^k_{\bar{i}\bar{j}}(x-x_0)^{\bar{i}}(y-y_0)^{\bar{j}}$; we seek a solution $y_k(x)=y_{0,k}+\sum_{m\ge1}c_{k,m}(x-x_0)^m$. We hope
+>
+> (1) to get $c_{k,m}$ satisfying the equation;
+>
+> (2) to prove $y_k(x)$ converges.
+>
+> For (1), by calculating we get
+> $$
+> c_{k,1}=y_k'(x_0)=f_k(x_0,y_0)=a^k_{0,0}, \qquad
+> c_{k,2}=\frac{1}{2!}y_k''(x_0)=\frac{1}{2!}(f'_{kx}+f'_{ky}+y');
+> $$
+> generally,
+> $$
+> c_{k,m}=\frac{1}{m!}y_k^{(m)}(x_0)=P_{k,m}\bigl(a^l_{\bar{i}\bar{j}}\bigr)\quad(1\le l\le n,\ \bar{i}+\bar{j}\le m-1),
+> $$
+> which depends only on $\bar{i},\bar{j},l$.
+>
+> For (2), we use $F_k(x,y)$ and get an analytic solution as in the Lemma; we can prove that it is a majorant of $\sum c_{k,m}(x-x_0)^m$, so the latter converges. $\square$
+
+> **Ex (Riccati equation).** $y'+y^2=x$.
+>
+> Consider $y=\sum_{n\ge0}c_nx^n$, then
+> $$
+> \sum_{k\ge1}kc_kx^{k-1}+\sum_{m+n=k}c_mc_nx^k=x.
+> $$
+>
+> So we get
+> $$
+> \begin{cases} c_1+c_0^2=0\\ 2c_2+c_0c_1+c_1c_0=1\\ (k+1)c_{k+1}+\sum_{m+n=k}c_mc_n=0 \end{cases}
+> $$
+>
+> This gives a formula of the solution. $\square$
+
+## 4.2 Solving ODE using power series
+
+Consider $A(x)y''+B(x)y'+C(x)y=0$, $A,B,C$ analytic.
+
+### Easy Case
+
+If $\exists\ x_0$: $A(x_0)\neq0$. Then $\exists r>0$: $|x-x_0|<r\ \Rightarrow A(x)\neq0$.
+
+We focus on $y''+p(x)y'+q(x)y=0$, $p,q$ analytic.
+
+> **Thm.**
+> If $p(x),q(x)$ are analytic in $|x-x_0|<r$, then the solution is unique and analytic in $|x-x_0|<r$.
+>
+> **Pf.** $\begin{pmatrix} y'\\ y'' \end{pmatrix}=\begin{pmatrix} 0 & 1\\ -q & -p \end{pmatrix}\begin{pmatrix} y\\ y' \end{pmatrix}$, $w:=\begin{pmatrix} y\\ y' \end{pmatrix}$, $w'=f(x,w)$.
+>
+> $f(x,y)$ is analytic in $|x-x_0|<r$, $|w-w_0|<\beta$, $\forall\beta\le+\infty$.
+>
+> So $\rho=r\cdot\bigl(1-e^{-\frac{\beta}{3Mr}}\bigr)\to r$ as $\beta\to+\infty$. $\square$
+
+> **Ex (Hermite eq.).** $y''-2xy'+\lambda y=0$
+>
+> Suppose $y=\sum_{n\ge0}c_nx^n$, then
+> $$
+> \sum_{k\ge0}(k+2)(k+1)c_{k+2}x^k-2x\sum_{k\ge1}kc_kx^{k-1}+\lambda\sum_{k\ge0}c_kx^k=0.
+> $$
+> We get $n(n-1)c_n-2(n-2)c_{n-2}+\lambda c_{n-2}=0$
+> $$
+> \Rightarrow\ c_{n+2}=\frac{2n-\lambda}{(n+2)(n+1)}c_n.
+> $$
+>
+> If $\lambda\in2\mathbb{Z}$, the solution is a polynomial, which is called Hermite.
+
+> **Ex (Legendre eq.).** $(1-x^2)y''-2xy'+\lambda(\lambda+1)y=0$ near $x=0$.
+>
+> $y=\sum_{n\ge0}c_nx^n$, $y'=\sum_{n\ge1}nc_nx^{n-1}$, $y''=\sum_{n\ge2}n(n-1)c_nx^{n-2}$.
+>
+> We get $(k+2)(k+1)c_{k+2}+(\lambda+k+1)(\lambda-k)c_k=0$.
+
+### Complicated Case
+
+$A(x_0)=0$: find solutions near $x_0$.
+
+*(margin, red: for $x^2y''-2y=0$: try $x^{\lambda}$, $\lambda(\lambda-1)-2=0$, $\lambda=2$ or $\lambda=-1$.)*
+
+> **Ex.** $x^2y''-2y=0$, near $x=0$.
+>
+> Euler eq.: $y=c_1x^2+\dfrac{c_2}{x}$. Not analytic.
+
+> **Ex.** $x^2y''+xy'+(x^2-\frac14)y=0$.
+>
+> Denoting $u(x)=y\sqrt{x}$, we have $u''+u=0$.
+>
+> So we get the fundamental solutions
+> $$
+> y_1=\frac{\cos x}{\sqrt{x}}=\sum_{k\ge0}\frac{(-1)^k}{(2k)!}x^{2k-\frac12}, \qquad
+> y_2=\frac{\sin x}{\sqrt{x}}=\sum_{k\ge0}\frac{(-1)^k}{(2k+1)!}x^{2k+\frac12}.
+> $$
+
+> **Def.** If $f(x)=\sum_{n\ge0}a_n(x-x_0)^{n+\rho}$, we call it a **general power series with index $\rho$**.
+
+> **Thm (Frobenius theory).**
+>
+> For the equation $A(x)y''+B(x)y'+C(x)y=0$ ($A,B,C$ analytic), if it can be written in the form
+> $$
+> (x-x_0)^2P(x)y''+(x-x_0)Q(x)y'+R(x)y=0
+> $$
+> with $P(x_0)\neq0$, where at least one of $Q(x_0)$, $R(x_0)$ is nonzero, and $P(x),Q(x),R(x)$ analytic in $|x-x_0|<r$, then we call $x_0$ a **regular singularity** for $A(x)$ (or for the equation).
+>
+> Reduce the equation to $(x-x_0)^2y''+p(x)(x-x_0)y'+q(x)y=0$. Then the equation has a solution of the form
+> $$
+> y=\sum_{n\ge0}c_n(x-x_0)^{n+\rho}, \qquad c_0\neq0.
+> $$
+
+> **Remark.** Recall the Euler eq., which makes $\frac{Q}{P}\equiv p_0$, $\frac{R}{P}\equiv q_0$. We get $x^2y''+p_0xy'+q_0y$; guess $y=x^{\rho}$, then
+> $$
+> \bigl(\rho(\rho-1)+p_0\rho+q_0\bigr)x^{\rho}=0\ \Rightarrow\ \rho(\rho-1)+p_0\rho+q_0=0.
+> $$
+
+> **Pf.** Suppose $x_0=0$, $p(x)=\sum_{n\ge0}p_nx^n$, $q(x)=\sum_{n\ge0}q_nx^n$.
+>
+> Set $y(x,\rho)=\sum_{n\ge0}c_n(\rho)x^{n+\rho}$ with $c_0(\rho)=1$. Let
+> $$
+> L:=x^2\frac{d^2}{dx^2}+xp(x)\frac{d}{dx}+q(x).
+> $$
+> Then
+> $$
+> Ly(x,\rho)=\sum_{n\ge0}x^{n+\rho}\Bigl[c_n(\rho)\bigl((n+\rho)(n+\rho-1)+p_0(n+\rho)+q_0\bigr)+\sum_{l=0}^{n-1}c_l(\rho)\,p_{n-l}\,(l+\rho)+q_{n-l}\Bigr].
+> $$
+>
+> "$n=0$": $\ x^{\rho}[c_0(\rho)f_0(\rho)]$; "$n=1$": $\ x^{1+\rho}[c_1f_0(\rho+1)+c_0f_1(\rho)]$; "$n$": $\ x^{n+\rho}[c_nf_0(\rho+n)+c_{n-1}f_1(\rho+n-1)+\cdots+c_0f_n(\rho)]$,
+>
+> in which $f_0(\rho):=\rho(\rho-1)+p_0\rho+q_0$, $f_j(\rho):=p_j\rho+q_j$.
+>
+> Since we have $c_0(\rho)\neq0$, so $f_0(\rho)=0$ has either 2 real roots $\rho_1\ge\rho_2$ or 2 complex roots.
+>
+> If $f_0(n+\rho)\neq0$, $\forall n\ge1$, then we can get every $c_n$. To find 2 solutions:
+>
+> **Case 1.** If 2 complex roots: we can use any $\rho$ to get $c_n$.
+>
+> **Case 2.** If 2 real roots $\rho_1>\rho_2$, $\rho_1-\rho_2\notin\mathbb{Z}$: we can use any $\rho$ to get $c_n$.
+>
+> **Case 3.** If $\rho_1=\rho_2$, or 2 real roots $\rho_1>\rho_2$ with $\rho_1-\rho_2\in\mathbb{Z}$: we can use $\rho_1$ to get $c_n$ — only find 1 solution.
+>
+> So we only need to prove $\sum_{n\ge0}c_n(x-x_0)$ converges. Suppose $\sum_{n\ge0}p_n(x-x_0)^n$, $\sum_{n\ge0}q_n(x-x_0)^n$ converge in $0<x<r$.
+>
+> For $0<r_i<r$: $\exists M>1$ s.t. $|p_nr_i^n|<M$, $|q_nr_i^n|<M$, $\forall n$.
+>
+> $|c_0(\rho)|=1$, $|f_0(n+\rho)|\ge n^2$ *(calculating)*, $|c_1(\rho)|=\dfrac{|p_1\rho+q_1|}{|f_0(1+\rho)|}|c_0|\le\dfrac{M}{r_1}$.
+>
+> Guess $|c_n(\rho)|\le\bigl(\frac{M}{r_1}\bigr)^n$; by induction we can prove it.
+>
+> So the solution converges in $|x|<\frac{r_1}{M}$. $\square$
+
+> **Remark.**
+> If $\rho_1=\rho_2$ is repeated, we only get 1 solution in the process above. Note $y_1=\sum_{n\ge0}c_n(x-x_0)^n$; then we have another solution
+> $$
+> y_2=y_1(x)\ln x+\sum_{n\ge0}b_nx^{n+\rho}, \qquad b_n\text{ can be calculated.}
+> $$
+>
+> **Pf.** For most $\rho$ s.t. $f_0(n+\rho)\neq0$, we can solve $c_n(\rho)$ s.t.
+> $$
+> c_0(\rho)=1, \qquad c_nf_0(\rho+n)+c_{n-1}f_1(\rho+n-1)+\cdots+c_0f_n(\rho)=0.
+> $$
+> So we have $Ly(x,\rho)=x^{\rho}f_0(\rho)$:
+> $$
+> \Rightarrow\ L\frac{\partial}{\partial\rho}y(x,\rho)=x^{\rho}f_0'(\rho)+x^{\rho}f_0(\rho)\ln x.
+> $$
+> Plug in $\rho=\rho_1$; we get $L\frac{\partial}{\partial\rho}y(x,\rho)\big|_{\rho=\rho_1}=0$.
+>
+> So another solution has the form *(using $y(x,\rho)=\sum_{n\ge0}c_n(x-x_0)^{n+\rho}$)*
+> $$
+> y_2=\frac{\partial}{\partial\rho}y(x,\rho)\big|_{\rho=\rho_1}=y_1(x)\ln x+\sum_{n\ge0}b_nx^{n+\rho}. \qquad\square
+> $$
+
+> **Remark.**
+> If $f_0(\rho)=0$ has 2 real solutions $\rho_1>\rho_2$, $\rho_1-\rho_2\in\mathbb{Z}$, we only get 1 solution $y_1(x)=\sum_{n\ge0}c_n(x-x_0)^{n+\rho_1}$; the other solution has the form
+> $$
+> y_2(x)=y_1(x)\ln x+\sum_{n\ge0}b_nx^{n+\rho_2}.
+> $$
+
+**Bessel equation \& Bessel function**
+
+$$
+x^2y''+xy'+(x^2-\alpha^2)y=0 \qquad(\alpha>0).
+$$
+
+$$
+p(x)=1\quad\Rightarrow\quad p_0=1,\ p_j=0\ (j\ge1); \qquad
+q(x)=x^2-\alpha^2\quad\Rightarrow\quad q_0=-\alpha^2,\ q_2=1,\ q_j=0.
+$$
+
+Suppose the solution $y=\sum_{n\ge0}c_nx^{n+\rho}$; putting it in:
+$$
+f_0(\rho)=\rho(\rho-1)+\rho-\alpha^2=0, \qquad
+f_j(\rho)=p_j\rho+q_j=\begin{cases} 0, & j=1\\ 1, & j=2\\ 0, & j\ge3 \end{cases}
+$$
+$$
+\Rightarrow\ \rho_1=\alpha,\ \rho_2=-\alpha,\ \rho_1-\rho_2=2\alpha; \qquad c_{n-2}+n(n+2\rho)c_n=0.
+$$
+
+① If $2\alpha\notin\mathbb{Z}$, then $n+2\rho\neq0$ for $\forall n$:
+$$
+\Rightarrow\ c_n=\frac{-c_{n-2}}{f_0(n+\rho)}=-\frac{c_{n-2}}{n(n+2\rho)}.
+$$
+
+Taking $c_1=0$, so we get
+$$
+c_{2k+1}=0, \qquad c_{2k}=\frac{(-1)^k c_0}{2^{2k}(\rho+1)(\rho+2)\cdots(\rho+k)\,k!}, \ \forall k.
+$$
+
+If taking $c_0=\dfrac{1}{2^{\rho}\Gamma(\rho+1)}$, we get
+$$
+J_{\rho}(x)=\sum_{k=0}^{\infty}c_{2k}x^{2k+\rho}=\sum_{k=0}^{\infty}\frac{(-1)^k}{\Gamma(k+1+\rho)\Gamma(k+1)}\Bigl(\frac{x}{2}\Bigr)^{2k+\rho}.
+$$
+
+We call this the **first kind Bessel function**. Putting $\rho=\pm\alpha$, we get 2 independent solutions.
+
+② If $2\alpha\in\mathbb{Z}$:
+
+**2.1** If $\alpha=0$: repeated solutions.
+
+Get the first solution $y_1(x,\rho)=\sum_{n\ge0}c_nx^{n+\rho}=J_{\rho}(x)$.
+
+Then another solution is $\dfrac{\partial}{\partial\rho}y_1(x,\rho)\big|_{\rho=\rho_1}$:
+$$
+y_2=\sum_{n\ge0}c_n'(\rho)x^{n+\rho}+\sum_{n\ge0}c_n(\rho)x^{n+\rho}\cdot\ln x\ \Bigl|_{\rho=0}
+=\sum_{k\ge1}\frac{(-1)^k}{2^{2k}(k!)^2}(-1)\Bigl(1+\frac12+\cdots+\frac1k\Bigr)x^{2k}+J_0(x)\ln x
+$$
+$$
+=J_0(x)\ln x-\sum_{k\ge1}\frac{(-1)^k}{(k!)^2}\varphi(k)\Bigl(\frac{x}{2}\Bigr)^{2k}.
+$$
+
+**2.2** If $2\alpha$ is odd, i.e. $2\alpha=2m+1$, $\alpha=m+\frac12$:
+
+So $c_{2k}$ is still well-defined $(\ 2n\cdot(2n+2\rho)\neq0,\ \forall n\ )$; $c_{2k+1}$ is well-defined for $k=0,1,\dots,m-1$, and $c_{2m+1}$ is a free choice (take it $0$) $\Rightarrow c_{2k+1}=0,\ \forall k$. We get the same formula as in ①.
+
+**2.3** If $2\alpha$ is even, i.e. $\alpha\in\mathbb{Z}^+$:
+
+Formally we get the 2nd solution $y_1(x)\ln x+\sum_{n\ge0}b_nx^{n-\alpha}$.
+
+> **Remark.**
+> (1) Neumann's function
+> $$
+> Y_{\alpha}(x)=\frac{J_{\alpha}(x)\cos\alpha\pi-J_{-\alpha}(x)}{\sin\alpha\pi}
+> $$
+> is a solution to the Bessel equation under any case — the **2nd kind Bessel function**.
+>
+> (2) If $\alpha=\frac12$, we get a special case.
+>
+> (3) $J_{\alpha}(x)\sim\sqrt{\frac{2}{\pi x}}\bigl(\cos(x-\frac{\alpha\pi}{2}-\frac{\pi}{4})+o(1)\bigr)$, $Y_{\alpha}(x)\sim\sqrt{\frac{2}{\pi x}}\bigl(\sin(x-\frac{\alpha\pi}{2}-\frac{\pi}{4})+o(1)\bigr)$ \qquad $(x\to+\infty)$.

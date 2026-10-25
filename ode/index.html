@@ -1,0 +1,26 @@
+---
+layout: note
+kind: book
+course: ode
+title: 常微分方程
+date: 2026-10-26
+---
+<p class="muted">学期：2026 秋 · 教材：课堂讲义（英文笔记）</p>
+
+<p>本书记录《常微分方程》课程的课堂手写笔记（电子版，<strong>英文</strong>）：第一章一阶方程的初等解法（恰当方程、分离变量、积分因子、隐方程与参数法）；第二章解的存在唯一性与延拓（Gronwall 不等式、Arzelà–Ascoli 引理、Picard–Lindelöf 定理、Peano 定理、Osgood 唯一性、比较原理、解对数据与参数的依赖）；第三章线性系统（基本解组与 Wronskian、常系数系统、高阶方程、Floquet 理论）；第四章幂级数法（Cauchy 理论、Frobenius 理论、Bessel 函数）；第五章 Sturm–Liouville 理论（分离与比较定理、正则与周期 Sturm–Liouville 问题、非线性方程边值问题）。<strong>每小节一页</strong>，点进任意一页后左侧栏会列出全书章节与当前章的小节，页底有「上一节 / 下一节」便于连续翻阅。本笔记另有 <a href="/ode/latex/notes.pdf">LaTeX 排版的 PDF 打印版</a>（<a href="/ode/latex/notes.tex">LaTeX 源码</a>）。</p>
+
+<p><a href="/courses.html">← 返回课程笔记总览</a></p>
+
+<h2>章节目录</h2>
+{% comment %} 章节页由 split-notes.ps1 生成：同一 order 的小节页属于同一章，
+     这里按章分组列出，章标题取第一节的 chapter 字段 {% endcomment %}
+{% assign book = site.pages | where: "kind", "note" | where: "course", page.course | sort: "order" %}
+{% assign chapters = book | group_by: "order" %}
+{% for ch in chapters %}
+<h3>{{ ch.items.first.chapter }}</h3>
+<ul class="postlist">
+{% for sec in ch.items %}
+  <li><a href="{{ sec.url }}">{{ sec.title | split: "·" | last | strip }}</a></li>
+{% endfor %}
+</ul>
+{% endfor %}

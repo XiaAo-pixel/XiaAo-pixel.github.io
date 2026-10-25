@@ -24,3 +24,9 @@ editor/.server.pid
 
 # 把便携版 EXE 放在工程根目录时，不要让「一键发布」把它提交进仓库
 /HomepageStudio-*-portable.exe
+
+# LaTeX 编译辅助文件
+ode/latex/*.aux
+ode/latex/*.log
+ode/latex/*.out
+ode/latex/*.toc
