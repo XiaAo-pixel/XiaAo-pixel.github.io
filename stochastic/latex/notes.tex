@@ -1,6 +1,6 @@
 % !TeX program = xelatex
 % 应用随机过程 笔记（LaTeX 版）
-% 依据手写笔记整理：第〇章 引言、第一章 马氏链（第 2、3 章跳过程与布朗运动待补）。
+% 依据手写笔记整理：第〇章 引言、第一章 马氏链、第二章 跳过程（2.1 泊松过程；其余待补）。
 \documentclass[11pt]{ctexart}
 \usepackage[a4paper,margin=2.3cm]{geometry}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
@@ -40,12 +40,13 @@
   \vspace*{0.5em}
   {\centering\LARGE\bfseries #1\par}
   \vspace{0.4em}
+  \phantomsection
   \addcontentsline{toc}{section}{#1}}
-\newcommand{\secn}[2]{\subsection*{#1\quad #2}\addcontentsline{toc}{section}{#1\quad #2}\markboth{#1\quad #2}{}}
+\newcommand{\secn}[2]{\phantomsection\subsection*{#1\quad #2}\addcontentsline{toc}{section}{#1\quad #2}\markboth{#1\quad #2}{}}
 
 \title{\heiti 应用随机过程\\[0.3em]\large 课堂笔记（LaTeX 整理版）}
 \author{}
-\date{2026 年 10 月}
+\date{2026 年 11 月}
 
 \begin{document}
 \maketitle
@@ -53,8 +54,8 @@
 
 \begin{abstract}
 \noindent
-本笔记整理自《应用随机过程》课堂手写笔记，目前包含第〇章（引言）与第一章（马氏链）的完整内容；
-按原计划还有第二章（跳过程）与第三章（布朗运动），待后续补充。记号约定：$\Pp_\mu$ 表示初分布为
+本笔记整理自《应用随机过程》课堂手写笔记，目前包含第〇章（引言）、第一章（马氏链）的完整内容，
+以及第二章（跳过程）的 2.1 节（泊松过程）；第二章其余部分与第三章（布朗运动）待后续补充。记号约定：$\Pp_\mu$ 表示初分布为
 $\mu$ 时的概率律，$\E_i$ 表示 $X_0=i$ 时的期望；$\tau_i=\inf\{n\ge 0:X_n=i\}$ 为首达时，
 $\sigma_i=\inf\{n\ge 1:X_n=i\}$ 为首入时；$V_i=\sum_{n\ge0}\ind{X_n=i}$ 为访问总次数。
 \end{abstract}
@@ -1629,5 +1630,334 @@ $\Pp(\tau<+\infty)=1$。
 （由 $\Pp(\tau<+\infty)=1$ 知 $\Pp(\tau>n)\to0$）。取 $\widetilde{S}$ 的初分布
 $\nu=\mu\times\pi$ 即已得证。 \qed
 \end{proof}
+
+%======================================================================
+\secn{1.10}{收敛速度}
+
+$\mu P^n\to\pi$ 的速度有多快？
+
+\begin{definition}[全变差距离]
+设 $\mu,\nu$ 为状态空间 $S$ 上的概率分布，定义
+\[
+d_{\mathrm{TV}}(\mu,\nu):=\frac12\sum_{j\in S}|\mu_j-\nu_j| .
+\]
+\end{definition}
+
+设 $P$ 不可约、正常返、非周期，则由强遍历定理，
+\[
+d_{\mathrm{TV}}(\mu P^n,\pi)\longrightarrow 0 .
+\]
+
+\begin{proposition}
+$d_{\mathrm{TV}}(\mu P,\nu P)\le d_{\mathrm{TV}}(\mu,\nu)$。
+\end{proposition}
+
+\begin{proof}
+由全变差距离的定义，
+\[
+d_{\mathrm{TV}}(\mu P,\nu P)
+=\frac12\sum_{j\in S}\Bigl|\sum_i\mu_ip_{ij}-\sum_i\nu_ip_{ij}\Bigr|
+\le\frac12\sum_{i,j}|\mu_i-\nu_i|\,p_{ij}
+=d_{\mathrm{TV}}(\mu,\nu). \qedhere
+\]
+\end{proof}
+
+\begin{proposition}[Dobrushin 准则]
+设 $S$ 有限，且 $\delta:=\min_{i,j}p_{ij}>0$，则存在 $\alpha<1$，s.t.
+\[
+d_{\mathrm{TV}}(\mu P,\nu P)\le\alpha\,d_{\mathrm{TV}}(\mu,\nu),\qquad \forall\mu,\nu .
+\]
+\end{proposition}
+
+\begin{proof}
+记 $N:=|S|$。由于 $\sum_i\mu_i=\sum_i\nu_i=1$，对任意常数 $\delta$ 有
+\[
+d_{\mathrm{TV}}(\mu P,\nu P)
+=\frac12\sum_{j\in S}\Bigl|\sum_i\mu_i(p_{ij}-\delta)-\sum_i\nu_i(p_{ij}-\delta)\Bigr|
+\le\frac12\sum_i|\mu_i-\nu_i|\sum_j(p_{ij}-\delta).
+\]
+取 $\delta:=\min_{i,j}p_{ij}>0$，则 $p_{ij}-\delta\ge0$，且
+\[
+\sum_j(p_{ij}-\delta)=1-N\delta=:\alpha<1,
+\]
+故 $d_{\mathrm{TV}}(\mu P,\nu P)\le\alpha\,d_{\mathrm{TV}}(\mu,\nu)$。 \qedhere
+\end{proof}
+
+\begin{proposition}
+设 $S$ 有限，$P$ 不可约、正常返、非周期，则存在 $C>0,\ \beta>0$，s.t.
+\[
+d_{\mathrm{TV}}(\mu P^n,\pi)\le C\,e^{-\beta n},\qquad \forall n\ge0 .
+\]
+\end{proposition}
+
+\begin{proof}
+由不可约、非周期，$\forall i,j$ 存在 $N_{ij}$，s.t.\ $n\ge N_{ij}$ 时 $p_{ij}^{(n)}>0$。
+令 $m:=\max_{i,j}N_{ij}$。当 $n$ 充分大时写 $n=rm+s$，$0\le s\le m-1$，则
+\begin{align*}
+d_{\mathrm{TV}}(\mu P^n,\pi)
+&=d_{\mathrm{TV}}\bigl(\mu(P^m)^rP^s,\ \pi(P^m)^rP^s\bigr)\\
+&\le d_{\mathrm{TV}}\bigl(\mu(P^m)^r,\ \pi(P^m)^r\bigr)
+\le\alpha^r d_{\mathrm{TV}}(\mu,\pi)
+\le\alpha^r,
+\end{align*}
+其中 $\alpha<1$ 是 $P^m$ 的 Dobrushin 系数（$P^m$ 的各元素一致为正）。由 $r\ge n/m-1$ 得
+\[
+d_{\mathrm{TV}}(\mu P^n,\pi)\le\alpha^{\,n/m-1}=C\,e^{-\beta n},
+\qquad C:=\alpha^{-1},\quad \beta:=\frac{\ln(1/\alpha)}{m}. \qedhere
+\]
+\end{proof}
+
+1980 年代，Persi Diaconis 指出：有些链的收敛并不是上述缓慢的指数衰减，而是
+\textbf{cut off（截断）}——距离在很长一段时间内几乎不变，随后在一个宽度为 $o(n)$ 的短窗口内骤降到 $0$。
+
+\begin{center}
+\begin{tikzpicture}[x=1.35cm,y=1.25cm,>={Stealth[length=2mm]}]
+  \draw[->] (0,0) -- (6.5,0);
+  \draw[->] (0,0) -- (0,3.15) node[left] {$d$};
+  \draw[thick] plot[domain=0.25:6.2,samples=120] (\x,{2.45*exp(-0.30*(\x-0.25))+0.12});
+  \draw[thick,dashed] (0.25,2.57) .. controls (2.60,2.56) and (2.88,2.50) .. (2.98,2.20)
+      .. controls (3.05,1.55) and (3.10,0.45) .. (3.45,0.15)
+      -- (6.20,0.12);
+  \draw[densely dashed] (3.05,0) -- (3.05,2.30);
+  \node[below] at (3.05,0) {$n$};
+  \node[above right,inner sep=2pt] at (3.10,2.30) {cut off};
+  \node[above right,inner sep=2pt] at (4.95,1.05) {exponential decay};
+\end{tikzpicture}
+\end{center}
+
+图中虚线为 cut off 情形，实线为指数衰减。
+
+%======================================================================
+\secn{1.11}{分支过程（Branching Process）}
+
+1874 年，Galton--Watson 提出\textbf{分支过程}（GW 过程），最初用于研究家族姓氏的消亡。
+
+设 $\{\xi_{ni}:n\ge0,\ i\ge1\}$ 为 i.i.d.\ 随机变量，取值于 $\N$，其分布称为\textbf{子代分布}：
+\[
+\Pp(\xi=k)=:p_k,\qquad k\ge0 .
+\]
+$\xi_{ni}$ 表示第 $n$ 代第 $i$ 个个体产生的后代数。记第 $n$ 代个体数为 $X_n$，则
+\[
+X_0=1,\qquad X_1=\xi_{01},\qquad X_{n+1}=\xi_{n1}+\cdots+\xi_{nX_n}.
+\]
+由定义，$X_n=0\Rightarrow X_{n+1}=0$，即 $0$ 是\textbf{吸收态}。
+
+\textbf{灭绝时间}与\textbf{灭绝概率}定义为
+\[
+\tau_0:=\inf\{n\ge0:X_n=0\},\qquad \rho:=\Pp_1(\tau_0<+\infty).
+\]
+显然
+\[
+\tau_0=+\infty\iff X_n\to+\infty .
+\]
+
+引入母函数（概率生成函数）
+\[
+f(s):=\E s^{\xi}=\sum_{k\ge0}p_ks^k,\qquad 0\le s\le1,
+\]
+以及平均后代数
+\[
+m:=\E\xi=\lim_{s\to1}f'(s)=f'(1)\quad(\text{可为}+\infty).
+\]
+
+\begin{proposition}
+记 $f_{X_n}(s):=\E s^{X_n}$，则
+\[
+f_{X_n}(s)=f^{(n)}(s),\qquad n\ge1,
+\]
+其中 $f^{(n)}$ 表示 $f$ 的 $n$ 次迭代。
+\end{proposition}
+
+\begin{proof}
+对 $n$ 归纳。由各代后代数独立，
+\begin{align*}
+f_{X_{n+1}}(s)
+&=\E s^{X_{n+1}}
+=\sum_k\Pp(X_n=k)\,\E\bigl(s^{X_{n+1}}\mid X_n=k\bigr)\\
+&=\sum_k\Pp(X_n=k)\,f(s)^k
+=f_{X_n}\bigl(f(s)\bigr).
+\end{align*}
+故 $f_{X_{n+1}}=f_{X_n}\circ f$；由归纳假设 $f_{X_n}=f^{(n)}$，从而 $f_{X_{n+1}}=f^{(n+1)}$。
+\end{proof}
+
+\begin{proposition}
+$\E X_n=m^n,\qquad n\ge0$。
+\end{proposition}
+
+\begin{proof}
+对 $n$ 归纳。由条件期望，
+\begin{align*}
+\E X_{n+1}
+&=\sum_k\Pp(X_n=k)\,\E(X_{n+1}\mid X_n=k)
+=\sum_k\Pp(X_n=k)\cdot km\\
+&=m\sum_k k\,\Pp(X_n=k)
+=m\cdot m^n
+=m^{n+1}. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{proposition}
+若 $m<1$，则 $\rho=1$（以概率 $1$ 灭绝）。
+\end{proposition}
+
+\begin{proof}
+由 $\tau_0=+\infty\iff X_n\ge1\ (\forall n)$，
+\[
+\Pp(\tau_0=+\infty)\le\Pp(\tau_0\ge n)=\Pp(X_n\ge1)\le\frac{\E X_n}{1}=m^n\longrightarrow0 .
+\]
+故 $\rho=1-\Pp(\tau_0=+\infty)=1$。
+\end{proof}
+
+\begin{proposition}
+$\rho$ 是方程 $s=f(s)$ 的最小非负解。
+\end{proposition}
+
+\begin{proof}
+由首步分析（对第一代个体数 $k$ 分解，各子树独立），
+\[
+\rho=\sum_{k\ge0}\Pp(\tau_0<+\infty,\ X_1=k)
+=p_0+\sum_{k\ge1}p_k\rho^k=f(\rho),
+\]
+故 $\rho$ 是方程 $s=f(s)$ 的不动点。又 $f(0)=p_0$，$f(1)=1$，$f'(1)=m$，且
+\[
+\rho=\lim_{n\to+\infty}\Pp_1(\tau_0\le n)
+=\lim_{n\to+\infty}\Pp_1(X_n=0)
+=\lim_{n\to+\infty}f^{(n)}(0).
+\]
+由于 $f$ 在 $[0,1]$ 上单调不减，$f^{(n)}(0)$ 单调上升；若 $s^*$ 是任一非负不动点，
+则归纳可得 $f^{(n)}(0)\le s^*$。故极限 $\rho$ 必定是最小非负解。
+\end{proof}
+
+\begin{center}
+\begin{tikzpicture}[x=4.0cm,y=4.0cm,>={Stealth[length=2mm]}]
+  \draw[->] (0,0) -- (1.16,0) node[below left=1pt] {$s$};
+  \draw[->] (0,0) -- (0,1.16) node[left] {$f(s)$};
+  \draw[densely dashed] (0,0) -- (1.06,1.06);
+  \node[right,inner sep=1pt] at (1.03,1.03) {\small $f(s)=s$};
+  \draw[thick] plot[domain=0:1,samples=120] (\x,{0.12+0.30*\x+0.58*\x*\x});
+  \fill (0,0.12) circle (1.1pt) node[left=2pt] {$p_0$};
+  \draw[densely dashed] (0.207,0) -- (0.207,0.207);
+  \fill (0.207,0.207) circle (1.1pt);
+  \node[below] at (0.207,0) {$\rho$};
+\end{tikzpicture}
+\end{center}
+
+由最小解刻画还可得到：若 $m>1$，则在 $1$ 的左侧附近 $f(s)<s$，故存在不动点 $s^*<1$，
+从而 $\rho\le s^*<1$，即以正概率永不灭绝。
+
+按平均后代数 $m$ 分类：
+\begin{itemize}
+  \item $m>1$：\textbf{超临界}（supercritical）；
+  \item $m=1$：\textbf{临界}（critical）；
+  \item $m<1$：\textbf{次临界}（subcritical），此时必灭绝（$\rho=1$）。
+\end{itemize}
+
+%======================================================================
+\chap{第二章\quad 跳过程}
+
+本章把时间参数由离散推广到连续，研究\textbf{连续时间马氏链}（跳过程）：状态空间仍可数，
+轨道在两次跳跃之间保持不变。
+
+设 $\{X_t:t\ge0\}$ 是取值于可数状态空间 $S$ 的随机过程。
+
+\begin{definition}[连续时间马氏链]
+设 $S$ 非空可数。若对 $\forall n$，任意 $0\le t_1<t_2<\cdots<t_n<s$ 及任意
+$i_1,\dots,i_n,i,j\in S$，有
+\[
+\Pp\bigl(X_{s+t}=j\mid X_s=i,\ X_{t_1}=i_1,\ \dots,\ X_{t_n}=i_n\bigr)
+=\Pp\bigl(X_{s+t}=j\mid X_s=i\bigr),\tag{$*$}
+\]
+则称 $\{X_t\}$ 为\textbf{连续时间马氏链}。若 ($*$) 的右端与起始时刻 $s$ 无关，
+记为 $p_{ij}(t)$，则称该链\textbf{时齐}。
+\end{definition}
+
+时齐链的转移矩阵记为
+\[
+P(t):=\bigl\{p_{ij}(t)\bigr\}_{i,j\in S}.
+\]
+
+\begin{center}
+\begin{tikzpicture}[x=2.1cm,y=1.05cm,>={Stealth[length=2mm]}]
+  \draw[->] (0,0) -- (5.5,0);
+  \draw[->] (0,0) -- (0,3.55);
+  \node[left] at (0,0.45) {$k$};
+  \node[left] at (0,1.8) {$i$};
+  \node[left] at (0,3.0) {$j$};
+  \draw[very thick] (0,0.45) -- (1.6,0.45) -- (1.6,1.8) -- (2.9,1.8)
+      -- (2.9,3.0) -- (4.2,3.0) -- (4.2,0.45) -- (5.3,0.45);
+  \node[below] at (1.6,0) {$s$};
+  \node[below] at (2.9,0) {$t$};
+  \node[below] at (4.2,0) {$u$};
+  \node[above left=1pt,inner sep=1pt] at (1.6,1.8) {$X_s=i$};
+  \node[above left=1pt,inner sep=1pt] at (2.9,3.0) {$X_t=j$};
+\end{tikzpicture}
+\end{center}
+
+研究连续时间马氏链通常有三种方法：
+\begin{itemize}
+  \item 研究 $P(t)$ 的性质（生成元、半群结构等）；
+  \item 构造轨道（如泊松过程、跳链）；
+  \item 离散化：\textbf{嵌入链} $X_k$；\textbf{骨架链} $\{X_{nh}\}$（$h$ 为步长）。
+\end{itemize}
+
+\secn{2.1}{泊松过程}
+
+\subsection*{2.1.1\quad 基于指数分布}
+
+设 $\xi_1,\xi_2,\dots$ i.i.d.\ $\sim\mathrm{Exp}(\lambda)$，即
+\[
+\Pp(\xi>t)=e^{-\lambda t},\qquad t\ge0 .
+\]
+记部分和
+\[
+S_n:=\xi_1+\cdots+\xi_n,\qquad S_0=0,
+\]
+并定义
+\[
+X_t:=\sup\{n\ge0:S_n\le t\},\qquad S_n=\inf\{t\ge0:X_t\ge n\}.
+\]
+则 $X_t$ 称为\textbf{泊松过程}，$\{S_n\}$ 称为\textbf{泊松流}（点过程）；
+$\xi_k$ 为\textbf{等待时间}，$\lambda$ 为\textbf{速率}。
+
+\begin{definition}[计数过程]
+称 $\{X_t:t\ge0\}$ 为\textbf{计数过程}，若（1）$X_t$ 取值于 $\N$；（2）$X_t$ 关于 $t$ 单调不减；
+（3）轨道右连续、有左极限（右连左极）。
+\end{definition}
+
+\begin{proposition}
+设 $\{X_t\}$ 为泊松过程，则 $X_t\sim\mathrm{Poisson}(\lambda t)$。
+\end{proposition}
+
+\begin{proof}
+先算 $k=0$：
+\[
+\Pp(X_t=0)=\Pp(S_1>t)=e^{-\lambda t}.
+\]
+（这里用到指数分布的\textbf{无记忆性}。）对 $k\ge1$，
+\[
+\Pp(X_t=k)=\Pp(S_k\le t<S_{k+1})
+=\int_{D_k}\lambda^{k+1}e^{-\lambda S_{k+1}}\,dx_1\cdots dx_{k+1},
+\]
+其中
+\[
+D_k:=\bigl\{x_1+\cdots+x_k\le t,\ x_{k+1}\ge t-S_k,\ x_1,\dots,x_{k+1}\ge0\bigr\}.
+\]
+先对 $x_{k+1}$ 积分：
+\[
+\int_{x_{k+1}\ge t-S_k}\lambda e^{-\lambda x_{k+1}}\,dx_{k+1}=e^{-\lambda(t-S_k)},
+\]
+故
+\begin{align*}
+\Pp(X_t=k)
+&=\int_{C_k}\lambda^k e^{-\lambda S_k}\,dx_1\cdots dx_k\cdot e^{-\lambda(t-S_k)}\\
+&=e^{-\lambda t}\lambda^k\int_{C_k}dx_1\cdots dx_k
+=e^{-\lambda t}\frac{(\lambda t)^k}{k!},
+\end{align*}
+其中 $C_k:=\{x_1+\cdots+x_k\le t,\ x_i\ge0\}$，其体积为 $t^k/k!$。 \qedhere
+\end{proof}
+
+\begin{remark}
+本笔记的手写稿整理到此处，2.1 节其余内容与后续小节待补。
+\end{remark}
 
 \end{document}
