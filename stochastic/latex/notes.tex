@@ -15,6 +15,8 @@
 
 % ---------- 版式与图表 ----------
 \usepackage{array}
+\usepackage{needspace}
+\usepackage{float}
 \usepackage{longtable}
 \usepackage{tabularx}
 \usepackage{graphicx}
@@ -129,14 +131,14 @@ $\sigma_i=\inf\{n\ge 1:X_n=i\}$ 为首入时；$V_i=\sum_{n\ge0}\ind{X_n=i}$ 为
 
 \section{课程地图（MAP）}
 
-本课程在整个概率课程体系中的位置大致如下：
+本课程在概率课程体系中的位置，可以用下面的“课程地图”来概括：
 
 \begin{itemize}
-  \item \textbf{概率论}：独立随机变量（R.V.）的极限定理，是整个体系的出发点；
-  \item \textbf{应用随机过程}（本课程）：相依随机变量序列的极限，由概率论发展而来；
-  \item \textbf{高维概率论}：非极限定理、精细不等式；
-  \item \textbf{高等概率论}：独立情形的复杂极限（旁注：突变、测度论）；
-  \item \textbf{应用随机分析}：布朗运动、随机微积分，由应用随机过程发展而来；
+  \item \textbf{概率论}：研究独立随机变量（R.V.）的极限定理，是整个体系的出发点；
+  \item \textbf{应用随机过程}（本课程）：研究相依随机变量序列的极限，由概率论发展而来；
+  \item \textbf{高维概率论}：不研究极限定理，而关注精细不等式；
+  \item \textbf{高等概率论}：处理独立情形下更复杂的极限（旁注：突变、测度论）；
+  \item \textbf{应用随机分析}：研究布朗运动与随机微积分，由应用随机过程发展而来；
   \item \textbf{随机过程论}：由高等概率论发展而来；
   \item \textbf{随机分析}：其基础工具之一是泛函分析。
 \end{itemize}
@@ -157,9 +159,9 @@ $\sigma_i=\inf\{n\ge 1:X_n=i\}$ 为首入时；$V_i=\sum_{n\ge0}\ind{X_n=i}$ 为
 
 \section{模型与研究方法简史}
 
-\textbf{20 世纪前半叶}：独立 R.V. 的和（极限定理）、严格 M.B.、布朗运动。
+\textbf{20 世纪前半叶}：研究重点包括独立随机变量和的极限定理、严格马尔可夫性（M.B.）与布朗运动。
 
-\textbf{20 世纪后半叶至今}：模型与研究方法可概括为下表。
+\textbf{20 世纪后半叶至今}：模型与研究方法大致可概括为下表。
 
 \begin{center}
 \begin{tabular}{c|p{5.6cm}|p{6.4cm}}
@@ -183,7 +185,7 @@ $\sigma_i=\inf\{n\ge 1:X_n=i\}$ 为首入时；$V_i=\sum_{n\ge0}\ind{X_n=i}$ 为
 
 \section{预备知识：极限定理回顾}
 
-设 $\{X_n\}$ 为随机变量序列，记 $A_n:=\{|X_n-X|>\varepsilon\}$，则以下几条是全课程反复使用的工具：
+设 $\{X_n\}$ 为随机变量序列，记 $A_n:=\{|X_n-X|>\varepsilon\}$，则以下几条结论是全课程反复使用的工具：
 \begin{itemize}
   \item 依概率收敛：$X_n\xrightarrow{\ P\ }X\iff \Pp(A_n)\to 0$；
   \item 几乎必然收敛：$X_n\xrightarrow{\ \mathrm{a.s.}\ }X\iff \Pp\Bigl(\bigcup_{n\ge N}A_n\Bigr)\to 0\ (N\to\infty)$；
@@ -199,7 +201,7 @@ $\sigma_i=\inf\{n\ge 1:X_n=i\}$ 为首入时；$V_i=\sum_{n\ge0}\ind{X_n=i}$ 为
 
 \section{随机元}
 
-设 $(\Omega,\mathcal{F},\Pp)$ 为概率空间，$S$ 为可测空间。取值于 $S$ 的随机变量称为
+设 $(\Omega,\mathcal{F},\Pp)$ 为概率空间，$S$ 为可测空间。取值于 $S$ 的可测映射称为
 \textbf{随机元}：$X_n,\,X_t:(\Omega,\mathcal{F},\Pp)\to S$。于是
 
 \[
@@ -208,7 +210,7 @@ $\sigma_i=\inf\{n\ge 1:X_n=i\}$ 为首入时；$V_i=\sum_{n\ge0}\ind{X_n=i}$ 为
 \{X_t:t\ge0\}:(\Omega^{\R^+},\mathcal{F}^{\R^+},\Pp)\to S^{\R^+},
 \]
 
-即一个随机过程（序列）可以看作乘积空间上的一个随机元。
+也就是说，一个随机过程（或随机序列）可以看作乘积空间上的一个随机元。
 
 %======================================================================
 \chapter{马氏链}
@@ -218,7 +220,7 @@ $\sigma_i=\inf\{n\ge 1:X_n=i\}$ 为首入时；$V_i=\sum_{n\ge0}\ind{X_n=i}$ 为
 
 \section{定义与例子}
 
-设 $\{X_n:n\ge0\}$ 的状态空间 $S$ 离散。
+设 $\{X_n:n\ge0\}$ 是状态空间 $S$ 离散的随机过程。
 
 \begin{definition}[马氏链]
 若对 $\forall n\ge0$ 及任意 $i_0,i_1,\dots,i_{n-1},\,i,\,j\in S$，存在 $p_{ij}$ 使得
@@ -230,12 +232,14 @@ $\sigma_i=\inf\{n\ge 1:X_n=i\}$ 为首入时；$V_i=\sum_{n\ge0}\ind{X_n=i}$ 为
 
 \begin{proposition}
 转移概率满足：（1）$p_{ij}\ge0$，$\sum_j p_{ij}=1$；（2）$p_{ij}=\Pp(X_{n+1}=j\mid X_n=i)$。
-
-证明：（2）由全概率公式对历史求和即得。
 \end{proposition}
 
+\begin{proof}
+（1）由概率测度的定义直接得到；（2）由全概率公式对历史状态求和即得。
+\end{proof}
+
 \begin{example}[一维简单随机游动，SRW]
-$S=\Z$，$p_{i,i-1}=p_{i,i+1}=\tfrac12$。等价地：取 $\xi_1,\xi_2,\dots$ i.i.d.，
+设 $S=\Z$，转移概率为 $p_{i,i-1}=p_{i,i+1}=\tfrac12$。等价地，可以取 i.i.d. 随机变量 $\xi_1,\xi_2,\dots$，
 $\Pp(\xi_n=1)=\Pp(\xi_n=-1)=\tfrac12$；令 $S_0:=0$（或与 $\{\xi_n\}$ 独立），
 \[
 S_n:=S_0+\xi_1+\dots+\xi_n=S_{n-1}+\xi_n ,
@@ -245,7 +249,7 @@ S_n:=S_0+\xi_1+\dots+\xi_n=S_{n-1}+\xi_n ,
 
 \begin{example}[$d$ 维 SRW]
 设 $e_i$（$i=1,\dots,d$）为坐标单位向量，
-$\Pp(\xi=e_i)=\Pp(\xi=-e_i)=\tfrac{1}{2d}$。在边界上可加约束：
+$\Pp(\xi=e_i)=\Pp(\xi=-e_i)=\tfrac{1}{2d}$。若把随机游动限制在区域边界上，还可加入以下边界条件：
 \begin{itemize}
   \item \textbf{吸收壁} $x^*$：$p_{(x^*,y),(x^*,y)}=1$；
   \item \textbf{反射壁} $x^*$：$p_{(x^*,y),(x^*-1,y)}=1$，
@@ -254,7 +258,7 @@ $\Pp(\xi=e_i)=\Pp(\xi=-e_i)=\tfrac{1}{2d}$。在边界上可加约束：
 \end{example}
 
 \begin{example}[两状态马氏链]
-参数 $p_{01},p_{10}$，转移图如下：
+设转移概率为 $p_{01},p_{10}$，其转移图如下：
 \[
 \begin{tikzpicture}[scale=1.05,>={Stealth[length=2.2mm]}]
   \node (A) at (0,0) {$\bullet$};
@@ -270,7 +274,7 @@ $\Pp(\xi=e_i)=\Pp(\xi=-e_i)=\tfrac{1}{2d}$。在边界上可加约束：
 \end{example}
 
 \begin{example}[Ehrenfest 模型]
-共 $N$ 个球分装在箱 $A,B$ 中；$X_n:=$ 第 $n$ 次操作后 $A$ 中的球数，$S=\{0,1,\dots,N\}$。
+设有 $N$ 个球分装在箱 $A,B$ 中；用 $X_n$ 表示第 $n$ 次操作后 $A$ 中的球数，则$S=\{0,1,\dots,N\}$。
 每次等可能地取出一个球放入另一箱，故从状态 $i$ 出发：
 $i\to i-1$ 的概率为 $\tfrac{i}{N}$（从 $A$ 中取球），$i\to i+1$ 的概率为 $1-\tfrac{i}{N}$。
 \[
@@ -285,14 +289,14 @@ $i\to i-1$ 的概率为 $\tfrac{i}{N}$（从 $A$ 中取球），$i\to i+1$ 的�
 \end{example}
 
 \begin{example}[更新过程]
-设 $L_1,L_2,\dots\ \doteq\ L$ i.i.d.，$L_n$ 为第 $n$ 个物品的寿命。令
+设 $L_1,L_2,\dots$ 独立同分布，$L_n$ 表示第 $n$ 个物品的寿命。令
 $S_0=0$，$S_n:=L_1+\dots+L_n$（$n\ge1$）为\textbf{更新时刻}，
 \[
 N_n:=\max\{k:S_k\le n\}
 \]
-为到时刻 $n$ 的更新次数。\textbf{$\{N_n\}$ 不是马氏链}。
+为到时刻 $n$ 的更新次数。注意 $\{N_n\}$ \textbf{不是马氏链}。
 
-定义\textbf{余寿} $X_n:=S_{r_n}-n$，其中 $r_n:=\inf\{r:S_r\ge n\}$。则 $\{X_n\}$ 是马氏链：
+再定义\textbf{余寿} $X_n:=S_{r_n}-n$，其中 $r_n:=\inf\{r:S_r\ge n\}$。则 $\{X_n\}$ 是马氏链：
 $S=\Z^+$，且
 \[
 p_{0,i}=\Pp(L=i+1)\quad(\forall i\ge0),\qquad p_{i,i-1}=1\quad(\forall i\ge1).
@@ -300,7 +304,7 @@ p_{0,i}=\Pp(L=i+1)\quad(\forall i\ge0),\qquad p_{i,i-1}=1\quad(\forall i\ge1).
 \end{example}
 
 \begin{example}[图上的随机游动]
-设 $G=(V,E)$，顶点 $i\mapsto d_i$（度）。取 $S=V$，
+设 $G=(V,E)$ 为图，顶点 $i$ 的度记为 $d_i$，并取 $S=V$。定义转移概率
 \[
 p_{ij}=
 \begin{cases}
@@ -367,30 +371,31 @@ $P^{\,n+m}=P^{\,n}P^{\,m}$。
 
 \subsection{不变分布}
 
-记 $\Pp_\mu,\Pp_i$，其中 $\Pp_i(A)=\Pp_\mu(A\mid X_0=i)$，且
+对初分布 $\mu$，记 $\Pp_\mu$ 为相应的概率律；特别地，记 $\Pp_i:=\Pp_\mu(\,\cdot\mid X_0=i)$。于是
 \[
 \Pp_\mu(A)=\sum_i\mu_i\,\Pp_i(A),\qquad \mu\ \text{为概率行向量}.
 \]
-于是 $\Pp_\mu(X_1=j)=\sum_i\mu_i p_{ij}=(\mu P)_j$；$X_n\mid X_0\sim\mu$ 的分布为 $\mu P^n$。
+于是 $\Pp_\mu(X_1=j)=\sum_i\mu_i p_{ij}=(\mu P)_j$；若 $X_0\sim\mu$，则 $X_n$ 的分布为 $\mu P^n$。
 
 \begin{definition}[不变测度 / 不变分布]
 $\pi=(\pi_j)_{j\in S}$ 称为 $(S,P)$ 上的\textbf{不变测度}，若其满足 $\pi P=\pi$；
 当 $\pi$ 还是概率分布时称为\textbf{不变分布}。
 \end{definition}
 
-此时若 $X_0\sim\pi$，则 $(X_0,X_1,\dots,X_n)\ \doteq\ (X_m,X_{m+1},\dots,X_{m+n})$，
-$\forall\,n,m\ge1$，称 $\{X_n\}$ 为\textbf{平稳过程}。
+若 $X_0\sim\pi$，则对任意 $n,m\ge1$ 有
+$(X_0,X_1,\dots,X_n)\ \doteq\ (X_m,X_{m+1},\dots,X_{m+n})$，
+此时称 $\{X_n\}$ 为\textbf{平稳过程}。
 
 \paragraph{流量角度}
-平稳过程（按定义）$\iff \pi_i=\sum_j\pi_jp_{ji}$，而
+从流量角度看，平稳性等价于 $\pi_i=\sum_j\pi_jp_{ji}$，而
 \[
 \iff\ \sum_{j\ne i}\pi_jp_{ji}=\pi_i-\pi_ip_{ii}=\sum_{j\ne i}\pi_ip_{ij},
 \]
 即“流入 $i$ 节点之流量 $=$ 流出 $i$ 节点之流量”。
 
 \begin{example}[更新过程的不变分布]
-余寿链 $X_n$：$p_{0,i}=\Pp(L=i+1)$（$i\ge0$），$p_{i,i-1}=1$（$i\ge1$）。
-考虑 $A=\{i,i+1,\dots\}$ 之流量：跨过割线进入 $A$ 的流量只能来自 $0\to i$ 的跳跃，
+考虑余寿链 $X_n$：$p_{0,i}=\Pp(L=i+1)$（$i\ge0$），$p_{i,i-1}=1$（$i\ge1$）。
+取 $A=\{i,i+1,\dots\}$，考察跨过割线的流量：进入 $A$ 的流量只能来自 $0\to i$ 的跳跃，
 而离开 $A$ 的流量为 $\pi_i\cdot p_{i,i-1}$，故
 \[
 \pi_0\cdot\Pp(L\ge i+1)=\pi_i,
@@ -401,7 +406,7 @@ $\forall\,n,m\ge1$，称 $\{X_n\}$ 为\textbf{平稳过程}。
 \end{example}
 
 \begin{example}
-$S=\Z^+$，$p_{01}=1$；$\forall i\ge1$：$p_{i,i-1}=\dfrac{\lambda}{\lambda+1}$，
+设 $S=\Z^+$，$p_{01}=1$；对 $i\ge1$，令 $p_{i,i-1}=\dfrac{\lambda}{\lambda+1}$，
 $p_{i,i+k}=\dfrac{p_k}{\lambda+1}\ (\forall k\ge1)$，其中 $\sum_k p_k=1$。求其不变分布。
 
 考虑 $A=\{i,i+1,\dots\}$。
@@ -438,7 +443,7 @@ $\pi=(\pi_j)_{j\in S}$ 称为 $(S,P)$ 的\textbf{配称测度（分布）}，若
 \]
 \end{definition}
 
-易证：$\pi$ 是配称分布 $\darr$ $\pi$ 是不变分布。故配称分布亦称为\textbf{可逆分布}。
+事实上，对 $j$ 求和即得：若 $\pi$ 是配称分布，则 $\pi$ 是不变分布。因此配称分布也称为\textbf{可逆分布}。
 
 \begin{definition}[逆过程]
 设 $\{X_n\}$ 为马氏链，$\pi$ 为不变分布，转移概率为 $P$。对固定 $N\ge2$，
@@ -450,11 +455,11 @@ $\pi=(\pi_j)_{j\in S}$ 称为 $(S,P)$ 的\textbf{配称测度（分布）}，若
 =\frac{\pi_jp_{ji}}{\pi_i}.
 \]
 若 $\{Y_n\}\ \doteq\ \{X_n\}$，则 $\widehat{P}_{ij}=p_{ij}$，即
-$\pi_ip_{ij}=\pi_jp_{ji}$，$\pi$ 为可逆分布。
+$\pi_ip_{ij}=\pi_jp_{ji}$，此时称 $\pi$ 为可逆分布。
 \end{definition}
 
 \begin{example}[生灭链]
-$p_{i,i+1}=b_i$，$p_{i,i-1}=d_i$，$\forall i\ge0$；$b_0=1$，$b_i+d_i=1$。
+设 $p_{i,i+1}=b_i$，$p_{i,i-1}=d_i$，$\forall i\ge0$；$b_0=1$，$b_i+d_i=1$。
 \[
 \begin{tikzpicture}[scale=0.85,>={Stealth[length=2mm]}]
   \draw[->] (-0.4,0)--(7.6,0);
@@ -491,15 +496,13 @@ C<+\infty\ \darr\ \pi_0=\frac{1}{C}. \qed
 \[
 p_{i_0i_1}p_{i_1i_2}\cdots p_{i_ni_0}=p_{i_0i_n}p_{i_ni_{n-1}}\cdots p_{i_1i_0},
 \]
-则存在配称测度 $\pi$。
-
-构造：固定 $i_0\in S$，找 $n\ge1$ 及 $i_k\ne i_0$ 使
+则存在配称测度 $\pi$。其构造如下：固定 $i_0\in S$，找 $n\ge1$ 及 $i_k\ne i_0$ 使
 $p_{i_0i_1}\cdots p_{i_{n-1}i_n}>0$；令
 \[
 \pi_{i_0}:=1,\qquad
 \pi_{i_n}:=\pi_{i_0}\,\frac{p_{i_0i_1}\cdots p_{i_{n-1}i_n}}{p_{i_ni_{n-1}}\cdots p_{i_1i_0}},
 \]
-归一化即可。
+最后将所得测度归一化即可。
 
 \begin{example}[图上的 SRW]
 $\pi_i\propto d_i$（$p_{ij}=1/d_i$），不变分布亦是可逆分布：
@@ -507,7 +510,7 @@ $\pi_i\propto d_i$（$p_{ij}=1/d_i$），不变分布亦是可逆分布：
 \end{example}
 
 \begin{example}[一维紧邻随机游动]
-$p_{i,i+1}=p$，$p_{i,i-1}=1-p:=q$。
+设 $p_{i,i+1}=p$，$p_{i,i-1}=1-p:=q$。
 
 配称测度为 $\pi_i=\pi_0\bigl(\tfrac{p}{q}\bigr)^i$（“唯一”）。但
 $\sum_{i=-\infty}^{+\infty}\bigl(\tfrac{p}{q}\bigr)^i=+\infty$，故\textbf{不存在可逆分布}。
@@ -590,6 +593,8 @@ $\dfrac{V_0(n)}{n+1}\xrightarrow{\ \text{a.s.}\ }\dfrac{1}{\E L_r}=\pi_0$。 \qe
 
 \section{状态的分类}
 
+本节按状态之间的可达关系对状态进行分类。
+
 \begin{definition}[可达与互通]
 若 $\Pp_i\bigl(\exists\,n\ge0,\ \text{s.t. }X_n=j\bigr)>0$，则称 $i$ \textbf{可达} $j$，记 $i\reach j$。
 \end{definition}
@@ -604,7 +609,7 @@ $\dfrac{V_0(n)}{n+1}\xrightarrow{\ \text{a.s.}\ }\dfrac{1}{\E L_r}=\pi_0$。 \qe
 
 \begin{definition}[互通与不可约]
 若 $i\reach j$ 且 $j\reach i$，则称 $i,j$ \textbf{互通}，记 $i\comm j$。
-若 $S$ 中任意 $i,j$ 互通，则称 $(P,S)$ 马氏链\textbf{不可约}。
+若 $S$ 中任意 $i,j$ 互通，则称该马氏链（或 $(P,S)$）\textbf{不可约}。
 互通类 $[i]:=\{j\in S:i\comm j\}$。
 \end{definition}
 
@@ -618,7 +623,7 @@ $\Pp_i\bigl(\exists n\ge0,\ X_n\notin A\bigr)>0$，$\forall i\in A$。
 \end{proposition}
 
 \begin{remark}
-若 $|A|<+\infty$，则上述概率为 $1$。若 $|A|=+\infty$ 则未必：考虑带吸收态的随机游动
+若 $|A|<+\infty$，则上述概率为 $1$；若 $|A|=+\infty$，则未必。例如，考虑带吸收态的随机游动
 （$0$ 为吸收态，$1,2,\dots$ 上向右概率 $p>q$）：
 \[
 p_i:=\Pp_i(\exists n,\ X_n=0)
@@ -629,9 +634,11 @@ p_i:=\Pp_i(\exists n,\ X_n=0)
 
 \section{首达时与强马氏性}
 
+本节引入首达时与首入时，并证明强马氏性。
+
 \subsection{首达时与首入时}
 
-轨道 $\vec{X}(\omega):=(X_0(\omega),X_1(\omega),\dots)$。
+记轨道为 $\vec{X}(\omega):=(X_0(\omega),X_1(\omega),\dots)$。
 
 \begin{definition}
 \textbf{首达时} $\tau_i(\omega):=\inf\{n\ge0:X_n(\omega)=i\}$，约定 $\inf\varnothing:=+\infty$；
@@ -648,7 +655,7 @@ p_i:=\Pp_i(\exists n,\ X_n=0)
 \end{proposition}
 
 \begin{proof}
-只需考虑 $1\le i<n$。对任意从 $i$ 出发到达 $i+j$ 的轨道（在时刻 $\tau_i$ 首次触及水平线
+只需考虑 $1\le i<n$。事实上，对任意从 $i$ 出发到达 $i+j$ 的轨道（在时刻 $\tau_i$ 首次触及水平线
 $i$），将 $\tau_i$ 之后的部分关于水平线 $S=i$ 反射，得到一条从 $i$ 到 $i-j$ 的轨道与之对应；
 由 SRW 每条路径等概率即知二者概率相等。
 \begin{center}
@@ -673,7 +680,7 @@ $\Pp_0(\tau_i=n)=\dfrac{i}{n}\,\Pp_0(S_n=i)$。
 \end{proposition}
 
 \begin{proof}
-易知在 RW 中 $n$ 与 $i$ 奇偶性相同。分解
+由于随机游动的奇偶性，$n$ 与 $i$ 必须同奇偶。分解
 \[
 \{S_n=i\}=\{\tau_i=n\}\ \sqcup\ \{\tau_i<n,\ S_n=i\},
 \]
@@ -843,11 +850,11 @@ $\tau_1,\ \tau_2-\tau_1,\ \dots,\ \tau_i-\tau_{i-1}$ i.i.d.
 
 \section{常返性}
 
-$j\reach i$ 可达 $\iff \Pp_j(\tau_i<+\infty)>0$。本节回答：总共访问 $i$ 多少次？
+$j\reach i$ 等价于 $\Pp_j(\tau_i<+\infty)>0$。本节讨论：从 $j$ 出发，总共会访问 $i$ 多少次？
 
 \subsection{回访时间}
 
-给定 $i$。$T_0:=0$；若 $T_{r-1}<+\infty$，则定义
+固定状态 $i$。$T_0:=0$；若 $T_{r-1}<+\infty$，则定义
 \[
 T_r:=\inf\{n\ge T_{r-1}+1:\ X_n=i\},
 \qquad
@@ -909,7 +916,7 @@ $n_S:=\sum_{t=1}^{S}m_t$（$n_0:=0$），$\vec{Z}_S:=(X_{n_{S-1}},\dots,X_{n_S})
 \end{proposition}
 
 \begin{proof}
-归纳法。$r=1$ 时 $T_1=\sigma_1$，故成立。一般地
+对 $r$ 归纳。$r=1$ 时 $T_1=\sigma_1$，故成立。一般地
 \[
 \Pp_i(T_r<+\infty)
 =\Pp_i\bigl(T_r<+\infty\mid T_1<+\infty,\dots,T_{r-1}<+\infty\bigr)\cdot
@@ -923,6 +930,7 @@ $n_S:=\sum_{t=1}^{S}m_t$（$n_0:=0$），$\vec{Z}_S:=(X_{n_{S-1}},\dots,X_{n_S})
 
 \subsection{回访总次数}
 
+定义访问 $i$ 的总次数
 \[
 V_i:=\sum_{n=0}^{+\infty}\ind{X_n=i}.
 \]
@@ -956,7 +964,7 @@ $\vec{Z}^{(1)},\vec{Z}^{(2)},\dots$ i.i.d.
 \end{proposition}
 
 \begin{proof}
-（2）$\Rightarrow$（3）显然（$V_j=+\infty$ 时必有 $\tau_j<+\infty$）。只需证（1）（2）。
+（2）$\Rightarrow$（3）是显然的（$V_j=+\infty$ 时必有 $\tau_j<+\infty$）。下面只需证（1）（2）。
 
 先证（2）（i）$\Pp_i(V_j=+\infty)=1$：取 $X_0=i$，$\vec{Z}^{(1)},\vec{Z}^{(2)},\dots$ i.i.d.，
 令 $A_r:=\{\vec{Z}^{(r)}\ \text{中含有}\ j\}$。则 $A_r$ i.i.d.，且
@@ -987,10 +995,12 @@ $\{V_j=+\infty\}=\{V_j^{(Y)}=+\infty\}$，故
 
 \section{击中概率}
 
+本节用首步分析法计算击中概率，并据此给出常返性的判别准则。
+
 \subsection{首步分析法}
 
 \begin{example}[赌徒破产模型]
-SRW，$\tau=\tau_0\wedge\tau_N$。则 $\Pp(\tau_0<+\infty,\ \tau_N<+\infty)=1$。令
+设 $\{S_n\}$ 为简单随机游动，$\tau=\tau_0\wedge\tau_N$。则 $\Pp(\tau_0<+\infty,\ \tau_N<+\infty)=1$。令
 $x_k:=\Pp_k(\tau_N<\tau_0)$，由首步分析
 \[
 x_k=\tfrac12x_{k+1}+\tfrac12x_{k-1},
@@ -999,44 +1009,43 @@ x_k=\tfrac12x_{k+1}+\tfrac12x_{k-1},
 \]
 \end{example}
 
-一般马氏链。固定 $0\in S$，$x_i:=\Pp_i(\tau_0<+\infty)$，则
+对一般马氏链，固定 $0\in S$，记 $x_i:=\Pp_i(\tau_0<+\infty)$，则
 \begin{equation}
 x_i=\sum_{j\in S}p_{ij}x_j,\quad\forall i\ne0;
 \qquad x_0=1.
 \tag{$\ast$}
 \end{equation}
-固定 $D\subseteq S$，$x_i:=\Pp_i(\tau_D<+\infty)$，则
+类似地，固定 $D\subseteq S$，记 $x_i:=\Pp_i(\tau_D<+\infty)$，则
 \begin{equation}
 x_i=\sum_{j\in S}p_{ij}x_j,\quad\forall i\notin D;
 \qquad x_i=1,\quad\forall i\in D.
 \tag{$\ast$}
 \end{equation}
-称 $x_i=\Pp_i(\tau_0<+\infty)$ 为\textbf{从 $i$ 出发到 $0$ 的击中概率}。
+我们称 $x_i=\Pp_i(\tau_0<+\infty)$ 为\textbf{从 $i$ 出发到 $0$ 的击中概率}。
 
 \begin{proposition}
 击中概率是方程 $(\ast)$ 的最小非负解。
 \end{proposition}
 
 \begin{definition}
-称满足 $p_{ii}=1$ 的状态 $i$ 为\textbf{吸收态}。设 $D\subseteq S$ 为闭集，
-$\Pp_j(\tau_D<+\infty)$ 称为\textbf{从 $j$ 出发被 $D$ 吸收的概率}。
+称满足 $p_{ii}=1$ 的状态 $i$ 为\textbf{吸收态}。对闭集 $D\subseteq S$，称 $\Pp_j(\tau_D<+\infty)$ 为\textbf{从 $j$ 出发被 $D$ 吸收的概率}。
 \end{definition}
 
 \begin{question}
-$\tau_D$ 的分布？$\Pp_i(\tau_D=k)=?$\quad
-$i\in D$ 时 $\Pp_i(\tau_D=0)=1$；$i\in D^c$ 时留作讨论。
+一个自然的问题是：$\tau_D$ 的分布是什么？即如何计算 $\Pp_i(\tau_D=k)$？当 $i\in D$ 时，
+$\Pp_i(\tau_D=0)=1$；当 $i\in D^c$ 时留作讨论。
 \end{question}
 
 \subsection{判别常返性}
 
-设 $S$ 不可约（$S$ 互通），给定 $0\in S$。则
+设 $S$ 不可约（即 $S$ 中任意两点互通），给定 $0\in S$。则
 \[
 \rho_0=\Pp_0(\sigma_0<+\infty)=\sum_i p_{0i}\,\Pp_i(\tau_0<+\infty),
 \]
 且 $0$ 常返 $\iff\rho_0=1\iff \Pp_i(\tau_0<+\infty)=1,\ \forall i\in S$。
 
 \begin{proposition}
-常返 $\iff$ 方程组
+状态 $0$ 常返，当且仅当方程组
 \[
 \begin{cases}
 x_i=\sum_{j\in S}p_{ij}x_j, & \forall i\ne0,\\
@@ -1047,23 +1056,23 @@ x_0=1
 \end{proposition}
 
 \begin{example}[生灭链的常返性]
-$S=\Z^+$，$p_{i,i+1}=b_i$，$p_{i,i-1}=d_i$，$b_i+d_i=1$，$b_0=1$。
+设 $S=\Z^+$，$p_{i,i+1}=b_i$，$p_{i,i-1}=d_i$，$b_i+d_i=1$，$b_0=1$。
 令 $x_i=\Pp_i(\tau_0<+\infty)$，则
 \[
 x_i=b_ix_{i+1}+d_ix_{i-1}\qquad(i\ge1).
 \]
-解：令 $R_i:=1+\sum_{k=1}^{i}\dfrac{d_1\cdots d_k}{b_1\cdots b_k}$，$R_0:=1$，则
+为解此方程，令 $R_i:=1+\sum_{k=1}^{i}\dfrac{d_1\cdots d_k}{b_1\cdots b_k}$，$R_0:=1$，则
 \[
 R_i\,(1-x_1)=1-x_{i+1}\qquad(i\ge0);
 \qquad
 R:=1+\sum_{k\ge1}\frac{d_1\cdots d_k}{b_1\cdots b_k}.
 \]
-于是 $R<+\infty$ 时可构造 $x_1=1-\dfrac1R$（此时 $1-x_{i+1}=\dfrac{R_i}{R}\in[0,1]$），
-非常返；$R=+\infty$ 时有且仅有唯一解 $x_i\equiv1$，常返。 \qed
+于是，当 $R<+\infty$ 时可构造 $x_1=1-\dfrac1R$（此时 $1-x_{i+1}=\dfrac{R_i}{R}\in[0,1]$），
+此时非常返；当 $R=+\infty$ 时有且仅有唯一解 $x_i\equiv1$，此时常返。 \qed
 \end{example}
 
 \begin{remark}[两端生灭链]
-$S=\Z$，$p_{i,i+1}=p$，$p_{i,i-1}=q$。只有 $p=q$ 时常返。
+设 $S=\Z$，$p_{i,i+1}=p$，$p_{i,i-1}=q$。该链只有 $p=q$ 时常返。
 
 $p>q$ 时 $\Pp_0(\tau_1<+\infty)=1$。考虑 $x:=\Pp_0(\tau_{-1}<+\infty)$，首步分析：
 \[
@@ -1074,6 +1083,7 @@ x=q\cdot1+p\cdot\Pp_1(\tau_{-1}<+\infty)=q+p\,x^2
 \end{remark}
 
 \begin{example}[规则树 $\mathbb{T}^d$ 上的 $\lambda$-biased RW]
+设转移概率为
 \[
 p_{ij}=
 \begin{cases}
@@ -1109,6 +1119,8 @@ a_0-a_n=(a_0-a_1)\Bigl(1+\frac{\lambda}{d}+\frac{\lambda^2}{d^2}+\dots+\frac{\la
 
 \section{格林函数}
 
+本节引入 Green 函数，用它统一处理常返性、击中概率与平均吸收时间。
+
 \subsection{判别常返性}
 
 对 $i,j\in S$，定义
@@ -1117,10 +1129,10 @@ G_{ij}:=\E_iV_j=\E_i\sum_{n\ge0}\ind{X_n=j}
 \xrightarrow{\ \text{Fubini}\ }
 \sum_{n\ge0}\E_i\ind{X_n=j}=\sum_{n\ge0}p_{ij}^{(n)},
 \]
-称为 \textbf{Green 函数}。
+并称其为 \textbf{Green 函数}。
 
 \begin{proposition}
-$i$ 常返 $\iff G_{ii}=+\infty$（by definition）。
+$i$ 常返 $\iff G_{ii}=+\infty$（由定义直接得到）。
 \end{proposition}
 
 \begin{example}[$d$ 维 SRW]
@@ -1153,14 +1165,14 @@ p_{00}^{(2n)}=\sum_{n_1+n_2+n_3=2n}\frac{(2n)!}{(n_1!\,n_2!\,n_3!)^2}\cdot\frac{
 故 $G_{00}<+\infty$，非常返。
 \end{example}
 
-\subsection{格林函数的其他应用}
+\subsection{Green 函数的其他应用}
 
 \begin{proposition}
 设 $i\reach j$，$i$ 常返，则 $j$ 常返。
 \end{proposition}
 
 \begin{proof}
-前面已证 $i\reach j\ \darr\ j\reach i$。而
+前面已经证明 $i\reach j\Rightarrow j\reach i$。而
 \[
 i\comm j\iff \exists\,m,n\ge0:\ p_{ij}^{(n)}>0,\ p_{ji}^{(m)}>0,
 \]
@@ -1176,7 +1188,7 @@ $G_{ij}=\Pp_i(\tau_j<+\infty)\cdot G_{jj}$\quad（$\darr\ G_{ij}\le G_{jj}$）�
 \end{proposition}
 
 \begin{proof}
-只考虑 $i\ne j$。$V_j:=\sum_{n\ge0}\ind{X_n=j}$。若 $\tau_j=+\infty$，则 $V_j=0$；
+只需考虑 $i\ne j$ 的情形。$V_j:=\sum_{n\ge0}\ind{X_n=j}$。若 $\tau_j=+\infty$，则 $V_j=0$；
 若 $\tau_j<+\infty$，则强马氏性成立：令 $Y_n:=X_{\tau_j+n}$，则 $V_j=V_j^{(Y)}$，于是
 \[
 \Pp_i(V_j=m)=\Pp_i\bigl(V_j^{(Y)}=m,\ \tau_j<+\infty\bigr)
@@ -1258,14 +1270,14 @@ x_j=1+\frac12x_{j-1}+\frac12x_{j+1}, &\\
 x_0=x_N=0. &
 \end{cases}
 \]
-故 $x_i$ 为分段等差数列：$x_i-x_{i-1}=x_{i+1}-x_i\ (i\ne j)$，于是
+因此 $x_i$ 是分段等差数列：$x_i-x_{i-1}=x_{i+1}-x_i\ (i\ne j)$，于是
 \[
 x_{j-1}=(j-1)\,x_1,\qquad x_{j+1}=(N-j-1)\,x_{N-1},
 \qquad
 x_j=j\,x_1=(N-j)\,x_{N-1}
 \ \darr\quad x_{N-1}=\frac{j}{N-j}\,x_1 .
 \]
-代入 $x_j=1+\frac12x_{j-1}+\frac12x_{j+1}$ 可解得 $x_1=\dfrac2N(N-j)$，从而即得 $x_i$。 \qed
+代入 $x_j=1+\frac12x_{j-1}+\frac12x_{j+1}$ 解得 $x_1=\dfrac2N(N-j)$，从而得到 $x_i$ 的表达式。 \qed
 \end{proof}
 
 \begin{proposition}
@@ -1286,7 +1298,7 @@ y_i=1+\sum_{j\in S}p_{ij}y_j,\quad\forall i\in D;
 \qquad
 y_i=0,\quad\forall i\in D^c .
 \]
-只需解之即可推出 Green 函数。
+解此方程即可得到 $y_i=\E_i\tau$。
 
 \begin{example}
 在 SRW 中求 $\E_i(\tau_0\wedge\tau_N)$，$0<i<N$。
@@ -1305,7 +1317,7 @@ y_i=1+\tfrac12y_{i+1}+\tfrac12y_{i-1}\quad(1\le i\le N-1),
 
 \subsection{瓦尔德等式}
 
-SRW，$S_0=0$，$\tau:=\tau_j\wedge\tau_{-i}$。$S_\tau$ 的分布：
+设 $\{S_n\}$ 为简单随机游动，$S_0=0$，$\tau:=\tau_j\wedge\tau_{-i}$。先求 $S_\tau$ 的分布：
 \[
 \Pp_0(S_\tau=j)=\frac{i}{i+j}=\Pp_i(\tau_{i+j}<\tau_0),
 \qquad
@@ -1314,7 +1326,7 @@ SRW，$S_0=0$，$\tau:=\tau_j\wedge\tau_{-i}$。$S_\tau$ 的分布：
 于是 $\E_0S_\tau=0$，$\E_0S_\tau^2=ij$。注意 $\E_0S_\tau^2=\E_0\tau$。
 
 \begin{proposition}[Wald 等式]
-设 $\E\tau<+\infty$，$\E|\xi_1|<+\infty$，$\xi_i$ i.i.d.，$S_n:=\xi_1+\dots+\xi_n$（$n\ge1$），则：
+设 $\E\tau<+\infty$，$\E|\xi_1|<+\infty$，$\xi_1,\xi_2,\dots$ 为 i.i.d. 随机变量，$S_n:=\xi_1+\dots+\xi_n$（$n\ge1$），则：
 \begin{enumerate}
   \item $\E S_\tau=\E\tau\cdot\E\xi_1$；
   \item 若 $\E\xi_1^2<+\infty$，$\E\xi_1=0$，则 $\E S_\tau^2=\E\tau\cdot\E\xi_1^2$。
@@ -1323,12 +1335,12 @@ SRW，$S_0=0$，$\tau:=\tau_j\wedge\tau_{-i}$。$S_\tau$ 的分布：
 
 \section{遍历定理与正常返}
 
-本节假设马氏链不可约。
+本节假设马氏链不可约，证明遍历定理，并引入正常返与零常返的概念。
 
 \subsection{频率的极限}
 
 \begin{proposition}
-$\forall i\in S$：
+对任意 $i\in S$，有
 \[
 \Pp_\mu\Bigl(\lim_{n\to+\infty}\frac{V_i(n)}{n}=\frac{1}{\E_i\sigma_i}\Bigr)=1,
 \qquad
@@ -1337,7 +1349,7 @@ V_i(n):=\sum_{m=0}^{n-1}\ind{X_m=i}.
 \end{proposition}
 
 \begin{proof}
-若 $i$ 非常返，则 $\E_i\sigma_i=+\infty$，且 $\lim_{n\to\infty}V_i(n)<+\infty$ a.s.，故结论正确。
+若 $i$ 非常返，则 $\E_i\sigma_i=+\infty$，且 $\lim_{n\to\infty}V_i(n)<+\infty$ a.s.，故结论成立。
 
 若 $i$ 常返：$X_0=i$ 时即更新定理；$X_0=j\ne i$ 时，由 $\Pp_j(\tau_i<+\infty)=1$，
 可从 $\tau_i$ 处取马氏链 $Y_n:=X_{\tau_i+n}$，对 $Y_n$ 用更新定理；再由
@@ -1346,7 +1358,7 @@ $V_i(n)=V_i^{(Y)}(n-\tau_i)$，
 \frac1nV_i(n)=\frac{n-\tau_i}{n}\cdot\frac{V_i^{(Y)}(n-\tau_i)}{n-\tau_i}
 \ \longrightarrow\ \frac{1}{\E_i\sigma_i}\quad\text{a.s.}
 \]
-而 $\Pp_\mu(\ \cdot\ )=\sum_j\mu_j\Pp_j(\ \cdot\ )$，从而即证。 \qed
+而 $\Pp_\mu(\,\cdot\,)=\sum_j\mu_j\Pp_j(\,\cdot\,)$，从而结论对一般初分布成立。 \qed
 \end{proof}
 
 \begin{proposition}
@@ -1379,15 +1391,15 @@ $p_{0i}^{(n)}>0$，于是
 
 \subsection{正常返}
 
-若 $\E_i\sigma_i<+\infty$，则称 $i$ \textbf{正常返}；
-若 $\Pp_i(\sigma_i<+\infty)=1$ 但 $\E_i\sigma_i=+\infty$，则称\textbf{零常返}。
+若 $\E_i\sigma_i<+\infty$，则称 $i$ \textbf{正常返}；若 $\Pp_i(\sigma_i<+\infty)=1$ 但
+$\E_i\sigma_i=+\infty$，则称 $i$ \textbf{零常返}。
 
 取定 $0\in S$，定义
 \[
 \mu_i:=\E_0\sum_{n=0}^{\sigma_0-1}\ind{X_n=i},
 \qquad \mu_0=1 .
 \]
-直观：$\mu_i$ 为一个回复周期内 $i$ 出现的次数；且
+直观上，$\mu_i$ 表示一个回复周期内 $i$ 出现的平均次数；且
 $\dfrac{\mu_i}{\E_0\sigma_0}=\dfrac{1}{\E_i\sigma_i}=\pi_i$。
 
 \begin{proposition}
@@ -1412,8 +1424,8 @@ $\dfrac{\mu_i}{\E_0\sigma_0}=\dfrac{1}{\E_i\sigma_i}=\pi_i$。
 =\E_0\sum_{n=1}^{\sigma_0}\ind{X_n=i}
 =\E_0\sum_{n=0}^{\sigma_0-1}\ind{X_n=i}=\mu_i .
 \]
-上式成立的原因：$i\ne0$ 时 $X_0=X_{\sigma_0}=0$，不影响求和；$\sigma_0<+\infty$ 且 $i=0$ 时
-$X_0=X_{\sigma_0}=0$，不影响求和；$\sigma_0=+\infty$ 且 $i=0$ 时会差一项。故题设条件要求
+最后一个等号成立是因为：当 $i\ne0$ 时，$X_0=X_{\sigma_0}=0$，不影响求和；当 $i=0$ 且
+$\sigma_0<+\infty$ 时同样不影响；仅当 $i=0$ 且 $\sigma_0=+\infty$ 时会相差一项。因此这里需要
 $0$ 常返。 \qed
 \end{proof}
 
@@ -1426,16 +1438,16 @@ $0$ 常返。 \qed
 （1）$\Rightarrow$（2）显然。
 
 （2）$\Rightarrow$（3）由上一命题知存在不变测度
-$\mu_i:=\E_0\sum_{n=0}^{\sigma_0-1}\ind{X_n=i}$，而
+$\mu_i:=\E_0\sum_{n=0}^{\sigma_0-1}\ind{X_n=i}$；又
 \[
 \sum_{i\in S}\mu_i=\sum_{i\in S}\E_0\sum_{n=0}^{\sigma_0-1}\ind{X_n=i}
 =\E_0\sum_{n=0}^{\sigma_0-1}\sum_{i\in S}\ind{X_n=i}
 =\E_0\sigma_0<+\infty,
 \]
-故可归一化。
+故可将其归一化，得到不变分布。
 
-（3）$\Rightarrow$（1）$\pi_i=\dfrac{1}{\E_i\sigma_i}>0$，故 $\E_i\sigma_i<+\infty$，
-$\forall i\in S$，故 $S$ 正常返。 \qed
+（3）$\Rightarrow$（1）由前面的命题，$\pi_i=\dfrac{1}{\E_i\sigma_i}>0$，故
+$\E_i\sigma_i<+\infty$ 对一切 $i\in S$ 成立，即 $S$ 正常返。 \qed
 \end{proof}
 
 \begin{corollary}
@@ -1464,7 +1476,8 @@ $\frac1n\sum_{m=0}^{n-1}\ind{X_m=i}\to\dfrac{1}{\E_i\sigma_i}$ a.s.。因 $S$ �
 \end{proposition}
 
 \begin{proof}
-若 $P$ 非常返，则若存在不变分布必有 $\pi_i=0\ \forall i$，故而矛盾。
+若 $P$ 非常返且存在不变分布 $\pi$，则由前面的推论 $\pi_i=0$ 对一切 $i$ 成立，
+这与 $\sum_i\pi_i=1$ 矛盾。
 
 若 $P$ 常返，则由引理的唯一性即知不存在不变分布。 \qed
 \end{proof}
@@ -1629,32 +1642,36 @@ $\widetilde{P}_{(i,j)(j,k)}=p_{jk}$，$\widetilde{\pi}_{(i,j)}=\pi_ip_{ij}$；
 
 \section{强遍历定理}
 
+本节讨论强遍历定理：在不可约、正常返、非周期的条件下，$n$ 步分布本身收敛到不变分布。
+
 \subsection{正常返、非周期}
 
-$\dfrac1n\sum_{m=0}^{n-1}\Pp(X_m=i)\to\pi_i$。问：$\Pp(X_n=i)\to\pi_i$？（※）
+由遍历定理，$\dfrac1n\sum_{m=0}^{n-1}\Pp(X_m=i)\to\pi_i$。一个自然的问题是：是否也有
+$\Pp(X_n=i)\to\pi_i$？（※）
 
 \begin{example}[Ehrenfest，（※）的反例]
 $S=\{0,1,\dots,N\}$，$\pi_i=\dbinom{N}{i}\dfrac{1}{2^N}$，$X_0=0$。则
-$\Pp(X_{2n}=1)\equiv0,\ \forall n$。（周期性阻碍收敛。）
+$\Pp(X_{2n}=1)\equiv0,\ \forall n$。（周期性阻碍了收敛。）
 \end{example}
 
 \begin{definition}[非周期]
-若 $\exists\,N$，s.t.\ $\forall n>N$，$p_{ii}^{(n)}>0$，则称 $i$ \textbf{非周期}。
+若存在 $N$，使得对一切 $n>N$ 都有 $p_{ii}^{(n)}>0$，则称 $i$ \textbf{非周期}。
 \end{definition}
 
 \begin{proposition}
-设 $P$ 不可约，存在非周期态，则任意状态非周期，且 $\exists\,N_{ij}$，s.t.\
-$\forall n>N_{ij}$，$p_{ij}^{(n)}>0$。
+设 $P$ 不可约。若存在一个非周期态，则所有状态都是非周期的；并且对任意 $i,j$，存在
+$N_{ij}$，使得当 $n>N_{ij}$ 时 $p_{ij}^{(n)}>0$。
 \end{proposition}
 
 \begin{proof}
-设 $i$ 非周期。$\forall j\in S$，$\exists\,r_j,s_j$，s.t.\
+设 $i$ 非周期。对任意 $j\in S$，存在 $r_j,s_j$，使得
 $p_{ij}^{(r_j)}>0$，$p_{ji}^{(s_j)}>0$。取 $N_j=N_i+r_j+s_j$，则
 \[
 p_{jj}^{(n+r_j+s_j)}\ \ge\ p_{ji}^{(s_j)}\,p_{ii}^{(n)}\,p_{ij}^{(r_j)}>0,
 \qquad \forall n\ge N_i .
 \]
-故 $j$ 非周期。同上述方法，$p_{ij}^{(n+r_j)}\ge p_{ii}^{(n)}p_{ij}^{(r_j)}>0\ (\forall n\ge N_i)$。 \qed
+故 $j$ 非周期。用同样的方法可得
+$p_{ij}^{(n+r_j)}\ge p_{ii}^{(n)}p_{ij}^{(r_j)}>0\ (\forall n\ge N_i)$。 \qed
 \end{proof}
 
 \begin{theorem}[强遍历定理]
@@ -1664,25 +1681,27 @@ p_{jj}^{(n+r_j+s_j)}\ \ge\ p_{ji}^{(s_j)}\,p_{ii}^{(n)}\,p_{ij}^{(r_j)}>0,
 \]
 \end{theorem}
 
+\needspace{8\baselineskip}
 \begin{proof}（耦合方法）
 
 取 $\widetilde{S}:=S\times S$，$Z_n:=(W_n,Y_n)$，$r_{(i,j)(k,l)}:=p_{ik}\,p_{jl}$。
 
-\textbf{1.}\ $Z_n$ 不可约、正常返：易知不变分布 $\widetilde{\pi}_{(i,j)}=\pi_i\times\pi_j$；
-$Z_n$ 非周期：$r_{(i,j)(k,l)}^{(n)}=p_{ik}^{(n)}\,p_{jl}^{(n)}>0$（$n$ 充分大）。
+\textbf{1.}\ 首先，$Z_n$ 不可约且正常返。容易验证其不变分布为
+$\widetilde{\pi}_{(i,j)}=\pi_i\pi_j$；又因为
+$r_{(i,j)(k,l)}^{(n)}=p_{ik}^{(n)}p_{jl}^{(n)}>0$（$n$ 充分大），所以 $Z_n$ 也是非周期的。
 
-\textbf{2.}\ $\tau:=\inf\{n\ge0:W_n=Y_n\}=\tau_D$，$D:=\{(i,i):i\in S\}$。则
+\textbf{2.}\ 其次，令 $\tau:=\inf\{n\ge0:W_n=Y_n\}=\tau_D$，$D:=\{(i,i):i\in S\}$。由于
 $\tau\le\tau_{(i,i)}$，而 $\Pp(\tau_{(i,i)}<+\infty)=1$（常返），故
 $\Pp(\tau<+\infty)=1$。
 
-\textbf{3.}\ $\Pp(W_n=j,\ \tau\le n)=\Pp(Y_n=j,\ \tau\le n)$：事实上
+\textbf{3.}\ 下面证明 $\Pp(W_n=j,\ \tau\le n)=\Pp(Y_n=j,\ \tau\le n)$。事实上，
 \[
 \text{LHS}=\sum_{m=0}^{n}\sum_{i\in S}\Pp(W_n=j,\ \tau=m,\ Z_m=(i,i))
 =\sum_{m=0}^{n}\sum_{i\in S}\Pp(\tau=m,\ Z_m=(i,i))\cdot\Pp_{(i,i)}(W_{n-m}=j),
 \]
-而又由强马氏性有 $\Pp_{(i,i)}(W_{n-m}=j)=p_{ij}^{(n-m)}$。对 RHS 同理，故 LHS $=$ RHS。
+又由强马氏性，$\Pp_{(i,i)}(W_{n-m}=j)=p_{ij}^{(n-m)}$。对右端同理，故左右两端相等。
 
-\textbf{4.}\ 
+\textbf{4.}\ 最后，
 \[
 \bigl|\Pp(W_n=j)-\Pp(Y_n=j)\bigr|
 =\bigl|\Pp(W_n=j,\tau\le n)-\Pp(Y_n=j,\tau\le n)
@@ -1693,10 +1712,11 @@ $\Pp(\tau<+\infty)=1$。
 \]
 故 $\sum_j\bigl|\Pp(W_n=j)-\Pp(Y_n=j)\bigr|\le2\,\Pp(\tau>n)\to0$
 （由 $\Pp(\tau<+\infty)=1$ 知 $\Pp(\tau>n)\to0$）。取 $\widetilde{S}$ 的初分布
-$\nu=\mu\times\pi$ 即已得证。 \qed
+$\nu=\mu\times\pi$，即得所需结论。 \qed
 \end{proof}
 
 %======================================================================
+\clearpage
 \section{收敛速度}
 
 $\mu P^n\to\pi$ 的速度有多快？
@@ -1775,7 +1795,10 @@ d_{\mathrm{TV}}(\mu P^n,\pi)\le\alpha^{\,n/m-1}=C\,e^{-\beta n},
 1980 年代，Persi Diaconis 指出：有些链的收敛并不是上述缓慢的指数衰减，而是
 \textbf{cut off（截断）}——距离在很长一段时间内几乎不变，随后在一个宽度为 $o(n)$ 的短窗口内骤降到 $0$。
 
-\begin{center}
+图~\ref{fig:cutoff} 给出了两种收敛方式的对比：虚线为 cut off 情形，实线为指数衰减。
+
+\begin{figure}[H]
+\centering
 \begin{tikzpicture}[x=1.35cm,y=1.25cm,>={Stealth[length=2mm]}]
   \draw[->] (0,0) -- (6.5,0);
   \draw[->] (0,0) -- (0,3.15) node[left] {$d$};
@@ -1788,9 +1811,9 @@ d_{\mathrm{TV}}(\mu P^n,\pi)\le\alpha^{\,n/m-1}=C\,e^{-\beta n},
   \node[above right,inner sep=2pt] at (3.10,2.30) {cut off};
   \node[above right,inner sep=2pt] at (4.95,1.05) {exponential decay};
 \end{tikzpicture}
-\end{center}
-
-图中虚线为 cut off 情形，实线为指数衰减。
+\caption{cut off 现象（虚线）与指数衰减（实线）的对比}
+\label{fig:cutoff}
+\end{figure}
 
 %======================================================================
 \section{分支过程（Branching Process）}
