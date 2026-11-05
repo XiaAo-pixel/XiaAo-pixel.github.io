@@ -1,71 +1,121 @@
 % !TeX program = xelatex
-% 应用随机过程 笔记（LaTeX 版）
-% 依据手写笔记整理：第〇章 引言、第一章 马氏链、第二章 跳过程（2.1 泊松过程；其余待补）。
-\documentclass[11pt]{ctexart}
-\usepackage[a4paper,margin=2.3cm]{geometry}
-\usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage{booktabs}
+% 应用随机过程 课堂笔记
+% 排版模板：VividBooK（Azure1210）
+\documentclass[lang=cn,10pt,newtx,thmcnt=chapter,mode=simple]{vividbook}
+
+\title{应用随机过程}
+\subtitle{课堂笔记 · LaTeX 整理版}
+\author{XiaAo}
+\date{2026 年 11 月}
+\version{VividBooK 排版}
+\extrainfo{第〇章 引言 · 第一章 马氏链 · 第二章 跳过程（2.1）}
+
+\cover{cover.jpg}
+% 不设 \logo，保持封面简洁
+
+% ---------- 版式与图表 ----------
 \usepackage{array}
-\usepackage{tikz}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{graphicx}
 \usetikzlibrary{arrows.meta,positioning,calc,decorations.pathmorphing,decorations.pathreplacing}
-\usepackage[colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
-
-\setcounter{secnumdepth}{-2}
 \setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+\allowdisplaybreaks
 
-\theoremstyle{definition}
-\newtheorem*{definition}{定义}
-\newtheorem*{proposition}{命题}
-\newtheorem*{theorem}{定理}
-\newtheorem*{lemma}{引理}
-\newtheorem*{corollary}{推论}
-\newtheorem*{example}{例}
-\newtheorem*{remark}{注}
-\newtheorem*{question}{问}
-\theoremstyle{remark}
+% ---------- 颜色 ----------
+\definecolor{customcolor}{RGB}{201,162,39}
+\colorlet{coverlinecolor}{customcolor}
 
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\E}{\mathbb{E}}
-\newcommand{\Pp}{\mathbb{P}}
+% ---------- 全书数学宏 ----------
+\providecommand{\R}{}\renewcommand{\R}{\mathbb{R}}
+\providecommand{\Z}{}\renewcommand{\Z}{\mathbb{Z}}
+\providecommand{\N}{}\renewcommand{\N}{\mathbb{N}}
+\providecommand{\E}{}\renewcommand{\E}{\mathbb{E}}
+\providecommand{\Pp}{}\renewcommand{\Pp}{\mathbb{P}}
 \newcommand{\ind}[1]{\mathbf{1}_{\{#1\}}}
 \newcommand{\darr}{\;\Rightarrow\;}
 \newcommand{\reach}{\to}
 \newcommand{\comm}{\leftrightarrow}
 
-% 章标题（手工编号，与小节编号 0.x / 1.x 对应）
-\newcommand{\chap}[1]{%
-  \clearpage
-  \vspace*{0.5em}
-  {\centering\LARGE\bfseries #1\par}
-  \vspace{0.4em}
-  \phantomsection
-  \addcontentsline{toc}{section}{#1}}
-\newcommand{\secn}[2]{\phantomsection\subsection*{#1\quad #2}\addcontentsline{toc}{section}{#1\quad #2}\markboth{#1\quad #2}{}}
+% ---------- 编号：第〇章 + 0.1 / 1.2.3 ----------
+\newcommand{\chapterheadfix}[1]{\vspace*{1.2cm}\markboth{\xchaptertitle\ #1}{}}
+\renewcommand{\thechapter}{\ifcase\value{chapter}〇\or 一\or 二\or 三\or 四\or 五\or 六\or 七\or 八\or 九\or 十\else\arabic{chapter}\fi}
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
 
-\title{\heiti 应用随机过程\\[0.3em]\large 课堂笔记（LaTeX 整理版）}
-\author{}
-\date{2026 年 11 月}
+% ---------- 定理类环境：与笔记一致，不编号 ----------
+\newtheoremstyle{vividthm}{6pt}{6pt}{\normalfont}{0pt}%
+  {\bfseries\color{second}}{}{0.5em}%
+  {\thmname{#1}\thmnote{（#3）}}
+\newtheoremstyle{vividdef}{6pt}{6pt}{\normalfont}{0pt}%
+  {\bfseries\color{structurecolor}}{}{0.5em}%
+  {\thmname{#1}\thmnote{（#3）}}
+\newtheoremstyle{vividexa}{6pt}{6pt}{\normalfont}{0pt}%
+  {\bfseries\color{main!60!black}}{}{0.5em}%
+  {\thmname{#1}\thmnote{（#3）}}
+\newtheoremstyle{vividrem}{6pt}{6pt}{\normalfont}{0pt}%
+  {\bfseries\color{second}}{}{0.5em}%
+  {\thmname{#1}\thmnote{（#3）}}
+
+\theoremstyle{vividthm}
+\newtheorem*{vividtheorem}{定理}
+\newtheorem*{vividlemma}{引理}
+\newtheorem*{vividproposition}{命题}
+\newtheorem*{vividcorollary}{推论}
+\theoremstyle{vividdef}
+\newtheorem*{vividdefinition}{定义}
+\theoremstyle{vividexa}
+\newtheorem*{vividexample}{例}
+\theoremstyle{vividrem}
+\newtheorem*{vividremark}{注}
+\newtheorem*{vividquestion}{问}
+
+\makeatletter
+\renewenvironment{theorem}[1][]{\begin{vividtheorem}[#1]}{\end{vividtheorem}}
+\renewenvironment{lemma}[1][]{\begin{vividlemma}[#1]}{\end{vividlemma}}
+\renewenvironment{proposition}[1][]{\begin{vividproposition}[#1]}{\end{vividproposition}}
+\renewenvironment{corollary}[1][]{\begin{vividcorollary}[#1]}{\end{vividcorollary}}
+\renewenvironment{definition}[1][]{\begin{vividdefinition}[#1]}{\end{vividdefinition}}
+\renewenvironment{remark}[1][]{\begin{vividremark}[#1]}{\end{vividremark}}
+\expandafter\let\csname example\endcsname\@undefined
+\expandafter\let\csname endexample\endcsname\@undefined
+\expandafter\let\csname question\endcsname\@undefined
+\expandafter\let\csname endquestion\endcsname\@undefined
+\makeatother
+\newenvironment{example}[1][]{\begin{vividexample}[#1]}{\end{vividexample}}
+\newenvironment{question}[1][]{\begin{vividquestion}[#1]}{\end{vividquestion}}
 
 \begin{document}
-\maketitle
-\vspace{-3em}
 
-\begin{abstract}
-\noindent
+\chapterimage{chapter.jpg}
+\maketitle
+
+\frontmatter
+\section*{说明}
+\markboth{说明}{说明}
+\addcontentsline{toc}{section}{说明}
+
 本笔记整理自《应用随机过程》课堂手写笔记，目前包含第〇章（引言）、第一章（马氏链）的完整内容，
 以及第二章（跳过程）的 2.1 节（泊松过程）；第二章其余部分与第三章（布朗运动）待后续补充。记号约定：$\Pp_\mu$ 表示初分布为
 $\mu$ 时的概率律，$\E_i$ 表示 $X_0=i$ 时的期望；$\tau_i=\inf\{n\ge 0:X_n=i\}$ 为首达时，
 $\sigma_i=\inf\{n\ge 1:X_n=i\}$ 为首入时；$V_i=\sum_{n\ge0}\ind{X_n=i}$ 为访问总次数。
-\end{abstract}
 
+\noindent 排版采用 VividBooK 模板（\emph{Bringing Color to Knowledge}，Azure1210）。
+
+\clearpage
 \tableofcontents
 
-%======================================================================
-\chap{第〇章\quad 引言}
+\mainmatter
+\setcounter{chapter}{-1}
 
-\secn{0.1}{课程地图（MAP）}
+\chapter{引言}
+\chapterheadfix{引言}
+
+本课程在整个概率课程体系中的位置、随机过程研究简史，以及全课程反复使用的极限定理工具，先作一个概览。
+
+\section{课程地图（MAP）}
 
 本课程在整个概率课程体系中的位置大致如下：
 
@@ -93,7 +143,7 @@ $\sigma_i=\inf\{n\ge 1:X_n=i\}$ 为首入时；$V_i=\sum_{n\ge0}\ind{X_n=i}$ 为
 \end{tabular}
 \end{center}
 
-\secn{0.2}{模型与研究方法简史}
+\section{模型与研究方法简史}
 
 \textbf{20 世纪前半叶}：独立 R.V. 的和（极限定理）、严格 M.B.、布朗运动。
 
@@ -119,7 +169,7 @@ $\sigma_i=\inf\{n\ge 1:X_n=i\}$ 为首入时；$V_i=\sum_{n\ge0}\ind{X_n=i}$ 为
 \end{tabular}
 \end{center}
 
-\secn{0.3}{预备知识：极限定理回顾}
+\section{预备知识：极限定理回顾}
 
 设 $\{X_n\}$ 为随机变量序列，记 $A_n:=\{|X_n-X|>\varepsilon\}$，则以下几条是全课程反复使用的工具：
 \begin{itemize}
@@ -135,7 +185,7 @@ $\sigma_i=\inf\{n\ge 1:X_n=i\}$ 为首入时；$V_i=\sum_{n\ge0}\ind{X_n=i}$ 为
   \]
 \end{itemize}
 
-\secn{0.4}{随机元}
+\section{随机元}
 
 设 $(\Omega,\mathcal{F},\Pp)$ 为概率空间，$S$ 为可测空间。取值于 $S$ 的随机变量称为
 \textbf{随机元}：$X_n,\,X_t:(\Omega,\mathcal{F},\Pp)\to S$。于是
@@ -149,9 +199,12 @@ $\sigma_i=\inf\{n\ge 1:X_n=i\}$ 为首入时；$V_i=\sum_{n\ge0}\ind{X_n=i}$ 为
 即一个随机过程（序列）可以看作乘积空间上的一个随机元。
 
 %======================================================================
-\chap{第一章\quad 马氏链}
+\chapter{马氏链}
+\chapterheadfix{马氏链}
 
-\secn{1.1}{定义与例子}
+本章研究状态空间离散、时间离散的马氏链：从定义与典型例子出发，讨论不变分布与可逆分布、状态分类、首达时与强马氏性、常返性、击中概率、Green 函数，最后建立遍历定理与强遍历定理，并讨论收敛速度与分支过程。
+
+\section{定义与例子}
 
 设 $\{X_n:n\ge0\}$ 的状态空间 $S$ 离散。
 
@@ -298,9 +351,9 @@ $P^{\,n+m}=P^{\,n}P^{\,m}$。
 \end{align*}
 \end{proof}
 
-\secn{1.2}{不变分布与可逆分布}
+\section{不变分布与可逆分布}
 
-\subsection*{1.2.1\quad 不变分布}
+\subsection{不变分布}
 
 记 $\Pp_\mu,\Pp_i$，其中 $\Pp_i(A)=\Pp_\mu(A\mid X_0=i)$，且
 \[
@@ -363,7 +416,7 @@ $m=+\infty$ 时不变分布不存在；$m<+\infty$ 时
 \]
 \end{example}
 
-\subsection*{1.2.2\quad 可逆分布}
+\subsection{可逆分布}
 
 \begin{definition}[配称测度]
 $\pi=(\pi_j)_{j\in S}$ 称为 $(S,P)$ 的\textbf{配称测度（分布）}，若其满足
@@ -459,7 +512,7 @@ $\sum_{i=-\infty}^{+\infty}\bigl(\tfrac{p}{q}\bigr)^i=+\infty$，故\textbf{不�
 故不变测度不唯一。
 \end{example}
 
-\subsection*{1.2.3\quad 访问频率}
+\subsection{访问频率}
 
 设 $L_1,L_2,\dots$ i.i.d.，$S=\N$，$\Pp(L_1=0)<1$，称为\textbf{寿命}。令
 $S_0=0$，$S_r:=S_{r-1}+L_r\ (r\ge1)$，
@@ -523,7 +576,7 @@ p\,(1-q)^{m-2}\,q, & m\ge2,
 由更新定理即有
 $\dfrac{V_0(n)}{n+1}\xrightarrow{\ \text{a.s.}\ }\dfrac{1}{\E L_r}=\pi_0$。 \qed
 
-\secn{1.3}{状态的分类}
+\section{状态的分类}
 
 \begin{definition}[可达与互通]
 若 $\Pp_i\bigl(\exists\,n\ge0,\ \text{s.t. }X_n=j\bigr)>0$，则称 $i$ \textbf{可达} $j$，记 $i\reach j$。
@@ -562,9 +615,9 @@ p_i:=\Pp_i(\exists n,\ X_n=0)
 可能永远不离开 $A=\{1,2,\dots\}$。
 \end{remark}
 
-\secn{1.4}{首达时与强马氏性}
+\section{首达时与强马氏性}
 
-\subsection*{1.4.1\quad 首达时与首入时}
+\subsection{首达时与首入时}
 
 轨道 $\vec{X}(\omega):=(X_0(\omega),X_1(\omega),\dots)$。
 
@@ -573,7 +626,7 @@ p_i:=\Pp_i(\exists n,\ X_n=0)
 \textbf{首入时} $\sigma_i(\omega):=\inf\{n\ge1:X_n(\omega)=i\}$。
 \end{definition}
 
-\subsection*{1.4.2\quad SRW 的首达时}
+\subsection{SRW 的首达时}
 
 \begin{proposition}[反射原理]
 \[
@@ -706,7 +759,7 @@ E_n:=\max\bigl\{m\le n:\ S_m=0,\ S_{m+1}\ne0,\ S_{m+2}\ne0,\ \dots,\ S_n\ne0\big
 =\dfrac{2}{\pi}\arcsin\sqrt{\delta}$。 \qed
 \end{proof}
 
-\subsection*{1.4.3\quad 强马氏性}
+\subsection{强马氏性}
 
 记 $\tau=\tau_i$，设 $\Pp(\tau_i<+\infty)>0$。在 $\{\omega:\tau_i(\omega)<+\infty\}$ 上定义
 \textbf{随机平移}：
@@ -776,11 +829,11 @@ $\tau_1,\ \tau_2-\tau_1,\ \dots,\ \tau_i-\tau_{i-1}$ i.i.d.
 又 $\E_0\tau_2=2\,\E_0\tau_1$，故 $\E_0\tau_1=+\infty$。
 \end{example}
 
-\secn{1.5}{常返性}
+\section{常返性}
 
 $j\reach i$ 可达 $\iff \Pp_j(\tau_i<+\infty)>0$。本节回答：总共访问 $i$ 多少次？
 
-\subsection*{1.5.1\quad 回访时间}
+\subsection{回访时间}
 
 给定 $i$。$T_0:=0$；若 $T_{r-1}<+\infty$，则定义
 \[
@@ -856,7 +909,7 @@ $n_S:=\sum_{t=1}^{S}m_t$（$n_0:=0$），$\vec{Z}_S:=(X_{n_{S-1}},\dots,X_{n_S})
 \]
 \end{proof}
 
-\subsection*{1.5.2\quad 回访总次数}
+\subsection{回访总次数}
 
 \[
 V_i:=\sum_{n=0}^{+\infty}\ind{X_n=i}.
@@ -881,7 +934,7 @@ V_i:=\sum_{n=0}^{+\infty}\ind{X_n=i}.
 $\vec{Z}^{(1)},\vec{Z}^{(2)},\dots$ i.i.d.
 \end{proposition}
 
-\subsection*{1.5.3\quad 常返与互通类}
+\subsection{常返与互通类}
 
 \begin{proposition}
 设 $i$ 常返，$i\reach j$，则
@@ -891,7 +944,7 @@ $\vec{Z}^{(1)},\vec{Z}^{(2)},\dots$ i.i.d.
 \end{proposition}
 
 \begin{proof}
-（2）⇒（3）显然（$V_j=+\infty$ 时必有 $\tau_j<+\infty$）。只需证（1）（2）。
+（2）$\Rightarrow$（3）显然（$V_j=+\infty$ 时必有 $\tau_j<+\infty$）。只需证（1）（2）。
 
 先证（2）（i）$\Pp_i(V_j=+\infty)=1$：取 $X_0=i$，$\vec{Z}^{(1)},\vec{Z}^{(2)},\dots$ i.i.d.，
 令 $A_r:=\{\vec{Z}^{(r)}\ \text{中含有}\ j\}$。则 $A_r$ i.i.d.，且
@@ -920,9 +973,9 @@ $\{V_j=+\infty\}=\{V_j^{(Y)}=+\infty\}$，故
 且 $j\reach i$，$j$ 常返。 \qed
 \end{proof}
 
-\secn{1.6}{击中概率}
+\section{击中概率}
 
-\subsection*{1.6.1\quad 首步分析法}
+\subsection{首步分析法}
 
 \begin{example}[赌徒破产模型]
 SRW，$\tau=\tau_0\wedge\tau_N$。则 $\Pp(\tau_0<+\infty,\ \tau_N<+\infty)=1$。令
@@ -962,7 +1015,7 @@ $\tau_D$ 的分布？$\Pp_i(\tau_D=k)=?$\quad
 $i\in D$ 时 $\Pp_i(\tau_D=0)=1$；$i\in D^c$ 时留作讨论。
 \end{question}
 
-\subsection*{1.6.2\quad 判别常返性}
+\subsection{判别常返性}
 
 设 $S$ 不可约（$S$ 互通），给定 $0\in S$。则
 \[
@@ -1042,9 +1095,9 @@ a_0-a_n=(a_0-a_1)\Bigl(1+\frac{\lambda}{d}+\frac{\lambda^2}{d^2}+\dots+\frac{\la
 从而即知非常返；$\lambda\ge d$ 时 $a_n\equiv1$，故常返。 \qed
 \end{example}
 
-\secn{1.7}{格林函数}
+\section{格林函数}
 
-\subsection*{1.7.1\quad 判别常返性}
+\subsection{判别常返性}
 
 对 $i,j\in S$，定义
 \[
@@ -1088,7 +1141,7 @@ p_{00}^{(2n)}=\sum_{n_1+n_2+n_3=2n}\frac{(2n)!}{(n_1!\,n_2!\,n_3!)^2}\cdot\frac{
 故 $G_{00}<+\infty$，非常返。
 \end{example}
 
-\subsection*{1.7.2\quad 格林函数的其他应用}
+\subsection{格林函数的其他应用}
 
 \begin{proposition}
 设 $i\reach j$，$i$ 常返，则 $j$ 常返。
@@ -1156,7 +1209,7 @@ $G_{ij}\le G_{jj}<+\infty$，故
 矛盾，故 $\pi_j=0$。 \qed
 \end{proof}
 
-\subsection*{1.7.3\quad 有限区域上的 Green 函数}
+\subsection{有限区域上的 Green 函数}
 
 设 $D\subseteq S$，$\tau:=\tau_{D^c}$（首次离开 $D$ 的时刻），定义
 \[
@@ -1238,7 +1291,7 @@ y_i=1+\tfrac12y_{i+1}+\tfrac12y_{i-1}\quad(1\le i\le N-1),
 （二阶等差数列）。
 \end{example}
 
-\subsection*{1.7.4\quad 瓦尔德等式}
+\subsection{瓦尔德等式}
 
 SRW，$S_0=0$，$\tau:=\tau_j\wedge\tau_{-i}$。$S_\tau$ 的分布：
 \[
@@ -1256,11 +1309,11 @@ SRW，$S_0=0$，$\tau:=\tau_j\wedge\tau_{-i}$。$S_\tau$ 的分布：
 \end{enumerate}
 \end{proposition}
 
-\secn{1.8}{遍历定理与正常返}
+\section{遍历定理与正常返}
 
 本节假设马氏链不可约。
 
-\subsection*{1.8.1\quad 频率的极限}
+\subsection{频率的极限}
 
 \begin{proposition}
 $\forall i\in S$：
@@ -1312,7 +1365,7 @@ $p_{0i}^{(n)}>0$，于是
 不可约马氏链的不变分布若存在则唯一。
 \end{corollary}
 
-\subsection*{1.8.2\quad 正常返}
+\subsection{正常返}
 
 若 $\E_i\sigma_i<+\infty$，则称 $i$ \textbf{正常返}；
 若 $\Pp_i(\sigma_i<+\infty)=1$ 但 $\E_i\sigma_i=+\infty$，则称\textbf{零常返}。
@@ -1404,7 +1457,7 @@ $\frac1n\sum_{m=0}^{n-1}\ind{X_m=i}\to\dfrac{1}{\E_i\sigma_i}$ a.s.。因 $S$ �
 若 $P$ 常返，则由引理的唯一性即知不存在不变分布。 \qed
 \end{proof}
 
-\subsection*{1.8.3\quad 遍历定理}
+\subsection{遍历定理}
 
 设 $P$ 不可约、正常返，则
 \[
@@ -1499,7 +1552,7 @@ $\E_i\widetilde{\xi}_1<+\infty$；由 Borel--Cantelli 引理，a.s.\ 当 $s$ 充
 $\widetilde{\xi}_s\le\varepsilon s$，而 $r-1<n$。）从而即已得证。 \qed
 \end{proof}
 
-\subsection*{1.8.4\quad 应用}
+\subsection{应用}
 
 \begin{example}[Ehrenfest]
 $\pi_i=\dbinom{N}{i}\dfrac{1}{2^N}\ \darr\ \E_i\sigma_i=\dfrac{2^N}{\binom{N}{i}}$。
@@ -1562,9 +1615,9 @@ $\widetilde{P}_{(i,j)(j,k)}=p_{jk}$，$\widetilde{\pi}_{(i,j)}=\pi_ip_{ij}$；
 \]
 \end{example}
 
-\secn{1.9}{强遍历定理}
+\section{强遍历定理}
 
-\subsection*{1.9.1\quad 正常返、非周期}
+\subsection{正常返、非周期}
 
 $\dfrac1n\sum_{m=0}^{n-1}\Pp(X_m=i)\to\pi_i$。问：$\Pp(X_n=i)\to\pi_i$？（※）
 
@@ -1632,7 +1685,7 @@ $\nu=\mu\times\pi$ 即已得证。 \qed
 \end{proof}
 
 %======================================================================
-\secn{1.10}{收敛速度}
+\section{收敛速度}
 
 $\mu P^n\to\pi$ 的速度有多快？
 
@@ -1728,7 +1781,7 @@ d_{\mathrm{TV}}(\mu P^n,\pi)\le\alpha^{\,n/m-1}=C\,e^{-\beta n},
 图中虚线为 cut off 情形，实线为指数衰减。
 
 %======================================================================
-\secn{1.11}{分支过程（Branching Process）}
+\section{分支过程（Branching Process）}
 
 1874 年，Galton--Watson 提出\textbf{分支过程}（GW 过程），最初用于研究家族姓氏的消亡。
 
@@ -1853,7 +1906,8 @@ $\rho$ 是方程 $s=f(s)$ 的最小非负解。
 \end{itemize}
 
 %======================================================================
-\chap{第二章\quad 跳过程}
+\chapter{跳过程}
+\chapterheadfix{跳过程}
 
 本章把时间参数由离散推广到连续，研究\textbf{连续时间马氏链}（跳过程）：状态空间仍可数，
 轨道在两次跳跃之间保持不变。
@@ -1900,9 +1954,9 @@ P(t):=\bigl\{p_{ij}(t)\bigr\}_{i,j\in S}.
   \item 离散化：\textbf{嵌入链} $X_k$；\textbf{骨架链} $\{X_{nh}\}$（$h$ 为步长）。
 \end{itemize}
 
-\secn{2.1}{泊松过程}
+\section{泊松过程}
 
-\subsection*{2.1.1\quad 基于指数分布}
+\subsection{基于指数分布}
 
 设 $\xi_1,\xi_2,\dots$ i.i.d.\ $\sim\mathrm{Exp}(\lambda)$，即
 \[
@@ -1959,5 +2013,6 @@ D_k:=\bigl\{x_1+\cdots+x_k\le t,\ x_{k+1}\ge t-S_k,\ x_1,\dots,x_{k+1}\ge0\bigr\
 \begin{remark}
 本笔记的手写稿整理到此处，2.1 节其余内容与后续小节待补。
 \end{remark}
+
 
 \end{document}
