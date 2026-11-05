@@ -30,3 +30,6 @@ editor/.server.pid
 */latex/*.log
 */latex/*.out
 */latex/*.toc
+*/latex/*.bcf
+*/latex/*.run.xml
+*/latex/*.blg

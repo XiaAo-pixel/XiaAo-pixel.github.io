@@ -87,6 +87,18 @@
 \newenvironment{example}[1][]{\begin{vividexample}[#1]}{\end{vividexample}}
 \newenvironment{question}[1][]{\begin{vividquestion}[#1]}{\end{vividquestion}}
 
+% 目录页：章首图较高，目录条目整体下移，避免第一条被图片盖住
+\makeatletter
+\renewcommand\tableofcontents{%
+  \hypersetup{linktoc=all, linkcolor=black}%
+  \chapter*{\contentsname
+    \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
+  \vspace*{0.9cm}%
+  \@starttoc{toc}%
+  \hypersetup{linkcolor=winered}%
+}
+\makeatother
+
 \begin{document}
 
 \chapterimage{chapter.jpg}
