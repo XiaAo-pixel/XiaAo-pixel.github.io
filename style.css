@@ -1,6 +1,37 @@
 /* 大学生个人主页样式：全屏背景 + 磨砂卡片 + 左侧栏目栏（支持子栏目）
    支持明暗主题与衬线/无衬线字体切换（由 assets/prefs.js 设置偏好） */
 
+/* 衬线字体的西文部分：XCharter（Charter 的扩展版，CTAN xcharter 包）
+   与 minimalist-pku-beamer-2026 模板同款；许可见 assets/fonts/XCharter-README.txt */
+@font-face {
+  font-family: "XCharter";
+  src: url("assets/fonts/XCharter-Roman.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "XCharter";
+  src: url("assets/fonts/XCharter-Bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "XCharter";
+  src: url("assets/fonts/XCharter-Italic.otf") format("opentype");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "XCharter";
+  src: url("assets/fonts/XCharter-BoldItalic.otf") format("opentype");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light;
 
@@ -16,7 +47,10 @@
 
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI",
                "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
-  --font-serif: "Songti SC", "STSong", "Noto Serif SC",
+  /* 西文打头走 XCharter（网页字体，见上方 @font-face），中文仍按宋体链条回退：
+     浏览器按字符逐个选字体，拉丁字母命中 XCharter，汉字落到后面的宋体系 */
+  --font-serif: "XCharter", "Charter", "Bitstream Charter", "Sitka Text",
+                "Songti SC", "STSong", "Noto Serif SC",
                 "Source Han Serif SC", "Source Han Serif CN",
                 "SimSun", Georgia, "Times New Roman", serif;
 
@@ -292,7 +326,7 @@ nav { display: flex; flex-direction: column; gap: .25rem; }
 }
 .pref-ico { font-size: .86rem; line-height: 1; }
 .pref-aa {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "XCharter", Georgia, "Times New Roman", serif;
   font-size: .84rem;
   font-weight: 700;
   line-height: 1;
