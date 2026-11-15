@@ -2,6 +2,20 @@
   "version": 1,
   "pdfs": [
     {
+      "file": "files/贝叶斯统计方法基础教程（中译本）.pdf",
+      "title": "贝叶斯统计方法基础教程（中译本）",
+      "category": "统计",
+      "size": 16507994,
+      "added": "2026-11-16"
+    },
+    {
+      "file": "files/高维统计学导论（中文译本）.pdf",
+      "title": "高维统计学导论（中文译本）",
+      "category": "统计",
+      "size": 13222592,
+      "added": "2026-11-16"
+    },
+    {
       "file": "files/测度、积分与实分析（Axler中文版）.pdf",
       "title": "测度、积分与实分析（Axler中文版）",
       "category": "分析",
