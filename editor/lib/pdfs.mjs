@@ -6,10 +6,13 @@ import { todayIso } from './dates.mjs';
 
 // PDF 文件统一平铺在 pdf/files/ 下；分类只是 manifest 里的元数据，不建子目录，
 // 这样改名/改分类都不会动文件路径，阅读进度和已分享的链接不会失效。
+// 缩略图放在 pdf/thumbs/<同名无扩展名>.png，路径由 PDF 文件名唯一决定。
 const PDF_DIRNAME = 'pdf';
 const PDF_FILES_SUBDIR = 'files';
+const PDF_THUMBS_SUBDIR = 'thumbs';
 const MANIFEST_REL = 'pdf/manifest.json';
 const MAX_PDF_BYTES = 100 * 1024 * 1024; // GitHub Pages 单文件硬上限
+const MAX_THUMB_BYTES = 2 * 1024 * 1024;
 
 const WINDOWS_RESERVED = /^(con|prn|aux|nul|com[1-9]|lpt[1-9])(\.|$)/i;
 
@@ -101,9 +104,41 @@ async function listPdfFiles(root) {
   return files;
 }
 
+function thumbAbsFor(root, pdfName) {
+  const stem = pdfName.replace(/\.pdf$/i, '');
+  return path.join(root, PDF_DIRNAME, PDF_THUMBS_SUBDIR, `${stem}.png`);
+}
+
+export async function savePdfThumb(root, { file, dataUrl }) {
+  const resolved = resolvePdfFile(root, file);
+  const m = /^data:image\/(png|jpeg);base64,([A-Za-z0-9+/=\s]+)$/.exec(String(dataUrl || ''));
+  if (!m) throw new Error('缩略图数据格式不正确');
+  const buffer = Buffer.from(m[2].replace(/\s+/g, ''), 'base64');
+  if (buffer.length < 64) throw new Error('缩略图内容为空');
+  if (buffer.length > MAX_THUMB_BYTES) throw new Error('缩略图超过 2MB');
+
+  const abs = thumbAbsFor(root, resolved.name);
+  await writeBinaryFile(root, abs, buffer);
+  return { file: resolved.rel, thumb: `thumbs/${resolved.name.replace(/\.pdf$/i, '')}.png` };
+}
+
+async function listExistingThumbs(root) {
+  const dir = path.join(root, PDF_DIRNAME, PDF_THUMBS_SUBDIR);
+  try {
+    const entries = await fs.readdir(dir);
+    return new Set(entries.filter((name) => /\.png$/i.test(name)));
+  } catch {
+    return new Set();
+  }
+}
+
 /** 站点页面用的列表：磁盘扫描为准，manifest 只补标题/分类/上传日期。 */
 export async function listPdfs(root) {
-  const [files, manifest] = await Promise.all([listPdfFiles(root), readManifest(root)]);
+  const [files, manifest, thumbs] = await Promise.all([
+    listPdfFiles(root),
+    readManifest(root),
+    listExistingThumbs(root),
+  ]);
   const metaByFile = new Map(manifest.pdfs.map((item) => [item.file, item]));
   const pdfs = files.map(({ name, size, mtimeMs }) => {
     const rel = `files/${name}`;
@@ -114,6 +149,7 @@ export async function listPdfs(root) {
       category: String(meta.category || '').trim(),
       size,
       added: String(meta.added || '').trim() || todayIso(new Date(mtimeMs)),
+      thumb: thumbs.has(`${name.replace(/\.pdf$/i, '')}.png`),
       mtimeMs,
     };
   });
@@ -201,6 +237,8 @@ export async function deletePdf(root, { file }) {
     await fs.copyFile(resolved.abs, backupTarget);
     await fs.rm(resolved.abs, { force: true });
   });
+  // 缩略图跟着一起删（删不掉就算了，孤立 PNG 无害）
+  await fs.rm(thumbAbsFor(root, resolved.name), { force: true }).catch(() => {});
 
   const manifest = await readManifest(root);
   const next = manifest.pdfs.filter((item) => item.file !== resolved.rel);

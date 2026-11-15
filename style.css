@@ -1034,17 +1034,94 @@ img.avatar { object-fit: cover; display: block; }
   }
 }
 
-/* ---- PDF 笔记总览页（pdfs.html）---- */
-.pdf-group h2 small {
+/* ---- PDF 笔记书架（pdfs.html）---- */
+.pdf-shelf { margin: 1.6rem 0 2.2rem; }
+.pdf-shelf h2 small {
   font-size: .78rem;
   font-weight: 400;
   color: var(--muted);
   margin-left: .4rem;
 }
-.pdf-entry .d { font-variant-numeric: tabular-nums; }
+.pdf-shelf-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1.05rem 0.85rem;
+}
+/* 一本「书」：小缩略图封面 + 标题 + 进度 */
+.pdf-book {
+  width: 118px;
+  display: flex;
+  flex-direction: column;
+  padding: .5rem .5rem .55rem;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: var(--entry-bg);
+  color: inherit;
+  text-decoration: none;
+  transition: transform .15s, border-color .15s, box-shadow .15s;
+}
+.pdf-book:hover {
+  text-decoration: none;
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(50, 60, 110, .14);
+}
+.pdf-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4.1;
+  border-radius: 7px;
+  overflow: hidden;
+  background: var(--accent-weak);
+  box-shadow: 0 2px 6px rgba(50, 60, 110, .10);
+}
+.pdf-cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* 没有缩略图时的占位封面：按标题生成色相的渐变 + 📕 */
+.pdf-cover.no-thumb img { display: none; }
+.pdf-cover.no-thumb::after {
+  content: '📕';
+  font-size: 2.1rem;
+  line-height: 1;
+}
+.pdf-cover.no-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    155deg,
+    hsl(var(--hue, 226) 72% 64% / .85),
+    hsl(calc(var(--hue, 226) + 42) 68% 50% / .88)
+  );
+}
+.pdf-book-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: .5rem 0 .1rem;
+  font-size: .82rem;
+  font-weight: 600;
+  line-height: 1.4;
+  min-height: 2.3em;
+}
+.pdf-book-meta {
+  font-size: .72rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .pdf-progress {
-  margin-top: .55rem;
-  height: 4px;
+  display: block;
+  margin-top: .45rem;
+  height: 3px;
   border-radius: 999px;
   background: var(--accent-weak);
   overflow: hidden;
@@ -1054,6 +1131,20 @@ img.avatar { object-fit: cover; display: block; }
   height: 100%;
   border-radius: 999px;
   background: var(--accent);
+}
+/* 书架隔板 */
+.pdf-shelf-board {
+  height: 8px;
+  margin-top: .6rem;
+  border-radius: 3px;
+  background: var(--accent-weak);
+  border-top: 2px solid var(--accent);
+  box-shadow: 0 7px 16px rgba(50, 60, 110, .10);
+}
+@media (max-width: 560px) {
+  .pdf-shelf-row { gap: .8rem .6rem; }
+  .pdf-book { width: calc(33.3% - .45rem); padding: .4rem .4rem .5rem; }
+  .pdf-book-title { font-size: .74rem; }
 }
 
 /* ---- 窄屏照片墙：一行放不下两列就折行，照片不再撑满整行 ---- */

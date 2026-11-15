@@ -28,6 +28,10 @@
       credentials: 'omit',
       referrerPolicy: 'no-referrer'
     };
+    // Abacus 挂掉时连接可能长时间悬着，不设超时会卡住整个渲染（实测全显「—」）
+    if (window.AbortSignal && typeof AbortSignal.timeout === 'function') {
+      options.signal = AbortSignal.timeout(5000);
+    }
     if (extra) {
       Object.keys(extra).forEach(function (key) { options[key] = extra[key]; });
     }
@@ -37,12 +41,20 @@
     });
   }
 
-  function hitCounter() {
+  function hitCounter(attempt) {
+    attempt = attempt || 0;
     return fetchJson(API + '/hit/' + NAMESPACE + '/' + KEY, { keepalive: true })
       .then(function (data) {
         return typeof data.value === 'number' ? data.value : null;
       })
-      .catch(function () { return null; });
+      .catch(function () {
+        // 计数服务偶尔抽风（超时/握手失败），隔 1.5s 重试一次再放弃
+        if (attempt < 1) {
+          return new Promise(function (resolve) { setTimeout(resolve, 1500); })
+            .then(function () { return hitCounter(attempt + 1); });
+        }
+        return null;
+      });
   }
 
   function readCounter() {
@@ -140,17 +152,39 @@
     return;
   }
 
-  var totalPromise = hitCounter().then(function (value) {
-    if (value != null) return { total: value, live: true };
-    return readCounter().then(function (fallback) {
-      return { total: fallback, live: false };
-    });
-  });
+  /* 渐进渲染：快照先上屏（本地请求毫秒级），实时计数器到了再覆盖。
+   * 之前是 Promise.all 串行等计数器——服务抽风时要连吃 3 个超时（十几秒），
+   * 页面长时间全显「—」，看起来就像统计坏了。 */
+  var current = { total: null, history: null, live: false };
 
-  var historyPromise = readHistory();
-  Promise.all([totalPromise, historyPromise]).then(function (result) {
-    render(result[0].total, result[1], result[0].live);
-  }).catch(function () {
-    render(null, null, false);
-  });
+  function rerender() {
+    render(current.total, current.history, current.live);
+  }
+
+  readHistory().then(function (history) {
+    current.history = history;
+    if (current.total == null) {
+      var days = history && Array.isArray(history.days) ? history.days : [];
+      var latest = days.length ? days[days.length - 1] : null;
+      var last = latest ? Number(latest.total) : NaN;
+      if (isFinite(last)) current.total = last; // 快照兜底，先显示再说
+    }
+    rerender();
+  }).catch(rerender);
+
+  hitCounter().then(function (value) {
+    if (value == null) {
+      // hit 没成，再用只读接口试一次（能读通也算服务可用）
+      return readCounter().then(function (fallback) {
+        if (fallback != null) {
+          current.total = fallback;
+          current.live = true;
+          rerender();
+        }
+      });
+    }
+    current.total = value;
+    current.live = true;
+    rerender();
+  }).catch(function () { /* 快照渲染已经在上面完成了 */ });
 })();

@@ -2,8 +2,9 @@ name: Update visit stats
 
 on:
   schedule:
-    # 每天 23:30（Asia/Shanghai）记录当天累计访问量
-    - cron: '30 15 * * *'
+    # GitHub 的定时调度经常延迟甚至丢跑（实测有一次整天没触发），
+    # 所以一天跑 4 次：脚本按日期覆盖写（幂等），当天第一个成功的运行生效。
+    - cron: '30 3,9,15,21 * * *'
   workflow_dispatch:
 
 permissions:
@@ -16,6 +17,7 @@ concurrency:
 jobs:
   snapshot:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
 

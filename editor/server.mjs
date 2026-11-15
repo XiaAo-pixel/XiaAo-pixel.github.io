@@ -47,7 +47,7 @@ import {
 } from './lib/html.mjs';
 import { setCoverPrefixDate, setPageFooterDate, todayIso } from './lib/dates.mjs';
 import { getGitStatus, publishRepo } from './lib/git.mjs';
-import { listPdfs, savePdf, updatePdfMeta, deletePdf } from './lib/pdfs.mjs';
+import { listPdfs, savePdf, updatePdfMeta, deletePdf, savePdfThumb } from './lib/pdfs.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_ROOT = path.resolve(__dirname, '..');
@@ -847,6 +847,21 @@ async function handle(req, res, url) {
         category: body.category,
       }));
       json(res, 200, { pdf: result });
+    } catch (error) {
+      fail(res, error.status || 400, error.message);
+    }
+    return;
+  }
+
+  if (pathname === '/__api/pdf/thumb' && req.method === 'POST') {
+    try {
+      checkWriteRequest(req);
+      const body = await readJsonBody(req);
+      const result = await serializeWrite(() => savePdfThumb(root, {
+        file: body.file,
+        dataUrl: body.dataUrl,
+      }));
+      json(res, 200, result);
     } catch (error) {
       fail(res, error.status || 400, error.message);
     }

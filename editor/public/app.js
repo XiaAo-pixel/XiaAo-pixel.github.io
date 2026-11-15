@@ -4217,7 +4217,7 @@ function selectInPreview(eid) {
 /* ------------------------------------------------------------------ */
 const pdfUI = {
   root: null, items: [], loaded: false, loading: false,
-  uploading: false, status: '', lastCategory: '',
+  uploading: false, thumbBusy: false, status: '', lastCategory: '',
 };
 
 function openPdfLibrary() {
@@ -4232,7 +4232,7 @@ function openPdfLibrary() {
     onMount(root) {
       pdfUI.root = root;
       bindPdfManager(root);
-      refreshPdfs();
+      refreshPdfs().then(() => backfillPdfThumbs());
     },
   });
   if (modal) {
@@ -4255,6 +4255,83 @@ async function refreshPdfs() {
   }
   pdfUI.loading = false;
   renderPdfManager();
+}
+
+/* ---- 缩略图：用站点自带的 PDF.js 把第一页渲染成 JPEG 存到 pdf/thumbs/ ---- */
+let pdfjsModulePromise = null;
+
+function loadPdfjs() {
+  // 复用站点自托管的 PDF.js（编辑器服务和站点根同源，直接 import）；
+  // v6 把 canvas 渲染放进了独立的 renderer worker，rendererSrc 必须一并设置
+  if (!pdfjsModulePromise) {
+    pdfjsModulePromise = import('/pdf/viewer/build/pdf.mjs').then((lib) => {
+      lib.GlobalWorkerOptions.workerSrc = '/pdf/viewer/build/pdf.worker.mjs';
+      lib.GlobalWorkerOptions.rendererSrc = '/pdf/viewer/build/pdf.renderer.mjs';
+      return lib;
+    });
+  }
+  return pdfjsModulePromise;
+}
+
+async function generatePdfThumb(item) {
+  const lib = await loadPdfjs();
+  const url = '/pdf/' + item.file.split('/').map(encodeURIComponent).join('/');
+  // 60s 兜底：万一渲染管道在异常环境里挂死，别把整个面板卡住
+  const withTimeout = (promise, tag) => Promise.race([
+    promise,
+    new Promise((_, reject) => setTimeout(() => reject(new Error(`${tag}超时`)), 60000)),
+  ]);
+  const doc = await withTimeout(
+    lib.getDocument({
+      url,
+      cMapUrl: '/pdf/viewer/web/cmaps/',
+      cMapPacked: true,
+      standardFontDataUrl: '/pdf/viewer/web/standard_fonts/',
+    }).promise,
+    '加载 PDF ',
+  );
+  try {
+    const page = await doc.getPage(1);
+    const base = page.getViewport({ scale: 1 });
+    // 书架上显示约 120px 宽，480px 渲染保证 retina 下依然清晰
+    const scale = Math.min(2.5, 480 / base.width);
+    const viewport = page.getViewport({ scale });
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.ceil(viewport.width);
+    canvas.height = Math.ceil(viewport.height);
+    // v6 规范写法是传 canvas（不是 canvasContext），渲染走 renderer worker；
+    // 传 canvasContext 会落入 legacy 路径，实测会挂死不返回
+    await withTimeout(page.render({ canvas, viewport, background: '#ffffff' }).promise, '渲染首页 ');
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+    canvas.width = 0;
+    canvas.height = 0;
+    const data = await api('/__api/pdf/thumb', { method: 'POST', body: { file: item.file, dataUrl } });
+    if (data.thumb) item.thumb = data.thumb;
+  } finally {
+    doc.destroy();
+  }
+}
+
+async function backfillPdfThumbs() {
+  if (pdfUI.thumbBusy || pdfUI.uploading) return;
+  const missing = pdfUI.items.filter((item) => !item.thumb);
+  if (!missing.length) return;
+  pdfUI.thumbBusy = true;
+  renderPdfManager();
+  let failed = 0;
+  for (let i = 0; i < missing.length; i += 1) {
+    pdfUI.status = `正在生成缩略图 ${i + 1}/${missing.length} · ${missing[i].title}`;
+    renderPdfManager();
+    try {
+      await generatePdfThumb(missing[i]);
+    } catch (error) {
+      failed += 1;
+      console.warn('缩略图生成失败：', error);
+    }
+  }
+  pdfUI.thumbBusy = false;
+  renderPdfManager();
+  if (failed) toast(`${failed} 个 PDF 缩略图生成失败，可重新打开面板再试`, 'error', 5000);
 }
 
 function fmtPdfSize(bytes) {
@@ -4308,7 +4385,7 @@ function renderPdfManager() {
           <button type="button" class="btn primary small" data-pdf-action="upload" ${pdfUI.uploading ? 'disabled' : ''}>${icon('cloud-upload')}上传 PDF</button>
         </div>
       </div>
-      ${pdfUI.uploading ? `<div class="pdf-upload-status">${esc(pdfUI.status || '正在上传…')}</div>` : ''}
+      ${pdfUI.uploading || pdfUI.thumbBusy ? `<div class="pdf-upload-status">${esc(pdfUI.status || '正在上传…')}</div>` : ''}
       ${pdfUI.loading && !pdfUI.loaded
         ? '<div class="pdf-loading"><div class="spinner"></div><span>正在读取列表…</span></div>'
         : (list || `<div class="content-empty">
@@ -4422,6 +4499,14 @@ async function pdfUploadFlow() {
       });
       pdfUI.status = `已上传 · ${file.name}`;
       toast(`已上传《${saved.title}》`, 'success', 2400);
+      // 立刻给这一本生成书架缩略图；失败不打断上传流程
+      try {
+        pdfUI.status = `正在生成缩略图 · ${file.name}`;
+        renderPdfManager();
+        await generatePdfThumb(saved);
+      } catch (error) {
+        console.warn('缩略图生成失败：', error);
+      }
     }
     await refreshPdfs();
   } catch (error) {
@@ -4430,6 +4515,7 @@ async function pdfUploadFlow() {
   }
   pdfUI.uploading = false;
   renderPdfManager();
+  backfillPdfThumbs();
 }
 
 
