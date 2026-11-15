@@ -8,6 +8,7 @@
     "courses.html": { "label": "课程笔记", "icon": "book", "group": "页面", "order": 20 },
     "misc.html": { "label": "杂记", "icon": "note", "group": "页面", "order": 30 },
     "hobbies.html": { "label": "兴趣爱好", "icon": "heart", "group": "兴趣爱好", "order": 10 },
+    "pdfs.html": { "label": "PDF 笔记", "icon": "file", "group": "页面", "order": 40 },
     "hobby-novel.html": { "label": "小说", "icon": "novel", "group": "兴趣爱好", "order": 20, "form": "books" },
     "hobby-anime.html": { "label": "动漫", "icon": "film", "group": "兴趣爱好", "order": 30 },
     "hobby-travel.html": { "label": "旅行", "icon": "map", "group": "兴趣爱好", "order": 40 },

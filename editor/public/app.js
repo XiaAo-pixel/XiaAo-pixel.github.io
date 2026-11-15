@@ -1000,6 +1000,10 @@ function bindGlobalEvents() {
     if (!actionEl) return;
     const action = actionEl.dataset.action;
     switch (action) {
+      case 'pdf-library':
+        event.preventDefault();
+        openPdfLibrary();
+        break;
       case 'appearance':
         event.preventDefault();
         toggleAppearance();
@@ -2146,6 +2150,25 @@ function pickFile(accept = 'image/*') {
       const file = input.files?.[0] || null;
       input.remove();
       resolve(file);
+    });
+    document.body.appendChild(input);
+    input.click();
+  });
+}
+
+/** 多选版 pickFile，PDF 上传等一次要挑多个文件的场景用。 */
+function pickFiles(accept = '.pdf') {
+  return new Promise((resolve) => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = accept;
+    input.multiple = true;
+    input.style.position = 'fixed';
+    input.style.left = '-9999px';
+    input.addEventListener('change', () => {
+      const files = Array.from(input.files || []);
+      input.remove();
+      resolve(files);
     });
     document.body.appendChild(input);
     input.click();
@@ -4186,6 +4209,227 @@ function selectInPreview(eid) {
   closeModal();
   if (state.mode !== 'edit') setMode('edit');
   setTimeout(() => sendBridge({ type: 'selectEid', eid }), 120);
+}
+
+
+/* ------------------------------------------------------------------ */
+/* PDF 笔记库（上传 / 管理，发布后出现在主页「PDF 笔记」页）              */
+/* ------------------------------------------------------------------ */
+const pdfUI = {
+  root: null, items: [], loaded: false, loading: false,
+  uploading: false, status: '', lastCategory: '',
+};
+
+function openPdfLibrary() {
+  const modal = openModal({
+    title: 'PDF 笔记',
+    subtitle: '上传的 PDF 在点「发布」后出现在主页「PDF 笔记」页；标题和分类随时可改，阅读进度由线上阅读器自动记录。',
+    cardClass: 'content-modal pdf-modal',
+    wide: true,
+    body: '<div class="content-manager-shell" id="pdf-manager-root"></div>',
+    footer: `<span class="modal-foot-hint">单个文件不超过 100MB（GitHub Pages 上限）</span>
+      <button type="button" class="btn ghost" data-close>关闭</button>`,
+    onMount(root) {
+      pdfUI.root = root;
+      bindPdfManager(root);
+      refreshPdfs();
+    },
+  });
+  if (modal) {
+    modal.onClose = () => {
+      pdfUI.root = null;
+    };
+  }
+}
+
+async function refreshPdfs() {
+  if (!pdfUI.root || pdfUI.loading) return;
+  pdfUI.loading = true;
+  renderPdfManager();
+  try {
+    const data = await api('/__api/pdfs');
+    pdfUI.items = data.pdfs || [];
+    pdfUI.loaded = true;
+  } catch (error) {
+    toast(error.message, 'error');
+  }
+  pdfUI.loading = false;
+  renderPdfManager();
+}
+
+function fmtPdfSize(bytes) {
+  if (!Number.isFinite(bytes) || bytes <= 0) return '';
+  if (bytes >= 1024 * 1024) return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+  return `${Math.max(1, Math.round(bytes / 1024))} KB`;
+}
+
+function renderPdfManager() {
+  if (!pdfUI.root) return;
+  const body = $('.modal-body', pdfUI.root);
+  if (!body) return;
+
+  const categories = [...new Set(pdfUI.items.map((item) => item.category).filter(Boolean))];
+  const catOptions = categories.map((c) => `<option value="${escAttr(c)}"></option>`).join('');
+  const groups = new Map();
+  for (const item of pdfUI.items) {
+    const key = item.category || '未分类';
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(item);
+  }
+
+  let list = '';
+  for (const [category, items] of groups) {
+    list += `<div class="pdf-group"><h3>${esc(category)}<span>${items.length}</span></h3>`;
+    list += items.map((item) => `<div class="content-row" data-file="${escAttr(item.file)}">
+      <div class="content-row-main">
+        <input type="text" class="pdf-title-input" value="${escAttr(item.title)}" placeholder="标题" data-field="title">
+        <small title="${escAttr(item.file)}">${escAttr(item.file)} · ${fmtPdfSize(item.size)} · ${escAttr(item.added)}</small>
+        <input type="text" class="pdf-cat-input" list="pdf-cat-options" value="${escAttr(item.category)}" placeholder="分类（留空 = 未分类）" data-field="category">
+      </div>
+      <div class="content-row-actions">
+        <button type="button" class="btn ghost small" data-pdf-action="open" title="用内置阅读器打开">${icon('external')}打开</button>
+        <button type="button" class="icon-btn danger" data-pdf-action="delete" title="删除这个 PDF">${icon('trash')}</button>
+      </div>
+    </div>`).join('');
+    list += '</div>';
+  }
+
+  body.innerHTML = `<div class="content-manager pdf-manager">
+    <datalist id="pdf-cat-options">${catOptions}</datalist>
+    <div class="content-panel">
+      <div class="content-panel-head">
+        <div>
+          <h3>已上传的 PDF</h3>
+          <p>改标题 / 分类后失焦或回车即自动保存；「打开」用内置阅读器预览（进度只记在本机）。</p>
+        </div>
+        <div class="btn-row">
+          <input type="text" id="pdf-upload-category" list="pdf-cat-options" placeholder="上传到分类（可选）"
+            value="${escAttr(pdfUI.lastCategory)}" ${pdfUI.uploading ? 'disabled' : ''}>
+          <button type="button" class="btn primary small" data-pdf-action="upload" ${pdfUI.uploading ? 'disabled' : ''}>${icon('cloud-upload')}上传 PDF</button>
+        </div>
+      </div>
+      ${pdfUI.uploading ? `<div class="pdf-upload-status">${esc(pdfUI.status || '正在上传…')}</div>` : ''}
+      ${pdfUI.loading && !pdfUI.loaded
+        ? '<div class="pdf-loading"><div class="spinner"></div><span>正在读取列表…</span></div>'
+        : (list || `<div class="content-empty">
+            <span>${icon('file')}</span>
+            <p>还没有 PDF。上传后点编辑器右上角「发布」，主页的「PDF 笔记」页就能看到。</p>
+          </div>`)}
+    </div>
+  </div>`;
+  hydrateIcons(body);
+}
+
+function bindPdfManager(root) {
+  root.addEventListener('click', async (event) => {
+    const actionEl = event.target.closest('[data-pdf-action]');
+    if (!actionEl) return;
+    event.preventDefault();
+    const action = actionEl.dataset.pdfAction;
+    if (action === 'upload') {
+      pdfUploadFlow();
+      return;
+    }
+    const item = pdfUI.items.find((i) => i.file === actionEl.closest('[data-file]')?.dataset.file);
+    if (!item) return;
+    if (action === 'open') {
+      window.open(`/pdf/reader.html?file=${encodeURIComponent(item.file)}&title=${encodeURIComponent(item.title)}`, '_blank');
+      return;
+    }
+    if (action === 'delete') {
+      // 注意：这里用 window.confirm 而不是 confirmDialog —— 后者会和本面板
+      // 共用同一个 #modal-host，一弹出就会把 PDF 管理面板整个关掉。
+      const ok = window.confirm(`删除《${item.title}》？发布后线上也会一起移除；本地备份和 git 历史里仍可找回。`);
+      if (!ok) return;
+      try {
+        await api('/__api/pdf/delete', { method: 'POST', body: { file: item.file } });
+        toast('已删除，点「发布」后线上同步移除', 'success');
+        await refreshPdfs();
+      } catch (error) {
+        handleApiError(error);
+      }
+    }
+  });
+
+  // 标题 / 分类输入：失焦（change）或回车即保存
+  root.addEventListener('change', (event) => {
+    const input = event.target.closest('input[data-field]');
+    if (!input) return;
+    const file = input.closest('[data-file]')?.dataset.file;
+    if (file) savePdfMeta(file, input.dataset.field, input.value);
+  });
+  root.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter') return;
+    const input = event.target.closest('input[data-field]');
+    if (input) input.blur(); // 回车直接失焦，让 change 立刻触发
+  });
+}
+
+async function savePdfMeta(file, field, value) {
+  const item = pdfUI.items.find((i) => i.file === file);
+  if (!item || String(item[field] ?? '') === String(value ?? '').trim()) return;
+  const body = { file };
+  body[field] = value;
+  try {
+    const data = await api('/__api/pdf/update', { method: 'POST', body });
+    if (data.pdf) Object.assign(item, data.pdf);
+    toast('已保存', 'success', 1600);
+  } catch (error) {
+    handleApiError(error);
+  }
+}
+
+function postPdfBinary(file, category, onProgress) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    // 文件名/分类放查询参数，正文直接发原始字节，几十 MB 也不用转 base64
+    xhr.open('POST', `/__api/pdf/upload?name=${encodeURIComponent(file.name)}&category=${encodeURIComponent(category)}`);
+    xhr.setRequestHeader('X-Editor-Request', '1');
+    xhr.responseType = 'json';
+    xhr.upload.addEventListener('progress', (event) => {
+      if (event.lengthComputable && onProgress) {
+        onProgress(Math.round((event.loaded / event.total) * 100));
+      }
+    });
+    xhr.addEventListener('load', () => {
+      const data = xhr.response;
+      if (xhr.status >= 200 && xhr.status < 300) resolve(data.pdf);
+      else reject(new Error(data?.error || `上传失败（${xhr.status}）`));
+    });
+    xhr.addEventListener('error', () => reject(new Error('连不上本地服务，请确认启动窗口还开着')));
+    xhr.send(file);
+  });
+}
+
+async function pdfUploadFlow() {
+  if (pdfUI.uploading) return;
+  const categoryInput = $('#pdf-upload-category', pdfUI.root);
+  if (categoryInput) pdfUI.lastCategory = categoryInput.value.trim();
+  const files = await pickFiles();
+  if (!files.length) return;
+  pdfUI.uploading = true;
+  renderPdfManager();
+  try {
+    for (const file of files) {
+      if (file.size > 100 * 1024 * 1024) {
+        toast(`${file.name} 超过 100MB（GitHub Pages 上限），已跳过`, 'error', 5000);
+        continue;
+      }
+      const saved = await postPdfBinary(file, pdfUI.lastCategory, (pct) => {
+        pdfUI.status = `正在上传 ${pct}% · ${file.name}`;
+        const line = $('.pdf-upload-status', pdfUI.root);
+        if (line) line.textContent = pdfUI.status;
+      });
+      pdfUI.status = `已上传 · ${file.name}`;
+      toast(`已上传《${saved.title}》`, 'success', 2400);
+    }
+    await refreshPdfs();
+  } catch (error) {
+    handleApiError(error);
+    await refreshPdfs();
+  }
+  pdfUI.uploading = false;
+  renderPdfManager();
 }
 
 

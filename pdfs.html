@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF 笔记 | XiaAo</title>
+  <link rel="preload" as="image" href="assets/wallpaper.jpg" type="image/jpeg" fetchpriority="high">
+  <script src="assets/prefs.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+
+  <aside class="sidebar">
+    <a class="brand" href="index.html">
+      <img class="avatar" src="assets/avatar.jpg" alt="头像">
+      <span class="name">XiaAo</span>
+    </a>
+    <nav>
+      <a class="nav-item" href="index.html">🏠 主页</a>
+      <div class="nav-group">
+        <a class="nav-item" href="courses.html">📚 课程笔记</a>
+        <div class="subnav">
+          <a href="/statistics/">数理统计</a>
+          <a href="/optimization/">最优化方法</a>
+          <a href="/stochastic/">应用随机过程</a>
+          <a href="/ode/">常微分方程</a>
+          <a href="/realanalysis/">实变函数</a>
+          <a href="/trade/">国际贸易</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <a class="nav-item" href="misc.html">✏️ 杂记</a>
+        <div class="subnav">
+        </div>
+      </div>
+      <div class="nav-group">
+        <a class="nav-item" href="hobbies.html">🎨 兴趣爱好</a>
+        <div class="subnav">
+          <a href="hobby-novel.html">小说</a>
+          <a href="hobby-anime.html">动漫</a>
+          <a href="hobby-travel.html">旅行</a>
+        </div>
+      </div>
+      <a class="nav-item active" href="pdfs.html">📄 PDF 笔记</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <h1>PDF 笔记</h1>
+    <p class="muted">从「主页助手」上传的 PDF 都在这里；点击卡片在内置阅读器里打开，会自动记住读到的页码（本机记忆，换设备后从各设备自己读到的位置继续）。</p>
+
+    <!-- 列表由 assets/pdf-library.js 根据 pdf/manifest.json 渲染；
+         上传 / 删除 / 改分类都在本地「主页助手」里操作，发布后同步到这里 -->
+    <div id="pdf-library" aria-live="polite">
+      <p class="muted">正在加载 PDF 列表…</p>
+    </div>
+
+    <footer>最后更新：2026-11-15</footer>
+  </main>
+
+</div>
+<script src="assets/pdf-library.js"></script>
+<script src="assets/page-motion.js"></script>
+<script src="assets/visit-stats.js" defer></script>
+</body>
+</html>

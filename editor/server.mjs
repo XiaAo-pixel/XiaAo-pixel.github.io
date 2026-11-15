@@ -47,6 +47,7 @@ import {
 } from './lib/html.mjs';
 import { setCoverPrefixDate, setPageFooterDate, todayIso } from './lib/dates.mjs';
 import { getGitStatus, publishRepo } from './lib/git.mjs';
+import { listPdfs, savePdf, updatePdfMeta, deletePdf } from './lib/pdfs.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_ROOT = path.resolve(__dirname, '..');
@@ -67,6 +68,7 @@ const MIME = {
   '.gif': 'image/gif',
   '.ico': 'image/x-icon',
   '.woff2': 'font/woff2',
+  '.pdf': 'application/pdf',
 };
 
 const args = process.argv.slice(2);
@@ -128,6 +130,22 @@ async function readJsonBody(req) {
     error.status = 400;
     throw error;
   }
+}
+
+/** 读二进制请求体（PDF 上传用），不做大小写转换、不做 JSON 解析。 */
+async function readRawBody(req, limitBytes) {
+  const chunks = [];
+  let size = 0;
+  for await (const chunk of req) {
+    size += chunk.length;
+    if (size > limitBytes) {
+      const error = new Error(`文件超过 ${(limitBytes / 1024 / 1024).toFixed(0)}MB 上限`);
+      error.status = 413;
+      throw error;
+    }
+    chunks.push(chunk);
+  }
+  return Buffer.concat(chunks);
 }
 
 function sanitizeHost(host) {
@@ -526,6 +544,19 @@ async function handle(req, res, url) {
     return;
   }
 
+  // PDF 笔记库（总览页/阅读器/上传的文件）。站点上由 GitHub Pages 直接发布，
+  // 本地预览走这里，路径限制在 <root>/pdf 之内。
+  if ((req.method === 'GET' || req.method === 'HEAD') && pathname.startsWith('/pdf/')) {
+    const rel = decodeURIComponent(pathname.slice(1));
+    const file = path.resolve(root, rel);
+    if (!file.startsWith(path.resolve(root, 'pdf') + path.sep)) {
+      fail(res, 404, '资源不存在');
+      return;
+    }
+    await serveFile(res, file, { head: req.method === 'HEAD' });
+    return;
+  }
+
   if (pathname === '/__api/state' && req.method === 'GET') {
     try {
       json(res, 200, await apiState({ fresh: searchParams.get('fresh') === '1' }));
@@ -778,6 +809,58 @@ async function handle(req, res, url) {
       });
     } catch (error) {
       fail(res, error.status || 400, error.message, error.conflict ? { conflict: true } : {});
+    }
+    return;
+  }
+
+  if (pathname === '/__api/pdfs' && req.method === 'GET') {
+    try {
+      json(res, 200, await listPdfs(root));
+    } catch (error) {
+      fail(res, 500, error.message);
+    }
+    return;
+  }
+
+  if (pathname === '/__api/pdf/upload' && req.method === 'POST') {
+    try {
+      checkWriteRequest(req);
+      // 文件名/分类走查询参数，正文是原始字节（不走 base64，几十 MB 的 PDF 也能传）
+      const name = searchParams.get('name') || '';
+      const category = searchParams.get('category') || '';
+      const data = await readRawBody(req, 105 * 1024 * 1024);
+      const result = await serializeWrite(() => savePdf(root, { name, category, data }));
+      json(res, 200, { pdf: result });
+    } catch (error) {
+      fail(res, error.status || 400, error.message);
+    }
+    return;
+  }
+
+  if (pathname === '/__api/pdf/update' && req.method === 'POST') {
+    try {
+      checkWriteRequest(req);
+      const body = await readJsonBody(req);
+      const result = await serializeWrite(() => updatePdfMeta(root, {
+        file: body.file,
+        title: body.title,
+        category: body.category,
+      }));
+      json(res, 200, { pdf: result });
+    } catch (error) {
+      fail(res, error.status || 400, error.message);
+    }
+    return;
+  }
+
+  if (pathname === '/__api/pdf/delete' && req.method === 'POST') {
+    try {
+      checkWriteRequest(req);
+      const body = await readJsonBody(req);
+      const result = await serializeWrite(() => deletePdf(root, { file: body.file }));
+      json(res, 200, result);
+    } catch (error) {
+      fail(res, error.status || 400, error.message);
     }
     return;
   }

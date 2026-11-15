@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF 阅读器 | XiaAo</title>
+  <!-- prefs.js 同步执行，先在 <html> 上落好 data-theme，避免深浅色闪变 -->
+  <script src="../assets/prefs.js"></script>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* 阅读器是整页应用，不走卡片版布局；只借用 style.css 的主题变量 */
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      background: var(--note-desk, #e0e6f2);
+      color: var(--text, #293046);
+      font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+    }
+    .pdf-topbar {
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      padding: .5rem .95rem;
+      border-bottom: 1px solid var(--rule, #e5e8f1);
+      background: var(--card, #fff);
+      flex: none;
+      min-height: 2.6rem;
+    }
+    .pdf-topbar a {
+      color: var(--accent, #5269f2);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .pdf-topbar a:hover { text-decoration: underline; }
+    .pdf-title {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 700;
+      font-size: .95rem;
+    }
+    .pdf-page-indicator {
+      font-size: .82rem;
+      color: var(--muted, #6b7285);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+    .pdf-frame-wrap { flex: 1; min-height: 0; position: relative; }
+    #pdf-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .pdf-missing {
+      margin: auto;
+      text-align: center;
+      color: var(--muted, #6b7285);
+      line-height: 1.9;
+      padding: 2rem;
+    }
+    @media (max-width: 640px) {
+      .pdf-topbar { gap: .55rem; padding: .45rem .6rem; }
+      .pdf-title { font-size: .88rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="pdf-topbar">
+  <a href="../pdfs.html">← PDF 笔记</a>
+  <span class="pdf-title" id="pdf-title">正在打开…</span>
+  <span class="pdf-page-indicator" id="pdf-page-indicator"></span>
+  <a id="pdf-download" href="#" download>下载</a>
+</header>
+
+<div class="pdf-frame-wrap">
+  <iframe id="pdf-frame" title="PDF 阅读器" allow="fullscreen"></iframe>
+  <noscript><p class="pdf-missing">阅读器需要启用 JavaScript。</p></noscript>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var PROGRESS_PREFIX = 'xiaao-pdf-progress:';
+  var params = new URLSearchParams(location.search);
+  var file = (params.get('file') || '').replace(/^\/+/, '');
+  var title = params.get('title') || '';
+
+  var titleEl = document.getElementById('pdf-title');
+  var indicatorEl = document.getElementById('pdf-page-indicator');
+  var downloadEl = document.getElementById('pdf-download');
+  var frame = document.getElementById('pdf-frame');
+
+  // file 必须是「files/<单个文件名>.pdf」，防止越权访问其它路径
+  var fileParts = file.split('/');
+  if (fileParts.length !== 2 || fileParts[0] !== 'files' ||
+      !/^[\w.\-\u4e00-\u9fff\u3000-\u303f（）()【】\[\] ]+\.pdf$/i.test(fileParts[1])) {
+    file = '';
+  }
+
+  if (!file) {
+    titleEl.textContent = '没有找到 PDF';
+    document.title = 'PDF 阅读器 | XiaAo';
+    downloadEl.hidden = true;
+    frame.remove();
+    var wrap = document.querySelector('.pdf-frame-wrap');
+    wrap.innerHTML = '<p class="pdf-missing">链接里没有带 PDF 文件。<br><a href="../pdfs.html">返回 PDF 笔记总览</a></p>';
+    return;
+  }
+
+  // 标题优先用参数里的（总览页从 manifest 带过来），否则用文件名
+  var displayName = title || decodeURIComponent(file.split('/').pop() || file);
+  titleEl.textContent = displayName;
+  document.title = displayName + ' · PDF 笔记';
+
+  var fileUrl = new URL(file, location.href).href;
+  downloadEl.href = fileUrl;
+  downloadEl.setAttribute('download', decodeURIComponent(file.split('/').pop() || 'note.pdf'));
+
+  var progressKey = PROGRESS_PREFIX + file;
+  function readProgress() {
+    try { return JSON.parse(localStorage.getItem(progressKey) || 'null'); }
+    catch { return null; }
+  }
+  function writeProgress(page, total) {
+    if (!page || page < 1) return;
+    try {
+      localStorage.setItem(progressKey, JSON.stringify({
+        page: page,
+        total: total || (readProgress() || {}).total || 0,
+        updated: new Date().toISOString(),
+      }));
+    } catch { /* 隐私模式下写不进就算了 */ }
+  }
+
+  var state = { page: 0, total: 0, timer: 0, linked: false };
+
+  function updateIndicator() {
+    indicatorEl.textContent = state.total
+      ? '第 ' + state.page + ' / ' + state.total + ' 页'
+      : (state.page ? '第 ' + state.page + ' 页' : '');
+  }
+
+  function saveSoon() {
+    if (state.timer) return;
+    state.timer = setTimeout(function () {
+      state.timer = 0;
+      writeProgress(state.page, state.total);
+    }, 800);
+  }
+
+  function hookViewer() {
+    var win = frame.contentWindow;
+    var app = win && win.PDFViewerApplication;
+    if (!app || !app.eventBus) return false;
+    if (state.linked) return true;
+    state.linked = true;
+    // 兜底再落一次 color-scheme（viewer.html 的解析期脚本已设过；防阅读器初始化覆盖）
+    try {
+      frame.contentDocument.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+    } catch { /* 不影响后续 */ }
+    var bus = app.eventBus;
+    bus.on('pagechanging', function (e) {
+      state.page = e.pageNumber;
+      updateIndicator();
+      saveSoon();
+    });
+    bus.on('pagesinit', function () {
+      state.total = app.pagesCount || 0;
+      if (!state.page) state.page = app.page || 1;
+      updateIndicator();
+      saveSoon();
+    });
+    // 初始页码（从 #page=N 恢复）在 pagesinit 之后才就绪，补一次
+    setTimeout(function () {
+      state.page = app.page || state.page || 1;
+      state.total = app.pagesCount || state.total;
+      updateIndicator();
+      saveSoon();
+    }, 1200);
+    window.addEventListener('pagehide', function () {
+      writeProgress(state.page, state.total);
+    });
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'hidden') writeProgress(state.page, state.total);
+    });
+    return true;
+  }
+
+  // 深浅色跟当前站点主题保持一致；阅读器里支持 #page=N 恢复上次页码
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  var progress = readProgress();
+  var src = 'viewer/web/viewer.html?file=' + encodeURIComponent(fileUrl) +
+    '&theme=' + (dark ? 'dark' : 'light') +
+    (progress && progress.page > 1 ? '#page=' + Math.floor(progress.page) : '');
+  frame.src = src;
+
+  frame.addEventListener('load', function () {
+    if (hookViewer()) return;
+    // eventBus 偶尔晚于 iframe load 就绪，重试几次
+    var tries = 0;
+    var timer = setInterval(function () {
+      if (hookViewer() || ++tries > 20) clearInterval(timer);
+    }, 500);
+  });
+})();
+</script>
+</body>
+</html>

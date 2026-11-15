@@ -1034,6 +1034,28 @@ img.avatar { object-fit: cover; display: block; }
   }
 }
 
+/* ---- PDF 笔记总览页（pdfs.html）---- */
+.pdf-group h2 small {
+  font-size: .78rem;
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: .4rem;
+}
+.pdf-entry .d { font-variant-numeric: tabular-nums; }
+.pdf-progress {
+  margin-top: .55rem;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--accent-weak);
+  overflow: hidden;
+}
+.pdf-progress span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
 /* ---- 窄屏照片墙：一行放不下两列就折行，照片不再撑满整行 ---- */
 @media (max-width: 720px) {
   .photo-row { flex-wrap: wrap; row-gap: 1.1rem; }
