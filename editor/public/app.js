@@ -4556,19 +4556,31 @@ function publishResultHtml(result) {
   const output = result.output
     ? `<details class="publish-files"><summary>查看 Git 输出</summary><pre>${esc(result.output)}</pre></details>`
     : '';
+  const synced = result.syncedBehind > 0
+    ? `<p>已自动同步远端 ${result.syncedBehind} 个新提交后再推送。</p>`
+    : '';
   return `<div class="publish-result">
     <span class="publish-result-icon ok">${icon('check')}</span>
     <h3>发布成功</h3>
     <p>${summary}。<br>GitHub Pages 通常会在 1 分钟左右完成构建，稍后刷新线上主页即可。</p>
+    ${synced}
     ${output}
   </div>`;
 }
 
 function publishFailureHtml(result, message) {
   const title = result?.committed && !result?.pushed ? '本地已提交，推送失败' : '发布没有完成';
-  const text = result?.committed
-    ? '代码已经在本地提交，检查网络或代理后可以只重试推送；不会重复创建提交。'
-    : '没有产生新的提交。请检查下方的 Git 输出，确认身份配置、代理、权限或 hooks。';
+  const reason = result?.reason || '';
+  let text;
+  if (reason === 'sync-failed') {
+    text = '推送被拒，且自动同步远端没有完成。本地提交仍然保留，处理好网络或代理后可以直接重试。';
+  } else if (reason === 'non-fast-forward') {
+    text = '远端有新的提交（通常来自自动统计任务）。再次点发布会先自动同步，再重试推送，不会丢失本地内容。';
+  } else if (result?.committed) {
+    text = '代码已经在本地提交，检查网络或代理后可以只重试推送；不会重复创建提交。';
+  } else {
+    text = '没有产生新的提交，推送也没有成功。请检查下方的 Git 输出，确认身份配置、代理、权限或 hooks。';
+  }
   const error = result?.error ? `<p>${esc(result.error)}</p>` : '';
   const output = (result?.output || result?.detail || '') ? `<pre class="publish-output">${esc(result.output || result.detail)}</pre>` : '';
   return `<div class="publish-result">
@@ -4629,7 +4641,7 @@ async function openPublishDialog() {
           <input class="field-input" id="publish-message" value="${escAttr(message)}" maxlength="200">
         </div>
         ${publishFilesHtml(git)}
-        <div class="tip" style="margin-top:10px">${icon('info')} 将执行 <strong>git add -A → commit → push</strong>，不会 force push，也不会跳过仓库 hooks。推送前请确认代理/网络可用。</div>`
+        <div class="tip" style="margin-top:10px">${icon('info')} 将执行 <strong>git add -A → commit → push</strong>；若远端有新提交导致推送被拒，会自动 fetch + rebase 后重试一次。不会 force push，也不会跳过仓库 hooks。</div>`
       : `<div class="tip" style="margin-top:10px">${
           !git.remote || git.detached
             ? `${icon('alert')} 修正 Git 配置后再发布。`

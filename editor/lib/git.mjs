@@ -1,6 +1,7 @@
 /**
  * 本地 Git 状态与一键发布。
- * 只执行普通 add / commit / push，不 force、不跳过 hooks。
+ * 普通 add / commit / push；推送被拒（远端有新提交）时 fetch + rebase 后重试一次。
+ * 不 force、不跳过 hooks；rebase 冲突会 abort 并保留本地提交。
  */
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
@@ -62,6 +63,47 @@ function parseStatusLines(output) {
     .split(/\r?\n/)
     .map((line) => line.trimEnd())
     .filter(Boolean);
+}
+
+function looksLikeNonFastForward(result) {
+  const text = [result?.stdout, result?.stderr, result?.message].filter(Boolean).join('\n');
+  return /non-fast-forward|fetch first|\[rejected\]|Updates were rejected/i.test(text);
+}
+
+/**
+ * 推送被拒时同步远端：fetch 后把本地提交 rebase 到远端分支之上。
+ * 冲突会 abort 并回退，不改动已提交的内容。
+ */
+async function syncWithRemote(root, remote, branch) {
+  const parts = [];
+  const fetchResult = await runGit(root, ['fetch', remote, branch], { timeout: 120000 });
+  parts.push(fetchResult.stdout, fetchResult.stderr);
+  if (!fetchResult.ok) {
+    return {
+      ok: false,
+      output: parts.filter(Boolean).join('\n'),
+      error: '推送被拒后同步远端失败，请检查网络或代理。',
+    };
+  }
+  const upstream = `${remote}/${branch}`;
+  const behindResult = await runGit(root, ['rev-list', '--count', `HEAD..${upstream}`], { timeout: 15000 });
+  const behind = Number.parseInt(clean(behindResult.stdout), 10);
+  if (!Number.isFinite(behind) || behind <= 0) {
+    return { ok: true, behind: 0, output: parts.filter(Boolean).join('\n') };
+  }
+  const rebaseResult = await runGit(root, ['rebase', upstream], { timeout: 120000 });
+  parts.push(rebaseResult.stdout, rebaseResult.stderr);
+  if (!rebaseResult.ok) {
+    const abortResult = await runGit(root, ['rebase', '--abort'], { timeout: 30000 });
+    parts.push(abortResult.stdout, abortResult.stderr);
+    return {
+      ok: false,
+      behind,
+      output: parts.filter(Boolean).join('\n'),
+      error: `远端有 ${behind} 个新提交，自动合并失败（可能产生冲突），已回退到合并前状态。`,
+    };
+  }
+  return { ok: true, behind, output: parts.filter(Boolean).join('\n') };
 }
 
 async function getRemote(root, preferred = 'origin') {
@@ -185,21 +227,59 @@ export async function publishRepo(root, messageInput) {
   const pushArgs = after.upstream
     ? ['push']
     : ['push', '-u', after.remote, after.branch];
-  const pushResult = await runGit(root, pushArgs, { timeout: 180000 });
+  let pushResult = await runGit(root, pushArgs, { timeout: 180000 });
   outputParts.push(pushResult.stdout, pushResult.stderr);
+
+  // 远端有自动提交（例如每日访问统计）时普通 push 会被拒；同步后重试一次。
+  let syncedBehind = 0;
+  let syncError = '';
+  if (!pushResult.ok && looksLikeNonFastForward(pushResult)) {
+    const sync = await syncWithRemote(root, after.remote, status.branch);
+    outputParts.push(sync.output);
+    if (sync.ok) {
+      syncedBehind = sync.behind || 0;
+      if (syncedBehind > 0) {
+        const hashResult = await runGit(root, ['rev-parse', '--short', 'HEAD'], { timeout: 5000 });
+        if (hashResult.ok) commit = clean(hashResult.stdout);
+        pushResult = await runGit(
+          root,
+          after.upstream ? ['push'] : ['push', '-u', after.remote, status.branch],
+          { timeout: 180000 },
+        );
+        outputParts.push(pushResult.stdout, pushResult.stderr);
+      } else {
+        syncError = '远端没有可合并的新提交，推送仍被拒绝；请检查远端权限或 hooks。';
+      }
+    } else {
+      syncError = sync.error || '同步远端失败。';
+    }
+  }
+
   const output = outputParts.filter(Boolean).join('\n').slice(-20000);
 
   if (!pushResult.ok) {
+    let reason = 'push-failed';
+    let errorText = committed
+      ? '本地提交成功，但推送到远端失败。可以检查网络/代理后再次点发布重试。'
+      : '推送失败。';
+    if (syncError) {
+      reason = 'sync-failed';
+      errorText = syncError;
+    } else if (looksLikeNonFastForward(pushResult)) {
+      reason = 'non-fast-forward';
+      errorText = committed
+        ? '远端又出现了新的提交，本地提交仍安全保存在本地。稍后再次点发布即可自动同步并推送。'
+        : '远端有新的提交尚未同步，本地没有产生新提交。再次点发布会自动同步后重试。';
+    }
     return {
       ok: false,
       committed,
       pushed: false,
       commit,
+      reason,
       branch: status.branch,
       stagedFiles,
-      error: committed
-        ? '本地提交成功，但推送到远端失败。可以检查网络/代理后再次点发布重试。'
-        : '推送失败。',
+      error: errorText,
       output,
       status: after,
     };
@@ -215,6 +295,7 @@ export async function publishRepo(root, messageInput) {
     remote: status.remote,
     message,
     stagedFiles,
+    syncedBehind,
     output,
     status: finalStatus,
   };
