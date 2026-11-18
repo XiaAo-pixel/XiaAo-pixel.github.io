@@ -2,6 +2,20 @@
   "version": 1,
   "pdfs": [
     {
+      "file": "files/泛函分析_Stein-Shakarchi_中英双语.pdf",
+      "title": "泛函分析_Stein-Shakarchi_中英双语",
+      "category": "分析",
+      "size": 6189470,
+      "added": "2026-11-19"
+    },
+    {
+      "file": "files/求真书院泛函分析讲义_中文版.pdf",
+      "title": "求真书院泛函分析讲义_中文版",
+      "category": "分析",
+      "size": 5235147,
+      "added": "2026-11-19"
+    },
+    {
       "file": "files/实变函数笔记.pdf",
       "title": "实变函数笔记",
       "category": "分析",
