@@ -626,48 +626,50 @@ nav { display: flex; flex-direction: column; gap: .25rem; }
 /* 块内还能再嵌块（例子里套算法等），用浅一点的样式区分层级 */
 .page-note .content > div[class] div[class] { background: transparent; }
 
-/* —— 结论类：定理 / 命题 / 引理 / 推论 —— */
-.theorem      { border-left-color: var(--box-accent);   background: var(--tint-theorem); }
-.proposition  { border-left-color: var(--box-accent);   background: var(--tint-theorem); }
-.lemma        { border-left-color: var(--box-accent-5); background: var(--tint-lemma); }
-.corollary    { border-left-color: var(--box-accent-5); background: var(--tint-lemma); }
+/* —— 结论类：定理 / 命题 / 引理 / 推论 ——
+   选择器 specificity 需与上面的容器规则持平且居后，否则类型色会被容器默认色覆盖 */
+.page-note .content > div.theorem      { border-left-color: var(--box-accent);   background: var(--tint-theorem); }
+.page-note .content > div.proposition  { border-left-color: var(--box-accent);   background: var(--tint-theorem); }
+.page-note .content > div.lemma        { border-left-color: var(--box-accent-5); background: var(--tint-lemma); }
+.page-note .content > div.corollary    { border-left-color: var(--box-accent-5); background: var(--tint-lemma); }
 /* —— 定义类 —— */
-.definition   { border-left-color: var(--box-accent-2); background: var(--tint-def); }
+.page-note .content > div.definition   { border-left-color: var(--box-accent-2); background: var(--tint-def); }
 /* —— 例子 / 习题 —— */
-.example      { border-left-color: var(--box-accent-3); background: var(--tint-example); }
-.exercise     { border-left-color: var(--box-accent-3); background: var(--tint-example); }
+.page-note .content > div.example      { border-left-color: var(--box-accent-3); background: var(--tint-example); }
+.page-note .content > div.exercise     { border-left-color: var(--box-accent-3); background: var(--tint-example); }
 /* —— 补充 / 前置知识 / 框架 / 注记 —— */
-.supp         { border-left-color: var(--box-accent-4); background: var(--tint-note); }
-.prereq       { border-left-color: var(--box-accent-4); background: var(--tint-note); }
-.framework    { border-left-color: var(--box-accent-6); background: var(--tint-custom); }
-.custom       { border-left-color: var(--box-accent-6); background: var(--tint-custom); }
-.minipage     { border-left-color: var(--box-accent-6); background: transparent; }
+.page-note .content > div.supp         { border-left-color: var(--box-accent-4); background: var(--tint-note); }
+.page-note .content > div.prereq       { border-left-color: var(--box-accent-4); background: var(--tint-note); }
+.page-note .content > div.framework    { border-left-color: var(--box-accent-6); background: var(--tint-custom); }
+.page-note .content > div.custom       { border-left-color: var(--box-accent-6); background: var(--tint-custom); }
+.page-note .content > div.minipage     { border-left-color: var(--box-accent-6); background: transparent; }
 /* —— 算法：伪代码用等宽字，别再额外加底色 —— */
-.algorithm, .algorithmic {
+.page-note .content > div.algorithm,
+.page-note .content > div.algorithmic {
   border-left-color: var(--box-accent);
   background: var(--entry-bg);
   font-family: ui-monospace, SFMono-Regular, Consolas, "Cascadia Mono", monospace;
   font-size: .86em;
   line-height: 1.7;
 }
-.algorithmic { border-left-style: dashed; }
+.page-note .content > div.algorithmic { border-left-style: dashed; }
 /* —— 居中块：表格 / 图注居中，不加底纹 —— */
-.center {
+.page-note .content > div.center {
   border: none;
   border-left: none;
   background: transparent;
   text-align: center;
   padding: 0;
 }
-.center table { margin-left: auto; margin-right: auto; }
-.center img { margin: 0 auto; }
+.page-note .content > div.center table { margin-left: auto; margin-right: auto; }
+.page-note .content > div.center img { margin: 0 auto; }
 /* —— 表格容器：横向滚动，内层表格保留自己的边框 —— */
-.tabular {
+.page-note .content > div.tabular {
   border-left-color: var(--box-border);
   background: transparent;
   overflow-x: auto;
 }
-.tabular table { margin: 0; }
+.page-note .content > div.tabular table { margin: 0; }
 
 /* 笔记插图：始终限制在正文栏内，避免原图尺寸把页面撑宽 */
 .page-note .content img {
