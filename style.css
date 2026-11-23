@@ -1012,6 +1012,14 @@ body.lb-open { overflow: hidden; }
 }
 .content th { background: var(--accent-weak); }
 
+/* 笔记中的 mermaid 流程图（assets/mermaid-init.js 渲染成的 SVG） */
+.content .mermaid {
+  margin: 1.2rem 0;
+  text-align: center;
+  overflow-x: auto;
+}
+.content .mermaid svg { max-width: 100%; height: auto; }
+
 /* 上传的照片头像（替换姓氏圆标后生效） */
 img.avatar { object-fit: cover; display: block; }
 

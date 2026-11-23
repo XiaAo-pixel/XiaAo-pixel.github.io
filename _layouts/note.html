@@ -10,6 +10,13 @@
     MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+{% comment %} mermaid 流程图：仅 front matter 标记 mermaid: true 的笔记页加载。
+     mermaid.min.js 先加载库，mermaid-init.js 再把 kramdown 的 code.language-mermaid
+     换成 div.mermaid 并渲染（defer 顺序保证库先就绪）。 {% endcomment %}
+{% if page.mermaid %}
+  <script defer src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script defer src="/assets/mermaid-init.js"></script>
+{% endif %}
   <script defer src="/assets/outline.js"></script>
 </head>
 <body class="note-page">
