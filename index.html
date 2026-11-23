@@ -78,8 +78,19 @@ title: 主页
     </div>
 
     <h2>最近更新</h2>
-    <!-- 每门课一行，点进去是新标签页里的整页阅读版（左侧栏 = 全书章节 + 当前章各小节） -->
-    <ul class="postlist">
+    <!-- 每门课一行，点进去是新标签页里的整页阅读版（左侧栏 = 全书章节 + 当前章各小节）。
+         线上由 Jekyll 渲染下面 <template> 里的 Liquid，再由紧随其后的小脚本填进列表；
+         本地直接打开（双击 / python -m http.server）时显示这份静态清单，
+         不会再露出模板代码。静态清单只是兜底，线上数据始终是自动的。 -->
+    <ul class="postlist" id="recent-updates">
+      <li><a href="/ode/" target="_blank" rel="noopener">常微分方程</a><span class="date">2026-10-26 · 18 节</span></li>
+      <li><a href="/optimization/" target="_blank" rel="noopener">最优化方法</a><span class="date">2026-10-19 · 135 节</span></li>
+      <li><a href="/realanalysis/" target="_blank" rel="noopener">实变函数</a><span class="date">2026-10-25 · 31 节</span></li>
+      <li><a href="/statistics/" target="_blank" rel="noopener">数理统计</a><span class="date">2026-10-19 · 79 节</span></li>
+      <li><a href="/stochastic/" target="_blank" rel="noopener">应用随机过程</a><span class="date">2026-11-05 · 16 节</span></li>
+      <li><a href="/trade/" target="_blank" rel="noopener">国际贸易</a><span class="date">2026-10-26 · 74 节</span></li>
+    </ul>
+    <template id="recent-updates-liquid">
 {% comment %} 课程目录式：每门课一行，链接到该课的书封面页（<课程代号>/index.html）。
    course 代号须与封面页所在目录名一致；暂无封面页的栏目回退到 courses.html {% endcomment %}
 {% assign notes = site.pages | where: "kind", "note" %}
@@ -88,7 +99,23 @@ title: 主页
   {% assign cover = site.pages | where: "kind", "book" | where: "course", g.name | first %}
       <li><a href="{{ cover.url | default: '/courses.html' }}" target="_blank" rel="noopener">{{ cover.title | default: g.name }}</a><span class="date">{% if cover.date %}{{ cover.date | date: "%Y-%m-%d" }} · {% endif %}{{ g.items | size }} 节</span></li>
 {% endfor %}
-    </ul>
+    </template>
+    <script>
+      /* 线上：Jekyll 已把上面 <template> 里的 Liquid 渲染成真实 <li>，填进列表；
+         本地未渲染（模板里仍是占位符）时保留静态清单。 */
+      (function () {
+        if (document.documentElement.classList.contains('editor-preview')) return;
+        var list = document.getElementById('recent-updates');
+        var tpl = document.getElementById('recent-updates-liquid');
+        if (!list || !tpl) return;
+        var source = tpl.innerHTML;
+        var tagOpen = '{' + '%';
+        var varOpen = '{' + '{';
+        if (source.indexOf(tagOpen) !== -1 || source.indexOf(varOpen) !== -1) return;
+        var rows = tpl.content.querySelectorAll('li');
+        if (rows.length) list.replaceChildren.apply(list, rows);
+      }());
+    </script>
 
     <h2>访问统计</h2>
     <div class="visit-stats" id="visit-stats" aria-busy="true">

@@ -180,7 +180,7 @@ export async function buildPreviewHtml(root, page, { dark = false } = {}) {
 
   if (page.type === 'page' && page.id === 'index.html') {
     const list = registry.elements.find((r) => r.tag === 'UL' &&
-      r.classesLower.includes('postlist') && /{%/.test(r.innerSource));
+      r.classesLower.includes('postlist'));
     if (list) {
       const rows = recentListRows(notes);
       const parentIndent = indentationAt(body, list.startOffset);
@@ -190,6 +190,14 @@ export async function buildPreviewHtml(root, page, { dark = false } = {}) {
         : `\n${parentIndent}`;
       replacements.push({ start: list.innerStart, end: list.innerEnd, text: inner });
       dynamicRanges.push({ start: list.innerStart, end: list.innerEnd });
+    }
+    // 首页的「最近更新」Liquid 放在 <template> 里作线上数据源；预览里直接移除，
+    // 避免模板代码和填充脚本干扰编辑器实时生成的行。
+    const tpl = registry.elements.find((r) => r.tag === 'TEMPLATE' &&
+      r.attrs.id === 'recent-updates-liquid');
+    if (tpl) {
+      replacements.push({ start: tpl.startOffset, end: tpl.endOffset, text: '' });
+      dynamicRanges.push({ start: tpl.startOffset, end: tpl.endOffset });
     }
   }
 

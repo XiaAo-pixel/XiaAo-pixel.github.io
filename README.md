@@ -319,7 +319,7 @@ python -m http.server 8765
 # 浏览器访问 http://127.0.0.1:8765
 ```
 
-**本地预览的说明**：页面里的 `{% %}` 列表由 GitHub 云端的 Jekyll 渲染，本地 `python -m http.server` 看到的是"改造前"的原始文件（列表位置会显示花括号代码），属正常现象；想本地完整预览需安装 Ruby + Jekyll（进阶，可选），或直接 push 看线上效果。
+**本地预览的说明**：首页「最近更新」线上由 GitHub 云端的 Jekyll 渲染；本地双击或 `python -m http.server` 打开时会显示页面里内置的静态清单，不会再露出花括号代码。书封面页的分章目录等 Jekyll 生成内容，本地完整预览仍需安装 Ruby + Jekyll（进阶，可选），或直接 push 看线上效果。
 
 想单独看笔记页的版式（不装 Ruby），可以用仓库里的模拟脚本：先 `split-notes.ps1` 生成小节页，再
 
