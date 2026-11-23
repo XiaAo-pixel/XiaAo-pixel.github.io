@@ -1,7 +1,27 @@
 /* 大学生个人主页样式：全屏背景 + 磨砂卡片 + 左侧栏目栏（支持子栏目）
    支持明暗主题与衬线/无衬线字体切换（由 assets/prefs.js 设置偏好） */
 
-/* 衬线字体的西文部分：XCharter（Charter 的扩展版，CTAN xcharter 包）
+/* 衬线模式的字体：思源宋体（Source Han Serif SC），网页字体文件在 assets/fonts/
+   - 正常体用 SourceHanSerifSC-Medium.woff2（按常规字重渲染）
+   - 加粗用 SourceHanSerifSC-Bold.woff2
+   西文也用思源宋体自带的西文字形。字重区间声明为：600 及以上走粗体文件，
+   其余走正常体，因此标题/加粗不会被浏览器伪加粗。 */
+@font-face {
+  font-family: "Source Han Serif SC Web";
+  src: url("assets/fonts/SourceHanSerifSC-Medium.woff2") format("woff2");
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Han Serif SC Web";
+  src: url("assets/fonts/SourceHanSerifSC-Bold.woff2") format("woff2");
+  font-weight: 600 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 侧栏「Aa」小图标用的西文字体：XCharter（Charter 的扩展版，CTAN xcharter 包）
    与 minimalist-pku-beamer-2026 模板同款；许可见 assets/fonts/XCharter-README.txt */
 @font-face {
   font-family: "XCharter";
@@ -47,12 +67,12 @@
 
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI",
                "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
-  /* 西文打头走 XCharter（网页字体，见上方 @font-face），中文仍按宋体链条回退：
-     浏览器按字符逐个选字体，拉丁字母命中 XCharter，汉字落到后面的宋体系 */
-  --font-serif: "XCharter", "Charter", "Bitstream Charter", "Sitka Text",
-                "Songti SC", "STSong", "Noto Serif SC",
-                "Source Han Serif SC", "Source Han Serif CN",
-                "SimSun", Georgia, "Times New Roman", serif;
+  /* 衬线模式（html[data-font="serif"]）走思源宋体网页字体，见上方 @font-face；
+     没装/没加载成功时按系统宋体链条回退 */
+  --font-serif: "Source Han Serif SC Web", "Source Han Serif SC",
+                "Source Han Serif CN", "Noto Serif SC",
+                "Songti SC", "STSong", "SimSun",
+                Georgia, "Times New Roman", serif;
 
   --text: #262a33;
   --muted: #616877;
