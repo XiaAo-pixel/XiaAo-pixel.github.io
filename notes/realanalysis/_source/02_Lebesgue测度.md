@@ -90,10 +90,10 @@ $$
 对 $$A\subseteq\mathbb{R}^d$$，定义
 
 $$
-m^*(A):=\inf\Big\{\ \sum_{j\ge1}|I_j|\ :\ \text{开盒}\ I_j,\ \bigcup_j I_j\supset A\ \Big\},
+m^*(A):=\inf\Big\{\ \sum_{j\ge1}{\vert}I_j{\vert}\ :\ \text{开盒}\ I_j,\ \bigcup_j I_j\supset A\ \Big\},
 $$
 
-其中开盒 $$I=\prod_{i=1}^d(a_i,b_i)$$，$$|I|=\prod_i(b_i-a_i)$$（允许 $$|I|=+\infty$$；空覆盖之和为 $$0$$）. 则 $$m^*:\mathcal{P}(\mathbb{R}^d)\to[0,\infty]$$ 称为 **Lebesgue 外测度**.
+其中开盒 $$I=\prod_{i=1}^d(a_i,b_i)$$，$${\vert}I{\vert}=\prod_i(b_i-a_i)$$（允许 $${\vert}I{\vert}=+\infty$$；空覆盖之和为 $$0$$）. 则 $$m^*:\mathcal{P}(\mathbb{R}^d)\to[0,\infty]$$ 称为 **Lebesgue 外测度**.
 
 </div>
 
@@ -105,10 +105,10 @@ $$
 
 </div>
 
-**证明** 不妨 $$A=\{x_1,x_2,\cdots,x_n,\cdots\}$$. $$\forall\varepsilon>0$$，对每个 $$x_j$$ 取开盒 $$I_j\ni x_j$$，棱长充分小使 $$|I_j|<\dfrac{\varepsilon}{2^j}$$. 则 $$\{I_j\}$$ 覆盖 $$A$$，且
+**证明** 不妨 $$A=\{x_1,x_2,\cdots,x_n,\cdots\}$$. $$\forall\varepsilon>0$$，对每个 $$x_j$$ 取开盒 $$I_j\ni x_j$$，棱长充分小使 $${\vert}I_j{\vert}<\dfrac{\varepsilon}{2^j}$$. 则 $$\{I_j\}$$ 覆盖 $$A$$，且
 
 $$
-m^*A\le\sum_{j\ge1}|I_j|\le\sum_{j\ge1}\frac{\varepsilon}{2^j}=\varepsilon.
+m^*A\le\sum_{j\ge1}{\vert}I_j{\vert}\le\sum_{j\ge1}\frac{\varepsilon}{2^j}=\varepsilon.
 $$
 
 由 $$\varepsilon$$ 任意性，$$m^*A=0$$. $$\square$$
@@ -120,7 +120,7 @@ $$
 1. 小盒覆盖极限：$$\forall\delta>0$$，记
 
     $$
-    m^*_\delta(A)=\inf\Big\{\sum_j|I_j|\ :\ \bigcup_j I_j\supset A,\ \text{各}\ I_j\ \text{棱长}<\delta\Big\},
+    m^*_\delta(A)=\inf\Big\{\sum_j{\vert}I_j{\vert}\ :\ \bigcup_j I_j\supset A,\ \text{各}\ I_j\ \text{棱长}<\delta\Big\},
     $$
 
     则 $$\displaystyle\lim_{\delta\to0^+}m^*_\delta(A)=m^*A$$；
@@ -132,7 +132,7 @@ $$
     m^*\Big(\bigcup_j A_j\Big)\le\sum_j m^*A_j ;
     $$
 
-4. 距离可加性：若 $$d(A,B)>0$$，即 $$\inf_{a\in A,\,b\in B}|a-b|>0$$，则
+4. 距离可加性：若 $$d(A,B)>0$$，即 $$\inf_{a\in A,\,b\in B}{\vert}a-b{\vert}>0$$，则
 
     $$
     m^*(A\cup B)=m^*A+m^*B ;
@@ -152,7 +152,7 @@ $$
 m^*A\ \le\ m^*_{\delta'}(A)\ \le\ m^*_\delta(A),
 $$
 
-即 $$m^*_\delta(A)$$ 随 $$\delta\downarrow0$$ 单调不减，极限存在且 $$\lim_{\delta\to0^+}m^*_\delta(A)\ge m^*A$$. 反之，$$\forall\varepsilon>0$$，取覆盖 $$\{I_j\}$$ 使 $$\sum|I_j|\le m^*A+\varepsilon$$；把每个闭包 $$\overline{I_j}$$ 剖分为有限个棱长 $$<\delta$$ 的闭子盒（体积之和不变），再用略微放大的开盒覆盖各闭子盒（总体积 $$<\sum|I_j|+\varepsilon$$），得 $$\sum|I_j|$$ 棱长 $$<\delta$$ 的开盒覆盖，故
+即 $$m^*_\delta(A)$$ 随 $$\delta\downarrow0$$ 单调不减，极限存在且 $$\lim_{\delta\to0^+}m^*_\delta(A)\ge m^*A$$. 反之，$$\forall\varepsilon>0$$，取覆盖 $$\{I_j\}$$ 使 $$\sum{\vert}I_j{\vert}\le m^*A+\varepsilon$$；把每个闭包 $$\overline{I_j}$$ 剖分为有限个棱长 $$<\delta$$ 的闭子盒（体积之和不变），再用略微放大的开盒覆盖各闭子盒（总体积 $$<\sum{\vert}I_j{\vert}+\varepsilon$$），得 $$\sum{\vert}I_j{\vert}$$ 棱长 $$<\delta$$ 的开盒覆盖，故
 
 $$
 m^*_\delta(A)\le m^*A+2\varepsilon .
@@ -165,39 +165,39 @@ $$
 （3）$$\forall\varepsilon>0$$，对每个 $$A_j$$ 取开盒列 $$\{I_{j,k}\}_{k\ge1}$$ 覆盖 $$A_j$$，使
 
 $$
-\sum_k|I_{j,k}|\le m^*A_j+\frac{\varepsilon}{2^j}.
+\sum_k{\vert}I_{j,k}{\vert}\le m^*A_j+\frac{\varepsilon}{2^j}.
 $$
 
 因 $$\bigcup_j A_j\subseteq\bigcup_k\bigcup_j I_{j,k}$$，从而
 
 $$
 m^*\Big(\bigcup_j A_j\Big)
-\le\sum_j\sum_k|I_{j,k}|
+\le\sum_j\sum_k{\vert}I_{j,k}{\vert}
 \le\sum_j m^*A_j+\sum_j\frac{\varepsilon}{2^j}
 =\sum_j m^*A_j+\varepsilon .
 $$
 
 令 $$\varepsilon\to0$$ 即得.
 
-（4）由（3）只需证 $$m^*(A\cup B)\ge m^*A+m^*B$$. 记 $$\rho:=d(A,B)>0$$. $$\forall\varepsilon>0$$，取开盒列 $$\{Q_j\}$$ 覆盖 $$A\cup B$$，使 $$\sum_j|Q_j|\le m^*(A\cup B)+\varepsilon$$. 把每个 $$Q_j$$ 剖分为有限个棱长 $$<\rho/\sqrt{d}$$ 的小盒（对角线直径 $$<\rho$$），得小盒族 $$\{K\}$$，仍覆盖 $$A\cup B$$，且
+（4）由（3）只需证 $$m^*(A\cup B)\ge m^*A+m^*B$$. 记 $$\rho:=d(A,B)>0$$. $$\forall\varepsilon>0$$，取开盒列 $$\{Q_j\}$$ 覆盖 $$A\cup B$$，使 $$\sum_j{\vert}Q_j{\vert}\le m^*(A\cup B)+\varepsilon$$. 把每个 $$Q_j$$ 剖分为有限个棱长 $$<\rho/\sqrt{d}$$ 的小盒（对角线直径 $$<\rho$$），得小盒族 $$\{K\}$$，仍覆盖 $$A\cup B$$，且
 
 $$
-\sum_{K}|K|=\sum_j|Q_j|.
+\sum_{K}{\vert}K{\vert}=\sum_j{\vert}Q_j{\vert}.
 $$
 
 每个小盒 $$K$$ 至多与 $$A,B$$ 之一相交（否则 $$K$$ 中有两点距离 $$\ge\rho$$，与 $$\operatorname{diam}K<\rho$$ 矛盾）. 与 $$A$$ 相交的小盒覆盖 $$A$$，其总体积 $$\ge m^*A$$；与 $$B$$ 相交者同理 $$\ge m^*B$$. 于是
 
 $$
-m^*(A\cup B)+\varepsilon\ge\sum_j|Q_j|=\sum_K|K|
+m^*(A\cup B)+\varepsilon\ge\sum_j{\vert}Q_j{\vert}=\sum_K{\vert}K{\vert}
 \ge m^*A+m^*B .
 $$
 
 令 $$\varepsilon\to0$$ 即得.
 
-（5）一方面，对任意开集 $$O\supset A$$，由单调性 $$m^*A\le m^*O$$，故 $$m^*A\le\inf_{O\supset A}m^*O$$. 另一方面，$$\forall\varepsilon>0$$，取开盒列 $$\{I_j\}$$ 覆盖 $$A$$ 使 $$\sum|I_j|\le m^*A+\varepsilon$$；令 $$O=\bigcup_j I_j$$，则 $$O$$ 为开集、$$O\supset A$$，且
+（5）一方面，对任意开集 $$O\supset A$$，由单调性 $$m^*A\le m^*O$$，故 $$m^*A\le\inf_{O\supset A}m^*O$$. 另一方面，$$\forall\varepsilon>0$$，取开盒列 $$\{I_j\}$$ 覆盖 $$A$$ 使 $$\sum{\vert}I_j{\vert}\le m^*A+\varepsilon$$；令 $$O=\bigcup_j I_j$$，则 $$O$$ 为开集、$$O\supset A$$，且
 
 $$
-m^*O\le\sum_j|I_j|\le m^*A+\varepsilon
+m^*O\le\sum_j{\vert}I_j{\vert}\le m^*A+\varepsilon
 \quad\Longrightarrow\quad
 \inf_{O\supset A}m^*O\le m^*A+\varepsilon .
 $$
@@ -322,7 +322,7 @@ $$
 定义
 
 $$
-m:=m^*\big|_{\mathscr{A}}:\ \mathscr{A}\to[0,\infty],
+m:=m^*\big{\vert}_{\mathscr{A}}:\ \mathscr{A}\to[0,\infty],
 $$
 
 称为（Lebesgue）**测度**. 由定理 2.1 的证明，$$m$$ 在 $$m^*$$ 各性质的基础上还满足**可数可加性**：
@@ -408,10 +408,10 @@ $$
 
 **证明** $$E_k\subseteq E_{k+1}$$，$$\bigcup_k E_k=E$$（$$x\in E\subseteq G$$ 开 $$\Rightarrow d(x,G^c)>0$$），令 $$A_k:=E_{k+1}\setminus E_k$$，则 $$A_k\subseteq\{x:\ \frac{1}{k+1}\le d(x,G^c)<\frac1k\}$$.
 
-若 $$|i-j|\ge2$$（不妨 $$i<j$$），则对 $$x\in A_i$$、$$y\in A_j$$：
+若 $${\vert}i-j{\vert}\ge2$$（不妨 $$i<j$$），则对 $$x\in A_i$$、$$y\in A_j$$：
 
 $$
-|x-y|\ \ge\ d(y,G^c)-d(x,G^c)\ \ge\ \frac{1}{j+1}-\frac{1}{i}\ >\ 0,
+{\vert}x-y{\vert}\ \ge\ d(y,G^c)-d(x,G^c)\ \ge\ \frac{1}{j+1}-\frac{1}{i}\ >\ 0,
 $$
 
 故 $$d(A_i,A_j)>0$$. 于是由命题 2.2(4)，$$m^*$$ 在
@@ -587,7 +587,7 @@ $$
 
 </div>
 
-**证明** inf 部分：由命题 2.2(5) 与 $$m=m^*\big|_{\mathscr{A}}$$，
+**证明** inf 部分：由命题 2.2(5) 与 $$m=m^*\big{\vert}_{\mathscr{A}}$$，
 
 $$
 mA=m^*A=\inf_{\text{开}\,G\supset A}m^*G=\inf_{\text{开}\,G\supset A}mG .
@@ -736,7 +736,7 @@ $$
 
 **定理 2.3（Steinhaus 定理 1）**
 
-设 $$A\subseteq\mathbb{R}^n$$ 是正测集（$$mA>0$$），$$k\in\mathbb{Z}_+$$，则存在 $$\delta>0$$，使得只要 $$|\vec{a}|<\delta$$，就有
+设 $$A\subseteq\mathbb{R}^n$$ 是正测集（$$mA>0$$），$$k\in\mathbb{Z}_+$$，则存在 $$\delta>0$$，使得只要 $${\vert}\vec{a}{\vert}<\delta$$，就有
 
 $$
 \bigcap_{j=1}^{k}(A+j\vec{a})\neq\varnothing .
@@ -756,7 +756,7 @@ $$
 
 **证明** 由内正则性（命题 2.11），存在紧集 $$K\subseteq A$$ 使 $$mK>0$$（取闭集 $$F\subseteq A$$，$$mF>0$$，再与充分大的闭球相交）.
 
-下证 $$\bigcap_{j=1}^{k}(K+j\vec{a})\neq\varnothing$$ 对 $$|\vec{a}|$$ 足够小成立.
+下证 $$\bigcap_{j=1}^{k}(K+j\vec{a})\neq\varnothing$$ 对 $${\vert}\vec{a}{\vert}$$ 足够小成立.
 
 由命题 2.10，取 $$\delta>0$$ 使
 
@@ -764,11 +764,11 @@ $$
 mK_\delta<\frac{k}{k-1}\,mK .
 $$
 
-（$$K_\delta$$ 有界，测度有限，可用性由紧集 $$\delta$$-邻域命题保证.）只要 $$|\vec{a}|<\delta/k$$，则对每个 $$1\le j\le k$$：
+（$$K_\delta$$ 有界，测度有限，可用性由紧集 $$\delta$$-邻域命题保证.）只要 $${\vert}\vec{a}{\vert}<\delta/k$$，则对每个 $$1\le j\le k$$：
 
 $$
 K+j\vec{a}\subseteq K_\delta
-\qquad\big(d(x+j\vec{a},K)\le j|\vec{a}|<\delta\big),
+\qquad\big(d(x+j\vec{a},K)\le j{\vert}\vec{a}{\vert}<\delta\big),
 $$
 
 且有
@@ -804,7 +804,7 @@ $$
 
 $$a\in A-A$$ 即 $$a=\tilde{x}-\tilde{y}$$，此时 $$\tilde{x}=\tilde{y}+a\in A\cap(A+a)$$；反之若 $$z\in A\cap(A+a)$$，则 $$z=(z+a)-a\in A-A$$.
 
-由 Steinhaus 定理 1（取 $$k=2$$），存在 $$\delta>0$$，只要 $$|a|<\delta$$ 就有 $$A\cap(A+a)\neq\varnothing$$，即 $$a\in A-A$$. 故 $$B_\delta(0)\subseteq A-A$$. $$\square$$
+由 Steinhaus 定理 1（取 $$k=2$$），存在 $$\delta>0$$，只要 $${\vert}a{\vert}<\delta$$ 就有 $$A\cap(A+a)\neq\varnothing$$，即 $$a\in A-A$$. 故 $$B_\delta(0)\subseteq A-A$$. $$\square$$
 
 <div class="lemma">
 
@@ -836,7 +836,7 @@ $$
 
 （第一个等式因 $$mA=m\big(\bigcup_j(A\cap I_j)\big)$$ $$\le\sum_j m(A\cap I_j)\le\sum_j mI_j$$ 且 $$mA/\sum_j mI_j\le1$$）. 取 $$I=I_{j_0}$$ 达到该上确界即已得证. $$\square$$
 
-**注** 方体 $$I$$ 的顶点坐标可都取为有理数：因为 $$(I$$ 的各顶点坐标$$)\mapsto\dfrac{m(A\cap I)}{mI}$$ 是顶点坐标的连续函数（$$m(A\cap I)$$ 与 $$mI$$ 都随顶点连续变化：$$|m(A\cap I)-m(A\cap I')|$$ $$\le m(I\triangle I')\to0$$），故可在保持不等号的前提下把顶点有理化. 这一事实将在 Steinhaus 定理 3 中用到.
+**注** 方体 $$I$$ 的顶点坐标可都取为有理数：因为 $$(I$$ 的各顶点坐标$$)\mapsto\dfrac{m(A\cap I)}{mI}$$ 是顶点坐标的连续函数（$$m(A\cap I)$$ 与 $$mI$$ 都随顶点连续变化：$${\vert}m(A\cap I)-m(A\cap I'){\vert}$$ $$\le m(I\triangle I')\to0$$），故可在保持不等号的前提下把顶点有理化. 这一事实将在 Steinhaus 定理 3 中用到.
 
 <div class="theorem">
 

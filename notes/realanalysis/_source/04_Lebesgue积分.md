@@ -98,7 +98,7 @@ $$
 \{x\in E:\ f(x)=+\infty\}=\bigcap_{k=1}^{\infty}E_k=\lim_k E_k .
 $$
 
-$$\forall k$$，简单函数 $$k\cdot1_{E_k}\le f\big|_{E_k}$$，故
+$$\forall k$$，简单函数 $$k\cdot1_{E_k}\le f\big{\vert}_{E_k}$$，故
 
 $$
 k\cdot mE_k\le\int_{E_k}f(x)\,dm\le\int_E f(x)\,dm<+\infty
@@ -328,22 +328,22 @@ $$
 
 **命题 4.5（可积 $$\iff$$ 绝对可积）**
 
-注意到 $$|f|=f_+ + f_-$$，则
+注意到 $${\vert}f{\vert}=f_+ + f_-$$，则
 
 $$
 \int_E f\,dm<\infty\ \text{（即}\ f\ \text{可积）}
-\iff \int_E|f|\,dm<\infty .
+\iff \int_E{\vert}f{\vert}\,dm<\infty .
 $$
 
 </div>
 
-**证明** $$\int_E f\,dm$$ 有限要求 $$\int_E f_+\,dm$$ 与 $$\int_E f_-\,dm$$ 均有限，即 $$\int_E(f_+ + f_-)\,dm=\int_E|f|\,dm<\infty$$（线性性）；反之显然. $$\square$$
+**证明** $$\int_E f\,dm$$ 有限要求 $$\int_E f_+\,dm$$ 与 $$\int_E f_-\,dm$$ 均有限，即 $$\int_E(f_+ + f_-)\,dm=\int_E{\vert}f{\vert}\,dm<\infty$$（线性性）；反之显然. $$\square$$
 
 <div class="theorem">
 
 **定理 4.5（控制收敛定理（pointwise 版））**
 
-设 $$f_j$$ 可测，$$g\ge0$$ 可积，$$f_j\to f$$ pointwise，$$|f_j|\le g$$，则
+设 $$f_j$$ 可测，$$g\ge0$$ 可积，$$f_j\to f$$ pointwise，$${\vert}f_j{\vert}\le g$$，则
 
 $$
 \lim_{j\to\infty}\int_E f_j\,dm=\int_E f\,dm .
@@ -351,7 +351,7 @@ $$
 
 </div>
 
-**证明** $$f=\lim_{j\to\infty}f_j$$ 可测；$$|f_j|\le g\Rightarrow|f|\le g$$（取极限），故 $$f$$ 可积（命题 4.5 与 $$f\le|f|\le g$$，$$\int_E f\,dm\ge-\int_E|f|\,dm>-\infty$$）.
+**证明** $$f=\lim_{j\to\infty}f_j$$ 可测；$${\vert}f_j{\vert}\le g\Rightarrow{\vert}f{\vert}\le g$$（取极限），故 $$f$$ 可积（命题 4.5 与 $$f\le{\vert}f{\vert}\le g$$，$$\int_E f\,dm\ge-\int_E{\vert}f{\vert}\,dm>-\infty$$）.
 
 考虑 $$g-f_j\ge0$$，由 Fatou 引理：
 
@@ -403,7 +403,7 @@ $$\square$$
 
 **定理 4.6（逐项积分定理（一般））**
 
-设 $$f_j:E\to\overline{\mathbb{R}}$$ 可测，$$g=\sum_{j=1}^{\infty}|f_j|$$ 可积，则
+设 $$f_j:E\to\overline{\mathbb{R}}$$ 可测，$$g=\sum_{j=1}^{\infty}{\vert}f_j{\vert}$$ 可积，则
 
 $$
 \int_E\sum_{j=1}^{\infty}f_j\,dm=\sum_{j=1}^{\infty}\int_E f_j\,dm .
@@ -414,10 +414,10 @@ $$
 **证明** 部分和 $$S_N=\sum_{j=1}^{N}f_j$$，由线性性 $$\int_E S_N\,dm=\sum_{j=1}^{N}\int_E f_j\,dm$$；且
 
 $$
-|S_N|=\Big|\sum_{j=1}^{N}f_j\Big|\le\sum_{j=1}^{N}|f_j|\le g .
+{\vert}S_N{\vert}=\Big{\vert}\sum_{j=1}^{N}f_j\Big{\vert}\le\sum_{j=1}^{N}{\vert}f_j{\vert}\le g .
 $$
 
-由 $$g$$ 可积知 $$g(x)<\infty$$ a.e. $$x\in E$$，则 $$\sum_{j=1}^{N}|f_j(x)|$$ 收敛（当 $$N\to\infty$$）$$\Rightarrow$$ $$\sum_{j=1}^{N}f_j(x)$$ 收敛，即 $$S_N$$ 收敛 a.e.，且 $$S_N\to\sum_{j\ge1}f_j$$ a.e. 由控制收敛定理（控制函数 $$g$$）：
+由 $$g$$ 可积知 $$g(x)<\infty$$ a.e. $$x\in E$$，则 $$\sum_{j=1}^{N}{\vert}f_j(x){\vert}$$ 收敛（当 $$N\to\infty$$）$$\Rightarrow$$ $$\sum_{j=1}^{N}f_j(x)$$ 收敛，即 $$S_N$$ 收敛 a.e.，且 $$S_N\to\sum_{j\ge1}f_j$$ a.e. 由控制收敛定理（控制函数 $$g$$）：
 
 $$
 \int_E\sum_{j=1}^{\infty}f_j\,dm=\lim_{N\to\infty}\int_E S_N\,dm
@@ -433,7 +433,7 @@ $$\square$$
 
 **定理 4.7（Lebesgue 控制收敛定理（DCT, a.e. 版））**
 
-设 $$f_j$$ 可测，$$g\ge0$$ 可积，$$f_j\to f$$ a.e.，$$|f_j|\le g$$，则
+设 $$f_j$$ 可测，$$g\ge0$$ 可积，$$f_j\to f$$ a.e.，$${\vert}f_j{\vert}\le g$$，则
 
 $$
 \lim_{j\to\infty}\int_E f_j\,dm=\int_E f\,dm .
@@ -447,7 +447,7 @@ $$
 
 **例题 4.2（无控制函数的可积收敛列）**
 
-$$f_k(x)=1_{(k,\,k+1/k)}$$，则 $$f_k\to0$$ pointwise，$$\int f_k\,dm\to0$$. 但并不存在可积的控制函数：区间族 $$\{(k,k+1/k)\}$$ 两两不交，任何 $$g\ge|f_k|$$（a.e.）满足 $$g\ge1$$ 于每个 $$(k,k+1/k)$$（a.e.），故
+$$f_k(x)=1_{(k,\,k+1/k)}$$，则 $$f_k\to0$$ pointwise，$$\int f_k\,dm\to0$$. 但并不存在可积的控制函数：区间族 $$\{(k,k+1/k)\}$$ 两两不交，任何 $$g\ge{\vert}f_k{\vert}$$（a.e.）满足 $$g\ge1$$ 于每个 $$(k,k+1/k)$$（a.e.），故
 
 $$
 \int_{\mathbb{R}}g\,dm\ge\sum_{k\ge1}m\big((k,k+1/k)\big)=\sum_{k\ge1}\frac1k=+\infty .
@@ -464,8 +464,8 @@ $$
 设 $$f_k$$ 可测，$$f_k\to f$$ a.e.，且存在可积 $$g_k,g$$，s.t.
 
 $$
-|f_k|\le g_k\ \text{a.e.}\quad\text{且}\quad
-\int_E|g_k-g|\,dm\to0\ \ (k\to\infty),
+{\vert}f_k{\vert}\le g_k\ \text{a.e.}\quad\text{且}\quad
+\int_E{\vert}g_k-g{\vert}\,dm\to0\ \ (k\to\infty),
 $$
 
 则 $$f$$ 可积，且 $$\displaystyle\lim_{k\to\infty}\int_E f_k\,dm=\int_E f\,dm$$.
@@ -478,8 +478,8 @@ $$
 0\le\int_E f\,dm\le\underline{\lim}_k\int_E f_k\,dm\le\underline{\lim}_k\int_E g_k\,dm\le\int_E g\,dm<\infty
 $$
 
-（第一、三个不等号用 Fatou 引理；最后一步：$$\big|\int g_k-\int g\big|
-\le\int|g_k-g|\to0$$，故 $$\int g_k\to\int g$$）. 故 $$f$$ 可积.
+（第一、三个不等号用 Fatou 引理；最后一步：$$\big{\vert}\int g_k-\int g\big{\vert}
+\le\int{\vert}g_k-g{\vert}\to0$$，故 $$\int g_k\to\int g$$）. 故 $$f$$ 可积.
 
 $$(g-f_k)_+\le g_+=g$$，又 $$(g-f_k)_+\to(g-f)_+$$ a.e.，被积函数受 $$g$$ 控制，由 DCT（定理 4.7）：
 
@@ -490,10 +490,10 @@ $$
 另一方面，$$0\le f_k\le g_k\Rightarrow g-f_k\ge g-g_k$$，故
 
 $$
-(g-f_k)_-\le(g-g_k)_-\le|g-g_k|
+(g-f_k)_-\le(g-g_k)_-\le{\vert}g-g_k{\vert}
 \quad\Longrightarrow\quad
 \int_E(g-f_k)_-\,dm\to0
-\quad(\le\textstyle\int_E|g-g_k|dm\to0).
+\quad(\le\textstyle\int_E{\vert}g-g_k{\vert}dm\to0).
 $$
 
 于是
@@ -525,15 +525,15 @@ $$\square$$
 
 $$
 L(E):=\{\text{integrable}\ f:\ E\to\overline{\mathbb{R}}\}
-\qquad(\text{即}\ \int_E|f|\,dm<\infty\ \text{的可测函数类，取实值代表}),
+\qquad(\text{即}\ \int_E{\vert}f{\vert}\,dm<\infty\ \text{的可测函数类，取实值代表}),
 $$
 
 $$
-\|f\|_1:=\int_E|f|\,dm
+\Vert f\Vert _1:=\int_E{\vert}f{\vert}\,dm
 \qquad\text{为}\ f\ \text{的}\ L^1\text{-norm}.
 $$
 
-称 $$f_k$$ 依 $$L^1$$-norm 收敛于 $$f$$，若 $$\|f_k-f\|_1\to0$$.
+称 $$f_k$$ 依 $$L^1$$-norm 收敛于 $$f$$，若 $$\Vert f_k-f\Vert _1\to0$$.
 
 </div>
 
@@ -541,10 +541,10 @@ $$
 
 **引理 4.1（范数有界 a.e. 收敛的衍推）**
 
-设 $$\|f_k\|_1<C$$，且 $$f_k\to f$$ a.e.，则
+设 $$\Vert f_k\Vert _1<C$$，且 $$f_k\to f$$ a.e.，则
 
 $$
-\lim_{k\to\infty}\big(\|f_k-f\|_1+\|f\|_1-\|f_k\|_1\big)=0 .
+\lim_{k\to\infty}\big(\Vert f_k-f\Vert _1+\Vert f\Vert _1-\Vert f_k\Vert _1\big)=0 .
 $$
 
 </div>
@@ -552,7 +552,7 @@ $$
 **证明** 由 Fatou 引理，
 
 $$
-\int_E|f|\,dm\le\underline{\lim}_k\int_E|f_k|\,dm\le C
+\int_E{\vert}f{\vert}\,dm\le\underline{\lim}_k\int_E{\vert}f_k{\vert}\,dm\le C
 \quad\Longrightarrow\quad
 f\ \text{可积}.
 $$
@@ -560,43 +560,43 @@ $$
 考虑非负可测函数
 
 $$
-w_k:=|f_k|+|f|-|f_k-f|\ \ge0
-\qquad(\text{反三角不等式}\ |f_k-f|\le|f_k|+|f|).
+w_k:={\vert}f_k{\vert}+{\vert}f{\vert}-{\vert}f_k-f{\vert}\ \ge0
+\qquad(\text{反三角不等式}\ {\vert}f_k-f{\vert}\le{\vert}f_k{\vert}+{\vert}f{\vert}).
 $$
 
-逐点地，$$f_k(x)\to f(x)$$ a.e. 使 $$|f_k(x)|\to|f(x)|$$、$$|f_k(x)-f(x)|\to0$$，故
+逐点地，$$f_k(x)\to f(x)$$ a.e. 使 $${\vert}f_k(x){\vert}\to{\vert}f(x){\vert}$$、$${\vert}f_k(x)-f(x){\vert}\to0$$，故
 
 $$
-\underline{\lim}_k w_k(x)=|f(x)|+|f(x)|-0=2|f(x)|\qquad\text{a.e.}
+\underline{\lim}_k w_k(x)={\vert}f(x){\vert}+{\vert}f(x){\vert}-0=2{\vert}f(x){\vert}\qquad\text{a.e.}
 $$
 
 由 Fatou 引理：
 
 $$
-2\|f\|_1=\int_E 2|f|\,dm\le\underline{\lim}_k\int_E w_k\,dm
-=\underline{\lim}_k\big(\|f_k\|_1+\|f\|_1-\|f_k-f\|_1\big).
+2\Vert f\Vert _1=\int_E 2{\vert}f{\vert}\,dm\le\underline{\lim}_k\int_E w_k\,dm
+=\underline{\lim}_k\big(\Vert f_k\Vert _1+\Vert f\Vert _1-\Vert f_k-f\Vert _1\big).
 $$
 
 由 $$\underline{\lim}(a_k+b-c_k)\ge\underline{\lim} a_k+b-\overline{\lim} c_k$$：
 
 $$
-2\|f\|_1\le\underline{\lim}_k\|f_k\|_1+\|f\|_1-\overline{\lim}_k\|f_k-f\|_1
+2\Vert f\Vert _1\le\underline{\lim}_k\Vert f_k\Vert _1+\Vert f\Vert _1-\overline{\lim}_k\Vert f_k-f\Vert _1
 \quad\Longrightarrow\quad
-\overline{\lim}_k\|f_k-f\|_1\le\underline{\lim}_k\|f_k\|_1-\|f\|_1 .
+\overline{\lim}_k\Vert f_k-f\Vert _1\le\underline{\lim}_k\Vert f_k\Vert _1-\Vert f\Vert _1 .
 $$
 
-记 $$H_k:=\|f_k-f\|_1+\|f\|_1-\|f_k\|_1\ge0$$（三角不等式 $$\|f\|_1\le\|f_k\|_1+\|f_k-f\|_1$$）. 则
+记 $$H_k:=\Vert f_k-f\Vert _1+\Vert f\Vert _1-\Vert f_k\Vert _1\ge0$$（三角不等式 $$\Vert f\Vert _1\le\Vert f_k\Vert _1+\Vert f_k-f\Vert _1$$）. 则
 
 $$
 \begin{aligned}
 \overline{\lim}_k H_k&\ge 0,\\
-\overline{\lim}_k H_k&\le \overline{\lim}_k\|f_k-f\|_1+\|f\|_1\\
-&\quad-\underline{\lim}_k\|f_k\|_1\\
+\overline{\lim}_k H_k&\le \overline{\lim}_k\Vert f_k-f\Vert _1+\Vert f\Vert _1\\
+&\quad-\underline{\lim}_k\Vert f_k\Vert _1\\
 &\le 0,
 \end{aligned}
 $$
 
-（$$\overline{\lim}_k\|f_k-f\|_1\le\overline{\lim}_k\|f_k-f\|_1$$ $$\le\underline{\lim}_k\|f_k\|_1-\|f\|_1$$）. 故 $$\overline{\lim}_k H_k=0$$，从而 $$\lim_k H_k=0$$. $$\square$$
+（$$\overline{\lim}_k\Vert f_k-f\Vert _1\le\overline{\lim}_k\Vert f_k-f\Vert _1$$ $$\le\underline{\lim}_k\Vert f_k\Vert _1-\Vert f\Vert _1$$）. 故 $$\overline{\lim}_k H_k=0$$，从而 $$\lim_k H_k=0$$. $$\square$$
 
 <div class="proposition">
 
@@ -605,7 +605,7 @@ $$
 设 $$f_k,f\in L^1(E)$$，$$f_k\to f$$ a.e.，则
 
 $$
-\|f_k-f\|_1\to0\iff\|f_k\|_1\to\|f\|_1 .
+\Vert f_k-f\Vert _1\to0\iff\Vert f_k\Vert _1\to\Vert f\Vert _1 .
 $$
 
 </div>
@@ -613,21 +613,21 @@ $$
 **证明** “$$\Rightarrow$$”：
 
 $$
-\Big|\int_E|f_k|\,dm-\int_E|f|\,dm\Big|
-\le\int_E\big||f_k|-|f|\big|\,dm\le\int_E|f_k-f|\,dm
-=\|f_k-f\|_1\to0 .
+\Big{\vert}\int_E{\vert}f_k{\vert}\,dm-\int_E{\vert}f{\vert}\,dm\Big{\vert}
+\le\int_E\big{\vert}{\vert}f_k{\vert}-{\vert}f{\vert}\big{\vert}\,dm\le\int_E{\vert}f_k-f{\vert}\,dm
+=\Vert f_k-f\Vert _1\to0 .
 $$
 
-“$$\Leftarrow$$”：$$\lim_k\int_E|f_k|\,dm=\int_E|f|\,dm<+\infty$$ $$\Rightarrow$$ $$\exists C$$，s.t. $$\int_E|f_k|\,dm<C$$ 对一切 $$k$$（收敛列必有界）. 由引理 4.1：
+“$$\Leftarrow$$”：$$\lim_k\int_E{\vert}f_k{\vert}\,dm=\int_E{\vert}f{\vert}\,dm<+\infty$$ $$\Rightarrow$$ $$\exists C$$，s.t. $$\int_E{\vert}f_k{\vert}\,dm<C$$ 对一切 $$k$$（收敛列必有界）. 由引理 4.1：
 
 $$
-\int_E|f_k-f|\,dm
-=\underbrace{\int_E\big(|f-f_k|+\|f\|_1-\|f_k\|_1\big)\,dm}_{\to\ 0}
-+\underbrace{\int_E\big(\|f_k\|_1-\|f\|_1\big)\,dm}_{=\ \|f_k\|_1-\|f\|_1\to\ 0}
+\int_E{\vert}f_k-f{\vert}\,dm
+=\underbrace{\int_E\big({\vert}f-f_k{\vert}+\Vert f\Vert _1-\Vert f_k\Vert _1\big)\,dm}_{\to\ 0}
++\underbrace{\int_E\big(\Vert f_k\Vert _1-\Vert f\Vert _1\big)\,dm}_{=\ \Vert f_k\Vert _1-\Vert f\Vert _1\to\ 0}
 \to0,
 $$
 
-即 $$\|f_k-f\|_1\to0$$. $$\square$$
+即 $$\Vert f_k-f\Vert _1\to0$$. $$\square$$
 
 <div class="lemma">
 
@@ -637,14 +637,14 @@ $$
 
 </div>
 
-**证明** $$\|g_k-g\|_1\to0$$ 即 $$\int_E|g_k-g|\,dm\to0$$. $$\forall\delta>0$$，
+**证明** $$\Vert g_k-g\Vert _1\to0$$ 即 $$\int_E{\vert}g_k-g{\vert}\,dm\to0$$. $$\forall\delta>0$$，
 
 $$
-\int_E|g_k-g|\,dm
-\ge\int_{\{|g_k-g|>\delta\}}|g_k-g|\,dm
-\ge\delta\cdot m\{|g_k-g|>\delta\}
+\int_E{\vert}g_k-g{\vert}\,dm
+\ge\int_{\{{\vert}g_k-g{\vert}>\delta\}}{\vert}g_k-g{\vert}\,dm
+\ge\delta\cdot m\{{\vert}g_k-g{\vert}>\delta\}
 \quad\Longrightarrow\quad
-m\{|g_k-g|>\delta\}\to0.
+m\{{\vert}g_k-g{\vert}>\delta\}\to0.
 $$
 
 $$\square$$
@@ -655,9 +655,9 @@ $$\square$$
 
 设 $$f_k\in L(E)$$，$$f_k\to f$$ a.e.，则以下叙述等价：
 
-- **(1)** $$\|f_k-f\|_1\to0$$，$$k\to\infty$$；
-- **(2)** $$f\in L(E)$$，且 $$\|f_k\|_1\to\|f\|_1$$；
-- **(3)** 存在 $$g_k,g\in L(E)$$，s.t. $$|f_k|\le g_k$$ a.e. 且 $$\|g_k-g\|_1\to0$$.
+- **(1)** $$\Vert f_k-f\Vert _1\to0$$，$$k\to\infty$$；
+- **(2)** $$f\in L(E)$$，且 $$\Vert f_k\Vert _1\to\Vert f\Vert _1$$；
+- **(3)** 存在 $$g_k,g\in L(E)$$，s.t. $${\vert}f_k{\vert}\le g_k$$ a.e. 且 $$\Vert g_k-g\Vert _1\to0$$.
 
 且 (1)(2)(3) 蕴含 (4)：$$f\in L(E)$$，$$\displaystyle\int_E f_k\,dm\to\int_E f\,dm$$.
 
@@ -665,19 +665,19 @@ $$\square$$
 
 **证明** (1)$$\iff$$(2)：由命题 4.7 即得.
 
-(3)$$\Rightarrow$$(2)：对序列 $$|f_k|$$（$$|f_k|\to|f|$$ a.e.，$$|f_k|\le g_k$$，$$\int_E|g_k-g|\,dm\to0$$）用渐近控制版 DCT（命题 4.6）得 $$|f|\in L(E)$$ 且
+(3)$$\Rightarrow$$(2)：对序列 $${\vert}f_k{\vert}$$（$${\vert}f_k{\vert}\to{\vert}f{\vert}$$ a.e.，$${\vert}f_k{\vert}\le g_k$$，$$\int_E{\vert}g_k-g{\vert}\,dm\to0$$）用渐近控制版 DCT（命题 4.6）得 $${\vert}f{\vert}\in L(E)$$ 且
 
 $$
-\|f_k\|_1=\int_E|f_k|\,dm\to\int_E|f|\,dm=\|f\|_1 ;
+\Vert f_k\Vert _1=\int_E{\vert}f_k{\vert}\,dm\to\int_E{\vert}f{\vert}\,dm=\Vert f\Vert _1 ;
 $$
 
 同时对该命题直接用于 $$f_k$$ 得 $$f\in L(E)$$ 且 $$\int_E f_k\,dm\to\int_E f\,dm$$，即 (4) 亦成立.
 
-(1)(2)$$\Rightarrow$$(3)：令 $$g_k=|f_k|$$，$$g=|f|$$，则 $$|f_k|\le g_k$$ 且
+(1)(2)$$\Rightarrow$$(3)：令 $$g_k={\vert}f_k{\vert}$$，$$g={\vert}f{\vert}$$，则 $${\vert}f_k{\vert}\le g_k$$ 且
 
 $$
-\|g_k-g\|_1=\int_E\big||f_k|-|f|\big|\,dm
-\le\|f_k-f\|_1\to0\qquad(k\to\infty).
+\Vert g_k-g\Vert _1=\int_E\big{\vert}{\vert}f_k{\vert}-{\vert}f{\vert}\big{\vert}\,dm
+\le\Vert f_k-f\Vert _1\to0\qquad(k\to\infty).
 $$
 
 $$\square$$
@@ -689,13 +689,13 @@ $$\square$$
 设 $$f\in L^1(E)$$，则 $$\forall\varepsilon>0$$，$$\exists\delta>0$$，s.t. $$\forall A\subseteq E$$ 可测，当 $$mA<\delta$$ 时，
 
 $$
-\Big|\int_A f\,dm\Big|<\varepsilon
-\qquad(\text{实际上}\ \int_A|f|\,dm<\varepsilon).
+\Big{\vert}\int_A f\,dm\Big{\vert}<\varepsilon
+\qquad(\text{实际上}\ \int_A{\vert}f{\vert}\,dm<\varepsilon).
 $$
 
 </div>
 
-**证明** 对 $$|f|$$ 证明后，由 $$|\int_A f\,dm|\le\int_A|f|\,dm$$ 即得，故不妨设 $$f\ge0$$.
+**证明** 对 $${\vert}f{\vert}$$ 证明后，由 $${\vert}\int_A f\,dm{\vert}\le\int_A{\vert}f{\vert}\,dm$$ 即得，故不妨设 $$f\ge0$$.
 
 取简单可测 $$\varphi_k\uparrow f$$，$$\int_A\varphi_k\,dm\to\int_A f\,dm$$（MCT，对任意 $$A$$）. 取简单可测 $$0\le\varphi\le f$$，s.t.
 
@@ -724,7 +724,7 @@ $$\square$$
 
 **定理 4.10（DCT，依测度版）**
 
-设 $$f_k\in L(E)$$，$$f_k\to f$$ in measure，存在 $$g\in L(E)$$，s.t. $$|f_k|\le g$$ a.e. 则
+设 $$f_k\in L(E)$$，$$f_k\to f$$ in measure，存在 $$g\in L(E)$$，s.t. $${\vert}f_k{\vert}\le g$$ a.e. 则
 
 $$
 \int_E f_k\,dm\to\int_E f\,dm .
@@ -735,55 +735,54 @@ $$
 **证明** 先证 $$f\in L(E)$$：由 Riesz 定理（第 3 章定理 3.6），存在子列 $$f_{k_i}\to f$$ a.e.，由 Fatou 引理，
 
 $$
-\int_E|f|\,dm\le\underline{\lim}_{k_i}\int_E|f_{k_i}|\,dm\le\int_E|g|\,dm<\infty,
+\int_E{\vert}f{\vert}\,dm\le\underline{\lim}_{k_i}\int_E{\vert}f_{k_i}{\vert}\,dm\le\int_E{\vert}g{\vert}\,dm<\infty,
 $$
 
 故 $$f\in L(E)$$.
 
-不妨设 $$f_k\ge0$$（对 $$\pm f_k$$ 分别论证再合并，或对 $$|f_k-f|$$ 论证）. $$\forall\delta>0$$，$$m\{|f_k-f|>\delta\}\to0$$. 断言：$$\|f_k-f\|_1\to0$$，从而 $$|\int_E f_k\,dm-\int_E f\,dm|
-\le\|f_k-f\|_1\to0$$.
+不妨设 $$f_k\ge0$$（对 $$\pm f_k$$ 分别论证再合并，或对 $${\vert}f_k-f{\vert}$$ 论证）. $$\forall\delta>0$$，$$m\{{\vert}f_k-f{\vert}>\delta\}\to0$$. 断言：$$\Vert f_k-f\Vert _1\to0$$，从而 $${\vert}\int_E f_k\,dm-\int_E f\,dm{\vert}
+\le\Vert f_k-f\Vert _1\to0$$.
 
 $$\forall\varepsilon>0$$，将积分按集合分三块估计：
 
 $$
-\int_E|f_k-f|\,dm
-=\int_{E\cap B_N^c}|f_k-f|\,dm
-+\int_{E\cap B_N\cap\{|f_k-f|\le\delta\}}|f_k-f|\,dm
-+\int_{E\cap B_N\cap\{|f_k-f|>\delta\}}|f_k-f|\,dm .
+\int_E{\vert}f_k-f{\vert}\,dm
+=\int_{E\cap B_N^c}{\vert}f_k-f{\vert}\,dm
++\int_{E\cap B_N\cap\{{\vert}f_k-f{\vert}\le\delta\}}{\vert}f_k-f{\vert}\,dm
++\int_{E\cap B_N\cap\{{\vert}f_k-f{\vert}>\delta\}}{\vert}f_k-f{\vert}\,dm .
 $$
 
-- 第一块：$$|f_k-f|\le|f_k|+|f|\le2g$$，由 $$g\in L(E)$$ 的绝对连续性（定理 4.9），存在 $$N$$ 使
+- 第一块：$${\vert}f_k-f{\vert}\le{\vert}f_k{\vert}+{\vert}f{\vert}\le2g$$，由 $$g\in L(E)$$ 的绝对连续性（定理 4.9），存在 $$N$$ 使
 
     $$
-    \int_{E\cap B_N^c}|f_k-f|\,dm\le 2\int_{E\cap B_N^c}g\,dm<\varepsilon ;
+    \int_{E\cap B_N^c}{\vert}f_k-f{\vert}\,dm\le 2\int_{E\cap B_N^c}g\,dm<\varepsilon ;
     $$
 
-- 第二块：$$|f_k-f|\le\delta$$，故 $$\displaystyle\int_{E\cap B_N\cap\{|f_k-f|\le\delta\}}|f_k-f|\,dm
-    \le\delta\,m(B_N)$$，取 $$\delta<\dfrac{\varepsilon}{2m(B_N)+1}$$ 得 $$<\varepsilon$$；
-- 第三块：$$|f_k-f|\le2g$$，由绝对连续性，存在 $$\eta>0$$ 使 $$mA<\eta\Rightarrow\int_A2g\,dm<\varepsilon$$；而 $$m\{|f_k-f|>\delta\}\to0$$，故对充分大的 $$k$$，$$m\big(E\cap\{|f_k-f|>\delta\}\big)<\eta$$，从而该块积分 $$<\varepsilon$$.
+- 第二块：$${\vert}f_k-f{\vert}\le\delta$$，故 $$\displaystyle\int_{E\cap B_N\cap\{{\vert}f_k-f{\vert}\le\delta\}}{\vert}f_k-f{\vert}\,dm$$ $$\le\delta\,m(B_N)$$，取 $$\delta<\dfrac{\varepsilon}{2m(B_N)+1}$$ 得 $$<\varepsilon$$；
+- 第三块：$${\vert}f_k-f{\vert}\le2g$$，由绝对连续性，存在 $$\eta>0$$ 使 $$mA<\eta\Rightarrow\int_A2g\,dm<\varepsilon$$；而 $$m\{{\vert}f_k-f{\vert}>\delta\}\to0$$，故对充分大的 $$k$$，$$m\big(E\cap\{{\vert}f_k-f{\vert}>\delta\}\big)<\eta$$，从而该块积分 $$<\varepsilon$$.
 
-综上 $$\|f_k-f\|_1\le3\varepsilon$$ 对充分大的 $$k$$ 成立，即 $$\|f_k-f\|_1\to0$$. $$\square$$
+综上 $$\Vert f_k-f\Vert _1\le3\varepsilon$$ 对充分大的 $$k$$ 成立，即 $$\Vert f_k-f\Vert _1\to0$$. $$\square$$
 
 **证明**（定理 4.10 的另证） 由 Riesz 定理，存在子列 $$f_{k_i}\to f$$ a.e.，则 $$f\in L(E)$$ 且（对该子列用 a.e. 版 DCT，控制函数 $$g$$）
 
 $$
-\int_E|f_{k_i}|\,dm\to\int_E|f|\,dm .
+\int_E{\vert}f_{k_i}{\vert}\,dm\to\int_E{\vert}f{\vert}\,dm .
 $$
 
-下证 $$\displaystyle\overline{\lim}_k\int_E|f_k|\,dm\le\int_E|f|\,dm$$ $$\le\underline{\lim}_k\int_E|f_k|\,dm$$，从而 $$\int_E|f_k|\,dm\to\int_E|f|\,dm$$.
+下证 $$\displaystyle\overline{\lim}_k\int_E{\vert}f_k{\vert}\,dm\le\int_E{\vert}f{\vert}\,dm$$ $$\le\underline{\lim}_k\int_E{\vert}f_k{\vert}\,dm$$，从而 $$\int_E{\vert}f_k{\vert}\,dm\to\int_E{\vert}f{\vert}\,dm$$.
 
-反设 $$\displaystyle\overline{\lim}_k\int_E|f_k|\,dm>\int_E|f|\,dm+2\delta$$，则存在子列 $$\{f_{k_j}\}$$，s.t. $$\int_E|f_{k_j}|\,dm>\int_E|f|\,dm+\delta$$ 对一切 $$j$$. 由 Riesz 定理，存在子子列 $$f_{k_{j_i}}\to f$$ a.e.，于是（对该子子列用 a.e. 版 DCT）
+反设 $$\displaystyle\overline{\lim}_k\int_E{\vert}f_k{\vert}\,dm>\int_E{\vert}f{\vert}\,dm+2\delta$$，则存在子列 $$\{f_{k_j}\}$$，s.t. $$\int_E{\vert}f_{k_j}{\vert}\,dm>\int_E{\vert}f{\vert}\,dm+\delta$$ 对一切 $$j$$. 由 Riesz 定理，存在子子列 $$f_{k_{j_i}}\to f$$ a.e.，于是（对该子子列用 a.e. 版 DCT）
 
 $$
-\int_E|f_{k_{j_i}}|\,dm\to\int_E|f|\,dm
+\int_E{\vert}f_{k_{j_i}}{\vert}\,dm\to\int_E{\vert}f{\vert}\,dm
 \quad\Longrightarrow\quad
-\int_E|f|\,dm\ge\int_E|f|\,dm+\delta ,
+\int_E{\vert}f{\vert}\,dm\ge\int_E{\vert}f{\vert}\,dm+\delta ,
 $$
 
 矛盾. 另一边（$$\underline{\lim}$$）同理. 从而立即有
 
 $$
-\int_E|f|\,dm=\lim_k\int_E|f_k|\,dm .
+\int_E{\vert}f{\vert}\,dm=\lim_k\int_E{\vert}f_k{\vert}\,dm .
 $$
 
 最后，对 $$f_{k,+},f_{k,-}$$（均受 $$g$$ 控制、均依测度收敛于 $$f_\pm$$）重复上述论证，得
@@ -802,7 +801,7 @@ $$\square$$
 设 $$f\in L(E)$$，则 $$\forall\varepsilon>0$$，存在有界可测集 $$B$$，s.t.
 
 $$
-\int_{E\setminus B}|f|\,dm<\varepsilon .
+\int_{E\setminus B}{\vert}f{\vert}\,dm<\varepsilon .
 $$
 
 </div>
@@ -816,8 +815,8 @@ $$
 从而
 
 $$
-\lim_{k\to\infty}\int_{E\setminus B_k}|f|\,dm
-=\int_E|f|\,dm-\lim_k\int_{E\cap B_k}|f|\,dm=0,
+\lim_{k\to\infty}\int_{E\setminus B_k}{\vert}f{\vert}\,dm
+=\int_E{\vert}f{\vert}\,dm-\lim_k\int_{E\cap B_k}{\vert}f{\vert}\,dm=0,
 $$
 
 取 $$B=B_k$$（$$k$$ 充分大，$$B_k$$ 有界）即可得证. $$\square$$
@@ -826,7 +825,7 @@ $$
 
 **命题 4.9（积分号下求导）**
 
-设 $$f:E\times(a,b)\to\mathbb{R}$$ 关于 $$x\mapsto f(x,y)$$ 可积，$$y\mapsto f(x,y)$$ 可导. 若存在 $$F\in L(E)$$，s.t. $$\big|\frac{\partial}{\partial y}f(x,y)\big|\le F(x)$$（对所有 $$(x,y)\in E\times(a,b)$$），则
+设 $$f:E\times(a,b)\to\mathbb{R}$$ 关于 $$x\mapsto f(x,y)$$ 可积，$$y\mapsto f(x,y)$$ 可导. 若存在 $$F\in L(E)$$，s.t. $$\big{\vert}\frac{\partial}{\partial y}f(x,y)\big{\vert}\le F(x)$$（对所有 $$(x,y)\in E\times(a,b)$$），则
 
 $$
 \frac{\partial}{\partial y}\int_E f(x,y)\,dx
@@ -845,8 +844,8 @@ $$
 且
 
 $$
-\Big|\frac{f(x,y+h_k)-f(x,y)}{h_k}\Big|
-=\Big|\frac{\partial}{\partial y}f(x,\,y+\theta_k h_k)\Big|
+\Big{\vert}\frac{f(x,y+h_k)-f(x,y)}{h_k}\Big{\vert}
+=\Big{\vert}\frac{\partial}{\partial y}f(x,\,y+\theta_k h_k)\Big{\vert}
 \le F(x)
 \qquad(\theta_k\in(0,1)).
 $$
@@ -877,33 +876,33 @@ $$\square$$
 设 $$f\in L(E)$$，则 $$\forall\varepsilon>0$$，存在简单函数 $$\varphi\in L(E)$$、阶梯函数 $$\psi\in L(E)$$、紧支连续函数 $$g\in L(E)$$，s.t.
 
 $$
-\|f-\varphi\|_1<\varepsilon,\qquad
-\|f-\psi\|_1<\varepsilon,\qquad
-\|f-g\|_1<\varepsilon .
+\Vert f-\varphi\Vert _1<\varepsilon,\qquad
+\Vert f-\psi\Vert _1<\varepsilon,\qquad
+\Vert f-g\Vert _1<\varepsilon .
 $$
 
 </div>
 
-**证明** （1）存在简单函数列 $$\varphi_k\to f$$ a.e. 且 $$|\varphi_k|\le|f|$$（对 $$f_\pm$$ 分别用简单逼近并截断），从而 $$|\varphi_k-f|\le2|f|\in L(E)$$，由 DCT 即有 $$\|\varphi_k-f\|_1\to0$$；取 $$\varphi=\varphi_k$$（$$k$$ 充分大）.
+**证明** （1）存在简单函数列 $$\varphi_k\to f$$ a.e. 且 $${\vert}\varphi_k{\vert}\le{\vert}f{\vert}$$（对 $$f_\pm$$ 分别用简单逼近并截断），从而 $${\vert}\varphi_k-f{\vert}\le2{\vert}f{\vert}\in L(E)$$，由 DCT 即有 $$\Vert \varphi_k-f\Vert _1\to0$$；取 $$\varphi=\varphi_k$$（$$k$$ 充分大）.
 
-（2）不妨 $$\|\varphi_k-f\|_1<\frac\varepsilon2$$，$$\varphi_k=\sum_{j=1}^{N}a_j1_{A_j}$$（$$a_j\ne0$$）. 其中
+（2）不妨 $$\Vert \varphi_k-f\Vert _1<\frac\varepsilon2$$，$$\varphi_k=\sum_{j=1}^{N}a_j1_{A_j}$$（$$a_j\ne0$$）. 其中
 
 $$
-mA_j\le\frac{1}{|a_j|}\int_E|\varphi_k|\,dm<\infty ,
+mA_j\le\frac{1}{{\vert}a_j{\vert}}\int_E{\vert}\varphi_k{\vert}\,dm<\infty ,
 $$
 
 由 Littlewood 原则 3（命题 3.21），存在有限个方体之并 $$B_j$$，s.t. $$m(A_j\triangle B_j)<\varepsilon'$$，$$\forall j$$. 令 $$\psi_k=\sum_{j=1}^{N}a_j1_{B_j}$$，则 $$\psi_k$$ 是阶梯函数，且
 
 $$
-\|\varphi_k-\psi_k\|_1\le\sum_{j=1}^{N}|a_j|\cdot\|1_{A_j}-1_{B_j}\|_1
-=\sum_{j=1}^{N}|a_j|\cdot m(A_j\triangle B_j)
-<\varepsilon'\sum_{j=1}^{N}|a_j| .
+\Vert \varphi_k-\psi_k\Vert _1\le\sum_{j=1}^{N}{\vert}a_j{\vert}\cdot\Vert 1_{A_j}-1_{B_j}\Vert _1
+=\sum_{j=1}^{N}{\vert}a_j{\vert}\cdot m(A_j\triangle B_j)
+<\varepsilon'\sum_{j=1}^{N}{\vert}a_j{\vert} .
 $$
 
 取适当 $$\varepsilon'$$ 即有
 
 $$
-\|\psi_k-f\|_1\le\|\psi_k-\varphi_k\|_1+\|\varphi_k-f\|_1<\varepsilon .
+\Vert \psi_k-f\Vert _1\le\Vert \psi_k-\varphi_k\Vert _1+\Vert \varphi_k-f\Vert _1<\varepsilon .
 $$
 
 （3）由 Lusin 定理与 Tietze 延拓：$$\forall\varepsilon''>0$$，存在连续 $$g$$（可取紧支：再把 $$g$$ 乘以一个在充分大方体上恒为 $$1$$ 的紧支连续单位函数），s.t.
@@ -911,13 +910,13 @@ $$
 $$
 m\{g\ne\psi\}<\varepsilon''
 \qquad\text{且}\qquad
-|g|\le|\psi|\le M\quad(\text{延拓保持值域}).
+{\vert}g{\vert}\le{\vert}\psi{\vert}\le M\quad(\text{延拓保持值域}).
 $$
 
 则
 
 $$
-\int_E|g-\psi|\,dm=\int_{\{g\ne\psi\}}|g-\psi|\,dm\le2M\varepsilon'' .
+\int_E{\vert}g-\psi{\vert}\,dm=\int_{\{g\ne\psi\}}{\vert}g-\psi{\vert}\,dm\le2M\varepsilon'' .
 $$
 
 适当取 $$\varepsilon''$$ 即可. $$\square$$
@@ -929,32 +928,32 @@ $$
 设 $$f\in L(\mathbb{R}^n)$$，则
 
 $$
-\lim_{h\to0}\int_{\mathbb{R}^n}|f(x+h)-f(x)|\,dx=0 .
+\lim_{h\to0}\int_{\mathbb{R}^n}{\vert}f(x+h)-f(x){\vert}\,dx=0 .
 $$
 
 </div>
 
-**证明** $$\forall\varepsilon>0$$，取紧支连续 $$g$$，s.t. $$\|f-g\|_1<\varepsilon$$. $$g$$ 紧支连续 $$\Rightarrow$$ 一致连续，则 $$\exists\delta$$，s.t. $$\forall|h|<\delta$$：
+**证明** $$\forall\varepsilon>0$$，取紧支连续 $$g$$，s.t. $$\Vert f-g\Vert _1<\varepsilon$$. $$g$$ 紧支连续 $$\Rightarrow$$ 一致连续，则 $$\exists\delta$$，s.t. $$\forall{\vert}h{\vert}<\delta$$：
 
 $$
-|g(x+h)-g(x)|<\varepsilon' .
+{\vert}g(x+h)-g(x){\vert}<\varepsilon' .
 $$
 
 则（$$g$$ 的支集 $$S$$ 为紧集，其 $$\delta$$-邻域 $$S_\delta$$ 测度有限）
 
 $$
-\int_{\mathbb{R}^n}|g(x+h)-g(x)|\,dx
-=\int_{S_\delta}|g(x+h)-g(x)|\,dx
+\int_{\mathbb{R}^n}{\vert}g(x+h)-g(x){\vert}\,dx
+=\int_{S_\delta}{\vert}g(x+h)-g(x){\vert}\,dx
 <\varepsilon'\cdot m(S_\delta) .
 $$
 
-注意平移不变性 $$\int_{\mathbb{R}^n}|f(x+h)-g(x+h)|\,dx$$ $$=\int_{\mathbb{R}^n}|f(y)-g(y)|\,dy=\|f-g\|_1$$，故由三角不等式：
+注意平移不变性 $$\int_{\mathbb{R}^n}{\vert}f(x+h)-g(x+h){\vert}\,dx$$ $$=\int_{\mathbb{R}^n}{\vert}f(y)-g(y){\vert}\,dy=\Vert f-g\Vert _1$$，故由三角不等式：
 
 $$
-\int_{\mathbb{R}^n}|f(x+h)-f(x)|\,dx
-\le\int_{\mathbb{R}^n}|f(x+h)-g(x+h)|\,dx
-+\int_{\mathbb{R}^n}|g(x+h)-g(x)|\,dx
-+\int_{\mathbb{R}^n}|g(x)-f(x)|\,dx
+\int_{\mathbb{R}^n}{\vert}f(x+h)-f(x){\vert}\,dx
+\le\int_{\mathbb{R}^n}{\vert}f(x+h)-g(x+h){\vert}\,dx
++\int_{\mathbb{R}^n}{\vert}g(x+h)-g(x){\vert}\,dx
++\int_{\mathbb{R}^n}{\vert}g(x)-f(x){\vert}\,dx
 $$
 
 $$
@@ -971,41 +970,41 @@ $$
 
 1. $$f$$ 有界且 $$g_k\xrightarrow{L^1}g$$；
 2. $$g_k\rightrightarrows g$$（一致收敛）；
-3. $$g$$ 有界，$$\{g_k\}$$ 一致有界（$$\exists M_g:\ |g_k|\le M_g$$），且 $$g_k\to g$$ 依测度.
+3. $$g$$ 有界，$$\{g_k\}$$ 一致有界（$$\exists M_g:\ {\vert}g_k{\vert}\le M_g$$），且 $$g_k\to g$$ 依测度.
 
 </div>
 
-**证明** （1）设 $$|f|\le M$$，则
+**证明** （1）设 $${\vert}f{\vert}\le M$$，则
 
 $$
-\Big|\int_E f(g_k-g)\,dm\Big|
-\le M\int_E|g-g_k|\,dm=M\,\|g_k-g\|_1\to0 .
+\Big{\vert}\int_E f(g_k-g)\,dm\Big{\vert}
+\le M\int_E{\vert}g-g_k{\vert}\,dm=M\,\Vert g_k-g\Vert _1\to0 .
 $$
 
-（2）$$\displaystyle\Big|\int_E f(g_k-g)\,dm\Big|$$ $$\le\sup_{x\in E}|g_k(x)-g(x)|\cdot\int_E|f|\,dm\to0$$（$$\int_E|f|\,dm<\infty$$ 因 $$f\in L(E)$$）.
+（2）$$\displaystyle\Big{\vert}\int_E f(g_k-g)\,dm\Big{\vert}$$ $$\le\sup_{x\in E}{\vert}g_k(x)-g(x){\vert}\cdot\int_E{\vert}f{\vert}\,dm\to0$$（$$\int_E{\vert}f{\vert}\,dm<\infty$$ 因 $$f\in L(E)$$）.
 
-（3）$$\forall\varepsilon$$，取紧支连续 $$f_\varepsilon$$ s.t. $$\|f-f_\varepsilon\|_1<\varepsilon$$（稠密性命题）. 则
+（3）$$\forall\varepsilon$$，取紧支连续 $$f_\varepsilon$$ s.t. $$\Vert f-f_\varepsilon\Vert _1<\varepsilon$$（稠密性命题）. 则
 
 $$
-\big\|fg-f_\varepsilon g\big\|_1
-+\big\|f_\varepsilon g-f_\varepsilon g_k\big\|_1
-+\big\|f_\varepsilon g_k-fg_k\big\|_1
+\big\Vert fg-f_\varepsilon g\big\Vert _1
++\big\Vert f_\varepsilon g-f_\varepsilon g_k\big\Vert _1
++\big\Vert f_\varepsilon g_k-fg_k\big\Vert _1
 $$
 
 中：
 
-- $$\|fg-f_\varepsilon g\|_1\le\|g\|_\infty\,\|f-f_\varepsilon\|_1
+- $$\Vert fg-f_\varepsilon g\Vert _1\le\Vert g\Vert _\infty\,\Vert f-f_\varepsilon\Vert _1
     \le M_g\varepsilon$$；
-- $$\|f_\varepsilon g_k-fg_k\|_1\le M_g\|f_\varepsilon-f\|_1
+- $$\Vert f_\varepsilon g_k-fg_k\Vert _1\le M_g\Vert f_\varepsilon-f\Vert _1
     \le M_g\varepsilon$$；
-- 中间项：$$f_\varepsilon$$ 紧支于 $$S$$（有限测度）且 $$|f_\varepsilon|\le\widetilde{M}(\varepsilon)$$，于 $$S$$ 上 $$|f_\varepsilon(g-g_k)|\le\widetilde{M}\cdot2M_g$$ 可积控制，且 $$g_k\to g$$ 依测度，由依测度版 DCT（定理 4.10）
+- 中间项：$$f_\varepsilon$$ 紧支于 $$S$$（有限测度）且 $${\vert}f_\varepsilon{\vert}\le\widetilde{M}(\varepsilon)$$，于 $$S$$ 上 $${\vert}f_\varepsilon(g-g_k){\vert}\le\widetilde{M}\cdot2M_g$$ 可积控制，且 $$g_k\to g$$ 依测度，由依测度版 DCT（定理 4.10）
 
     $$
-    \int_E|f_\varepsilon g-f_\varepsilon g_k|\,dm
-    \le\widetilde{M}\int_S|g-g_k|\,dm\to0 ;
+    \int_E{\vert}f_\varepsilon g-f_\varepsilon g_k{\vert}\,dm
+    \le\widetilde{M}\int_S{\vert}g-g_k{\vert}\,dm\to0 ;
     $$
 
-从而 $$\big|\int_E f(g_k-g)\,dm\big|$$ $$\le(2M_g+\widetilde{M}\cdot o(1))\varepsilon\to0$$. $$\square$$
+从而 $$\big{\vert}\int_E f(g_k-g)\,dm\big{\vert}$$ $$\le(2M_g+\widetilde{M}\cdot o(1))\varepsilon\to0$$. $$\square$$
 
 <div class="proposition">
 
@@ -1019,20 +1018,20 @@ $$
 
 $$
 f'(x)=\begin{cases}
-f(x), & |f(x)|\le1,\\
-\operatorname{sgn} f(x), & |f(x)|>1,
+f(x), & {\vert}f(x){\vert}\le1,\\
+\operatorname{sgn} f(x), & {\vert}f(x){\vert}>1,
 \end{cases}
-\qquad f'\in L(E),\ |f'|\le1 .
+\qquad f'\in L(E),\ {\vert}f'{\vert}\le1 .
 $$
 
-由 $$L^1$$ 稠密性（命题 4.10(3)），存在紧支连续 $$g_k$$ 使 $$\|g_k-f'\|_1\to0$$ 且（截断到 $$[-1,1]$$）$$|g_k|\le1$$. 取子列 $$g_{k_i}\xrightarrow{\text{a.e.}}f'$$（$$L^1\Rightarrow$$ 依测度 $$\Rightarrow$$ Riesz 子列）.
+由 $$L^1$$ 稠密性（命题 4.10(3)），存在紧支连续 $$g_k$$ 使 $$\Vert g_k-f'\Vert _1\to0$$ 且（截断到 $$[-1,1]$$）$${\vert}g_k{\vert}\le1$$. 取子列 $$g_{k_i}\xrightarrow{\text{a.e.}}f'$$（$$L^1\Rightarrow$$ 依测度 $$\Rightarrow$$ Riesz 子列）.
 
-又 $$\int_E fg_k\,dm=0$$，$$\forall k$$，故由控制收敛定理（$$|f g_{k_i}|\le|f|\in L(E)$$）：
+又 $$\int_E fg_k\,dm=0$$，$$\forall k$$，故由控制收敛定理（$${\vert}f g_{k_i}{\vert}\le{\vert}f{\vert}\in L(E)$$）：
 
 $$
 0=\lim_{i\to\infty}\int_E fg_{k_i}\,dm
 =\int_E f\cdot f'\,dm
-=\int_{\{|f|\le1\}}f^2\,dm+\int_{\{|f|>1\}}|f|\,dm .
+=\int_{\{{\vert}f{\vert}\le1\}}f^2\,dm+\int_{\{{\vert}f{\vert}>1\}}{\vert}f{\vert}\,dm .
 $$
 
 两项均非负，故均为零，从而 $$f=0$$ a.e. $$x\in E$$. $$\square$$
@@ -1041,7 +1040,7 @@ $$
 
 **定理 4.12（Riemann–Lebesgue 型定理）**
 
-设 $$f,g_k\in L([a,b])$$，$$g_k$$ 一致有界（$$|g_k|\le M_g$$）. 若存在 $$M$$，$$\forall c\in[a,b]$$，
+设 $$f,g_k\in L([a,b])$$，$$g_k$$ 一致有界（$${\vert}g_k{\vert}\le M_g$$）. 若存在 $$M$$，$$\forall c\in[a,b]$$，
 
 $$
 \int_{[a,c]}g_k\,dm\to M(c-a),
@@ -1073,14 +1072,14 @@ $$
 \to M\sum_j c_j(\beta_j-\alpha_j)=M\int_{[a,b]}\psi\,dm .
 $$
 
-则对于 $$f\in L(E)$$，$$\forall\varepsilon>0$$，由阶梯函数在 $$L^1$$ 中的稠密性，存在阶梯函数 $$\psi_\varepsilon$$，s.t. $$\|\psi_\varepsilon-f\|_1<\varepsilon$$. 于是（$$k\to\infty$$ 取上极限）
+则对于 $$f\in L(E)$$，$$\forall\varepsilon>0$$，由阶梯函数在 $$L^1$$ 中的稠密性，存在阶梯函数 $$\psi_\varepsilon$$，s.t. $$\Vert \psi_\varepsilon-f\Vert _1<\varepsilon$$. 于是（$$k\to\infty$$ 取上极限）
 
 $$
 \begin{aligned}
-\Big|\int_{[a,b]}fg_k\,dm-M\int_{[a,b]}f\,dm\Big|
-&\le\int_{[a,b]}|f-\psi_\varepsilon|\cdot|g_k|\,dm
-+\Big|\int_{[a,b]}\psi_\varepsilon g_k\,dm-M\int_{[a,b]}\psi_\varepsilon\,dm\Big|\\
-&\qquad+M\cdot\|f-\psi_\varepsilon\|_1\\
+\Big{\vert}\int_{[a,b]}fg_k\,dm-M\int_{[a,b]}f\,dm\Big{\vert}
+&\le\int_{[a,b]}{\vert}f-\psi_\varepsilon{\vert}\cdot{\vert}g_k{\vert}\,dm
++\Big{\vert}\int_{[a,b]}\psi_\varepsilon g_k\,dm-M\int_{[a,b]}\psi_\varepsilon\,dm\Big{\vert}\\
+&\qquad+M\cdot\Vert f-\psi_\varepsilon\Vert _1\\
 &\le M_g\varepsilon+o(1)+M\varepsilon ,
 \end{aligned}
 $$
@@ -1089,15 +1088,15 @@ $$
 
 ## 4.5 Riemann 积分与 Lebesgue 积分的关系
 
-设 $$f:[a,b]\to\mathbb{R}$$ 有界，任给分割 $$P$$，记其直径（最大子区间长度）为 $$|P|$$. 有相应的 Darboux 和 $$\overline{S}_Pf$$、$$\underline{S}_Pf$$. 取一列分割 $$P_i$$，s.t. $$|P_i|\to0$$，记
+设 $$f:[a,b]\to\mathbb{R}$$ 有界，任给分割 $$P$$，记其直径（最大子区间长度）为 $${\vert}P{\vert}$$. 有相应的 Darboux 和 $$\overline{S}_Pf$$、$$\underline{S}_Pf$$. 取一列分割 $$P_i$$，s.t. $${\vert}P_i{\vert}\to0$$，记
 
 $$
-\overline{\int}_a^b f(x)\,dx=\lim_{|P_i|\to0}\overline{S}_{P_i}f,
+\overline{\int}_a^b f(x)\,dx=\lim_{{\vert}P_i{\vert}\to0}\overline{S}_{P_i}f,
 \qquad
-\underline{\int}_a^b f(x)\,dx=\lim_{|P_i|\to0}\underline{S}_{P_i}f ,
+\underline{\int}_a^b f(x)\,dx=\lim_{{\vert}P_i{\vert}\to0}\underline{S}_{P_i}f ,
 $$
 
-（有界函数的 Darboux 上、下和关于分割加细单调，且当 $$|P_i|\to0$$ 时极限存在、与分割列的选取无关.）则
+（有界函数的 Darboux 上、下和关于分割加细单调，且当 $${\vert}P_i{\vert}\to0$$ 时极限存在、与分割列的选取无关.）则
 
 $$
 f\in R[a,b]\iff\overline{\int}_a^b f=\underline{\int}_a^b f .
@@ -1147,7 +1146,7 @@ $$
 
 （极限存在：$$\sup$$ 关于 $$\delta$$ 单调不减，$$\inf$$ 单调不增），则 $$f_*\le f\le f^*$$，且 $$x$$ 是 $$f$$ 的连续点 $$\iff f^*(x)=f_*(x)$$（即振幅为零）.
 
-**断言：** $$f^*=\overline{f}$$，$$f_*=\underline{f}$$ a.e. 令 $$A=\{P_k\ \text{的分割点}\}$$，$$mA=0$$（可数集）. 下证 $$f^*(x)=\overline{f}(x)$$，$$\forall x\in[a,b]\setminus A$$. 记 $$I_k(x)=[t_{i-1}^{(k)},t_i^{(k)}]$$ 为 $$P_k$$ 中包含 $$x$$ 的闭区间（$$x\notin A$$ 保证 $$x$$ 是 $$I_k(x)$$ 的内点），记 $$\ell_k=|I_k(x)|\le|P_k|\to0$$，$$\eta_k=\operatorname{dist}\big(x,\partial I_k(x)\big)>0$$.
+**断言：** $$f^*=\overline{f}$$，$$f_*=\underline{f}$$ a.e. 令 $$A=\{P_k\ \text{的分割点}\}$$，$$mA=0$$（可数集）. 下证 $$f^*(x)=\overline{f}(x)$$，$$\forall x\in[a,b]\setminus A$$. 记 $$I_k(x)=[t_{i-1}^{(k)},t_i^{(k)}]$$ 为 $$P_k$$ 中包含 $$x$$ 的闭区间（$$x\notin A$$ 保证 $$x$$ 是 $$I_k(x)$$ 的内点），记 $$\ell_k={\vert}I_k(x){\vert}\le{\vert}P_k{\vert}\to0$$，$$\eta_k=\operatorname{dist}\big(x,\partial I_k(x)\big)>0$$.
 
 一方面，
 
@@ -1406,15 +1405,15 @@ $$
 
 </div>
 
-**证明** $$f=f_+-f_-$$，$$f_\pm\in L^+$$ 可积（$$\int f_\pm\,dm\le\int|f|\,dm<\infty$$）. 由 Tonelli 定理，$$f_\pm\in\mathscr{F}$$，特别地：
+**证明** $$f=f_+-f_-$$，$$f_\pm\in L^+$$ 可积（$$\int f_\pm\,dm\le\int{\vert}f{\vert}\,dm<\infty$$）. 由 Tonelli 定理，$$f_\pm\in\mathscr{F}$$，特别地：
 
 - a.e. $$x$$：$$\int_{\mathbb{R}^q}f_\pm(x,y)\,dy<\infty$$（因 $$\int_{\mathbb{R}^p}\big(\int f_\pm\,dy\big)dx=\int f_\pm\,dm<\infty$$），故 $$y\mapsto f(x,y)=f_+(x,y)-f_-(x,y)$$ 可积（两个非负可积之差）；
 - $$x\mapsto\int_{\mathbb{R}^q}f(x,y)\,dy$$ $$=\int_{\mathbb{R}^q}f_+\,dy-\int_{\mathbb{R}^q}f_-\,dy$$ 可测，且
 
     $$
-    \int_{\mathbb{R}^p}\Big|\int_{\mathbb{R}^q}f\,dy\Big|dx
+    \int_{\mathbb{R}^p}\Big{\vert}\int_{\mathbb{R}^q}f\,dy\Big{\vert}dx
     \le\int_{\mathbb{R}^p}\Big(\int_{\mathbb{R}^q}f_++f_-\,dy\Big)dx
-    =\int_{\mathbb{R}^{p+q}}|f|\,dm<\infty ,
+    =\int_{\mathbb{R}^{p+q}}{\vert}f{\vert}\,dm<\infty ,
     $$
 
     故可积；
@@ -1450,17 +1449,17 @@ $$
 **定理 4.16（卷积的 $$L^1$$ 估计）**
 
 $$
-\int_{\mathbb{R}^n}|f*g|\ \le\ \int_{\mathbb{R}^n}|f|\cdot\int_{\mathbb{R}^n}|g| .
+\int_{\mathbb{R}^n}{\vert}f*g{\vert}\ \le\ \int_{\mathbb{R}^n}{\vert}f{\vert}\cdot\int_{\mathbb{R}^n}{\vert}g{\vert} .
 $$
 
 </div>
 
-**证明** 不妨设 $$f$$ 与 $$g$$ 可积（一般情形对 $$|f|,|g|$$ 应用再放缩：$$|f*g|(x)\le|f|*|g|(x)$$）. 则 $$\mathbb{R}^{2n}\ni(x,y)\mapsto f(x-y)g(y)$$ 可测（可测函数的复合与乘积），且
+**证明** 不妨设 $$f$$ 与 $$g$$ 可积（一般情形对 $${\vert}f{\vert},{\vert}g{\vert}$$ 应用再放缩：$${\vert}f*g{\vert}(x)\le{\vert}f{\vert}*{\vert}g{\vert}(x)$$）. 则 $$\mathbb{R}^{2n}\ni(x,y)\mapsto f(x-y)g(y)$$ 可测（可测函数的复合与乘积），且
 
 $$
-\int_{\mathbb{R}^{2n}}|f(x-y)g(y)|\,dx\,dy
-=\int_{\mathbb{R}^n}|g(y)|\Big(\int_{\mathbb{R}^n}|f(x-y)|\,dx\Big)dy
-=\int_{\mathbb{R}^n}|f|\cdot\int_{\mathbb{R}^n}|g|<\infty ,
+\int_{\mathbb{R}^{2n}}{\vert}f(x-y)g(y){\vert}\,dx\,dy
+=\int_{\mathbb{R}^n}{\vert}g(y){\vert}\Big(\int_{\mathbb{R}^n}{\vert}f(x-y){\vert}\,dx\Big)dy
+=\int_{\mathbb{R}^n}{\vert}f{\vert}\cdot\int_{\mathbb{R}^n}{\vert}g{\vert}<\infty ,
 $$
 
 故由 Fubini 定理：
@@ -1476,10 +1475,10 @@ $$
 =\int_{\mathbb{R}^n}f\cdot\int_{\mathbb{R}^n}g .
 $$
 
-（$$\int_{\mathbb{R}^n}|f(x-y)|\,dx=\int_{\mathbb{R}^n}|f|$$：平移不变性.）故对一般 $$f,g\in L(\mathbb{R}^n)$$，
+（$$\int_{\mathbb{R}^n}{\vert}f(x-y){\vert}\,dx=\int_{\mathbb{R}^n}{\vert}f{\vert}$$：平移不变性.）故对一般 $$f,g\in L(\mathbb{R}^n)$$，
 
 $$
-\int_{\mathbb{R}^n}|f*g|\le\int_{\mathbb{R}^n}|f|\cdot\int_{\mathbb{R}^n}|g|.
+\int_{\mathbb{R}^n}{\vert}f*g{\vert}\le\int_{\mathbb{R}^n}{\vert}f{\vert}\cdot\int_{\mathbb{R}^n}{\vert}g{\vert}.
 $$
 
 $$\square$$
@@ -1491,29 +1490,29 @@ $$\square$$
 设 $$f:E\to\overline{\mathbb{R}}$$ 可测，则
 
 $$
-\int_E|f|\,dm=\int_0^{+\infty}m\{|f|>\lambda\}\,d\lambda .
+\int_E{\vert}f{\vert}\,dm=\int_0^{+\infty}m\{{\vert}f{\vert}>\lambda\}\,d\lambda .
 $$
 
 </div>
 
-**证明** 令 $$F(x,\lambda)=1_{\{|f(x)|>\lambda\}}$$，则对每个 $$x$$：
+**证明** 令 $$F(x,\lambda)=1_{\{{\vert}f(x){\vert}>\lambda\}}$$，则对每个 $$x$$：
 
 $$
-\int_0^{+\infty}1_{\{|f(x)|>\lambda\}}\,d\lambda=|f(x)|
-\qquad(\text{区间}\ (0,|f(x)|)\ \text{的长度}).
+\int_0^{+\infty}1_{\{{\vert}f(x){\vert}>\lambda\}}\,d\lambda={\vert}f(x){\vert}
+\qquad(\text{区间}\ (0,{\vert}f(x){\vert})\ \text{的长度}).
 $$
 
 由 Tonelli 定理（非负可测）：
 
 $$
-\int_E|f|\,dm
-=\int_E\Big(\int_0^{+\infty}1_{\{|f(x)|>\lambda\}}\,d\lambda\Big)dx
+\int_E{\vert}f{\vert}\,dm
+=\int_E\Big(\int_0^{+\infty}1_{\{{\vert}f(x){\vert}>\lambda\}}\,d\lambda\Big)dx
 =\int_E\Big(\int_0^{+\infty}F(x,\lambda)\,d\lambda\Big)dx
 $$
 
 $$
 =\int_0^{+\infty}\Big(\int_EF(x,\lambda)\,dx\Big)d\lambda
-=\int_0^{+\infty}m\{|f|>\lambda\}\,d\lambda .
+=\int_0^{+\infty}m\{{\vert}f{\vert}>\lambda\}\,d\lambda .
 $$
 
 $$\square$$
