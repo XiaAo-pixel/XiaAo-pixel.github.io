@@ -641,10 +641,10 @@ $$
 
 $$
 \int_E{\vert}g_k-g{\vert}\,dm
-\ge\int_{\{{\vert}g_k-g{\vert}>\delta\}}{\vert}g_k-g{\vert}\,dm
-\ge\delta\cdot m\{{\vert}g_k-g{\vert}>\delta\}
+\ge\int_{\{ {\vert}g_k-g{\vert}>\delta\}}{\vert}g_k-g{\vert}\,dm
+\ge\delta\cdot m\{ {\vert}g_k-g{\vert}>\delta\}
 \quad\Longrightarrow\quad
-m\{{\vert}g_k-g{\vert}>\delta\}\to0.
+m\{ {\vert}g_k-g{\vert}>\delta\}\to0.
 $$
 
 $$\square$$
@@ -740,7 +740,7 @@ $$
 
 故 $$f\in L(E)$$.
 
-不妨设 $$f_k\ge0$$（对 $$\pm f_k$$ 分别论证再合并，或对 $${\vert}f_k-f{\vert}$$ 论证）. $$\forall\delta>0$$，$$m\{{\vert}f_k-f{\vert}>\delta\}\to0$$. 断言：$$\Vert f_k-f\Vert _1\to0$$，从而 $${\vert}\int_E f_k\,dm-\int_E f\,dm{\vert}
+不妨设 $$f_k\ge0$$（对 $$\pm f_k$$ 分别论证再合并，或对 $${\vert}f_k-f{\vert}$$ 论证）. $$\forall\delta>0$$，$$m\{ {\vert}f_k-f{\vert}>\delta\}\to0$$. 断言：$$\Vert f_k-f\Vert _1\to0$$，从而 $${\vert}\int_E f_k\,dm-\int_E f\,dm{\vert}
 \le\Vert f_k-f\Vert _1\to0$$.
 
 $$\forall\varepsilon>0$$，将积分按集合分三块估计：
@@ -748,8 +748,8 @@ $$\forall\varepsilon>0$$，将积分按集合分三块估计：
 $$
 \int_E{\vert}f_k-f{\vert}\,dm
 =\int_{E\cap B_N^c}{\vert}f_k-f{\vert}\,dm
-+\int_{E\cap B_N\cap\{{\vert}f_k-f{\vert}\le\delta\}}{\vert}f_k-f{\vert}\,dm
-+\int_{E\cap B_N\cap\{{\vert}f_k-f{\vert}>\delta\}}{\vert}f_k-f{\vert}\,dm .
++\int_{E\cap B_N\cap\{ {\vert}f_k-f{\vert}\le\delta\}}{\vert}f_k-f{\vert}\,dm
++\int_{E\cap B_N\cap\{ {\vert}f_k-f{\vert}>\delta\}}{\vert}f_k-f{\vert}\,dm .
 $$
 
 - 第一块：$${\vert}f_k-f{\vert}\le{\vert}f_k{\vert}+{\vert}f{\vert}\le2g$$，由 $$g\in L(E)$$ 的绝对连续性（定理 4.9），存在 $$N$$ 使
@@ -758,8 +758,8 @@ $$
     \int_{E\cap B_N^c}{\vert}f_k-f{\vert}\,dm\le 2\int_{E\cap B_N^c}g\,dm<\varepsilon ;
     $$
 
-- 第二块：$${\vert}f_k-f{\vert}\le\delta$$，故 $$\displaystyle\int_{E\cap B_N\cap\{{\vert}f_k-f{\vert}\le\delta\}}{\vert}f_k-f{\vert}\,dm$$ $$\le\delta\,m(B_N)$$，取 $$\delta<\dfrac{\varepsilon}{2m(B_N)+1}$$ 得 $$<\varepsilon$$；
-- 第三块：$${\vert}f_k-f{\vert}\le2g$$，由绝对连续性，存在 $$\eta>0$$ 使 $$mA<\eta\Rightarrow\int_A2g\,dm<\varepsilon$$；而 $$m\{{\vert}f_k-f{\vert}>\delta\}\to0$$，故对充分大的 $$k$$，$$m\big(E\cap\{{\vert}f_k-f{\vert}>\delta\}\big)<\eta$$，从而该块积分 $$<\varepsilon$$.
+- 第二块：$${\vert}f_k-f{\vert}\le\delta$$，故 $$\displaystyle\int_{E\cap B_N\cap\{ {\vert}f_k-f{\vert}\le\delta\}}{\vert}f_k-f{\vert}\,dm$$ $$\le\delta\,m(B_N)$$，取 $$\delta<\dfrac{\varepsilon}{2m(B_N)+1}$$ 得 $$<\varepsilon$$；
+- 第三块：$${\vert}f_k-f{\vert}\le2g$$，由绝对连续性，存在 $$\eta>0$$ 使 $$mA<\eta\Rightarrow\int_A2g\,dm<\varepsilon$$；而 $$m\{ {\vert}f_k-f{\vert}>\delta\}\to0$$，故对充分大的 $$k$$，$$m\big(E\cap\{ {\vert}f_k-f{\vert}>\delta\}\big)<\eta$$，从而该块积分 $$<\varepsilon$$.
 
 综上 $$\Vert f_k-f\Vert _1\le3\varepsilon$$ 对充分大的 $$k$$ 成立，即 $$\Vert f_k-f\Vert _1\to0$$. $$\square$$
 
@@ -888,7 +888,7 @@ $$
 （2）不妨 $$\Vert \varphi_k-f\Vert _1<\frac\varepsilon2$$，$$\varphi_k=\sum_{j=1}^{N}a_j1_{A_j}$$（$$a_j\ne0$$）. 其中
 
 $$
-mA_j\le\frac{1}{{\vert}a_j{\vert}}\int_E{\vert}\varphi_k{\vert}\,dm<\infty ,
+mA_j\le\frac{1}{ {\vert}a_j{\vert}}\int_E{\vert}\varphi_k{\vert}\,dm<\infty ,
 $$
 
 由 Littlewood 原则 3（命题 3.21），存在有限个方体之并 $$B_j$$，s.t. $$m(A_j\triangle B_j)<\varepsilon'$$，$$\forall j$$. 令 $$\psi_k=\sum_{j=1}^{N}a_j1_{B_j}$$，则 $$\psi_k$$ 是阶梯函数，且
@@ -1031,7 +1031,7 @@ $$
 $$
 0=\lim_{i\to\infty}\int_E fg_{k_i}\,dm
 =\int_E f\cdot f'\,dm
-=\int_{\{{\vert}f{\vert}\le1\}}f^2\,dm+\int_{\{{\vert}f{\vert}>1\}}{\vert}f{\vert}\,dm .
+=\int_{\{ {\vert}f{\vert}\le1\}}f^2\,dm+\int_{\{ {\vert}f{\vert}>1\}}{\vert}f{\vert}\,dm .
 $$
 
 两项均非负，故均为零，从而 $$f=0$$ a.e. $$x\in E$$. $$\square$$
@@ -1091,9 +1091,9 @@ $$
 设 $$f:[a,b]\to\mathbb{R}$$ 有界，任给分割 $$P$$，记其直径（最大子区间长度）为 $${\vert}P{\vert}$$. 有相应的 Darboux 和 $$\overline{S}_Pf$$、$$\underline{S}_Pf$$. 取一列分割 $$P_i$$，s.t. $${\vert}P_i{\vert}\to0$$，记
 
 $$
-\overline{\int}_a^b f(x)\,dx=\lim_{{\vert}P_i{\vert}\to0}\overline{S}_{P_i}f,
+\overline{\int}_a^b f(x)\,dx=\lim_{ {\vert}P_i{\vert}\to0}\overline{S}_{P_i}f,
 \qquad
-\underline{\int}_a^b f(x)\,dx=\lim_{{\vert}P_i{\vert}\to0}\underline{S}_{P_i}f ,
+\underline{\int}_a^b f(x)\,dx=\lim_{ {\vert}P_i{\vert}\to0}\underline{S}_{P_i}f ,
 $$
 
 （有界函数的 Darboux 上、下和关于分割加细单调，且当 $${\vert}P_i{\vert}\to0$$ 时极限存在、与分割列的选取无关.）则
@@ -1490,15 +1490,15 @@ $$\square$$
 设 $$f:E\to\overline{\mathbb{R}}$$ 可测，则
 
 $$
-\int_E{\vert}f{\vert}\,dm=\int_0^{+\infty}m\{{\vert}f{\vert}>\lambda\}\,d\lambda .
+\int_E{\vert}f{\vert}\,dm=\int_0^{+\infty}m\{ {\vert}f{\vert}>\lambda\}\,d\lambda .
 $$
 
 </div>
 
-**证明** 令 $$F(x,\lambda)=1_{\{{\vert}f(x){\vert}>\lambda\}}$$，则对每个 $$x$$：
+**证明** 令 $$F(x,\lambda)=1_{\{ {\vert}f(x){\vert}>\lambda\}}$$，则对每个 $$x$$：
 
 $$
-\int_0^{+\infty}1_{\{{\vert}f(x){\vert}>\lambda\}}\,d\lambda={\vert}f(x){\vert}
+\int_0^{+\infty}1_{\{ {\vert}f(x){\vert}>\lambda\}}\,d\lambda={\vert}f(x){\vert}
 \qquad(\text{区间}\ (0,{\vert}f(x){\vert})\ \text{的长度}).
 $$
 
@@ -1506,13 +1506,13 @@ $$
 
 $$
 \int_E{\vert}f{\vert}\,dm
-=\int_E\Big(\int_0^{+\infty}1_{\{{\vert}f(x){\vert}>\lambda\}}\,d\lambda\Big)dx
+=\int_E\Big(\int_0^{+\infty}1_{\{ {\vert}f(x){\vert}>\lambda\}}\,d\lambda\Big)dx
 =\int_E\Big(\int_0^{+\infty}F(x,\lambda)\,d\lambda\Big)dx
 $$
 
 $$
 =\int_0^{+\infty}\Big(\int_EF(x,\lambda)\,dx\Big)d\lambda
-=\int_0^{+\infty}m\{{\vert}f{\vert}>\lambda\}\,d\lambda .
+=\int_0^{+\infty}m\{ {\vert}f{\vert}>\lambda\}\,d\lambda .
 $$
 
 $$\square$$
