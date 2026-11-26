@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>杂记 · 海上列车：驶向星空 | XiaAo</title>
+  <meta name="description" content="一列夜行列车在星空下的海面上匀速前进：可自由环绕、进入车厢、连续调节昼夜与车型的程序化 3D 场景。">
+  <meta property="og:title" content="海上列车：驶向星空">
+  <meta property="og:description" content="夜海无轨，星野为灯。可交互的 Three.js 程序化 3D 场景。">
+  <meta property="og:image" content="works/sea-train/cover.jpg">
+  <link rel="preload" as="image" href="assets/wallpaper.jpg" type="image/jpeg" fetchpriority="high">
+  <script src="assets/prefs.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* 场景舞台：沿用站点配色变量 */
+    .stage-bar { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; margin: 1rem 0 .6rem; }
+    .stage-btn {
+      padding: .5rem 1.05rem; border-radius: 999px; border: 1px solid var(--rule);
+      background: var(--entry-bg); color: inherit; font-size: .9rem; cursor: pointer;
+      text-decoration: none; transition: border-color .15s, transform .15s, box-shadow .15s;
+    }
+    .stage-btn:hover { border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(50, 60, 110, .14); text-decoration: none; }
+    .stage-btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+    .stage-hint { color: var(--muted); font-size: .85rem; }
+    .stage-frame {
+      position: relative; height: min(72vh, 760px); min-height: 420px;
+      border: 1px solid var(--rule); border-radius: 16px; overflow: hidden;
+      background: #060a18; box-shadow: 0 14px 40px rgba(20, 28, 60, .18);
+    }
+    .stage-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+    .stage-frame:fullscreen { height: 100%; border-radius: 0; border: 0; }
+    .piece-meta { display: flex; gap: .8rem; flex-wrap: wrap; color: var(--muted); font-size: .88rem; margin: .2rem 0 0; }
+    .piece-meta span { padding: .18rem .7rem; border: 1px solid var(--rule); border-radius: 999px; background: var(--entry-bg); }
+    .piece-notes { margin-top: 1.4rem; }
+    .piece-notes h2 { font-size: 1.05rem; margin: 1.2rem 0 .5rem; }
+    .piece-notes ul { margin: .4rem 0 .4rem 1.2rem; line-height: 1.85; }
+    .piece-notes li { margin: .18rem 0; }
+    @media (max-width: 740px) { .stage-frame { height: 62vh; min-height: 340px; } }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <aside class="sidebar">
+    <a class="brand" href="index.html">
+      <img class="avatar" src="assets/avatar.jpg" alt="头像">
+      <span class="name">XiaAo</span>
+    </a>
+    <nav>
+      <a class="nav-item" href="index.html">🏠 主页</a>
+      <div class="nav-group">
+        <a class="nav-item" href="courses.html">📚 课程笔记</a>
+        <div class="subnav">
+          <a href="/statistics/">数理统计</a>
+          <a href="/optimization/">最优化方法</a>
+          <a href="/stochastic/">应用随机过程</a>
+          <a href="/ode/">常微分方程</a>
+          <a href="/realanalysis/">实变函数</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <a class="nav-item active" href="misc.html">✏️ 杂记</a>
+        <div class="subnav">
+          <a class="active" href="misc-sea-train.html">海上列车</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <a class="nav-item" href="hobbies.html">🎨 兴趣爱好</a>
+        <div class="subnav">
+          <a href="hobby-novel.html">小说</a>
+          <a href="hobby-anime.html">动漫</a>
+          <a href="hobby-travel.html">旅行</a>
+        </div>
+      </div>
+      <a class="nav-item" href="pdfs.html">📄 PDF 笔记</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <h1>海上列车：驶向星空</h1>
+    <p class="muted">夜海无轨，星野为灯；一列列车驶向天幕尽头。</p>
+    <div class="piece-meta">
+      <span>2026-11-26</span><span>交互 3D 场景</span><span>Three.js · 全程序化</span><span>含环境音</span>
+    </div>
+
+    <div class="stage-bar">
+      <button class="stage-btn primary" id="fsBtn" type="button">全屏体验</button>
+      <a class="stage-btn" href="works/sea-train/index.html" target="_blank" rel="noopener">新窗口打开</a>
+      <button class="stage-btn" id="reloadBtn" type="button">重载画面</button>
+      <span class="stage-hint">画面内：拖动旋转 · 滚轮缩放 · 右键平移 · 1/2/3 切换视角 · 空格暂停昼夜</span>
+    </div>
+    <div class="stage-frame" id="stageFrame">
+      <iframe id="sceneFrame" src="works/sea-train/index.html" title="海上列车：驶向星空 交互场景" allow="autoplay; fullscreen"></iframe>
+    </div>
+
+    <section class="piece-notes">
+      <h2>关于这件小作品</h2>
+      <p>一列列车在夜间的海面上匀速行驶，头顶是浩瀚星空。没有加载任何外部模型与贴图：车体、海浪、星野、月面、甚至环境音，全部由代码即时生成。默认从午夜缓缓驶向黎明，也可以拖动时间滑块，把天空、海面、星光与车窗灯一次性拨到任意时刻。</p>
+      <h2>可以怎么玩</h2>
+      <ul>
+        <li><b>三种视角</b>：远景俯瞰整列列车与海面；侧跟贴近车身感受速度；车内靠窗坐下，透过车窗看海与星。</li>
+        <li><b>五种车型</b>：星夜号卧铺客车、绿皮普速（25B 型）、和谐动车（CRH380A 型）、磁浮未来、简易通勤；涂装、头型、内饰与灯组各不相同。</li>
+        <li><b>连续昼夜</b>：时间滑块 0～1 对应午夜到次日午夜，天空渐变、日月运行、星野明灭、雾色海色全部平滑过渡。</li>
+        <li><b>氛围旋钮</b>：车速、波浪、星空密度、辉光、雾密度实时可调；另有重置、随机氛围与一键截图。</li>
+        <li><b>环境音</b>：海浪、风与列车低鸣由 WebAudio 合成，随车速与波浪起伏；右上角可一键静音。</li>
+      </ul>
+      <h2>技术札记</h2>
+      <ul>
+        <li>海面为 2400×2400、220 段平面，顶点着色器叠加四列 Gerstner 波，法线在片元内解析求解以避免摩尔纹。</li>
+        <li>昼夜由关键帧数组做 smoothstep 插值，首尾同值保证回绕连续；日月交叉淡化，无开关式跳变。</li>
+        <li>星野 7000 颗 + 银河带 6500 颗 + 浪花 1400 颗，粒子总量控制在 1.5 万；闪烁基于时间与随机相位。</li>
+        <li>后处理为 EffectComposer + UnrealBloomPass，只让车窗、灯组、星月等真 HDR 发光体起晕。</li>
+        <li>列车本体停在原点，桥墩、轨枕、波形与浪花向后流动回绕，形成无限前进的错觉，相机目标始终稳定。</li>
+      </ul>
+    </section>
+
+    <footer>最后更新：2026-11-26</footer>
+  </main>
+
+</div>
+<script>
+  (function () {
+    var frame = document.getElementById('stageFrame');
+    var iframe = document.getElementById('sceneFrame');
+    document.getElementById('fsBtn').addEventListener('click', function () {
+      if (frame.requestFullscreen) { frame.requestFullscreen().catch(function () { window.open(iframe.src, '_blank'); }); }
+      else { window.open(iframe.src, '_blank'); }
+    });
+    document.getElementById('reloadBtn').addEventListener('click', function () {
+      iframe.src = iframe.src;
+    });
+  })();
+</script>
+<script src="assets/page-motion.js"></script>
+<script src="assets/visit-stats.js" defer></script>
+</body>
+</html>
